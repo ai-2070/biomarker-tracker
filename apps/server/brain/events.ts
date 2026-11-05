@@ -7,8 +7,8 @@ export type BrainEvent =
   | { kind: "text"; text: string }
   /** A tool started. `tool`/`server`/`input` are the step's display form. */
   | { kind: "tool"; id: string; name: string; tool: string; server?: string; input: string }
-  /** A tool finished; `studyIds` are only IDs its structured result returned. */
-  | { kind: "tool_result"; id: string; ok: boolean; studyIds: string[] }
+  /** A tool finished; `studyIds` are only IDs its structured result returned. `critical`: results read from a picture are far out of range. */
+  | { kind: "tool_result"; id: string; ok: boolean; studyIds: string[]; critical?: boolean }
   /** What it is doing, for the status line. */
   | { kind: "status"; text: string };
 
@@ -25,5 +25,7 @@ export function toolFinished(id: string, name: string, input: unknown, output: u
   const step = toolStep(name, input);
   if (failed) return { kind: "tool_result", id, ok: false, studyIds: [] };
   validateToolResult(step, output);
-  return { kind: "tool_result", id, ok: step.success !== false, studyIds: studyIdsFromTool(name, output) };
+  const ok = step.success !== false;
+  const critical = ok && name === "propose_results" && Array.isArray((output as { critical?: unknown } | null)?.critical) && ((output as { critical: unknown[] }).critical.length > 0);
+  return { kind: "tool_result", id, ok, studyIds: studyIdsFromTool(name, output), ...(critical ? { critical: true } : {}) };
 }

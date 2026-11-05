@@ -9,7 +9,7 @@ const FIXTURES = path.resolve(import.meta.dirname, "../fixtures/agents");
 export interface FakeAgents {
   /** A fresh folder the fake writes what it saw into (seen.json). */
   dir(): string;
-  seen(dir: string): { args: string[]; input: string; system: string | null };
+  seen(dir: string): { args: string[]; input: string; images: string[]; system: string | null };
   restore(): void;
 }
 

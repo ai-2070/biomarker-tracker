@@ -1,8 +1,7 @@
-import { piecesToLines, type TextPiece } from "@bt/shared/core/importers/pdfText";
-import type { OcrProgress } from "./ocr";
-
-/** Scanned PDFs are read page by page with text recognition, up to this many pages. */
-const MAX_OCR_PAGES = 6;
+import { inkShare, pdfPagePlan, piecesToLines, type PdfPageInfo, type TextPiece } from "@bt/shared/core/importers/pdfText";
+import type { PDFPageProxy } from "pdfjs-dist";
+import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
+import { MAX_PHOTO_SIDE, type PreparedPhoto } from "./brain/photo";
 
 export class PdfReadError extends Error {
   constructor(
@@ -14,12 +13,15 @@ export class PdfReadError extends Error {
   }
 }
 
+/** A PDF's text, or, when any page is a scan (a picture without text), every page with something on it as a picture for Brain. */
+export type PdfContent = { kind: "text"; text: string } | { kind: "pages"; pages: PreparedPhoto[] };
+
 /**
- * Extract text lines from a PDF, entirely in the browser.
- * pdf.js is loaded on first use; its worker is a bundled local file.
- * A scanned PDF (pictures of pages, no text) is rendered and read with text recognition instead.
+ * Reads a PDF entirely in the browser. pdf.js is loaded on first use; its worker is a bundled local file.
+ * Text is never guessed from pictures: a scanned page makes the whole PDF go to Brain as page pictures. Blank pages
+ * (or only a page number or a logo) are left out, so they neither make a text PDF count as scanned nor use up pictures.
  */
-export async function readPdfText(file: File, progress?: OcrProgress): Promise<{ text: string; ocr: boolean }> {
+export async function readPdf(file: File, progress?: (fraction: number, stage: string) => void): Promise<PdfContent> {
   const pdfjs = await import("pdfjs-dist");
   const workerUrl = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
   pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
@@ -43,9 +45,9 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
     throw new PdfReadError("This file couldn't be read as a PDF.", "invalid");
   }
 
-  const lines: string[] = [];
-  let ocrPages = 0;
   try {
+    const lines: string[] = [];
+    const info: PdfPageInfo[] = [];
     for (let i = 1; i <= doc.numPages; i++) {
       const page = await doc.getPage(i);
       const content = await page.getTextContent();
@@ -56,31 +58,51 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
         pieces.push({ str: item.str, x: t[4] ?? 0, y: t[5] ?? 0, width: item.width, height: item.height });
       }
       const pageLines = piecesToLines(pieces);
-      if (pageLines.join("").trim().length < 20) {
-        // A text cover must not hide scanned pages later in the same report.
-        if (ocrPages >= MAX_OCR_PAGES) {
-          page.cleanup();
-          throw new PdfReadError(`This PDF has more than ${MAX_OCR_PAGES} scanned pages. Split it into smaller PDFs so every result page can be read. Nothing from this file has been imported.`, "invalid");
-        }
-        ocrPages++;
-        // Keep the bundled OCR engine out of the text-only PDF path.
-        const { recognize } = await import("./ocr");
-        const viewport = page.getViewport({ scale: 2.5 });
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.ceil(viewport.width);
-        canvas.height = Math.ceil(viewport.height);
-        await page.render({ canvas, canvasContext: canvas.getContext("2d")!, viewport }).promise;
-        lines.push(await recognize(canvas, (f, stage) => progress?.((i - 1 + f) / doc.numPages, `${stage} (page ${i} of ${doc.numPages})`)));
-      } else lines.push(...pageLines);
+      if (pageLines.join("").trim().length >= 20) {
+        lines.push(...pageLines);
+        info.push({ hasText: true });
+      } else {
+        // Little or no text: a small drawing tells a scan from a blank page.
+        const { canvas, ctx } = await drawPage(page, THUMBNAIL_SIDE);
+        info.push({ hasText: false, ink: inkShare(ctx.getImageData(0, 0, canvas.width, canvas.height).data) });
+      }
       page.cleanup();
     }
+    const plan = pdfPagePlan(info);
+    if (plan.kind === "text") return { kind: "text", text: lines.join("\n") };
+
+    if (plan.pages.length > MAX_PHOTOS) {
+      throw new PdfReadError(`This PDF has scanned pages and ${plan.pages.length} pages to read; Brain reads up to ${MAX_PHOTOS} at a time. Split it into smaller PDFs so every result page can be read.`, "invalid");
+    }
+    const pages: PreparedPhoto[] = [];
+    for (const [n, index] of plan.pages.entries()) {
+      progress?.(n / plan.pages.length, `Preparing page ${n + 1} of ${plan.pages.length}`);
+      const page = await doc.getPage(index + 1);
+      const url = (await drawPage(page, MAX_PHOTO_SIDE)).canvas.toDataURL("image/jpeg", 0.85);
+      pages.push({ mediaType: "image/jpeg", data: url.slice(url.indexOf(",") + 1) });
+      page.cleanup();
+    }
+    return { kind: "pages", pages };
   } finally {
     void doc.loadingTask.destroy();
   }
+}
 
-  const text = lines.join("\n");
-  if (text.replace(/\s/g, "").length < 20) {
-    throw new PdfReadError("No text was found in this PDF, even with text recognition. Please enter the values by hand.", "no-text");
-  }
-  return { text, ocr: ocrPages > 0 };
+/** Longest side of the small drawing that tells a scanned page from a blank one. */
+const THUMBNAIL_SIDE = 200;
+
+/** Draws a page on a white canvas, its longest side `side` px. */
+async function drawPage(page: PDFPageProxy, side: number): Promise<{ canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D }> {
+  const base = page.getViewport({ scale: 1 });
+  const viewport = page.getViewport({ scale: side / Math.max(base.width, base.height) });
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(viewport.width);
+  canvas.height = Math.round(viewport.height);
+  const ctx = canvas.getContext("2d", { willReadFrequently: side === THUMBNAIL_SIDE });
+  if (!ctx) throw new PdfReadError("This browser can't prepare the PDF's pages.", "invalid");
+  // Scans can be transparent: a white page underneath, as on paper.
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  await page.render({ canvas, canvasContext: ctx, viewport }).promise;
+  return { canvas, ctx };
 }

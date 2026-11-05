@@ -24,9 +24,11 @@ export function requestTools(o: {
   fetchFn?: typeof fetch;
   userText?: string;
   requestText: string;
+  /** Photos or scanned pages came with the newest question (propose_results). */
+  images?: boolean;
 }): ToolSet {
   const own = o.researchOnly
     ? researchOnlyTools(o.fetchFn, o.claimReview)
-    : healthTools(o.snapshot, o.fetchFn, { userText: o.userText, requestText: o.requestText });
+    : healthTools(o.snapshot, o.fetchFn, { userText: o.userText, requestText: o.requestText, images: o.images });
   return { ...own, ...o.serverTools };
 }

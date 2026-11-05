@@ -44,7 +44,7 @@ interface AliasEntry {
 }
 
 /**
- * A test name as the parser compares it: lower case, accents and OCR's dotless "ı" removed, runs of spaces
+ * A test name as the parser compares it: lower case, accents and a dotless "ı" removed, runs of spaces
  * squeezed, and no space before "(" or "%" or after "(". So "Thrombocyta szam" matches "Thrombocyta szám",
  * and "Neutrophil (pero) %" matches "Neutrophil(pero)%". `at[i]` is the index in `name` of folded character i.
  */
@@ -85,7 +85,7 @@ const LETTER = /\p{L}/u;
 const RATIO_WORDS = /\b(ratio|quotient|index|arány|rapport|cociente|rapporto|verhältnis)\b/iu;
 const FLAG_TOKEN = /^([HLN+\-*!↑↓]|\(?[HL]\)?|high|low|hoch|niedrig|magas|alacsony)$/i;
 
-/** Strip list bullets, test codes and leading symbols (also OCR specks read as punctuation) from a line. */
+/** Strip list bullets, test codes and leading symbols (also specks read as punctuation) from a line. */
 function lineBody(line: string): string {
   return line.replace(/^[\s*•·\-–>,;:!'"‘’“”©]+/, "").replace(/^\d{2,6}\s+(?=\p{L})/u, "");
 }

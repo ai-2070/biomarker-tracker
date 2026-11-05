@@ -1,4 +1,5 @@
-// A stand-in for the `claude` program in tests: records what it was given, then prints the stream-json
+// A stand-in for the `claude` (and `codex`) program in tests: records what it was given (with the contents of
+// image files passed with -i, as base64), then prints the stream-json
 // lines from FAKE_LINES (a JSON array), FAKE_DELAY ms apart. With FAKE_HANG=1 it then starts a helper and
 // keeps running (pids in pids.json), like a program that is still working when the person presses Stop.
 // FAKE_MCP=1 calls the app's first bridge tool before answering (lists, then calls get_results).
@@ -12,7 +13,8 @@ process.stdin.setEncoding("utf8");
 process.stdin.on("data", (d) => (input += d));
 process.stdin.on("end", async () => {
   const at = args.indexOf("--system-prompt-file");
-  fs.writeFileSync(path.join(dir, "seen.json"), JSON.stringify({ args, input, system: at >= 0 ? fs.readFileSync(args[at + 1], "utf8") : null }));
+  const images = args.flatMap((a, i) => (a === "-i" ? [fs.readFileSync(args[i + 1]).toString("base64")] : []));
+  fs.writeFileSync(path.join(dir, "seen.json"), JSON.stringify({ args, input, images, system: at >= 0 ? fs.readFileSync(args[at + 1], "utf8") : null }));
   if (process.env.FAKE_MCP === "1") {
     const at2 = args.indexOf("--mcp-config");
     const cfg = JSON.parse(fs.readFileSync(args[at2 + 1], "utf8")).mcpServers.bt;
