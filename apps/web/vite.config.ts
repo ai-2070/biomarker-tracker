@@ -99,5 +99,10 @@ export default defineConfig({
   define: { __APP_VERSION__: JSON.stringify(pkg.version) },
   // In dev, the page talks to the local server (apps/server, started with it by `bun dev`) through Vite.
   // BT_PORT moves both, e.g. to run beside another copy of the app.
-  server: { proxy: { "/api": { target: `http://127.0.0.1:${process.env.BT_PORT || 4820}`, changeOrigin: true } } },
+  // Under `bun run desktop:dev` the window opens port 5173 (tauri.dev.conf.json), so Vite must not move to
+  // another port when it is taken: that could open another copy of the app.
+  server: {
+    strictPort: Boolean(process.env.TAURI_ENV_PLATFORM),
+    proxy: { "/api": { target: `http://127.0.0.1:${process.env.BT_PORT || 4820}`, changeOrigin: true } },
+  },
 });
