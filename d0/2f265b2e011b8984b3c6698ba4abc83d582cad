@@ -1,0 +1,40 @@
+apps/server/healthTools.ts
+  s_739035987a7025::t_d4bde9c2e8f42d 769
+tests/app/brainStore.test.ts
+  s_739035987a7025::t_b6e7beca2be7ec 524,534-537
+  s_739035987a7025::t_53b009e4116896 501-523,525-533,538-562
+apps/web/src/app/brain/Brain.tsx
+  s_739035987a7025::t_d4bde9c2e8f42d 37-38,772-776
+  s_739035987a7025::t_b5abb4ff5dfa70 446,607-609
+apps/server/brain/prompt.ts
+  s_739035987a7025::t_d4bde9c2e8f42d 73
+PRIVACY.md
+  s_739035987a7025::t_1ad548f99b70f2 16
+CLAUDE.md
+  s_739035987a7025::t_1ad548f99b70f2 264
+apps/web/src/app/brain/store.ts
+  s_739035987a7025::t_b6e7beca2be7ec 432-434,437,439-441
+  s_739035987a7025::t_b5abb4ff5dfa70 301-333,442
+  s_739035987a7025::t_732fa5ed51d883 36-49,431,435-436,438,453-454,458-461,484-488
+  s_739035987a7025::t_47ba7c850c9e2b 4
+  s_739035987a7025::t_8f31f82f802943 538-540,542
+  s_739035987a7025::t_18ce744f92c62a 443
+apps/server/brain/ask.ts
+  s_739035987a7025::t_8f31f82f802943 70-75,81,114
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d02f265b2e011b8984b3c6698ba4abc83d582cad",
+  "prompts": {},
+  "sessions": {
+    "s_739035987a7025": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b3f75394-4d2e-4175-9b22-4bb6cc634f98",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
