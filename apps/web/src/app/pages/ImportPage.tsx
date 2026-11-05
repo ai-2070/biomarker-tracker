@@ -12,6 +12,7 @@ import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
 import { href } from "../router";
 import { Review, isImage, isPdf, monthFirst } from "../components/LabReview";
 import { readWithBrain } from "../brain/store";
+import type { PreparedPhoto } from "../brain/photo";
 
 type Step =
   | { name: "pick" }
@@ -77,9 +78,9 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
   const [pasted, setPasted] = useState("");
 
   /** Photos and scanned PDFs go to Brain as pictures; it reads the results and shows them for checking. */
-  async function sendToBrain(file: File) {
+  async function sendToBrain(file: File, pages?: PreparedPhoto[]) {
     setToBrain(file.name);
-    await readWithBrain(file);
+    await readWithBrain(file, pages);
   }
 
   async function onFile(file: File | undefined) {
@@ -93,7 +94,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
     try {
       const { readPdf } = await import("../pdf");
       const pdf = await readPdf(file, (fraction, stage) => setProgress({ fraction, stage }));
-      if (pdf.kind === "pages") await sendToBrain(file);
+      if (pdf.kind === "pages") await sendToBrain(file, pdf.pages);
       else onParsed(file.name, pdf.text, file);
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");

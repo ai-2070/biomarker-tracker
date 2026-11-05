@@ -216,12 +216,18 @@ export const READ_REPORT_QUESTION = "Read the results in this report and show th
 
 /**
  * A photo or scanned PDF from the Import page: opens Brain with it attached and asks Brain to read the results,
- * which come back as a review card. Without a ready model the question waits in the question box.
+ * which come back as a review card. `pages`: a scanned PDF's pages as the Import page already prepared them.
+ * Without a ready model the question waits in the question box.
  */
-export async function readWithBrain(file: File): Promise<void> {
+export async function readWithBrain(file: File, pages?: PreparedPhoto[]): Promise<void> {
   changeScope("personal");
   set((s) => ({ open: true, focusTick: s.focusTick + 1 }));
-  await addFiles([file]);
+  // A scanned PDF's pages, already drawn by the Import page, are attached as they are rather than drawn again.
+  if (pages?.length) {
+    if (!threads.personal.attachments.some((a) => a.file === file)) {
+      setThread("personal", (s) => ({ attachments: [...s.attachments, { id: newId(), name: file.name, size: file.size, status: "ready", images: pages, pictureOf: "pdf", file }] }));
+    }
+  } else await addFiles([file]);
   if (threads.personal.attachments.some((a) => a.file === file && a.status === "ready")) askBrain(READ_REPORT_QUESTION);
 }
 

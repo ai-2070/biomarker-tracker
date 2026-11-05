@@ -283,10 +283,10 @@ export const PROVIDERS: readonly ProviderInfo[] = [
   },
 ];
 
-/** What the assistant uses until the person chooses something else. */
 /** Photos and scanned pages sent with one question (the page shrinks each to at most 1568 px). */
 export const MAX_PHOTOS = 6;
 
+/** What the assistant uses until the person chooses something else. */
 export const DEFAULT_CHOICE: ModelChoice = { provider: "claude-code", model: "opus" };
 
 export const providerInfo = (id: string): ProviderInfo | undefined => PROVIDERS.find((p) => p.id === id);
