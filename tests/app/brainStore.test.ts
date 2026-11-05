@@ -507,6 +507,15 @@ describe("results Brain read from photos", () => {
     expect(brain.useBrain()).toMatchObject({ open: true, scope: "personal", pending: brain.READ_REPORT_QUESTION, attachments: [{ name: "scan.jpg", file: photo, status: "ready" }] });
   });
 
+  it("attaches a scanned PDF's pages the Import page already drew, without reading the PDF again", async () => {
+    const pdf = new File(["%PDF"], "scan.pdf", { type: "application/pdf" });
+    const pages = [{ mediaType: "image/jpeg" as const, data: "UEFHRQ==" }, { mediaType: "image/jpeg" as const, data: "UEFHRTI=" }];
+    await brain.readWithBrain(pdf, pages);
+    expect(brain.useBrain()).toMatchObject({ pending: brain.READ_REPORT_QUESTION, attachments: [{ name: "scan.pdf", file: pdf, status: "ready", images: pages, pictureOf: "pdf" }] });
+    await brain.readWithBrain(pdf, pages);
+    expect(brain.useBrain().attachments).toHaveLength(1);
+  });
+
   it("doesn't ask when the picture couldn't be prepared", async () => {
     mocks.shrinkPhoto.mockRejectedValueOnce(new Error("This browser can't open this picture."));
     await brain.readWithBrain(new File(["heic"], "scan.heic", { type: "image/heic" }));
