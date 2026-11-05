@@ -11,8 +11,8 @@ import {
   safetyNotes,
   sortProtocols,
   validateProtocol,
-} from "../../src/core/protocols";
-import type { ProtocolEntry } from "../../src/core/types";
+} from "@bt/core/protocols";
+import type { ProtocolEntry } from "@bt/core/types";
 
 const today = "2025-06-01";
 

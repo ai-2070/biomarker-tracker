@@ -6,7 +6,7 @@ import {
   phenoAgeFromLogHazard,
   phenoAgeLogHazard,
   type PhenoAgeInputs,
-} from "../../src/core/phenoage";
+} from "@bt/core/phenoage";
 
 const typical: PhenoAgeInputs = {
   albumin: 45,

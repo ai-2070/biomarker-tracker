@@ -1,12 +1,12 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { publicClaimTopic, claimSearchQuery, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "../../src/core/claimEvidence";
-import { db, deleteEverything } from "../../src/db/db";
-import { browserData } from "../../src/app/profiles";
-import { CLAIM_EVIDENCE_KEY, checkClaimEvidence, readClaimEvidence, refreshClaimUpdates, validClaimCheck } from "../../src/app/claimEvidence";
+import { publicClaimTopic, claimSearchQuery, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "@bt/core/claimEvidence";
+import { db, deleteEverything } from "../../apps/web/src/db/db";
+import { browserData } from "../../apps/web/src/app/profiles";
+import { CLAIM_EVIDENCE_KEY, checkClaimEvidence, readClaimEvidence, refreshClaimUpdates, validClaimCheck } from "../../apps/web/src/app/claimEvidence";
 
 const { metadata } = vi.hoisted(() => ({ metadata: vi.fn() }));
-vi.mock("../../src/research/claimUpdates", () => ({ countNewClaimStudies: metadata }));
+vi.mock("@bt/research/claimUpdates", () => ({ countNewClaimStudies: metadata }));
 const now = new Date("2026-10-31T12:00:00.000Z");
 const request: ClaimRequest = { nutrientId: "astaxanthin", claim: "May help with focusing fatigue", topic: "eye strain" };
 const check: ClaimCheck = { ...request, version: 1, verdict: "mixed", grade: "low", summary: "Small studies reported mixed findings [PMID:12345678].", limitations: "The trials were small and short, so important uncertainty remains.", citations: ["PMID:12345678"], checkedAt: "2026-10-30T10:00:00.000Z", model: "actual-serving-model" };

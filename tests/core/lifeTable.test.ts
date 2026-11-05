@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { ageAtMoment, ageWhenLeft, bestBefore, bestBeforeMoments, bestBeforeWithShift, birthMoment, lifeTablePeriod, momentAtAge, populationSurvival, remainingYears, survivors, tableFor, validateLifeTables, type LifeTable, type LifeTableFile } from "../../src/core/lifeTable";
+import { ageAtMoment, ageWhenLeft, bestBefore, bestBeforeMoments, bestBeforeWithShift, birthMoment, lifeTablePeriod, momentAtAge, populationSurvival, remainingYears, survivors, tableFor, validateLifeTables, type LifeTable, type LifeTableFile } from "@bt/core/lifeTable";
 
 /** A made-up table: nobody dies before 60, then survivors fall by 2,000 a year to 95, e95 = 3 years. */
 const lx = Array.from({ length: 96 }, (_, a) => (a <= 60 ? 100_000 : 100_000 - (a - 60) * 2_000));

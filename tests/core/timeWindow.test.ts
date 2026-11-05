@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { dayNumber } from "../../src/core/dates";
-import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, timeTicks, zoomWindow } from "../../src/core/timeWindow";
+import { dayNumber } from "@bt/core/dates";
+import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, timeTicks, zoomWindow } from "@bt/core/timeWindow";
 
 const full = { from: dayNumber("2022-01-01"), to: dayNumber("2026-10-28") };
 

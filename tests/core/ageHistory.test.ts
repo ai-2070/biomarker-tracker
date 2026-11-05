@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { ageHistory } from "../../src/core/ageHistory";
-import { demoProfile } from "../../src/core/demo";
-import { fitnessAge } from "../../src/core/fitnessAge";
-import { heartAge, heartAgeData } from "../../src/core/heartAge";
-import { summarizePhenoAge } from "../../src/core/phenoageDraws";
-import type { Measurement } from "../../src/core/types";
+import { ageHistory } from "@bt/core/ageHistory";
+import { demoProfile } from "@bt/core/demo";
+import { fitnessAge } from "@bt/core/fitnessAge";
+import { heartAge, heartAgeData } from "@bt/core/heartAge";
+import { summarizePhenoAge } from "@bt/core/phenoageDraws";
+import type { Measurement } from "@bt/core/types";
 
 const today = "2026-10-29";
 const demo = demoProfile(today);

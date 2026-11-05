@@ -4,44 +4,117 @@
   "workspaces": {
     "": {
       "name": "biomarker-tracker",
-      "dependencies": {
-        "@ai-sdk/anthropic": "^4.0.96",
-        "@ai-sdk/mcp": "^2.0.90",
-        "@ai-sdk/mistral": "^4.0.79",
-        "@ai-sdk/openai": "^4.0.108",
-        "@ai-sdk/openai-compatible": "^3.0.84",
-        "@base-ui/react": "^1.9.0",
-        "@fontsource-variable/inter": "^5.3.0",
-        "@fontsource-variable/kode-mono": "^5.3.0",
-        "@fontsource/instrument-serif": "^5.3.0",
-        "@modelcontextprotocol/sdk": "^1.32.2",
-        "@tesseract.js-data/deu": "1.0.0",
-        "@tesseract.js-data/eng": "1.0.0",
-        "@tesseract.js-data/hun": "1.0.0",
-        "ai": "^7.0.162",
-        "dexie": "^4.4.7",
-        "dexie-react-hooks": "^4.4.0",
-        "eve": "1.0.0-rc.2",
-        "pdfjs-dist": "^6.5.438",
-        "react": "^19.3.1",
-        "react-dom": "^19.3.1",
-        "recharts": "^3.10.1",
-        "tesseract.js": "7.0.0",
-        "zod": "^4.6.7",
-      },
       "devDependencies": {
-        "@tailwindcss/vite": "^4.3.4",
-        "@tauri-apps/cli": "^2",
         "@types/bun": "^1.4.4",
         "@types/node": "^26.6.6",
         "@types/react": "^19.3.0",
         "@types/react-dom": "^19.3.0",
         "@vitejs/plugin-react": "^6.2.1",
         "fake-indexeddb": "^6.2.7",
-        "tailwindcss": "^4.3.4",
+        "turbo": "^2.11.10",
         "typescript": "^7.0.2",
         "vite": "^8.3.5",
         "vitest": "^5.1.0",
+      },
+    },
+    "apps/desktop": {
+      "name": "@bt/desktop",
+      "dependencies": {
+        "@bt/core": "workspace:*",
+      },
+      "devDependencies": {
+        "@tauri-apps/cli": "^2",
+        "@types/node": "^26.6.6",
+        "typescript": "^7.0.2",
+      },
+    },
+    "apps/eve": {
+      "name": "@bt/eve",
+      "dependencies": {
+        "eve": "1.0.0-rc.2",
+      },
+      "devDependencies": {
+        "@types/node": "^26.6.6",
+        "typescript": "^7.0.2",
+      },
+    },
+    "apps/server": {
+      "name": "@bt/server",
+      "dependencies": {
+        "@ai-sdk/anthropic": "^4.0.96",
+        "@ai-sdk/mcp": "^2.0.90",
+        "@ai-sdk/mistral": "^4.0.79",
+        "@ai-sdk/openai": "^4.0.108",
+        "@ai-sdk/openai-compatible": "^3.0.84",
+        "@bt/ai": "workspace:*",
+        "@bt/core": "workspace:*",
+        "@bt/eve": "workspace:*",
+        "@bt/research": "workspace:*",
+        "@modelcontextprotocol/sdk": "^1.32.2",
+        "ai": "^7.0.162",
+        "eve": "1.0.0-rc.2",
+        "zod": "^4.6.7",
+      },
+      "devDependencies": {
+        "@types/node": "^26.6.6",
+        "typescript": "^7.0.2",
+      },
+    },
+    "apps/web": {
+      "name": "@bt/web",
+      "dependencies": {
+        "@base-ui/react": "^1.9.0",
+        "@bt/ai": "workspace:*",
+        "@bt/core": "workspace:*",
+        "@bt/research": "workspace:*",
+        "@fontsource-variable/inter": "^5.3.0",
+        "@fontsource-variable/kode-mono": "^5.3.0",
+        "@fontsource/instrument-serif": "^5.3.0",
+        "@tesseract.js-data/deu": "1.0.0",
+        "@tesseract.js-data/eng": "1.0.0",
+        "@tesseract.js-data/hun": "1.0.0",
+        "ai": "^7.0.162",
+        "dexie": "^4.4.7",
+        "dexie-react-hooks": "^4.4.0",
+        "pdfjs-dist": "^6.5.438",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
+        "recharts": "^3.10.1",
+        "tesseract.js": "7.0.0",
+      },
+      "devDependencies": {
+        "@tailwindcss/vite": "^4.3.4",
+        "@types/node": "^26.6.6",
+        "@types/react": "^19.3.0",
+        "@types/react-dom": "^19.3.0",
+        "@vitejs/plugin-react": "^6.2.1",
+        "tailwindcss": "^4.3.4",
+        "typescript": "^7.0.2",
+        "vite": "^8.3.5",
+      },
+    },
+    "packages/ai": {
+      "name": "@bt/ai",
+      "devDependencies": {
+        "typescript": "^7.0.2",
+      },
+    },
+    "packages/core": {
+      "name": "@bt/core",
+      "dependencies": {
+        "@bt/ai": "workspace:*",
+      },
+      "devDependencies": {
+        "typescript": "^7.0.2",
+      },
+    },
+    "packages/research": {
+      "name": "@bt/research",
+      "dependencies": {
+        "@bt/core": "workspace:*",
+      },
+      "devDependencies": {
+        "typescript": "^7.0.2",
       },
     },
   },
@@ -67,6 +140,20 @@
     "@base-ui/react": ["@base-ui/react@1.9.0", "", { "dependencies": { "@babel/runtime": "^7.29.7 || ^8.0.0", "@base-ui/utils": "0.5.0", "@floating-ui/react-dom": "^2.1.9", "@floating-ui/utils": "^0.2.12", "use-sync-external-store": "^1.7.0" }, "peerDependencies": { "@date-fns/tz": "^1.2.0", "@types/react": "^17 || ^18 || ^19", "date-fns": "^4.0.0", "react": "^17 || ^18 || ^19", "react-dom": "^17 || ^18 || ^19" }, "optionalPeers": ["@date-fns/tz", "@types/react", "date-fns"] }, "sha512-S8CSYosASBKtpL8SWUfS78rFElfLijiCgA7oHOK22jCJ95FULsYyKwBNFOgudt0RA+/7yNc7F81bOvQnRgbBiQ=="],
 
     "@base-ui/utils": ["@base-ui/utils@0.5.0", "", { "dependencies": { "@babel/runtime": "^7.29.7 || ^8.0.0", "@floating-ui/utils": "^0.2.12", "reselect": "^5.3.0", "use-sync-external-store": "^1.7.0" }, "peerDependencies": { "@types/react": "^17 || ^18 || ^19", "react": "^17 || ^18 || ^19", "react-dom": "^17 || ^18 || ^19" }, "optionalPeers": ["@types/react"] }, "sha512-dYGGcEttjkYiMoa5nHm8vLaJ2UcuTWxo3BFAwOYXeRg/q7UVVvA6cacEIXEs3FgBfK1CGtW1ptElqs7wsx+t9A=="],
+
+    "@bt/ai": ["@bt/ai@workspace:packages/ai"],
+
+    "@bt/core": ["@bt/core@workspace:packages/core"],
+
+    "@bt/desktop": ["@bt/desktop@workspace:apps/desktop"],
+
+    "@bt/eve": ["@bt/eve@workspace:apps/eve"],
+
+    "@bt/research": ["@bt/research@workspace:packages/research"],
+
+    "@bt/server": ["@bt/server@workspace:apps/server"],
+
+    "@bt/web": ["@bt/web@workspace:apps/web"],
 
     "@floating-ui/core": ["@floating-ui/core@1.8.0", "", { "dependencies": { "@floating-ui/utils": "^0.2.12" } }, "sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ=="],
 
@@ -219,6 +306,18 @@
     "@tesseract.js-data/eng": ["@tesseract.js-data/eng@1.0.0", "", {}, "sha512-mbTumm6KQPUHyzTPQaF3ObXYnx0SqqfV2nabqFVQBwD6Kl7PhGSLSzOlfFTWy0P3BjghaSKA2W9GB19Jk+ZcTg=="],
 
     "@tesseract.js-data/hun": ["@tesseract.js-data/hun@1.0.0", "", {}, "sha512-HoMZ/9ULBzp6WBFLz8H3dBfeO9OK5E5kUL17oQp9wRbslXqpYdxeXMX2WLHrdZzeuGCGu+CByoMWKkDbX+BvqQ=="],
+
+    "@turbo/darwin-64": ["@turbo/darwin-64@2.11.10", "", { "os": "darwin", "cpu": "x64" }, "sha512-By4idRap5+nLnMuRzLB4qkOPRlvNdyY1ne4VJYDyUoUB11H94k7uif9mbe3JT8JSNXs1D68uMcBj6hJ/jMQRvA=="],
+
+    "@turbo/darwin-arm64": ["@turbo/darwin-arm64@2.11.10", "", { "os": "darwin", "cpu": "arm64" }, "sha512-pyEYlVcuexOPa92p0Wlwl9YT1Is5D60lxN3ItWm3g30YLvFaUq86TF4BBWg5ZAc0uMTnrOzCvuCsOBTdzUWnRQ=="],
+
+    "@turbo/linux-64": ["@turbo/linux-64@2.11.10", "", { "os": [ "linux", "android", ], "cpu": "x64" }, "sha512-1tYeR/IDZ5HEdsb0jNq2L2xam5nMQ+g80tlV2BZmv4OFw+pMcUM0mMmUcfc5wXPPNHVNPuDMjh9Y8G8HgXPLZA=="],
+
+    "@turbo/linux-arm64": ["@turbo/linux-arm64@2.11.10", "", { "os": [ "linux", "android", ], "cpu": "arm64" }, "sha512-HuekQxvVGhUd46g1Im/DKdOtglHr4/gguZAvzEpPUgtxNkztSa8lWhQEGQ+EmPQ0n7w19qjThFU+OfEEd0uvlw=="],
+
+    "@turbo/windows-64": ["@turbo/windows-64@2.11.10", "", { "os": "win32", "cpu": "x64" }, "sha512-UJOP3BkbreY3/JlMgJR6ZiimxYIBn+c+B4tnBIxD0E9c3Estmk+XoVNVBNBottZLNRXe3/ScgOU4+/k8tIWysg=="],
+
+    "@turbo/windows-arm64": ["@turbo/windows-arm64@2.11.10", "", { "os": "win32", "cpu": "arm64" }, "sha512-xOkEjF3ws/b/YNlc+bvJHMYBn+vL+QbEISZFVi0qS+ImmhA1X3/gmNmBrjjIG3dg6aeN+n6gQitzSkXQ286qJQ=="],
 
     "@types/bun": ["@types/bun@1.4.4", "", { "dependencies": { "bun-types": "1.4.4" } }, "sha512-9wkRDXUXK124pEnAutE6n/l18j+i9GC5IAHK8TmX/2nlySETmky0OU6yL5U8pW1AoKh++AN9auDCr647BfurjQ=="],
 
@@ -659,6 +758,8 @@
     "toidentifier": ["toidentifier@1.0.1", "", {}, "sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA=="],
 
     "tr46": ["tr46@0.0.3", "", {}, "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="],
+
+    "turbo": ["turbo@2.11.10", "", { "optionalDependencies": { "@turbo/darwin-64": "2.11.10", "@turbo/darwin-arm64": "2.11.10", "@turbo/linux-64": "2.11.10", "@turbo/linux-arm64": "2.11.10", "@turbo/windows-64": "2.11.10", "@turbo/windows-arm64": "2.11.10" }, "bin": { "turbo": "bin/turbo" } }, "sha512-3GJYwig8ygEI89oaOZdduJX8/aw6O9eRPYHoIt6T3FZl9hkKjiyIspufJoVgqXihPoJu8M5CSV0DlZvzfohBCw=="],
 
     "type-is": ["type-is@2.1.0", "", { "dependencies": { "content-type": "^2.0.0", "media-typer": "^1.1.0", "mime-types": "^3.0.0" } }, "sha512-faYHw0anBbc/kWF3zFTEnxSFOAGUX9GFbOBthvDdLsIlEoWOFOtS0zgCiQYwIskL9iGXZL3kAXD8OoZ4GmMATA=="],
 

@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { proposalIntent, proposalIssue, type AssistantProposalContext } from "../../src/core/assistantProposal";
-import { parseHabitProposal } from "../../src/core/habitProposal";
-import { SAFETY_LIMITS } from "../../src/core/foods";
-import { mealSafetyBlock, mealTotals, validateMeal, type FoodDb } from "../../src/core/meals";
-import { planFromProposal } from "../../src/core/plans";
-import type { SafetyId } from "../../src/core/types";
+import { proposalIntent, proposalIssue, type AssistantProposalContext } from "@bt/core/assistantProposal";
+import { parseHabitProposal } from "@bt/core/habitProposal";
+import { SAFETY_LIMITS } from "@bt/core/foods";
+import { mealSafetyBlock, mealTotals, validateMeal, type FoodDb } from "@bt/core/meals";
+import { planFromProposal } from "@bt/core/plans";
+import type { SafetyId } from "@bt/core/types";
 
 const context: AssistantProposalContext = { requestText: "Suggest a simple routine and a breakfast idea.", safety: [], critical: false };
 const item = { label: "Walk after dinner", category: "lifestyle", when: "evening" };

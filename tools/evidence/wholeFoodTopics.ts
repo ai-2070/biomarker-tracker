@@ -5,7 +5,7 @@
  * or supplements of the food are a different question and count only as partly (the screening prompt
  * says so).
  */
-import type { Question } from "../../src/core/evidenceMap";
+import type { Question } from "@bt/core/evidenceMap";
 import type { TopicDef } from "./topics";
 
 /** Any of these words or word starts in a title, any case. */

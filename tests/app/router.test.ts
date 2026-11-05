@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { href, parseHash, type Route } from "../../src/app/router";
+import { href, parseHash, type Route } from "../../apps/web/src/app/router";
 
 describe("router", () => {
   it("parses known routes", () => {
@@ -79,7 +79,7 @@ describe("router", () => {
   });
 });
 
-import { lowerFirst } from "../../src/app/format";
+import { lowerFirst } from "../../apps/web/src/app/format";
 
 describe("lowerFirst", () => {
   it("lowercases ordinary words but keeps acronyms and letter names", () => {

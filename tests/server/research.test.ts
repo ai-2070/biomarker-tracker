@@ -6,27 +6,27 @@ import { tool } from "ai";
 import { MockModel } from "./mockModel";
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
-import { ask, type ChatMessage } from "../../server/assistant";
-import { runAgent, type AgentRequest } from "../../server/agents";
-import { callTool, closeRun, openRun, runFor } from "../../server/bridge";
-import type { HealthSnapshot } from "../../server/healthTools";
-import { createServer } from "../../server/http";
-import { assistantTools, researchTools } from "../../server/mcp";
-import { assistantCheck, currentChoice, readyModel } from "../../server/models";
-import { addSkill, deleteSkill, setSkillEnabled } from "../../server/skills";
+import { ask, type ChatMessage } from "../../apps/server/assistant";
+import { runAgent, type AgentRequest } from "../../apps/server/agents";
+import { callTool, closeRun, openRun, runFor } from "../../apps/server/bridge";
+import type { HealthSnapshot } from "../../apps/server/healthTools";
+import { createServer } from "../../apps/server/http";
+import { assistantTools, researchTools } from "../../apps/server/mcp";
+import { assistantCheck, currentChoice, readyModel } from "../../apps/server/models";
+import { addSkill, deleteSkill, setSkillEnabled } from "../../apps/server/skills";
 import { deferred } from "../helpers";
 
-vi.mock(import("../../server/agents"), async (original) => ({
+vi.mock(import("../../apps/server/agents"), async (original) => ({
   ...await original(),
   runAgent: vi.fn(),
 }));
-vi.mock(import("../../server/models"), async (original) => ({
+vi.mock(import("../../apps/server/models"), async (original) => ({
   ...await original(),
   currentChoice: vi.fn(),
   readyModel: vi.fn(),
   assistantCheck: vi.fn(),
 }));
-vi.mock(import("../../server/mcp"), async (original) => ({
+vi.mock(import("../../apps/server/mcp"), async (original) => ({
   ...await original(),
   assistantTools: vi.fn(),
 }));

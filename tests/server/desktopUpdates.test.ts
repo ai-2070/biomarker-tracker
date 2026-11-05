@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 
 const root = path.resolve(import.meta.dirname, "../..");
 const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
-const conf = JSON.parse(read("src-tauri/tauri.conf.json")) as {
+const conf = JSON.parse(read("apps/desktop/src-tauri/tauri.conf.json")) as {
   bundle: { targets: string[]; createUpdaterArtifacts?: boolean };
   plugins: { updater: { pubkey: string; endpoints: string[]; windows: { installMode: string } } };
 };
@@ -18,7 +18,7 @@ describe("desktop updates", () => {
 
   it("makes update files only when CI has the signing key, so local builds work without it", () => {
     expect(conf.bundle.createUpdaterArtifacts).toBeUndefined();
-    expect(JSON.parse(read("src-tauri/tauri.updater.conf.json"))).toMatchObject({ bundle: { createUpdaterArtifacts: true } });
+    expect(JSON.parse(read("apps/desktop/src-tauri/tauri.updater.conf.json"))).toMatchObject({ bundle: { createUpdaterArtifacts: true } });
     const workflow = read(".github/workflows/desktop.yml");
     expect(workflow).toContain("TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}");
     expect(workflow).toContain("--config src-tauri/tauri.updater.conf.json");
@@ -34,9 +34,9 @@ describe("desktop updates", () => {
   });
 
   it("registers the updater and stops the server before installing", () => {
-    const main = read("src-tauri/src/main.rs");
-    const updater = read("src-tauri/src/updater.rs");
-    expect(read("src-tauri/Cargo.toml")).toMatch(/^tauri-plugin-updater = "2\.\d+"$/m);
+    const main = read("apps/desktop/src-tauri/src/main.rs");
+    const updater = read("apps/desktop/src-tauri/src/updater.rs");
+    expect(read("apps/desktop/src-tauri/Cargo.toml")).toMatch(/^tauri-plugin-updater = "2\.\d+"$/m);
     expect(main).toContain(".plugin(tauri_plugin_updater::Builder::new().build())");
     expect(main).toContain("updater::start(app.handle());");
     expect(updater.indexOf("crate::stop_server(app);")).toBeLessThan(updater.indexOf("update.install(&bytes)"));
@@ -47,7 +47,7 @@ describe("desktop updates", () => {
   });
 
   it("never commits the private key", () => {
-    const tracked = fs.readdirSync(path.join(root, "src-tauri"));
+    const tracked = fs.readdirSync(path.join(root, "apps/desktop/src-tauri"));
     expect(tracked.some((f) => /\.key$/.test(f))).toBe(false);
     // The config holds the public key; a secret key's comment says "secret key".
     expect(Buffer.from(conf.plugins.updater.pubkey, "base64").toString("utf8")).not.toMatch(/secret key/i);

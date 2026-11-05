@@ -7,7 +7,7 @@ import { spawn } from "node:child_process";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { LIFE_TABLE_COUNTRIES, validateLifeTables, type LifeTableCountry, type LifeTableFile } from "../../src/core/lifeTable";
+import { LIFE_TABLE_COUNTRIES, validateLifeTables, type LifeTableCountry, type LifeTableFile } from "@bt/core/lifeTable";
 const ROOT = join(import.meta.dirname, "..", "..");
 const API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_mlifetable";
 const GEOS: Record<string, string> = {

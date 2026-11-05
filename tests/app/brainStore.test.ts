@@ -1,13 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { BrainState } from "../../src/app/brain/store";
-import type * as BrainStore from "../../src/app/brain/store";
+import type { BrainState } from "../../apps/web/src/app/brain/store";
+import type * as BrainStore from "../../apps/web/src/app/brain/store";
 import ferritin from "../../knowledge/biomarkers/ferritin.json";
 import weight from "../../knowledge/biomarkers/weight.json";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
 import { deferred } from "../helpers";
-import type { Profile } from "../../src/core/types";
-import type { ProfileFillResult } from "../../src/db/db";
+import type { Profile } from "@bt/core/types";
+import type { ProfileFillResult } from "../../apps/web/src/db/db";
 
 const mocks = vi.hoisted(() => ({
   api: vi.fn<(...args: unknown[]) => Promise<unknown>>(),
@@ -22,10 +22,10 @@ const mocks = vi.hoisted(() => ({
 
 // Exercise the real external store without mounting a UI or loading OCR/PDF workers.
 vi.mock("react", () => ({ useSyncExternalStore: (_subscribe: unknown, snapshot: () => BrainState) => snapshot() }));
-vi.mock("../../src/app/api", () => ({ api: mocks.api }));
+vi.mock("../../apps/web/src/app/api", () => ({ api: mocks.api }));
 // The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
-vi.mock("../../src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate) }));
-vi.mock("../../src/db/db", () => ({
+vi.mock("../../apps/web/src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate) }));
+vi.mock("../../apps/web/src/db/db", () => ({
   db: {
     transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
     measurements: { toArray: mocks.measurements },
@@ -39,17 +39,17 @@ vi.mock("../../src/db/db", () => ({
   fillPersonalDetails: mocks.fillProfile,
   LOADED_PROFILE_KEY: "loadedProfile",
 }));
-vi.mock("../../src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
-vi.mock("../../src/app/knowledge", () => ({
+vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
+vi.mock("../../apps/web/src/app/knowledge", () => ({
   BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace].map((def) => [def.id, def])),
 }));
-vi.mock("../../src/app/components/LabReview", () => ({
+vi.mock("../../apps/web/src/app/components/LabReview", () => ({
   isPdf: (file: File) => file.type === "application/pdf",
   isImage: (file: File) => file.type.startsWith("image/"),
   monthFirst: false,
   readReportFile: mocks.readReport,
 }));
-vi.mock("../../src/app/brain/photo", () => ({ shrinkPhoto: mocks.shrinkPhoto }));
+vi.mock("../../apps/web/src/app/brain/photo", () => ({ shrinkPhoto: mocks.shrinkPhoto }));
 
 
 const reply = (text = "Public evidence answer") => ({ ok: true, text, steps: [], studyIds: ["PMID:123"], truncated: false, failedServers: [] });
@@ -68,7 +68,7 @@ beforeEach(async () => {
   mocks.readReport.mockResolvedValue({ text: "", ocr: true });
   mocks.shrinkPhoto.mockResolvedValue({ mediaType: "image/jpeg", data: "PRIVATE_PHOTO" });
   // Reload deliberately: every test needs fresh private thread/request state.
-  brain = await import("../../src/app/brain/store");
+  brain = await import("../../apps/web/src/app/brain/store");
 });
 
 describe("research Brain thread", () => {

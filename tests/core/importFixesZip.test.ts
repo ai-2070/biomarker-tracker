@@ -1,7 +1,7 @@
 import { deflateRawSync } from "node:zlib";
 import { describe, expect, it, vi } from "vitest";
-import { zipEntries } from "../../src/core/importers/zipRead";
-import { crc32, zipStore } from "../../src/core/zipStore";
+import { zipEntries } from "@bt/core/importers/zipRead";
+import { crc32, zipStore } from "@bt/core/zipStore";
 
 function compressedZip(data: Uint8Array) {
   const compressed = deflateRawSync(data);

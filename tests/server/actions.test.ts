@@ -2,13 +2,13 @@ import { tool, type ToolSet } from "ai";
 import { MockModel } from "./mockModel";
 import { describe, expect, it, vi } from "vitest";
 import { z } from "zod";
-import { ask } from "../../server/assistant";
-import { callTool, closeRun, openRun } from "../../server/bridge";
-import { healthTools, type HealthSnapshot } from "../../server/healthTools";
-import { foods } from "../../server/knowledge";
-import { toolStep, validateToolResult } from "../../server/steps";
+import { ask } from "../../apps/server/assistant";
+import { callTool, closeRun, openRun } from "../../apps/server/bridge";
+import { healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
+import { foods } from "../../apps/server/knowledge";
+import { toolStep, validateToolResult } from "../../apps/server/steps";
 
-vi.mock(import("../../server/mcp"), async (original) => ({
+vi.mock(import("../../apps/server/mcp"), async (original) => ({
   ...await original(), assistantTools: vi.fn(async () => ({ tools: {}, servers: [], failed: [] })),
 }));
 

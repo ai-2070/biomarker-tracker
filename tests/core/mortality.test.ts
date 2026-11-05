@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import modelJson from "../../knowledge/models/mortality.json";
 import evaluationJson from "../../tools/longevity/evaluation.json";
-import { bestBeforeMoments, type LifeTable } from "../../src/core/lifeTable";
-import { coxRisk10, mortalityRiskAge, predictMortality, validateMortalityModels, type MortalityInputs, type MortalityModelFile } from "../../src/core/mortalityModel";
-import { mortalityProjection } from "../../src/core/mortalityProjection";
-import type { Measurement, Profile } from "../../src/core/types";
+import { bestBeforeMoments, type LifeTable } from "@bt/core/lifeTable";
+import { coxRisk10, mortalityRiskAge, predictMortality, validateMortalityModels, type MortalityInputs, type MortalityModelFile } from "@bt/core/mortalityModel";
+import { mortalityProjection } from "@bt/core/mortalityProjection";
+import type { Measurement, Profile } from "@bt/core/types";
 
 const file = modelJson as unknown as MortalityModelFile;
 const evaluations = evaluationJson as unknown as { variants: Record<string, { syntheticInferenceOracles: { input: MortalityInputs; lifelinesRisk10: number; lifelinesComparisonRisk10: number }[] }> };

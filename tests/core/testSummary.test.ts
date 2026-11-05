@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import type { NutrientDef } from "../../src/core/nutrients";
-import { buildTestSummary, rangeText, SUMMARY_LIMITS } from "../../src/core/testSummary";
-import type { Measurement, ProtocolEntry } from "../../src/core/types";
+import type { NutrientDef } from "@bt/core/nutrients";
+import { buildTestSummary, rangeText, SUMMARY_LIMITS } from "@bt/core/testSummary";
+import type { Measurement, ProtocolEntry } from "@bt/core/types";
 import { loadDefs, measurement } from "../helpers";
 
 const defs = loadDefs();

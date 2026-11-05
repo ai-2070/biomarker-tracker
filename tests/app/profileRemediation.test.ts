@@ -1,8 +1,8 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { db, deleteEverything, getProfile } from "../../src/db/db";
-import { browserData, createProfile, deleteProfileFolder, flushSaving, hasBrowserData, loadIntoBrowser, restoreProfile, startSaving, switchProfile } from "../../src/app/profiles";
-import { setIntakeList } from "../../src/app/hooks";
+import { db, deleteEverything, getProfile } from "../../apps/web/src/db/db";
+import { browserData, createProfile, deleteProfileFolder, flushSaving, hasBrowserData, loadIntoBrowser, restoreProfile, startSaving, switchProfile } from "../../apps/web/src/app/profiles";
+import { setIntakeList } from "../../apps/web/src/app/hooks";
 
 const row = { id: "m", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" as const };
 let stop: (() => void) | undefined;

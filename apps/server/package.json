@@ -1,0 +1,29 @@
+{
+  "name": "@bt/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun index.ts",
+    "start": "bun index.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.96",
+    "@ai-sdk/mcp": "^2.0.90",
+    "@ai-sdk/mistral": "^4.0.79",
+    "@ai-sdk/openai": "^4.0.108",
+    "@ai-sdk/openai-compatible": "^3.0.84",
+    "@bt/ai": "workspace:*",
+    "@bt/core": "workspace:*",
+    "@bt/eve": "workspace:*",
+    "@bt/research": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "ai": "^7.0.162",
+    "eve": "1.0.0-rc.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

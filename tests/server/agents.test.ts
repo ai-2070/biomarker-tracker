@@ -18,10 +18,10 @@ import {
   parseHermes,
   parseOpenClaw,
   which,
-} from "../../server/agents";
-import { closeRun, openRun, runFor, stableToken } from "../../server/bridge";
-import { createServer } from "../../server/http";
-import { openRouterModels, zdrFetch } from "../../server/openrouter";
+} from "../../apps/server/agents";
+import { closeRun, openRun, runFor, stableToken } from "../../apps/server/bridge";
+import { createServer } from "../../apps/server/http";
+import { openRouterModels, zdrFetch } from "../../apps/server/openrouter";
 
 describe("agent programs: arguments", () => {
   it("runs Claude Code without its own tools, with only the app's tools allowed", () => {

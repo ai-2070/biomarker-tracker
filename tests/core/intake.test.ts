@@ -1,11 +1,11 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, protocolToIntake, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "../../src/core/intake";
-import type { FoodDb, Meal } from "../../src/core/meals";
-import { itemErrors } from "../../src/core/plans";
-import type { NutrientDef } from "../../src/core/nutrients";
-import type { FoodTable } from "../../src/core/types";
+import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, protocolToIntake, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "@bt/core/intake";
+import type { FoodDb, Meal } from "@bt/core/meals";
+import { itemErrors } from "@bt/core/plans";
+import type { NutrientDef } from "@bt/core/nutrients";
+import type { FoodTable } from "@bt/core/types";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");
 const db = JSON.parse(readFileSync(join(K, "foods", "cofid-all.json"), "utf8")) as FoodDb;

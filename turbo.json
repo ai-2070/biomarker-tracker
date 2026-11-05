@@ -1,0 +1,25 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "stream",
+  "envMode": "loose",
+  "globalDependencies": ["package.json", "tsconfig.base.json"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/knowledge/**"],
+      "outputs": ["dist/**", ".output/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/knowledge/**"]
+    },
+    "//#typecheck:tests": {
+      "inputs": ["tests/**", "tools/**", "tsconfig.json", "apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "knowledge/**", "!**/node_modules/**", "!apps/eve/.output/**", "!apps/eve/.eve/**"]
+    },
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

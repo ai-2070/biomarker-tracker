@@ -1,10 +1,10 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { SAFETY_LIMITS } from "../../src/core/foods";
-import { FOOD_NAMES, FOOD_NAME_NOTES, adultReference, foodNameNote, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "../../src/core/meals";
-import type { NutrientDef } from "../../src/core/nutrients";
-import type { FoodTable } from "../../src/core/types";
+import { SAFETY_LIMITS } from "@bt/core/foods";
+import { FOOD_NAMES, FOOD_NAME_NOTES, adultReference, foodNameNote, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "@bt/core/meals";
+import type { NutrientDef } from "@bt/core/nutrients";
+import type { FoodTable } from "@bt/core/types";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");
 const db = JSON.parse(readFileSync(join(K, "foods", "cofid-all.json"), "utf8")) as FoodDb;
@@ -102,7 +102,7 @@ describe("example meals", () => {
 
 describe("coverage of the food table", () => {
   it("counts the foods with each nutrient measured", async () => {
-    const { coverage } = await import("../../src/core/meals");
+    const { coverage } = await import("@bt/core/meals");
     const c = coverage(db);
     expect(c.protein).toBe(db.foods.length);
     expect(c.vitaminK1).toBeLessThan(db.foods.length / 5);
@@ -112,7 +112,7 @@ describe("coverage of the food table", () => {
 
 describe("daily reference next to a supplement", () => {
   it("gives the person's intake, or men's and women's values, and the upper limit", async () => {
-    const { dailyReference } = await import("../../src/core/meals");
+    const { dailyReference } = await import("@bt/core/meals");
     expect(dailyReference(nutrients.get("vitamin_d")!, {})).toMatchObject({ intake: { amount: 15, unit: "µg" }, upperLimit: { amount: 100, unit: "µg" } });
     expect(dailyReference(nutrients.get("iron")!, { sex: "f", age: 30 })).toMatchObject({ intake: { amount: 16 } });
     expect(dailyReference(nutrients.get("vitamin_c")!, { sex: "m" }).upperLimit).toBeUndefined();

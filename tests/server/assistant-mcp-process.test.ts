@@ -2,8 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { assistantTools, stopAll } from "../../server/mcp";
-import { updateSettings } from "../../server/store";
+import { assistantTools, stopAll } from "../../apps/server/mcp";
+import { updateSettings } from "../../apps/server/store";
 
 // A real local JSON-RPC stdio peer. No provider, package install or network connection.
 // The production transport owns the child: EOF is the observable shutdown handshake.

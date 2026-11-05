@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { claimMetadataQuery, countNewClaimStudies, publicWords, searchMetadata, utcDay } from '../../src/research/claimUpdates';
+import { claimMetadataQuery, countNewClaimStudies, publicWords, searchMetadata, utcDay } from '@bt/research/claimUpdates';
 import { allIds, candidateTopics, issueBody, parseMetadata, previousMonth, watch, type RecordMetadata } from '../../tools/claims/watch';
 import { alreadyReported, watchMarker } from '../../tools/claims/publish';
 

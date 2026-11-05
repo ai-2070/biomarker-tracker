@@ -1,9 +1,9 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { demoProfile } from "../../src/core/demo";
-import { buildSleepTiming, pairSleepCardiac } from "../../src/core/sleepTiming";
-import type { Measurement } from "../../src/core/types";
-import { ensureExampleSleepData, saveDeviceMeasurements, TrackerDB } from "../../src/db/db";
+import { demoProfile } from "@bt/core/demo";
+import { buildSleepTiming, pairSleepCardiac } from "@bt/core/sleepTiming";
+import type { Measurement } from "@bt/core/types";
+import { ensureExampleSleepData, saveDeviceMeasurements, TrackerDB } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
 beforeEach(async () => {

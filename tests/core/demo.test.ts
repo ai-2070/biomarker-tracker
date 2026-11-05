@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { parseBackup } from "../../src/core/backup";
-import { addDays } from "../../src/core/dates";
-import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "../../src/core/demo";
-import { analyzeMarker } from "../../src/core/experiments";
-import { summarizePhenoAge } from "../../src/core/phenoageDraws";
-import { isActiveOn } from "../../src/core/protocols";
-import { validSleepSessions, sleepLocalTime } from "../../src/core/sleepSessions";
-import { buildSleepTiming, pairSleepCardiac } from "../../src/core/sleepTiming";
-import { flagMeasurement, groupByBiomarker } from "../../src/core/trends";
+import { parseBackup } from "@bt/core/backup";
+import { addDays } from "@bt/core/dates";
+import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "@bt/core/demo";
+import { analyzeMarker } from "@bt/core/experiments";
+import { summarizePhenoAge } from "@bt/core/phenoageDraws";
+import { isActiveOn } from "@bt/core/protocols";
+import { validSleepSessions, sleepLocalTime } from "@bt/core/sleepSessions";
+import { buildSleepTiming, pairSleepCardiac } from "@bt/core/sleepTiming";
+import { flagMeasurement, groupByBiomarker } from "@bt/core/trends";
 import { def, loadDefs } from "../helpers";
 
 const today = "2026-10-28";

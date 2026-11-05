@@ -1,0 +1,22 @@
+{
+  "name": "@bt/desktop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "desktop:prepare": "bun scripts/prepare.ts",
+    "desktop:smoke": "bun scripts/smoke.ts",
+    "desktop:check-version": "bun scripts/check-version.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@bt/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

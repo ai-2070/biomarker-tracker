@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import names from "../../knowledge/names.json";
-import { LIFESTYLE, NUTRIENTS, WHOLE_FOODS } from "../../src/app/knowledge";
+import { LIFESTYLE, NUTRIENTS, WHOLE_FOODS } from "../../apps/web/src/app/knowledge";
 
 const key = (text: string) => text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 

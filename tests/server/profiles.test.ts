@@ -2,10 +2,10 @@ import fs from "node:fs";
 import type http from "node:http";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { createServer } from "../../server/http";
-import * as profiles from "../../server/profiles";
-import { getSettings } from "../../server/store";
-import { crc32, readZip, safeEntryName, writeZip } from "../../server/zip";
+import { createServer } from "../../apps/server/http";
+import * as profiles from "../../apps/server/profiles";
+import { getSettings } from "../../apps/server/store";
+import { crc32, readZip, safeEntryName, writeZip } from "../../apps/server/zip";
 
 const m = (id: string, date: string, value: number) => ({ id, biomarkerId: "ferritin", date, value, originalValue: value, originalUnit: "µg/L", source: "manual" as const });
 const pdf = Buffer.from("%PDF-1.4\n% synthetic test file, no patient data\n");
@@ -252,7 +252,7 @@ describe("profiles over HTTP", () => {
 
 describe("what the assistant learns about the person", () => {
   it("gets age and details, never the name, birth month or private notes", async () => {
-    const { parseSnapshot, personOf, resultsOverview } = await import("../../server/healthTools");
+    const { parseSnapshot, personOf, resultsOverview } = await import("../../apps/server/healthTools");
     const r = parseSnapshot({
       measurements: [],
       profile: { name: "Anna Kovács", birthMonth: "1984-04", sex: "f", diet: "vegan", conditions: "chronic kidney disease", notes: "secret" },

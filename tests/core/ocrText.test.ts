@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { normalizeOcrText } from "../../src/core/importers/ocrText";
-import { decimalProblem, parseLabText } from "../../src/core/importers/labText";
+import { normalizeOcrText } from "@bt/core/importers/ocrText";
+import { decimalProblem, parseLabText } from "@bt/core/importers/labText";
 import { loadDefs } from "../helpers";
 
 describe("normalizeOcrText", () => {

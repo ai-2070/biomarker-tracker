@@ -1,8 +1,8 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import type { FoodDb } from "../../src/core/meals";
-import { validateWholeFoodDef, wholeFoodFor, wholeFoodPrescribes, type WholeFoodDef } from "../../src/core/wholeFoods";
+import type { FoodDb } from "@bt/core/meals";
+import { validateWholeFoodDef, wholeFoodFor, wholeFoodPrescribes, type WholeFoodDef } from "@bt/core/wholeFoods";
 import { loadDefs } from "../helpers";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");

@@ -1,0 +1,4 @@
+# One shared node_modules at the root, as before the workspace split: tools, tests and the
+# eve build (apps/eve/build.ts) find packages there.
+[install]
+linker = "hoisted"

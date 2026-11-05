@@ -27,13 +27,13 @@ The footer’s **see research sources in Settings** link goes directly to `#/set
 - The default model choice, until a choice is saved, is Claude Code with `opus`. No AI question is sent just because that is the default. It must be installed/signed in and the person must ask or explicitly run a check.
 - MCP child processes are not OS-sandboxed or constrained by the page’s Content Security Policy. They receive a minimal environment plus their configured values/secrets. The app has no enforced per-source network-host allowlist. Arbitrary/custom programs, changed settings, redirects, linked files and dependencies can add destinations.
 
-Implementation: `server/mcp.ts` (`ensureDefaultServers`, `warmUp`, `serverEnv`, `researchTools`), `src/core/mcpPresets.ts`, `src/app/components/settings/McpSettings.tsx`.
+Implementation: `apps/server/mcp.ts` (`ensureDefaultServers`, `warmUp`, `serverEnv`, `researchTools`), `packages/core/src/mcpPresets.ts`, `apps/web/src/app/components/settings/McpSettings.tsx`.
 
 ## Rule for research queries
 
 **The assistant must never put the person’s lab values, medications or other personal details into research queries or MCP tool inputs. It must use neutral public topics instead.** Do not turn a profile’s medicine list, a measured value, a date of birth or a clinical narrative into a search string.
 
-This rule is explicit in both personal and research-only system prompts in `server/assistant.ts`. It is a model instruction, **not a demonstrated guarantee that arbitrary third-party tool schemas are de-identified**. The generic MCP bridge forwards selected tool inputs and does not perform a comprehensive personal-data redaction/allowlist check. Do not describe it as technically impossible to send personal information. Direct source tools can accept more than search words; the app must not claim all downstream payloads are limited to words or that every source receives identical fields.
+This rule is explicit in both personal and research-only system prompts in `apps/server/assistant.ts`. It is a model instruction, **not a demonstrated guarantee that arbitrary third-party tool schemas are de-identified**. The generic MCP bridge forwards selected tool inputs and does not perform a comprehensive personal-data redaction/allowlist check. Do not describe it as technically impossible to send personal information. Direct source tools can accept more than search words; the app must not claim all downstream payloads are limited to words or that every source receives identical fields.
 
 ## Observed outbound MCP traffic
 
@@ -120,7 +120,7 @@ Personal Brain sends the selected provider or agent the question/conversation pl
 | Ollama / LM Studio | Configured loopback endpoint, defaults localhost:11434 / localhost:1234 | Model requests stay on this computer when using the validated local endpoint. Enabled external research still makes network requests. Local-model download/update behaviour is not audited here. |
 | Claude Code / Codex / Hermes / OpenClaw | Installed program’s login/profile/agent configuration | **Depends on your login.** These are not necessarily local models. Conversation and permitted tool context—or OpenClaw’s data summary—go to that program and its configured provider(s). Destinations and retention are not established by API-provider flags in this app. |
 
-Provider endpoint/control evidence: `server/models.ts`, `server/openrouter.ts`, `src/core/aiProviders.ts`, `server/agents.ts`. No actual AI-provider request was made or traffic/retention claim verified during this audit.
+Provider endpoint/control evidence: `apps/server/models.ts`, `apps/server/openrouter.ts`, `packages/core/src/aiProviders.ts`, `apps/server/agents.ts`. No actual AI-provider request was made or traffic/retention claim verified during this audit.
 
 ## Other traffic and user actions
 

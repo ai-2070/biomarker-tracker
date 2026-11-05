@@ -1021,7 +1021,7 @@ def main() -> None:
         "unavailableInputs": ["Compatible overnight resting RMSSD", "DunedinPACE (released DunedinPoAm is different)", "Compatible strength, balance and timed walking tests", "Device daily walking speed as a timed fitness test"],
         "models": models,
     }
-    code_hashes = {str(path.relative_to(ROOT)).replace("\\", "/"): digest(path) for path in [Path(__file__), ROOT / "tools/longevity/features.ts", ROOT / "src/core/mortalityModel.ts", ROOT / "src/core/phenoage.ts"]}
+    code_hashes = {str(path.relative_to(ROOT)).replace("\\", "/"): digest(path) for path in [Path(__file__), ROOT / "tools/longevity/features.ts", ROOT / "packages/core/src/mortalityModel.ts", ROOT / "packages/core/src/phenoage.ts"]}
     evaluation = {
         "modelVersion": model_file["version"], "fittedOn": model_file["fittedOn"], "versions": versions,
         "command": "python tools/longevity/train.py --cache <local-cohort-cache>", "commandKind": "Portable reproduction recipe, not a machine-local invocation", "codeSha256": code_hashes,

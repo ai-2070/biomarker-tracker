@@ -1,10 +1,10 @@
 import { tool } from "ai";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { MCP_PRESETS } from "../../src/core/mcpPresets";
-import { assistantTools, ensureDefaultServers, removeServer, researchTools } from "../../server/mcp";
-import { studyIdsFromTool, toolStep } from "../../server/steps";
-import { getSettings, updateSettings } from "../../server/store";
+import { MCP_PRESETS } from "@bt/core/mcpPresets";
+import { assistantTools, ensureDefaultServers, removeServer, researchTools } from "../../apps/server/mcp";
+import { studyIdsFromTool, toolStep } from "../../apps/server/steps";
+import { getSettings, updateSettings } from "../../apps/server/store";
 
 describe("ready-made MCP servers on first start", () => {
   it("are added switched off when npx is missing", () => {

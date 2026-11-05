@@ -10,7 +10,7 @@ import {
   roundForDisplay,
   toCanonical,
   UnitError,
-} from "../../src/core/units";
+} from "@bt/core/units";
 import { def } from "../helpers";
 
 describe("normalizeUnit", () => {
