@@ -4,7 +4,7 @@ import {
   plausibilityWarnings,
   validateManualEntry,
   type ManualEntryInput,
-} from "@bt/core/importers/manual";
+} from "@bt/shared/core/importers/manual";
 import { def, loadDefs } from "../helpers";
 
 describe("parseLabNumber", () => {

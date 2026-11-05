@@ -1,8 +1,8 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { validateComparisonTopic, type ComparisonTopicFile } from "@bt/core/foodComparison";
-import { PRESCRIBING } from "@bt/core/nutrients";
+import { validateComparisonTopic, type ComparisonTopicFile } from "@bt/shared/core/foodComparison";
+import { PRESCRIBING } from "@bt/shared/core/nutrients";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "food-comparison");
 const files = existsSync(DIR)

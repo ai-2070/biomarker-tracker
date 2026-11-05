@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { FITNESS_FIELDS } from "@bt/core/body";
-import { ageMatch, cutoffsMet, describePlace, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "@bt/core/fitnessTests";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile } from "@bt/core/types";
-import { formatValue } from "@bt/core/units";
+import { FITNESS_FIELDS } from "@bt/shared/core/body";
+import { ageMatch, cutoffsMet, describePlace, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "@bt/shared/core/fitnessTests";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
 import { formatDate } from "../../format";
 import { FITNESS_MAP } from "../../knowledge";
 import { href } from "../../router";

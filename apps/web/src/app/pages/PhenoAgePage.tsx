@@ -1,6 +1,6 @@
-import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE } from "@bt/core/phenoage";
-import { summarizePhenoAge, type PhenoAgeDraw } from "@bt/core/phenoageDraws";
-import type { Profile } from "@bt/core/types";
+import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE } from "@bt/shared/core/phenoage";
+import { summarizePhenoAge, type PhenoAgeDraw } from "@bt/shared/core/phenoageDraws";
+import type { Profile } from "@bt/shared/core/types";
 import { InlineBirthMonth } from "../components/InlineBirthMonth";
 import { FitnessForYourAge } from "../components/dashboard/fitness";
 import { Card, LinkButton, Notice, PageTitle } from "../components/ui";

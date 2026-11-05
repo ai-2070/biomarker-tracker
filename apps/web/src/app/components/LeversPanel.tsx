@@ -1,10 +1,10 @@
-import { selectLevers } from "@bt/core/evidence";
-import { selectFoods } from "@bt/core/foods";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
+import { selectLevers } from "@bt/shared/core/evidence";
+import { selectFoods } from "@bt/shared/core/foods";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { useProfile } from "../hooks";
-import type { Flag } from "@bt/core/trends";
-import { formatValue } from "@bt/core/units";
-import type { BiomarkerDef, Citation, EvidenceClaim, Profile, ProtocolEntry, SafetyId } from "@bt/core/types";
+import type { Flag } from "@bt/shared/core/trends";
+import { formatValue } from "@bt/shared/core/units";
+import type { BiomarkerDef, Citation, EvidenceClaim, Profile, ProtocolEntry, SafetyId } from "@bt/shared/core/types";
 import { EVIDENCE, FOODS, nameInSentence } from "../knowledge";
 import { lowerFirst } from "../format";
 import { href } from "../router";

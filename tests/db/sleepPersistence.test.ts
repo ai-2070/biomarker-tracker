@@ -1,8 +1,8 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { createBackup, parseBackup } from "@bt/core/backup";
-import { sortByDate } from "@bt/core/trends";
-import type { Measurement, SleepSession } from "@bt/core/types";
+import { createBackup, parseBackup } from "@bt/shared/core/backup";
+import { sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, SleepSession } from "@bt/shared/core/types";
 import {
   addMeasurement, addMeasurements, deleteMeasurements, exportAll, importBackup,
   saveDeviceMeasurements, TrackerDB, updateMeasurement,

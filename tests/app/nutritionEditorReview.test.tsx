@@ -3,9 +3,9 @@ import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { IntakeItem } from "@bt/core/intake";
-import type { FoodDb, Meal } from "@bt/core/meals";
-import type { Measurement, Profile } from "@bt/core/types";
+import type { IntakeItem } from "@bt/shared/core/intake";
+import type { FoodDb, Meal } from "@bt/shared/core/meals";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[], profile: { sex: "f", birthMonth: "1986-10" } as Profile, items: [] as IntakeItem[], meals: [] as Meal[], foodDb: undefined as FoodDb | undefined }));
 vi.mock("../../apps/web/src/app/hooks", () => ({

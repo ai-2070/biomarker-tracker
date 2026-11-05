@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Select } from "@base-ui/react/select";
-import { BODY_FIELDS, DAILY_TOTAL_FIELDS, SLEEP_FIELDS, type BodyField } from "@bt/core/body";
+import { BODY_FIELDS, DAILY_TOTAL_FIELDS, SLEEP_FIELDS, type BodyField } from "@bt/shared/core/body";
 import {
   DailyTally,
   appleRecords,
@@ -14,11 +14,11 @@ import {
   tableOf,
   type DailySeries,
   type TableColumn,
-} from "@bt/core/importers/deviceFiles";
-import { zipEntries } from "@bt/core/importers/zipRead";
-import { validSleepSessions } from "@bt/core/sleepSessions";
-import type { Measurement } from "@bt/core/types";
-import { listUnits, matchUnit, toCanonical } from "@bt/core/units";
+} from "@bt/shared/core/importers/deviceFiles";
+import { zipEntries } from "@bt/shared/core/importers/zipRead";
+import { validSleepSessions } from "@bt/shared/core/sleepSessions";
+import type { Measurement } from "@bt/shared/core/types";
+import { listUnits, matchUnit, toCanonical } from "@bt/shared/core/units";
 import { saveDeviceMeasurements } from "../../db/db";
 import { monthFirst } from "../components/LabReview";
 import { UnitSelect } from "../components/UnitSelect";

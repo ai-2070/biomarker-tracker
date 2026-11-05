@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
-import { WHTR_YEARS_LOST_RATIOS, waistToHeight, waistToHeightBand, waistToHeightYearsLost, type WaistToHeightBand } from "@bt/core/body";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile } from "@bt/core/types";
+import { WHTR_YEARS_LOST_RATIOS, waistToHeight, waistToHeightBand, waistToHeightYearsLost, type WaistToHeightBand } from "@bt/shared/core/body";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { formatDate } from "../../format";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";

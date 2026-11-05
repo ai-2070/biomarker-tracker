@@ -1,12 +1,13 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { publicClaimTopic, claimSearchQuery, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "@bt/core/claimEvidence";
+import { publicClaimTopic, claimSearchQuery, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "@bt/shared/core/claimEvidence";
 import { db, deleteEverything } from "../../apps/web/src/db/db";
 import { browserData } from "../../apps/web/src/app/profiles";
 import { CLAIM_EVIDENCE_KEY, checkClaimEvidence, readClaimEvidence, refreshClaimUpdates, validClaimCheck } from "../../apps/web/src/app/claimEvidence";
+import { trpcJson } from "./fakeServer";
 
 const { metadata } = vi.hoisted(() => ({ metadata: vi.fn() }));
-vi.mock("@bt/research/claimUpdates", () => ({ countNewClaimStudies: metadata }));
+vi.mock("@bt/shared/research/claimUpdates", () => ({ countNewClaimStudies: metadata }));
 const now = new Date("2026-10-31T12:00:00.000Z");
 const request: ClaimRequest = { nutrientId: "astaxanthin", claim: "May help with focusing fatigue", topic: "eye strain" };
 const check: ClaimCheck = { ...request, version: 1, verdict: "mixed", grade: "low", summary: "Small studies reported mixed findings [PMID:12345678].", limitations: "The trials were small and short, so important uncertainty remains.", citations: ["PMID:12345678"], checkedAt: "2026-10-30T10:00:00.000Z", model: "actual-serving-model" };
@@ -42,7 +43,7 @@ describe("local claim evidence", () => {
     const quick = auditedCheck("quick", "2026-12-02T10:00:00.000Z", "moderate");
     const later = new Date("2026-12-02T12:00:00.000Z");
     await seed(deep);
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(quick)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(quick)));
     await checkClaimEvidence(request, { now: later, depth: "quick" });
     db.close(); await db.open();
     const state = (await readClaimEvidence(db, later)).cache;
@@ -57,7 +58,7 @@ describe("local claim evidence", () => {
     const second = auditedCheck("quick", "2026-10-15T10:00:00.000Z", "moderate");
     const third = auditedCheck("deep", now.toISOString(), "high");
     await seed(first);
-    const fetcher = vi.fn().mockResolvedValueOnce(Response.json(second)).mockResolvedValueOnce(Response.json(third));
+    const fetcher = vi.fn().mockResolvedValueOnce(trpcJson(second)).mockResolvedValueOnce(trpcJson(third));
     vi.stubGlobal("fetch", fetcher);
     await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
     const state = (await readClaimEvidence(db, now)).cache;
@@ -67,7 +68,7 @@ describe("local claim evidence", () => {
     const newest = auditedCheck("quick", now.toISOString(), "moderate");
     const delayed = auditedCheck("deep", "2026-10-15T10:00:00.000Z");
     await seed(newest);
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(delayed)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(delayed)));
     await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
     const state = (await readClaimEvidence(db, now)).cache;
     expect(state.checks).toEqual([newest]); expect(state.history).toEqual([delayed]);
@@ -76,7 +77,7 @@ describe("local claim evidence", () => {
     const deep = auditedCheck("deep", now.toISOString());
     const quick = auditedCheck("quick", now.toISOString(), "moderate");
     await seed(deep);
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(quick)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(quick)));
     await checkClaimEvidence(request, { now }); await checkClaimEvidence(request, { now });
     const state = (await readClaimEvidence(db, now)).cache;
     expect(state.checks).toEqual([quick]); expect(state.history).toEqual([deep]);
@@ -90,7 +91,7 @@ describe("local claim evidence", () => {
   it("saves audited failed attempts without replacing the successful assessment", async () => {
     await seed();
     const failed: ClaimCheck = { ...check, version: 2, checkedAt: now.toISOString(), verdict: "not enough evidence", grade: null, citations: [], summary: "No verified assessment is available from this check.", research: { depth: "quick", status: "search_failed", queries: [], records: [], screening: [], retrieved: 0, screened: 0, included: 0, error: "Search timed out. Retry." } };
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(failed)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(failed)));
     expect(await checkClaimEvidence(request, { now })).toEqual(failed);
     const snapshot = await readClaimEvidence(db, now);
     expect(snapshot.cache.checks).toEqual([check]);
@@ -100,12 +101,12 @@ describe("local claim evidence", () => {
     const request = { nutrientId: "zorbafluxium-fictional", claim: "test outcome", topic: "test outcome" };
     const plan = { intervention: "zorbafluxium fictional", outcome: "test outcome", interventionSynonyms: [], outcomeSynonyms: [], route: "any" as const };
     const result: ClaimCheck = { ...check, ...request, version: 2, checkedAt: now.toISOString(), verdict: "not enough evidence", grade: null, citations: [], summary: "No verified assessment is available from this check.", research: { depth: "quick", status: "no_evidence", plan, records: [], screening: [], retrieved: 0, screened: 0, included: 0, queries: (["reviews", "trials", "broad"] as const).map((rung) => ({ rung, query: claimSearchQuery(plan, rung), source: "europepmc", sort: "relevance", resultCount: 0, ids: [] })) } };
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(result)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(result)));
     await checkClaimEvidence(request, { now, custom: true, category: "health" });
     expect((await readClaimEvidence(db, now)).cache.customTopics).toContainEqual({ ...request, category: "health" });
   });
   it("sends only the depth option so model selection stays in Settings", async () => {
-    const fetcher = vi.fn(async () => Response.json(check));
+    const fetcher = vi.fn(async () => trpcJson(check));
     vi.stubGlobal("fetch", fetcher);
     await checkClaimEvidence(request, { now, depth: "deep" });
     const [, init] = fetcher.mock.calls[0]! as unknown as [string, RequestInit];
@@ -113,13 +114,13 @@ describe("local claim evidence", () => {
   });
   it("starts unchecked and persists a validated, public-only POST with actual model provenance", async () => {
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([]);
-    const fetcher = vi.fn(async () => Response.json(check));
+    const fetcher = vi.fn(async () => trpcJson(check));
     vi.stubGlobal("fetch", fetcher);
     const requestWithExtraData = { ...request, profile: { name: "Private person" }, messages: ["private conversation"] };
     await checkClaimEvidence(requestWithExtraData, { now });
     expect(fetcher).toHaveBeenCalledTimes(1);
     const [url, init] = fetcher.mock.calls[0]! as unknown as [string, RequestInit];
-    expect(url).toBe("/api/claim-evidence");
+    expect(url).toBe("/api/trpc/claimEvidence.check");
     expect(JSON.parse(String(init.body))).toEqual(request);
     expect(init.headers).toMatchObject({ "x-bt": "1" });
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([check]);
@@ -140,9 +141,9 @@ describe("local claim evidence", () => {
 
   it("preserves a previous successful check after an HTTP or invalid-result refresh failure", async () => {
     await seed();
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ error: "No model is ready" }, { status: 503 })));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson({ error: "No model is ready" }, { status: 503 })));
     await expect(checkClaimEvidence(request, { now })).rejects.toThrow("No model is ready");
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ ...check, model: "", grade: "high" })));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson({ ...check, model: "", grade: "high" })));
     await expect(checkClaimEvidence(request, { now })).rejects.toThrow(/incomplete/);
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([check]);
   });
@@ -157,7 +158,7 @@ describe("local claim evidence", () => {
     const outcome = expect(pending).rejects.toThrow();
     await started.promise;
     controller.abort();
-    response.resolve(Response.json({ ...check, checkedAt: now.toISOString() }));
+    response.resolve(trpcJson({ ...check, checkedAt: now.toISOString() }));
     await outcome;
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([check]);
   });
@@ -177,7 +178,7 @@ describe("local claim evidence", () => {
       await db.settings.clear();
       await db.settings.put({ key: "profile", value: { name: "Private person", notes: "Never send this" } });
     }
-    response.resolve(Response.json(check));
+    response.resolve(trpcJson(check));
     await outcome;
     expect((await readClaimEvidence(db, now)).cache.checks).toEqual([]);
   });
@@ -193,7 +194,7 @@ describe("local claim evidence", () => {
 
   it("keeps reusable custom topics after a failed first check, without fabricating a verdict", async () => {
     const custom = { nutrientId: "astaxanthin", claim: "sleep", topic: "sleep" };
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ error: "Set up a model" }, { status: 503 })));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson({ error: "Set up a model" }, { status: 503 })));
     await expect(checkClaimEvidence(custom, { custom: true, now })).rejects.toThrow("Set up a model");
     const reopened = await readClaimEvidence(db, now);
     expect(reopened.cache.customTopics).toEqual([custom]);
@@ -209,7 +210,7 @@ describe("local claim evidence", () => {
     const saved = { ...check, ...custom };
     const fetcher = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
       expect(JSON.parse(String(init?.body))).toEqual(custom);
-      return Response.json(saved);
+      return trpcJson(saved);
     });
     vi.stubGlobal("fetch", fetcher);
     const categorized = { ...custom, category: "appearance" as const };
@@ -220,7 +221,7 @@ describe("local claim evidence", () => {
     expect((await readClaimEvidence(db, now)).cache.customTopics).toEqual([categorized]);
     expect((await browserData()).settings[CLAIM_EVIDENCE_KEY]).toMatchObject({ customTopics: [categorized], checks: [saved] });
 
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ error: "Model unavailable" }, { status: 503 })));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson({ error: "Model unavailable" }, { status: 503 })));
     await expect(checkClaimEvidence(custom, { custom: true, category: "health", now })).rejects.toThrow("Model unavailable");
     const reopened = await readClaimEvidence(db, now);
     expect(reopened.cache.customTopics).toEqual([{ ...custom, category: "health" }]);
@@ -294,7 +295,7 @@ describe("cheap new-record signals", () => {
     await seed();
     await refreshClaimUpdates(request, { now });
     const next = { ...check, verdict: "supported", grade: "moderate", checkedAt: now.toISOString(), model: "new-actual-model" };
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json(next)));
+    vi.stubGlobal("fetch", vi.fn(async () => trpcJson(next)));
     await checkClaimEvidence(request, { now });
     const state = (await readClaimEvidence(db, now)).cache;
     expect(state.checks).toEqual([next]);

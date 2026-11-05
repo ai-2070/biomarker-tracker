@@ -4,8 +4,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { dataPack } from "../../apps/server/assistant";
 import { biologicalAge, healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
 import * as knowledge from "../../apps/server/knowledge";
-import * as projection from "@bt/core/mortalityProjection";
-import type { Measurement, Profile } from "@bt/core/types";
+import * as projection from "@bt/shared/core/mortalityProjection";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 
 const today = "2026-11-01";
 const snapshot = (profile: Profile, expirationDate = false, measurements: Measurement[] = []): HealthSnapshot => ({

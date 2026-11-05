@@ -1,10 +1,10 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "@bt/core/dates";
-import { validateManualEntry, type ManualEntryField } from "@bt/core/importers/manual";
-import { flagMeasurement, isCritical, type Flag } from "@bt/core/trends";
-import { listUnits } from "@bt/core/units";
-import type { Measurement } from "@bt/core/types";
+import { todayIso } from "@bt/shared/core/dates";
+import { validateManualEntry, type ManualEntryField } from "@bt/shared/core/importers/manual";
+import { flagMeasurement, isCritical, type Flag } from "@bt/shared/core/trends";
+import { listUnits } from "@bt/shared/core/units";
+import type { Measurement } from "@bt/shared/core/types";
 import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";

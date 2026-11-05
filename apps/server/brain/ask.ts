@@ -3,12 +3,12 @@
 // claim review (research-only with a structured, submitted assessment) and claim session (an audited claim
 // workflow with its own tools). Engines: an API or local model (apiModel.ts) or an agent program (agentRun.ts).
 import type { ModelMessage } from "ai";
-import { providerInfo } from "@bt/core/aiProviders";
-import { todayIso } from "@bt/core/dates";
-import { measurementsIn } from "@bt/core/measurementCompletion";
-import { completeProfileDetails, profileDetailsIn } from "@bt/core/profileCompletion";
-import { skillIndex } from "@bt/core/skills";
-import type { ClaimAssessment } from "@bt/core/claimEvidence";
+import { providerInfo } from "@bt/shared/core/aiProviders";
+import { todayIso } from "@bt/shared/core/dates";
+import { measurementsIn } from "@bt/shared/core/measurementCompletion";
+import { completeProfileDetails, profileDetailsIn } from "@bt/shared/core/profileCompletion";
+import { skillIndex } from "@bt/shared/core/skills";
+import type { ClaimAssessment } from "@bt/shared/core/claimEvidence";
 import { isAgent } from "../agents";
 import type { ClaimSearchSession } from "../claimSearchSession";
 import { resultsOverview, safetyOf, type HealthSnapshot } from "../healthTools";

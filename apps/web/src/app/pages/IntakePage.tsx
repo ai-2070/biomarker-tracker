@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { bmrMifflin } from "@bt/core/body";
-import { todayIso } from "@bt/core/dates";
+import { bmrMifflin } from "@bt/shared/core/body";
+import { todayIso } from "@bt/shared/core/dates";
 import {
   ACTIVITY_LEVELS,
   energyVsResting,
@@ -27,14 +27,14 @@ import {
   type MacroRow,
   type NutrientRow,
   type PortionFood,
-} from "@bt/core/intake";
-import { foodById, mealTotals, saltFromSodium, type FoodDb, type Meal, type Total } from "@bt/core/meals";
-import { MAX_ITEMS, nutrientFor } from "@bt/core/plans";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { computeTrend, flagLatest, groupByBiomarker, isCritical, sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile, SafetyId } from "@bt/core/types";
-import { formatValue } from "@bt/core/units";
+} from "@bt/shared/core/intake";
+import { foodById, mealTotals, saltFromSodium, type FoodDb, type Meal, type Total } from "@bt/shared/core/meals";
+import { MAX_ITEMS, nutrientFor } from "@bt/shared/core/plans";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { computeTrend, flagLatest, groupByBiomarker, isCritical, sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile, SafetyId } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
 import { newId, savePlan } from "../../db/db";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { StudyLink } from "../components/evidence";

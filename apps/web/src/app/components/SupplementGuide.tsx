@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { NutrientDef } from "@bt/core/nutrients";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { ClaimEvidencePanel } from "./ClaimEvidencePanel";
 import { formatDate } from "../format";
 import { askResearchBrain } from "../brain/store";

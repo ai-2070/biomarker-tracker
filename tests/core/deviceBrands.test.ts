@@ -1,11 +1,11 @@
 import { deflateRawSync } from "node:zlib";
 import { describe, expect, it } from "vitest";
-import { DailyTally, appleRecords, dailyAverages, fileFamily, jsonTable, parseCsv, readTable, sleepUnit, tableOf, toIsoDate } from "@bt/core/importers/deviceFiles";
+import { DailyTally, appleRecords, dailyAverages, fileFamily, jsonTable, parseCsv, readTable, sleepUnit, tableOf, toIsoDate } from "@bt/shared/core/importers/deviceFiles";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { matchUnit, toCanonical } from "@bt/core/units";
-import { zipEntries } from "@bt/core/importers/zipRead";
-import { crc32, zipStore } from "@bt/core/zipStore";
-import type { BodyField } from "@bt/core/body";
+import { matchUnit, toCanonical } from "@bt/shared/core/units";
+import { zipEntries } from "@bt/shared/core/importers/zipRead";
+import { crc32, zipStore } from "@bt/shared/core/zipStore";
+import type { BodyField } from "@bt/shared/core/body";
 
 // Synthetic files shaped like each brand's export, from their documented or commonly seen layouts.
 // No real person's data. Real exports may differ; the review screen lets people remap anything.

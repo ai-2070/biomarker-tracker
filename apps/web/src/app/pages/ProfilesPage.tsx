@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { todayIso } from "@bt/core/dates";
-import { initials, profileSummary } from "@bt/core/profile";
-import { api } from "../api";
+import { todayIso } from "@bt/shared/core/dates";
+import { initials, profileSummary } from "@bt/shared/core/profile";
+import { localServer } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, LinkButton, Notice, PageTitle, buttonStyles, cx } from "../components/ui";
 import { formatDate } from "../format";
@@ -117,7 +117,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
                       <a href={`/api/profiles/${p.id}/backup`} className={buttonStyles.secondary} download>
                         Back up (.zip)
                       </a>
-                      <Button variant="secondary" disabled={busy} onClick={() => void act(() => api("POST", `/api/profiles/${p.id}/reveal`))}>
+                      <Button variant="secondary" disabled={busy} onClick={() => void act(() => localServer.profiles.reveal.mutate({ id: p.id }))}>
                         Show folder
                       </Button>
                       <ConfirmDialog

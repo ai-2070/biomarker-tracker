@@ -1,6 +1,6 @@
 import { writeFileSync } from "node:fs";
 import inventory from "../apps/web/src/app/dataLicenses.json";
-import { MCP_PRESETS } from "@bt/core/mcpPresets";
+import { MCP_PRESETS } from "@bt/shared/core/mcpPresets";
 
 const cell = (value: string) => value.replaceAll("|", "\\|").replaceAll("\n", " ");
 const lines = [

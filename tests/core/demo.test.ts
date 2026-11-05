@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { parseBackup } from "@bt/core/backup";
-import { addDays } from "@bt/core/dates";
-import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "@bt/core/demo";
-import { analyzeMarker } from "@bt/core/experiments";
-import { summarizePhenoAge } from "@bt/core/phenoageDraws";
-import { isActiveOn } from "@bt/core/protocols";
-import { validSleepSessions, sleepLocalTime } from "@bt/core/sleepSessions";
-import { buildSleepTiming, pairSleepCardiac } from "@bt/core/sleepTiming";
-import { flagMeasurement, groupByBiomarker } from "@bt/core/trends";
+import { parseBackup } from "@bt/shared/core/backup";
+import { addDays } from "@bt/shared/core/dates";
+import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "@bt/shared/core/demo";
+import { analyzeMarker } from "@bt/shared/core/experiments";
+import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import { isActiveOn } from "@bt/shared/core/protocols";
+import { validSleepSessions, sleepLocalTime } from "@bt/shared/core/sleepSessions";
+import { buildSleepTiming, pairSleepCardiac } from "@bt/shared/core/sleepTiming";
+import { flagMeasurement, groupByBiomarker } from "@bt/shared/core/trends";
 import { def, loadDefs } from "../helpers";
 
 const today = "2026-10-28";

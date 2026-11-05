@@ -6,7 +6,7 @@ import weight from "../../knowledge/biomarkers/weight.json";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
 import { deferred } from "../helpers";
-import type { Profile } from "@bt/core/types";
+import type { Profile } from "@bt/shared/core/types";
 import type { ProfileFillResult } from "../../apps/web/src/db/db";
 
 const mocks = vi.hoisted(() => ({
@@ -22,7 +22,7 @@ const mocks = vi.hoisted(() => ({
 
 // Exercise the real external store without mounting a UI or loading OCR/PDF workers.
 vi.mock("react", () => ({ useSyncExternalStore: (_subscribe: unknown, snapshot: () => BrainState) => snapshot() }));
-vi.mock("../../apps/web/src/app/api", () => ({ api: mocks.api }));
+vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(() => { throw new Error("No local server in this test."); }));
 // The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
 vi.mock("../../apps/web/src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate) }));
 vi.mock("../../apps/web/src/db/db", () => ({

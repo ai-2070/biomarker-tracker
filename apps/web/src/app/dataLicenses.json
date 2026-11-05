@@ -29,7 +29,7 @@
         },
         {
           "name": "EFSA Dietary Reference Values summary (2017)",
-          "location": "knowledge/nutrients; packages/core/src/intake.ts; meals.ts",
+          "location": "knowledge/nutrients; packages/shared/src/core/intake.ts; meals.ts",
           "source": "https://www.efsa.europa.eu/sites/default/files/2017_09_DRVs_summary_report.pdf",
           "licence": "© EFSA 2017; reproduction authorised with source acknowledgement",
           "terms": "https://www.efsa.europa.eu/sites/default/files/2017_09_DRVs_summary_report.pdf",
@@ -79,7 +79,7 @@
       "sources": [
         {
           "name": "Levine et al. (2018) — clinical PhenoAge",
-          "location": "packages/core/src/phenoage.ts",
+          "location": "packages/shared/src/core/phenoage.ts",
           "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5940111/",
           "licence": "CC BY 3.0",
           "terms": "https://creativecommons.org/licenses/by/3.0/",
@@ -90,7 +90,7 @@
         },
         {
           "name": "Framingham Heart Study / D’Agostino et al. (2008)",
-          "location": "packages/core/src/heartAge.ts",
+          "location": "packages/shared/src/core/heartAge.ts",
           "source": "https://www.framinghamheartstudy.org/fhs-risk-functions/cardiovascular-disease-10-year-risk/",
           "licence": "Framingham Risk Score Policy: public use; no specific permission or licensing fees required",
           "terms": "https://www.framinghamheartstudy.org/fhs-for-researchers/policies-and-procedures/framingham-risk-score-policy/",
@@ -101,7 +101,7 @@
         },
         {
           "name": "Loe et al. (2013) — HUNT 3 Fitness Study",
-          "location": "packages/core/src/fitnessAge.ts",
+          "location": "packages/shared/src/core/fitnessAge.ts",
           "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3654926/",
           "licence": "Creative Commons Attribution; version not specified in the retrieved article notice",
           "terms": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3654926/",
@@ -112,7 +112,7 @@
         },
         {
           "name": "Gallagher et al. (2000) — body-fat reference bands",
-          "location": "knowledge/biomarkers/body_fat.json; packages/core/src/bodyFat.ts",
+          "location": "knowledge/biomarkers/body_fat.json; packages/shared/src/core/bodyFat.ts",
           "source": "https://doi.org/10.1093/ajcn/72.3.694",
           "licence": "Published table; reusable licence not verified",
           "terms": "https://doi.org/10.1093/ajcn/72.3.694",
@@ -123,7 +123,7 @@
         },
         {
           "name": "ACE-attributed body-fat categories via Healthline (2025)",
-          "location": "packages/core/src/bodyFat.ts",
+          "location": "packages/shared/src/core/bodyFat.ts",
           "source": "https://www.healthline.com/health/exercise-fitness/ideal-body-fat-percentage",
           "licence": "Healthline copyright; no reusable table licence verified",
           "terms": "https://www.healthline.com/terms-of-use",
@@ -134,7 +134,7 @@
         },
         {
           "name": "Ashwell et al. (2014) — waist-to-height / years-lost table",
-          "location": "packages/core/src/body.ts",
+          "location": "packages/shared/src/core/body.ts",
           "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4157748/",
           "licence": "CC BY 4.0",
           "terms": "https://creativecommons.org/licenses/by/4.0/",
@@ -145,7 +145,7 @@
         },
         {
           "name": "Ashwell et al. (2012) — waist-to-height method",
-          "location": "packages/core/src/body.ts; waist marker references",
+          "location": "packages/shared/src/core/body.ts; waist marker references",
           "source": "https://doi.org/10.1111/j.1467-789X.2011.00952.x",
           "licence": "Cited method; article reuse licence not verified",
           "terms": "https://doi.org/10.1111/j.1467-789X.2011.00952.x",
@@ -156,7 +156,7 @@
         },
         {
           "name": "Mifflin et al. (1990) — resting energy equation",
-          "location": "packages/core/src/body.ts",
+          "location": "packages/shared/src/core/body.ts",
           "source": "https://pubmed.ncbi.nlm.nih.gov/2305711/",
           "licence": "Published equation; article reuse licence not verified",
           "terms": "https://pubmed.ncbi.nlm.nih.gov/2305711/",
@@ -167,7 +167,7 @@
         },
         {
           "name": "Cunningham (1980) — lean-mass resting energy equation",
-          "location": "packages/core/src/body.ts",
+          "location": "packages/shared/src/core/body.ts",
           "source": "https://pubmed.ncbi.nlm.nih.gov/7435418/",
           "licence": "Published equation; article reuse licence not verified",
           "terms": "https://pubmed.ncbi.nlm.nih.gov/7435418/",
@@ -178,7 +178,7 @@
         },
         {
           "name": "Fraser (2011) — reference change values",
-          "location": "packages/core/src/experiments.ts",
+          "location": "packages/shared/src/core/experiments.ts",
           "source": "https://doi.org/10.1515/cclm.2011.733",
           "licence": "Published statistical method; article reuse licence not verified",
           "terms": "https://doi.org/10.1515/cclm.2011.733",
@@ -189,7 +189,7 @@
         },
         {
           "name": "Fokkema et al. (2006) — log-normal reference change values",
-          "location": "packages/core/src/experiments.ts",
+          "location": "packages/shared/src/core/experiments.ts",
           "source": "https://doi.org/10.1373/clinchem.2006.069369",
           "licence": "Published statistical method; article reuse licence not verified",
           "terms": "https://doi.org/10.1373/clinchem.2006.069369",
@@ -708,7 +708,7 @@
         },
         {
           "name": "Synthetic example profiles and example meals",
-          "location": "packages/core/src/demo.ts; knowledge/meals/examples.json",
+          "location": "packages/shared/src/core/demo.ts; knowledge/meals/examples.json",
           "source": "https://github.com/ai-2070/biomarker-tracker",
           "licence": "Project MIT declaration for original fictional content; CoFID rights for food values",
           "terms": "https://github.com/ai-2070/biomarker-tracker",

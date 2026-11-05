@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { groupReadings, groupingsFor, pointsForWindow, statsBetween } from "@bt/core/chartSeries";
+import { groupReadings, groupingsFor, pointsForWindow, statsBetween } from "@bt/shared/core/chartSeries";
 
 const r = (date: string, value: number) => ({ date, value });
 

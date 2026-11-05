@@ -1,8 +1,8 @@
 // Developer-only local bridge. Participant records stay in local process pipes, never in model/API calls.
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { mortalityDesign, type MortalityInputs } from "@bt/core/mortalityModel";
-import { phenoAge, type PhenoAgeInputs } from "@bt/core/phenoage";
+import { mortalityDesign, type MortalityInputs } from "@bt/shared/core/mortalityModel";
+import { phenoAge, type PhenoAgeInputs } from "@bt/shared/core/phenoage";
 
 interface TrainingInput extends MortalityInputs { clinical?: PhenoAgeInputs }
 const rows = JSON.parse(readFileSync(0, "utf8")) as TrainingInput[];

@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { Switch } from "@base-ui/react/switch";
-import { api } from "../../api";
+import { localServer } from "../../api";
+import type { SkillListing } from "@bt/shared/api/types";
 import { ConfirmDialog } from "../ConfirmDialog";
 import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "../ui";
 
-interface SkillRow {
-  id: string;
-  name: string;
-  description: string;
-  source: "bundled" | "custom";
-  enabled: boolean;
-}
+type SkillRow = SkillListing;
 
 const TEMPLATE = `---
 name: My skill
@@ -44,14 +39,14 @@ export function SkillsSettings() {
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const load = () => api<{ skills: SkillRow[] }>("GET", "/api/skills").then((r) => setSkills(r.skills));
+  const load = () => localServer.skills.list.query().then((r) => setSkills(r.skills));
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load skills."));
   }, []);
 
   async function toggle(id: string, enabled: boolean) {
     setSkills((list) => list?.map((s) => (s.id === id ? { ...s, enabled } : s)) ?? null);
-    await api("PUT", `/api/skills/${id}`, { enabled }).finally(load);
+    await localServer.skills.setEnabled.mutate({ id, enabled }).finally(load);
   }
   async function view(id: string) {
     if (open[id] !== undefined) {
@@ -59,13 +54,13 @@ export function SkillsSettings() {
       setOpen(rest);
       return;
     }
-    const s = await api<{ body: string }>("GET", `/api/skills/${id}`);
+    const s = await localServer.skills.get.query({ id });
     setOpen({ ...open, [id]: s.body });
   }
   async function add() {
     setError(null);
     try {
-      await api("POST", "/api/skills", { markdown: draft });
+      await localServer.skills.add.mutate({ markdown: draft });
       setDraft("");
       await load();
     } catch (e) {
@@ -105,7 +100,7 @@ export function SkillsSettings() {
                   description={`"${s.name}" will be removed.`}
                   confirmLabel="Delete skill"
                   onConfirm={async () => {
-                    await api("DELETE", `/api/skills/${s.id}`);
+                    await localServer.skills.remove.mutate({ id: s.id });
                     await load();
                   }}
                 />

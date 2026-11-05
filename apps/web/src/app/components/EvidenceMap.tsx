@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutcome, type MapKind } from "@bt/core/evidenceMap";
+import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutcome, type MapKind } from "@bt/shared/core/evidenceMap";
 import { formatDate } from "../format";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";

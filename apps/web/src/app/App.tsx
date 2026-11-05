@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { db, deleteEverything, ensureExampleSleepData, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
-import { api, type ServerStatus } from "./api";
+import { localServer } from "./api";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
@@ -49,7 +49,7 @@ type Boot =
 async function boot(): Promise<Boot> {
   // Static and folder-backed tabs share IndexedDB: both must participate in ownership.
   if (navigator.locks) await claimWorkingCopy();
-  const server = await api<ServerStatus>("GET", "/api/status").then(
+  const server = await localServer.status.query().then(
     (s) => (s.app === "biomarker-tracker" ? s : null),
     () => null,
   );

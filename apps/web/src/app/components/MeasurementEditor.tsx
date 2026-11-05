@@ -1,9 +1,9 @@
 import { useId, useRef, useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "@bt/core/dates";
-import { validateManualEntry, type ManualEntryField, type ManualEntryInput } from "@bt/core/importers/manual";
-import type { Measurement } from "@bt/core/types";
-import { fromCanonical, listUnits, matchUnit } from "@bt/core/units";
+import { todayIso } from "@bt/shared/core/dates";
+import { validateManualEntry, type ManualEntryField, type ManualEntryInput } from "@bt/shared/core/importers/manual";
+import type { Measurement } from "@bt/shared/core/types";
+import { fromCanonical, listUnits, matchUnit } from "@bt/shared/core/units";
 import { updateMeasurement } from "../../db/db";
 import { BIOMARKER_MAP } from "../knowledge";
 import { BiomarkerPicker } from "./BiomarkerPicker";

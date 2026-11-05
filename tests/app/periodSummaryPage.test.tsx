@@ -2,8 +2,8 @@ import { writeFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { todayIso, addDays } from "@bt/core/dates";
-import type { Measurement } from "@bt/core/types";
+import { todayIso, addDays } from "@bt/shared/core/dates";
+import type { Measurement } from "@bt/shared/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[] }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ useAllMeasurements: () => state.all, useProfile: () => ({ sex: "f" }), useDisplayUnits: () => ({}) }));

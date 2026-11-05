@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo } from "@bt/core/aiProviders";
+import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo } from "@bt/shared/core/aiProviders";
 
 describe("provider registry", () => {
   it("lists only EU, US or local API providers; agents are labelled as depending on their own setup", () => {

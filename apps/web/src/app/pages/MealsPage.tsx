@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { SAFETY_LIMITS } from "@bt/core/foods";
-import { mealSafetyBlock, mealTotals, mealWeight, type ExampleMeal, type FoodDb, type Meal } from "@bt/core/meals";
-import { safetyLabels, safetyNotes } from "@bt/core/protocols";
-import { flagLatest, groupByBiomarker } from "@bt/core/trends";
-import { formatValue } from "@bt/core/units";
-import type { SafetyId } from "@bt/core/types";
+import { SAFETY_LIMITS } from "@bt/shared/core/foods";
+import { mealSafetyBlock, mealTotals, mealWeight, type ExampleMeal, type FoodDb, type Meal } from "@bt/shared/core/meals";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { flagLatest, groupByBiomarker } from "@bt/shared/core/trends";
+import { formatValue } from "@bt/shared/core/units";
+import type { SafetyId } from "@bt/shared/core/types";
 import { newId, saveMeal } from "../../db/db";
 import { openBrain } from "../brain/store";
 import { DarkMatterExplainer } from "../components/DarkMatter";

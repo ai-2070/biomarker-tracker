@@ -10,7 +10,8 @@ import { checkClaimEvidence, parseClaimRequest } from "../../apps/server/claimEv
 import { createServer } from "../../apps/server/http";
 import { findNutrient, knowledge } from "../../apps/server/knowledge";
 import { assistantCheck, currentChoice, readyModel } from "../../apps/server/models";
-import { claimCheckLabel } from "@bt/core/claimEvidence";
+import { claimCheckLabel } from "@bt/shared/core/claimEvidence";
+import { rawCall } from "./trpc";
 
 vi.mock(import("../../apps/server/agents"), async (original) => ({ ...await original(), runAgent: vi.fn() }));
 vi.mock(import("../../apps/server/models"), async (original) => ({ ...await original(), currentChoice: vi.fn(), readyModel: vi.fn(), assistantCheck: vi.fn() }));
@@ -183,10 +184,10 @@ describe("claim HTTP contract", () => {
     const port = (reserve.address() as { port: number }).port; await new Promise<void>((resolve) => reserve.close(() => resolve()));
     const server = createServer(port); server.listen(port, "127.0.0.1"); await once(server, "listening");
     try {
-      const url = `http://127.0.0.1:${port}/api/claim-evidence`;
-      expect((await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(request) })).status).toBe(403);
-      const invalid = await fetch(url, { method: "POST", headers: { "content-type": "application/json", "x-bt": "1" }, body: JSON.stringify({ ...request, snapshot: { profile: "PRIVATE" } }) });
-      expect(invalid.status).toBe(400); expect(await invalid.json()).toEqual({ error: expect.any(String) });
+      expect((await rawCall(port, "claimEvidence.check", { mutation: true, input: request, headers: {} })).status).toBe(403);
+      const invalid = await rawCall(port, "claimEvidence.check", { mutation: true, input: { ...request, snapshot: { profile: "PRIVATE" } } });
+      expect(invalid.status).toBe(400);
+      expect(((await invalid.json()) as { error: { message: string } }).error.message).toMatch(/without personal data/);
     } finally { const closed = once(server, "close"); server.close(); await closed; }
   });
 });

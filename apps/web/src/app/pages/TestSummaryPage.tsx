@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { buildTestSummary, type SummaryCaution, type SummaryResult } from "@bt/core/testSummary";
+import { buildTestSummary, type SummaryCaution, type SummaryResult } from "@bt/shared/core/testSummary";
 import { askBrain } from "../brain/store";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { cardStyles } from "../components/dashboard/widgets";

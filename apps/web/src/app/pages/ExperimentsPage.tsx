@@ -1,5 +1,5 @@
 import { Checkbox } from "@base-ui/react/checkbox";
-import { todayIso } from "@bt/core/dates";
+import { todayIso } from "@bt/shared/core/dates";
 import {
   analyzeMarker,
   BASELINE_WINDOW_DAYS,
@@ -10,9 +10,9 @@ import {
   retestDate,
   type ExperimentPhase,
   type MarkerResult,
-} from "@bt/core/experiments";
-import { pickedAfterResults } from "@bt/core/habits";
-import type { BiomarkerDef, Experiment, Measurement } from "@bt/core/types";
+} from "@bt/shared/core/experiments";
+import { pickedAfterResults } from "@bt/shared/core/habits";
+import type { BiomarkerDef, Experiment, Measurement } from "@bt/shared/core/types";
 import { deleteExperiment, endExperiment } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { Button, Card, CheckIcon, LinkButton, Notice, cx } from "../components/ui";
@@ -21,7 +21,7 @@ import { useAllMeasurements, useExperiments, useWatchMeasurements } from "../hoo
 import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge";
 import { href, navigate } from "../router";
 import { NotFound } from "./NotFound";
-import { PHENOAGE_GAP_ID } from "@bt/core/phenoageWatch";
+import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 
 const PHASE_LABEL: Record<ExperimentPhase, string> = {
   "needs-baseline": "Needs a 'before' test",

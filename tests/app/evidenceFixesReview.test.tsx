@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { anyDesignKind, validateEvidenceMap, type EvidenceMapFile, type EvidenceMapOutcome } from "@bt/core/evidenceMap";
+import { anyDesignKind, validateEvidenceMap, type EvidenceMapFile, type EvidenceMapOutcome } from "@bt/shared/core/evidenceMap";
 import { TOPICS } from "../../tools/evidence/topics";
 import participantCorrections from "../fixtures/evidenceFixesTrialCounts.json";
 vi.mock("../../apps/web/src/app/components/timeControls", () => ({ useWidth: () => 0 }));

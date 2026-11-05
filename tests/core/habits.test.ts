@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { HABIT_HINTS, chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, syncWatch, watchFor } from "@bt/core/habits";
-import type { Measurement } from "@bt/core/types";
-import type { Experiment, ProtocolEntry } from "@bt/core/types";
+import { HABIT_HINTS, chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, syncWatch, watchFor } from "@bt/shared/core/habits";
+import type { Measurement } from "@bt/shared/core/types";
+import type { Experiment, ProtocolEntry } from "@bt/shared/core/types";
 
 const d3: ProtocolEntry = { id: "p1", label: "Vitamin D3 1000 IU daily", category: "supplement", start: "2026-01-10" };
 const oats: ProtocolEntry = { id: "p2", label: "Oats every day", category: "diet", start: "2025-06-01", end: "2025-09-01" };

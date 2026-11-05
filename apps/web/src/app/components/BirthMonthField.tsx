@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Field } from "@base-ui/react/field";
-import { todayIso } from "@bt/core/dates";
-import { isBirthMonth } from "@bt/core/phenoageDraws";
+import { todayIso } from "@bt/shared/core/dates";
+import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
 import { SimpleSelect } from "./UnitSelect";
 import { errorStyles, helpStyles, inputStyles, labelStyles } from "./ui";
 

@@ -11,8 +11,8 @@ import { updateSettings } from "../../apps/server/store";
 import { currentChoice } from "../../apps/server/models";
 import { checkClaimEvidence, readClaimEvidence } from "../../apps/web/src/app/claimEvidence";
 import { TrackerDB } from "../../apps/web/src/db/db";
-import { claimCheckLabel, type ClaimCheck } from "@bt/core/claimEvidence";
-import type { ModelChoice } from "@bt/core/aiProviders";
+import { claimCheckLabel, type ClaimCheck } from "@bt/shared/core/claimEvidence";
+import type { ModelChoice } from "@bt/shared/core/aiProviders";
 
 // Explicit opt-in: these tests use live public search and the configured model/account.
 // No KB entries, pinned records, mocked evidence or scripted grades enter this path.

@@ -1,11 +1,11 @@
-import { validateIntakeItems, type IntakeItem } from "@bt/core/intake";
-import type { Meal } from "@bt/core/meals";
-import type { Plan } from "@bt/core/plans";
+import { validateIntakeItems, type IntakeItem } from "@bt/shared/core/intake";
+import type { Meal } from "@bt/shared/core/meals";
+import type { Plan } from "@bt/shared/core/plans";
 import { useSyncExternalStore } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db, getProfile, measurementsFor } from "../db/db";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
-import { withPhenoAgeGap } from "@bt/core/phenoageWatch";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
 
 /** All measurements, live. `undefined` while loading. */
 export function useAllMeasurements(): Measurement[] | undefined {

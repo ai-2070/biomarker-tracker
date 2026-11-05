@@ -1,6 +1,6 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { Measurement } from "@bt/core/types";
+import type { Measurement } from "@bt/shared/core/types";
 import { deleteMeasurements, TrackerDB, updateMeasurement } from "../../apps/web/src/db/db";
 
 let db: TrackerDB;

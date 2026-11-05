@@ -6,7 +6,7 @@ import crypto from "node:crypto";
 import type http from "node:http";
 import type { LanguageModelV4, LanguageModelV4CallOptions, LanguageModelV4Prompt } from "@ai-sdk/provider";
 import type { ToolSet } from "ai";
-import type { ProviderId } from "@bt/core/aiProviders";
+import type { ProviderId } from "@bt/shared/core/aiProviders";
 import { mergeProviderOptions } from "../brain/cache";
 import type { OnEvent } from "../brain/events";
 import type { PromptParts } from "../brain/prompt";

@@ -1,5 +1,5 @@
-import { laneFor, sortProtocols } from "@bt/core/protocols";
-import type { ProtocolEntry } from "@bt/core/types";
+import { laneFor, sortProtocols } from "@bt/shared/core/protocols";
+import type { ProtocolEntry } from "@bt/shared/core/types";
 import { CATEGORY_LABEL, formatDate } from "../format";
 import { href } from "../router";
 import { cx } from "./ui";

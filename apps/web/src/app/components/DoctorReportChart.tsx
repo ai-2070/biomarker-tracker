@@ -1,7 +1,7 @@
 import { useId } from "react";
-import type { DoctorReportSeries } from "@bt/core/doctorReport";
-import { reportChartGeometry } from "@bt/core/doctorReportChart";
-import type { Measurement } from "@bt/core/types";
+import type { DoctorReportSeries } from "@bt/shared/core/doctorReport";
+import { reportChartGeometry } from "@bt/shared/core/doctorReportChart";
+import type { Measurement } from "@bt/shared/core/types";
 import { displayUnitFor, formatDate, showMeasurement, showValue, valueUnit } from "../format";
 
 const BOX = { left: 92, top: 28, width: 524, height: 146 };

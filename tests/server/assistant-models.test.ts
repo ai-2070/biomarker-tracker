@@ -2,7 +2,7 @@ import { generateText } from "ai";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { readyModel } from "../../apps/server/models";
 import { updateSecrets, updateSettings } from "../../apps/server/store";
-import type { ProviderId } from "@bt/core/aiProviders";
+import type { ProviderId } from "@bt/shared/core/aiProviders";
 
 afterEach(() => {
   vi.restoreAllMocks();

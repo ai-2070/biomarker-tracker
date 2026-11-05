@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { crc32 as browserCrc, profilesInFolder, zipStore } from "@bt/core/zipStore";
+import { crc32 as browserCrc, profilesInFolder, zipStore } from "@bt/shared/core/zipStore";
 import * as profiles from "../../apps/server/profiles";
 import { crc32, readZip } from "../../apps/server/zip";
 

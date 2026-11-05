@@ -1,13 +1,13 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
-import { addDays, todayIso } from "@bt/core/dates";
-import { interactionsFor } from "@bt/core/nutrients";
-import { dailyReference, mealNote } from "@bt/core/meals";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { formatValue } from "@bt/core/units";
-import { MAX_ITEMS, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "@bt/core/plans";
-import { safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory } from "@bt/core/protocols";
-import type { SafetyId } from "@bt/core/types";
+import { addDays, todayIso } from "@bt/shared/core/dates";
+import { interactionsFor } from "@bt/shared/core/nutrients";
+import { dailyReference, mealNote } from "@bt/shared/core/meals";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { formatValue } from "@bt/shared/core/units";
+import { MAX_ITEMS, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "@bt/shared/core/plans";
+import { safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory } from "@bt/shared/core/protocols";
+import type { SafetyId } from "@bt/shared/core/types";
 import { deletePlan, newId, savePlan, updatePlan, startPlan, stopPlan } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { TIME_LABEL, WhenFields, whenExtras, whenFields, whenOf, type WhenValue } from "../components/PlanWhen";
@@ -20,7 +20,7 @@ import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS, WHOLE_FOODS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-import { wholeFoodFor } from "@bt/core/wholeFoods";
+import { wholeFoodFor } from "@bt/shared/core/wholeFoods";
 
 /** One protocol: its items as a day's schedule, warnings, and start / stop / share. */
 export function PlanPage({ id }: { id: string }) {

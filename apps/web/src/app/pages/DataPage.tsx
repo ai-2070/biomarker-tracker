@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { parseBackup, type Backup } from "@bt/core/backup";
-import { todayIso } from "@bt/core/dates";
-import type { Profile } from "@bt/core/types";
+import { parseBackup, type Backup } from "@bt/shared/core/backup";
+import { todayIso } from "@bt/shared/core/dates";
+import type { Profile } from "@bt/shared/core/types";
 import { deleteEverything, exportAll, getProfile, importBackup, setProfile, type ImportMode } from "../../db/db";
-import { api } from "../api";
+import { localServer } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { DoctorReportExport } from "../components/DoctorReportExport";
@@ -38,7 +38,7 @@ export function DataSettings() {
             <a href={`/api/profiles/${active.id}/backup`} className={buttonStyles.primary} download>
               Back up (.zip)
             </a>
-            <Button variant="secondary" onClick={() => void api("POST", `/api/profiles/${active.id}/reveal`)}>
+            <Button variant="secondary" onClick={() => void localServer.profiles.reveal.mutate({ id: active.id })}>
               Show folder
             </Button>
             <LinkButton variant="quiet" href={href({ name: "profiles" })}>
@@ -110,7 +110,7 @@ function FilesCard({ profileId }: { profileId: string }) {
   const [files, setFiles] = useState<StoredFile[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const load = () => api<{ files: StoredFile[] }>("GET", `/api/profiles/${profileId}/files`).then((r) => setFiles(r.files));
+  const load = () => localServer.profiles.files.query({ id: profileId }).then((r) => setFiles(r.files));
   useEffect(() => {
     void load().catch(() => setFiles([]));
   }, [profileId]);
@@ -165,7 +165,7 @@ function FilesCard({ profileId }: { profileId: string }) {
                     description={`"${f.originalName}" will be removed from the profile folder. Results read from it stay.`}
                     confirmLabel="Delete file"
                     onConfirm={async () => {
-                      await api("DELETE", `/api/profiles/${profileId}/files/${encodeURIComponent(f.name)}`);
+                      await localServer.profiles.removeFile.mutate({ id: profileId, name: f.name });
                       await load();
                     }}
                   />

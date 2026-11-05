@@ -1,5 +1,5 @@
 // What the assistant did (tool steps) and which studies it saw. Shared by the API-model loop and the agent bridge.
-import { normalizeId } from "@bt/ai/citations";
+import { normalizeId } from "@bt/shared/ai/citations";
 
 export interface ToolStep {
   tool: string;

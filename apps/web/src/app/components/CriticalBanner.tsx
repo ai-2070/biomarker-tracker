@@ -1,4 +1,4 @@
-import type { BiomarkerDef, Measurement } from "@bt/core/types";
+import type { BiomarkerDef, Measurement } from "@bt/shared/core/types";
 import { formatDate, showMeasurement } from "../format";
 import { fullName } from "../knowledge";
 import { href } from "../router";

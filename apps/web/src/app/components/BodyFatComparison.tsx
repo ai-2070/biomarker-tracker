@@ -1,6 +1,6 @@
-import { bodyFatComparison, fatMassAt, FITNESS_FAT_RANGES, type BodyFatBand, type BodyFatGuide, type FitnessFatRange } from "@bt/core/bodyFat";
-import type { Citation, Measurement, Profile } from "@bt/core/types";
-import { formatValue } from "@bt/core/units";
+import { bodyFatComparison, fatMassAt, FITNESS_FAT_RANGES, type BodyFatBand, type BodyFatGuide, type FitnessFatRange } from "@bt/shared/core/bodyFat";
+import type { Citation, Measurement, Profile } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
 import { displayUnitFor, formatDate, showValue } from "../format";
 import { useAllMeasurements, useDisplayUnits } from "../hooks";
 import { BIOMARKER_MAP } from "../knowledge";

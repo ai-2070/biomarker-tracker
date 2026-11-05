@@ -1,4 +1,4 @@
-import { paperById, studyQuery, type FetchFn, type Paper } from "@bt/research/papers";
+import { paperById, studyQuery, type FetchFn, type Paper } from "@bt/shared/research/papers";
 
 /** Recognise paper links only; never turn an arbitrary link or search into a request. */
 export function paperPreviewId(href: string): string | undefined {

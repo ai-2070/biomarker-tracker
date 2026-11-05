@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { validateLifeTables, type LifeTableFile } from "@bt/core/lifeTable";
+import { validateLifeTables, type LifeTableFile } from "@bt/shared/core/lifeTable";
 
 let tables: Promise<LifeTableFile> | undefined;
 function loadTables() {

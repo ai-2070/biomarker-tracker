@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { DailyTally, appleRecords, dailyAverages, jsonTable, parseCsv, readTable, safeCut, tableOf } from "@bt/core/importers/deviceFiles";
+import { DailyTally, appleRecords, dailyAverages, jsonTable, parseCsv, readTable, safeCut, tableOf } from "@bt/shared/core/importers/deviceFiles";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { matchUnit, toCanonical } from "@bt/core/units";
-import type { BodyField } from "@bt/core/body";
+import { matchUnit, toCanonical } from "@bt/shared/core/units";
+import type { BodyField } from "@bt/shared/core/body";
 
 // Synthetic exports only. Exercise the same table -> daily series path that the review uses.
 function series(path: string, text: string, field: BodyField = "sleep_duration") {

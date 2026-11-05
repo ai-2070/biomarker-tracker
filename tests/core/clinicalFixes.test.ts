@@ -1,16 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { analyzeMarker, personalBand, t95 } from "@bt/core/experiments";
-import { phenoAgePace } from "@bt/core/agePace";
-import { bodySummary } from "@bt/core/bodySummary";
-import { ageMatch, describePlace, fitnessSummary, placeInRow, placeResult, type FitnessTestDef } from "@bt/core/fitnessTests";
-import { framinghamRisk, heartAgeData } from "@bt/core/heartAge";
-import { personalRange } from "@bt/core/personalRange";
-import { summarizePhenoAge } from "@bt/core/phenoageDraws";
-import { dayNumber } from "@bt/core/dates";
-import { timeTicks } from "@bt/core/timeWindow";
-import { computeTrend, flagLatest, flagMeasurement, flagValue, isAlreadySaved, latestByBiomarker, recentAverage, recentTotal, sortByDate } from "@bt/core/trends";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import { analyzeMarker, personalBand, t95 } from "@bt/shared/core/experiments";
+import { phenoAgePace } from "@bt/shared/core/agePace";
+import { bodySummary } from "@bt/shared/core/bodySummary";
+import { ageMatch, describePlace, fitnessSummary, placeInRow, placeResult, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
+import { framinghamRisk, heartAgeData } from "@bt/shared/core/heartAge";
+import { personalRange } from "@bt/shared/core/personalRange";
+import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import { dayNumber } from "@bt/shared/core/dates";
+import { timeTicks } from "@bt/shared/core/timeWindow";
+import { computeTrend, flagLatest, flagMeasurement, flagValue, isAlreadySaved, latestByBiomarker, recentAverage, recentTotal, sortByDate } from "@bt/shared/core/trends";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { def, measurement } from "../helpers";
 
 const m = (biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}) => measurement({ biomarkerId, date, value, ...extra });

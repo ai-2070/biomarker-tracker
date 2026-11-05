@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { todayIso } from "@bt/core/dates";
-import { MAX_MEAL_ITEMS, MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "@bt/core/meals";
-import { ageAt } from "@bt/core/phenoageDraws";
-import { formatValue } from "@bt/core/units";
+import { todayIso } from "@bt/shared/core/dates";
+import { MAX_MEAL_ITEMS, MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "@bt/shared/core/meals";
+import { ageAt } from "@bt/shared/core/phenoageDraws";
+import { formatValue } from "@bt/shared/core/units";
 import { deleteMeal, newId, saveMeal, updateMeal } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { DarkMatterNote } from "../components/DarkMatter";

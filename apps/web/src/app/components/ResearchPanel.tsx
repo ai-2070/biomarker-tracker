@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { useServerStatus } from "../api";
-import { searchPapers, type Paper, type SearchFilter, type SearchResult } from "@bt/research/papers";
+import { searchPapers, type Paper, type SearchFilter, type SearchResult } from "@bt/shared/research/papers";
 import { askBrain, openBrain } from "../brain/store";
 import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";

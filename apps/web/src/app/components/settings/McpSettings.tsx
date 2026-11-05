@@ -1,23 +1,13 @@
 import { useEffect, useState } from "react";
 import { Field } from "@base-ui/react/field";
-import type { McpPreset } from "@bt/core/mcpPresets";
-import { api } from "../../api";
+import type { McpPreset } from "@bt/shared/core/mcpPresets";
+import { localServer } from "../../api";
+import type { McpServerListing, McpTest } from "@bt/shared/api/types";
 import { ConfirmDialog } from "../ConfirmDialog";
 import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
 import { OnOff } from "./SkillsSettings";
 
-interface ServerRow {
-  id: string;
-  name: string;
-  presetId?: string;
-  command: string;
-  args: string[];
-  enabled: boolean;
-  running: boolean;
-  error?: string;
-  secretsSet: string[];
-  env: Record<string, string>;
-}
+type ServerRow = McpServerListing;
 
 const smallLabel = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
 
@@ -29,7 +19,7 @@ function EnvFields({ server, preset, onSaved }: { server: ServerRow; preset: Mcp
   const changed = Object.values(values).some((v) => v.trim() !== "");
 
   async function save(patch: Record<string, string | null>) {
-    await api("PUT", `/api/mcp/${server.id}`, { env: patch });
+    await localServer.mcp.update.mutate({ id: server.id, env: patch });
     setValues({});
     setSaved(true);
     await onSaved();
@@ -82,7 +72,7 @@ function EnvFields({ server, preset, onSaved }: { server: ServerRow; preset: Mcp
 }
 
 function ServerCard({ server, preset, reload }: { server: ServerRow; preset?: McpPreset; reload: () => Promise<void> }) {
-  const [test, setTest] = useState<{ ok: boolean; tools?: { name: string; description: string }[]; error?: string } | null>(null);
+  const [test, setTest] = useState<McpTest | null>(null);
   const [testing, setTesting] = useState(false);
   const [showTools, setShowTools] = useState(false);
   const [on, setOn] = useState(server.enabled);
@@ -92,7 +82,7 @@ function ServerCard({ server, preset, reload }: { server: ServerRow; preset?: Mc
     setTesting(true);
     setTest(null);
     try {
-      setTest(await api("POST", `/api/mcp/${server.id}/test`));
+      setTest(await localServer.mcp.test.mutate({ id: server.id }));
     } finally {
       setTesting(false);
       await reload();
@@ -114,7 +104,7 @@ function ServerCard({ server, preset, reload }: { server: ServerRow; preset?: Mc
           checked={on}
           onChange={(enabled) => {
             setOn(enabled);
-            void api("PUT", `/api/mcp/${server.id}`, { enabled }).finally(reload);
+            void localServer.mcp.update.mutate({ id: server.id, enabled }).finally(reload);
           }}
           label={`Let the assistant use ${server.name}`}
         />
@@ -158,7 +148,7 @@ function ServerCard({ server, preset, reload }: { server: ServerRow; preset?: Mc
           description="The assistant stops using it. Its saved settings and keys are deleted too."
           confirmLabel="Remove"
           onConfirm={async () => {
-            await api("DELETE", `/api/mcp/${server.id}`);
+            await localServer.mcp.remove.mutate({ id: server.id });
             await reload();
           }}
         />
@@ -176,7 +166,7 @@ function AddCustom({ onAdded }: { onAdded: () => Promise<void> }) {
   async function add() {
     setError(null);
     try {
-      await api("POST", "/api/mcp", { name, command, args: args.trim() ? args.trim().split(/\s+/) : [] });
+      await localServer.mcp.addCustom.mutate({ name, command, args: args.trim() ? args.trim().split(/\s+/) : [] });
       setName("");
       setArgs("");
       await onAdded();
@@ -214,9 +204,9 @@ function AddCustom({ onAdded }: { onAdded: () => Promise<void> }) {
 
 /** MCP servers: extra research tools (literature, trials, medicines, nutrition) the assistant can call. */
 export function McpSettings() {
-  const [data, setData] = useState<{ presets: McpPreset[]; servers: ServerRow[]; npx: boolean } | null>(null);
+  const [data, setData] = useState<{ presets: readonly McpPreset[]; servers: ServerRow[]; npx: boolean } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const load = () => api<{ presets: McpPreset[]; servers: ServerRow[]; npx: boolean }>("GET", "/api/mcp").then(setData);
+  const load = () => localServer.mcp.list.query().then(setData);
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load the servers."));
   }, []);
@@ -228,7 +218,7 @@ export function McpSettings() {
   async function addPreset(id: string) {
     setError(null);
     try {
-      await api("POST", "/api/mcp", { presetId: id });
+      await localServer.mcp.addPreset.mutate({ presetId: id });
       await load();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't add it.");

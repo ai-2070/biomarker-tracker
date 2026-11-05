@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { phenoAge, type PhenoAgeInputs } from "@bt/core/phenoage";
-import { ageAt, isBirthMonth, summarizePhenoAge } from "@bt/core/phenoageDraws";
-import type { Measurement } from "@bt/core/types";
+import { phenoAge, type PhenoAgeInputs } from "@bt/shared/core/phenoage";
+import { ageAt, isBirthMonth, summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import type { Measurement } from "@bt/shared/core/types";
 
 const panel: Record<string, number> = {
   albumin: 45,

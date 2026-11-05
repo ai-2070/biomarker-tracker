@@ -1,4 +1,4 @@
-import { piecesToLines, type TextPiece } from "@bt/core/importers/pdfText";
+import { piecesToLines, type TextPiece } from "@bt/shared/core/importers/pdfText";
 import type { OcrProgress } from "./ocr";
 
 /** Scanned PDFs are read page by page with text recognition, up to this many pages. */

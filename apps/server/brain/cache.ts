@@ -10,7 +10,7 @@
 // - Local and other providers: nothing to ask for; a stable prefix already helps servers that reuse it.
 import crypto from "node:crypto";
 import type { generateText, ModelMessage, SystemModelMessage } from "ai";
-import type { ProviderId } from "@bt/core/aiProviders";
+import type { ProviderId } from "@bt/shared/core/aiProviders";
 import type { PromptParts } from "./prompt";
 
 /** Per-provider request options, as the AI SDK takes them. */

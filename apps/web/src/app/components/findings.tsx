@@ -1,4 +1,4 @@
-import { sortFindings, type FindingEffect, type NutrientFinding } from "@bt/core/nutrients";
+import { sortFindings, type FindingEffect, type NutrientFinding } from "@bt/shared/core/nutrients";
 import { GradeBadge, GradeDots, StudyLink } from "./evidence";
 import { anchorId, jump } from "./glance";
 import { Card, cx } from "./ui";

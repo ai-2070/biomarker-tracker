@@ -1,8 +1,8 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { demoProfile } from "@bt/core/demo";
-import { buildSleepTiming, pairSleepCardiac } from "@bt/core/sleepTiming";
-import type { Measurement } from "@bt/core/types";
+import { demoProfile } from "@bt/shared/core/demo";
+import { buildSleepTiming, pairSleepCardiac } from "@bt/shared/core/sleepTiming";
+import type { Measurement } from "@bt/shared/core/types";
 import { ensureExampleSleepData, saveDeviceMeasurements, TrackerDB } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;

@@ -5,7 +5,7 @@ const seam = vi.hoisted(() => ({
   api: vi.fn(), profile: vi.fn(), read: vi.fn(), shrink: vi.fn(), parse: vi.fn(),
 }));
 vi.mock("react", async (original) => ({ ...await original<typeof React>(), useSyncExternalStore: (_subscribe: unknown, snapshot: () => unknown) => snapshot() }));
-vi.mock("../../apps/web/src/app/api", () => ({ api: seam.api }));
+vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(() => { throw new Error("No local server in this test."); }));
 // The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
 vi.mock("../../apps/web/src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => seam.api("POST", "/api/assistant", body, signal, onUpdate) }));
 vi.mock("../../apps/web/src/db/db", () => ({
@@ -18,7 +18,7 @@ vi.mock("../../apps/web/src/app/knowledge", () => ({ BIOMARKER_MAP: new Map([["l
 vi.mock("../../apps/web/src/app/components/LabReview", () => ({
   isImage: (f: File) => f.type.startsWith("image/"), isPdf: () => false, monthFirst: false, readReportFile: seam.read,
 }));
-vi.mock("@bt/core/importers/labText", () => ({ parseLabText: seam.parse }));
+vi.mock("@bt/shared/core/importers/labText", () => ({ parseLabText: seam.parse }));
 vi.mock("../../apps/web/src/app/brain/photo", () => ({ shrinkPhoto: seam.shrink }));
 import { addFiles, addPastedLabText, attachReviewPhoto, habitTurns, newConversation, send, setDraft, setSendPhoto, stop, useBrain } from "../../apps/web/src/app/brain/store";
 

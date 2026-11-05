@@ -13,6 +13,7 @@ import type { HealthSnapshot } from "../../apps/server/healthTools";
 import { createServer } from "../../apps/server/http";
 import { DATA } from "../../apps/server/store";
 import { MockModel } from "./mockModel";
+import { rawCall, trpcClient } from "./trpc";
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
 const snapshot: HealthSnapshot = { measurements: [{ id: "f1", biomarkerId: "ferritin", date: "2024-05-12", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" }], protocols: [], experiments: [], profile: {} };
@@ -150,22 +151,22 @@ describe("the eve setting", () => {
     port = (server.address() as { port: number }).port;
   });
   afterAll(() => server.close());
-  const put = (on: unknown) => fetch(`http://127.0.0.1:${port}/api/settings/eve`, { method: "PUT", headers: { "content-type": "application/json", "x-bt": "1" }, body: JSON.stringify({ on }) });
+  const put = (on: unknown) => rawCall(port, "settings.setEve", { mutation: true, input: { on } });
 
   it("is off by default, can't be switched on without the built runtime, and switches off", async () => {
-    const settings = (await (await fetch(`http://127.0.0.1:${port}/api/settings`)).json()) as { eve: { on: boolean } };
+    const settings = await trpcClient(port).settings.get.query();
     expect(settings.eve.on).toBe(false);
     const old = process.env.BT_EVE_ENTRY;
     process.env.BT_EVE_ENTRY = path.join(DATA(), "missing", "launch.mjs");
     try {
       const refused = await put(true);
       expect(refused.status).toBe(400);
-      expect(((await refused.json()) as { error: string }).error).toMatch(/isn't built/);
+      expect(((await refused.json()) as { error: { message: string } }).error.message).toMatch(/isn't built/);
     } finally {
       if (old === undefined) delete process.env.BT_EVE_ENTRY;
       else process.env.BT_EVE_ENTRY = old;
     }
     expect((await put("yes")).status).toBe(400);
-    expect(await (await put(false)).json()).toMatchObject({ ok: true, eve: { on: false } });
+    expect(((await (await put(false)).json()) as { result: { data: unknown } }).result.data).toMatchObject({ ok: true, eve: { on: false } });
   });
 });

@@ -1,40 +1,26 @@
-// HTTP: the page (dist/) and the API. Security checks follow Blacksite's:
+// HTTP: the page (dist/) and the API. Most of the API is tRPC at /api/trpc (@bt/shared/api/router, api.ts);
+// here are the routes that stream or move files. Security checks follow Blacksite's:
 // 127.0.0.1 only, Host header checked, cross-site requests refused, and every
 // change needs the x-bt header that only this app's page sends.
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { PROVIDERS, isLocalUrl, modelEfforts, providerInfo, type Effort, type ProviderId, type Region } from "@bt/core/aiProviders";
-import { MCP_PRESETS } from "@bt/core/mcpPresets";
-import { agentInstalled, hermesConnected, hermesProfiles, isAgent, openclawAgents, setHermesConnection, testAgent } from "./agents";
-import { openAgentSignIn, openTerminal } from "./terminal";
+import { createHTTPHandler } from "@trpc/server/adapters/standalone";
+import { appRouter } from "@bt/shared/api/router";
 import { ask, type ChatMessage } from "./assistant";
+import { HttpError, services } from "./api";
 import { handleMcp, setBridgePort } from "./bridge";
-import { openRouterModels } from "./openrouter";
 import * as profiles from "./profiles";
 import { parseSnapshot } from "./healthTools";
-import * as mcp from "./mcp";
-import { assistantCheck, currentChoice, describeModelError, readyModel } from "./models";
-import { addSkill, deleteSkill, getSkill, listSkills, setSkillEnabled } from "./skills";
-import { ROOT, getSecrets, getSettings, updateSecrets, updateSettings } from "./store";
-import { generateText } from "ai";
+import { ROOT } from "./store";
 import { MAX_ZIP_BYTES } from "./zip";
-import { checkClaimEvidence, ClaimEvidenceError } from "./claimEvidence";
 import type { OnEvent } from "./brain/events";
 import { streamAnswer } from "./uistream";
 import { handleEveBridge } from "./eve/bridge";
-import { eveBuilt, setEveBridgePort, stopEve } from "./eve/host";
+import { setEveBridgePort } from "./eve/host";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "apps", "web", "dist");
-
-class HttpError extends Error {
-  status: number;
-  constructor(status: number, message: string) {
-    super(message);
-    this.status = status;
-  }
-}
 
 type Json = Record<string, unknown>;
 type Handler = (params: string[], body: Json, signal: AbortSignal | undefined, req: http.IncomingMessage) => Promise<unknown> | unknown;
@@ -49,214 +35,19 @@ const routes: { method: string; re: RegExp; fn: Handler }[] = [];
 const route = (method: string, pattern: string, fn: Handler) => routes.push({ method, re: new RegExp(`^${pattern}$`), fn });
 
 const str = (v: unknown, max = 500): string | undefined => (typeof v === "string" ? v.slice(0, max) : undefined);
-const providerOf = (id: string): ProviderId => {
-  if (!providerInfo(id)) throw new HttpError(404, "Unknown provider.");
-  return id as ProviderId;
-};
 
-// Status and settings
-
-route("GET", "/api/status", () => {
-  const s = getSettings();
-  return { app: "biomarker-tracker", assistant: currentChoice(), chosen: !!s.assistant, ready: assistantCheck() };
+/** The page's tRPC calls (everything that is plain JSON). */
+const TRPC = "/api/trpc/";
+const trpc = createHTTPHandler({
+  router: appRouter,
+  basePath: TRPC,
+  maxBodySize: MAX_BODY,
+  // The page sends one call per request (httpLink).
+  allowBatching: false,
+  createContext: () => ({ services }),
 });
-
-route("GET", "/api/settings", async () => {
-  const s = getSettings();
-  const keys = getSecrets().keys;
-  return {
-    providers: PROVIDERS,
-    configs: s.providers,
-    hasKey: Object.fromEntries(PROVIDERS.map((p) => [p.id, !!keys[p.id]])),
-    installed: Object.fromEntries(PROVIDERS.filter((p) => p.kind === "agent").map((p) => [p.id, agentInstalled(p.id)])),
-    hermesConnected: await hermesConnected(),
-    assistant: currentChoice(),
-    /** False while the default (Claude Code, Opus) is in use because nothing was saved yet. */
-    chosen: !!s.assistant,
-    ready: assistantCheck(),
-    eve: { on: s.eve === true, built: eveBuilt() },
-  };
-});
-
-/** eve as the engine for API and local models (preview). Switching it off stops the runtime. */
-route("PUT", "/api/settings/eve", async (_p, body) => {
-  if (typeof body.on !== "boolean") throw new HttpError(400, "Say whether eve should be on.");
-  if (body.on && !eveBuilt()) throw new HttpError(400, "The eve runtime isn't built on this computer. Run `bun run eve:build` first.");
-  updateSettings((s) => {
-    if (body.on) s.eve = true;
-    else delete s.eve;
-  });
-  if (!body.on) await stopEve();
-  return { ok: true, eve: { on: body.on === true, built: eveBuilt() } };
-});
-
-/** Models (or profiles) that are loaded rather than listed in the app: local servers, Hermes, OpenClaw. */
-route("GET", "/api/settings/models/(ollama|lmstudio|hermes|openclaw)", async ([id]) => {
-  if (id === "hermes") return { models: [], profiles: await hermesProfiles() };
-  if (id === "openclaw") return { models: [], profiles: await openclawAgents() };
-  const info = providerInfo(id!)!;
-  const base = (getSettings().providers[info.id]?.baseURL?.trim() || info.defaultBaseURL || "").replace(/\/+$/, "");
-  try {
-    if (!isLocalUrl(new URL(base))) return { models: [], error: `${info.label} must run on this computer.` };
-    const r = await fetch(`${base}/models`, { signal: AbortSignal.timeout(4000) });
-    const j = (await r.json()) as { data?: { id?: unknown }[] };
-    return { models: (j.data ?? []).filter((m) => typeof m.id === "string").map((m) => ({ id: String(m.id), label: String(m.id) })) };
-  } catch {
-    return { models: [], error: `${info.label} isn't running, or isn't at ${base}. Start it, then reload this page.` };
-  }
-});
-
-/** Opens a terminal with the program maker's official install (or sign-in) command. Fixed commands only. */
-route("POST", "/api/agents/(claude-code|codex|hermes|openclaw)/(install|signin)", ([id, action]) => {
-  const info = providerInfo(id!)!;
-  if (action === "signin") return openAgentSignIn(info.id);
-  const cmd = process.platform === "win32" ? info.install!.windows : info.install!.unix;
-  return openTerminal(`${action === "install" ? "Install" : "Sign in to"} ${info.label}`, cmd);
-});
-
-route("GET", "/api/settings/models/openrouter", async () => {
-  try {
-    return { models: await openRouterModels() };
-  } catch (e) {
-    return { models: [], error: `Couldn't load OpenRouter's model list: ${e instanceof Error ? e.message : String(e)}` };
-  }
-});
-
-// Adds or removes the app's tools in Hermes' own MCP settings (only when the user presses the button).
-route("POST", "/api/settings/hermes", async (_p, body) => {
-  if (typeof body.connect !== "boolean") throw new HttpError(400, "Say whether to connect or disconnect.");
-  return setHermesConnection(body.connect);
-});
-
-route("PUT", "/api/settings/provider/([a-z][a-z-]*)", ([id], body) => {
-  const p = providerOf(id!);
-  updateSettings((s) => {
-    const c = { ...(s.providers[p] ?? {}) };
-    if (typeof body.zdrConfirmed === "boolean") c.zdrConfirmed = body.zdrConfirmed;
-    if (body.region === "EU" || body.region === "US") c.region = body.region as Region;
-    if (typeof body.baseURL === "string") c.baseURL = body.baseURL.trim().slice(0, 300);
-    if (typeof body.profile === "string") c.profile = body.profile.trim().slice(0, 80);
-    s.providers[p] = c;
-  });
-  if (body.key === null || typeof body.key === "string") {
-    const key = typeof body.key === "string" ? body.key.trim() : "";
-    updateSecrets((s) => {
-      if (key) s.keys[p] = key;
-      else delete s.keys[p];
-    });
-  }
-  return { ok: true, ready: assistantCheck() };
-});
-
-route("PUT", "/api/settings/assistant", (_p, body) => {
-  const provider = providerOf(str(body.provider, 20) ?? "");
-  const model = (str(body.model, 120) ?? "").trim();
-  if (!model && !providerInfo(provider)?.modelOptional) throw new HttpError(400, "Choose a model.");
-  if (body.effort !== undefined && (typeof body.effort !== "string" || !modelEfforts(provider, model).includes(body.effort as Effort))) throw new HttpError(400, "This model doesn't support that effort level.");
-  const effort = body.effort as Effort | undefined;
-  updateSettings((s) => (s.assistant = { provider, model, ...(effort ? { effort } : {}) }));
-  return { ok: true, ready: assistantCheck() };
-});
-
-route("POST", "/api/settings/test", async () => {
-  const s = getSettings();
-  const choice = currentChoice();
-  if (isAgent(choice.provider)) {
-    const check = assistantCheck();
-    if (!check.ok) return { ok: false, error: check.reason };
-    return testAgent(choice.provider, choice.model, s.providers[choice.provider]?.profile, choice.effort);
-  }
-  const r = readyModel();
-  if (!r.ok) return { ok: false, error: r.reason };
-  try {
-    const res = await generateText({ model: r.ready.model, prompt: "Reply with the single word OK.", maxOutputTokens: 200, providerOptions: r.ready.providerOptions, abortSignal: AbortSignal.timeout(60_000) });
-    return { ok: true, reply: res.text.slice(0, 100) };
-  } catch (e) {
-    return { ok: false, error: describeModelError(e) };
-  }
-});
-
-// Skills
-
-route("GET", "/api/skills", () => ({ skills: listSkills() }));
-route("GET", "/api/skills/([a-z0-9-]+)", ([id]) => {
-  const s = getSkill(id!);
-  if (!s) throw new HttpError(404, "No skill with that name.");
-  return s;
-});
-route("PUT", "/api/skills/([a-z0-9-]+)", ([id], body) => {
-  if (typeof body.enabled !== "boolean") throw new HttpError(400, "Say whether the skill is on or off.");
-  setSkillEnabled(id!, body.enabled);
-  return { ok: true };
-});
-route("POST", "/api/skills", (_p, body) => ({ skill: addSkill(str(body.markdown, 60_000) ?? "") }));
-route("DELETE", "/api/skills/([a-z0-9-]+)", ([id]) => {
-  deleteSkill(id!);
-  return { ok: true };
-});
-
-// MCP servers
-
-route("GET", "/api/mcp", () => ({ presets: MCP_PRESETS, servers: mcp.listServers(), npx: mcp.hasNpx() }));
-route("POST", "/api/mcp", (_p, body) => {
-  if (typeof body.presetId === "string") return { server: mcp.addPreset(body.presetId) };
-  const args = Array.isArray(body.args) ? body.args.filter((a): a is string => typeof a === "string").slice(0, 30) : [];
-  return { server: mcp.addCustom({ name: str(body.name, 60) ?? "", command: str(body.command, 300) ?? "", args }) };
-});
-route("PUT", "/api/mcp/([a-z0-9-]+)", async ([id], body) => {
-  const env = typeof body.env === "object" && body.env !== null ? (body.env as Record<string, string | null>) : undefined;
-  await mcp.updateServer(id!, { ...(typeof body.enabled === "boolean" ? { enabled: body.enabled } : {}), ...(env ? { env } : {}) });
-  return { ok: true };
-});
-route("POST", "/api/mcp/([a-z0-9-]+)/test", async ([id]) => {
-  try {
-    return { ok: true, ...(await mcp.testServer(id!)) };
-  } catch (e) {
-    return { ok: false, error: e instanceof Error ? e.message : String(e) };
-  }
-});
-route("DELETE", "/api/mcp/([a-z0-9-]+)", async ([id]) => {
-  await mcp.removeServer(id!);
-  return { ok: true };
-});
-
-// Profiles: one folder per person (profiles.ts)
 
 const ID = "([a-z0-9][a-z0-9-]{0,59})";
-route("GET", "/api/profiles", () => ({ profiles: profiles.listProfiles(), active: profiles.activeProfile(), root: profiles.PROFILES() }));
-route("POST", "/api/profiles", (_p, body) => {
-  const created = profiles.createProfile(body);
-  profiles.setActiveProfile(created.id);
-  return { profile: created };
-});
-route("PUT", "/api/profiles/active", (_p, body) => {
-  profiles.setActiveProfile(str(body.id, 60) ?? "");
-  return { ok: true };
-});
-route("GET", `/api/profiles/${ID}/data`, ([id]) => profiles.getProfileData(id!));
-route("PUT", `/api/profiles/${ID}/data`, ([id], body) => {
-  profiles.saveProfileData(id!, body);
-  return { ok: true };
-});
-// Only the parts that changed since the page's last acknowledged save (apps/web/src/app/profiles.ts).
-route("PATCH", `/api/profiles/${ID}/data`, ([id], body) => {
-  const parts = body.parts;
-  if (typeof parts !== "object" || parts === null || Array.isArray(parts)) throw new HttpError(400, "Send the changed parts of the profile.");
-  return { ok: true, ...profiles.saveProfileParts(id!, parts as Record<string, unknown>) };
-});
-route("DELETE", `/api/profiles/${ID}`, ([id]) => {
-  profiles.deleteProfile(id!);
-  return { ok: true, active: profiles.activeProfile() };
-});
-route("POST", `/api/profiles/${ID}/reveal`, async ([id]) => {
-  await profiles.revealFolder(id!);
-  return { ok: true };
-});
-route("GET", `/api/profiles/${ID}/files`, ([id]) => ({ files: profiles.listFiles(id!) }));
-route("DELETE", `/api/profiles/${ID}/files/([^/]+)`, ([id, name]) => {
-  profiles.deleteFile(id!, decodeURIComponent(name!));
-  return { ok: true };
-});
 
 /** Routes that send or receive files instead of JSON. */
 type RawHandler = (params: string[], req: http.IncomingMessage, res: http.ServerResponse, url: URL) => Promise<void> | void;
@@ -322,14 +113,6 @@ function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   }
   return out;
 }
-
-route("POST", "/api/claim-evidence", async (_p, body, signal) => {
-  try { return await checkClaimEvidence(body, { signal }); }
-  catch (error) {
-    if (error instanceof ClaimEvidenceError) throw new HttpError(error.status, error.message);
-    throw error;
-  }
-});
 
 route("POST", "/api/assistant", async (_p, body, signal, req) => {
   if (body.scope !== undefined && body.scope !== "research") throw new HttpError(400, "Unknown assistant scope.");
@@ -476,6 +259,7 @@ export function createServer(port: number): http.Server {
       }
     }
     if (!allowedWrite(method, req.headers)) return send(403, { error: "This request isn't allowed." });
+    if (url.pathname.startsWith(TRPC)) return trpc(req, res);
     const raw = rawRoutes.find((x) => x.method === method && x.re.test(url.pathname));
     if (raw) {
       try {
@@ -489,7 +273,7 @@ export function createServer(port: number): http.Server {
     }
     const r = routes.find((x) => x.method === method && x.re.test(url.pathname));
     if (!r) return send(404, { error: "Not found." });
-    const controller = url.pathname === "/api/assistant" || url.pathname === "/api/claim-evidence" ? new AbortController() : undefined;
+    const controller = url.pathname === "/api/assistant" ? new AbortController() : undefined;
     const cancel = () => controller?.abort();
     if (controller) res.once("close", cancel);
     try {

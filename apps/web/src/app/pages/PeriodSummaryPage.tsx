@@ -1,7 +1,7 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { todayIso } from "@bt/core/dates";
-import { buildPeriodSummary, type PeriodMarker } from "@bt/core/periodSummary";
-import { isCritical } from "@bt/core/trends";
+import { todayIso } from "@bt/shared/core/dates";
+import { buildPeriodSummary, type PeriodMarker } from "@bt/shared/core/periodSummary";
+import { isCritical } from "@bt/shared/core/trends";
 import { askBrain } from "../brain/store";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { cardStyles } from "../components/dashboard/widgets";

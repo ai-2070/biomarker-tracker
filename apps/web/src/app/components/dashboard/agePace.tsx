@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { ageHistory } from "@bt/core/ageHistory";
-import { dunedinSummary, phenoAgePace } from "@bt/core/agePace";
-import { todayIso } from "@bt/core/dates";
-import { sortByDate } from "@bt/core/trends";
-import type { Measurement, Profile, ProtocolEntry } from "@bt/core/types";
+import { ageHistory } from "@bt/shared/core/ageHistory";
+import { dunedinSummary, phenoAgePace } from "@bt/shared/core/agePace";
+import { todayIso } from "@bt/shared/core/dates";
+import { sortByDate } from "@bt/shared/core/trends";
+import type { Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { formatDate } from "../../format";
 import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";

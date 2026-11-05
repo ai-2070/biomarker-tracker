@@ -1,7 +1,7 @@
-import { SLEEP_FIELDS, type BodyField } from "@bt/core/body";
-import { deltaFromCanonical, formatValue, fromCanonical, matchUnit } from "@bt/core/units";
-import type { Flag } from "@bt/core/trends";
-import type { BiomarkerDef, Measurement, ProtocolEntry } from "@bt/core/types";
+import { SLEEP_FIELDS, type BodyField } from "@bt/shared/core/body";
+import { deltaFromCanonical, formatValue, fromCanonical, matchUnit } from "@bt/shared/core/units";
+import type { Flag } from "@bt/shared/core/trends";
+import type { BiomarkerDef, Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 // Display-only helpers. All numbers come from /core; this file only formats them.
 

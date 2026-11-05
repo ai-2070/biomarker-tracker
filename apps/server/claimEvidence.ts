@@ -1,4 +1,4 @@
-import { publicInterventionId, publicClaimTopic, validateClaimResearch, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "@bt/core/claimEvidence";
+import { publicInterventionId, publicClaimTopic, validateClaimResearch, type ClaimCheck, type ClaimDepth, type ClaimRequest } from "@bt/shared/core/claimEvidence";
 import { ask } from "./assistant";
 import { findNutrient } from "./knowledge";
 import { ClaimSearchSession } from "./claimSearchSession";

@@ -1,4 +1,4 @@
-import type { SafetyNote } from "@bt/core/protocols";
+import type { SafetyNote } from "@bt/shared/core/protocols";
 
 /** Prominent "talk to your doctor" notes for entries that change what is safe. */
 export function SafetyNotices({ notes }: { notes: SafetyNote[] }) {

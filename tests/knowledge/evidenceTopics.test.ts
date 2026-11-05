@@ -1,10 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import type { ComparisonTopicFile } from "@bt/core/foodComparison";
-import type { LifestyleDef } from "@bt/core/lifestyle";
-import type { WholeFoodDef } from "@bt/core/wholeFoods";
-import type { NutrientDef } from "@bt/core/nutrients";
+import type { ComparisonTopicFile } from "@bt/shared/core/foodComparison";
+import type { LifestyleDef } from "@bt/shared/core/lifestyle";
+import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { TOPICS } from "../../tools/evidence/topics";
 
 const ROOT = join(import.meta.dirname, "..", "..");

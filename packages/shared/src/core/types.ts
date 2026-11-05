@@ -265,6 +265,6 @@ export interface Profile {
   allergies?: string;
   /** Private notes. Never sent to an AI model. */
   notes?: string;
-  /** Made-up example data (see packages/core/src/demo.ts); the app labels it everywhere. */
+  /** Made-up example data (see packages/shared/src/core/demo.ts); the app labels it everywhere. */
   example?: boolean;
 }

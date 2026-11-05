@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ageMatch, cutoffsMet, describePlace, fitnessSummary, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "@bt/core/fitnessTests";
+import { ageMatch, cutoffsMet, describePlace, fitnessSummary, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "@bt/shared/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 

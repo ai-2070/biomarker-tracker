@@ -1,6 +1,6 @@
-import type { ChartPoint } from "@bt/core/chartSeries";
-import { flagMeasurement, flagValue, isCritical, resolveRange, type Flag } from "@bt/core/trends";
-import type { BiomarkerDef, Measurement, Profile } from "@bt/core/types";
+import type { ChartPoint } from "@bt/shared/core/chartSeries";
+import { flagMeasurement, flagValue, isCritical, resolveRange, type Flag } from "@bt/shared/core/trends";
+import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
 
 /** Classify a bucket only with compatible ranges and context from its own readings. */
 export function aggregateFlag(def: BiomarkerDef, point: ChartPoint, readings: readonly Measurement[], profile: Profile, total: boolean): Flag {

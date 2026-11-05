@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Combobox } from "@base-ui/react/combobox";
-import type { BiomarkerDef } from "@bt/core/types";
+import type { BiomarkerDef } from "@bt/shared/core/types";
 import { BIOMARKERS, BLOOD_MARKERS, fullName } from "../knowledge";
 import { CheckIcon, ChevronDownIcon, cx, errorStyles, labelStyles } from "./ui";
 

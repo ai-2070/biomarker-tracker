@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { addDays } from "@bt/core/dates";
-import { demoProfile } from "@bt/core/demo";
-import { analyzeMarker, differenceBand } from "@bt/core/experiments";
-import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID, phenoAgeGaps, withPhenoAgeGap } from "@bt/core/phenoageWatch";
-import { summarizePhenoAge } from "@bt/core/phenoageDraws";
-import type { Experiment, Measurement } from "@bt/core/types";
+import { addDays } from "@bt/shared/core/dates";
+import { demoProfile } from "@bt/shared/core/demo";
+import { analyzeMarker, differenceBand } from "@bt/shared/core/experiments";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID, phenoAgeGaps, withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
+import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import type { Experiment, Measurement } from "@bt/shared/core/types";
 
 const today = "2026-10-30";
 const demo = demoProfile(today);

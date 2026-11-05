@@ -165,7 +165,7 @@ Additional requested topics are listed by name only: 29 supplements, 32 foods an
 
 **Evidence confidence comes only from personal checks.** There are no bundled verdicts or confidence grades. Before a check the statement says **Not checked yet**. Validated saved AI assessments supply qualitative grades (very low, low, moderate or high); insufficient evidence stays ungraded, not zero. Checks do not combine into category-wide grades or turn skin/marker results into lifespan evidence. **Check something else** remains available with a public-topic input and a category choice. Custom categories stay local to the profile and are not sent to the model; older uncategorized topics remain under Health. Opening the page never calls a model, and there is no scheduled AI reassessment. Other entries remain unchanged.
 
-**Check evidence** runs the person's configured Brain model, skills and research sources through `POST /api/claim-evidence`, sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
+**Check evidence** runs the person's configured Brain model, skills and research sources through the local server (`claimEvidence.check`), sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
  
 For saved checks, the page makes a cheap PubMed metadata check at most once daily, without AI. It counts candidate review/trial records indexed after the assessment's UTC day; same-day additions, late tags and unmatched terms can be missed. A positive signal offers **Recheck**, never changes a verdict automatically. The developer-only `bun tools/claims/watch.ts` scans the last complete month for Astaxanthin claims and candidate new MeSH outcomes (at least three distinct trial records), with an annual stable-facts review reminder. `.github/workflows/claim-watch.yml` opens a deduplicated issue only for signals/reminders; it never rewrites claims, grades or evidence maps.
 
@@ -284,17 +284,19 @@ apps/web               the page: Vite + React UI (src/app), Dexie schema (src/db
 apps/server            local server: profiles, models, skills, MCP, the assistant and its tools
 apps/eve               Brain's opt-in eve runtime (built to apps/eve/.output)
 apps/desktop           desktop app: Tauri shell (src-tauri) and its build scripts
-packages/core          pure TypeScript with tests: units, trends, ranges, PhenoAge, heart and fitness age,
+packages/shared        everything the page and the server share:
+  src/core             pure TypeScript with tests: units, trends, ranges, PhenoAge, heart and fitness age,
                        experiments, importers (lab PDFs, photos, device exports), meals, intake, evidence maps
-packages/research      Europe PMC / PubMed / ClinicalTrials clients
-packages/ai            citation verifier
+  src/research         Europe PMC / PubMed / ClinicalTrials clients
+  src/ai               citation verifier
+  src/api              the page ↔ server API (tRPC router and its types)
 knowledge              biomarkers, evidence claims, nutrients, fitness tests, foods, evidence maps
 skills                 built-in assistant skills
 tools                  developer tools that build the knowledge files (food table, evidence maps)
 tests                  Vitest suites for every package, with synthetic fixtures (no real patient data)
 ```
 
-Shared packages are imported by name (`@bt/core/units`, `@bt/research/papers`, `@bt/ai/citations`); they ship as TypeScript source, so there is no separate build step for them.
+Shared code is imported by name (`@bt/shared/core/units`, `@bt/shared/research/papers`); it ships as TypeScript source, so there is no separate build step. The page talks to the local server through [tRPC](https://trpc.io) (`/api/trpc`, router in `packages/shared/src/api/router.ts`), so both sides share one typed contract; Brain's streamed answers and file transfers stay plain HTTP.
 
 The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and design notes are in [`PRODUCT.md`](PRODUCT.md) and [`DESIGN.md`](DESIGN.md).
 

@@ -1,4 +1,4 @@
-import type { ClaimRequest, ClaimUpdate } from "@bt/core/claimEvidence";
+import type { ClaimRequest, ClaimUpdate } from "../core/claimEvidence";
 import { EUTILS, sanitizeTopic, type FetchFn } from "./papers";
 
 // PubMed entry date, not publication date or the date a MeSH tag was added.

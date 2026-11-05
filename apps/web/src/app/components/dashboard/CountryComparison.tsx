@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { compareLifeTables, lifeTablePeriod, type LifeTableFile } from "@bt/core/lifeTable";
+import { compareLifeTables, lifeTablePeriod, type LifeTableFile } from "@bt/shared/core/lifeTable";
 import { href } from "../../router";
 import { cx } from "../ui";
 

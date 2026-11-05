@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog } from "@base-ui/react/dialog";
-import type { PlanCategory, PlanItem } from "@bt/core/plans";
+import type { PlanCategory, PlanItem } from "@bt/shared/core/plans";
 import { newId, savePlan } from "../../db/db";
 import { usePlans } from "../hooks";
 import { href } from "../router";

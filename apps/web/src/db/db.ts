@@ -1,17 +1,17 @@
 import Dexie, { type EntityTable } from "dexie";
-import { createBackup, type Backup } from "@bt/core/backup";
-import { syncWatch, watchFor } from "@bt/core/habits";
-import { habitForPlan, validatePlan, type Plan } from "@bt/core/plans";
-import { validateMeal, type Meal } from "@bt/core/meals";
-import { validateProtocol } from "@bt/core/protocols";
-import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "@bt/core/types";
-import { completeProfileDetails, type ProfileCompletion } from "@bt/core/profileCompletion";
-import { measurementsIn } from "@bt/core/measurementCompletion";
-import { isBirthMonth } from "@bt/core/phenoageDraws";
-import { todayIso } from "@bt/core/dates";
-import { LIFE_TABLE_COUNTRIES } from "@bt/core/lifeTable";
-import { validSleepSessions } from "@bt/core/sleepSessions";
-import { exampleSleepUpdates } from "@bt/core/demo";
+import { createBackup, type Backup } from "@bt/shared/core/backup";
+import { syncWatch, watchFor } from "@bt/shared/core/habits";
+import { habitForPlan, validatePlan, type Plan } from "@bt/shared/core/plans";
+import { validateMeal, type Meal } from "@bt/shared/core/meals";
+import { validateProtocol } from "@bt/shared/core/protocols";
+import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { completeProfileDetails, type ProfileCompletion } from "@bt/shared/core/profileCompletion";
+import { measurementsIn } from "@bt/shared/core/measurementCompletion";
+import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
+import { todayIso } from "@bt/shared/core/dates";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import { validSleepSessions } from "@bt/shared/core/sleepSessions";
+import { exampleSleepUpdates } from "@bt/shared/core/demo";
 
 interface Setting {
   key: string;

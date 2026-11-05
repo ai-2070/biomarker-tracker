@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { BACKUP_VERSION, createBackup, parseBackup } from "@bt/core/backup";
-import { isIsoDate, daysBetween, todayIso } from "@bt/core/dates";
-import { MAX_ITEMS } from "@bt/core/plans";
-import type { ProtocolEntry } from "@bt/core/types";
+import { BACKUP_VERSION, createBackup, parseBackup } from "@bt/shared/core/backup";
+import { isIsoDate, daysBetween, todayIso } from "@bt/shared/core/dates";
+import { MAX_ITEMS } from "@bt/shared/core/plans";
+import type { ProtocolEntry } from "@bt/shared/core/types";
 import { measurement } from "../helpers";
 
 describe("backup", () => {
