@@ -766,7 +766,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
     // Always offered (the same tool list every turn); it refuses without pictures in the newest question.
     propose_results: tool({
       description:
-        "Show a review card of the results you read from the photos or scanned pages sent with the newest question: a lab report, a health app screen, a blood pressure monitor, a scale. One entry per result. Copy each value, unit and range exactly as printed; never calculate, convert, round or guess, and leave out anything you can't read clearly. The app matches units and flags doubtful values; nothing is saved until the person checks every value against the picture and presses Save. Then answer briefly; don't list every value again.",
+        "Show a review card of the results you read from the photos or scanned pages sent with the newest question: a lab report, a health app screen, a blood pressure monitor, a scale. One entry per result. Copy each value, unit and range exactly as printed; never calculate, convert, round or guess, and leave out anything you can't read clearly. The app matches units and flags doubtful values; nothing is saved until the person checks every value against the picture and presses Save. Then answer briefly; don't list every value again. On a follow-up about an open card (a row missed or misread), the same pictures come again: propose only the rows the person asked about.",
       inputSchema: z.object({
         date: z.string().optional().describe("The sample or measurement date printed on the picture, as YYYY-MM-DD. Leave out when none is printed."),
         results: z.array(z.object({

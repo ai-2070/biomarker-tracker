@@ -67,14 +67,18 @@ function isolate(messages: ChatMessage[]): ChatMessage[] | undefined {
   return [{ role: "user", content: question.trim().slice(0, 20_000) }];
 }
 
-/** Profile facts and readings typed in this question, visible to the tools before the page saves them. */
-function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined): HealthSnapshot {
+/**
+ * Profile facts and readings typed in this question, visible to the tools before the page saves them. With
+ * pictures, typed readings ("my HbA1c is 5.6%") belong on the picture's review card, dated by the report, so
+ * they aren't taken as today's readings (the page doesn't save them either).
+ */
+function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined, readings = true): HealthSnapshot {
   // Never change the caller's snapshot while preparing details for this request.
   const current = { ...snapshot.profile };
   const today = todayIso();
   const profile = userText ? completeProfileDetails(current, profileDetailsIn(userText, today), userText, today).profile : current;
   const measurements = [...snapshot.measurements];
-  if (userText) {
+  if (userText && readings) {
     for (const reading of measurementsIn(userText, today, knowledge().defs)) {
       if (!measurements.some((m) => m.biomarkerId === reading.biomarkerId && m.date === reading.date)) measurements.push({ ...reading, id: crypto.randomUUID() });
     }
@@ -107,7 +111,7 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
     (typeof opts.userText !== "string" || !opts.userText.trim() || !requestText.startsWith(opts.userText))) {
     return { ok: false, error: "The typed question does not match the latest message." };
   }
-  if (!opts.researchOnly) snapshot = withTypedDetails(snapshot, opts.userText);
+  if (!opts.researchOnly) snapshot = withTypedDetails(snapshot, opts.userText, images.length === 0);
 
   // Which engine answers.
   const choice = currentChoice();
