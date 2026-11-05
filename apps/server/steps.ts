@@ -29,7 +29,7 @@ export function toolStep(name: string, input: unknown): ToolStep {
 }
 
 export function isMutationTool(name: string): boolean {
-  return ["save_profile_details", "propose_protocol", "propose_meal", "propose_habit"].includes(name);
+  return ["save_profile_details", "propose_protocol", "propose_meal", "propose_habit", "propose_results"].includes(name);
 }
 
 /** Failed, missing and unexecuted calls remain false; MCP lookalikes never receive this handshake. */

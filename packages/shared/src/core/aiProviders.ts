@@ -283,6 +283,18 @@ export const PROVIDERS: readonly ProviderInfo[] = [
   },
 ];
 
+/** Photos and scanned pages sent with one question (the page shrinks each to at most 1568 px). */
+export const MAX_PHOTOS = 6;
+
+/**
+ * Whether the app can give this provider pictures: API-key and local models as image parts, Claude Code and
+ * Codex through their own image input. Hermes and OpenClaw have no image input the app can use.
+ */
+export const takesPictures = (id: string): boolean => {
+  const info = PROVIDERS.find((p) => p.id === id);
+  return !!info && (info.group !== "agent" || id === "claude-code" || id === "codex");
+};
+
 /** What the assistant uses until the person chooses something else. */
 export const DEFAULT_CHOICE: ModelChoice = { provider: "claude-code", model: "opus" };
 

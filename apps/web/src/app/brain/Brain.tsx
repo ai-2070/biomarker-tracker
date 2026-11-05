@@ -1,16 +1,17 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
 import { TIME_LABEL, whenExtras } from "../components/PlanWhen";
 import { Checkbox } from "@base-ui/react/checkbox";
-import { providerInfo } from "@bt/shared/core/aiProviders";
+import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
 import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { BrainIcon, CloseIcon, FileIcon, NewChatIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
-import { Review, isImage } from "../components/LabReview";
+import { Review } from "../components/LabReview";
 import { Button, CheckIcon, FlagBadge, cx, inputStyles } from "../components/ui";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { todayIso } from "@bt/shared/core/dates";
+import { criticalResults } from "@bt/shared/core/importers/resultProposal";
 import type { HabitProposal } from "@bt/shared/core/habitProposal";
 import { defaultRetestDays } from "@bt/shared/core/habits";
 import { safetyLabels, safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
@@ -32,14 +33,14 @@ import { ModelMenu, ToolsMenu, goToSettings, modelLabel, useBrainSettings, type 
 import {
   addFiles,
   addPastedLabText,
-  attachReviewPhoto,
   backToMyChat,
+  keepReportFiles,
+  picturesToResend,
   closeBrain,
   newConversation,
   openBrain,
   removeAttachment,
   send,
-  setSendPhoto,
   takePending,
   setDraft,
   stop,
@@ -150,7 +151,7 @@ function Launcher({ onOpen }: { onOpen: () => void }) {
         if (e.dataTransfer.types.includes("Files")) openBrain();
       }}
       title={`Ask Brain (Space, or ${isMac ? "⌘K" : "Ctrl+K"})`}
-      className="fixed bottom-5 left-[calc(50%+8rem)] z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
+      className="fixed bottom-5 left-1/2 z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
     >
       <BrainIcon className="text-accent" />
       <span>Ask Brain…</span>
@@ -249,7 +250,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         "fixed z-50 flex flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
         closing ? "animate-brain-sheet-out lg:animate-brain-shrink" : "animate-brain-sheet-in lg:animate-brain-grow",
         "inset-0 sm:inset-x-3 sm:top-14 sm:bottom-3 sm:rounded-2xl sm:border",
-        "lg:inset-auto lg:bottom-5 lg:left-[calc(50%+8rem)] lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-19rem))] lg:origin-bottom lg:-translate-x-1/2",
+        "lg:inset-auto lg:bottom-5 lg:left-1/2 lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-3rem))] lg:origin-bottom lg:-translate-x-1/2",
       )}
     >
       <header className={cx("flex items-center gap-2 border-b border-line py-2 pr-2 pl-4", closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]")}>
@@ -314,7 +315,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
           <p className="max-w-xs">
             <span className="block font-medium text-ink">Drop a lab report or a document</span>
-            <span className="text-sm text-ink-2">It's read on this computer. You check lab results before they're saved.</span>
+            <span className="text-sm text-ink-2">PDFs with text are read on this computer; photos and scans go to Brain as pictures. You check results before they're saved.</span>
           </p>
         </div>
       )}
@@ -396,8 +397,8 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       <p className="text-xs leading-relaxed text-ink-2">
         When you ask, your results, log and experiments (with your age, not your name or birth month) go to {info?.label ?? "your model"}
         {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach are
-        sent as text with your name taken out; lab reports and health app screenshots are read here and only the values you confirm are saved. A
-        photo itself is sent only when you switch that on for it.
+        sent as text with your name taken out; lab report PDFs are read here. Photos and scanned pages are sent as pictures, so the model sees
+        everything printed on them, such as your name. Only the values you confirm are saved.
       </p>
     </div>
   );
@@ -441,8 +442,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
             </span>
           ))}
           {t.photos ? (
-            <span className="rounded-lg bg-warn-soft px-2 py-1 text-xs text-ink">
-              {t.photos} {t.photos === 1 ? "photo" : "photos"} sent to the model
+            <span className="rounded-lg border border-line px-2 py-1 text-xs text-ink-2">
+              {t.photos} {t.photos === 1 ? "picture" : "pictures"} {t.photosAgain ? "sent again so Brain can look again" : "sent to Brain"}
             </span>
           ) : null}
         </div>
@@ -498,6 +499,12 @@ function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live" }>; al
         <span className="font-medium">Brain</span>
         <span className="truncate font-mono text-[11px] text-ink-2">{turn.model}</span>
       </p>
+      {turn.critical && (
+        <p role="alert" className="rounded-xl border-2 border-danger-strong bg-danger-soft p-3 text-ink">
+          <span className="font-semibold">A result in the picture looks far outside the usual range.</span> Please contact a doctor soon, or your local
+          emergency number if you feel unwell. Check the value against the report in the card that follows.
+        </p>
+      )}
       {/* Not read out word by word; the status line below says what is happening. */}
       {turn.text && <div aria-live="off"><CitedAnswer text={turn.text} allowed={checked} /></div>}
       {turn.steps.length > 0 && (
@@ -592,41 +599,41 @@ function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; er
   );
 }
 
-/** A lab report dropped into Brain: check the values, then save them to the blood tests. */
+/** A lab report dropped into Brain, or results Brain read from pictures: check the values, then save them. */
 function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; model: string }) {
   const { mode, active } = useProfiles();
 
   async function saved(list: Measurement[], skipped: number, date: string) {
-    let kept: string | undefined;
-    let keepError: string | undefined;
-    if (turn.file && mode === "folders" && active) {
-      try {
-        kept = (await uploadFile(active.id, turn.file, `${turn.kind === "body" ? "Health app screenshot" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`)).originalName;
-      } catch (e) {
-        keepError = e instanceof Error ? e.message : "unknown error";
-      }
-    }
-    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept ? { kept } : {}), ...(keepError ? { keepError } : {}) });
+    const note = `${turn.kind === "body" ? "Body measurements" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`;
+    const { kept, errors } = mode === "folders" && active ? await keepReportFiles(active.id, turn.files, note, uploadFile) : { kept: [], errors: [] };
+    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept.length ? { kept: kept.join(", ") } : {}), ...(errors.length ? { keepError: errors.join("; ") } : {}) });
   }
 
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Nothing saved from {turn.fileName}.</p>;
   if (turn.state === "saved") return <SavedResults turn={turn} model={model} />;
+  // Results read from a picture that are far out of range, as read: the urgent banner comes before anything else.
+  const critical: CriticalItem[] = turn.fromPicture
+    ? criticalResults(turn.report, BIOMARKER_MAP).flatMap((c, i) => {
+        const def = BIOMARKER_MAP.get(c.biomarkerId);
+        if (!def) return [];
+        const measurement: Measurement = { id: `${turn.id}-critical-${i}`, biomarkerId: def.id, value: c.value, originalValue: c.value, originalUnit: def.canonicalUnit, date: turn.report.date ?? todayIso(), source: "photo", ...(c.qualifier ? { qualifier: c.qualifier } : {}) };
+        return [{ def, measurement, low: c.low }];
+      })
+    : [];
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-line bg-sunken p-3">
+      {critical.length > 0 && (
+        <div>
+          <CriticalBanner items={critical} />
+          <p className="-mt-3 px-1 text-sm text-ink-2">As Brain read {critical.length === 1 ? "it" : "them"} from the picture: check against the report.</p>
+        </div>
+      )}
       <p className="flex items-center gap-2 px-1 text-sm">
         <FileIcon className="size-4 shrink-0 text-ink-2" />
         <span className="min-w-0 truncate font-medium">{turn.fileName}</span>
-        <span className="shrink-0 text-ink-2">· read on this computer</span>
+        <span className="shrink-0 text-ink-2">· {turn.fromPicture ? "read by Brain" : "read on this computer"}</span>
       </p>
-      <Review fileName={turn.fileName} ocr={turn.ocr} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
-      {turn.file && isImage(turn.file) && (
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 px-1 text-sm text-ink-2">
-          <span>Text recognition can miss rows.</span>
-          <Button variant="quiet" onClick={() => attachReviewPhoto(turn.id)}>
-            Ask Brain about the photo itself
-          </Button>
-        </p>
-      )}
+      <Review fileName={turn.fileName} fromPicture={turn.fromPicture} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
     </div>
   );
 }
@@ -695,37 +702,31 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
   );
 }
 
-/** Where a photo would go: API and local models can take one; agent programs can't. */
-interface PhotoTarget {
-  allowed: boolean;
-  label: string;
-}
-
-function AttachmentChip({ a, photoTarget }: { a: Attachment; photoTarget: PhotoTarget }) {
-  const hasText = !!(a.text ?? "").trim();
+function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model can't be given pictures: its label. */ noPictures?: string }) {
+  const pictures = a.images?.length ?? 0;
+  const blocked = pictures > 0 && a.status === "ready" && noPictures !== undefined;
   const status =
     a.status === "reading"
       ? `${a.stage ?? "Reading"}${a.fraction ? ` ${Math.round(a.fraction * 100)}%` : "…"}`
       : a.status === "error"
         ? a.error
-        : a.sendPhoto
-          ? "The photo itself is sent"
-          : hasText
-            ? "Its text is sent with your question"
-            : "No text in this picture";
+        : blocked
+          ? `${noPictures} can't read pictures. Choose another model.`
+          : a.pictureOf === "pdf"
+            ? `${pictures} scanned ${pictures === 1 ? "page" : "pages"} sent as pictures, including any names on them`
+            : pictures
+              ? "Sent as a picture, including any names on it"
+              : "Its text is sent with your question";
   return (
     <span
-      className={cx(
-        "flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm",
-        a.status === "error" ? "border-danger/40 bg-danger-soft" : a.sendPhoto ? "border-warn/40 bg-warn-soft" : "border-line bg-surface",
-      )}
-      title={a.status === "ready" && !a.sendPhoto && hasText ? "Its text is sent with your question, with your name taken out." : undefined}
+      className={cx("flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm", a.status === "error" ? "border-danger/40 bg-danger-soft" : "border-line bg-surface")}
+      title={a.status !== "ready" ? undefined : pictures ? "Sent as it is, shrunk and with location data removed: the model sees everything printed on it, such as your name." : "Sent with your name taken out."}
     >
       <span className="flex items-center gap-2">
         <FileIcon className="size-4 shrink-0 text-ink-2" />
         <span className="flex min-w-0 flex-1 flex-col">
           <span className="truncate font-medium text-ink">{a.name}</span>
-          <span className={cx("truncate", a.status === "error" ? "text-danger" : "text-ink-2")}>{status}</span>
+          <span className={cx("truncate", a.status === "error" ? "text-danger" : blocked ? "text-warn" : "text-ink-2")}>{status}</span>
         </span>
         {a.status !== "reading" && (
           <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
@@ -733,30 +734,6 @@ function AttachmentChip({ a, photoTarget }: { a: Attachment; photoTarget: PhotoT
           </button>
         )}
       </span>
-      {a.status === "ready" && a.photo && (
-        <span className="flex flex-col gap-1 border-t border-line/70 pt-1.5">
-          <label className={cx("flex items-start gap-2", photoTarget.allowed ? "cursor-pointer" : "cursor-not-allowed opacity-70")}>
-            <Checkbox.Root
-              checked={!!a.sendPhoto}
-              disabled={!photoTarget.allowed}
-              onCheckedChange={(on) => setSendPhoto(a.id, on)}
-              className="mt-px flex size-4 shrink-0 items-center justify-center rounded border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
-            >
-              <Checkbox.Indicator className="flex data-unchecked:hidden">
-                <CheckIcon className="size-3" />
-              </Checkbox.Indicator>
-            </Checkbox.Root>
-            <span className="text-ink">Send the photo itself{photoTarget.allowed ? ` to ${photoTarget.label}` : ""}</span>
-          </label>
-          {!photoTarget.allowed && <span className="text-ink-2">Only to models used with an API key or running on this computer, not to agent programs.</span>}
-          {a.sendPhoto && (
-            <span className="text-ink">
-              The photo leaves this computer (shrunk, location data removed). Brain describes what it sees; it won't estimate weight, body fat or age from a photo, or
-              judge skin, moles or wounds.
-            </span>
-          )}
-        </span>
-      )}
     </span>
   );
 }
@@ -767,10 +744,10 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
   const textRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const reading = brain.attachments.some((a) => a.status === "reading");
-  const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim()));
-  const info = settings ? providerInfo(settings.assistant.provider) : undefined;
-  const photoTarget: PhotoTarget = { allowed: !!info && info.group !== "agent", label: info?.label ?? "the model" };
+  const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.images?.length || (a.text ?? "").trim()));
   const canSend = !brain.busy && !reading && (brain.draft.trim() !== "" || hasDocs);
+  const provider = settings?.assistant.provider;
+  const noPictures = provider && !takesPictures(provider) ? providerInfo(provider)?.label ?? provider : undefined;
 
   useEffect(() => {
     textRef.current?.focus();
@@ -792,10 +769,15 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
 
   return (
     <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
+      {!research && brain.attachments.every((a) => !a.images?.length) && picturesToResend(brain.turns, model) && (
+        <p className="mb-2 px-1 text-xs text-ink-2">
+          While the card above is open, your next question goes with the same pictures, so Brain can look again (for a row it missed or misread).
+        </p>
+      )}
       {!research && brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (
-            <AttachmentChip key={a.id} a={a} photoTarget={photoTarget} />
+            <AttachmentChip key={a.id} a={a} {...(noPictures ? { noPictures } : {})} />
           ))}
         </div>
       )}

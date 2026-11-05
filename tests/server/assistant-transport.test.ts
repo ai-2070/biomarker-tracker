@@ -80,12 +80,12 @@ describe("assistant transport limits", () => {
     expect(ask.mock.calls[0]?.[0]).toEqual(messages);
   });
 
-  it("assistant-photo-limit rejects five and forwards all four allowed photos", async () => {
-    const refused = await send([{ role: "user", content: "photos", images: Array(5).fill(photo) }]);
+  it("assistant-photo-limit rejects seven and forwards all six allowed photos or pages", async () => {
+    const refused = await send([{ role: "user", content: "photos", images: Array(7).fill(photo) }]);
     expect(refused.status).toBe(400);
-    expect(JSON.parse(refused.text).error).toMatch(/at most 4 photos/);
+    expect(JSON.parse(refused.text).error).toMatch(/at most 6 photos or pages/);
     expect(ask).not.toHaveBeenCalled();
-    const messages = [{ role: "user", content: "photos", images: Array(4).fill(photo) }];
+    const messages = [{ role: "user", content: "photos", images: Array(6).fill(photo) }];
     expect((await send(messages)).status).toBe(200);
     expect(ask.mock.calls[0]?.[0]).toEqual(messages);
   });

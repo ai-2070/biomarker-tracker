@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo } from "@bt/shared/core/aiProviders";
+import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 
 describe("provider registry", () => {
   it("lists only EU, US or local API providers; agents are labelled as depending on their own setup", () => {
@@ -115,5 +115,16 @@ describe("provider order, models, effort and install", () => {
     expect(canUse({ provider: "codex", model: "", effort: "max" }, {}, false).ok).toBe(false);
     expect(canUse({ provider: "ollama", model: "llama3.1", effort: "low" }, {}, false).ok).toBe(false);
     for (const p of PROVIDERS) for (const e of p.efforts) expect(Object.keys(EFFORT_LABEL)).toContain(e);
+  });
+});
+
+describe("takesPictures", () => {
+  it("allows API-key and local models, Claude Code and Codex, and refuses Hermes, OpenClaw and unknown ids", () => {
+    for (const p of PROVIDERS) expect(takesPictures(p.id)).toBe(p.group !== "agent" || p.id === "claude-code" || p.id === "codex");
+    expect(takesPictures("claude-code")).toBe(true);
+    expect(takesPictures("hermes")).toBe(false);
+    expect(takesPictures("openclaw")).toBe(false);
+    expect(takesPictures("anthropic")).toBe(true);
+    expect(takesPictures("nope")).toBe(false);
   });
 });

@@ -41,7 +41,7 @@ export class TurnChunks {
         this.emit({ type: "tool-input-available", toolCallId: e.id, toolName: e.name, input: { tool: e.tool, ...(e.server ? { server: e.server } : {}), input: e.input }, dynamic: true });
         return;
       case "tool_result":
-        if (e.ok) this.emit({ type: "tool-output-available", toolCallId: e.id, output: { ok: true }, dynamic: true });
+        if (e.ok) this.emit({ type: "tool-output-available", toolCallId: e.id, output: { ok: true, ...(e.critical ? { critical: true } : {}) }, dynamic: true });
         else this.emit({ type: "tool-output-error", toolCallId: e.id, errorText: "The tool didn't return a usable result.", dynamic: true });
         if (e.studyIds.length) this.emit({ type: "data-studies", data: { ids: e.studyIds } } as UIMessageChunk);
         return;

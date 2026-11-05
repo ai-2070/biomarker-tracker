@@ -16,30 +16,14 @@ import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 
-// The review step of a lab report import: used by the Import page and by Brain.
+// The review step of a lab report import: used by the Import page and by Brain (PDF text, pasted text, and
+// results Brain read from photos or scanned pages).
 
 // US-style dates (month first) only for US English.
 export const monthFirst = typeof navigator !== "undefined" && navigator.language === "en-US";
 
 export const isPdf = (f: File) => f.type === "application/pdf" || /\.pdf$/i.test(f.name);
 export const isImage = (f: File) => f.type.startsWith("image/") || /\.(jpe?g|png|webp|heic|heif)$/i.test(f.name);
-
-/** Reads a lab report on this device: the PDF's text, or text recognition for scans and photos. */
-export async function readReportFile(
-  file: File,
-  progress?: (fraction: number, stage: string) => void,
-  allowNoText = false,
-): Promise<{ text: string; ocr: boolean }> {
-  if (isPdf(file)) {
-    const { readPdfText } = await import("../pdf");
-    return readPdfText(file, progress);
-  }
-  if (isImage(file)) {
-    const { readImageText } = await import("../ocr");
-    return { text: await readImageText(file, progress, allowNoText), ocr: true };
-  }
-  throw new Error("Choose a PDF or a photo (JPG, PNG or WebP).");
-}
 
 interface Row {
   key: string;
@@ -57,7 +41,7 @@ interface Row {
 
 export function Review({
   fileName,
-  ocr,
+  fromPicture,
   report,
   onCancel,
   onSaved,
@@ -65,7 +49,8 @@ export function Review({
   kind = "lab",
 }: {
   fileName: string;
-  ocr: boolean;
+  /** Read by Brain from photos or scanned pages, not from a PDF's text. */
+  fromPicture: boolean;
   report: ParsedReport;
   onCancel: () => void;
   onSaved: (saved: Measurement[], skipped: number, date: string) => void;
@@ -111,7 +96,7 @@ export function Review({
         },
         BIOMARKER_MAP,
         today,
-        ocr ? "photo" : "pdf",
+        fromPicture ? "photo" : "pdf",
       ),
     }));
     const dateProblem = checked.find(({ v }) => !v.ok && v.errors.date);
@@ -162,15 +147,15 @@ export function Review({
   return (
     <div className={cx("flex flex-col", inChat ? "gap-3" : "gap-5")}>
       <Card className="flex flex-col gap-4">
-        {ocr && (
-          <Notice tone="warn" title="Read from a picture: check every value">
-            Text recognition can misread letters and numbers, for example 0 and O, 1 and 7, or a missing decimal point. Compare each value and unit with
-            the {kind === "body" ? "screenshot" : "report"} before saving.
+        {fromPicture && (
+          <Notice tone="warn" title="Read by Brain from a picture: check every value">
+            AI models can misread a number, a unit or a decimal point, or put a value on the wrong row. Compare each value and unit with the{" "}
+            {kind === "body" ? "picture" : "report"} before saving.
           </Notice>
         )}
         <p className="text-ink-2">
           Found <span className="font-medium text-ink">{rows.length}</span> {kind === "body" ? "body measurements" : "results"} in {fileName}. Compare each one with your{" "}
-          {kind === "body" ? "screenshot" : "report"}, fix anything that's wrong, and untick rows you don't want.
+          {kind === "body" ? "picture" : "report"}, fix anything that's wrong, and untick rows you don't want.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field.Root invalid={!!dateError} className="flex flex-col gap-1.5">

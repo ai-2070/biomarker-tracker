@@ -33,7 +33,7 @@ export const ASSISTANT_TIMEOUT_MS = 10 * 60_000;
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
-  /** Photos the person chose to send with this question (base64, already shrunk on their device). */
+  /** Photos and scanned pages sent with this question (base64 JPEG, shrunk on the person's device, location data removed). */
   images?: { mediaType: "image/jpeg" | "image/png" | "image/webp"; data: string }[];
 }
 
@@ -67,14 +67,18 @@ function isolate(messages: ChatMessage[]): ChatMessage[] | undefined {
   return [{ role: "user", content: question.trim().slice(0, 20_000) }];
 }
 
-/** Profile facts and readings typed in this question, visible to the tools before the page saves them. */
-function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined): HealthSnapshot {
+/**
+ * Profile facts and readings typed in this question, visible to the tools before the page saves them. With
+ * pictures, typed readings ("my HbA1c is 5.6%") belong on the picture's review card, dated by the report, so
+ * they aren't taken as today's readings (the page doesn't save them either).
+ */
+function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined, readings = true): HealthSnapshot {
   // Never change the caller's snapshot while preparing details for this request.
   const current = { ...snapshot.profile };
   const today = todayIso();
   const profile = userText ? completeProfileDetails(current, profileDetailsIn(userText, today), userText, today).profile : current;
   const measurements = [...snapshot.measurements];
-  if (userText) {
+  if (userText && readings) {
     for (const reading of measurementsIn(userText, today, knowledge().defs)) {
       if (!measurements.some((m) => m.biomarkerId === reading.biomarkerId && m.date === reading.date)) measurements.push({ ...reading, id: crypto.randomUUID() });
     }
@@ -85,7 +89,7 @@ function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined
 function modelMessages(messages: ChatMessage[]): ModelMessage[] {
   return messages.map((m): ModelMessage =>
     m.role === "user" && m.images?.length
-      ? { role: "user", content: [{ type: "text", text: m.content }, ...m.images.map((i) => ({ type: "image" as const, image: i.data, mediaType: i.mediaType }))] }
+      ? { role: "user", content: [{ type: "text", text: m.content }, ...m.images.map((i) => ({ type: "file" as const, data: i.data, mediaType: i.mediaType }))] }
       : { role: m.role, content: m.content },
   );
 }
@@ -102,11 +106,12 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   }
   const latest = messages.at(-1);
   const requestText = latest?.role === "user" ? latest.content : "";
+  const images = latest?.role === "user" ? latest.images ?? [] : [];
   if (!opts.researchOnly && opts.userText !== undefined &&
     (typeof opts.userText !== "string" || !opts.userText.trim() || !requestText.startsWith(opts.userText))) {
     return { ok: false, error: "The typed question does not match the latest message." };
   }
-  if (!opts.researchOnly) snapshot = withTypedDetails(snapshot, opts.userText);
+  if (!opts.researchOnly) snapshot = withTypedDetails(snapshot, opts.userText, images.length === 0);
 
   // Which engine answers.
   const choice = currentChoice();
@@ -129,7 +134,7 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   const claim = opts.claimReview ? new ClaimReview(opts.claimSession) : undefined;
   let tools = opts.claimSession
     ? { ...opts.claimSession.tools }
-    : requestTools({ snapshot, researchOnly: opts.researchOnly, claimReview: opts.claimReview, serverTools: servers.tools, fetchFn: opts.fetchFn, userText: opts.userText, requestText });
+    : requestTools({ snapshot, researchOnly: opts.researchOnly, claimReview: opts.claimReview, serverTools: servers.tools, fetchFn: opts.fetchFn, userText: opts.userText, requestText, images: images.length > 0 });
   if (claim) tools = claim.prepare(tools);
   const parts = promptParts({
     skills: skillIndex(enabledSkills()),
@@ -143,10 +148,7 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   const signal = opts.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(ASSISTANT_TIMEOUT_MS)]) : AbortSignal.timeout(ASSISTANT_TIMEOUT_MS);
 
   if (agent) {
-    if (messages.some((m) => m.images?.length)) {
-      return { ok: false, error: "Photos can only be sent to models used with an API key or running on this computer, not to agent programs. Choose one in Settings → AI models, or send the question without the photo." };
-    }
-    return runAgentQuestion({ agent, parts, messages, tools, snapshot, researchOnly: !!opts.researchOnly, claim, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
+    return runAgentQuestion({ agent, parts, messages, images, tools, snapshot, researchOnly: !!opts.researchOnly, claim, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
   }
 
   if (!ready) return { ok: false, error: "Set up a model first." };

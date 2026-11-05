@@ -173,7 +173,7 @@ describe("Hungarian hospital report (synthetic, layout of a real clinic printout
 });
 
 describe("names as photos and labs print them", () => {
-  it("ignores accents, OCR's dotless i and spacing around brackets and percent signs", () => {
+  it("ignores accents, a dotless i and spacing around brackets and percent signs", () => {
     const r = parseLabText(["Serum Natrıum   139   mmol/L", "Thrombocyta szam   210   G/L", "Neutrophil (pero) %   61.0   %"].join("\n"), defs);
     expect(r.rows.map(brief)).toEqual([
       ["sodium", "139", "mmol/L", null, null],
