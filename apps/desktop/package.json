@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "desktop:dev": "tauri dev",
+    "desktop:dev": "tauri dev --config src-tauri/tauri.dev.conf.json",
+    "desktop:serve": "bun run --cwd ../.. dev",
     "desktop:build": "tauri build",
     "desktop:prepare": "bun scripts/prepare.ts",
     "desktop:smoke": "bun scripts/smoke.ts",

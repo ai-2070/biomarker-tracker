@@ -123,11 +123,20 @@ pub(crate) fn stop_server(app: &AppHandle) {
 
 fn start(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     let data = data_dir(app.handle())?;
-    start_server(app.handle())?;
+    // `bun run desktop:dev` (tauri.dev.conf.json): `bun dev` already runs the page with hot reload and the
+    // server with restarts, so the window opens Vite instead of the bundled server.
+    let url: tauri::Url = match app.config().build.dev_url.clone() {
+        Some(dev) if tauri::is_dev() => dev,
+        _ => {
+            start_server(app.handle())?;
+            ORIGIN.parse()?
+        }
+    };
+    let origin = url.origin().ascii_serialization();
 
     let navigation = app.handle().clone();
     let new_window = app.handle().clone();
-    WebviewWindowBuilder::new(app, MAIN, WebviewUrl::External(ORIGIN.parse()?))
+    WebviewWindowBuilder::new(app, MAIN, WebviewUrl::External(url))
         .title("Biomarker Tracker")
         .inner_size(1280.0, 850.0)
         .min_inner_size(760.0, 600.0)
@@ -135,7 +144,7 @@ fn start(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
         .data_directory(data.join("webview"))
         .disable_drag_drop_handler()
         .on_navigation(move |url| {
-            if url.origin().ascii_serialization() == ORIGIN {
+            if url.origin().ascii_serialization() == origin {
                 return true;
             }
             if matches!(url.scheme(), "http" | "https") {

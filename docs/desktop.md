@@ -6,7 +6,10 @@ to be ready and opens it. Profiles live in the app's local data folder (or `BT_D
 
 ## Building
 
-- `bun run desktop:dev`: development build (no update checks).
+- `bun run desktop:dev`: development build (no update checks). Uses `src-tauri/tauri.dev.conf.json`: runs `bun dev`
+  and opens the window on Vite (http://localhost:5173) with hot reload; the server restarts when its files change
+  and keeps profiles in `data/` (or `BT_DATA`). `bun run tauri dev` still builds and runs the bundled
+  server (`desktop:prepare` first).
 - `bun run desktop:build`: installers for this computer. Without the signing key these can't be used as
   updates, which is fine for local builds.
 - To try signed update files locally: set `TAURI_SIGNING_PRIVATE_KEY` (the key file's contents, or its path)
