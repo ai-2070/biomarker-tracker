@@ -16,6 +16,8 @@ export async function runAgentQuestion(o: {
   agent: ModelChoice;
   parts: PromptParts;
   messages: ChatMessage[];
+  /** Photos and scanned pages sent with the newest question. */
+  images: NonNullable<ChatMessage["images"]>;
   tools: ToolSet;
   snapshot: HealthSnapshot;
   researchOnly: boolean;
@@ -39,6 +41,7 @@ export async function runAgentQuestion(o: {
     system: o.parts.stable,
     ...(o.parts.request ? { context: o.parts.request } : {}),
     messages: o.messages,
+    ...(o.images.length ? { images: o.images } : {}),
     tools: o.tools,
     dataPack: o.researchOnly ? () => "Research-only request. No personal data is available. Without the app's research tools, this live evidence check cannot be performed or verified." : () => dataPack(o.snapshot),
     ...(o.claim ? { claimReview: true } : {}),

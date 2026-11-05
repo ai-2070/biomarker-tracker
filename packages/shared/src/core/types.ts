@@ -195,7 +195,7 @@ export interface Measurement {
   /** In the canonical unit. */
   labRange?: { low?: number; high?: number };
   fasted?: boolean;
-  /** "photo": read by text recognition from a photo or a scanned PDF. */
+  /** "photo": read from a photo or a scanned PDF (by text recognition before 2026-11-05, by Brain since). */
   /** "device": read from a watch or phone app's export file. */
   source: "manual" | "pdf" | "csv" | "photo" | "device";
   note?: string;

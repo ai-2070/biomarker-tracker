@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { DailyTally, appleRecords, dailyAverages, jsonTable, parseCsv, readTable, safeCut, tableOf, toIsoDate } from "@bt/shared/core/importers/deviceFiles";
-import { durationHours, parseHealthScreenshot } from "@bt/shared/core/importers/screenshot";
 import { parseLabText } from "@bt/shared/core/importers/labText";
 import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { loadDefs } from "../helpers";
@@ -60,31 +59,6 @@ describe("import review data regressions", () => {
     expect(c.unit).toBe("s");
     const s = dailyAverages("active_minutes", c.unit, c.header, c.readings, canonical("active_minutes", c.unit));
     expect(canonical("active_minutes", s.unit)(s.days[0]!.value)).toBe(4);
-  });
-
-  it("parses decimal screenshot durations without matching only the fractional suffix", () => {
-    expect(durationHours("7.5 h")).toBe(7.5);
-    expect(durationHours("7,5 hours")).toBe(7.5);
-    expect(durationHours("1.5 h 15 min")).toBe(1.75);
-    expect(durationHours("45.5 min")).toBeCloseTo(45.5 / 60);
-    expect(durationHours("123.5 h")).toBeUndefined();
-    const report = parseHealthScreenshot("Total sleep\n7.5 h\nExercise time 1.5 h", "2026-03-01");
-    expect(report.rows.map((r) => [r.biomarkerId, r.value, r.unit, r.problems])).toEqual([
-      ["sleep_duration", "7.5", "h", []], ["active_minutes", "90", "min", []],
-    ]);
-  });
-
-  it("carries label units into next-line values and flags conflicting units", () => {
-    const report = parseHealthScreenshot("Weight (lb)\n150\nWaist (in)\n32", "2026-03-01");
-    expect(report.rows.map((r) => [r.biomarkerId, r.value, r.unit, r.problems])).toEqual([["weight", "150", "lb", []], ["waist", "32", "in", []]]);
-    const conflict = parseHealthScreenshot("Weight (lb)\n70 kg", "2026-03-01").rows[0]!;
-    expect(conflict.unit).toBe("kg");
-    expect(conflict.problems).toEqual([expect.stringMatching(/different units/)]);
-  });
-
-  it("imports active zone minutes but not heart-rate zones or goals", () => {
-    expect(parseHealthScreenshot("Active zone minutes 42 min", "2026-03-01").rows).toMatchObject([{ biomarkerId: "active_minutes", value: "42", problems: [] }]);
-    expect(parseHealthScreenshot("Active zone minutes goal 42 min\nHeart rate zone 120 bpm", "2026-03-01").rows).toEqual([]);
   });
 
   it("resolves unambiguous device dates independently of browser locale", () => {

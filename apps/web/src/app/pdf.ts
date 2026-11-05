@@ -1,8 +1,6 @@
 import { piecesToLines, type TextPiece } from "@bt/shared/core/importers/pdfText";
-import type { OcrProgress } from "./ocr";
-
-/** Scanned PDFs are read page by page with text recognition, up to this many pages. */
-const MAX_OCR_PAGES = 6;
+import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
+import { MAX_PHOTO_SIDE, type PreparedPhoto } from "./brain/photo";
 
 export class PdfReadError extends Error {
   constructor(
@@ -14,12 +12,14 @@ export class PdfReadError extends Error {
   }
 }
 
+/** A PDF's text, or, when any page is a scan (a picture without text), every page as a picture for Brain. */
+export type PdfContent = { kind: "text"; text: string } | { kind: "pages"; pages: PreparedPhoto[] };
+
 /**
- * Extract text lines from a PDF, entirely in the browser.
- * pdf.js is loaded on first use; its worker is a bundled local file.
- * A scanned PDF (pictures of pages, no text) is rendered and read with text recognition instead.
+ * Reads a PDF entirely in the browser. pdf.js is loaded on first use; its worker is a bundled local file.
+ * Text is never guessed from pictures: a scanned page makes the whole PDF go to Brain as page pictures.
  */
-export async function readPdfText(file: File, progress?: OcrProgress): Promise<{ text: string; ocr: boolean }> {
+export async function readPdf(file: File, progress?: (fraction: number, stage: string) => void): Promise<PdfContent> {
   const pdfjs = await import("pdfjs-dist");
   const workerUrl = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
   pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
@@ -43,10 +43,10 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
     throw new PdfReadError("This file couldn't be read as a PDF.", "invalid");
   }
 
-  const lines: string[] = [];
-  let ocrPages = 0;
   try {
-    for (let i = 1; i <= doc.numPages; i++) {
+    const lines: string[] = [];
+    let scanned = false;
+    for (let i = 1; i <= doc.numPages && !scanned; i++) {
       const page = await doc.getPage(i);
       const content = await page.getTextContent();
       const pieces: TextPiece[] = [];
@@ -56,31 +56,37 @@ export async function readPdfText(file: File, progress?: OcrProgress): Promise<{
         pieces.push({ str: item.str, x: t[4] ?? 0, y: t[5] ?? 0, width: item.width, height: item.height });
       }
       const pageLines = piecesToLines(pieces);
-      if (pageLines.join("").trim().length < 20) {
-        // A text cover must not hide scanned pages later in the same report.
-        if (ocrPages >= MAX_OCR_PAGES) {
-          page.cleanup();
-          throw new PdfReadError(`This PDF has more than ${MAX_OCR_PAGES} scanned pages. Split it into smaller PDFs so every result page can be read. Nothing from this file has been imported.`, "invalid");
-        }
-        ocrPages++;
-        // Keep the bundled OCR engine out of the text-only PDF path.
-        const { recognize } = await import("./ocr");
-        const viewport = page.getViewport({ scale: 2.5 });
-        const canvas = document.createElement("canvas");
-        canvas.width = Math.ceil(viewport.width);
-        canvas.height = Math.ceil(viewport.height);
-        await page.render({ canvas, canvasContext: canvas.getContext("2d")!, viewport }).promise;
-        lines.push(await recognize(canvas, (f, stage) => progress?.((i - 1 + f) / doc.numPages, `${stage} (page ${i} of ${doc.numPages})`)));
-      } else lines.push(...pageLines);
+      // A text cover must not hide scanned pages later in the same report.
+      if (pageLines.join("").trim().length < 20) scanned = true;
+      else lines.push(...pageLines);
       page.cleanup();
     }
+    if (!scanned) return { kind: "text", text: lines.join("\n") };
+
+    if (doc.numPages > MAX_PHOTOS) {
+      throw new PdfReadError(`This PDF has scanned pages and ${doc.numPages} pages in all; Brain reads up to ${MAX_PHOTOS} at a time. Split it into smaller PDFs so every result page can be read.`, "invalid");
+    }
+    const pages: PreparedPhoto[] = [];
+    for (let i = 1; i <= doc.numPages; i++) {
+      progress?.((i - 1) / doc.numPages, `Preparing page ${i} of ${doc.numPages}`);
+      const page = await doc.getPage(i);
+      const base = page.getViewport({ scale: 1 });
+      const viewport = page.getViewport({ scale: MAX_PHOTO_SIDE / Math.max(base.width, base.height) });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(viewport.width);
+      canvas.height = Math.round(viewport.height);
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new PdfReadError("This browser can't prepare the PDF's pages.", "invalid");
+      // Scans can be transparent: a white page underneath, as on paper.
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvas, canvasContext: ctx, viewport }).promise;
+      const url = canvas.toDataURL("image/jpeg", 0.85);
+      pages.push({ mediaType: "image/jpeg", data: url.slice(url.indexOf(",") + 1) });
+      page.cleanup();
+    }
+    return { kind: "pages", pages };
   } finally {
     void doc.loadingTask.destroy();
   }
-
-  const text = lines.join("\n");
-  if (text.replace(/\s/g, "").length < 20) {
-    throw new PdfReadError("No text was found in this PDF, even with text recognition. Please enter the values by hand.", "no-text");
-  }
-  return { text, ocr: ocrPages > 0 };
 }

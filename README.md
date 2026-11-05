@@ -277,7 +277,7 @@ The default raw-data cache is in the OS temporary folder. An optional `--cache` 
 
 ## How it's built
 
-**Stack:** Vite, React 19, TypeScript (strict), Tailwind CSS v4, Base UI, Dexie (IndexedDB), Recharts, pdf.js, tesseract.js, Vitest. The local server is plain `node:http`, run by Bun, listening on 127.0.0.1 only.
+**Stack:** Vite, React 19, TypeScript (strict), Tailwind CSS v4, Base UI, Dexie (IndexedDB), Recharts, pdf.js, Vitest. The local server is plain `node:http`, run by Bun, listening on 127.0.0.1 only.
 
 ```
 apps/web               the page: Vite + React UI (src/app), Dexie schema (src/db)

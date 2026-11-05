@@ -53,8 +53,6 @@ try {
   const asset = /src="\.\/([^"\s]+\.js)"/.exec(html)?.[1];
   assert.ok(asset, "The packaged frontend must reference its JavaScript bundle");
   assert.equal((await request(`/${asset}`)).status, 200);
-  assert.equal((await request("/ocr/worker.min.js")).status, 200);
-  assert.equal((await request("/ocr/eng.traineddata.gz")).status, 200);
   const skills = await query<{ skills: unknown[] }>("skills.list");
   assert.ok(skills.skills.length > 0, "Bundled skills must be found outside the repository cwd");
   assert.equal((await mutate("settings.setAssistant", { provider: "ollama", model: "smoke-test" }, {})).status, 403);
