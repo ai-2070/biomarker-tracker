@@ -769,7 +769,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         date: z.string().optional().describe("The sample or measurement date printed on the picture, as YYYY-MM-DD. Leave out when none is printed."),
         results: z.array(z.object({
           marker: z.string().describe(`The app's marker id (its name in brackets; one marker covers every lab's name for the test): ${[...knowledge().defs.values()].map((d) => `${d.id} (${d.name})`).sort().join(", ")}. Results for other tests: leave them out.`),
-          printed: z.string().optional().describe("The result's line as printed (name, value, unit, range), shown on the card"),
+          printed: z.string().optional().describe("The result's line as printed (test name, value, unit, range), shown on the card. Never names, birth dates or ID numbers."),
           value: z.string().describe("As printed, e.g. '5,4', '<0.3', '8,120', '7 h 12 min'"),
           unit: z.string().optional().describe("As printed, e.g. 'µmol/L', 'G/l', 'lbs'"),
           rangeLow: z.string().optional().describe("Lower end of the printed reference range"),

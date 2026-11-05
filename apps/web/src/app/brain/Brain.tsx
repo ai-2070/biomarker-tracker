@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
 import { TIME_LABEL, whenExtras } from "../components/PlanWhen";
 import { Checkbox } from "@base-ui/react/checkbox";
-import { providerInfo } from "@bt/shared/core/aiProviders";
+import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
 import { CitedAnswer } from "../components/CitedAnswer";
@@ -312,7 +312,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
           <p className="max-w-xs">
             <span className="block font-medium text-ink">Drop a lab report or a document</span>
-            <span className="text-sm text-ink-2">It's read on this computer. You check lab results before they're saved.</span>
+            <span className="text-sm text-ink-2">PDFs with text are read on this computer; photos and scans go to Brain as pictures. You check results before they're saved.</span>
           </p>
         </div>
       )}
@@ -394,8 +394,8 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       <p className="text-xs leading-relaxed text-ink-2">
         When you ask, your results, log and experiments (with your age, not your name or birth month) go to {info?.label ?? "your model"}
         {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach are
-        sent as text with your name taken out; lab report PDFs are read here. Photos and scanned pages are sent as pictures for Brain to read. Only
-        the values you confirm are saved.
+        sent as text with your name taken out; lab report PDFs are read here. Photos and scanned pages are sent as pictures, so the model sees
+        everything printed on them, such as your name. Only the values you confirm are saved.
       </p>
     </div>
   );
@@ -687,28 +687,31 @@ function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>
   );
 }
 
-function AttachmentChip({ a }: { a: Attachment }) {
+function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model can't be given pictures: its label. */ noPictures?: string }) {
   const pictures = a.images?.length ?? 0;
+  const blocked = pictures > 0 && a.status === "ready" && noPictures !== undefined;
   const status =
     a.status === "reading"
       ? `${a.stage ?? "Reading"}${a.fraction ? ` ${Math.round(a.fraction * 100)}%` : "…"}`
       : a.status === "error"
         ? a.error
-        : a.pictureOf === "pdf"
-          ? `Scanned: ${pictures} ${pictures === 1 ? "page" : "pages"} sent as pictures`
-          : pictures
-            ? "Sent to Brain with your question"
-            : "Its text is sent with your question";
+        : blocked
+          ? `${noPictures} can't read pictures. Choose another model.`
+          : a.pictureOf === "pdf"
+            ? `${pictures} scanned ${pictures === 1 ? "page" : "pages"} sent as pictures, including any names on them`
+            : pictures
+              ? "Sent as a picture, including any names on it"
+              : "Its text is sent with your question";
   return (
     <span
       className={cx("flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm", a.status === "error" ? "border-danger/40 bg-danger-soft" : "border-line bg-surface")}
-      title={a.status !== "ready" ? undefined : pictures ? "Shrunk and with location data removed before it's sent." : "Sent with your name taken out."}
+      title={a.status !== "ready" ? undefined : pictures ? "Sent as it is, shrunk and with location data removed: the model sees everything printed on it, such as your name." : "Sent with your name taken out."}
     >
       <span className="flex items-center gap-2">
         <FileIcon className="size-4 shrink-0 text-ink-2" />
         <span className="flex min-w-0 flex-1 flex-col">
           <span className="truncate font-medium text-ink">{a.name}</span>
-          <span className={cx("truncate", a.status === "error" ? "text-danger" : "text-ink-2")}>{status}</span>
+          <span className={cx("truncate", a.status === "error" ? "text-danger" : blocked ? "text-warn" : "text-ink-2")}>{status}</span>
         </span>
         {a.status !== "reading" && (
           <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
@@ -728,6 +731,8 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
   const reading = brain.attachments.some((a) => a.status === "reading");
   const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.images?.length || (a.text ?? "").trim()));
   const canSend = !brain.busy && !reading && (brain.draft.trim() !== "" || hasDocs);
+  const provider = settings?.assistant.provider;
+  const noPictures = provider && !takesPictures(provider) ? providerInfo(provider)?.label ?? provider : undefined;
 
   useEffect(() => {
     textRef.current?.focus();
@@ -752,7 +757,7 @@ function Composer({ settings, ready, model, onSettingsChange, closing }: { setti
       {!research && brain.attachments.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-1.5">
           {brain.attachments.map((a) => (
-            <AttachmentChip key={a.id} a={a} />
+            <AttachmentChip key={a.id} a={a} {...(noPictures ? { noPictures } : {})} />
           ))}
         </div>
       )}

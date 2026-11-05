@@ -9,7 +9,7 @@ import { REPO_URL } from "./settings/AboutSettings";
 import reportGithubQr from "../assets/report-github-qr.svg?inline";
 
 const SOURCE_LABEL: Record<Measurement["source"], string> = {
-  manual: "Entered manually", pdf: "PDF import", csv: "CSV import", photo: "Photo / scan (OCR)", device: "Device export",
+  manual: "Entered manually", pdf: "PDF import", csv: "CSV import", photo: "Photo or scan (machine-read)", device: "Device export",
 };
 
 function readingText(series: Pick<DoctorReportSeries, "def">, reading: Measurement, unit: string) {

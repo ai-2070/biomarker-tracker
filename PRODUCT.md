@@ -21,7 +21,7 @@ Local-first and evidence-first. Data lives in a folder per person on the user's 
 ## Operating Context
 
 - Runs as a local web app (Vite + React) with a small local server on 127.0.0.1; also works as a static page with one browser-only profile.
-- Data comes from typed results, lab-report PDFs, photos and scanned PDFs (on-device OCR), backups, and an example profile with made-up data.
+- Data comes from typed results, lab-report PDFs, photos and scanned PDFs (read by the chosen AI model, then checked by the person), backups, and an example profile with made-up data.
 - An optional assistant uses a model the user chooses (Claude Code by default, EU/US zero-retention APIs, or local models) plus medical/nutrition skills and MCP research servers.
 - **Body**: weight, waist, body fat, blood pressure and resting heart rate, typed in by hand, with its own dashboard; the main dashboard combines blood tests and body.
 - Planned (not built): **Devices**: an Android companion app (APK) that reads **Health Connect** on the phone and syncs to this computer over the local network.
