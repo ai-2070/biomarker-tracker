@@ -209,11 +209,11 @@ Install Bun 1.4.4, Rust stable and the [Tauri platform prerequisites](https://v2
 
 ```sh
 bun install --frozen-lockfile
-bun run desktop:dev      # builds the frontend and sidecar, then opens the native window
+bun run desktop:dev      # runs `bun dev` and opens the native window on it, with hot reload
 bun run desktop:build    # builds installers in apps/desktop/src-tauri/target/release/bundle/
 ```
 
-Desktop development rebuilds the static frontend on launch; restart it after changes. For frontend hot reload, use the browser development commands below. `desktop:prepare` compiles the Bun server, copies only the built page (`apps/web/dist/`), `knowledge/`, bundled `skills/` and the eve runtime as resources, and smoke-tests native sidecar builds against a temporary data folder. App icons derive from `apps/web/public/favicon.svg`.
+Desktop development uses the same setup as `bun dev`: the window opens the Vite page (http://localhost:5173, which must be free) with hot reload, the local server restarts when its files change, and profiles live in `data/` (or `BT_DATA`) like browser development. To try the bundled server instead, run `bun run tauri dev` from the root (it runs `desktop:prepare` first, as before). `desktop:prepare` compiles the Bun server, copies only the built page (`apps/web/dist/`), `knowledge/`, bundled `skills/` and the eve runtime as resources, and smoke-tests native sidecar builds against a temporary data folder. App icons derive from `apps/web/public/favicon.svg`.
 
 ### CI and releases
 
@@ -243,7 +243,7 @@ Your data is kept in `data/` next to the app: one folder per person, plus your s
 The repository is a [Turborepo](https://turborepo.com) with Bun workspaces.
 
 ```bash
-bun dev            # everything: the page with hot reload (http://localhost:5173) and the local server (127.0.0.1:4820)
+bun dev            # everything: the page with hot reload (http://localhost:5173) and the local server (127.0.0.1:4820, restarts on changes)
 bun run server     # only the local server
 bun run test       # Vitest: core logic, knowledge base, database, server
 bun run typecheck  # every package, plus tests and tools

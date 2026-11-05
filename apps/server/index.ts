@@ -3,7 +3,7 @@
 import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
 import { createServer } from "./http";
 import { DATA } from "./store";
-import { killAllTrees, stopTreesOnExit } from "./processTree";
+import { killAllTrees, killAllTreesNow, stopTreesOnExit } from "./processTree";
 import { stopEve } from "./eve/host";
 
 const i = process.argv.indexOf("--port");
@@ -27,10 +27,15 @@ server.listen(port, "127.0.0.1", () => {
   else console.log(`\n  Biomarker Tracker is running at http://localhost:${address.port}\n  Data folder: ${DATA()}\n  Press Ctrl+C to stop.\n`);
 });
 
+// `bun --watch` (bun dev) restarts the server right after SIGTERM without waiting for the cleanup below,
+// so programs it started are stopped at once. MCP servers end by themselves when their input closes.
+const watching = process.execArgv.includes("--watch");
+
 let stopping = false;
 const shutdown = () => {
   if (stopping) return;
   stopping = true;
+  if (watching) killAllTreesNow();
   server.close();
   // An unresponsive program must not keep the desktop process alive forever (the exit hook then
   // SIGKILLs any process group still owned).
