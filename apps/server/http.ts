@@ -7,6 +7,7 @@ import http from "node:http";
 import path from "node:path";
 import { createHTTPHandler } from "@trpc/server/adapters/standalone";
 import { appRouter } from "@bt/shared/api/router";
+import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { ask, type ChatMessage } from "./assistant";
 import { HttpError, services } from "./api";
 import { handleMcp, setBridgePort } from "./bridge";
@@ -101,10 +102,10 @@ function readRaw(req: http.IncomingMessage, max: number): Promise<Buffer> {
 
 // Assistant
 
-/** Up to 4 photos per question: JPEG, PNG or WebP as base64, each under 8 MB. */
+/** Up to MAX_PHOTOS photos or scanned pages per question: JPEG, PNG or WebP as base64, each under 8 MB. */
 function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   if (!Array.isArray(v)) return [];
-  if (v.length > 4) throw new HttpError(400, "Send at most 4 photos with one question.");
+  if (v.length > MAX_PHOTOS) throw new HttpError(400, `Send at most ${MAX_PHOTOS} photos or pages with one question.`);
   const out: NonNullable<ChatMessage["images"]> = [];
   for (const i of v) {
     if (typeof i !== "object" || i === null) continue;

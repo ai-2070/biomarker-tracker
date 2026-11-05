@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type * as React from "react";
 
 const seam = vi.hoisted(() => ({
-  api: vi.fn(), profile: vi.fn(), read: vi.fn(), shrink: vi.fn(), parse: vi.fn(),
+  api: vi.fn(), profile: vi.fn(), shrink: vi.fn(), parse: vi.fn(),
 }));
 vi.mock("react", async (original) => ({ ...await original<typeof React>(), useSyncExternalStore: (_subscribe: unknown, snapshot: () => unknown) => snapshot() }));
 vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(() => { throw new Error("No local server in this test."); }));
@@ -16,11 +16,11 @@ vi.mock("../../apps/web/src/db/db", () => ({
 vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "expiration", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../apps/web/src/app/knowledge", () => ({ BIOMARKER_MAP: new Map([["ldl", { id: "ldl", name: "LDL", aliases: [] }]]), BLOOD_MARKERS: [] }));
 vi.mock("../../apps/web/src/app/components/LabReview", () => ({
-  isImage: (f: File) => f.type.startsWith("image/"), isPdf: () => false, monthFirst: false, readReportFile: seam.read,
+  isImage: (f: File) => f.type.startsWith("image/"), isPdf: () => false, monthFirst: false,
 }));
 vi.mock("@bt/shared/core/importers/labText", () => ({ parseLabText: seam.parse }));
 vi.mock("../../apps/web/src/app/brain/photo", () => ({ shrinkPhoto: seam.shrink }));
-import { addFiles, addPastedLabText, attachReviewPhoto, habitTurns, newConversation, send, setDraft, setSendPhoto, stop, useBrain } from "../../apps/web/src/app/brain/store";
+import { addFiles, addPastedLabText, habitTurns, newConversation, removeAttachment, send, setDraft, useBrain } from "../../apps/web/src/app/brain/store";
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -35,7 +35,6 @@ beforeEach(() => {
   vi.clearAllMocks();
   seam.profile.mockResolvedValue(profile);
   seam.api.mockResolvedValue(reply);
-  seam.read.mockResolvedValue({ text: "", ocr: false });
   seam.parse.mockReturnValue({ rows: [] });
   seam.shrink.mockResolvedValue({ mediaType: "image/jpeg", data: "jpeg" });
 });
@@ -59,37 +58,33 @@ describe("assistant preparation boundaries", () => {
     expect(useBrain().turns.find((t) => t.role === "assistant")).toMatchObject({ model: "Actual model" });
   });
 
-  it("stops deferred photo preparation without clearing attachments or sending", async () => {
+  it("prepares a photo when it is attached and sends it with the question, never reading it as text", async () => {
     await addFiles([new File(["image"], "photo.png", { type: "image/png" })]);
-    setSendPhoto(useBrain().attachments[0]!.id, true);
-    const pending = deferred<{ mediaType: "image/jpeg"; data: string }>();
-    const started = deferred<void>();
-    seam.shrink.mockImplementationOnce(() => { started.resolve(); return pending.promise; });
-    const task = send("Model", "Look");
-    // Explicitly reach photo preparation rather than relying on a timer.
-    await started.promise;
-    stop();
-    pending.resolve({ mediaType: "image/jpeg", data: "jpeg" });
-    await task;
-    expect(seam.api).not.toHaveBeenCalled();
-    expect(useBrain().attachments).toHaveLength(1);
-    await send("Model", "Look again");
-    expect(seam.api).toHaveBeenCalledTimes(1);
+    expect(seam.parse).not.toHaveBeenCalled();
+    expect(useBrain().attachments).toMatchObject([{ name: "photo.png", status: "ready", images: [{ mediaType: "image/jpeg", data: "jpeg" }], pictureOf: "photo" }]);
+    await send("Model", "Look");
+    expect(seam.api.mock.calls[0]![2].messages[0]).toMatchObject({ content: "Look", images: [{ mediaType: "image/jpeg", data: "jpeg" }] });
+    expect(useBrain().turns[0]).toMatchObject({ role: "user", photos: 1, files: ["photo.png"] });
   });
 
-  it("invalidates the entire deferred attachment batch and suppresses old review cards", async () => {
-    const pending = deferred<{ text: string; ocr: boolean }>();
-    seam.read.mockReturnValueOnce(pending.promise);
-    seam.parse.mockReturnValue({ rows: [{ biomarkerId: "ferritin" }] });
+  it("shows a photo the browser can't open as an error on its card", async () => {
+    seam.shrink.mockRejectedValueOnce(new Error("This browser can't open this picture. Save it as JPG or PNG and try again."));
+    await addFiles([new File(["heic"], "photo.heic", { type: "image/heic" })]);
+    expect(useBrain().attachments).toMatchObject([{ status: "error", error: expect.stringContaining("JPG or PNG") }]);
+  });
+
+  it("invalidates the entire deferred attachment batch", async () => {
+    const pending = deferred<{ mediaType: "image/jpeg"; data: string }>();
+    seam.shrink.mockReturnValueOnce(pending.promise);
     const task = addFiles([new File(["a"], "old.png", { type: "image/png" }), new File(["b"], "later.png", { type: "image/png" })]);
     newConversation();
-    pending.resolve({ text: "Ferritin 30", ocr: true });
+    pending.resolve({ mediaType: "image/jpeg", data: "jpeg" });
     await task;
     expect(useBrain().turns).toEqual([]);
     expect(useBrain().attachments).toEqual([]);
-    expect(seam.read).toHaveBeenCalledTimes(1);
+    expect(seam.shrink).toHaveBeenCalledTimes(1);
     await addFiles([new File(["c"], "current.png", { type: "image/png" })]);
-    expect(useBrain().turns).toMatchObject([{ role: "review", fileName: "current.png" }]);
+    expect(useBrain().attachments).toMatchObject([{ name: "current.png", status: "ready" }]);
   });
 
   it("redacts both filename and body on the wire but retains local filenames", async () => {
@@ -102,18 +97,16 @@ describe("assistant preparation boundaries", () => {
     expect(useBrain().turns[0]).toMatchObject({ files: ["Anna Kovacs referral.txt"] });
   });
 
-  it("rejects five photos before snapshot or preparation and retains every attachment", async () => {
-    await addFiles(Array.from({ length: 5 }, (_, i) => new File(["image"], `${i}.png`, { type: "image/png" })));
-    for (const a of useBrain().attachments) setSendPhoto(a.id, true);
+  it("rejects seven photos before the snapshot and retains every attachment", async () => {
+    await addFiles(Array.from({ length: 7 }, (_, i) => new File(["image"], `${i}.png`, { type: "image/png" })));
     await send("Model", "Look");
     expect(seam.profile).not.toHaveBeenCalled();
-    expect(seam.shrink).not.toHaveBeenCalled();
     expect(seam.api).not.toHaveBeenCalled();
-    expect(useBrain().attachments).toHaveLength(5);
-    expect(useBrain().turns[0]).toMatchObject({ role: "error", content: expect.stringContaining("up to 4 photos") });
-    setSendPhoto(useBrain().attachments[4]!.id, false);
+    expect(useBrain().attachments).toHaveLength(7);
+    expect(useBrain().turns[0]).toMatchObject({ role: "error", content: expect.stringContaining("up to 6 photos or pages") });
+    removeAttachment(useBrain().attachments[6]!.id);
     await send("Model", "Look");
-    expect(seam.api.mock.calls[0]![2].messages[0].images).toHaveLength(4);
+    expect(seam.api.mock.calls[0]![2].messages[0].images).toHaveLength(6);
   });
 
   it("releases the lock and retains files when complete-message budgeting rejects preparation", async () => {
@@ -150,7 +143,6 @@ it("preserves resolved marker ids from successful habit output rather than untru
 
 it("keeps a full-length earlier photo question intact without overflowing it with an app notice", async () => {
   await addFiles([new File(["image"], "photo.png", { type: "image/png" })]);
-  setSendPhoto(useBrain().attachments[0]!.id, true);
   const question = "q".repeat(20_000);
   await send("Model", question);
   expect(seam.api.mock.calls[0]![2].messages[0].content).toBe(question);
@@ -162,7 +154,7 @@ it("keeps a full-length earlier photo question intact without overflowing it wit
 });
 
 
-describe("lab results pasted or photographed into Brain", () => {
+describe("lab results pasted into Brain", () => {
   const rows = (n: number) => ({ rows: Array.from({ length: n }, (_, i) => ({ biomarkerId: `m${i}` })), unmatched: [] });
 
   it("turns pasted lab rows into a review card instead of a message", async () => {
@@ -176,16 +168,5 @@ describe("lab results pasted or photographed into Brain", () => {
   it("leaves ordinary pasted text in the question box", () => {
     seam.parse.mockReturnValue(rows(2));
     expect(addPastedLabText("My ferritin was 18 last spring and 30 now")).toBe(false);
-  });
-
-  it("lets the person also attach a photo that became a review card, unticked until they choose", async () => {
-    seam.read.mockResolvedValue({ text: "Ferritin 30", ocr: true });
-    seam.parse.mockReturnValue(rows(1));
-    await addFiles([new File(["image"], "report.jpg", { type: "image/jpeg" })]);
-    const card = useBrain().turns[0]!;
-    attachReviewPhoto(card.id);
-    attachReviewPhoto(card.id);
-    expect(useBrain().attachments).toMatchObject([{ name: "report.jpg", status: "ready", sendPhoto: false }]);
-    expect(useBrain().turns).toMatchObject([{ role: "review", state: "open" }]);
   });
 });

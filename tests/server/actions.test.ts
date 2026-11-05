@@ -203,3 +203,28 @@ describe("proposal safety at real handlers", () => {
     expect((await call(tools, "propose_habit", { ...habit, label: "Vitamin D 4000 IU", category: "supplement" })).error).toBeTruthy();
   });
 });
+
+describe("results read from pictures", () => {
+  const ferritin = { marker: "ferritin", printed: "Ferritin 45 µg/L 15-150", value: "45", unit: "µg/L", rangeLow: "15", rangeHigh: "150" };
+
+  it("only shows a review card when photos or scanned pages came with the newest question", async () => {
+    expect(await call(healthTools(empty(), undefined, { requestText: "My ferritin is 45" }), "propose_results", { results: [ferritin] })).toMatchObject({ error: expect.stringMatching(/photos or scanned pages/) });
+    const r = await call(healthTools(empty(), undefined, { requestText: "Read this", images: true }), "propose_results", {
+      date: "2026-10-20",
+      results: [ferritin, { marker: "potassium", value: "54", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" }, { marker: "pdw", value: "16" }],
+    });
+    expect(r).toMatchObject({
+      shownToPerson: { date: "2026-10-20", results: [ferritin, { marker: "potassium" }, { marker: "pdw" }] },
+      resultsOnCard: 2,
+      needsChecking: [{ marker: "potassium", problems: [expect.stringMatching(/decimal point/)] }],
+      notTrackedByTheApp: ["pdw"],
+    });
+  });
+
+  it("returns a checked proposal through the real tool loop when photos are sent", async () => {
+    const r = await ask([{ role: "user", content: "Read this report", images: [{ mediaType: "image/jpeg", data: "AAAA" }] }], empty(), {
+      ready: scripted([{ tool: "propose_results", input: { results: [ferritin] } }]),
+    });
+    expect(r.ok && r.steps).toMatchObject([{ tool: "propose_results", validated: true, success: true, output: { shownToPerson: { results: [ferritin] } } }]);
+  });
+});

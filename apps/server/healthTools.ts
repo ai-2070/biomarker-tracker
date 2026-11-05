@@ -23,6 +23,7 @@ import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, Saf
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "@bt/shared/research/papers";
 import { bodySummary } from "@bt/shared/core/bodySummary";
 import { parseHabitProposal } from "@bt/shared/core/habitProposal";
+import { MAX_PROPOSED_RESULTS, parseResultProposal } from "@bt/shared/core/importers/resultProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "@bt/shared/core/plans";
 import { closestFoods, dailyReference, foodNameNote, mealSafetyBlock, mealTotals, searchFoods, validateMeal, type Meal } from "@bt/shared/core/meals";
 import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
@@ -452,7 +453,7 @@ export function testSummaryFor(s: HealthSnapshot, date?: string) {
 }
 
 /** The built-in tools for one request. `fetchFn` is injected so tests can run without a network. */
-export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string } = {}): ToolSet {
+export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string; /** Photos or scanned pages came with the newest question. */ images?: boolean } = {}): ToolSet {
   const proposalContext = () => ({
     requestText: context.requestText ?? "",
     safety: safetyOf(s),
@@ -757,6 +758,36 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
           shownToPerson: r.proposal,
           ...(r.unknownMarkers.length ? { markersNotFound: r.unknownMarkers } : {}),
           note: "A card is shown in the chat. Nothing is saved until the person confirms it; tell them they can edit it first.",
+        };
+      },
+    }),
+    // Always offered (the same tool list every turn); it refuses without pictures in the newest question.
+    propose_results: tool({
+      description:
+        "Show a review card of the results you read from the photos or scanned pages sent with the newest question: a lab report, a health app screen, a blood pressure monitor, a scale. One entry per result. Copy each value, unit and range exactly as printed; never calculate, convert, round or guess, and leave out anything you can't read clearly. The app matches units and flags doubtful values; nothing is saved until the person checks every value against the picture and presses Save. Then answer briefly; don't list every value again.",
+      inputSchema: z.object({
+        date: z.string().optional().describe("The sample or measurement date printed on the picture, as YYYY-MM-DD. Leave out when none is printed."),
+        results: z.array(z.object({
+          marker: z.string().describe(`The app's marker id (its name in brackets; one marker covers every lab's name for the test): ${[...knowledge().defs.values()].map((d) => `${d.id} (${d.name})`).sort().join(", ")}. Results for other tests: leave them out.`),
+          printed: z.string().optional().describe("The result's line as printed (name, value, unit, range), shown on the card"),
+          value: z.string().describe("As printed, e.g. '5,4', '<0.3', '8,120', '7 h 12 min'"),
+          unit: z.string().optional().describe("As printed, e.g. 'µmol/L', 'G/l', 'lbs'"),
+          rangeLow: z.string().optional().describe("Lower end of the printed reference range"),
+          rangeHigh: z.string().optional().describe("Upper end of the printed reference range"),
+        })).min(1).max(MAX_PROPOSED_RESULTS),
+      }),
+      execute: async (input) => {
+        if (!context.images) return { error: "This only shows results read from photos or scanned pages sent with the newest question, and it has none. Values the person types are saved by the app itself." };
+        const r = parseResultProposal(input, knowledge().defs, todayIso());
+        if (!r.ok) return { error: r.error };
+        const toCheck = r.report.rows.filter((row) => row.problems.length > 0);
+        return {
+          shownToPerson: r.proposal,
+          resultsOnCard: r.report.rows.length,
+          ...(toCheck.length ? { needsChecking: toCheck.map((row) => ({ marker: row.biomarkerId, problems: row.problems })) } : {}),
+          ...(r.unknownMarkers.length ? { notTrackedByTheApp: r.unknownMarkers } : {}),
+          ...(r.report.dateNote ? { dateNote: r.report.dateNote } : {}),
+          note: "A review card is shown in the chat. Nothing is saved until the person checks each value against the picture and saves. Rows with problems start unticked.",
         };
       },
     }),

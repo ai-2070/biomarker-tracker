@@ -9,6 +9,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { z } from "zod";
 import {
   claudeArgs,
+  claudeMessage,
   codexArgs,
   conversationText,
   hermesArgs,
@@ -17,8 +18,10 @@ import {
   parseCodex,
   parseHermes,
   parseOpenClaw,
+  runAgent,
   which,
 } from "../../apps/server/agents";
+import { installFakeAgents } from "./fakeAgents";
 import { closeRun, openRun, runFor, stableToken } from "../../apps/server/bridge";
 import { createServer } from "../../apps/server/http";
 import { openRouterModels, zdrFetch } from "../../apps/server/openrouter";
@@ -75,6 +78,61 @@ describe("agent programs: arguments", () => {
     expect(which("fakeagent", { PATH: dir, PATHEXT: ".EXE;.CMD" })).toBe(path.join(dir, name));
     expect(which("nothere", { PATH: dir })).toBeNull();
     fs.rmSync(dir, { recursive: true, force: true });
+  });
+});
+
+describe.skipIf(process.platform === "win32")("agent programs: photos", () => {
+  const photo = { mediaType: "image/jpeg" as const, data: Buffer.from("PRIVATE_PHOTO_BYTES").toString("base64") };
+  const request = (provider: "claude-code" | "codex" | "hermes" | "openclaw") => ({
+    provider, model: "", system: "Rules.", messages: [{ role: "user" as const, content: "Read this report." }], images: [photo], tools: {}, dataPack: () => "",
+  });
+
+  it("gives Claude Code the photos in a JSON message with the question", async () => {
+    const fakes = installFakeAgents({ claude: "fake-claude.cjs" });
+    try {
+      const dir = fakes.dir();
+      process.env.FAKE_LINES = JSON.stringify([{ type: "result", subtype: "success", result: "I can read it." }]);
+      expect(await runAgent(request("claude-code"))).toMatchObject({ ok: true, text: "I can read it." });
+      const seen = fakes.seen(dir);
+      expect(seen.args[seen.args.indexOf("--input-format") + 1]).toBe("stream-json");
+      expect(JSON.parse(seen.input)).toEqual({ type: "user", message: { role: "user", content: [{ type: "text", text: "Read this report." }, { type: "image", source: { type: "base64", media_type: "image/jpeg", data: photo.data } }] } });
+    } finally {
+      fakes.restore();
+    }
+  });
+
+  it("asks Claude Code in plain text when there are no photos", () => {
+    expect(claudeArgs({ systemFile: "/s" })).not.toContain("--input-format");
+    expect(claudeMessage("Q", []).trim()).toBe(JSON.stringify({ type: "user", message: { role: "user", content: [{ type: "text", text: "Q" }] } }));
+  });
+
+  it("gives Codex the photos as files in the run's folder, deleted afterwards", async () => {
+    const fakes = installFakeAgents({ codex: "fake-claude.cjs" });
+    try {
+      const dir = fakes.dir();
+      process.env.FAKE_LINES = JSON.stringify([{ type: "item.completed", item: { type: "agent_message", text: "I can read it." } }]);
+      expect(await runAgent(request("codex"))).toMatchObject({ ok: true, text: "I can read it." });
+      const seen = fakes.seen(dir);
+      expect(seen.images).toEqual([photo.data]);
+      // Photos come right after "exec", so -i never takes the prompt's "-" as a file.
+      expect(seen.args.slice(0, 2)).toEqual(["exec", "-i"]);
+      expect(seen.args.at(-1)).toBe("-");
+      expect(fs.existsSync(seen.args[2]!)).toBe(false);
+    } finally {
+      fakes.restore();
+    }
+  });
+
+  it.each(["hermes", "openclaw"] as const)("tells the person %s can't be given photos, without starting it", async (provider) => {
+    const fakes = installFakeAgents({ [provider]: "fake-claude.cjs" });
+    try {
+      const dir = fakes.dir();
+      const r = await runAgent(request(provider));
+      expect(r).toMatchObject({ ok: false, error: expect.stringMatching(/can't be given photos.*Claude Code, Codex/) });
+      expect(fs.existsSync(path.join(dir, "seen.json"))).toBe(false);
+    } finally {
+      fakes.restore();
+    }
   });
 });
 

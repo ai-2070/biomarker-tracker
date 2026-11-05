@@ -10,18 +10,19 @@ import { formatDate, showMeasurement } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
 import { href } from "../router";
-import { Review, monthFirst, readReportFile } from "../components/LabReview";
+import { Review, isImage, isPdf, monthFirst } from "../components/LabReview";
+import { readWithBrain } from "../brain/store";
 
 type Step =
   | { name: "pick" }
-  | { name: "review"; fileName: string; file?: File; ocr: boolean; report: ParsedReport }
+  | { name: "review"; fileName: string; file?: File; report: ParsedReport }
   | { name: "done"; saved: Measurement[]; skipped: number; kept?: string; keepError?: string };
 
 export function ImportPage() {
   const [step, setStep] = useState<Step>({ name: "pick" });
   const { mode, active } = useProfiles();
 
-  /** After saving, the PDF or photo itself goes into the profile folder, next to the results read from it. */
+  /** After saving, the PDF itself goes into the profile folder, next to the results read from it. */
   async function saved(saved: Measurement[], skipped: number, file: File | undefined, date: string | undefined) {
     if (!file || mode !== "folders" || !active) return setStep({ name: "done", saved, skipped });
     try {
@@ -37,13 +38,13 @@ export function ImportPage() {
       <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
       {step.name === "pick" && (
         <PickFile
-          onParsed={(fileName, text, file, ocr) => setStep({ name: "review", fileName, ocr, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })}
+          onParsed={(fileName, text, file) => setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })}
         />
       )}
       {step.name === "review" && (
         <Review
           fileName={step.fileName}
-          ocr={step.ocr}
+          fromPicture={false}
           report={step.report}
           onCancel={() => setStep({ name: "pick" })}
           onSaved={(list, skipped, date) => void saved(list, skipped, step.file, date)}
@@ -68,21 +69,32 @@ export function ImportPage() {
   );
 }
 
-function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined, ocr: boolean) => void }) {
+function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined) => void }) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<{ fraction: number; stage: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [toBrain, setToBrain] = useState<string | null>(null);
   const [pasted, setPasted] = useState("");
+
+  /** Photos and scanned PDFs go to Brain as pictures; it reads the results and shows them for checking. */
+  async function sendToBrain(file: File) {
+    setToBrain(file.name);
+    await readWithBrain(file);
+  }
 
   async function onFile(file: File | undefined) {
     if (!file) return;
     setError(null);
+    setToBrain(null);
+    if (isImage(file)) return void sendToBrain(file);
+    if (!isPdf(file)) return setError("Choose a PDF or a photo (JPG, PNG or WebP).");
     setBusy(true);
     setProgress(null);
-    const report = (fraction: number, stage: string) => setProgress({ fraction, stage });
     try {
-      const r = await readReportFile(file, report);
-      onParsed(file.name, r.text, file, r.ocr);
+      const { readPdf } = await import("../pdf");
+      const pdf = await readPdf(file, (fraction, stage) => setProgress({ fraction, stage }));
+      if (pdf.kind === "pages") await sendToBrain(file);
+      else onParsed(file.name, pdf.text, file);
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");
     } finally {
@@ -96,8 +108,8 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
       <Card className="flex flex-col gap-3">
         <h2 className="font-serif text-2xl font-normal">Choose a PDF or a photo</h2>
         <p className="text-ink-2">
-          Read on this device: nothing is uploaded anywhere, also not to an AI model. Names, birth dates and ID numbers in the report are ignored;
-          only the values you confirm are saved.
+          A PDF with text is read on this device: nothing is uploaded. A photo or a scanned PDF is sent to Brain, the AI model you chose, which reads the
+          results and shows them to you to check. Only the values you confirm are saved.
         </p>
         <p className="text-sm text-ink-2">
           For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take
@@ -109,7 +121,10 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
             type="file"
             accept="application/pdf,.pdf,image/*"
             disabled={busy}
-            onChange={(e) => void onFile(e.target.files?.[0])}
+            onChange={(e) => {
+              void onFile(e.target.files?.[0]);
+              e.target.value = "";
+            }}
             className="min-h-11 text-base file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-lg file:border-0 file:bg-accent file:px-4 file:text-base file:font-medium file:text-accent-ink"
           />
         </label>
@@ -121,8 +136,13 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
                 <div className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out" style={{ transform: `scaleX(${Math.max(0.03, progress.fraction)})` }} />
               </div>
             )}
-            {progress && <p className="text-sm text-ink-2">The first time, the text recognition files are loaded (about 10 MB, from this app). Later it's faster.</p>}
           </div>
+        )}
+        {toBrain && (
+          <Notice role="status">
+            <span className="font-medium text-ink">{toBrain}</span> is open in Brain. Brain reads the results and shows them in a card for you to check and
+            save.
+          </Notice>
         )}
         {error && (
           <Notice tone="danger" role="alert">
@@ -145,15 +165,14 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           />
         </Field.Root>
         <div>
-          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted, undefined, false)}>
+          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted, undefined)}>
             Read pasted text
           </Button>
         </div>
       </Card>
 
       <p className="text-sm text-ink-2">
-        Works with PDFs from most labs, scanned PDFs and photos of paper reports. Photos and scans are read with text recognition, so check those
-        values with extra care.
+        Works with PDFs from most labs, scanned PDFs and photos of paper reports. Brain can misread a picture, so check those values with extra care.
       </p>
     </div>
   );

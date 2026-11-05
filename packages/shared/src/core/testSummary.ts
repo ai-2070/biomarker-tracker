@@ -237,7 +237,7 @@ function cautionsFor(results: readonly SummaryResult[], defs: ReadonlyMap<string
 
   const photo = results.filter((r) => r.measurement.source === "photo");
   if (photo.length) {
-    out.push({ kind: "photo", text: `${photo.length === 1 ? "One result was" : `${photo.length} results were`} read from a photo by text recognition. Check ${photo.length === 1 ? "it" : "them"} against the paper report.`, markers: photo.map((r) => r.id) });
+    out.push({ kind: "photo", text: `${photo.length === 1 ? "One result was" : `${photo.length} results were`} read from a photo or a scanned page. Check ${photo.length === 1 ? "it" : "them"} against the paper report.`, markers: photo.map((r) => r.id) });
   }
 
   const typical = results.filter((r) => r.range?.source === "default" && r.flag !== "unknown");

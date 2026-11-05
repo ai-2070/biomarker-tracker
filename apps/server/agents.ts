@@ -113,6 +113,21 @@ export interface AgentMessage {
   content: string;
 }
 
+export interface AgentImage {
+  mediaType: "image/jpeg" | "image/png" | "image/webp";
+  /** base64 */
+  data: string;
+}
+
+/** Programs that can be given photos: Claude Code as message content, Codex as files. */
+export const takesPhotos = (id: AgentId) => id === "claude-code" || id === "codex";
+
+/** Claude Code's stream-json input: one user message with the question and the photos. */
+export function claudeMessage(question: string, images: AgentImage[]): string {
+  const content = [{ type: "text", text: question }, ...images.map((i) => ({ type: "image", source: { type: "base64", media_type: i.mediaType, data: i.data } }))];
+  return `${JSON.stringify({ type: "user", message: { role: "user", content } })}\n`;
+}
+
 /** The conversation as one message (each question starts the agent fresh). */
 export function conversationText(messages: AgentMessage[]): string {
   const last = messages[messages.length - 1]?.content ?? "";
@@ -137,9 +152,10 @@ export const NO_TOOLS_NOTE = [
 
 // ---- Claude Code ------------------------------------------------------------------------------
 
-export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string }): string[] {
+export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string; /** The question as a JSON message (with photos) instead of plain text. */ jsonInput?: boolean }): string[] {
   // --include-partial-messages: the answer's text arrives as it is written (streamed to the page).
   const args = ["-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
+  if (o.jsonInput) args.push("--input-format", "stream-json");
   if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
   if (o.model) args.push("--model", o.model);
   if (o.effort) args.push("--effort", o.effort);
@@ -215,8 +231,9 @@ export function hermesLines(emit: OnEvent): (line: string) => void {
 // ---- Codex ------------------------------------------------------------------------------------
 
 /** Codex reads -c values as TOML and falls back to a plain string, so no quotes are needed. */
-export function codexArgs(o: { model?: string; effort?: Effort; dir: string; bridge?: boolean }): string[] {
-  const args = ["exec", "--json", "--skip-git-repo-check", "--sandbox", "read-only", "-C", o.dir];
+export function codexArgs(o: { model?: string; effort?: Effort; dir: string; bridge?: boolean; /** Photo files in `dir`. */ images?: string[] }): string[] {
+  // Photos come first: -i takes several values, so the next option ends the list.
+  const args = ["exec", ...(o.images ?? []).flatMap((f) => ["-i", f]), "--json", "--skip-git-repo-check", "--sandbox", "read-only", "-C", o.dir];
   if (o.bridge) args.push("-c", `mcp_servers.bt.url=${bridgeUrl()}`, "-c", "mcp_servers.bt.bearer_token_env_var=BT_BRIDGE_TOKEN", "-c", "mcp_servers.bt.tool_timeout_sec=300");
   if (o.model) args.push("-m", o.model);
   if (o.effort) args.push("-c", `model_reasoning_effort=${o.effort}`);
@@ -342,6 +359,8 @@ export interface AgentRequest {
   /** This request's part of the prompt (critical results, cautions, the date), after the stable rules. */
   context?: string;
   messages: AgentMessage[];
+  /** Photos and scanned pages sent with the newest question. */
+  images?: AgentImage[];
   /** The app's tools, offered through the bridge. */
   tools: ToolSet;
   /** The user's data as text, for agents without the bridge. */
@@ -360,6 +379,10 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   if (req.signal?.aborted) return { ok: false, error: "Stopped." };
   const info = providerInfo(provider)!;
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
+  const images = req.images ?? [];
+  if (images.length && !takesPhotos(provider)) {
+    return { ok: false, error: `${info.label} can't be given photos by this app. To send photos or scanned pages, choose Claude Code, Codex, or a model with an API key or on this computer in Settings → AI models.` };
+  }
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
   if (req.signal?.aborted) return { ok: false, error: "Stopped." };
   // Stable rules and the tools note first, then this request's part and data (prompt cache: the program's
@@ -395,11 +418,17 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         mcpFile = path.join(dir, "mcp.json");
         fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
       }
-      const args = claudeArgs({ model, effort, systemFile, mcpFile });
-      const r = await runProgram("claude", args, { cwd: dir, input: question, signal: req.signal, onLine: claudeLines(emit) });
+      const args = claudeArgs({ model, effort, systemFile, mcpFile, jsonInput: images.length > 0 });
+      const r = await runProgram("claude", args, { cwd: dir, input: images.length ? claudeMessage(question, images) : question, signal: req.signal, onLine: claudeLines(emit) });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {}, onLine: codexLines(emit) });
+      // Photos as files in the run's own folder, deleted with it.
+      const files = images.map((img, i) => {
+        const file = path.join(dir, `photo-${i + 1}.${img.mediaType === "image/png" ? "png" : img.mediaType === "image/webp" ? "webp" : "jpg"}`);
+        fs.writeFileSync(file, Buffer.from(img.data, "base64"));
+        return file;
+      });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run, images: files }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {}, onLine: codexLines(emit) });
       parsed = parseCodex(r.stdout, r.stderr);
       if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {

@@ -83,7 +83,7 @@ describe("import review consumer boundaries", () => {
     const report = parseLabText("Collected: 2026-03-01\nFerritin 45 µg/L 15 - 150\nFerritin 45 µg/L 15 - 150\nC-reactive protein < 0.3 mg/L\nC-reactive protein 0.3 mg/L", [...BIOMARKER_MAP.values()]);
     let skipped = -1;
     const saved = Promise.withResolvers<void>();
-    const tree = Review({ fileName: "synthetic.pdf", ocr: false, report, onCancel() {}, onSaved(_rows, count) { skipped = count; saved.resolve(); } });
+    const tree = Review({ fileName: "synthetic.pdf", fromPicture: false, report, onCancel() {}, onSaved(_rows, count) { skipped = count; saved.resolve(); } });
     (saveButton(tree).props.onClick as () => void)();
     await saved.promise;
     const rows = await db.measurements.toArray();

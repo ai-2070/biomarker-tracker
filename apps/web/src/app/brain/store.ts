@@ -6,10 +6,11 @@ import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../d
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
 import type { LiveAnswer } from "./stream";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
-import { isImage, isPdf, monthFirst, readReportFile } from "../components/LabReview";
+import { isImage, isPdf, monthFirst } from "../components/LabReview";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
-import { shrinkPhoto } from "./photo";
-import { parseHealthScreenshot } from "@bt/shared/core/importers/screenshot";
+import { shrinkPhoto, type PreparedPhoto } from "./photo";
+import { parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
+import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { todayIso } from "@bt/shared/core/dates";
 import { parseHabitProposal, type HabitProposal } from "@bt/shared/core/habitProposal";
 import { planFromProposal, type Plan } from "@bt/shared/core/plans";
@@ -50,11 +51,13 @@ export type Turn =
       id: string;
       role: "review";
       fileName: string;
-      file?: File;
-      ocr: boolean;
+      /** The report's files, kept in the profile folder after saving. */
+      files: File[];
+      /** Read by Brain from photos or scanned pages (propose_results), not from a PDF's or pasted text. */
+      fromPicture: boolean;
       report: ParsedReport;
       state: "open" | "saved" | "dismissed";
-      /** "body": values from a health app screenshot. */
+      /** "body": body measurements (a health app screen, a scale, a blood pressure monitor). */
       kind?: "lab" | "body";
       saved?: Measurement[];
       skipped?: number;
@@ -63,7 +66,7 @@ export type Turn =
       keepError?: string;
     };
 
-/** A document attached to the next question (lab reports become a review card instead). */
+/** A document attached to the next question (PDFs with lab results become a review card instead). */
 export interface Attachment {
   id: string;
   name: string;
@@ -73,9 +76,12 @@ export interface Attachment {
   fraction?: number;
   text?: string;
   error?: string;
-  /** A picture: it can be sent itself to the model, if the person turns this on. */
-  photo?: File;
-  sendPhoto?: boolean;
+  /** A photo, or a scanned PDF's pages: sent to Brain as pictures with the question, never turned into text here. */
+  images?: PreparedPhoto[];
+  /** "pdf": the pictures are a scanned PDF's pages. */
+  pictureOf?: "photo" | "pdf";
+  /** The original file, kept in the profile folder if results read from it are saved. */
+  file?: File;
 }
 
 export type BrainScope = "personal" | "research";
@@ -204,20 +210,19 @@ export function takePending(ready: boolean, model: string): void {
 export const toggleBrain = () => (state.open ? closeBrain() : openBrain());
 export const setDraft = (draft: string) => set({ draft, pending: undefined });
 export const removeAttachment = (id: string) => setThread("personal", (s) => ({ attachments: s.attachments.filter((a) => a.id !== id) }));
-export const setSendPhoto = (id: string, on: boolean) => setThread("personal", (s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, sendPhoto: on } : a)) }));
+
+/** What the Import page asks when it hands Brain a photo or a scanned report. */
+export const READ_REPORT_QUESTION = "Read the results in this report and show them to me to check.";
+
 /**
- * A photo that became a review card, put back into the composer as a picture, so the person can also ask
- * about the photo itself. It is only sent once they tick "Send the photo itself" on it, as for any photo.
+ * A photo or scanned PDF from the Import page: opens Brain with it attached and asks Brain to read the results,
+ * which come back as a review card. Without a ready model the question waits in the question box.
  */
-export function attachReviewPhoto(turnId: string): void {
-  const turn = threads.personal.turns.find((t) => t.id === turnId);
-  if (turn?.role !== "review" || !turn.file || !isImage(turn.file)) return;
-  const file = turn.file;
-  if (threads.personal.attachments.some((a) => a.photo === file)) return;
-  setThread("personal", (s) => ({
-    attachments: [...s.attachments, { id: newId(), name: file.name, size: file.size, status: "ready", text: "", photo: file, sendPhoto: false }],
-  }));
-  if (state.scope === "personal") set((s) => ({ focusTick: s.focusTick + 1 }));
+export async function readWithBrain(file: File): Promise<void> {
+  changeScope("personal");
+  set((s) => ({ open: true, focusTick: s.focusTick + 1 }));
+  await addFiles([file]);
+  if (threads.personal.attachments.some((a) => a.file === file && a.status === "ready")) askBrain(READ_REPORT_QUESTION);
 }
 
 /** Lab results pasted as text (three rows or more) become a review card, like a dropped report. */
@@ -274,6 +279,20 @@ export function habitTurns(steps: readonly Step[], measurements: readonly Measur
   });
 }
 
+/**
+ * Review cards from Brain's propose_results calls: results it read from the pictures sent with the question,
+ * checked again here. Nothing is saved until the person checks each value and presses Save.
+ */
+export function resultTurns(steps: readonly Step[], files: File[], today: string): Turn[] {
+  const fileName = files.length === 1 ? files[0]!.name : files.length > 1 ? `${files.length} pictures` : "your pictures";
+  return steps.flatMap((st): Turn[] => {
+    if (st.server !== undefined || st.tool !== "propose_results" || st.validated !== true || st.success !== true || !st.output || typeof st.output !== "object") return [];
+    const r = parseResultProposal((st.output as { shownToPerson?: unknown }).shownToPerson, BIOMARKER_MAP, today);
+    if (!r.ok) return [];
+    return [{ id: newId(), role: "review", fileName, files, fromPicture: true, report: r.report, state: "open", kind: proposalKind(r.report, BIOMARKER_MAP) }];
+  });
+}
+
 export function newConversation(): void {
   cancelRequest();
   epochs[state.scope]++;
@@ -284,8 +303,8 @@ export function newConversation(): void {
 const MAX_TEXT_FILE = 5_000_000;
 
 /**
- * Reads files on this device. A lab report (results found in it) becomes a review card in the conversation;
- * anything else is attached as text to the next question.
+ * Prepares files on this device. A PDF with lab results in its text becomes a review card in the conversation.
+ * Photos and scanned PDFs are attached as pictures for Brain to read; other files are attached as text.
  */
 export async function addFiles(files: File[]): Promise<void> {
   if (state.scope !== "personal") return;
@@ -310,15 +329,22 @@ export async function addFiles(files: File[]): Promise<void> {
       update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, fraction, stage } : a)) }));
     try {
       let text: string;
-      let ocr = false;
       if (isTextFile(file.name, file.type)) {
         if (file.size > MAX_TEXT_FILE) throw new Error("This file is too big (over 5 MB).");
         text = await file.text();
+      } else if (isImage(file)) {
+        // Sent to Brain as it is (shrunk, location data removed): never read as text on this device.
+        const image = await shrinkPhoto(file);
+        update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", images: [image], pictureOf: "photo", file } : a)) }));
+        continue;
       } else {
-        // A photo without text (a body photo) is fine here: it can be sent itself.
-        const r = await readReportFile(file, progress, true);
-        text = r.text;
-        ocr = r.ocr;
+        const { readPdf } = await import("../pdf");
+        const pdf = await readPdf(file, progress);
+        if (pdf.kind === "pages") {
+          update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", stage: undefined, fraction: undefined, images: pdf.pages, pictureOf: "pdf", file } : a)) }));
+          continue;
+        }
+        text = pdf.text;
       }
       if (epochs.personal !== epoch || !threads.personal.attachments.some((a) => a.id === id)) continue;
       const report = parseLabText(text, BLOOD_MARKERS, { monthFirst });
@@ -326,26 +352,12 @@ export async function addFiles(files: File[]): Promise<void> {
         // Lab results: checked by the person in a review card, never sent as text.
         update((s) => ({
           attachments: s.attachments.filter((a) => a.id !== id),
-          turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr, report, state: "open" }],
+          turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, files: [file], fromPicture: false, report, state: "open" }],
         }));
         continue;
       }
-      // A health app screenshot (heart rate, HRV, sleep…): body measurements, checked the same way.
-      if (isImage(file)) {
-        const shot = parseHealthScreenshot(text, todayIso());
-        if (shot.rows.length > 0) {
-          update((s) => ({
-            attachments: s.attachments.filter((a) => a.id !== id),
-            turns: [...s.turns, { id: newId(), role: "review", fileName: file.name, file, ocr: true, report: shot, state: "open", kind: "body" }],
-          }));
-          continue;
-        }
-      }
-      // Any other picture: its text (if any) can go with the question, or the photo itself if the person chooses.
-      if (!text.trim() && !isImage(file)) throw new Error("No text was found in this file.");
-      update((s) => ({
-        attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined, ...(isImage(file) ? { photo: file, sendPhoto: false } : {}) } : a)),
-      }));
+      if (!text.trim()) throw new Error("No text was found in this file.");
+      update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", text, stage: undefined, fraction: undefined } : a)) }));
     } catch (e) {
       if (epochs.personal !== epoch) return;
       const error = e instanceof Error ? e.message : "This file couldn't be read.";
@@ -370,22 +382,22 @@ export async function send(model: string, text?: string): Promise<void> {
   const question = (text ?? state.draft).trim();
   const questionDate = todayIso();
   const consumeDraft = text === undefined || state.draft.trim() === question;
-  const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim())) : [];
+  const ready = scope === "personal" ? state.attachments.filter((a) => a.status === "ready" && (a.images?.length || (a.text ?? "").trim())) : [];
   if ((!question && ready.length === 0) || state.busy || (scope === "personal" && state.attachments.some((a) => a.status === "reading"))) return;
-  const photos = ready.filter((a) => a.sendPhoto && a.photo);
-  if (photos.length > 4) {
-    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: "Send up to 4 photos at a time. Untick or remove extra photos and try again; your attachments are still here." }] }));
+  const pictures = ready.filter((a) => a.images?.length);
+  const images = pictures.flatMap((a) => a.images!);
+  if (images.length > MAX_PHOTOS) {
+    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: `Send up to ${MAX_PHOTOS} photos or pages at a time. Remove some and try again; your attachments are still here.` }] }));
     return;
   }
-  // Claim the request before any await: Stop/scope changes also cancel snapshot and photo preparation.
+  const pictureFiles = pictures.flatMap((a) => (a.file ? [a.file] : []));
+  // Claim the request before any await: Stop/scope changes also cancel snapshot preparation.
   const mine: Request = { controller: new AbortController(), scope, epoch: epochs[scope], submitted: false };
   request = mine;
   const priorTurns = state.turns;
   set({ busy: true, pending: undefined });
   try {
     const snap = scope === "personal" ? await snapshot() : undefined;
-    if (!isCurrent(mine)) return;
-    const images = await Promise.all(photos.map((p) => shrinkPhoto(p.photo!)));
     if (!isCurrent(mine)) return;
     let sent: string;
     if (scope === "research") {
@@ -397,11 +409,11 @@ export async function send(model: string, text?: string): Promise<void> {
       if (!context) threads.research.researchContext = question;
     } else {
       sent = questionWithFiles(
-        question || (photos.length ? "Please look at the attached photo." : ""),
-        ready.filter((a) => !a.sendPhoto).map((d) => ({ name: redactName(d.name, snap?.name), text: redactName(d.text ?? "", snap?.name) })),
+        question || (images.length === 1 ? "Please look at the attached picture." : images.length ? "Please look at the attached pictures." : ""),
+        ready.filter((a) => !a.images?.length).map((d) => ({ name: redactName(d.name, snap?.name), text: redactName(d.text ?? "", snap?.name) })),
       );
     }
-    const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(photos.length ? { photos: photos.length } : {}) };
+    const user: Turn = { id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name), ...(images.length ? { photos: images.length } : {}) };
     mine.submitted = true;
     set((s) => ({
       turns: [...s.turns, user],
@@ -473,6 +485,7 @@ export async function send(model: string, text?: string): Promise<void> {
           ? [
               { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
               ...profileTurns,
+              ...(snap && images.length ? resultTurns(r.steps, pictureFiles, questionDate) : []),
               ...(snap ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
