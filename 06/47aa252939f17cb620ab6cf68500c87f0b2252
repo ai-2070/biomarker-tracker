@@ -1,0 +1,95 @@
+apps/server/steps.ts
+  s_a0e5b69cea6f11::t_28a58fd7d2a41b 32
+apps/web/src/app/pages/ImportPage.tsx
+  s_a0e5b69cea6f11::t_9d40f6a2fdc2a0 13-14,18,25,41,47,72,76,79-84,88-90,94-97,111-112,124-127,141-145,175
+  s_a0e5b69cea6f11::t_d2d40a97cf4c29 168
+  s_a0e5b69cea6f11::t_ee66388dbb859b 146
+apps/server/brain/prompt.ts
+  s_a0e5b69cea6f11::t_3155eab0ec685a 73
+tests/app/importFixesReview.test.tsx
+  s_a0e5b69cea6f11::t_743915b107f94c 86
+packages/shared/src/core/aiProviders.ts
+  s_a0e5b69cea6f11::t_3155eab0ec685a 287-289
+tests/server/actions.test.ts
+  s_a0e5b69cea6f11::t_79b5db4b572e8c 206-230
+README.md
+  s_a0e5b69cea6f11::t_c4d9a400cff144 280
+apps/server/brain/agentRun.ts
+  s_a0e5b69cea6f11::t_ba9b8721814b14 19-20,44
+tests/app/brainStore.test.ts
+  s_a0e5b69cea6f11::t_ad64a462a2b02b 22,165,198-200,207,212,471-514
+  s_a0e5b69cea6f11::t_e72afaa0201f3d 515
+tests/app/assistant-brain.test.ts
+  s_a0e5b69cea6f11::t_a39409e1bb849f 5,19,23,61,63-67,70-78,81,85,87,100-101,105-107,109,157
+apps/web/vite.config.ts
+  s_a0e5b69cea6f11::t_c4d9a400cff144 53
+apps/web/src/app/pdf.ts
+  s_a0e5b69cea6f11::t_e3b5cc659a86e7 2-3,15-17,19-20,22,47-49,59-61,64-88
+apps/server/http.ts
+  s_a0e5b69cea6f11::t_3155eab0ec685a 10,105,108
+CLAUDE.md
+  s_a0e5b69cea6f11::t_ed2909b230c15c 264,390-391,393
+packages/shared/src/core/importers/resultProposal.ts
+  s_a0e5b69cea6f11::t_ed64d7986ecc02 1-47,51-73,76-144,146-159
+  s_a0e5b69cea6f11::t_0acc0df9b0f007 48-50,74-75,145
+apps/web/src/app/brain/store.ts
+  s_a0e5b69cea6f11::t_c02a3899d3b058 355
+  s_a0e5b69cea6f11::t_61957e5faa3190 394
+  s_a0e5b69cea6f11::t_e0f3842de47dbd 9,11-13,54-57,60,69,79-84,213-216,218-219,221-225,282-295,306-307,335-339,341-347,359-360,385,387-390,393,412-413,416,488
+packages/shared/src/core/testSummary.ts
+  s_a0e5b69cea6f11::t_33395d985941f1 240
+apps/server/brain/tools.ts
+  s_a0e5b69cea6f11::t_28a58fd7d2a41b 27-28,32
+apps/server/brain/ask.ts
+  s_a0e5b69cea6f11::t_ba9b8721814b14 36,105,133,147
+  s_a0e5b69cea6f11::t_eb83f269d2f1ee 88
+tests/server/agents.test.ts
+  s_a0e5b69cea6f11::t_e7ce031a2a346e 12,21,24
+  s_a0e5b69cea6f11::t_e5c54ec57b249c 84-138
+apps/web/src/app/brain/Brain.tsx
+  s_a0e5b69cea6f11::t_45fc2144827afb 397-398
+  s_a0e5b69cea6f11::t_47e61cd2c00d0a 10,593,598,600-606,609
+  s_a0e5b69cea6f11::t_51c0fbbc3da03e 442-443,619,621,690-691,697-701,704-705,729,755
+tests/server/fakeAgents.ts
+  s_a0e5b69cea6f11::t_e5c54ec57b249c 12
+tests/core/resultProposal.test.ts
+  s_a0e5b69cea6f11::t_caf2ea0205c166 1-63,65-73,75-107
+  s_a0e5b69cea6f11::t_5140fbea28c142 64,74
+apps/web/src/app/brain/photo.ts
+  s_a0e5b69cea6f11::t_a6b6ff7e07809c 1-9,15-21
+tests/app/importFixesPdf.test.ts
+  s_a0e5b69cea6f11::t_3f925e4f2d218e 2,4,14,25,28-35,39-40,43,47-59,61-62
+tests/server/assistant-transport.test.ts
+  s_a0e5b69cea6f11::t_e7ce031a2a346e 83-84,86,88
+apps/server/agents.ts
+  s_a0e5b69cea6f11::t_ec7fe1621c047c 116-130,155,158,234-236,362-363,382-385,421-422,425-431
+tests/fixtures/agents/fake-claude.cjs
+  s_a0e5b69cea6f11::t_e5c54ec57b249c 1-2,16-17
+apps/web/package.json
+  s_a0e5b69cea6f11::t_c4d9a400cff144 24
+apps/web/src/app/components/LabReview.tsx
+  s_a0e5b69cea6f11::t_6ed32e5a73a080 19-20,44,52-53,99,150-152
+  s_a0e5b69cea6f11::t_9680288b8e7f18 153,158
+apps/server/healthTools.ts
+  s_a0e5b69cea6f11::t_64cacd91c4b708 771
+  s_a0e5b69cea6f11::t_28a58fd7d2a41b 26,456,764-770,772-790
+  s_a0e5b69cea6f11::t_1051f43f52bfb0 791-793
+packages/shared/src/core/types.ts
+  s_a0e5b69cea6f11::t_33395d985941f1 198
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0647aa252939f17cb620ab6cf68500c87f0b2252",
+  "prompts": {},
+  "sessions": {
+    "s_a0e5b69cea6f11": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "392f676d-739a-4883-8561-310b9ccc3656",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
