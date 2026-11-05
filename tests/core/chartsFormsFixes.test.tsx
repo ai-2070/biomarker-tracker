@@ -1,12 +1,12 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { aggregateFlag } from "../../src/app/components/chartAggregate";
-import type { TimeView } from "../../src/app/components/timeControls";
-import { groupReadings } from "../../src/core/chartSeries";
-import { dayNumber } from "../../src/core/dates";
-import type { BiomarkerDef, Measurement } from "../../src/core/types";
-import { BIOMARKER_MAP } from "../../src/app/knowledge";
+import { aggregateFlag } from "../../apps/web/src/app/components/chartAggregate";
+import type { TimeView } from "../../apps/web/src/app/components/timeControls";
+import { groupReadings } from "@bt/shared/core/chartSeries";
+import { dayNumber } from "@bt/shared/core/dates";
+import type { BiomarkerDef, Measurement } from "@bt/shared/core/types";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 
 const measurement = (id: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
   id: `${id}-${date}`, biomarkerId: id, date, value, originalValue: value,
@@ -62,7 +62,7 @@ describe("review chart and form regressions", () => {
     try {
       // Reload at this timezone boundary: static imports would freeze Intl's default zone too early.
       vi.resetModules();
-      const { SelectionBar, TimeControls } = await import("../../src/app/components/timeControls");
+      const { SelectionBar, TimeControls } = await import("../../apps/web/src/app/components/timeControls");
       const t = { selection: { from: dayNumber("2026-10-10"), to: dayNumber("2026-10-12") }, v: { from: dayNumber("2026-10-10"), to: dayNumber("2026-10-12") }, full: { from: dayNumber("2026-10-01"), to: dayNumber("2026-10-31") }, minSpan: 1, zoomed: true, preset: "", clearSelection() {}, zoomToSelection() {}, show() {} } as unknown as TimeView;
       const expected = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
       const label = `${expected.format(new Date("2026-10-10T00:00:00Z"))} – ${expected.format(new Date("2026-10-12T00:00:00Z"))}`;

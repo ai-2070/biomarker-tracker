@@ -14,7 +14,7 @@ import {
   resolveRange,
   slope,
   sortByDate,
-} from "../../src/core/trends";
+} from "@bt/shared/core/trends";
 import { def, measurement } from "../helpers";
 
 describe("resolveRange", () => {

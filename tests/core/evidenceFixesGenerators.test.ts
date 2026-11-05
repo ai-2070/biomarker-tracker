@@ -1,6 +1,6 @@
 import type * as Fs from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { classify, screeningInput, type Decision, type EvidenceRecord } from "../../src/core/evidenceMap";
+import { classify, screeningInput, type Decision, type EvidenceRecord } from "@bt/shared/core/evidenceMap";
 import { collectCountries } from "../../tools/lifetables/build";
 
 const state = vi.hoisted(() => ({ fixture: undefined as unknown, writes: [] as { path: string; body: string }[], published: "" }));

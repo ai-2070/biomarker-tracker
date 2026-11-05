@@ -1,6 +1,6 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import type { BiomarkerDef, Measurement } from "../src/core/types";
+import type { BiomarkerDef, Measurement } from "@bt/shared/core/types";
 
 export const KNOWLEDGE_DIR = join(import.meta.dirname, "..", "knowledge", "biomarkers");
 

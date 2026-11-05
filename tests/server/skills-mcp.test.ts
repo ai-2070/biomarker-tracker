@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { addCustom, addPreset, listServers, removeServer, resolveCommand, serverEnv, updateServer } from "../../server/mcp";
-import { addSkill, deleteSkill, enabledSkills, listSkills, setSkillEnabled } from "../../server/skills";
-import { getSecrets, getSettings } from "../../server/store";
+import { addCustom, addPreset, listServers, removeServer, resolveCommand, serverEnv, updateServer } from "../../apps/server/mcp";
+import { addSkill, deleteSkill, enabledSkills, listSkills, setSkillEnabled } from "../../apps/server/skills";
+import { getSecrets, getSettings } from "../../apps/server/store";
 
 describe("skills", () => {
   it("lists the bundled medical skills, all on by default", () => {

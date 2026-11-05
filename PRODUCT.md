@@ -42,7 +42,7 @@ Local-first and evidence-first. Data lives in a folder per person on the user's 
 
 ## Evidence on Hand
 
-- Real computed data per profile (results, PhenoAge, experiments, log); the example profile (`src/core/demo.ts`) is clearly labelled made-up data for demos.
+- Real computed data per profile (results, PhenoAge, experiments, log); the example profile (`packages/shared/src/core/demo.ts`) is clearly labelled made-up data for demos.
 - No testimonials, users, press or clinical validation exist; none may be implied. Evidence grades are a developer's first draft, not clinician-reviewed.
 
 ## Product Principles

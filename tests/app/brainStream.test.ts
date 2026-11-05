@@ -1,8 +1,8 @@
 import type { UIMessageChunk } from "ai";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { liveAnswer, streamAssistant, type LiveAnswer } from "../../src/app/brain/stream";
+import { liveAnswer, streamAssistant, type LiveAnswer } from "../../apps/web/src/app/brain/stream";
 
-/** A server-sent-event response the test writes chunk by chunk, like server/uistream.ts. */
+/** A server-sent-event response the test writes chunk by chunk, like apps/server/uistream.ts. */
 function uiStream() {
   const enc = new TextEncoder();
   let ctl!: ReadableStreamDefaultController<Uint8Array>;

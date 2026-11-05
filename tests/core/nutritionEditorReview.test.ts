@@ -1,12 +1,12 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { intakeTotals, macroRows, mealsRichIn, nutrientRows, protocolToIntake, supplementKeyFor, upperLimitRoom, validateIntakeItems, type IntakeItem } from "../../src/core/intake";
-import { adultReference, dailyReference, mealSafetyBlock, mealTotals, validateMeal, type FoodDb, type Meal } from "../../src/core/meals";
-import { interactionsFor, validateNutrientDef, type NutrientDef } from "../../src/core/nutrients";
-import { validatePlan, type Plan } from "../../src/core/plans";
-import { safetyNotes } from "../../src/core/protocols";
-import { SAFETY_LIMITS } from "../../src/core/foods";
+import { intakeTotals, macroRows, mealsRichIn, nutrientRows, protocolToIntake, supplementKeyFor, upperLimitRoom, validateIntakeItems, type IntakeItem } from "@bt/shared/core/intake";
+import { adultReference, dailyReference, mealSafetyBlock, mealTotals, validateMeal, type FoodDb, type Meal } from "@bt/shared/core/meals";
+import { interactionsFor, validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
+import { validatePlan, type Plan } from "@bt/shared/core/plans";
+import { safetyNotes } from "@bt/shared/core/protocols";
+import { SAFETY_LIMITS } from "@bt/shared/core/foods";
 
 const knowledge = join(import.meta.dirname, "../../knowledge");
 const foodDb = JSON.parse(readFileSync(join(knowledge, "foods/cofid-all.json"), "utf8")) as FoodDb;

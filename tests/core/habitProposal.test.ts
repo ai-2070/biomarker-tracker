@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DOSE, markerIdFor, parseHabitProposal } from "../../src/core/habitProposal";
+import { DOSE, markerIdFor, parseHabitProposal } from "@bt/shared/core/habitProposal";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();

@@ -23,6 +23,8 @@ concurrency:
 
 env:
   RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag || (github.ref_type == 'tag' && github.ref_name) || '' }}
+  # No telemetry (CLAUDE.md): Turborepo reports anonymous usage unless told not to.
+  TURBO_TELEMETRY_DISABLED: '1'
 
 jobs:
   validate:
@@ -116,10 +118,10 @@ jobs:
           sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev librsvg2-dev libayatana-appindicator3-dev patchelf
       - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
         with:
-          workspaces: src-tauri -> target
+          workspaces: apps/desktop/src-tauri -> target
           key: ${{ matrix.target }}
       - run: bun install --frozen-lockfile
-      - run: cargo fmt --manifest-path src-tauri/Cargo.toml --check
+      - run: cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml --check
       - name: Configure optional Apple signing
         if: runner.os == 'macOS'
         shell: bash
@@ -136,7 +138,7 @@ jobs:
               printf '%s<<BT_APPLE_VALUE\n%s\nBT_APPLE_VALUE\n' "$name" "${!name}" >> "$GITHUB_ENV"
             fi
           done
-      # Signed updates (src-tauri/src/updater.rs, docs/desktop.md). Without the key, builds still work but
+      # Signed updates (apps/desktop/src-tauri/src/updater.rs, docs/desktop.md). Without the key, builds still work but
       # can't be installed as updates; a release must have it.
       - name: Updater signing
         shell: bash
@@ -159,6 +161,7 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
+          projectPath: apps/desktop
           tauriScript: bun run tauri
           args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }} ${{ env.BT_UPDATER_ARGS }} -- --locked
           releaseId: ${{ needs.release.outputs.id }}

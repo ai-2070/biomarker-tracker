@@ -1,8 +1,8 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import type { NutrientDef } from "../../src/core/nutrients";
-import { habitForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "../../src/core/plans";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
+import { habitForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "@bt/shared/core/plans";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "nutrients");
 const nutrients = readdirSync(DIR).map((f) => JSON.parse(readFileSync(join(DIR, f), "utf8")) as NutrientDef);

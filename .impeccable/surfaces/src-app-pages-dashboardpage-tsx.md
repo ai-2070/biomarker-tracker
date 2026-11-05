@@ -1,8 +1,8 @@
 ---
 version: 1
 slug: "src-app-pages-dashboardpage-tsx"
-primary_target: "src/app/pages/DashboardPage.tsx"
-related_targets: ["src/app/App.tsx"]
+primary_target: "apps/web/src/app/pages/DashboardPage.tsx"
+related_targets: ["apps/web/src/app/App.tsx"]
 ---
 
 # Dashboard and app shell

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { measurementsIn } from "../../src/core/measurementCompletion";
-import type { BiomarkerDef } from "../../src/core/types";
+import { measurementsIn } from "@bt/shared/core/measurementCompletion";
+import type { BiomarkerDef } from "@bt/shared/core/types";
 import weight from "../../knowledge/biomarkers/weight.json";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";

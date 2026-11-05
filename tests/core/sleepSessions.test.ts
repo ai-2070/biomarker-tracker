@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { isSleepSession, sleepLocalTime, validSleepSessions } from "../../src/core/sleepSessions";
-import type { SleepSession } from "../../src/core/types";
+import { isSleepSession, sleepLocalTime, validSleepSessions } from "@bt/shared/core/sleepSessions";
+import type { SleepSession } from "@bt/shared/core/types";
 
 const session: SleepSession = {
   start: "2026-10-24T23:15:00", end: "2026-10-25T07:30:00", kind: "asleep", source: "Test watch",

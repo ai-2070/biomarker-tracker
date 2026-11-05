@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { parseBackup } from "../../src/core/backup";
-import { assistantProfile, initials, profileSummary } from "../../src/core/profile";
-import { safetyLabels, safetyNotes } from "../../src/core/protocols";
-import type { Profile } from "../../src/core/types";
+import { parseBackup } from "@bt/shared/core/backup";
+import { assistantProfile, initials, profileSummary } from "@bt/shared/core/profile";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import type { Profile } from "@bt/shared/core/types";
 
 const anna: Profile = {
   name: "Anna Kovacs",

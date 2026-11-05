@@ -3,12 +3,12 @@ import http from "node:http";
 import path from "node:path";
 import { DefaultChatTransport, readUIMessageStream, type UIMessage, type UIMessageChunk } from "ai";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { ask } from "../../server/assistant";
-import type { BrainEvent } from "../../server/brain/events";
-import { claudeLines, codexLines, hermesLines } from "../../server/agents";
-import type { HealthSnapshot } from "../../server/healthTools";
-import { createServer } from "../../server/http";
-import { TurnChunks } from "../../server/uistream";
+import { ask } from "../../apps/server/assistant";
+import type { BrainEvent } from "../../apps/server/brain/events";
+import { claudeLines, codexLines, hermesLines } from "../../apps/server/agents";
+import type { HealthSnapshot } from "../../apps/server/healthTools";
+import { createServer } from "../../apps/server/http";
+import { TurnChunks } from "../../apps/server/uistream";
 import { installFakeAgents, type FakeAgents } from "./fakeAgents";
 import { MockModel } from "./mockModel";
 

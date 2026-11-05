@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "types": ["node"] },
+  "include": ["agent", "build.ts", "launch.mjs"],
+  "exclude": [".output", ".eve"]
+}

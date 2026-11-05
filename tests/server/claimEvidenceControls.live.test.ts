@@ -5,14 +5,14 @@ import path from "node:path";
 import { once } from "node:events";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import controls from "../fixtures/claimPositiveControls.json";
-import { createServer } from "../../server/http";
-import { setBridgePort } from "../../server/bridge";
-import { updateSettings } from "../../server/store";
-import { currentChoice } from "../../server/models";
-import { checkClaimEvidence, readClaimEvidence } from "../../src/app/claimEvidence";
-import { TrackerDB } from "../../src/db/db";
-import { claimCheckLabel, type ClaimCheck } from "../../src/core/claimEvidence";
-import type { ModelChoice } from "../../src/core/aiProviders";
+import { createServer } from "../../apps/server/http";
+import { setBridgePort } from "../../apps/server/bridge";
+import { updateSettings } from "../../apps/server/store";
+import { currentChoice } from "../../apps/server/models";
+import { checkClaimEvidence, readClaimEvidence } from "../../apps/web/src/app/claimEvidence";
+import { TrackerDB } from "../../apps/web/src/db/db";
+import { claimCheckLabel, type ClaimCheck } from "@bt/shared/core/claimEvidence";
+import type { ModelChoice } from "@bt/shared/core/aiProviders";
 
 // Explicit opt-in: these tests use live public search and the configured model/account.
 // No KB entries, pinned records, mocked evidence or scripted grades enter this path.

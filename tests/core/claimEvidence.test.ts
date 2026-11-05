@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateClaimAssessment, validateClaimResearch, claimSearchQuery, claimGradeChange, claimRunKey, publicClaimTopic, type ClaimCheck, type ClaimResearch } from "../../src/core/claimEvidence";
+import { validateClaimAssessment, validateClaimResearch, claimSearchQuery, claimGradeChange, claimRunKey, publicClaimTopic, type ClaimCheck, type ClaimResearch } from "@bt/shared/core/claimEvidence";
 
 const assessment = {
   verdict: "mixed", grade: "low", summary: "Small trials reported mixed changes in eye strain.",

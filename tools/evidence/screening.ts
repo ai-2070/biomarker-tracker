@@ -1,4 +1,4 @@
-import { currentDecisions, parseScreening, screeningInput, screeningPrompt, type Classified, type Decision, type Question, type ScreeningMode } from "../../src/core/evidenceMap";
+import { currentDecisions, parseScreening, screeningInput, screeningPrompt, type Classified, type Decision, type Question, type ScreeningMode } from "@bt/shared/core/evidenceMap";
 
 /** Screen only missing/current-input decisions. Process and persistence boundaries are injectable for offline fixtures. */
 export async function screenOutcome({ question, reviews, mode, previous, by, ask, onBatch, today = () => new Date().toISOString().slice(0, 10) }: {

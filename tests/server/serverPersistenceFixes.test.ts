@@ -5,11 +5,12 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 import type { ChildProcess } from "node:child_process";
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
-import * as profiles from "../../server/profiles";
-import { dataPath, readJSON, updateSecrets, writeJSON } from "../../server/store";
-import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip } from "../../server/zip";
-import { browserData, fileUrl, loadIntoBrowser } from "../../src/app/profiles";
-import { db } from "../../src/db/db";
+import * as profiles from "../../apps/server/profiles";
+import { dataPath, readJSON, updateSecrets, writeJSON } from "../../apps/server/store";
+import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip } from "../../apps/server/zip";
+import { browserData, fileUrl, loadIntoBrowser } from "../../apps/web/src/app/profiles";
+import { db } from "../../apps/web/src/db/db";
+import { fakeServer } from "../app/fakeServer";
 
 vi.mock("node:child_process", () => ({ spawn: vi.fn() }));
 
@@ -30,13 +31,7 @@ afterAll(() => db.close());
 describe("server persistence review regressions", () => {
   it("R8-001 preserves disk and the existing browser copy when a real profile read fails", async () => {
     const saved = profiles.createProfile({ person: { name: "Disk person" }, measurements: [measurement("disk", 20)] });
-    vi.stubGlobal("fetch", vi.fn(async () => {
-      try {
-        return Response.json(profiles.getProfileData(saved.id));
-      } catch (error) {
-        return Response.json({ error: (error as Error).message }, { status: 500 });
-      }
-    }));
+    fakeServer(() => profiles.getProfileData(saved.id));
     await loadIntoBrowser(saved.id); // Positive control: this transport really loads actual disk results.
     expect(await db.measurements.toArray()).toEqual([measurement("disk", 20)]);
     await db.measurements.put(measurement("browser", 44));
