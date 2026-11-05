@@ -1,0 +1,17 @@
+{
+  "name": "@bt/eve",
+  "private": true,
+  "type": "module",
+  "description": "Brain's eve runtime (opt-in engine). eve finds the project by this declaration; packages resolve from the root install.",
+  "scripts": {
+    "build": "bun build.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "eve": "1.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

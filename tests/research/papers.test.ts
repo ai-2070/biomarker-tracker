@@ -16,7 +16,7 @@ import {
   searchPapers,
   studyQuery,
   type FetchFn,
-} from "../../src/research/papers";
+} from "@bt/shared/research/papers";
 
 const fixture = (name: string): unknown =>
   JSON.parse(readFileSync(join(import.meta.dirname, "..", "fixtures", "research", name), "utf8"));

@@ -1,8 +1,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
-import { CANDIDATE_DESIGNS, claimMetadataQuery, pubmedMetadata, searchMetadata, utcDay } from '../../src/research/claimUpdates';
-import { cleanText, EUTILS, type FetchFn } from '../../src/research/papers';
+import { CANDIDATE_DESIGNS, claimMetadataQuery, pubmedMetadata, searchMetadata, utcDay } from '@bt/shared/research/claimUpdates';
+import { cleanText, EUTILS, type FetchFn } from '@bt/shared/research/papers';
 
 export interface RecordMetadata { id: string; title: string; trial: boolean; headings: string[] }
 export interface WatchReport {

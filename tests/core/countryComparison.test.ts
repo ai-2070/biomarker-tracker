@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareLifeTables, type LifeTable, type LifeTableFile } from "../../src/core/lifeTable";
+import { compareLifeTables, type LifeTable, type LifeTableFile } from "@bt/shared/core/lifeTable";
 
 const lx = Array.from({ length: 96 }, (_, age) => age <= 60 ? 100_000 : 100_000 - (age - 60) * 2_000);
 const table = (e95: number): LifeTable => ({ lx, e95 });

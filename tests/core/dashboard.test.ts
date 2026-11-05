@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { buildDashboard } from "../../src/core/dashboard";
-import { demoProfile } from "../../src/core/demo";
+import { buildDashboard } from "@bt/shared/core/dashboard";
+import { demoProfile } from "@bt/shared/core/demo";
 import { loadDefs } from "../helpers";
 
 const today = "2026-10-28";

@@ -1,10 +1,10 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { PRESCRIBING, nutrientText, searchNutrients, validateNutrientDef, type NutrientDef } from "../../src/core/nutrients";
-import type { FoodTable } from "../../src/core/types";
-import { demoProfile } from "../../src/core/demo";
-import { nutrientFor } from "../../src/core/plans";
+import { PRESCRIBING, nutrientText, searchNutrients, validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
+import type { FoodTable } from "@bt/shared/core/types";
+import { demoProfile } from "@bt/shared/core/demo";
+import { nutrientFor } from "@bt/shared/core/plans";
 import { loadDefs } from "../helpers";
 
 const ROOT = join(import.meta.dirname, "..", "..", "knowledge");

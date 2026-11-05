@@ -2,10 +2,11 @@ import fs from "node:fs";
 import type http from "node:http";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { createServer } from "../../server/http";
-import * as profiles from "../../server/profiles";
-import { getSettings } from "../../server/store";
-import { crc32, readZip, safeEntryName, writeZip } from "../../server/zip";
+import { createServer } from "../../apps/server/http";
+import * as profiles from "../../apps/server/profiles";
+import { getSettings } from "../../apps/server/store";
+import { crc32, readZip, safeEntryName, writeZip } from "../../apps/server/zip";
+import { statusOf, trpcClient } from "./trpc";
 
 const m = (id: string, date: string, value: number) => ({ id, biomarkerId: "ferritin", date, value, originalValue: value, originalUnit: "µg/L", source: "manual" as const });
 const pdf = Buffer.from("%PDF-1.4\n% synthetic test file, no patient data\n");
@@ -220,12 +221,11 @@ describe("profiles over HTTP", () => {
   });
   afterAll(() => server.close());
   const url = (p: string) => `http://127.0.0.1:${port}${p}`;
-  const write = { "x-bt": "1", "content-type": "application/json" };
 
   it("creates, opens, uploads a file, downloads it and backs up", async () => {
-    const r = await fetch(url("/api/profiles"), { method: "POST", headers: write, body: JSON.stringify({ person: { name: "Finn" } }) });
-    const { profile } = (await r.json()) as { profile: { id: string } };
-    const list = (await (await fetch(url("/api/profiles"))).json()) as { active: string };
+    const api = trpcClient(port);
+    const { profile } = await api.profiles.create.mutate({ person: { name: "Finn" } });
+    const list = await api.profiles.list.query();
     expect(list.active).toBe(profile.id);
 
     // Uploads need the app's header like every change.
@@ -243,7 +243,7 @@ describe("profiles over HTTP", () => {
   });
 
   it("answers bad requests with plain errors", async () => {
-    expect((await fetch(url("/api/profiles/nope-0000/data"))).status).toBe(404);
+    expect(await statusOf(trpcClient(port).profiles.data.query({ id: "nope-0000" }))).toBe(404);
     const bad = await fetch(url("/api/profiles/restore"), { method: "POST", headers: { "x-bt": "1" }, body: "junk" });
     expect(bad.status).toBe(400);
     expect(((await bad.json()) as { error: string }).error).toMatch(/zip/);
@@ -252,7 +252,7 @@ describe("profiles over HTTP", () => {
 
 describe("what the assistant learns about the person", () => {
   it("gets age and details, never the name, birth month or private notes", async () => {
-    const { parseSnapshot, personOf, resultsOverview } = await import("../../server/healthTools");
+    const { parseSnapshot, personOf, resultsOverview } = await import("../../apps/server/healthTools");
     const r = parseSnapshot({
       measurements: [],
       profile: { name: "Anna Kovács", birthMonth: "1984-04", sex: "f", diet: "vegan", conditions: "chronic kidney disease", notes: "secret" },

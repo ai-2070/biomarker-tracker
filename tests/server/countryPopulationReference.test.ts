@@ -1,11 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { dataPack } from "../../server/assistant";
-import { biologicalAge, healthTools, type HealthSnapshot } from "../../server/healthTools";
-import * as knowledge from "../../server/knowledge";
-import * as projection from "../../src/core/mortalityProjection";
-import type { Measurement, Profile } from "../../src/core/types";
+import { dataPack } from "../../apps/server/assistant";
+import { biologicalAge, healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
+import * as knowledge from "../../apps/server/knowledge";
+import * as projection from "@bt/shared/core/mortalityProjection";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 
 const today = "2026-11-01";
 const snapshot = (profile: Profile, expirationDate = false, measurements: Measurement[] = []): HealthSnapshot => ({
@@ -125,7 +125,7 @@ describe("biological-age country population reference", () => {
     }) as typeof fs.readFileSync);
     vi.resetModules();
     // A fresh module cache is required to exercise failed first-load validation, not the already cached valid artifact.
-    const isolated = await import("../../server/healthTools");
+    const isolated = await import("../../apps/server/healthTools");
     const result = isolated.biologicalAge(snapshot(adult, true, body()));
     expect(result.countryPopulationReference).toEqual(expect.stringMatching(/could not be loaded or validated/i));
     expect(result.expirationDate).toBe(result.countryPopulationReference);

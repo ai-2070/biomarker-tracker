@@ -2,8 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { runAgent, runProgram } from "../../server/agents";
-import { killAllTrees, ownedTrees, spawnTree } from "../../server/processTree";
+import { runAgent, runProgram } from "../../apps/server/agents";
+import { killAllTrees, ownedTrees, spawnTree } from "../../apps/server/processTree";
 
 // Real processes, no mocks: a fake agent program starts a helper of its own (the "grandchild"), the way
 // Claude Code starts MCP servers and shells. Both must be gone after a stop, a timeout or a shutdown.

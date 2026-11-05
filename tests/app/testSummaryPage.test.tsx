@@ -2,14 +2,14 @@ import { writeFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import type { Measurement, ProtocolEntry } from "../../src/core/types";
+import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[], protocols: [] as ProtocolEntry[] }));
-vi.mock("../../src/app/hooks", () => ({
+vi.mock("../../apps/web/src/app/hooks", () => ({
   useAllMeasurements: () => state.all, useProtocols: () => state.protocols, useProfile: () => ({ sex: "f" }), useDisplayUnits: () => ({}),
 }));
-vi.mock("../../src/app/brain/store", () => ({ askBrain: vi.fn() }));
-import { TestSummaryPage } from "../../src/app/pages/TestSummaryPage";
+vi.mock("../../apps/web/src/app/brain/store", () => ({ askBrain: vi.fn() }));
+import { TestSummaryPage } from "../../apps/web/src/app/pages/TestSummaryPage";
 
 let n = 0;
 const m = (biomarkerId: string, date: string, value: number, low?: number, high?: number): Measurement => ({

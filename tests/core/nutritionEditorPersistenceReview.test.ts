@@ -1,10 +1,10 @@
 import "fake-indexeddb/auto";
 import Dexie from "dexie";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { TrackerDB, saveMeal, savePlan, startPlan, updateMeal, updatePlan } from "../../src/db/db";
-import { addDays, todayIso } from "../../src/core/dates";
-import type { Meal } from "../../src/core/meals";
-import type { Plan } from "../../src/core/plans";
+import { TrackerDB, saveMeal, savePlan, startPlan, updateMeal, updatePlan } from "../../apps/web/src/db/db";
+import { addDays, todayIso } from "@bt/shared/core/dates";
+import type { Meal } from "@bt/shared/core/meals";
+import type { Plan } from "@bt/shared/core/plans";
 
 let database: TrackerDB;
 beforeEach(async () => {

@@ -3,8 +3,9 @@ import type http from "node:http";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { allowedHost, allowedWrite, createServer } from "../../server/http";
-import { getSecrets, getSettings } from "../../server/store";
+import { allowedHost, allowedWrite, createServer } from "../../apps/server/http";
+import { getSecrets, getSettings } from "../../apps/server/store";
+import { rawCall, statusOf, trpcClient } from "./trpc";
 
 let server: http.Server;
 let port = 0;
@@ -18,7 +19,9 @@ beforeAll(async () => {
   server = createServer(0);
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", () => r()));
   port = (server.address() as { port: number }).port;
+  api = trpcClient(port);
 });
+let api: ReturnType<typeof trpcClient>;
 afterAll(() => {
   server.close();
   fs.rmSync(dist, { recursive: true, force: true });
@@ -49,8 +52,20 @@ describe("security checks", () => {
   });
 
   it("refuses a change without the header over HTTP", async () => {
-    const r = await fetch(`http://127.0.0.1:${port}/api/settings/assistant`, { method: "PUT", body: "{}" });
-    expect(r.status).toBe(403);
+    expect((await rawCall(port, "settings.setAssistant", { mutation: true, input: { provider: "ollama", model: "x" }, headers: {} })).status).toBe(403);
+    expect((await rawCall(port, "settings.setAssistant", { mutation: true, input: { provider: "ollama", model: "x" }, headers: { "x-bt": "1", "sec-fetch-site": "cross-site" } })).status).toBe(403);
+  });
+
+  it("never runs a change as a GET request", async () => {
+    expect((await rawCall(port, "settings.setEve", { input: { on: false } })).status).toBe(405);
+  });
+
+  it("explains invalid input in plain words and sends no stack traces", async () => {
+    const r = await rawCall(port, "skills.get", { input: { id: 5 } });
+    expect(r.status).toBe(400);
+    const body = (await r.json()) as { error: { message: string; data: Record<string, unknown> } };
+    expect(body.error.message).toMatch(/aren't valid/);
+    expect(body.error.data.stack).toBeUndefined();
   });
 
   it("serves the page and blocks paths outside it", async () => {
@@ -63,35 +78,34 @@ describe("security checks", () => {
 
 describe("AI model settings", () => {
   it("uses Claude Code with Opus until something else is saved", async () => {
-    const s = (await (await call("GET", "/api/settings")).json()) as { assistant: unknown; chosen: boolean };
+    const s = await api.settings.get.query();
     expect(s.assistant).toEqual({ provider: "claude-code", model: "opus" });
     expect(s.chosen).toBe(false);
   });
 
   it("saves settings for every provider, including names with a dash", async () => {
     for (const p of ["claude-code", "codex", "hermes", "openclaw", "anthropic", "openrouter", "lmstudio"]) {
-      expect((await call("PUT", `/api/settings/provider/${p}`, {})).status, p).toBe(200);
+      expect(await statusOf(api.settings.setProvider.mutate({ id: p })), p).toBe(200);
     }
-    expect((await call("PUT", "/api/settings/provider/hermes", { profile: "research" })).status).toBe(200);
+    expect(await statusOf(api.settings.setProvider.mutate({ id: "hermes", profile: "research" }))).toBe(200);
     expect(getSettings().providers.hermes?.profile).toBe("research");
   });
 
   it("saves an effort level only if the provider has it", async () => {
-    await call("PUT", "/api/settings/assistant", { provider: "claude-code", model: "sonnet", effort: "xhigh" });
+    await api.settings.setAssistant.mutate({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
     expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
-    expect((await call("PUT", "/api/settings/assistant", { provider: "codex", model: "", effort: "max" })).status).toBe(400);
+    expect(await statusOf(api.settings.setAssistant.mutate({ provider: "codex", model: "", effort: "max" }))).toBe(400);
     expect(getSettings().assistant).toEqual({ provider: "claude-code", model: "sonnet", effort: "xhigh" });
   });
 
   it("opens install and sign-in only for known programs", async () => {
-    expect((await call("POST", "/api/agents/rm-rf/install")).status).toBe(404);
-    expect((await call("POST", "/api/agents/claude-code/uninstall")).status).toBe(404);
+    expect((await rawCall(port, "agents.openTerminal", { mutation: true, input: { id: "rm-rf", action: "install" } })).status).toBe(400);
+    expect((await rawCall(port, "agents.openTerminal", { mutation: true, input: { id: "claude-code", action: "uninstall" } })).status).toBe(400);
   });
 
   it("stores the key server-side and only ever reports whether it is set", async () => {
-    const r = await call("PUT", "/api/settings/provider/anthropic", { key: "sk-ant-secret-123", zdrConfirmed: true });
-    expect(r.status).toBe(200);
-    const s = (await (await call("GET", "/api/settings")).json()) as { hasKey: Record<string, boolean> };
+    expect(await statusOf(api.settings.setProvider.mutate({ id: "anthropic", key: "sk-ant-secret-123", zdrConfirmed: true }))).toBe(200);
+    const s = await api.settings.get.query();
     expect(s.hasKey.anthropic).toBe(true);
     expect(JSON.stringify(s)).not.toContain("sk-ant-secret-123");
     expect(getSecrets().keys.anthropic).toBe("sk-ant-secret-123");
@@ -99,9 +113,9 @@ describe("AI model settings", () => {
   });
 
   it("reports why the assistant can't be used until zero data retention is confirmed", async () => {
-    await call("PUT", "/api/settings/assistant", { provider: "openai", model: "gpt-5" });
-    await call("PUT", "/api/settings/provider/openai", { key: "sk-test" });
-    const st = (await (await call("GET", "/api/status")).json()) as { ready: { ok: boolean; reason?: string } };
+    await api.settings.setAssistant.mutate({ provider: "openai", model: "gpt-5" });
+    await api.settings.setProvider.mutate({ id: "openai", key: "sk-test" });
+    const st = await api.status.query();
     expect(st.ready).toEqual({ ok: false, reason: expect.stringMatching(/zero data retention/) });
     // The assistant refuses too, without calling anything.
     const a = (await (await call("POST", "/api/assistant", { messages: [{ role: "user", content: "hi" }], snapshot: {} })).json()) as { ok: boolean; error: string };
@@ -109,19 +123,19 @@ describe("AI model settings", () => {
   });
 
   it("removes a key when asked", async () => {
-    await call("PUT", "/api/settings/provider/openai", { key: null });
+    await api.settings.setProvider.mutate({ id: "openai", key: null });
     expect(getSecrets().keys.openai).toBeUndefined();
   });
 
   it("rejects unknown providers and empty models", async () => {
-    expect((await call("PUT", "/api/settings/provider/nope", {})).status).toBe(404);
-    expect((await call("PUT", "/api/settings/assistant", { provider: "anthropic", model: " " })).status).toBe(400);
+    expect(await statusOf(api.settings.setProvider.mutate({ id: "nope" }))).toBe(404);
+    expect(await statusOf(api.settings.setAssistant.mutate({ provider: "anthropic", model: " " }))).toBe(400);
   });
 });
 
 describe("assistant input", () => {
   it("validates the health data the page sends", async () => {
-    await call("PUT", "/api/settings/assistant", { provider: "ollama", model: "llama3.1" });
+    await api.settings.setAssistant.mutate({ provider: "ollama", model: "llama3.1" });
     const r = await call("POST", "/api/assistant", { messages: [{ role: "user", content: "hi" }], snapshot: { measurements: [{ id: "x" }] } });
     expect(r.status).toBe(400);
     const r2 = await call("POST", "/api/assistant", { messages: [], snapshot: {} });
@@ -131,13 +145,13 @@ describe("assistant input", () => {
 
 describe("partial profile saves over HTTP", () => {
   it("saves the changed parts, and needs the page's header like every change", async () => {
-    const created = (await (await call("POST", "/api/profiles", { person: { name: "Patch" } })).json()) as { profile: { id: string } };
+    const created = await api.profiles.create.mutate({ person: { name: "Patch" } });
     const id = created.profile.id;
     const row = { id: "m1", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" };
-    const ok = await call("PATCH", `/api/profiles/${id}/data`, { parts: { measurements: [row] } });
-    expect(await ok.json()).toEqual({ ok: true, written: ["measurements"] });
-    expect(((await (await call("GET", `/api/profiles/${id}/data`)).json()) as { measurements: unknown[] }).measurements).toHaveLength(1);
-    expect((await call("PATCH", `/api/profiles/${id}/data`, { parts: { measurements: [] } }, { "x-bt": "" })).status).toBe(403);
-    expect((await call("PATCH", `/api/profiles/${id}/data`, { parts: [] })).status).toBe(400);
+    expect(await api.profiles.saveParts.mutate({ id, parts: { measurements: [row] } })).toEqual({ ok: true, written: ["measurements"] });
+    expect((await api.profiles.data.query({ id })).measurements).toHaveLength(1);
+    expect((await rawCall(port, "profiles.saveParts", { mutation: true, input: { id, parts: { measurements: [] } }, headers: { "x-bt": "" } })).status).toBe(403);
+    expect((await rawCall(port, "profiles.saveParts", { mutation: true, input: { id, parts: [] } })).status).toBe(400);
+    expect(await statusOf(api.profiles.saveParts.mutate({ id, parts: { secrets: [] } }))).toBe(400);
   });
 });

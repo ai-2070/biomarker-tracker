@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { createPaperPreviewLoader, paperPreviewId } from "../../src/app/paperPreviews";
-import { EUROPE_PMC, type FetchFn } from "../../src/research/papers";
+import { createPaperPreviewLoader, paperPreviewId } from "../../apps/web/src/app/paperPreviews";
+import { EUROPE_PMC, type FetchFn } from "@bt/shared/research/papers";
 
 const respond = (records: unknown[] = [], status = 200) => new Response(JSON.stringify({
   hitCount: records.length,

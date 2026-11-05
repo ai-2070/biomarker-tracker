@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { FRAMINGHAM_BMI, framinghamRisk, heartAge, heartAgeData, type HeartAgeInput } from "../../src/core/heartAge";
-import type { Measurement, ProtocolEntry } from "../../src/core/types";
+import { FRAMINGHAM_BMI, framinghamRisk, heartAge, heartAgeData, type HeartAgeInput } from "@bt/shared/core/heartAge";
+import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const normal = (sex: "m" | "f", age: number): HeartAgeInput => ({ sex, age, systolic: 125, treatedBp: false, smoker: false, diabetes: false, bmi: 22.5 });
 

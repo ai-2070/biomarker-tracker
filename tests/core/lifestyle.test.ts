@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { barsDomain, intervalRows, labelAnchor, labelRows, scalePosition, wavelengthRgb } from "../../src/core/lifestyle";
+import { barsDomain, intervalRows, labelAnchor, labelRows, scalePosition, wavelengthRgb } from "@bt/shared/core/lifestyle";
 
 describe("lifestyle drawing helpers", () => {
   it("gives visible light a colour and nothing outside it", () => {

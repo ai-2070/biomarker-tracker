@@ -1,0 +1,1195 @@
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
+import { TIME_LABEL, whenExtras } from "../components/PlanWhen";
+import { Checkbox } from "@base-ui/react/checkbox";
+import { providerInfo } from "@bt/shared/core/aiProviders";
+import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
+import type { Measurement } from "@bt/shared/core/types";
+import { CitedAnswer } from "../components/CitedAnswer";
+import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
+import { BrainIcon, CloseIcon, FileIcon, NewChatIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
+import { Review, isImage } from "../components/LabReview";
+import { Button, CheckIcon, FlagBadge, cx, inputStyles } from "../components/ui";
+import { SafetyNotices } from "../components/SafetyNotices";
+import { todayIso } from "@bt/shared/core/dates";
+import type { HabitProposal } from "@bt/shared/core/habitProposal";
+import { defaultRetestDays } from "@bt/shared/core/habits";
+import { safetyLabels, safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
+import { createHabit, db as localDb, getProfile, saveMeal, savePlan } from "../../db/db";
+import { foodById, mealSafetyBlock, mealTotals } from "@bt/shared/core/meals";
+import { formatValue } from "@bt/shared/core/units";
+import { SAFETY_LIMITS } from "@bt/shared/core/foods";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import { PROFILE_DETAIL_LABELS } from "@bt/shared/core/profileCompletion";
+import { useFoodDb } from "../foodDb";
+import { itemsByTime, pairWarnings } from "@bt/shared/core/plans";
+import { formatDate, showMeasurement, valueUnit } from "../format";
+import { useAllMeasurements, useProfile, useProtocols } from "../hooks";
+import { BIOMARKER_MAP, NUTRIENTS, fullName } from "../knowledge";
+import { uploadFile, useProfiles } from "../profiles";
+import { href } from "../router";
+import { INTERACTIVE_SELECTOR, brainShortcut } from "./logic";
+import { ModelMenu, ToolsMenu, goToSettings, modelLabel, useBrainSettings, type BrainSettings } from "./menus";
+import {
+  addFiles,
+  addPastedLabText,
+  attachReviewPhoto,
+  backToMyChat,
+  closeBrain,
+  newConversation,
+  openBrain,
+  removeAttachment,
+  send,
+  setSendPhoto,
+  takePending,
+  setDraft,
+  stop,
+  toggleBrain,
+  updateTurn,
+  setHabitState,
+  useBrain,
+  type Attachment,
+  type Step,
+  type Turn,
+} from "./store";
+
+const SUGGESTIONS = [
+  "Which of my results are outside the usual range, and what can affect them?",
+  "How has my LDL cholesterol changed, and was anything in my log going on at the time?",
+  "Explain my biological age estimate and which markers push it up.",
+  "What does research say about raising low ferritin with food?",
+];
+
+const TOOL_TEXT: Record<string, string> = {
+  get_results: "Looked at your results",
+  get_marker: "Read a marker's history and knowledge entry",
+  get_test_summary: "Read the app's summary of a blood test",
+  get_year_summary: "Read the app's summary of a year of blood tests",
+  get_levers: "Checked evidence-graded diet and habit levers",
+  get_biological_age: "Checked your biological age estimate",
+  get_body_summary: "Read the app's body calculations (BMI, heart age, averages)",
+  get_log: "Read your habits",
+  compare_before_after: "Checked what changed in your habits",
+  propose_habit: "Suggested a habit for you to confirm",
+  save_profile_details: "Prepared missing profile details from your message",
+  search_research: "Searched Europe PMC",
+  get_study: "Read a study on Europe PMC",
+  get_nutrient: "Read the vitamins and minerals knowledge base",
+  get_protocols: "Read your protocols",
+  propose_protocol: "Wrote down a protocol for you to create",
+  find_foods: "Searched the food table",
+  propose_meal: "Wrote down a meal for you to save",
+  get_meals: "Read your meals",
+  read_skill: "Followed a skill",
+  research_tools: "Listed a research source's tools",
+};
+
+const isMac = typeof navigator !== "undefined" && /Mac|iPhone|iPad/.test(navigator.platform);
+
+/** Brain: the assistant in a window at the bottom of every page. Space or Ctrl+K opens it. */
+export function Brain() {
+  const brain = useBrain();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const target = e.target instanceof Element ? e.target : null;
+      const panel = panelRef.current;
+      // Dialogs and menus elsewhere on the page keep their keys.
+      const overlayOpen = [...document.querySelectorAll('[role="dialog"], [role="alertdialog"], [role="menu"], [role="listbox"]')].some((el) => !panel?.contains(el));
+      const action = brainShortcut(e, { open: brain.open, onInteractive: !!target?.closest(INTERACTIVE_SELECTOR), overlayOpen });
+      if (!action) return;
+      e.preventDefault();
+      if (!brain.open) returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      if (action === "open") openBrain();
+      else toggleBrain();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [brain.open]);
+
+  // Back to where you were when Brain closes.
+  const wasOpen = useRef(brain.open);
+  useEffect(() => {
+    if (wasOpen.current && !brain.open) {
+      const el = returnFocus.current;
+      if (el?.isConnected) el.focus();
+      returnFocus.current = null;
+    }
+    wasOpen.current = brain.open;
+  }, [brain.open]);
+
+  // The window stays on screen while it folds away, then the pill comes back.
+  const [shown, setShown] = useState(brain.open);
+  if (brain.open && !shown) setShown(true);
+  const closing = shown && !brain.open;
+  const onClosed = useCallback(() => setShown(false), []);
+
+  return (
+    <>
+      {!shown && <Launcher onOpen={() => (returnFocus.current = document.activeElement as HTMLElement | null)} />}
+      {shown && <Panel panelRef={panelRef} closing={closing} onClosed={onClosed} />}
+    </>
+  );
+}
+
+function Kbd({ children, className }: { children: ReactNode; className?: string }) {
+  return <kbd className={cx("rounded border border-line bg-sunken px-1.5 font-mono text-[11px] leading-5 text-ink-2", className)}>{children}</kbd>;
+}
+
+/** The pill at the bottom of large screens. Small screens open Brain from the bottom tabs. */
+function Launcher({ onOpen }: { onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        onOpen();
+        openBrain();
+      }}
+      onDragEnter={(e) => {
+        if (e.dataTransfer.types.includes("Files")) openBrain();
+      }}
+      title={`Ask Brain (Space, or ${isMac ? "⌘K" : "Ctrl+K"})`}
+      className="fixed bottom-5 left-[calc(50%+8rem)] z-40 hidden -translate-x-1/2 animate-brain-pop items-center gap-2.5 rounded-full border border-line bg-surface/95 py-2.5 pr-3 pl-3.5 text-[15px] text-ink shadow-lg shadow-black/10 backdrop-blur transition-[translate,box-shadow] duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:shadow-xl lg:flex"
+    >
+      <BrainIcon className="text-accent" />
+      <span>Ask Brain…</span>
+      <Kbd>Space</Kbd>
+    </button>
+  );
+}
+
+function useCritical(): CriticalItem[] {
+  const all = useAllMeasurements();
+  const profile = useProfile();
+  const items: CriticalItem[] = [];
+  for (const [id, ms] of groupByBiomarker(all ?? [])) {
+    const def = BIOMARKER_MAP.get(id);
+    const latest = computeTrend(ms)?.latest;
+    if (!def || !latest) continue;
+    const flag = flagMeasurement(def, latest, profile);
+    if (isCritical(flag)) items.push({ def, measurement: latest, low: flag === "critical-low" });
+  }
+  return items;
+}
+
+function PersonalCriticalBanner() {
+  return <CriticalBanner items={useCritical()} />;
+}
+
+function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTMLDivElement | null>; closing: boolean; onClosed: () => void }) {
+  // Unmount once the closing animation ends (with a fallback in case no animation runs).
+  useEffect(() => {
+    if (!closing) return;
+    const t = window.setTimeout(onClosed, 400);
+    return () => window.clearTimeout(t);
+  }, [closing, onClosed]);
+
+  const brain = useBrain();
+  const titleId = useId();
+  const { settings, fresh, reload } = useBrainSettings(brain.open);
+  const [dragging, setDragging] = useState(false);
+  const listRef = useRef<HTMLDivElement>(null);
+  const stickToEnd = useRef(true);
+  const research = brain.scope === "research";
+  const ready = fresh && !!settings?.ready.ok;
+  const model = settings ? modelLabel(settings.assistant) : "";
+
+  // A question from a "Summarize with Brain" button goes out once the model is known.
+  useEffect(() => {
+    if (brain.pending && fresh) takePending(!!settings?.ready.ok, model);
+  }, [brain.pending, brain.scope, settings, fresh, model]);
+
+  // Keep the newest message in view, unless the person scrolled up to read.
+  useLayoutEffect(() => {
+    const el = listRef.current;
+    if (el && stickToEnd.current) el.scrollTop = el.scrollHeight;
+  }, [brain.turns.length, brain.busy, brain.scope]);
+
+  useEffect(() => {
+    setDragging(false);
+    stickToEnd.current = true;
+  }, [brain.scope]);
+
+  const onDrag = (e: DragEvent, over: boolean) => {
+    if (!e.dataTransfer.types.includes("Files")) return;
+    e.preventDefault();
+    if (research) return;
+    if (over) setDragging(true);
+    else if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setDragging(false);
+  };
+
+  return (
+    <div
+      ref={panelRef}
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby={titleId}
+      inert={closing}
+      onAnimationEnd={(e) => {
+        if (closing && e.target === e.currentTarget) onClosed();
+      }}
+      onKeyDown={(e) => {
+        // Escape inside a menu or list (they sit outside this box) closes only that.
+        if (e.key === "Escape" && !e.defaultPrevented && e.currentTarget.contains(e.target as Node)) {
+          e.preventDefault();
+          closeBrain();
+        }
+      }}
+      onDragEnter={(e) => onDrag(e, true)}
+      onDragOver={(e) => onDrag(e, true)}
+      onDragLeave={(e) => onDrag(e, false)}
+      onDrop={(e) => {
+        if (!e.dataTransfer.files.length) return;
+        e.preventDefault();
+        setDragging(false);
+        if (!research) void addFiles([...e.dataTransfer.files]);
+      }}
+      className={cx(
+        "fixed z-50 flex flex-col overflow-hidden border-line bg-surface text-ink shadow-2xl shadow-black/15",
+        closing ? "animate-brain-sheet-out lg:animate-brain-shrink" : "animate-brain-sheet-in lg:animate-brain-grow",
+        "inset-0 sm:inset-x-3 sm:top-14 sm:bottom-3 sm:rounded-2xl sm:border",
+        "lg:inset-auto lg:bottom-5 lg:left-[calc(50%+8rem)] lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-19rem))] lg:origin-bottom lg:-translate-x-1/2",
+      )}
+    >
+      <header className={cx("flex items-center gap-2 border-b border-line py-2 pr-2 pl-4", closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]")}>
+        <span className="flex size-8 items-center justify-center rounded-full bg-accent-soft text-accent">
+          <BrainIcon className="size-[18px]" />
+        </span>
+        <h2 id={titleId} className="flex-1 font-serif text-xl">
+          Brain
+        </h2>
+        <button
+          type="button"
+          onClick={newConversation}
+          disabled={brain.turns.length === 0 && brain.attachments.length === 0 && !brain.draft && !brain.pending && !brain.busy}
+          title="New conversation"
+          aria-label="New conversation"
+          className="flex size-10 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink disabled:opacity-40 disabled:hover:bg-transparent"
+        >
+          <NewChatIcon className="size-[18px]" />
+        </button>
+        <button
+          type="button"
+          onClick={closeBrain}
+          title="Close (Esc)"
+          aria-label="Close Brain"
+          className="flex size-10 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink"
+        >
+          <CloseIcon />
+        </button>
+      </header>
+      {research && (
+        <div className="flex flex-wrap items-center gap-x-3 border-b border-line px-4 py-1">
+          <p className="min-w-0 flex-1 text-xs leading-relaxed text-ink-2">Research only · Profile and results excluded</p>
+          <button type="button" onClick={backToMyChat} className="min-h-11 shrink-0 text-sm font-medium text-accent underline-offset-4 hover:underline">
+            Back to my chat
+          </button>
+        </div>
+      )}
+
+      <div
+        ref={listRef}
+        onScroll={(e) => {
+          const el = e.currentTarget;
+          stickToEnd.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+        }}
+        className={cx("flex-1 overflow-y-auto overscroll-contain px-4 py-4", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]")}
+      >
+        {!research && <PersonalCriticalBanner />}
+        {fresh && settings === null ? (
+          <NoServer />
+        ) : fresh && settings && !ready && brain.turns.length === 0 ? (
+          <NeedsModel settings={settings} />
+        ) : brain.turns.length === 0 ? (
+          <Welcome settings={fresh ? settings ?? undefined : undefined} research={research} />
+        ) : (
+          <Conversation turns={brain.turns} busy={brain.busy} model={model} />
+        )}
+      </div>
+
+      <Composer settings={settings} ready={ready} model={model} onSettingsChange={reload} closing={closing} />
+
+      {dragging && !research && (
+        <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
+          <p className="max-w-xs">
+            <span className="block font-medium text-ink">Drop a lab report or a document</span>
+            <span className="text-sm text-ink-2">It's read on this computer. You check lab results before they're saved.</span>
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NoServer() {
+  return (
+    <div className="rounded-xl border border-warn/30 bg-warn-soft p-4">
+      <p className="font-medium">Brain needs the app's local server</p>
+      <p className="mt-1 text-sm text-ink-2">
+        Brain runs through the app's small server on this computer. Start the app with <code className="font-mono">bun run start</code> and open the address it
+        shows. Everything else in the app works without it.
+      </p>
+    </div>
+  );
+}
+
+function NeedsModel({ settings }: { settings: BrainSettings }) {
+  return (
+    <div className="flex flex-col items-start gap-3 rounded-xl border border-line bg-sunken p-5">
+      <span className="flex size-10 items-center justify-center rounded-full bg-accent-soft text-accent">
+        <BrainIcon />
+      </span>
+      <div>
+        <p className="font-serif text-2xl">Set up a model first</p>
+        <p className="mt-1 text-ink-2">
+          Brain answers with an AI model you choose: a program on this computer (Claude Code, Codex…), a provider with zero data retention, or a model running
+          locally.
+        </p>
+        <p className="mt-2 text-sm text-warn">{settings.ready.reason}</p>
+      </div>
+      <Button onClick={() => goToSettings("models")}>Set up a model</Button>
+    </div>
+  );
+}
+
+function Welcome({ settings, research }: { settings: BrainSettings | undefined; research: boolean }) {
+  const info = settings ? providerInfo(settings.assistant.provider) : undefined;
+  if (research) {
+    return (
+      <div className="flex min-h-full flex-col justify-end gap-5">
+        <div>
+          <p className="font-serif text-3xl">Check the evidence</p>
+          <p className="mt-1 text-ink-2">Ask about a claim or study. Brain looks for human research and explains what it supports, and what is still unknown.</p>
+        </div>
+        <p className="text-xs leading-relaxed text-ink-2">
+          Only your question and this public research topic go to {info?.label ?? "your model"}
+          {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}.
+          {" "}Your profile, results, personal chat and files are not included. Avoid typing private health details here.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="flex min-h-full flex-col justify-end gap-5">
+      <div>
+        <p className="font-serif text-3xl">Ask Brain</p>
+        <p className="mt-1 text-ink-2">
+          Ask about your results, habits and research. Brain can fill missing profile details you state and draft a meal, protocol or habit when you ask. You review drafts before saving them.
+        </p>
+        <p className="mt-2 text-sm text-ink-2">Drop a lab report here, or use the paperclip, to review and add its results.</p>
+      </div>
+      <ul className="stagger flex flex-col gap-2">
+        {SUGGESTIONS.map((s) => (
+          <li key={s}>
+            <button
+              type="button"
+              disabled={!settings}
+              onClick={() => settings && void send(modelLabel(settings.assistant), s)}
+              className="min-h-11 w-full rounded-xl border border-line bg-surface px-3.5 py-2 text-left text-[15px] transition-colors hover:border-line-strong hover:bg-sunken"
+            >
+              {s}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p className="text-xs leading-relaxed text-ink-2">
+        When you ask, your results, log and experiments (with your age, not your name or birth month) go to {info?.label ?? "your model"}
+        {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach are
+        sent as text with your name taken out; lab reports and health app screenshots are read here and only the values you confirm are saved. A
+        photo itself is sent only when you switch that on for it.
+      </p>
+    </div>
+  );
+}
+
+function Conversation({ turns, busy, model }: { turns: Turn[]; busy: boolean; model: string }) {
+  // Only studies that a tool returned in this conversation count as checked citations.
+  const allowed = new Set(turns.flatMap((t) => (t.role === "assistant" ? t.studyIds : [])));
+  return (
+    <ol className="flex flex-col gap-4" aria-live="polite">
+      {turns.map((t) => (
+        <li key={t.id} className="animate-enter">
+          <TurnView turn={t} allowed={allowed} model={model} />
+        </li>
+      ))}
+      {busy && !turns.some((t) => t.role === "live") && (
+        <li role="status" className="flex animate-enter items-center gap-3 text-ink-2">
+          <span aria-hidden="true" className="flex gap-1">
+            <span className="size-2 animate-dot rounded-full bg-accent" />
+            <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:160ms]" />
+            <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:320ms]" />
+          </span>
+          Brain is looking things up. This can take a few minutes…
+        </li>
+      )}
+    </ol>
+  );
+}
+
+function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySet<string>; model: string }) {
+  switch (t.role) {
+    case "user":
+      return (
+        <div className="ml-auto flex max-w-[85%] flex-col items-end gap-1.5">
+          <p className="sr-only">You:</p>
+          {t.content && <p className="rounded-2xl rounded-br-md bg-accent-soft px-3.5 py-2.5 whitespace-pre-wrap">{t.content}</p>}
+          {t.files.map((f) => (
+            <span key={f} className="flex items-center gap-1.5 rounded-lg border border-line px-2 py-1 text-xs text-ink-2">
+              <FileIcon className="size-3.5" />
+              {f}
+            </span>
+          ))}
+          {t.photos ? (
+            <span className="rounded-lg bg-warn-soft px-2 py-1 text-xs text-ink">
+              {t.photos} {t.photos === 1 ? "photo" : "photos"} sent to the model
+            </span>
+          ) : null}
+        </div>
+      );
+    case "assistant":
+      return (
+        <div className="flex flex-col gap-2">
+          <p className="flex items-center gap-2 text-sm">
+            <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent">
+              <BrainIcon className="size-3.5" />
+            </span>
+            <span className="font-medium">Brain</span>
+            <span className="truncate font-mono text-[11px] text-ink-2">{t.model}</span>
+          </p>
+          {t.note && <p className="rounded-lg bg-warn-soft p-2 text-sm text-warn">{t.note}</p>}
+          <CitedAnswer text={t.content} allowed={allowed} truncated={t.truncated} />
+          <StepList steps={t.steps} failed={t.failedServers} />
+        </div>
+      );
+    case "live":
+      return <LiveTurn turn={t} allowed={allowed} />;
+    case "error":
+      return (
+        <p role="alert" className="rounded-xl border border-danger/40 bg-danger-soft p-3 text-sm">
+          <span className="font-medium">Brain couldn't answer.</span> {t.content}
+        </p>
+      );
+    case "stopped":
+      return <p className="text-center text-sm text-ink-2">Stopped. Ask again when you're ready.</p>;
+    case "review":
+      return <ReviewTurn turn={t} model={model} />;
+    case "profile":
+      return <ProfileTurn turn={t} />;
+    case "habit":
+      return <HabitTurn turn={t} />;
+    case "protocol":
+      return <ProtocolTurn turn={t} />;
+    case "meal":
+      return <MealTurn turn={t} />;
+  }
+}
+
+/** The answer while it streams. Citations count as checked only once a tool in this answer returned them. */
+function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live" }>; allowed: ReadonlySet<string> }) {
+  const checked = new Set([...allowed, ...turn.studyIds]);
+  const status = turn.status ?? (turn.text ? "Writing…" : "Brain is looking things up. This can take a few minutes…");
+  return (
+    <div className="flex flex-col gap-2" aria-busy="true">
+      <p className="flex items-center gap-2 text-sm">
+        <span className="flex size-6 items-center justify-center rounded-full bg-accent-soft text-accent">
+          <BrainIcon className="size-3.5" />
+        </span>
+        <span className="font-medium">Brain</span>
+        <span className="truncate font-mono text-[11px] text-ink-2">{turn.model}</span>
+      </p>
+      {/* Not read out word by word; the status line below says what is happening. */}
+      {turn.text && <div aria-live="off"><CitedAnswer text={turn.text} allowed={checked} /></div>}
+      {turn.steps.length > 0 && (
+        <ul aria-live="off" className="flex flex-col gap-1 border-l-2 border-line pl-3 text-sm text-ink-2">
+          {turn.steps.map((step, i) => (
+            <li key={i} className="flex items-baseline gap-2">
+              <span aria-hidden="true" className={step.success === undefined ? "text-accent" : step.success ? "text-ok" : "text-warn"}>{step.success === undefined ? "•" : step.success ? "✓" : "!"}</span>
+              <span>{step.server ? `Using ${step.server}: ${step.tool}` : (TOOL_TEXT[step.tool] ?? step.tool)}</span>
+              <span className="sr-only">{step.success === undefined ? "running" : step.success ? "done" : "didn't work"}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      <p role="status" className="flex items-center gap-3 text-sm text-ink-2">
+        <span aria-hidden="true" className="flex gap-1">
+          <span className="size-2 animate-dot rounded-full bg-accent" />
+          <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:160ms]" />
+          <span className="size-2 animate-dot rounded-full bg-accent [animation-delay:320ms]" />
+        </span>
+        {status}
+      </p>
+    </div>
+  );
+}
+
+const birthMonthFormat = new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" });
+const PROFILE_VALUE_LABELS: Record<string, string> = {
+  m: "Male", f: "Female", omnivore: "Eats everything", vegetarian: "Vegetarian", vegan: "Vegan",
+  pescatarian: "Pescatarian (fish, no meat)", other: "Other or special diet",
+  never: "Never smoked", former: "Former smoker", current: "Currently smokes",
+};
+
+function ProfileTurn({ turn }: { turn: Extract<Turn, { role: "profile" }> }) {
+  const profile = useProfile();
+  const readings = turn.measurements.flatMap((m) => {
+    const def = BIOMARKER_MAP.get(m.biomarkerId);
+    return def ? [{ m, def, flag: flagMeasurement(def, m, profile) }] : [];
+  });
+  const critical = readings.filter(({ flag }) => isCritical(flag)).map(({ m, def, flag }) => ({ def, measurement: m, low: flag === "critical-low" }));
+  return (
+    <div className="rounded-xl border border-line bg-ok-soft p-3 text-sm">
+      <CriticalBanner items={critical} />
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <p className="flex items-center gap-2 font-medium"><CheckIcon className="size-4 shrink-0 text-ok" />{turn.changes.length ? readings.length ? "Added to your profile and data" : "Added to your profile" : "Saved measurements"}</p>
+        {turn.changes.length > 0 && <a href={href({ name: "data", tab: "data" })} onClick={closeBrain} className="inline-flex min-h-11 items-center font-medium text-ink underline underline-offset-2">Edit profile</a>}
+      </div>
+      <dl className="mt-1 space-y-1 break-words">
+        {turn.changes.map(({ field, value }) => {
+          const shown = field === "heightCm" ? `${formatValue(Number(value))} cm`
+            : field === "birthMonth" ? birthMonthFormat.format(new Date(`${value}-15T12:00:00`))
+            : field === "country" ? LIFE_TABLE_COUNTRIES[String(value)] ?? String(value)
+            : (field === "sex" || field === "diet" || field === "smoking") ? PROFILE_VALUE_LABELS[String(value)] ?? String(value)
+            : String(value);
+          return <div key={field}><dt className="inline font-medium">{PROFILE_DETAIL_LABELS[field]}: </dt><dd className="inline">{shown}</dd></div>;
+        })}
+      </dl>
+      {readings.length > 0 && <>
+        <ul className="mt-2 divide-y divide-line">
+          {readings.map(({ m, def, flag }) => <li key={m.id}>
+            <a href={href({ name: "marker", id: def.id })} onClick={closeBrain} className="flex min-h-11 flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2 text-ink underline underline-offset-2">
+              <span>{fullName(def)}</span>
+              <span className="flex items-center gap-2 tabular-nums">{showMeasurement(def, m, def.canonicalUnit)} {valueUnit(def, def.canonicalUnit)}{flag !== "normal" && flag !== "unknown" && <FlagBadge flag={flag} />}</span>
+            </a>
+          </li>)}
+        </ul>
+        <p className="mt-2 text-xs text-ink-2">Saved for {formatDate(readings[0]!.m.date)} from your current statement. Open a result to edit or delete it.</p>
+      </>}
+    </div>
+  );
+}
+
+function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; error: string }[] }) {
+  if (steps.length === 0 && failed.length === 0) return null;
+  return (
+    <details className="text-sm text-ink-2">
+      <summary className="min-h-9 cursor-pointer py-1.5 font-mono text-[11px] tracking-[0.12em] uppercase">
+        {steps.length} {steps.length === 1 ? "step" : "steps"}
+      </summary>
+      <ul className="flex flex-col gap-1 border-l-2 border-line pb-1 pl-3">
+        {steps.map((s, i) => (
+          <li key={i}>
+            {s.server ? `Used ${s.server}: ${s.tool}` : (TOOL_TEXT[s.tool] ?? s.tool)} {s.input !== "{}" && <span className="font-mono text-xs break-all">{s.input}</span>}
+          </li>
+        ))}
+        {failed.map((f) => (
+          <li key={f.name} className="text-warn">
+            {f.name} couldn't start: {f.error}
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
+/** A lab report dropped into Brain: check the values, then save them to the blood tests. */
+function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; model: string }) {
+  const { mode, active } = useProfiles();
+
+  async function saved(list: Measurement[], skipped: number, date: string) {
+    let kept: string | undefined;
+    let keepError: string | undefined;
+    if (turn.file && mode === "folders" && active) {
+      try {
+        kept = (await uploadFile(active.id, turn.file, `${turn.kind === "body" ? "Health app screenshot" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`)).originalName;
+      } catch (e) {
+        keepError = e instanceof Error ? e.message : "unknown error";
+      }
+    }
+    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept ? { kept } : {}), ...(keepError ? { keepError } : {}) });
+  }
+
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Nothing saved from {turn.fileName}.</p>;
+  if (turn.state === "saved") return <SavedResults turn={turn} model={model} />;
+  return (
+    <div className="flex flex-col gap-3 rounded-2xl border border-line bg-sunken p-3">
+      <p className="flex items-center gap-2 px-1 text-sm">
+        <FileIcon className="size-4 shrink-0 text-ink-2" />
+        <span className="min-w-0 truncate font-medium">{turn.fileName}</span>
+        <span className="shrink-0 text-ink-2">· read on this computer</span>
+      </p>
+      <Review fileName={turn.fileName} ocr={turn.ocr} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
+      {turn.file && isImage(turn.file) && (
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 px-1 text-sm text-ink-2">
+          <span>Text recognition can miss rows.</span>
+          <Button variant="quiet" onClick={() => attachReviewPhoto(turn.id)}>
+            Ask Brain about the photo itself
+          </Button>
+        </p>
+      )}
+    </div>
+  );
+}
+
+function SavedResults({ turn, model }: { turn: Extract<Turn, { role: "review" }>; model: string }) {
+  const profile = useProfile();
+  const list = (turn.saved ?? []).flatMap((m) => {
+    const def = BIOMARKER_MAP.get(m.biomarkerId);
+    return def ? [{ m, def, flag: flagMeasurement(def, m, profile) }] : [];
+  });
+  const critical = list.filter((x) => isCritical(x.flag)).map((x) => ({ def: x.def, measurement: x.m, low: x.flag === "critical-low" }));
+  const when = turn.date ? formatDate(turn.date) : "";
+  return (
+    <div className="flex flex-col gap-3 rounded-2xl border border-line p-4">
+      <CriticalBanner items={critical} />
+      <p>
+        <span className="font-medium">
+          Saved {list.length} {list.length === 1 ? "result" : "results"}
+        </span>{" "}
+        {turn.kind === "body" ? `measured on ${when}` : `from the blood test on ${when}`}.{(turn.skipped ?? 0) > 0 && ` ${turn.skipped} ${turn.skipped === 1 ? "was" : "were"} already saved.`}
+        {turn.kept && <span className="text-ink-2"> The report is kept in this profile's folder.</span>}
+      </p>
+      {turn.keepError && <p className="text-sm text-warn">The report itself couldn't be kept in the profile folder: {turn.keepError}</p>}
+      {list.length > 0 && (
+        <ul className="flex max-h-64 flex-col divide-y divide-line overflow-y-auto rounded-xl border border-line">
+          {list.map(({ m, def, flag }) => (
+            <li key={m.id}>
+              <a
+                href={href({ name: "marker", id: def.id })}
+                onClick={() => window.matchMedia("(max-width: 1023px)").matches && closeBrain()}
+                className="flex min-h-11 items-center justify-between gap-3 px-3 py-1.5 text-sm text-ink no-underline hover:bg-sunken"
+              >
+                <span className="min-w-0 truncate">{fullName(def)}</span>
+                <span className="flex shrink-0 items-center gap-2">
+                  <span className="tabular-nums">
+                    {showMeasurement(def, m, def.canonicalUnit)} {valueUnit(def, def.canonicalUnit)}
+                  </span>
+                  {flag !== "normal" && <FlagBadge flag={flag} />}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+      {list.length > 0 && critical.length === 0 && (
+        <div className="flex flex-wrap gap-2">
+          <Button
+            variant="secondary"
+            onClick={() =>
+              void send(
+                model,
+                turn.kind === "body"
+                  ? `Explain the body measurements from ${when} that I just added, compared with my earlier ones.`
+                  : `Explain my results from the blood test on ${when} that I just added. Which are outside the range, and what can affect them?`,
+              )
+            }
+          >
+            Explain these results
+          </Button>
+          <Button variant="quiet" onClick={() => void send(model, turn.kind === "body" ? `How do my body measurements from ${when} compare with the weeks before?` : `What changed in my blood test on ${when} compared with my earlier tests?`)}>
+            What changed?
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Where a photo would go: API and local models can take one; agent programs can't. */
+interface PhotoTarget {
+  allowed: boolean;
+  label: string;
+}
+
+function AttachmentChip({ a, photoTarget }: { a: Attachment; photoTarget: PhotoTarget }) {
+  const hasText = !!(a.text ?? "").trim();
+  const status =
+    a.status === "reading"
+      ? `${a.stage ?? "Reading"}${a.fraction ? ` ${Math.round(a.fraction * 100)}%` : "…"}`
+      : a.status === "error"
+        ? a.error
+        : a.sendPhoto
+          ? "The photo itself is sent"
+          : hasText
+            ? "Its text is sent with your question"
+            : "No text in this picture";
+  return (
+    <span
+      className={cx(
+        "flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm",
+        a.status === "error" ? "border-danger/40 bg-danger-soft" : a.sendPhoto ? "border-warn/40 bg-warn-soft" : "border-line bg-surface",
+      )}
+      title={a.status === "ready" && !a.sendPhoto && hasText ? "Its text is sent with your question, with your name taken out." : undefined}
+    >
+      <span className="flex items-center gap-2">
+        <FileIcon className="size-4 shrink-0 text-ink-2" />
+        <span className="flex min-w-0 flex-1 flex-col">
+          <span className="truncate font-medium text-ink">{a.name}</span>
+          <span className={cx("truncate", a.status === "error" ? "text-danger" : "text-ink-2")}>{status}</span>
+        </span>
+        {a.status !== "reading" && (
+          <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
+            <CloseIcon className="size-3.5" />
+          </button>
+        )}
+      </span>
+      {a.status === "ready" && a.photo && (
+        <span className="flex flex-col gap-1 border-t border-line/70 pt-1.5">
+          <label className={cx("flex items-start gap-2", photoTarget.allowed ? "cursor-pointer" : "cursor-not-allowed opacity-70")}>
+            <Checkbox.Root
+              checked={!!a.sendPhoto}
+              disabled={!photoTarget.allowed}
+              onCheckedChange={(on) => setSendPhoto(a.id, on)}
+              className="mt-px flex size-4 shrink-0 items-center justify-center rounded border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
+            >
+              <Checkbox.Indicator className="flex data-unchecked:hidden">
+                <CheckIcon className="size-3" />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <span className="text-ink">Send the photo itself{photoTarget.allowed ? ` to ${photoTarget.label}` : ""}</span>
+          </label>
+          {!photoTarget.allowed && <span className="text-ink-2">Only to models used with an API key or running on this computer, not to agent programs.</span>}
+          {a.sendPhoto && (
+            <span className="text-ink">
+              The photo leaves this computer (shrunk, location data removed). Brain describes what it sees; it won't estimate weight, body fat or age from a photo, or
+              judge skin, moles or wounds.
+            </span>
+          )}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function Composer({ settings, ready, model, onSettingsChange, closing }: { settings: BrainSettings | null | undefined; ready: boolean; model: string; onSettingsChange: () => void; closing: boolean }) {
+  const brain = useBrain();
+  const research = brain.scope === "research";
+  const textRef = useRef<HTMLTextAreaElement>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const reading = brain.attachments.some((a) => a.status === "reading");
+  const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.sendPhoto || (a.text ?? "").trim()));
+  const info = settings ? providerInfo(settings.assistant.provider) : undefined;
+  const photoTarget: PhotoTarget = { allowed: !!info && info.group !== "agent", label: info?.label ?? "the model" };
+  const canSend = !brain.busy && !reading && (brain.draft.trim() !== "" || hasDocs);
+
+  useEffect(() => {
+    textRef.current?.focus();
+  }, [brain.focusTick]);
+
+  // Grow with the text, up to about six lines.
+  useLayoutEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 168)}px`;
+  }, [brain.draft]);
+
+  function submit() {
+    if (!canSend) return;
+    if (!ready) return goToSettings("models");
+    void send(model);
+  }
+
+  return (
+    <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
+      {!research && brain.attachments.length > 0 && (
+        <div className="mb-2 flex flex-wrap gap-1.5">
+          {brain.attachments.map((a) => (
+            <AttachmentChip key={a.id} a={a} photoTarget={photoTarget} />
+          ))}
+        </div>
+      )}
+      <div className="rounded-xl border border-line-strong bg-surface transition-[border-color,box-shadow] focus-within:border-accent focus-within:ring-3 focus-within:ring-accent/15">
+        <label className="sr-only" htmlFor="brain-question">
+          Your question
+        </label>
+        <textarea
+          id="brain-question"
+          ref={textRef}
+          rows={1}
+          value={brain.draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
+              e.preventDefault();
+              submit();
+            }
+          }}
+          onPaste={(e) => {
+            const files = [...e.clipboardData.files];
+            if (files.length) {
+              e.preventDefault();
+              if (!research) void addFiles(files);
+              return;
+            }
+            // Lab result rows copied from a report or website: checked and saved in a review card.
+            if (!research && addPastedLabText(e.clipboardData.getData("text/plain"))) e.preventDefault();
+          }}
+          placeholder={brain.busy ? "Brain is working…" : research ? "Ask about the evidence" : hasDocs ? "What should Brain do with this file?" : "Ask about your results, or drop a lab report"}
+          className="block max-h-42 min-h-11 w-full resize-none bg-transparent px-3 pt-3 pb-1 text-base text-ink outline-none placeholder:text-ink-2"
+        />
+        <div className="flex items-center gap-1 px-1.5 pb-1.5">
+          {!research && (
+            <>
+              <input
+                ref={fileRef}
+                type="file"
+                multiple
+                hidden
+                accept="application/pdf,.pdf,image/*,.txt,.csv,.tsv,.md,.json,text/plain,text/csv"
+                onChange={(e) => {
+                  void addFiles([...(e.target.files ?? [])]);
+                  e.target.value = "";
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => fileRef.current?.click()}
+                title="Attach a lab report or document (or drop or paste it)"
+                aria-label="Attach a lab report or document"
+                className="flex size-9 shrink-0 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink"
+              >
+                <PaperclipIcon className="size-[18px]" />
+              </button>
+            </>
+          )}
+          {settings && (
+            <>
+              <ModelMenu settings={settings} onChange={onSettingsChange} />
+              <span className="hidden sm:contents">
+                <ToolsMenu active />
+              </span>
+            </>
+          )}
+          <span className="flex-1" />
+          {brain.busy ? (
+            <button type="button" onClick={stop} aria-label="Stop" title="Stop" className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-ink text-surface hover:opacity-85">
+              <StopIcon className="size-4" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={submit}
+              disabled={!canSend}
+              aria-label={ready ? "Send (Enter)" : "Set up a model to send"}
+              title={ready ? "Send (Enter)" : "Set up a model to send"}
+              className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-ink transition-[filter,opacity] hover:brightness-110 disabled:opacity-40 disabled:hover:brightness-100"
+            >
+              <SendIcon className="size-[18px]" />
+            </button>
+          )}
+        </div>
+      </div>
+      <p className="mt-1.5 flex justify-between gap-3 px-1 text-xs text-ink-2">
+        <span className="hidden sm:inline">Enter to send · Shift+Enter for a new line · Esc to close</span>
+        <span className="sm:hidden">
+          <span className="contents">
+            <MobileTools settings={settings} />
+          </span>
+        </span>
+        <span>Not medical advice.</span>
+      </p>
+    </div>
+  );
+}
+
+/** On phones the skills and sources menu sits under the box, so the row above fits 360px. */
+function MobileTools({ settings }: { settings: BrainSettings | null | undefined }) {
+  if (!settings) return null;
+  return (
+    <span className="-my-2 -ml-2 inline-flex">
+      <ToolsMenu active />
+    </span>
+  );
+}
+
+const CATEGORY_WORD: Record<HabitProposal["category"], string> = { supplement: "Supplement", diet: "Diet change", lifestyle: "Lifestyle" };
+
+/**
+ * A habit Brain suggested. The person can change the name, start date and watched markers, then add
+ * it to Habits or leave it. Nothing is saved before that (and medicines or amounts never get here).
+ */
+function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) {
+  const p = turn.proposal;
+  const today = todayIso();
+  const [label, setLabel] = useState(p.label);
+  const [start, setStart] = useState(p.start);
+  const [markers, setMarkers] = useState<string[]>(p.markerIds);
+  const [error, setError] = useState<string>();
+  const [saving, setSaving] = useState(false);
+  const notes = safetyNotes([label]);
+  const labelId = useId();
+
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Habit not added.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Added to Habits: <span className="font-medium">{label}</span>
+        </span>
+        <a href={href({ name: "habits" })} className="font-medium text-ink underline underline-offset-2">
+          Open Habits
+        </a>
+      </div>
+    );
+  }
+
+  async function add() {
+    const r = validateProtocol({ label, category: p.category, start }, today);
+    if (!r.ok) return setError(Object.values(r.errors)[0]);
+    setSaving(true);
+    try {
+      await createHabit(r.entry, markers.length ? { markerIds: markers, retestAfterDays: defaultRetestDays(markers), today } : undefined);
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The habit couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">Suggested habit · {CATEGORY_WORD[p.category]}</p>
+        <p className="mt-1 text-sm text-ink-2">{p.reason}</p>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor={labelId} className="text-sm font-medium">
+          Name
+        </label>
+        <input id={labelId} value={label} maxLength={80} onChange={(e) => setLabel(e.target.value)} className={inputStyles} />
+        <span className="text-xs text-ink-2">Add the amount yourself if it applies, as agreed with your doctor or pharmacist.</span>
+      </div>
+      <label className="flex flex-col gap-1 text-sm">
+        <span className="font-medium">Start</span>
+        <input type="date" value={start} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "sm:w-48")} />
+      </label>
+      {p.markerIds.length > 0 && (
+        <fieldset className="flex flex-col gap-1">
+          <legend className="mb-1 text-sm font-medium">Watch these markers (compares results before and after)</legend>
+          {p.markerIds.map((id) => {
+            const def = BIOMARKER_MAP.get(id);
+            return (
+              <label key={id} className="flex min-h-9 cursor-pointer items-center gap-2 text-sm">
+                <Checkbox.Root
+                  checked={markers.includes(id)}
+                  onCheckedChange={(on) => setMarkers((m) => (on ? [...m, id] : m.filter((x) => x !== id)))}
+                  className="flex size-4 shrink-0 items-center justify-center rounded border-2 border-line-strong bg-surface text-accent-ink data-checked:border-accent data-checked:bg-accent"
+                >
+                  <Checkbox.Indicator className="flex data-unchecked:hidden">
+                    <CheckIcon className="size-3" />
+                  </Checkbox.Indicator>
+                </Checkbox.Root>
+                {def ? fullName(def) : id}
+              </label>
+            );
+          })}
+        </fieldset>
+      )}
+      <SafetyNotices notes={notes} />
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => void add()} disabled={saving || !label.trim()}>
+          {saving ? "Adding…" : "Add to Habits"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+
+/**
+ * A recorded or requested-recommendation protocol draft. The person checks and creates it; nothing
+ * is saved or started before that. All items remain editable on the Protocols page.
+ */
+function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" }> }) {
+  const [name, setName] = useState(turn.plan.name);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string>();
+  const nameId = useId();
+  const groups = itemsByTime(turn.plan);
+  const pairs = pairWarnings(turn.plan, NUTRIENTS);
+
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Protocol not created.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Protocol created: <span className="font-medium">{name}</span>
+        </span>
+        <a href={href({ name: "plan", id: turn.plan.id })} className="font-medium text-ink underline underline-offset-2">
+          Open it
+        </a>
+      </div>
+    );
+  }
+
+  async function create() {
+    if (!name.trim()) return setError("Give the protocol a name.");
+    setSaving(true);
+    try {
+      await savePlan({ ...turn.plan, name: name.trim().slice(0, 80) });
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The protocol couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="text-sm font-medium">
+          {turn.intent === "recommend" ? "Suggested protocol" : "Protocol from your text"} · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
+        </p>
+        <p className="mt-1 text-sm text-ink-2">{turn.intent === "recommend"
+          ? "Review this draft. It has no medicines or suggested doses. Creating it does not start it as a habit; you can edit it on the Protocols page."
+          : "Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards."}</p>
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor={nameId} className="text-sm font-medium">
+          Name
+        </label>
+        <input id={nameId} value={name} maxLength={80} onChange={(e) => setName(e.target.value)} className={inputStyles} />
+      </div>
+      <div className="flex max-h-72 flex-col gap-2 overflow-y-auto rounded-lg bg-sunken p-2 text-sm">
+        {groups.map((g) => (
+          <div key={g.when}>
+            <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{TIME_LABEL[g.when]}</p>
+            <ul className="mt-0.5">
+              {g.items.map((i) => (
+                <li key={i.id}>
+                  {i.label}
+                  {i.amount && <span className="text-ink-2"> · {i.amount}</span>}
+                  {whenExtras(i) && <span className="text-ink-2"> · {whenExtras(i)}</span>}
+                  {i.note && <span className="text-ink-2"> ({i.note})</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      {pairs.length > 0 && (
+        <p className="rounded-lg bg-warn-soft p-2 text-sm">
+          <span className="font-medium">Items that interact: </span>
+          {pairs.map((w) => `${w.a} and ${w.b}`).join("; ")}. Details on the protocol's page.
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => void create()} disabled={saving}>
+          {saving ? "Creating…" : "Create protocol"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * A recorded recipe or requested meal idea. Totals and safety checks use the app's food table,
+ * never the model's arithmetic. Saving still requires the person's review.
+ */
+function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
+  const foodDb = useFoodDb();
+  const profile = useProfile();
+  const habits = useProtocols();
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string>();
+  const recommended = turn.intent === "recommend";
+  const safety = safetyNotes(safetyLabels(habits ?? [], profile));
+  const limits = safety.flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+  const blocked = recommended && foodDb ? mealSafetyBlock(turn.meal.items, foodDb, limits) : undefined;
+  if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Meal not saved.</p>;
+  if (turn.state === "saved") {
+    return (
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-ok-soft p-3 text-sm">
+        <span className="flex items-center gap-2">
+          <CheckIcon className="size-4 text-ok" /> Meal saved: <span className="font-medium">{turn.meal.name}</span>
+        </span>
+        <a href={href({ name: "meal", id: turn.meal.id })} className="font-medium text-ink underline underline-offset-2">
+          Open it
+        </a>
+      </div>
+    );
+  }
+  const t = foodDb ? mealTotals(turn.meal.items, foodDb) : undefined;
+  const v = (k: string) => (t?.[k] && t[k]!.measuredIn > 0 ? formatValue(Math.round(t[k]!.amount * 10) / 10) : "–");
+
+  async function save() {
+    if (!foodDb || saving) return;
+    setError(undefined);
+    setSaving(true);
+    try {
+      if (recommended) {
+        // Read again at the click, so a Settings or Habits change cannot leave a stale safe draft.
+        const [currentProfile, currentHabits] = await Promise.all([getProfile(), localDb.protocols.toArray()]);
+        const currentLimits = safetyNotes(safetyLabels(currentHabits, currentProfile))
+          .flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+        const issue = mealSafetyBlock(turn.meal.items, foodDb, currentLimits);
+        if (issue) {
+          setError(`${issue}. Talk to your doctor before changing these foods.`);
+          return;
+        }
+      }
+      await saveMeal(turn.meal);
+      setHabitState(turn.id, "saved");
+    } catch {
+      setError("The meal couldn't be saved. Try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+      <div>
+        <p className="text-sm font-medium">{recommended ? "Suggested meal" : "Meal from your recipe"} · {turn.meal.items.length} foods</p>
+        <p className="mt-0.5 font-medium break-words">{turn.meal.name}</p>
+      </div>
+      <ul className="flex flex-col gap-0.5 rounded-lg bg-sunken p-2 text-sm">
+        {turn.meal.items.map((it, i) => (
+          <li key={`${it.foodId}-${i}`} className="flex justify-between gap-2">
+            <span className="min-w-0 break-words">{foodDb ? (foodById(foodDb, it.foodId)?.name ?? it.foodId) : it.foodId}</span>
+            <span className="shrink-0 text-ink-2 tabular-nums">{it.grams} g</span>
+          </li>
+        ))}
+      </ul>
+      {t && (
+        <p className="text-sm tabular-nums">
+          {v("energyKcal")} kcal · {v("protein")} g protein · {v("fat")} g fat · {v("carbohydrate")} g carbohydrate · {v("fibre")} g fibre
+          <span className="block text-xs text-ink-2">Worked out by the app from the food table. Vitamins and minerals are on the meal's page.</span>
+        </p>
+      )}
+      <p className="text-xs text-ink-2">{recommended
+        ? "These are example food portions, not a daily target or a complete diet. Review them before saving; you can edit the meal afterwards."
+        : "Check that the foods and weights match your recipe; you can change them after saving."}</p>
+      {recommended && safety.length > 0 && <SafetyNotices notes={safety} />}
+      {blocked && <p role="alert" className="rounded-lg bg-warn-soft p-2 text-sm">{blocked}. Talk to your doctor before changing these foods. This suggestion cannot be saved.</p>}
+      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
+      <div className="flex flex-wrap gap-2">
+        <Button disabled={saving || !foodDb || !!blocked || (recommended && !habits)} onClick={() => void save()}>
+          {saving ? "Saving…" : "Save meal"}
+        </Button>
+        <Button variant="secondary" onClick={() => setHabitState(turn.id, "dismissed")}>
+          Not now
+        </Button>
+      </div>
+    </div>
+  );
+}

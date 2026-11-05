@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { cleanScan, looksLikePaper } from "../../src/core/importers/scanClean";
+import { cleanScan, looksLikePaper } from "@bt/shared/core/importers/scanClean";
 
 const W = 1000;
 const H = 1200;

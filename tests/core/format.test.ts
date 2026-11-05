@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { BIOMARKER_MAP } from "../../src/app/knowledge";
-import { displayUnitFor, formatHours, showChange, showMeasurement, showRange, showValue, valueUnit } from "../../src/app/format";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
+import { displayUnitFor, formatHours, showChange, showMeasurement, showRange, showValue, valueUnit } from "../../apps/web/src/app/format";
 
 describe("sleep duration display", () => {
   it.each([

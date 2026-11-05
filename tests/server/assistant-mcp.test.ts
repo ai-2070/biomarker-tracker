@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
 import type { ToolSet } from "ai";
-import type { McpServerConfig } from "../../server/store";
+import type { McpServerConfig } from "../../apps/server/store";
 import { z } from "zod";
 
 const mocks = vi.hoisted(() => ({
@@ -17,13 +17,13 @@ vi.mock("@modelcontextprotocol/sdk/client/stdio.js", () => ({
     constructor() { mocks.transports.push(this); }
   },
 }));
-vi.mock("../../server/store", () => ({
+vi.mock("../../apps/server/store", () => ({
   getSettings: () => mocks.settings,
   getSecrets: () => mocks.secrets,
   updateSettings: (fn: (settings: typeof mocks.settings) => void) => fn(mocks.settings),
   updateSecrets: (fn: (secrets: typeof mocks.secrets) => void) => fn(mocks.secrets),
 }));
-import { assistantTools, removeServer, stopAll, testServer } from "../../server/mcp";
+import { assistantTools, removeServer, stopAll, testServer } from "../../apps/server/mcp";
 
 // Deferred gates establish ordering; no sleeps, real packages, subprocesses or network calls.
 function deferred<T>() {

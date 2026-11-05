@@ -1,10 +1,10 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import type { FitnessTestDef } from "../../src/core/fitnessTests";
+import type { FitnessTestDef } from "@bt/shared/core/fitnessTests";
 import { describe, expect, it } from "vitest";
-import { bodySummary } from "../../src/core/bodySummary";
-import { demoProfile } from "../../src/core/demo";
-import type { Measurement } from "../../src/core/types";
+import { bodySummary } from "@bt/shared/core/bodySummary";
+import { demoProfile } from "@bt/shared/core/demo";
+import type { Measurement } from "@bt/shared/core/types";
 import { loadDefs } from "../helpers";
 
 describe("body summary for Brain", () => {

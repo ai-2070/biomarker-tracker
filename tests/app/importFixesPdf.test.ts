@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { readPdfText } from "../../src/app/pdf";
+import { readPdfText } from "../../apps/web/src/app/pdf";
 
 const fixture = vi.hoisted(() => ({ document: undefined as unknown, recognized: [] as string[] }));
 vi.mock("pdfjs-dist", () => ({
@@ -7,7 +7,7 @@ vi.mock("pdfjs-dist", () => ({
   getDocument: () => ({ promise: Promise.resolve(fixture.document) }),
 }));
 vi.mock("pdfjs-dist/build/pdf.worker.min.mjs?url", () => ({ default: "/bundled/pdf-worker.mjs" }));
-vi.mock("../../src/app/ocr", () => ({ recognize: vi.fn(async () => fixture.recognized.shift() ?? "") }));
+vi.mock("../../apps/web/src/app/ocr", () => ({ recognize: vi.fn(async () => fixture.recognized.shift() ?? "") }));
 
 function pdfPage(value: string) {
   return {

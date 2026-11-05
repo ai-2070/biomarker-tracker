@@ -1,8 +1,8 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { validateFitnessTest, type FitnessTestDef } from "../../src/core/fitnessTests";
-import { PRESCRIBING } from "../../src/core/nutrients";
+import { validateFitnessTest, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
+import { PRESCRIBING } from "@bt/shared/core/nutrients";
 import { loadDefs } from "../helpers";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "fitness");

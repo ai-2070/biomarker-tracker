@@ -165,7 +165,7 @@ Additional requested topics are listed by name only: 29 supplements, 32 foods an
 
 **Evidence confidence comes only from personal checks.** There are no bundled verdicts or confidence grades. Before a check the statement says **Not checked yet**. Validated saved AI assessments supply qualitative grades (very low, low, moderate or high); insufficient evidence stays ungraded, not zero. Checks do not combine into category-wide grades or turn skin/marker results into lifespan evidence. **Check something else** remains available with a public-topic input and a category choice. Custom categories stay local to the profile and are not sent to the model; older uncategorized topics remain under Health. Opening the page never calls a model, and there is no scheduled AI reassessment. Other entries remain unchanged.
 
-**Check evidence** runs the person's configured Brain model, skills and research sources through `POST /api/claim-evidence`, sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
+**Check evidence** runs the person's configured Brain model, skills and research sources through the local server (`claimEvidence.check`), sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
  
 For saved checks, the page makes a cheap PubMed metadata check at most once daily, without AI. It counts candidate review/trial records indexed after the assessment's UTC day; same-day additions, late tags and unmatched terms can be missed. A positive signal offers **Recheck**, never changes a verdict automatically. The developer-only `bun tools/claims/watch.ts` scans the last complete month for Astaxanthin claims and candidate new MeSH outcomes (at least three distinct trial records), with an annual stable-facts review reminder. `.github/workflows/claim-watch.yml` opens a deduplicated issue only for signals/reminders; it never rewrites claims, grades or evidence maps.
 
@@ -210,16 +210,16 @@ Install Bun 1.4.4, Rust stable and the [Tauri platform prerequisites](https://v2
 ```sh
 bun install --frozen-lockfile
 bun run desktop:dev      # builds the frontend and sidecar, then opens the native window
-bun run desktop:build    # builds installers in src-tauri/target/release/bundle/
+bun run desktop:build    # builds installers in apps/desktop/src-tauri/target/release/bundle/
 ```
 
-Desktop development rebuilds the static frontend on launch; restart it after changes. For frontend hot reload, use the browser development commands below. `desktop:prepare` compiles the Bun server, copies only `dist/`, `knowledge/` and bundled `skills/` as resources, and smoke-tests native sidecar builds against a temporary data folder. App icons derive from `public/favicon.svg`.
+Desktop development rebuilds the static frontend on launch; restart it after changes. For frontend hot reload, use the browser development commands below. `desktop:prepare` compiles the Bun server, copies only the built page (`apps/web/dist/`), `knowledge/`, bundled `skills/` and the eve runtime as resources, and smoke-tests native sidecar builds against a temporary data folder. App icons derive from `apps/web/public/favicon.svg`.
 
 ### CI and releases
 
 [Desktop packages](.github/workflows/desktop.yml) runs type checks and tests, then builds Windows x64 (NSIS + MSI), Linux x64 (DEB + AppImage), and macOS Apple Silicon + Intel (DMG). Pull requests and pushes to `main` keep installers as workflow artifacts.
 
-To release, set the same version in `package.json`, `src-tauri/Cargo.toml` and `src-tauri/tauri.conf.json`, update the lockfiles, then push a matching tag such as `v0.11.0`. CI creates a draft GitHub release and attaches the installers; publish it after reviewing the assets. Publishing an existing release also builds and attaches packages. You can rerun packaging through **Run workflow**, optionally supplying an existing release tag. Tags must match the application version; tags with a hyphen produce prereleases.
+To release, set the same version in the root `package.json`, `apps/desktop/src-tauri/Cargo.toml` and `apps/desktop/src-tauri/tauri.conf.json`, update the lockfiles, then push a matching tag such as `v0.11.0`. CI creates a draft GitHub release and attaches the installers; publish it after reviewing the assets. Publishing an existing release also builds and attaches packages. You can rerun packaging through **Run workflow**, optionally supplying an existing release tag. Tags must match the application version; tags with a hyphen produce prereleases.
 
 GitHub's built-in token handles release uploads; no personal access token is needed. Installers are unsigned by default. For signed and notarized macOS builds, configure `APPLE_CERTIFICATE` (base64 `.p12`), `APPLE_CERTIFICATE_PASSWORD`, `APPLE_SIGNING_IDENTITY`, `APPLE_ID`, `APPLE_PASSWORD` (app-specific password), and `APPLE_TEAM_ID` as repository secrets. Unsigned macOS and Windows downloads may require operating-system approval before opening.
 
@@ -240,12 +240,17 @@ Your data is kept in `data/` next to the app: one folder per person, plus your s
 
 ### Develop
 
+The repository is a [Turborepo](https://turborepo.com) with Bun workspaces.
+
 ```bash
-bun run dev        # the app with hot reload at http://localhost:5173
-bun run server     # the local server on 127.0.0.1:4820 (run next to dev)
-bun run test       # Vitest: core logic, knowledge base, database
-bun run build      # typecheck and static build in dist/
+bun dev            # everything: the page with hot reload (http://localhost:5173) and the local server (127.0.0.1:4820)
+bun run server     # only the local server
+bun run test       # Vitest: core logic, knowledge base, database, server
+bun run typecheck  # every package, plus tests and tools
+bun run build      # typecheck, the static page in apps/web/dist/ and the eve runtime
 ```
+
+`bun dev` builds the eve runtime first (cached afterwards), then runs the page and the server side by side; Ctrl+C stops both. To run it next to another copy of the app, set `BT_PORT` (the server's port, which the page's dev proxy follows), e.g. `BT_PORT=4830 bun dev`.
 
 Use `bun run test`, not `bun test`: the second one starts Bun's own test runner instead of Vitest.
 
@@ -275,16 +280,23 @@ The default raw-data cache is in the OS temporary folder. An optional `--cache` 
 **Stack:** Vite, React 19, TypeScript (strict), Tailwind CSS v4, Base UI, Dexie (IndexedDB), Recharts, pdf.js, tesseract.js, Vitest. The local server is plain `node:http`, run by Bun, listening on 127.0.0.1 only.
 
 ```
-src/core        pure TypeScript with tests: units, trends, ranges, PhenoAge, heart and fitness age,
-                experiments, importers (lab PDFs, photos, device exports), meals, intake, evidence maps
-src/app         React UI
-src/db          Dexie schema
-server          local server: profiles, models, skills, MCP, the assistant and its tools
-knowledge       biomarkers, evidence claims, nutrients, fitness tests, foods, evidence maps
-skills          built-in assistant skills
-tools           developer tools that build the knowledge files (food table, evidence maps)
-tests           Vitest suites with synthetic fixtures (no real patient data)
+apps/web               the page: Vite + React UI (src/app), Dexie schema (src/db)
+apps/server            local server: profiles, models, skills, MCP, the assistant and its tools
+apps/eve               Brain's opt-in eve runtime (built to apps/eve/.output)
+apps/desktop           desktop app: Tauri shell (src-tauri) and its build scripts
+packages/shared        everything the page and the server share:
+  src/core             pure TypeScript with tests: units, trends, ranges, PhenoAge, heart and fitness age,
+                       experiments, importers (lab PDFs, photos, device exports), meals, intake, evidence maps
+  src/research         Europe PMC / PubMed / ClinicalTrials clients
+  src/ai               citation verifier
+  src/api              the page ↔ server API (tRPC router and its types)
+knowledge              biomarkers, evidence claims, nutrients, fitness tests, foods, evidence maps
+skills                 built-in assistant skills
+tools                  developer tools that build the knowledge files (food table, evidence maps)
+tests                  Vitest suites for every package, with synthetic fixtures (no real patient data)
 ```
+
+Shared code is imported by name (`@bt/shared/core/units`, `@bt/shared/research/papers`); it ships as TypeScript source, so there is no separate build step. The page talks to the local server through [tRPC](https://trpc.io) (`/api/trpc`, router in `packages/shared/src/api/router.ts`), so both sides share one typed contract; Brain's streamed answers and file transfers stay plain HTTP.
 
 The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and design notes are in [`PRODUCT.md`](PRODUCT.md) and [`DESIGN.md`](DESIGN.md).
 
@@ -296,7 +308,7 @@ The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and desi
 - The footer links directly to the research-source toggles in Settings. MCP tools can receive model-selected inputs and contact other services; source descriptions are not an enforced host allowlist. Built-in study search and newer-record checks are separate from these switches.
 
 - [PRIVACY.md](PRIVACY.md) records local versus external data flows, first-run defaults, the personal-data search-query rule, observed synthetic-query hosts, static additional destinations and audit limits.
-- [DATA-LICENSES.md](DATA-LICENSES.md) lists bundled datasets/models, source terms, redistribution status and verification dates, including restricted and unverified rights. Settings → About links to the GitHub document rather than displaying the full inventory. Regenerate it with `bun tools/data-licenses.ts` after updating `src/app/dataLicenses.json`.
+- [DATA-LICENSES.md](DATA-LICENSES.md) lists bundled datasets/models, source terms, redistribution status and verification dates, including restricted and unverified rights. Settings → About links to the GitHub document rather than displaying the full inventory. Regenerate it with `bun tools/data-licenses.ts` after updating `apps/web/src/app/dataLicenses.json`.
 
 ## Status and roadmap
 

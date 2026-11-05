@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { canUse, isLocalUrl, modelEfforts } from "../../src/core/aiProviders";
+import { canUse, isLocalUrl, modelEfforts } from "@bt/shared/core/aiProviders";
 
 describe("assistant provider capabilities", () => {
   it("assistant-model-efforts excludes Mistral Large without hiding supported model controls", () => {

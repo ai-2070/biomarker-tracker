@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { CitedAnswer } from "../../src/app/components/CitedAnswer";
-import { questionWithFiles, redactName } from "../../src/app/brain/logic";
+import { CitedAnswer } from "../../apps/web/src/app/components/CitedAnswer";
+import { questionWithFiles, redactName } from "../../apps/web/src/app/brain/logic";
 
 describe("assistant document privacy and transport boundaries", () => {
   it.each([

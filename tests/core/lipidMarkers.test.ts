@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { parseLabText } from "../../src/core/importers/labText";
-import { validateManualEntry } from "../../src/core/importers/manual";
-import { flagMeasurement } from "../../src/core/trends";
+import { parseLabText } from "@bt/shared/core/importers/labText";
+import { validateManualEntry } from "@bt/shared/core/importers/manual";
+import { flagMeasurement } from "@bt/shared/core/trends";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();

@@ -2,11 +2,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { MockModel } from "./mockModel";
 import { describe, expect, it } from "vitest";
-import { ask, dataPack, studyIdsIn } from "../../server/assistant";
-import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "../../server/healthTools";
-import { findMarker } from "../../server/knowledge";
-import { toolStep } from "../../server/steps";
-import type { Measurement, ProtocolEntry } from "../../src/core/types";
+import { ask, dataPack, studyIdsIn } from "../../apps/server/assistant";
+import { biologicalAge, healthTools, levers, markerDetail, parseSnapshot, resultsOverview, safetyOf, testSummaryFor, type HealthSnapshot } from "../../apps/server/healthTools";
+import { findMarker } from "../../apps/server/knowledge";
+import { toolStep } from "../../apps/server/steps";
+import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 
 const m = (id: string, biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
   id, biomarkerId, date, value, originalValue: value, originalUnit: "x", source: "manual", ...extra,

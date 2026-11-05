@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ATTACHED_TEXT_LIMIT, brainShortcut, isTextFile, questionWithFiles, redactName, type KeyLike } from "../../src/app/brain/logic";
+import { ATTACHED_TEXT_LIMIT, brainShortcut, isTextFile, questionWithFiles, redactName, type KeyLike } from "../../apps/web/src/app/brain/logic";
 
 const key = (k: string, more: Partial<KeyLike> = {}): KeyLike => ({ key: k, ctrlKey: false, metaKey: false, altKey: false, shiftKey: false, repeat: false, isComposing: false, defaultPrevented: false, ...more });
 const idle = { open: false, onInteractive: false, overlayOpen: false };

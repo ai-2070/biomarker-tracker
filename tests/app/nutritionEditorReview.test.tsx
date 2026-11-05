@@ -3,22 +3,22 @@ import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import type { IntakeItem } from "../../src/core/intake";
-import type { FoodDb, Meal } from "../../src/core/meals";
-import type { Measurement, Profile } from "../../src/core/types";
+import type { IntakeItem } from "@bt/shared/core/intake";
+import type { FoodDb, Meal } from "@bt/shared/core/meals";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 
 const state = vi.hoisted(() => ({ all: [] as Measurement[], profile: { sex: "f", birthMonth: "1986-10" } as Profile, items: [] as IntakeItem[], meals: [] as Meal[], foodDb: undefined as FoodDb | undefined }));
-vi.mock("../../src/app/hooks", () => ({
+vi.mock("../../apps/web/src/app/hooks", () => ({
   useAllMeasurements: () => state.all, useProfile: () => state.profile, useProtocols: () => [], usePlans: () => [],
   useMeals: () => state.meals, useIntakeList: () => state.items, useDisplayUnits: () => ({}), setIntakeList: vi.fn(async () => {}),
 }));
-vi.mock("../../src/app/foodDb", () => ({ useFoodDb: () => state.foodDb, EXAMPLE_MEALS: [] }));
-vi.mock("../../src/app/components/ResearchPanel", () => {
+vi.mock("../../apps/web/src/app/foodDb", () => ({ useFoodDb: () => state.foodDb, EXAMPLE_MEALS: [] }));
+vi.mock("../../apps/web/src/app/components/ResearchPanel", () => {
   return { ResearchPanel: ({ critical }: { critical: boolean }) => createElement("div", { "data-research-critical": String(critical) }) };
 });
-vi.mock("../../src/app/components/EvidenceMap", () => ({ hasEvidenceMap: () => false, EvidenceMap: () => null }));
-import { IntakePage } from "../../src/app/pages/IntakePage";
-import { NutrientPage } from "../../src/app/pages/NutrientPage";
+vi.mock("../../apps/web/src/app/components/EvidenceMap", () => ({ hasEvidenceMap: () => false, EvidenceMap: () => null }));
+import { IntakePage } from "../../apps/web/src/app/pages/IntakePage";
+import { NutrientPage } from "../../apps/web/src/app/pages/NutrientPage";
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ["Date"] });

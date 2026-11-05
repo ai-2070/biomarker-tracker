@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { validateEvidenceMap, type EvidenceMapFile } from "../../src/core/evidenceMap";
+import { validateEvidenceMap, type EvidenceMapFile } from "@bt/shared/core/evidenceMap";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "evidence-maps");
 const files = readdirSync(DIR)
