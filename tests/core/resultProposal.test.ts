@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { durationHours, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
+import { criticalResults, durationHours, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();
@@ -103,5 +103,32 @@ describe("results Brain read from a picture", () => {
     expect(durationHours("45.5 min")).toBeCloseTo(45.5 / 60);
     expect(durationHours("1:35")).toBeCloseTo(1 + 35 / 60);
     expect(durationHours("123.5 h")).toBeUndefined();
+  });
+});
+
+describe("critical results read from a picture", () => {
+  it("finds results beyond a marker's critical limits, in the canonical unit", () => {
+    const r = parse({
+      results: [
+        { marker: "potassium", value: "7,2", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" },
+        { marker: "ferritin", value: "45", unit: "µg/L" },
+        { marker: "potassium", value: "<2.0", unit: "mmol/L" },
+      ],
+    });
+    expect(criticalResults(r.report, defs)).toEqual([
+      { biomarkerId: "potassium", value: 7.2, low: false },
+      { biomarkerId: "potassium", value: 2, qualifier: "<", low: true },
+    ]);
+  });
+
+  it("leaves out results that are only outside the lab's range, or can't be judged", () => {
+    const r = parse({
+      results: [
+        { marker: "potassium", value: "5.8", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" },
+        { marker: "potassium", value: "9" },
+        { marker: "potassium", value: "high", unit: "mmol/L" },
+      ],
+    });
+    expect(criticalResults(r.report, defs)).toEqual([]);
   });
 });

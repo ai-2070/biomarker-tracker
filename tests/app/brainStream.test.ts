@@ -93,4 +93,10 @@ describe("Brain's streamed answer in the page", () => {
     ] } as never);
     expect(live).toEqual({ text: "Here is the answer.", steps: [{ tool: "get_results", input: "{}", success: false }], studyIds: [] });
   });
+
+  it("notes when results read from a picture are critical", () => {
+    const part = (output: unknown) => ({ type: "dynamic-tool", toolName: "propose_results", toolCallId: "1", state: "output-available", input: { tool: "propose_results" }, output });
+    expect(liveAnswer({ id: "m", role: "assistant", parts: [part({ ok: true, critical: true })] } as never)).toMatchObject({ critical: true });
+    expect(liveAnswer({ id: "m", role: "assistant", parts: [part({ ok: true })] } as never)).not.toHaveProperty("critical");
+  });
 });

@@ -11,6 +11,7 @@ import { Review } from "../components/LabReview";
 import { Button, CheckIcon, FlagBadge, cx, inputStyles } from "../components/ui";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { todayIso } from "@bt/shared/core/dates";
+import { criticalResults } from "@bt/shared/core/importers/resultProposal";
 import type { HabitProposal } from "@bt/shared/core/habitProposal";
 import { defaultRetestDays } from "@bt/shared/core/habits";
 import { safetyLabels, safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
@@ -496,6 +497,12 @@ function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live" }>; al
         <span className="font-medium">Brain</span>
         <span className="truncate font-mono text-[11px] text-ink-2">{turn.model}</span>
       </p>
+      {turn.critical && (
+        <p role="alert" className="rounded-xl border-2 border-danger-strong bg-danger-soft p-3 text-ink">
+          <span className="font-semibold">A result in the picture looks far outside the usual range.</span> Please contact a doctor soon, or your local
+          emergency number if you feel unwell. Check the value against the report in the card that follows.
+        </p>
+      )}
       {/* Not read out word by word; the status line below says what is happening. */}
       {turn.text && <div aria-live="off"><CitedAnswer text={turn.text} allowed={checked} /></div>}
       {turn.steps.length > 0 && (
@@ -611,8 +618,23 @@ function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; 
 
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Nothing saved from {turn.fileName}.</p>;
   if (turn.state === "saved") return <SavedResults turn={turn} model={model} />;
+  // Results read from a picture that are far out of range, as read: the urgent banner comes before anything else.
+  const critical: CriticalItem[] = turn.fromPicture
+    ? criticalResults(turn.report, BIOMARKER_MAP).flatMap((c, i) => {
+        const def = BIOMARKER_MAP.get(c.biomarkerId);
+        if (!def) return [];
+        const measurement: Measurement = { id: `${turn.id}-critical-${i}`, biomarkerId: def.id, value: c.value, originalValue: c.value, originalUnit: def.canonicalUnit, date: turn.report.date ?? todayIso(), source: "photo", ...(c.qualifier ? { qualifier: c.qualifier } : {}) };
+        return [{ def, measurement, low: c.low }];
+      })
+    : [];
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-line bg-sunken p-3">
+      {critical.length > 0 && (
+        <div>
+          <CriticalBanner items={critical} />
+          <p className="-mt-3 px-1 text-sm text-ink-2">As Brain read {critical.length === 1 ? "it" : "them"} from the picture: check against the report.</p>
+        </div>
+      )}
       <p className="flex items-center gap-2 px-1 text-sm">
         <FileIcon className="size-4 shrink-0 text-ink-2" />
         <span className="min-w-0 truncate font-medium">{turn.fileName}</span>

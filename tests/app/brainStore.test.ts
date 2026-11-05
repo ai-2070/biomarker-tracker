@@ -5,6 +5,7 @@ import ferritin from "../../knowledge/biomarkers/ferritin.json";
 import weight from "../../knowledge/biomarkers/weight.json";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
+import potassium from "../../knowledge/biomarkers/potassium.json";
 import { deferred } from "../helpers";
 import type { Profile } from "@bt/shared/core/types";
 import type { ProfileFillResult } from "../../apps/web/src/db/db";
@@ -40,7 +41,7 @@ vi.mock("../../apps/web/src/db/db", () => ({
 }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../apps/web/src/app/knowledge", () => ({
-  BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace].map((def) => [def.id, def])),
+  BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace, potassium].map((def) => [def.id, def])),
 }));
 vi.mock("../../apps/web/src/app/components/LabReview", () => ({
   isPdf: (file: File) => file.type === "application/pdf",
@@ -482,6 +483,19 @@ describe("results Brain read from photos", () => {
       role: "review", fileName: "report.jpg", files: [photo], fromPicture: true, kind: "lab", state: "open",
       report: { date: "2026-10-20", rows: [{ biomarkerId: "ferritin", value: "45", unit: "µg/L", labLow: "15", labHigh: "150", problems: [] }] },
     });
+  });
+
+  it("puts the review card before Brain's answer, and suggests no habit next to a critical value read from the picture", async () => {
+    const habit = { tool: "propose_habit", validated: true, success: true, input: "{}", output: { intent: "recommend", shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] } } };
+    await brain.addFiles([new File(["photo"], "report.jpg", { type: "image/jpeg" })]);
+    mocks.api.mockResolvedValue({ ...reply("Contact a doctor."), steps: [proposal([{ marker: "potassium", value: "7.2", unit: "mmol/L" }]), habit] });
+    await brain.send("Personal model", "Read this and suggest a habit");
+    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "review", "assistant"]);
+
+    await brain.addFiles([new File(["photo"], "report2.jpg", { type: "image/jpeg" })]);
+    mocks.api.mockResolvedValue({ ...reply("One result."), steps: [proposal([{ marker: "potassium", value: "4.2", unit: "mmol/L" }]), habit] });
+    await brain.send("Personal model", "Read this and suggest a habit");
+    expect(brain.useBrain().turns.slice(3).map((t) => t.role)).toEqual(["user", "review", "assistant", "habit"]);
   });
 
   it("uses body wording for body measurements", () => {

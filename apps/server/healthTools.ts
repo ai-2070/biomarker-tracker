@@ -23,7 +23,7 @@ import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, Saf
 import { markerTerms, paperById, searchPapers, type SearchFilter } from "@bt/shared/research/papers";
 import { bodySummary } from "@bt/shared/core/bodySummary";
 import { parseHabitProposal } from "@bt/shared/core/habitProposal";
-import { MAX_PROPOSED_RESULTS, parseResultProposal } from "@bt/shared/core/importers/resultProposal";
+import { MAX_PROPOSED_RESULTS, criticalResults, parseResultProposal } from "@bt/shared/core/importers/resultProposal";
 import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "@bt/shared/core/plans";
 import { closestFoods, dailyReference, foodNameNote, mealSafetyBlock, mealTotals, searchFoods, validateMeal, type Meal } from "@bt/shared/core/meals";
 import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
@@ -454,10 +454,12 @@ export function testSummaryFor(s: HealthSnapshot, date?: string) {
 
 /** The built-in tools for one request. `fetchFn` is injected so tests can run without a network. */
 export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string; /** Photos or scanned pages came with the newest question. */ images?: boolean } = {}): ToolSet {
+  /** Set when this request's pictures showed a critical result: no habit, protocol or meal proposals after it. */
+  let pictureCritical = false;
   const proposalContext = () => ({
     requestText: context.requestText ?? "",
     safety: safetyOf(s),
-    critical: resultsOverview(s).critical.length > 0,
+    critical: pictureCritical || resultsOverview(s).critical.length > 0,
   });
   return {
     // Always offered, so the tool list is the same on every turn (prompt cache); it refuses without typed text.
@@ -781,8 +783,19 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const r = parseResultProposal(input, knowledge().defs, todayIso());
         if (!r.ok) return { error: r.error };
         const toCheck = r.report.rows.filter((row) => row.problems.length > 0);
+        const critical = criticalResults(r.report, knowledge().defs).map((c) => {
+          const def = knowledge().defs.get(c.biomarkerId)!;
+          return { marker: def.name, value: `${c.qualifier ?? ""}${c.value} ${def.canonicalUnit}`, level: c.low ? "very low" : "very high" };
+        });
+        if (critical.length) pictureCritical = true;
         return {
           shownToPerson: r.proposal,
+          ...(critical.length
+            ? {
+                critical,
+                criticalNote: "These results, as read, are far outside the usual range. The app shows an urgent banner first. Start your answer by saying to contact a doctor now (or emergency services if the person feels unwell) and to check the value against the report; say nothing else about these results, and don't suggest causes or actions.",
+              }
+            : {}),
           resultsOnCard: r.report.rows.length,
           ...(toCheck.length ? { needsChecking: toCheck.map((row) => ({ marker: row.biomarkerId, problems: row.problems })) } : {}),
           ...(r.unknownMarkers.length ? { notTrackedByTheApp: r.unknownMarkers } : {}),
