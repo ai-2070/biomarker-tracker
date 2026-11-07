@@ -111,6 +111,7 @@ function FilesCard({ profileId }: { profileId: string }) {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const load = () => localServer.profiles.files.query({ id: profileId }).then((r) => setFiles(r.files));
+  // biome-ignore lint/correctness/useExhaustiveDependencies: load again only when the profile changes
   useEffect(() => {
     void load().catch(() => setFiles([]));
   }, [profileId]);

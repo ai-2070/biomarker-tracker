@@ -379,7 +379,11 @@ function WatchPicker({
         all={all}
         tested={tested}
         markerIds={markerIds}
-        onChange={(ids) => (setMarkerIds(ids), setError(null), setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids)))))}
+        onChange={(ids) => {
+          setMarkerIds(ids);
+          setError(null);
+          setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids))));
+        }}
       />
       {error && <p className={errorStyles}>{error}</p>}
       <ChoiceGroup<string>

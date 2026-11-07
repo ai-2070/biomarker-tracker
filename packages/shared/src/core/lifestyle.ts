@@ -197,7 +197,7 @@ export function wavelengthRgb(nm: number): [number, number, number] | undefined 
   else if (nm < 645) [r, g] = [1, (645 - nm) / 65];
   else r = 1;
   const edge = nm < 420 ? 0.3 + (0.7 * (nm - 380)) / 40 : nm > 700 ? 0.3 + (0.7 * (750 - nm)) / 50 : 1;
-  const c = (x: number) => Math.round(255 * Math.pow(x * edge, 0.8));
+  const c = (x: number) => Math.round(255 * (x * edge) ** 0.8);
   return [c(r), c(g), c(b)];
 }
 

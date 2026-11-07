@@ -274,6 +274,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
         )}
       </div>
 
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: keys come from t.bind (arrows, plus, minus, 0, Enter) */}
       <div
         {...t.bind}
         role="img"

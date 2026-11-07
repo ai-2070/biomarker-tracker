@@ -221,6 +221,7 @@ export function McpSettings() {
   const [data, setData] = useState<{ presets: readonly McpPreset[]; servers: ServerRow[]; npx: boolean } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const load = () => localServer.mcp.list.query().then(setData);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: load once on mount
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load the servers."));
   }, []);

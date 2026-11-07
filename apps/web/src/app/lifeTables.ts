@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 
 let tables: Promise<LifeTableFile> | undefined;
 function loadTables() {
-  return (tables ??= import("../../../../knowledge/lifetables/countries.json").then((module) => {
+  tables ??= import("../../../../knowledge/lifetables/countries.json").then((module) => {
     if (validateLifeTables(module.default).length) throw new Error("Invalid country life tables");
     return module.default as LifeTableFile;
-  }));
+  });
+  return tables;
 }
 
 /** Population and optional-date sections share one validated bundle, not fitted-model state. */

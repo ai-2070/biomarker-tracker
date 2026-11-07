@@ -108,6 +108,7 @@ function SleepPlots({ measurements, nights, today }: { measurements: readonly Me
       </p>
       <div
         {...t.bind}
+        role="group"
         className="relative min-w-0 touch-pan-y rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         aria-label="Sleep timing chart. Arrow keys move through time; plus and minus zoom."
       >

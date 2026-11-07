@@ -39,7 +39,10 @@ describe("reveal", () => {
         parentElement,
         getAttribute: (a: string) => attrs.get(a) ?? null,
         removeAttribute: (a: string) => void attrs.delete(a),
-        dispatchEvent: (e: Event) => (events.push(`${name}:${e.type}`), true),
+        dispatchEvent: (e: Event) => {
+          events.push(`${name}:${e.type}`);
+          return true;
+        },
         attrs,
       };
     };

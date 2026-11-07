@@ -88,6 +88,7 @@ export function NormChart({ set, sex, points, unit, higherIsBetter }: { set: Nor
                       const bottom = b.min === undefined ? vMin : b.min - (Number.isInteger(b.min) && b.min > 0 ? 0.5 : 0);
                       const id = `${key}-${b.label}`;
                       return (
+                        // biome-ignore lint/a11y/noStaticElementInteractions: hover only highlights; the same values are in the table below the chart
                         <rect
                           key={b.label}
                           x={x1}

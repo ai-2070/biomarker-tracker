@@ -1,6 +1,6 @@
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { inkShare, type PdfPageInfo, pdfPagePlan, piecesToLines, type TextPiece } from "@bt/shared/core/importers/pdfText";
-import type { PDFPageProxy } from "pdfjs-dist";
+import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 import { MAX_PHOTO_SIDE, type PreparedPhoto } from "./brain/photo";
 
 export class PdfReadError extends Error {
@@ -27,7 +27,7 @@ export async function readPdf(file: File, progress?: (fraction: number, stage: s
   pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
 
   const data = new Uint8Array(await file.arrayBuffer());
-  let doc;
+  let doc: PDFDocumentProxy;
   try {
     doc = await pdfjs.getDocument({
       data,

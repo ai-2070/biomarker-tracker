@@ -161,7 +161,7 @@ describe("import review data regressions", () => {
 
   it("prioritizes collection over receipt dates and warns about fallback or conflicting collection dates", () => {
     const result = "\nFerritin 45 µg/L 15 - 150";
-    const report = parseLabText("Specimen received: 2026-10-12\nCollected: 2026-10-10" + result, [...defs.values()]);
+    const report = parseLabText(`Specimen received: 2026-10-12\nCollected: 2026-10-10${result}`, [...defs.values()]);
     expect(report.date).toBe("2026-10-10");
     expect(report.dateNote).toBeUndefined();
     for (const line of ["Probenentnahme: 12.05.2024 08:15   Eingang: 13.05.2024 10:02", "Eingang: 13.05.2024 10:02   Probenentnahme: 12.05.2024 08:15"]) {
@@ -169,10 +169,10 @@ describe("import review data regressions", () => {
       expect(combined.date).toBe("2024-05-12");
       expect(combined.dateNote).toBeUndefined();
     }
-    expect(parseLabText("Specimen received: 2026-10-12" + result, [...defs.values()]).dateNote).toMatch(/No collection date/);
-    const ambiguous = parseLabText("Collected: 2026-10-10\nCollected: 2026-10-11" + result, [...defs.values()]);
+    expect(parseLabText(`Specimen received: 2026-10-12${result}`, [...defs.values()]).dateNote).toMatch(/No collection date/);
+    const ambiguous = parseLabText(`Collected: 2026-10-10\nCollected: 2026-10-11${result}`, [...defs.values()]);
     expect(ambiguous.dateNote).toMatch(/Several collection dates/);
-    const slash = parseLabText("Collected: 05/06/2026" + result, [...defs.values()]);
+    const slash = parseLabText(`Collected: 05/06/2026${result}`, [...defs.values()]);
     expect(slash.dateNote).toMatch(/day\/month/);
   });
 });

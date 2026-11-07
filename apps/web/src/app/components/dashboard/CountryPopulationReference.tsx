@@ -150,7 +150,7 @@ function SurvivalChart({ points }: { points: PopulationSurvivalPoint[] }) {
       <p className="text-sm text-ink-2">
         Your age: {years(current.age)} years. Vertical axis: people still alive out of 100 alive at that age. Horizontal axis: age in years.
       </p>
-      <div ref={box} className="w-full min-w-0" aria-label="Population survival curve; the same values are available in the table below">
+      <div ref={box} className="w-full min-w-0" role="group" aria-label="Population survival curve; the same values are available in the table below">
         {width > 0 && (
           <LineChart width={width} height={width < 640 ? 240 : 280} data={series} margin={{ top: 26, right: 16, bottom: 4, left: 0 }} accessibilityLayer>
             <CartesianGrid vertical={false} stroke="var(--color-line)" strokeDasharray="2 4" />

@@ -12,7 +12,7 @@ import {
   parseSnapshot,
   resultsOverview,
   safetyOf,
-  testSummaryFor,
+  type testSummaryFor,
 } from "../../apps/server/healthTools";
 import { findMarker } from "../../apps/server/knowledge";
 import { toolStep } from "../../apps/server/steps";

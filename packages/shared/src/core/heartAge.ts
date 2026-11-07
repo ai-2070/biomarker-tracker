@@ -47,7 +47,7 @@ function sum(i: HeartAgeInput): number {
 /** Predicted 10-year risk of a heart attack, stroke or other cardiovascular event (0–1). */
 export function framinghamRisk(i: HeartAgeInput): number {
   const c = FRAMINGHAM_BMI[i.sex];
-  return 1 - Math.pow(c.s0, Math.exp(sum(i) - c.mean));
+  return 1 - c.s0 ** Math.exp(sum(i) - c.mean);
 }
 
 /** The age at which a person with normal risk factors has the same predicted risk. */

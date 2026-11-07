@@ -76,7 +76,7 @@ const rowsAt = (n, i) => {
   if (!r || r[0] !== all[i][0] || String(r[1]).trim() !== String(all[i][1]).trim()) throw new Error(`row ${i} differs in ${n}`);
   return r;
 };
-const baseIdx = all.map((r, i) => i).filter((i) => i >= 3 && typeof all[i][0] === "string" && /^\d+-\d+$/.test(all[i][0]));
+const baseIdx = all.map((_r, i) => i).filter((i) => i >= 3 && typeof all[i][0] === "string" && /^\d+-\d+$/.test(all[i][0]));
 
 const keys = [...NUTRIENTS.map((n) => n[0]), "epaDha"];
 const foods = [];
@@ -110,7 +110,7 @@ const out = {
   keys,
   foods,
 };
-writeFileSync(outPath, JSON.stringify(out) + "\n");
+writeFileSync(outPath, `${JSON.stringify(out)}\n`);
 const measured = keys.map((k, i) => `${k}:${foods.filter((f) => f[2][i] !== null).length}`).join(" ");
 console.log(`wrote ${foods.length} foods`);
 console.log(measured);

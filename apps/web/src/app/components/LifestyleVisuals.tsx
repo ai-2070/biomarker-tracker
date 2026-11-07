@@ -90,7 +90,7 @@ function ratioTicks(min: number, max: number): number[] {
 
 function linearTicks(min: number, max: number): number[] {
   const raw = (max - min) / 4;
-  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const mag = 10 ** Math.floor(Math.log10(raw));
   const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) ?? raw;
   const out: number[] = [];
   for (let t = Math.ceil(min / step) * step; t <= max + 1e-9; t += step) out.push(Number(t.toPrecision(6)));

@@ -283,7 +283,7 @@ describe("server persistence review regressions", () => {
 
   it("R1-009 and R6-003 round-trip long and astral attachment names, extensions, URLs and actual bytes", () => {
     const source = profiles.createProfile({ person: { name: "Unicode" } });
-    const names = ["a".repeat(205) + ".pdf", "A" + "\u{10400}".repeat(40) + ".pdf", "\u{10400}".repeat(205) + ".jpeg"];
+    const names = [`${"a".repeat(205)}.pdf`, `A${"\u{10400}".repeat(40)}.pdf`, `${"\u{10400}".repeat(205)}.jpeg`];
     const kept = names.map((name) => profiles.addFile(source.id, name, pdf));
     for (const file of kept) {
       expect(file.originalName.endsWith(path.extname(file.name))).toBe(true);
@@ -311,7 +311,7 @@ describe("server persistence review regressions", () => {
     // Empty data and long names reach the real encoded archive limit without huge source buffers.
     expect(() => writeZip(Array.from({ length: 1601 }, () => ({ name: longName, data: tiny })))).toThrow(/200 MB backup limit/);
     expect(() => writeZip(Array.from({ length: 65536 }, () => ({ name: "x", data: tiny })))).toThrow(/too many files/);
-    expect(() => writeZip([{ name: longName + "a", data: tiny }])).toThrow(/name is too long/);
+    expect(() => writeZip([{ name: `${longName}a`, data: tiny }])).toThrow(/name is too long/);
     expect(() => readZip(Buffer.allocUnsafe(MAX_ZIP_BYTES + 1))).toThrow(/200 MB upload limit/);
     const bytes = writeZip([{ name: "ok.txt", data: pdf }]);
     expect(readZip(bytes)[0]!.data).toEqual(pdf);

@@ -57,7 +57,12 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && query) {
+                e.preventDefault();
+                setQuery("");
+              }
+            }}
             placeholder="Search: a vitamin, a food, a symptom, a medicine"
             aria-label="Search vitamins, minerals and other supplements"
             autoComplete="off"
@@ -101,7 +106,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
         <Card className="flex flex-col items-start gap-3">
           <p className="text-ink-2">
             Nothing here matches “{query.trim()}”. Try a vitamin or mineral, a food (salmon, spinach), a sign (tiredness), or a medicine (warfarin).
-            {kind && " Or look in all of them, not only " + (kind === "vitamin" ? "vitamins." : kind === "mineral" ? "minerals." : "other supplements.")}
+            {kind && ` Or look in all of them, not only ${kind === "vitamin" ? "vitamins." : kind === "mineral" ? "minerals." : "other supplements."}`}
           </p>
           <Button variant="secondary" onClick={() => setQuery("")}>
             Clear the search

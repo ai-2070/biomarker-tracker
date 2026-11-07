@@ -21,7 +21,7 @@ vi.mock("react", async (original) => ({
       },
     ];
   },
-  useEffect: (effect: () => void | (() => void), deps: unknown[]) => {
+  useEffect: (effect: React.EffectCallback, deps: unknown[]) => {
     const index = host.cursor++;
     const previous = host.slots[index] as { deps: unknown[]; cleanup?: () => void } | undefined;
     if (previous && deps.every((dep, i) => Object.is(dep, previous.deps[i]))) return;
@@ -82,7 +82,7 @@ beforeEach(() => {
 });
 
 it("blocks saved-only testing for an edited connection and reloads discovery after saving", async () => {
-  let current = structuredClone(settings);
+  const current = structuredClone(settings);
   let models = [{ id: "old", label: "Old endpoint model" }];
   host.api.mockImplementation(async (_kind: string, path: string, input?: { id?: string; source?: string; baseURL: string }) => {
     if (path === "settings.loadedModels" && input?.source === "ollama") return { models };

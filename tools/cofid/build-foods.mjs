@@ -99,6 +99,6 @@ const out = {
   nutrients,
   foods,
 };
-writeFileSync(outPath, JSON.stringify(out, null, 2) + "\n");
+writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
 console.log(`wrote ${foods.length} foods`);
 for (const f of foods) console.log(f.id, f.name, JSON.stringify(f.per100g));

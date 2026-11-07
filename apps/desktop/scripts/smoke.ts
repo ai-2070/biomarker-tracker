@@ -88,6 +88,10 @@ try {
     child.kill();
     await exited;
   }
-  if (!path.resolve(temporary).startsWith(path.resolve(os.tmpdir()) + path.sep)) throw new Error("Invalid temporary directory");
-  fs.rmSync(temporary, { recursive: true, force: true });
+  // Never throw here: it would hide the error that ended the run.
+  if (path.resolve(temporary).startsWith(path.resolve(os.tmpdir()) + path.sep)) fs.rmSync(temporary, { recursive: true, force: true });
+  else {
+    console.error(`Invalid temporary directory, not removed: ${temporary}`);
+    process.exitCode = 1;
+  }
 }

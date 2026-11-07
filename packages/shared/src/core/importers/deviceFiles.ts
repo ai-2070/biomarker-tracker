@@ -1168,7 +1168,10 @@ export class DailyTally {
     // Convert each sample into the first sample's unit before combining mixed-unit exports.
     d.sum += (c - s.offset) / s.factor;
     d.n++;
-    if (field === "sleep_duration" && sleepSessions && validSleepSessions(sleepSessions, field, date)) (d.sleepSessions ??= []).push(...sleepSessions);
+    if (field === "sleep_duration" && sleepSessions && validSleepSessions(sleepSessions, field, date)) {
+      d.sleepSessions ??= [];
+      d.sleepSessions.push(...sleepSessions);
+    }
     s.days.set(date, d);
   }
 

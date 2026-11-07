@@ -218,7 +218,7 @@ export function eligibleReviews(
       (anyDesignKind(kind) || isTrialReview(r) || !r.abstract.trim()) &&
       (!topicInTitle || topicInTitle.test(r.title) || (SEVERAL_SUPPLEMENTS.test(r.title) && topicInTitle.test(r.abstract))) &&
       // A review of a different group of people (sepsis, surgery, pregnancy...) answers a different question.
-      (!excludeTitle || !excludeTitle.test(r.title)),
+      !excludeTitle?.test(r.title),
   );
 }
 

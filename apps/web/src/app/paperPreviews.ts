@@ -2,6 +2,7 @@ import { type FetchFn, type Paper, paperById, studyQuery } from "@bt/shared/rese
 
 /** Recognise paper links only; never turn an arbitrary link or search into a request. */
 export function paperPreviewId(href: string): string | undefined {
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: rejects control characters on purpose
   if (!/^https:\/\//i.test(href) || /[\s\\\u0000-\u001f\u007f]/u.test(href)) return undefined;
   try {
     const url = new URL(href);
@@ -9,6 +10,7 @@ export function paperPreviewId(href: string): string | undefined {
     // Split the URL before decoding: an encoded ? or # belongs to the DOI,
     // whereas an actual query or fragment belongs to the link, not its identity.
     const path = decodeURIComponent(url.pathname);
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: rejects control characters on purpose
     if (/[\u0000-\u001f\u007f]/u.test(path)) return undefined;
     let id: string | undefined;
     let match: RegExpExecArray | null;

@@ -133,7 +133,7 @@ export function isProfile(v: unknown): v is Profile {
 
 /** Keep only known profile fields, without empty text. */
 export function cleanProfile(p: Profile): Profile {
-  const text = (t: string | undefined) => (t && t.trim() ? t.trim() : undefined);
+  const text = (t: string | undefined) => (t?.trim() ? t.trim() : undefined);
   const out: Profile = {};
   if (text(p.name)) out.name = text(p.name);
   if (p.sex) out.sex = p.sex;
