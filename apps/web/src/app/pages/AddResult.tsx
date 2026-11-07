@@ -9,14 +9,16 @@ import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
-import { BodyEntryForm } from "../components/dashboard/body";
+import { SegmentTabs } from "../components/SegmentTabs";
+import { BodyEntryForm } from "../components/dashboard/BodyEntryForm";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles, linkCardStyles, cx } from "../components/ui";
 import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
+import { More } from "../components/disclosure";
 
 type Fasted = "yes" | "no" | "unknown";
 
@@ -137,7 +139,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
           <li key={w.title}>
             <a
               href={href(w.to)}
-              className="flex h-full items-start gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+              className={cx("flex h-full items-start gap-3", linkCardStyles)}
             >
               <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
                 <w.icon />
@@ -151,34 +153,18 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
         ))}
       </ul>
 
-      <div className="mb-4 flex flex-col items-start gap-3">
-        <h2 className="font-serif text-2xl font-normal">Type it in</h2>
-        <div role="tablist" aria-label="What to add" className="flex flex-wrap gap-1 rounded-xl border border-line bg-sunken p-1">
-          {KINDS.map((k) => (
-            <button
-              key={k.id}
-              id={`add-tab-${k.id}`}
-              role="tab"
-              type="button"
-              aria-selected={kind === k.id}
-              aria-controls={`add-panel-${k.id}`}
-              onClick={() => setKind(k.id)}
-              className={cx(
-                "flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm transition-colors duration-150 sm:min-h-9",
-                kind === k.id ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink",
-              )}
-            >
-              <k.icon width={16} height={16} />
-              {k.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
+      <h2 className="mb-3 font-serif text-2xl font-normal">Type it in</h2>
+      <SegmentTabs
+        label="What to add"
+        tabs={KINDS.map((k) => ({ value: k.id, label: <><k.icon width={16} height={16} />{k.label}</> }))}
+        value={kind}
+        onChange={setKind}
+        listClassName="mb-4"
+      >
       {kind === "body" ? (
         <BodyPanel />
       ) : (
-      <div id="add-panel-blood" role="tabpanel" aria-labelledby="add-tab-blood">
+      <div>
       <p className="mb-4 max-w-3xl text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
 
       {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
@@ -239,13 +225,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
               </Field.Error>
             </Field.Root>
 
-            <details className="group rounded-lg border border-line">
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 font-medium select-none">
-                More details (optional)
-                <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-                  ▾
-                </span>
-              </summary>
+            <More summary="More details (optional)" boxed>
               <div className="flex flex-col gap-5 border-t border-line p-3">
                 <div className="flex flex-col gap-1.5">
                   <span className={labelStyles}>Lab's reference range</span>
@@ -299,7 +279,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
                   />
                 </Field.Root>
               </div>
-            </details>
+            </More>
 
             {warnings.length > 0 && (
               <Notice tone="warn" title="Please check the unit" role="alert">
@@ -324,7 +304,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
         <aside aria-live="polite" className="flex flex-col gap-2">
           {saved.length > 0 && (
             <>
-              <h2 className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Saved just now</h2>
+              <h2 className={eyebrowStyles}>Saved just now</h2>
               <ul className="flex flex-col gap-2">
                 {saved.map(({ measurement: m, flag }) => {
                   const d = BIOMARKER_MAP.get(m.biomarkerId)!;
@@ -353,6 +333,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
       </div>
       </div>
       )}
+      </SegmentTabs>
     </>
   );
 }
@@ -362,7 +343,7 @@ function BodyPanel() {
   const [saved, setSaved] = useState(0);
   const [round, setRound] = useState(0);
   return (
-    <div id="add-panel-body" role="tabpanel" aria-labelledby="add-tab-body" className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
       <Card>
         <p className="mb-4 text-ink-2">Weight, waist, blood pressure, heart rate, sleep, blood glucose and more, for one day.</p>
         <BodyEntryForm

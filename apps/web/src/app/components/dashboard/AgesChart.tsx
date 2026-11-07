@@ -11,8 +11,9 @@ import { formatDate, formatYears } from "../../format";
 import { HabitTypes, Toggle, useChartPrefs } from "../chartHabits";
 import { ProtocolLanes } from "../ProtocolLanes";
 import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
-import { Card, cx } from "../ui";
+import { Card, cx, eyebrowStyles } from "../ui";
 import { InlineBirthMonth } from "../InlineBirthMonth";
+import { More } from "../disclosure";
 
 /**
  * The three age estimates over time on one chart, with calendar age as a dashed line. Each series
@@ -198,7 +199,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
       <div className="grid gap-3 sm:grid-cols-3">
         {latest.map(({ s, p }) => (
           <div key={s.id} className="flex flex-col gap-0.5">
-            <p className="flex items-center gap-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
+            <p className={cx("flex items-center gap-2", eyebrowStyles)}>
               <svg width="12" height="12" aria-hidden="true">
                 <Marker shape={s.shape} x={6} y={6} color={s.color} size={4} />
               </svg>
@@ -403,13 +404,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
         with healthy Norwegian adults). An average of them wouldn't mean anything, so each is shown on its own.
       </p>
 
-      <details className="group rounded-lg border border-line">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 font-medium select-none">
-          Show as a table
-          <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-            ▾
-          </span>
-        </summary>
+      <More summary="Show as a table" boxed>
         <div className="overflow-x-auto border-t border-line">
           <table className="w-full text-left text-sm tabular-nums">
             <thead className="text-ink-2">
@@ -435,7 +430,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
             </tbody>
           </table>
         </div>
-      </details>
+      </More>
     </Card>
   );
 }

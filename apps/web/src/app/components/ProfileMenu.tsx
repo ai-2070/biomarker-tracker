@@ -3,7 +3,7 @@ import { useProfile } from "../hooks";
 import { Avatar } from "../pages/ProfilesPage";
 import { switchProfile, useProfiles, useSaveStatus } from "../profiles";
 import { href } from "../router";
-import { CheckIcon, ChevronDownIcon, cx } from "./ui";
+import { CheckIcon, ChevronDownIcon, cx, eyebrowSmallStyles } from "./ui";
 
 const itemStyles = "flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-ink outline-none select-none transition-colors duration-100 data-highlighted:bg-sunken";
 
@@ -40,7 +40,7 @@ export function ProfileMenu({ variant = "compact" }: { variant?: "compact" | "si
         <Menu.Positioner sideOffset={6} align={variant === "sidebar" ? "start" : "end"} className="z-50 outline-none">
           <Menu.Popup className="flex w-72 max-w-[calc(100vw-2rem)] origin-[var(--transform-origin)] flex-col gap-0.5 rounded-xl border border-line bg-surface p-1.5 text-ink shadow-lg outline-none transition-[scale,opacity] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             <Menu.Group>
-              <Menu.GroupLabel className="px-3 pt-1.5 pb-1 font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase">Profiles</Menu.GroupLabel>
+              <Menu.GroupLabel className={cx("px-3 pt-1.5 pb-1", eyebrowSmallStyles)}>Profiles</Menu.GroupLabel>
               {profiles.map((p) => {
                 const current = p.id === active.id;
                 return (

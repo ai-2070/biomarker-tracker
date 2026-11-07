@@ -7,6 +7,7 @@ import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { PaperLink } from "./PaperLink";
 import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
+import { More } from "./disclosure";
 
 const KIND_LABEL: Record<Paper["kind"], string> = {
   guideline: "Guideline",
@@ -154,10 +155,9 @@ function PaperItem({ paper: p, canAsk }: { paper: Paper; canAsk: boolean }) {
       </h3>
       {p.authors && <p className="truncate text-sm text-ink-2">{p.authors}</p>}
       {p.abstract && (
-        <details className="mt-1">
-          <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Abstract</summary>
+        <More summary="Abstract" className="mt-1">
           <p className="text-sm whitespace-pre-line text-ink-2">{p.abstract}</p>
-        </details>
+        </More>
       )}
       <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
         <p className="font-mono text-xs text-muted">{p.id}</p>

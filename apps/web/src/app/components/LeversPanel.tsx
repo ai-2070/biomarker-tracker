@@ -9,7 +9,7 @@ import { EVIDENCE, FOODS, nameInSentence } from "../knowledge";
 import { lowerFirst } from "../format";
 import { href } from "../router";
 import { SafetyNotices } from "./SafetyNotices";
-import { Chip, Row, Rows } from "./disclosure";
+import { Chip, More, Row, Rows } from "./disclosure";
 import { GradeBadge } from "./evidence";
 import { cx } from "./ui";
 import { PaperLink } from "./PaperLink";
@@ -107,8 +107,7 @@ function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: Biomarker
         </p>
       )}
       {c.foods && <FoodList claim={c} safety={safety} />}
-      <details className="text-sm text-ink-2">
-        <summary className="min-h-10 cursor-pointer py-2">Why this grade, and sources</summary>
+      <More summary="Why this grade, and sources" className="text-sm text-ink-2">
         <ul className="list-disc pl-5">
           {c.whyThisGrade.map((w) => (
             <li key={w}>{w}</li>
@@ -121,7 +120,7 @@ function Lever({ claim: c, def, safety }: { claim: EvidenceClaim; def: Biomarker
             </li>
           ))}
         </ul>
-      </details>
+      </More>
       <a
         href={href({ name: "habits", add: c.lever, marker: def.id })}
         className="inline-flex min-h-11 items-center gap-1 self-start text-sm font-medium text-accent underline-offset-2 hover:underline"

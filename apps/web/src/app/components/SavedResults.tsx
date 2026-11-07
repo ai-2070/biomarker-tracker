@@ -12,6 +12,7 @@ import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { ConfirmDialog } from "./ConfirmDialog";
 import { MeasurementEditor } from "./MeasurementEditor";
 import { Button, CheckIcon, FlagBadge, inputStyles, labelStyles } from "./ui";
+import { More } from "./disclosure";
 
 const PAGE_SIZE = 10;
 const SOURCE: Record<Measurement["source"], string> = {
@@ -170,8 +171,7 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
                       <MeasurementEditor key={m.id} measurement={m} onCancel={() => setEditing(null)} onSaved={() => { setEditing(null); setMessage("Updated result."); }} />
                     </div>
                   ) : (
-                    <details className="ml-11 mt-1 min-w-0">
-                      <summary className="flex min-h-11 cursor-pointer items-center text-sm font-medium text-ink-2">Details</summary>
+                    <More summary="Details" className="ml-11 mt-1 min-w-0">
                       <div className="flex flex-col gap-2 text-sm text-ink-2">
                         {entered && <p>Entered as {entered}</p>}
                         {range && <p>{range.comparisonOnly ? "Population comparison (not clinical limits)" : "Range"} {showRange(def, range, unit)}{range.source === "lab" ? " (lab)" : ""}</p>}
@@ -180,7 +180,7 @@ export function SavedResults({ measurements, filterable = true, showMarker = fil
                         {during.length > 0 && <p>At the time: {during.map((p) => p.label).join(", ")}</p>}
                         {!deleting && editing === null && <div><ConfirmDialog trigger="Delete this result" triggerVariant="quiet" triggerClassName="-ml-3 text-sm" title="Delete this result?" description={`${fullName(def)} ${value} from ${formatDate(m.date)} will be removed from this profile. This cannot be undone.`} confirmLabel="Delete result" onConfirm={() => remove([m.id])} /></div>}
                       </div>
-                    </details>
+                    </More>
                   )}
                 </li>
               );

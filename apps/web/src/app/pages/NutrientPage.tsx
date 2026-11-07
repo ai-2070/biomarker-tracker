@@ -14,7 +14,7 @@ import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { jump } from "../components/glance";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Card, FlagBadge, LinkButton, Notice, cx } from "../components/ui";
+import { Card, FlagBadge, LinkButton, Notice, cx, eyebrowStyles } from "../components/ui";
 import { displayUnitFor, formatDate, lowerFirst, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, FOODS, NUTRIENT_MAP, fullName } from "../knowledge";
@@ -23,6 +23,7 @@ import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
 import { SupplementGuide } from "../components/SupplementGuide";
 import { PaperLink } from "../components/PaperLink";
+import { More } from "../components/disclosure";
 
 
 const INTAKE_TYPE = {
@@ -62,7 +63,7 @@ export function NutrientPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
+          <p className={eyebrowStyles}>{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{n.name}</h1>
           {n.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {n.otherNames.join(", ")}</p>}
           {basic && !n.simpleGuide && <p className="mt-2 text-sm font-medium text-ink-2">Basic guide · Benefits not yet reviewed</p>}
@@ -551,8 +552,7 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
         <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : r.noUpperLimit}</p>
         {(!bare || r.upperLimit) && <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>}
       </div>
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Sources</summary>
+      <More summary="Sources">
         <ul className="flex flex-col gap-1 text-sm text-ink-2">
           {r.sources.map((s) => (
             <li key={s.pmid ?? s.doi}>
@@ -560,7 +560,7 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
             </li>
           ))}
         </ul>
-      </details>
+      </More>
     </Box>
   );
 }

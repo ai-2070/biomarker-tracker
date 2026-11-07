@@ -15,6 +15,8 @@ export const buttonStyles = {
   secondary: cx(buttonBase, "border border-line-strong bg-surface text-ink hover:bg-sunken"),
   danger: cx(buttonBase, "bg-danger-strong text-white hover:brightness-110"),
   quiet: cx(buttonBase, "px-3 text-ink-2 hover:bg-sunken hover:text-ink"),
+  /** Text only, like a link: small actions next to content ("Show all", "Back to my chat"). */
+  link: "inline-flex min-h-11 items-center text-left text-sm font-medium text-accent underline-offset-4 hover:underline disabled:cursor-not-allowed disabled:opacity-50",
 };
 
 type Variant = keyof typeof buttonStyles;
@@ -28,7 +30,7 @@ export function LinkButton({ variant = "primary", className, ...props }: Compone
 }
 
 export function Card({ className, ...props }: ComponentProps<"section">) {
-  return <section className={cx("rounded-xl border border-line bg-surface p-4 sm:p-5", className)} {...props} />;
+  return <section className={cx(cardStyles, "p-4 sm:p-5", className)} {...props} />;
 }
 
 export function PageTitle({ children, sub }: { children: ReactNode; sub?: ReactNode }) {
@@ -105,6 +107,19 @@ export const inputStyles =
 export const labelStyles = "text-base font-medium text-ink";
 export const helpStyles = "text-sm text-ink-2";
 export const errorStyles = "text-sm font-medium text-danger";
+
+/** The small uppercase label above a heading or a group ("Whole foods", "Suggested habit"). */
+export const eyebrowStyles = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
+/** The same label at menu size: group headings in menus, lists and Brain's cards. */
+export const eyebrowSmallStyles = "font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase";
+
+/** The card look on any element (Card is a <section> with padding): add padding and layout. */
+export const cardStyles = "rounded-xl border border-line bg-surface";
+/** A card that is a link: lifts a little on hover. Add layout (flex, gap). */
+export const linkCardStyles = "rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm";
+/** A Base UI Dialog.Popup in the middle of the screen. Add a width, e.g. w-[34rem]. */
+export const dialogStyles =
+  "fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0";
 
 export function ChevronDownIcon(props: ComponentProps<"svg">) {
   return (

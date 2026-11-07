@@ -10,7 +10,7 @@ import { openBrain } from "../brain/store";
 import { DarkMatterExplainer } from "../components/DarkMatter";
 import { FoodComparison } from "../components/FoodComparison";
 import { BrainIcon, PlusIcon } from "../components/icons";
-import { Button, Card, PageTitle } from "../components/ui";
+import { Button, Card, PageTitle, linkCardStyles, cx } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
 import { useAllMeasurements, useMeals, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, nameInSentence } from "../knowledge";
@@ -153,7 +153,7 @@ function MealCard({ to, name, items, db, tag }: { to: string; name: string; item
   return (
     <a
       href={to}
-      className="flex h-full flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+      className={cx("flex h-full flex-col gap-2", linkCardStyles)}
     >
       {tag && <span className="self-start rounded-full bg-accent-soft px-2.5 py-0.5 text-sm font-medium text-accent">{tag}</span>}
       <h3 className="font-serif text-xl font-normal">{name}</h3>

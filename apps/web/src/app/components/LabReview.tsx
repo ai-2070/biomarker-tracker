@@ -15,6 +15,7 @@ import { Button, Card, CheckIcon, LinkButton, Notice, cx, errorStyles, inputStyl
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
+import { More } from "./disclosure";
 
 // The review step of a lab report import: used by the Import page and by Brain (PDF text, pasted text, and
 // results Brain read from photos or scanned pages).
@@ -312,10 +313,7 @@ function RowEditor({ row, kind, onChange }: { row: Row; kind: "lab" | "body"; on
 
 function Unmatched({ lines }: { lines: string[] }) {
   return (
-    <details>
-      <summary className="min-h-11 cursor-pointer py-2 text-ink-2">
-        {lines.length} {lines.length === 1 ? "line looks" : "lines look"} like results for markers this app doesn't track yet
-      </summary>
+    <More summary={<>{lines.length} {lines.length === 1 ? "line looks" : "lines look"} like results for markers this app doesn't track yet</>}>
       <ul className="mt-2 flex flex-col gap-1 font-mono text-xs text-ink-2">
         {lines.map((l, i) => (
           <li key={i} className="break-words">
@@ -323,7 +321,7 @@ function Unmatched({ lines }: { lines: string[] }) {
           </li>
         ))}
       </ul>
-    </details>
+    </More>
   );
 }
 

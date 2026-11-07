@@ -11,6 +11,7 @@ import { formatDate } from "../../format";
 import { setMortalityActivityLeisure, useMortalityActivityLeisure } from "../../hooks";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { Card, cx } from "../ui";
+import { More } from "../disclosure";
 
 const exact = new Intl.DateTimeFormat(undefined, { weekday: "long", day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", timeZoneName: "short" });
 const day = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "long", year: "numeric" });
@@ -174,8 +175,7 @@ export function BestBefore({ measurements, profile, found }: { measurements: rea
         {prediction?.reasons.map((reason) => <p key={reason} className="text-sm text-ink-2">{reason}</p>)}
       </section>
 
-      <details className="max-w-3xl border-t border-line pt-2">
-        <summary className="min-h-11 cursor-pointer py-2 font-medium">Inputs used, readings left out, and exercise assumption</summary>
+      <More summary="Inputs used, readings left out, and exercise assumption" tone="plain" className="max-w-3xl border-t border-line pt-2">
         <div className="flex flex-col gap-5 py-3">
           <section className="flex flex-col gap-3">
             <h3 className="font-medium">Included in the selected fit</h3>
@@ -206,10 +206,9 @@ export function BestBefore({ measurements, profile, found }: { measurements: rea
             <ul className="flex list-disc flex-col gap-2 pl-5 text-sm text-ink-2">{projection.cautions.map((caution) => <li key={caution}>{caution}</li>)}</ul>
           )}
         </div>
-      </details>
+      </More>
 
-      <details className="max-w-3xl">
-        <summary className="min-h-11 cursor-pointer py-2 font-medium">Method, held-out results, and limits</summary>
+      <More summary="Method, held-out results, and limits" tone="plain" className="max-w-3xl">
         <div className="flex flex-col gap-4 py-3 text-sm text-ink-2">
           {selected && evaluation && (
             <section className="flex flex-col gap-3">
@@ -234,12 +233,11 @@ export function BestBefore({ measurements, profile, found }: { measurements: rea
               <p>{models.method}</p>
               <p>Model version {models.version}; fitted {formatDate(models.fittedOn)}. Development used NHANES 1999–2004; the untouched temporal holdout was 2005–2006, with linked mortality through 2019. Ten-year labels approximate public, perturbed follow-up times. These complete-case samples are not claimed to represent every US adult.</p>
               {!!models.limitations.length && <ul className="flex list-disc flex-col gap-2 pl-5">{models.limitations.map((limit) => <li key={limit}>{limit}</li>)}</ul>}
-              <details>
-                <summary className="min-h-11 cursor-pointer py-2 font-medium text-ink">Public training sources</summary>
+              <More summary="Public training sources" tone="plain">
                 <ul className="flex list-disc flex-col gap-2 pl-5">
                   {models.sources.map((source) => <li key={source.url}><a className="break-all text-accent" href={source.url} target="_blank" rel="noopener noreferrer">{source.url}</a></li>)}
                 </ul>
-              </details>
+              </More>
             </>
           )}
           <ul className="flex list-disc flex-col gap-2 pl-5">
@@ -250,7 +248,7 @@ export function BestBefore({ measurements, profile, found }: { measurements: rea
             <li>A period life table holds its reporting period's death rates constant. Future rates can change. The middle-half range is not an individual confidence interval. Not medical advice. Not a medical device.</li>
           </ul>
         </div>
-      </details>
+      </More>
     </Card>
   );
 }

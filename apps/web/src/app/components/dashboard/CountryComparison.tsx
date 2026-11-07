@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { compareLifeTables, lifeTablePeriod, type LifeTableFile } from "@bt/shared/core/lifeTable";
 import { href } from "../../router";
 import { cx } from "../ui";
+import { More } from "../disclosure";
 
 export function CountryComparison({ file, age, sex, selectedCountry }: { file: LifeTableFile; age: number; sex: "f" | "m" | undefined; selectedCountry?: string }) {
   const comparison = useMemo(() => compareLifeTables(file, age, sex), [file, age, sex]);
@@ -26,12 +27,11 @@ export function CountryComparison({ file, age, sex, selectedCountry }: { file: L
       </div>
       <p className="max-w-3xl text-sm text-ink-2">Scroll the chart to see every country. Reporting periods and population definitions differ, so this is not a same-year ranking, a healthcare score, or a prediction of what moving country would do to your life.</p>
       {comparison.missingSex.length > 0 && <p className="max-w-3xl text-sm text-ink-2">Not compared without sex: {comparison.missingSex.map((row) => row.name).join(", ")}. Their sources do not publish combined-sex tables. <a href={href({ name: "data", tab: "data" })}>Add your sex in Settings</a> to include them.</p>}
-      <details>
-        <summary className="min-h-11 cursor-pointer py-3 font-medium">Comparison sources and limits</summary>
+      <More summary="Comparison sources and limits" tone="plain">
         <ul className="flex flex-col gap-3 py-2 text-sm text-ink-2">
           {comparison.rows.map((row) => <li key={row.country}><a href={row.source.url} target="_blank" rel="noopener noreferrer" className="text-accent">{row.name} — {row.source.name}</a> · {lifeTablePeriod(row.source.period)}{row.source.note && <p className="mt-1">{row.source.note}</p>}</li>)}
         </ul>
-      </details>
+      </More>
     </figure>
   );
 }
