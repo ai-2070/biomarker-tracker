@@ -4,7 +4,7 @@ import { FOOD_COMPARISON } from "../knowledge";
 import { EvidenceMap, hasEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, StudyLink } from "./evidence";
 import { Glance } from "./glance";
-import { segBtn } from "./timeControls";
+import { SegmentTabs } from "./SegmentTabs";
 import { Card, cx } from "./ui";
 
 const HEADING: Record<ComparisonTopic, string> = {
@@ -53,26 +53,18 @@ export function FoodComparison() {
         </p>
       </div>
 
-      <div role="tablist" aria-label="Topic" className="flex flex-wrap gap-1 rounded-xl border border-line bg-sunken p-1 sm:self-start">
-        {FOOD_COMPARISON.map((t) => (
-          <button
-            key={t.topic}
-            role="tab"
-            type="button"
-            aria-selected={t.topic === current.topic}
-            onClick={() => {
-              setTopic(t.topic);
-              setMapClaim(undefined);
-            }}
-            className={cx(segBtn, "px-3", t.topic === current.topic ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-          >
-            {HEADING[t.topic]}
-          </button>
-        ))}
-      </div>
-
+      <SegmentTabs
+        label="Topic"
+        tabs={FOOD_COMPARISON.map((t) => ({ value: t.topic, label: HEADING[t.topic] }))}
+        value={current.topic}
+        onChange={(t) => {
+          setTopic(t);
+          setMapClaim(undefined);
+        }}
+        className="flex flex-col gap-4"
+      >
       {/* Wide screens: the claim cards at a readable width, the at-a-glance table beside them. */}
-      <div role="tabpanel" className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-x-8">
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-x-8">
         <div className="lg:col-span-2">
           <h3 className="font-serif text-xl font-normal">{current.title}</h3>
           <p className="max-w-3xl text-ink-2">{current.intro}</p>
@@ -96,6 +88,7 @@ export function FoodComparison() {
           ))}
         </ul>
       </div>
+      </SegmentTabs>
       {hasMap && (
         <details
           ref={mapRef}

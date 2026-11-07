@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "@bt/shared/core/dates";
@@ -14,6 +14,7 @@ import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
+import { SegmentTabs } from "../components/SegmentTabs";
 import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
@@ -479,33 +480,29 @@ function HabitForm({
     }
   }
 
-  const sourcePicker = !initial && (
-    <div role="tablist" aria-label="Start from" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
-      {(
-        [
-          ["own", "Write your own"],
-          ["meal", "A meal"],
-          ["protocol", "A protocol"],
-        ] as const
-      ).map(([v, text]) => (
-        <button
-          key={v}
-          role="tab"
-          type="button"
-          aria-selected={from === v}
-          onClick={() => setFrom(v)}
-          className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", from === v ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-        >
-          {text}
-        </button>
-      ))}
-    </div>
-  );
+  // A new habit starts from the person's own words, a meal or a protocol; editing has no choice.
+  const withSource = (content: ReactNode) =>
+    initial ? (
+      content
+    ) : (
+      <SegmentTabs
+        label="Start from"
+        tabs={[
+          { value: "own", label: "Write your own" },
+          { value: "meal", label: "A meal" },
+          { value: "protocol", label: "A protocol" },
+        ]}
+        value={from}
+        onChange={setFrom}
+        className="flex flex-col gap-5"
+      >
+        {content}
+      </SegmentTabs>
+    );
 
   if (!initial && from === "protocol") {
-    return (
+    return withSource(
       <div className="flex flex-col gap-5">
-        {sourcePicker}
         {plans.length === 0 ? (
           <p className="text-ink-2">
             No protocols yet. <a href={href({ name: "plans" })}>Write one in Protocols</a>: a set of supplements, foods or routines you follow.
@@ -559,9 +556,8 @@ function HabitForm({
     );
   }
 
-  return (
+  return withSource(
     <form onSubmit={submit} noValidate className="flex flex-col gap-5">
-      {sourcePicker}
       {!initial && from === "meal" &&
         (meals.length === 0 ? (
           <p className="text-ink-2">
