@@ -7,7 +7,7 @@ import {
   protocolToIntake,
   SUPPLEMENT_NUTRIENTS,
 } from "@bt/shared/core/intake";
-import { type FoodDb, type Meal } from "@bt/shared/core/meals";
+import type { FoodDb, Meal } from "@bt/shared/core/meals";
 import { MAX_ITEMS } from "@bt/shared/core/plans";
 import { formatValue } from "@bt/shared/core/units";
 import { useState } from "react";
@@ -44,7 +44,10 @@ export function LoadProtocol({ items, meals, db, save }: { items: IntakeItem[]; 
           label="Load a protocol"
           options={plans.map((p) => ({ value: p.id, label: p.name }))}
           value={plan.id}
-          onChange={(id) => (setPlanId(id), setLoaded(undefined))}
+          onChange={(id) => {
+            setPlanId(id);
+            setLoaded(undefined);
+          }}
           className="min-w-0 flex-1"
         />
         <Button variant="secondary" onClick={load}>

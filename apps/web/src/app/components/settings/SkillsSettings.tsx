@@ -40,6 +40,7 @@ export function SkillsSettings() {
   const [error, setError] = useState<string | null>(null);
 
   const load = () => localServer.skills.list.query().then((r) => setSkills(r.skills));
+  // biome-ignore lint/correctness/useExhaustiveDependencies: load once on mount
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load skills."));
   }, []);

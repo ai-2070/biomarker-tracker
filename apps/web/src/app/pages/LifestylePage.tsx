@@ -62,7 +62,12 @@ export function LifestylePage() {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && query) {
+              e.preventDefault();
+              setQuery("");
+            }
+          }}
           placeholder="Search: sauna, blood pressure, sleep"
           aria-label="Search lifestyle topics"
           autoComplete="off"

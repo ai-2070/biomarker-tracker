@@ -93,11 +93,13 @@ export function useTimeView(
   const currentView = opts.shared ? opts.shared.view : view;
   const v = currentView ? clampWindow(currentView, full, minSpan) : full;
   const zoomed = v.to - v.from < full.to - full.from - 1;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: full is a new object each render; its bounds are the dependency
   useEffect(() => {
     setView((previous) => (previous ? clampWindow(previous, full, minSpan) : null));
     setSelection(null);
     drag.current = null;
   }, [full.from, full.to, minSpan]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: runs when the shared window moves; opts is a new object each render
   useEffect(() => {
     if (opts.shared) {
       setSelection(null);
@@ -255,7 +257,7 @@ export function Overview({ t, lines }: { t: TimeView; lines: { points: { day: nu
       onPointerCancel={() => (drag.current = null)}
     >
       {width > 0 && (
-        <svg width={width} height={H} className="block">
+        <svg width={width} height={H} className="block" aria-hidden="true">
           <rect x={0} y={0} width={width} height={H} rx={6} className="fill-sunken" />
           {lines.map((l, i) => (
             <polyline

@@ -243,7 +243,7 @@ export function publicClaimTopic(value: string): string | null {
   if (
     topic.length < 3 ||
     topic.length > 100 ||
-    !/^[\p{L}\p{N}][\p{L}\p{N} ,()'’\/-]*$/u.test(topic) ||
+    !/^[\p{L}\p{N}][\p{L}\p{N} ,()'’/-]*$/u.test(topic) ||
     !/\p{L}/u.test(topic) ||
     /\b(?:my|mine|we|our|email|address|born|ignore|instructions|prompt|assistant)\b|\bI(?:['’]m|\s+(?:am|have|take|use|was|need|want|feel))\b/i.test(topic)
   )
@@ -257,7 +257,7 @@ const fields = ["verdict", "grade", "summary", "limitations", "citations"];
 
 function citationId(value: unknown): string | undefined {
   if (typeof value !== "string" || value.length > 240) return;
-  const match = /^(PMID|PMCID|DOI)\s*:\s*(\d{4,9}|PMC\d+|10\.\d{4,9}\/[^\s<>"{}\[\]]+)$/i.exec(value.trim());
+  const match = /^(PMID|PMCID|DOI)\s*:\s*(\d{4,9}|PMC\d+|10\.\d{4,9}\/[^\s<>"{}[\]]+)$/i.exec(value.trim());
   if (!match) return;
   const kind = match[1]!.toUpperCase();
   const id = match[2]!;
@@ -276,6 +276,7 @@ export function validateClaimAssessment(value: unknown, studyIds: readonly strin
   if ((record.verdict === "not enough evidence") !== (record.grade === null))
     throw new Error("Missing evidence must have no grade; other verdicts need an evidence grade.");
   const concise = (value: unknown, max: number): string => {
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: rejects control characters on purpose
     if (typeof value !== "string" || value.trim().length < 12 || value.length > max || /[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value))
       throw new Error("The evidence summary or limitations are missing or too long.");
     return value.trim();

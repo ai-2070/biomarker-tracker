@@ -56,6 +56,7 @@ export function DoctorReportChart({ series, unit, from, to }: { series: DoctorRe
           <title id={`${id}-title`}>{def.name} — selected readings</title>
           <desc id={`${id}-description`}>{description}</desc>
           <rect x="0" y="0" width="640" height="218" fill="#fff" />
+          {/* biome-ignore lint/a11y/noAriaHiddenOnFocusable: an SVG group isn't focusable */}
           <g aria-hidden="true">
             <text x={BOX.left} y="14">
               {suffix || "Hours / minutes"}
@@ -106,6 +107,7 @@ export function DoctorReportChart({ series, unit, from, to }: { series: DoctorRe
               .filter(Boolean)
               .join("; ");
             return (
+              // biome-ignore lint/a11y/noInteractiveElementToNoninteractiveRole: an SVG group isn't interactive; each reading is one image
               <g key={m.id} role="img" aria-label={label}>
                 <title>{label}</title>
                 {qualifier ? (
@@ -132,6 +134,7 @@ export function DoctorReportChart({ series, unit, from, to }: { series: DoctorRe
                   <circle cx={point.x} cy={point.y} r="2.7" fill="#000" />
                 )}
                 {point.overlapCount > 1 && point.overlapIndex === 0 && (
+                  // biome-ignore lint/a11y/noAriaHiddenOnFocusable: SVG text isn't focusable; the count is in the reading's label
                   <text x={point.x} y={point.y - 17} textAnchor="middle" fontSize="11" fill="#000" aria-hidden="true">
                     ×{point.overlapCount}
                   </text>

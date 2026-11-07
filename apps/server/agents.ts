@@ -68,7 +68,9 @@ export function runProgram(
     partial = lines.pop() ?? "";
     for (const line of lines) if (line.trim()) opts.onLine(line);
   });
-  child.stderr!.setEncoding("utf8").on("data", (d: string) => stderr.length < 200_000 && (stderr += d));
+  child.stderr!.setEncoding("utf8").on("data", (d: string) => {
+    if (stderr.length < 200_000) stderr += d;
+  });
   child.stdin!.on("error", () => {});
   child.stdin!.end(opts.input ?? "");
   const stop = () => void killTree(child, opts.graceMs);

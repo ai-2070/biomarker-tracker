@@ -118,7 +118,7 @@ describe("assistant safety regressions", () => {
   it("does not turn an interim Codex answer into success after a terminal failure", () => {
     const message = JSON.stringify({ type: "item.completed", item: { type: "agent_message", text: "Partial answer" } });
     expect(parseCodex(message, "")).toEqual({ ok: true, text: "Partial answer" });
-    expect(parseCodex(message + "\n" + JSON.stringify({ type: "turn.failed", error: { message: "Quota exhausted" } }), "")).toEqual({
+    expect(parseCodex(`${message}\n${JSON.stringify({ type: "turn.failed", error: { message: "Quota exhausted" } })}`, "")).toEqual({
       ok: false,
       error: "Codex: Quota exhausted",
     });

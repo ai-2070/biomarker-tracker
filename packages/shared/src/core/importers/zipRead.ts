@@ -64,8 +64,14 @@ export async function zipEntries(file: Blob): Promise<ZipEntry[]> {
       const len = u16(cd, e + 2);
       if (id === 0x0001) {
         let q = e + 4;
-        if (size === 0xffffffff) (size = u64(cd, q)), (q += 8);
-        if (compressed === 0xffffffff) (compressed = u64(cd, q)), (q += 8);
+        if (size === 0xffffffff) {
+          size = u64(cd, q);
+          q += 8;
+        }
+        if (compressed === 0xffffffff) {
+          compressed = u64(cd, q);
+          q += 8;
+        }
         if (localOffset === 0xffffffff) localOffset = u64(cd, q);
       }
       e += 4 + len;

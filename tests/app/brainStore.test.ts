@@ -291,7 +291,7 @@ describe("research preparation and response races", () => {
     pending.resolve(reply("Old answer"));
     await sending;
     expect(brain.useBrain()).toMatchObject({ scope: "research", busy: false, turns: [], draft: "" });
-    expect((mocks.api.mock.calls[0]?.[3] as AbortSignal).aborted).toBe(true);
+    expect((mocks.api.mock.calls[0]![3] as AbortSignal).aborted).toBe(true);
   });
 });
 
@@ -492,7 +492,7 @@ describe("the streamed answer", () => {
     expect(turns[1]).toMatchObject({ content: "Your ferritin is fine.", studyIds: ["PMID:123"] });
     // Only real turns go back to the model next time.
     await brain.send("Personal model", "And now?");
-    const history = (mocks.api.mock.calls.at(-1)?.[2] as { messages: { role: string }[] }).messages.map((m) => m.role);
+    const history = (mocks.api.mock.calls.at(-1)![2] as { messages: { role: string }[] }).messages.map((m) => m.role);
     expect(history).toEqual(["user", "assistant", "user"]);
   });
 
@@ -605,7 +605,7 @@ describe("results Brain read from photos", () => {
     for (const t of turns) if (t.role === "review") brain.updateTurn(t.id, { state: "dismissed" });
     expect(brain.picturesToResend(brain.useBrain().turns, "Personal model")).toBeUndefined();
     await brain.send("Personal model", "Thanks");
-    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+    expect((mocks.api.mock.calls[2]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
   });
 
   it("keeps sending the pictures with each follow-up while their card is open, and stops after a question without them", async () => {
@@ -615,7 +615,7 @@ describe("results Brain read from photos", () => {
     mocks.api.mockResolvedValue(reply("Sure."));
     await brain.send("Personal model", "You missed one");
     await brain.send("Personal model", "What is ferritin?");
-    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeDefined();
+    expect((mocks.api.mock.calls[2]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeDefined();
     // The re-sent question also counts as the picture question, while the card stays open.
     expect(
       brain
@@ -626,7 +626,7 @@ describe("results Brain read from photos", () => {
     // A question that went to another model breaks the chain, even if the card is still open.
     await brain.send("Other model", "And this?");
     await brain.send("Personal model", "Back again");
-    expect((mocks.api.mock.calls[4]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+    expect((mocks.api.mock.calls[4]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
   });
 
   it("doesn't save a reading typed with pictures as today's: it belongs on the card", async () => {

@@ -208,7 +208,7 @@ const words = (s: string) =>
     .replace(/\(.*?\)/g, " ")
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim();
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /**
  * The vitamin or mineral an item is about, by its name or other names: "Vitamin D3" (a form number
@@ -221,7 +221,7 @@ export function nutrientFor(item: Pick<PlanItem, "label" | "category">, nutrient
     .flatMap((n) => [n.name, ...n.otherNames].map((name) => ({ n, name: words(name) })))
     .filter((x) => x.name.length >= 3)
     .sort((a, b) => b.name.length - a.name.length);
-  return names.find(({ name }) => new RegExp(`(^| )${escape(name)}\\d*( |$)`).test(label))?.n;
+  return names.find(({ name }) => new RegExp(`(^| )${escapeRegExp(name)}\\d*( |$)`).test(label))?.n;
 }
 
 export interface PairWarning {

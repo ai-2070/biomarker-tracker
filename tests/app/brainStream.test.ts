@@ -6,7 +6,11 @@ import { type LiveAnswer, liveAnswer, streamAssistant } from "../../apps/web/src
 function uiStream() {
   const enc = new TextEncoder();
   let ctl!: ReadableStreamDefaultController<Uint8Array>;
-  const body = new ReadableStream<Uint8Array>({ start: (c) => void (ctl = c) });
+  const body = new ReadableStream<Uint8Array>({
+    start: (c) => {
+      ctl = c;
+    },
+  });
   return {
     response: () => new Response(body, { headers: { "content-type": "text/event-stream", "x-vercel-ai-ui-message-stream": "v1" } }),
     push: (c: UIMessageChunk) => ctl.enqueue(enc.encode(`data: ${JSON.stringify(c)}\n\n`)),

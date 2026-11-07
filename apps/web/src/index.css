@@ -338,6 +338,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* biome-ignore-start lint/complexity/noImportantStyles: reduced motion must win over every component's own timing */
   *,
   *::before,
   *::after {
@@ -347,4 +348,5 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+  /* biome-ignore-end lint/complexity/noImportantStyles: reduced motion */
 }

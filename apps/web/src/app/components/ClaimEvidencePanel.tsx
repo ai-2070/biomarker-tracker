@@ -66,6 +66,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
   useEffect(() => {
     if (critical) activeRef.current?.abort();
   }, [critical]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: the serialized successful checks and profile identity are the effect boundary; depending on the snapshot itself would refresh in a loop
   useEffect(() => {
     if (!snapshot || snapshot.error || !checkedKey) return;
     const controller = new AbortController();
@@ -88,8 +89,6 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
       controller.abort();
       setDiscovering([]);
     };
-    // The serialized successful checks and profile identity are the intentional effect boundary.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedKey, identityKey]);
 
   async function run(request: CategorizedClaim, customTopic = false, depth: ClaimDepth = "quick") {

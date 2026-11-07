@@ -56,10 +56,8 @@ export function BodyFatReferenceBadge({ measurement, profile }: { measurement: M
   const result = bodyFatComparison([measurement], profile, measurement.date);
   if (!result.band) return null;
   return (
-    <span
-      className="rounded-full border border-line bg-sunken px-3 py-1 text-sm font-medium text-ink"
-      aria-label={`Body fat reference position: ${REFERENCE_LABEL[result.band]}`}
-    >
+    <span className="rounded-full border border-line bg-sunken px-3 py-1 text-sm font-medium text-ink">
+      <span className="sr-only">Body fat reference position: </span>
       {REFERENCE_LABEL[result.band]}
     </span>
   );
@@ -223,7 +221,7 @@ function AgeGuideChart({ guide, value, band }: { guide: BodyFatGuide; value?: nu
               className="pointer-events-none absolute -top-2 -bottom-1 w-0.5 -translate-x-1/2 bg-ink outline-2 outline-surface"
               style={{ left: `${(value / maximum) * 100}%` }}
             >
-              <svg width="12" height="8" viewBox="0 0 12 8" className="absolute -top-1 left-1/2 -translate-x-1/2 fill-current text-ink">
+              <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" className="absolute -top-1 left-1/2 -translate-x-1/2 fill-current text-ink">
                 <path d="M0 0h12L6 8z" />
               </svg>
             </div>

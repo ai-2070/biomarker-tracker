@@ -352,7 +352,10 @@ export async function keepReportFiles(
   const errors: string[] = [];
   for (const file of files) {
     let byProfile = keptFiles.get(file);
-    if (!byProfile) keptFiles.set(file, (byProfile = new Map()));
+    if (!byProfile) {
+      byProfile = new Map();
+      keptFiles.set(file, byProfile);
+    }
     let pending = byProfile.get(profileId);
     if (!pending) {
       pending = upload(profileId, file, note).then((f) => f.originalName);

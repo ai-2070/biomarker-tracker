@@ -73,7 +73,12 @@ export function WholeFoodsPage() {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && query) {
+              e.preventDefault();
+              setQuery("");
+            }
+          }}
           placeholder="Search: olive oil, blood pressure, polyphenols"
           aria-label="Search foods"
           autoComplete="off"
@@ -432,11 +437,9 @@ function History({ f }: { f: WholeFoodDef }) {
       {stories.length > 0 && (
         <More
           summary={
-            <>
-              <span>
-                Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
-              </span>
-            </>
+            <span>
+              Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
+            </span>
           }
           boxed
         >

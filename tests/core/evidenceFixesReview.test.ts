@@ -89,7 +89,7 @@ describe("evidence review: current-input decisions and individual provenance", (
     const decision = approved(r);
     expect(currentDecisions(question, [r], "supplement", [decision])).toEqual([decision]);
     for (const changed of [
-      review({ title: r.title + " updated" }),
+      review({ title: `${r.title} updated` }),
       review({ abstract: "New abstract." }),
       { ...r, design: "meta-analysis" as const },
       { ...r, year: 2025 },

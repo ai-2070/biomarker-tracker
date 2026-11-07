@@ -88,12 +88,13 @@ export function ModelsSettings() {
       setLoadError(e instanceof Error ? e.message : "Couldn't load the settings.");
     }
   }
+  // biome-ignore lint/correctness/useExhaustiveDependencies: load once on mount
   useEffect(() => {
     void load();
   }, []);
 
   const info = data?.providers.find((p) => p.id === provider);
-  const installed = !info || info.kind !== "agent" || !!data?.installed[provider];
+  const installed = info?.kind !== "agent" || !!data?.installed[provider];
   const loaded = useLoadedList(info ?? ({ id: "custom", models: [], efforts: [] } as unknown as ProviderInfo), installed, discoveryRevision);
 
   if (loadError) return <Notice tone="danger">{loadError}</Notice>;
@@ -374,6 +375,7 @@ function ModelPicker({ info, value, onChange, loaded }: { info: ProviderInfo; va
   const inList = value === "" ? info.modelOptional : list.some((m) => m.id === value);
   const [other, setOther] = useState(!inList);
   // A new provider starts on its list again.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only a provider change resets the choice, not a typed model
   useEffect(() => setOther(!inList), [info.id]);
 
   // OpenRouter: hundreds of models, so type with suggestions.
@@ -487,6 +489,17 @@ function ProfilePicker({
   );
 }
 
+function Command({ text, copied, onCopy }: { text: string; copied: boolean; onCopy: () => void }) {
+  return (
+    <div className="flex items-center gap-2 rounded-lg bg-sunken p-2 pl-3">
+      <code className="min-w-0 flex-1 font-mono text-xs break-all">{text}</code>
+      <Button variant="quiet" className="min-h-9 shrink-0 px-2 text-sm" onClick={onCopy}>
+        {copied ? "Copied" : "Copy"}
+      </Button>
+    </div>
+  );
+}
+
 /** Install and sign-in steps for an agent program, with the maker's official commands. */
 function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installed: boolean; onCheck: () => Promise<void> }) {
   const [busy, setBusy] = useState<string | null>(null);
@@ -526,15 +539,6 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
     }
   }
 
-  const Command = ({ text }: { text: string }) => (
-    <div className="flex items-center gap-2 rounded-lg bg-sunken p-2 pl-3">
-      <code className="min-w-0 flex-1 font-mono text-xs break-all">{text}</code>
-      <Button variant="quiet" className="min-h-9 shrink-0 px-2 text-sm" onClick={() => void copy(text)}>
-        {copied === text ? "Copied" : "Copy"}
-      </Button>
-    </div>
-  );
-
   if (installed) {
     return (
       <div className="flex flex-col gap-2 rounded-lg border border-line p-3 text-sm">
@@ -573,7 +577,7 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
           <p className="text-sm">
             <span className="font-medium">1. Install.</span> <span className="text-ink-2">{isWindows ? "In PowerShell:" : "In a terminal:"}</span>
           </p>
-          <Command text={installCmd} />
+          <Command text={installCmd} copied={copied === installCmd} onCopy={() => void copy(installCmd)} />
           <div>
             <Button disabled={!!busy} onClick={() => void open("install")}>
               {busy === "install" ? "Opening…" : `Install ${info.label}`}
@@ -584,7 +588,7 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
           <p className="text-sm">
             <span className="font-medium">2. Sign in.</span> <span className="text-ink-2">{ins.signInNote}</span>
           </p>
-          <Command text={ins.signIn} />
+          <Command text={ins.signIn} copied={copied === ins.signIn} onCopy={() => void copy(ins.signIn)} />
           <div>
             <Button variant="secondary" disabled={!!busy} onClick={() => void open("signin")}>
               {busy === "signin" ? "Opening…" : "Open sign-in"}

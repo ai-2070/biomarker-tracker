@@ -78,8 +78,7 @@ describe("passive sleep-session imports", () => {
   });
 
   it("retains Samsung's existing waking-date duration when an awake tail crosses midnight, without attaching mismatched metadata", () => {
-    const text =
-      samsungHeader + "2026-03-01 19:00:00.000,2026-03-01 22:30:00.000,n,40002,UTC+0100\n2026-03-01 22:30:00.000,2026-03-01 23:30:00.000,n,40001,UTC+0100";
+    const text = `${samsungHeader}2026-03-01 19:00:00.000,2026-03-01 22:30:00.000,n,40002,UTC+0100\n2026-03-01 22:30:00.000,2026-03-01 23:30:00.000,n,40001,UTC+0100`;
     expect(series("com.samsung.health.sleep_stage.csv", text).days).toEqual([{ date: "2026-03-02", value: 210, readings: 1 }]);
   });
 

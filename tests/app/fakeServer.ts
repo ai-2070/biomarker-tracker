@@ -5,7 +5,7 @@ import { vi } from "vitest";
 export interface FakeCall {
   /** The procedure, e.g. "profiles.save". */
   path: string;
-  // Inputs are inspected freely in tests.
+  // biome-ignore lint/suspicious/noExplicitAny: inputs are inspected freely in tests
   input: any;
   method: string;
 }
