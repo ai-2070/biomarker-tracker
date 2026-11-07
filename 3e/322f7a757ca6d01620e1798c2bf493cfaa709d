@@ -1,0 +1,25 @@
+README.md
+  s_dfac4fc6fbc70c::t_9f3ba74daed365 250-251
+.git-blame-ignore-revs
+  s_dfac4fc6fbc70c::t_9f3ba74daed365 1-4
+.github/workflows/desktop.yml
+  s_dfac4fc6fbc70c::t_9f3ba74daed365 43-44
+CLAUDE.md
+  s_dfac4fc6fbc70c::t_9f3ba74daed365 41,460-461
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3e322f7a757ca6d01620e1798c2bf493cfaa709d",
+  "prompts": {},
+  "sessions": {
+    "s_dfac4fc6fbc70c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "59b812aa-7454-41eb-b074-ab48034510c7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
