@@ -48,6 +48,7 @@ import { BIOMARKER_MAP, FOODS, NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 import { FoodResults } from "../components/FoodResults";
 import { More } from "../components/disclosure";
+import { SimpleSelect } from "../components/UnitSelect";
 
 /**
  * Daily intake: the meals and foods eaten on a day, added up, and compared with EU (EFSA) reference
@@ -216,16 +217,13 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
                 save([...items, { id: newId(), kind: "meal", mealId: id, portions: p }]);
               }}
             >
-              <label className="flex min-w-0 flex-1 flex-col gap-1.5">
-                <span className={labelStyles}>Meal</span>
-                <select value={mealId || meals[0]!.id} onChange={(e) => setMealId(e.target.value)} className={inputStyles}>
-                  {meals.map((m) => (
-                    <option key={m.id} value={m.id}>
-                      {m.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
+              <SimpleSelect
+                label="Meal"
+                options={meals.map((m) => ({ value: m.id, label: m.name }))}
+                value={mealId || meals[0]!.id}
+                onChange={setMealId}
+                className="min-w-0 flex-1"
+              />
               <label className="flex w-24 flex-col gap-1.5">
                 <span className={labelStyles}>Portions</span>
                 <input type="number" inputMode="decimal" min={0.25} max={10} step={0.25} value={portions} onChange={(e) => setPortions(e.target.value)} className={inputStyles} />
@@ -328,16 +326,7 @@ function SupplementForm({ add }: { add: (it: IntakeItem) => void }) {
           ))}
         </div>
       )}
-      <label className="flex flex-col gap-1.5">
-        <span className={labelStyles}>Nutrient</span>
-        <select value={key} onChange={(e) => setKey(e.target.value)} className={inputStyles}>
-          {SUPPLEMENT_NUTRIENTS.map((n) => (
-            <option key={n.key} value={n.key}>
-              {n.label}
-            </option>
-          ))}
-        </select>
-      </label>
+      <SimpleSelect label="Nutrient" options={SUPPLEMENT_NUTRIENTS.map((n) => ({ value: n.key, label: n.label }))} value={key} onChange={setKey} />
       <div className="flex items-end gap-2">
         <label className="flex w-32 flex-col gap-1.5">
           <span className={labelStyles}>Amount ({unit})</span>
@@ -380,16 +369,13 @@ function LoadProtocol({ items, meals, db, save }: { items: IntakeItem[]; meals: 
   return (
     <div className="flex flex-col gap-3 border-t border-line pt-3">
       <div className="flex flex-wrap items-end gap-2">
-        <label className="flex min-w-0 flex-1 flex-col gap-1.5">
-          <span className={labelStyles}>Load a protocol</span>
-          <select value={plan.id} onChange={(e) => (setPlanId(e.target.value), setLoaded(undefined))} className={inputStyles}>
-            {plans.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <SimpleSelect
+          label="Load a protocol"
+          options={plans.map((p) => ({ value: p.id, label: p.name }))}
+          value={plan.id}
+          onChange={(id) => (setPlanId(id), setLoaded(undefined))}
+          className="min-w-0 flex-1"
+        />
         <Button variant="secondary" onClick={load}>
           Load
         </Button>
@@ -512,16 +498,14 @@ function ToProtocol({ items, meals, db }: { items: IntakeItem[]; meals: Meal[]; 
       </div>
       {plans.length > 0 && (
         <div className="flex flex-wrap items-end gap-2">
-          <label className="flex min-w-0 flex-1 flex-col gap-1.5">
-            <span className="text-sm text-ink-2">Or add it to</span>
-            <select value={target?.id ?? ""} onChange={(e) => setPlanId(e.target.value)} className={inputStyles}>
-              {plans.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SimpleSelect
+            label="Or add it to"
+            labelClassName="text-sm text-ink-2"
+            options={plans.map((p) => ({ value: p.id, label: p.name }))}
+            value={target?.id ?? null}
+            onChange={setPlanId}
+            className="min-w-0 flex-1"
+          />
           <Button
             variant="secondary"
             disabled={!target}

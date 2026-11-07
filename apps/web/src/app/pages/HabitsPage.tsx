@@ -23,6 +23,7 @@ import { href } from "../router";
 import { MarkerChoice, PhaseBadge } from "./ExperimentsPage";
 import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 import { More } from "../components/disclosure";
+import { SimpleSelect } from "../components/UnitSelect";
 
 const RETEST_OPTIONS = [
   { value: "28", label: "4 weeks" },
@@ -507,16 +508,12 @@ function HabitForm({
           </p>
         ) : (
           <>
-            <label className="flex flex-col gap-1.5">
-              <span className={labelStyles}>Protocol</span>
-              <select value={plan?.id ?? ""} onChange={(e) => setPlanId(e.target.value)} className={inputStyles}>
-                {plans.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name} ({p.items.length} {p.items.length === 1 ? "item" : "items"})
-                  </option>
-                ))}
-              </select>
-            </label>
+            <SimpleSelect
+              label="Protocol"
+              options={plans.map((p) => ({ value: p.id, label: `${p.name} (${p.items.length} ${p.items.length === 1 ? "item" : "items"})` }))}
+              value={plan?.id ?? null}
+              onChange={setPlanId}
+            />
             {plan?.active ? (
               <p className="text-ink-2">
                 Running since {formatDate(plan.active.since)}. Already recorded in Habits below; <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
@@ -562,19 +559,13 @@ function HabitForm({
             No meals yet. <a href={href({ name: "meals" })}>Build one in Meals</a>, or write your own.
           </p>
         ) : (
-          <label className="flex flex-col gap-1.5">
-            <span className={labelStyles}>Meal</span>
-            <select value={mealId} onChange={(e) => pickMeal(e.target.value)} className={inputStyles}>
-              <option value="" disabled>
-                Choose a meal
-              </option>
-              {meals.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <SimpleSelect
+            label="Meal"
+            placeholder="Choose a meal"
+            options={meals.map((m) => ({ value: m.id, label: m.name }))}
+            value={mealId || null}
+            onChange={pickMeal}
+          />
         ))}
       <Field.Root invalid={!!errors.label} className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>{initial?.plan ? "Protocol habit name" : "What do you take or change?"}</Field.Label>
