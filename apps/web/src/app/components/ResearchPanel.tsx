@@ -1,13 +1,13 @@
-import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
+import { type Paper, type SearchFilter, type SearchResult, searchPapers } from "@bt/shared/research/papers";
+import { type FormEvent, useState } from "react";
 import { useServerStatus } from "../api";
-import { searchPapers, type Paper, type SearchFilter, type SearchResult } from "@bt/shared/research/papers";
 import { askBrain, openBrain } from "../brain/store";
-import { BrainIcon } from "./icons";
 import { ChoiceGroup } from "./ChoiceGroup";
-import { PaperLink } from "./PaperLink";
-import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "./ui";
 import { More } from "./disclosure";
+import { BrainIcon } from "./icons";
+import { PaperLink } from "./PaperLink";
+import { Button, Card, helpStyles, inputStyles, labelStyles, Notice } from "./ui";
 
 const KIND_LABEL: Record<Paper["kind"], string> = {
   guideline: "Guideline",
@@ -71,8 +71,7 @@ export function ResearchPanel({
         <div>
           <h2 className="font-serif text-2xl font-normal">Research</h2>
           <p className="mt-1 text-ink-2">
-            Search published studies about {name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your
-            results are not.
+            Search published studies about {name}. Only the search words are sent, to Europe PMC (or PubMed if it's down). Your results are not.
           </p>
         </div>
       )}
@@ -90,7 +89,14 @@ export function ResearchPanel({
         />
         <Field.Root className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Narrow it down (optional)</Field.Label>
-          <Field.Control value={topic} onValueChange={setTopic} placeholder="e.g. vitamin C, pregnancy, exercise" autoComplete="off" maxLength={80} className={inputStyles} />
+          <Field.Control
+            value={topic}
+            onValueChange={setTopic}
+            placeholder="e.g. vitamin C, pregnancy, exercise"
+            autoComplete="off"
+            maxLength={80}
+            className={inputStyles}
+          />
           <Field.Description className={helpStyles}>Don't type personal details here; these words are sent to the search service.</Field.Description>
         </Field.Root>
         <div>
@@ -122,12 +128,9 @@ export function ResearchPanel({
             ))}
           </ul>
           <p className="text-sm text-ink-2">
-            Search results are sorted by relevance, not quality. A single study rarely settles a question; reviews and guidelines weigh
-            many studies together.
+            Search results are sorted by relevance, not quality. A single study rarely settles a question; reviews and guidelines weigh many studies together.
           </p>
-          {papers.length > 0 && (
-            <AskAssistantLink question={question} critical={critical} />
-          )}
+          {papers.length > 0 && <AskAssistantLink question={question} critical={critical} />}
         </div>
       )}
     </Box>
@@ -193,7 +196,9 @@ function AskAssistantLink({ question, critical }: { question: string; critical: 
             Ask Brain
           </Button>
         ) : (
-          <span className="text-sm">Start the app with <code className="font-mono">bun run start</code> to use Brain.</span>
+          <span className="text-sm">
+            Start the app with <code className="font-mono">bun run start</code> to use Brain.
+          </span>
         )}
       </div>
     </Notice>

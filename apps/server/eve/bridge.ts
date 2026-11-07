@@ -5,12 +5,12 @@
 import crypto from "node:crypto";
 import type http from "node:http";
 import type { LanguageModelV4, LanguageModelV4CallOptions, LanguageModelV4Prompt } from "@ai-sdk/provider";
-import type { ToolSet } from "ai";
 import type { ProviderId } from "@bt/shared/core/aiProviders";
+import type { ToolSet } from "ai";
 import { mergeProviderOptions } from "../brain/cache";
 import type { OnEvent } from "../brain/events";
 import type { PromptParts } from "../brain/prompt";
-import { callTool, closeRun, listTools, openRun, type BridgeRun } from "../bridge";
+import { type BridgeRun, callTool, closeRun, listTools, openRun } from "../bridge";
 import type { Ready } from "../models";
 
 export interface EveRun {
@@ -57,14 +57,29 @@ const EPHEMERAL = { anthropic: { cacheControl: { type: "ephemeral" } } } as cons
  * The same prompt-cache layout as the built-in loop (brain/cache.ts), applied to the prompt eve built:
  * Anthropic cache points after the stable rules and on the newest message; OpenAI's stable key.
  */
-export function withCache(provider: ProviderId, options: LanguageModelV4CallOptions, stable: string, key: string, own: Ready["providerOptions"]): LanguageModelV4CallOptions {
+export function withCache(
+  provider: ProviderId,
+  options: LanguageModelV4CallOptions,
+  stable: string,
+  key: string,
+  own: Ready["providerOptions"],
+): LanguageModelV4CallOptions {
   let prompt: LanguageModelV4Prompt = options.prompt;
   if (provider === "anthropic" && prompt.length) {
     const rules = prompt.findIndex((m) => m.role === "system" && m.content === stable);
-    prompt = prompt.map((m, i) => (i === rules || i === prompt.length - 1 ? { ...m, providerOptions: { ...m.providerOptions, ...EPHEMERAL } } as typeof m : m));
+    prompt = prompt.map((m, i) =>
+      i === rules || i === prompt.length - 1 ? ({ ...m, providerOptions: { ...m.providerOptions, ...EPHEMERAL } } as typeof m) : m,
+    );
   }
   const cache: Ready["providerOptions"] = provider === "openai" ? { openai: { promptCacheKey: key } } : {};
-  return { ...options, prompt, providerOptions: mergeProviderOptions(mergeProviderOptions((options.providerOptions ?? {}) as Ready["providerOptions"], own), cache) as LanguageModelV4CallOptions["providerOptions"] };
+  return {
+    ...options,
+    prompt,
+    providerOptions: mergeProviderOptions(
+      mergeProviderOptions((options.providerOptions ?? {}) as Ready["providerOptions"], own),
+      cache,
+    ) as LanguageModelV4CallOptions["providerOptions"],
+  };
 }
 
 /** Binary file data comes as { $bytes: base64 }. */
@@ -72,7 +87,8 @@ export function decodeOptions(raw: unknown): LanguageModelV4CallOptions {
   return JSON.parse(JSON.stringify(raw), (_key, value: unknown) =>
     value && typeof value === "object" && !Array.isArray(value) && typeof (value as { $bytes?: unknown }).$bytes === "string" && Object.keys(value).length === 1
       ? new Uint8Array(Buffer.from((value as { $bytes: string }).$bytes, "base64"))
-      : value) as LanguageModelV4CallOptions;
+      : value,
+  ) as LanguageModelV4CallOptions;
 }
 
 export function errorJson(e: unknown): { message: string; statusCode?: number; isRetryable?: boolean } {
@@ -88,7 +104,8 @@ const same = (a: string, b: string) => a.length === b.length && crypto.timingSaf
 
 /** Handles /eve-bridge/*. The caller has already checked the Host header; body is the parsed JSON. */
 export async function handleEveBridge(req: http.IncomingMessage, res: http.ServerResponse, url: URL, body: Record<string, unknown>): Promise<void> {
-  const send = (status: number, value: unknown): void => void res.writeHead(status, { "content-type": "application/json; charset=utf-8" }).end(JSON.stringify(value));
+  const send = (status: number, value: unknown): void =>
+    void res.writeHead(status, { "content-type": "application/json; charset=utf-8" }).end(JSON.stringify(value));
   const supplied = /^Bearer\s+([a-f0-9]{64})$/i.exec(req.headers.authorization ?? "")?.[1] ?? "";
   if (req.method !== "POST" || !bridgeToken || !supplied || !same(supplied, bridgeToken)) return send(403, { error: "Not allowed." });
   const run = typeof body.run === "string" ? runs.get(body.run) : undefined;
@@ -96,7 +113,13 @@ export async function handleEveBridge(req: http.IncomingMessage, res: http.Serve
   switch (url.pathname) {
     case "/eve-bridge/configuration": {
       const tools = (await listTools(run.bridge.tools)).map((t) => ({ name: t.name, description: t.description ?? "", inputSchema: t.inputSchema }));
-      return send(200, { stable: run.parts.stable, request: run.parts.request, modelId: run.ready.choice.model || "default", contextWindow: contextWindow(run.ready.choice.provider), tools });
+      return send(200, {
+        stable: run.parts.stable,
+        request: run.parts.request,
+        modelId: run.ready.choice.model || "default",
+        contextWindow: contextWindow(run.ready.choice.provider),
+        tools,
+      });
     }
     case "/eve-bridge/history":
       return send(200, { history: run.history });
@@ -111,7 +134,10 @@ export async function handleEveBridge(req: http.IncomingMessage, res: http.Serve
       const stop = () => controller.abort();
       res.once("close", stop);
       try {
-        const options = { ...withCache(run.ready.choice.provider, decodeOptions(body.options), run.parts.stable, run.key, run.ready.providerOptions), abortSignal: controller.signal };
+        const options = {
+          ...withCache(run.ready.choice.provider, decodeOptions(body.options), run.parts.stable, run.key, run.ready.providerOptions),
+          abortSignal: controller.signal,
+        };
         if (body.mode === "generate") return send(200, { result: await model.doGenerate(options) });
         const { stream } = await model.doStream(options);
         res.writeHead(200, { "content-type": "application/x-ndjson", "cache-control": "no-store" });

@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import {
   afterResults,
   analyzeMarker,
@@ -6,13 +5,14 @@ import {
   experimentPhase,
   geometricMean,
   markersAwaitingRetest,
+  personalBand,
   rcvBand,
   retestDate,
-  validateExperiment,
-  personalBand,
   t95,
+  validateExperiment,
 } from "@bt/shared/core/experiments";
 import type { Experiment } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { def, measurement } from "../helpers";
 
 const exp = (extra: Partial<Experiment> = {}): Experiment => ({
@@ -29,7 +29,7 @@ describe("rcvBand", () => {
   it("matches the classic formula for small CVs", () => {
     // Symmetric RCV = 1.96·√2·√(CVA²+CVI²) = 2.77 × 5.59 % ≈ 15.5 % for CVI 5 %, CVA 2.5 %.
     const b = rcvBand(5);
-    const symmetric = 1.96 * Math.SQRT2 * Math.sqrt(5 ** 2 + 2.5 ** 2) / 100;
+    const symmetric = (1.96 * Math.SQRT2 * Math.sqrt(5 ** 2 + 2.5 ** 2)) / 100;
     // The log-normal band is slightly wider upwards; its half-width matches the classic value.
     expect((b.up - b.down) / 2).toBeCloseTo(symmetric, 2);
     expect(b.up).toBeGreaterThan(symmetric);
@@ -116,10 +116,7 @@ describe("analyzeMarker", () => {
   it("says when there is no variation data for the marker", () => {
     const rdw = def("rdw");
     expect(rdw.biologicalVariation).toBeUndefined();
-    const ms = [
-      measurement({ biomarkerId: "rdw", date: "2024-02-20", value: 13 }),
-      measurement({ biomarkerId: "rdw", date: "2024-05-10", value: 15 }),
-    ];
+    const ms = [measurement({ biomarkerId: "rdw", date: "2024-02-20", value: 13 }), measurement({ biomarkerId: "rdw", date: "2024-05-10", value: 15 })];
     expect(analyzeMarker(exp({ markerIds: ["rdw"] }), rdw, ms).verdict).toBe("no-variation-data");
   });
 
@@ -203,7 +200,11 @@ describe("experimentPhase", () => {
 describe("validateExperiment", () => {
   const known = new Set(["ferritin", "b12"]);
   it("accepts a valid experiment and removes duplicate markers", () => {
-    const r = validateExperiment({ change: " Kiwis ", category: "diet", markerIds: ["ferritin", "ferritin"], start: "2024-03-01", retestAfterDays: 56 }, known, "2024-03-01");
+    const r = validateExperiment(
+      { change: " Kiwis ", category: "diet", markerIds: ["ferritin", "ferritin"], start: "2024-03-01", retestAfterDays: 56 },
+      known,
+      "2024-03-01",
+    );
     expect(r).toEqual({ ok: true, experiment: { change: "Kiwis", category: "diet", markerIds: ["ferritin"], start: "2024-03-01", retestAfterDays: 56 } });
   });
   it("reports every problem", () => {

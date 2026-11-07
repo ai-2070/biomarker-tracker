@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { DOSE, markerIdFor, parseHabitProposal } from "@bt/shared/core/habitProposal";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();
@@ -9,7 +9,13 @@ const ok = { label: "Iron-rich breakfast", category: "diet", reason: "You asked 
 describe("habit suggestions from Brain", () => {
   it("accepts a habit, resolving markers by name or alias, starting today by default", () => {
     const r = parseHabitProposal({ ...ok, watchMarkers: ["Ferritin", "HbA1c", "nonsense"] }, defs, today);
-    expect(r.ok && r.proposal).toEqual({ label: "Iron-rich breakfast", category: "diet", start: today, markerIds: ["ferritin", "hba1c"], reason: "You asked to track this." });
+    expect(r.ok && r.proposal).toEqual({
+      label: "Iron-rich breakfast",
+      category: "diet",
+      start: today,
+      markerIds: ["ferritin", "hba1c"],
+      reason: "You asked to track this.",
+    });
     expect(r.ok && r.unknownMarkers).toEqual(["nonsense"]);
   });
   it("never suggests a medicine or an amount", () => {

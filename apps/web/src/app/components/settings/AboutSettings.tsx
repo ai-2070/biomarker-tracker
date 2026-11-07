@@ -33,8 +33,9 @@ export function AboutSettings() {
           </div>
         </div>
         <p className="text-ink-2">
-          A free, open-source, local-first app for tracking blood tests and body measurements, following habits and protocols, and building meals.
-          Explore biological-age estimates, a knowledge base covering foods, supplements and lifestyle, and optional AI evidence checks. Your profile stays on this computer.
+          A free, open-source, local-first app for tracking blood tests and body measurements, following habits and protocols, and building meals. Explore
+          biological-age estimates, a knowledge base covering foods, supplements and lifestyle, and optional AI evidence checks. Your profile stays on this
+          computer.
         </p>
         <div className="flex flex-wrap gap-2">
           <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className={cx(buttonStyles.primary, "no-underline")}>
@@ -55,15 +56,48 @@ export function AboutSettings() {
           <dt className="font-medium">Licence</dt>
           <dd className="text-ink-2">App code: MIT. Third-party data, publications and research-server software retain their own terms.</dd>
           <dt className="font-medium">Your data</dt>
-          <dd className="text-ink-2">Kept in profile folders on this computer. No account, no tracking, no analytics. See <a href={`${REPO_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2">Privacy &amp; research sources</a> for what is sent out.</dd>
+          <dd className="text-ink-2">
+            Kept in profile folders on this computer. No account, no tracking, no analytics. See{" "}
+            <a href={`${REPO_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2">
+              Privacy &amp; research sources
+            </a>{" "}
+            for what is sent out.
+          </dd>
           <dt className="font-medium">Medical notice</dt>
           <dd className="text-ink-2">Not medical advice. Not yet reviewed by a clinician.</dd>
           <dt className="font-medium">Documents</dt>
           <dd>
             <ul className="flex flex-col text-sm sm:pointer-fine:gap-2">
-              <li><a href={`${REPO_URL}/blob/main/DATA-LICENSES.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Data licences &amp; redistribution</a></li>
-              <li><a href={`${REPO_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Privacy &amp; research sources</a></li>
-              <li><a href={`${REPO_URL}/blob/main/MEDICAL-DISCLOSURE.md`} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0">Full medical disclosure</a></li>
+              <li>
+                <a
+                  href={`${REPO_URL}/blob/main/DATA-LICENSES.md`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0"
+                >
+                  Data licences &amp; redistribution
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${REPO_URL}/blob/main/PRIVACY.md`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0"
+                >
+                  Privacy &amp; research sources
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${REPO_URL}/blob/main/MEDICAL-DISCLOSURE.md`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center text-accent underline underline-offset-2 sm:pointer-fine:min-h-0"
+                >
+                  Full medical disclosure
+                </a>
+              </li>
             </ul>
           </dd>
         </dl>

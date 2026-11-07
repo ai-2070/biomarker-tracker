@@ -1,9 +1,9 @@
-import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
-import type { Flag, ResolvedRange } from "./trends";
+import { BODY_GROUPS, bmi, bmrMifflinTerms } from "./body";
 import { isIsoDate } from "./dates";
 import { ageAt, isBirthMonth } from "./phenoageDraws";
+import type { Flag, ResolvedRange } from "./trends";
 import { flagMeasurement, resolveRange, sortByDate } from "./trends";
-import { BODY_GROUPS, bmi, bmrMifflinTerms } from "./body";
+import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
 export interface DoctorReportOptions {
   from: string;
@@ -138,36 +138,59 @@ export function buildDoctorReport(input: DoctorReportInput): DoctorReport {
     });
   }
 
-  const logs: ProtocolEntry[] = includeLog ? input.protocols
-    .filter((entry) => isIsoDate(entry.start) && entry.start <= to
-      && (entry.end === undefined || (isIsoDate(entry.end) && entry.end >= from)))
-    .map((entry) => ({
-      id: entry.id, label: entry.label, category: entry.category, start: entry.start,
-      ...(entry.end !== undefined ? { end: entry.end } : {}),
-      ...(entry.plan ? {
-        plan: {
-          id: entry.plan.id,
-          items: entry.plan.items.map(({ note, days, ...item }) => ({
-            ...item,
-            ...(days ? { days: [...days] } : {}),
-            ...(includeNotes && note !== undefined ? { note } : {}),
-          })),
-        },
-      } : {}),
-    })) : [];
+  const logs: ProtocolEntry[] = includeLog
+    ? input.protocols
+        .filter((entry) => isIsoDate(entry.start) && entry.start <= to && (entry.end === undefined || (isIsoDate(entry.end) && entry.end >= from)))
+        .map((entry) => ({
+          id: entry.id,
+          label: entry.label,
+          category: entry.category,
+          start: entry.start,
+          ...(entry.end !== undefined ? { end: entry.end } : {}),
+          ...(entry.plan
+            ? {
+                plan: {
+                  id: entry.plan.id,
+                  items: entry.plan.items.map(({ note, days, ...item }) => ({
+                    ...item,
+                    ...(days ? { days: [...days] } : {}),
+                    ...(includeNotes && note !== undefined ? { note } : {}),
+                  })),
+                },
+              }
+            : {}),
+        }))
+    : [];
   const report: DoctorReport = {
-    generatedOn, from, to, example: profile.example === true, series, logs,
-    includeLog, includeNotes,
+    generatedOn,
+    from,
+    to,
+    example: profile.example === true,
+    series,
+    logs,
+    includeLog,
+    includeNotes,
   };
   if (includeProfile) {
     const { name, sex, birthMonth, heightCm, country, diet, smoking, conditions, allergies, notes } = profile;
-    report.profile = { name, sex, birthMonth, heightCm, country, diet, smoking, conditions, allergies,
-      ...(includeNotes && notes !== undefined ? { notes } : {}) };
+    report.profile = {
+      name,
+      sex,
+      birthMonth,
+      heightCm,
+      country,
+      diet,
+      smoking,
+      conditions,
+      allergies,
+      ...(includeNotes && notes !== undefined ? { notes } : {}),
+    };
     if (birthMonth && isBirthMonth(birthMonth)) report.age = Math.floor(ageAt(birthMonth, generatedOn));
     const weightDef = input.defs.get("weight");
     if (weightDef) {
-      const weight = sortByDate(input.measurements.filter((measurement) =>
-        measurement.biomarkerId === "weight" && isIsoDate(measurement.date) && measurement.date <= to)).at(-1);
+      const weight = sortByDate(
+        input.measurements.filter((measurement) => measurement.biomarkerId === "weight" && isIsoDate(measurement.date) && measurement.date <= to),
+      ).at(-1);
       if (weight) report.profileWeight = { def: weightDef, measurement: copyMeasurement(weight) };
       if (weight && !weight.qualifier) {
         const bmiValue = bmi(weight.value, heightCm);

@@ -1,5 +1,5 @@
 import { todayIso } from "@bt/shared/core/dates";
-import { analyzeMarker, experimentPhase, markersAwaitingRetest, retestDate, type MarkerResult } from "@bt/shared/core/experiments";
+import { analyzeMarker, experimentPhase, type MarkerResult, markersAwaitingRetest, retestDate } from "@bt/shared/core/experiments";
 import type { Experiment, Measurement } from "@bt/shared/core/types";
 import { formatDate } from "../format";
 import { useExperiments, useWatchMeasurements } from "../hooks";
@@ -33,7 +33,9 @@ export function DueExperiments({ all: results }: { all: Measurement[] }) {
               For your experiment "{e.change}", due since {formatDate(retestDate(e))}.
             </span>
           </span>
-          <span aria-hidden="true" className="text-xl">→</span>
+          <span aria-hidden="true" className="text-xl">
+            →
+          </span>
         </a>
       ))}
     </div>

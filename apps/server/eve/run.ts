@@ -2,8 +2,9 @@
 // question only: the earlier conversation is imported as history (the page's conversation stays the source),
 // the rules, tools and model come from the main server through the bridge, and the session is ended
 // afterwards so eve deletes its run data (retention 0). No step limit; the 10-minute limit is `signal`.
-import { Client } from "eve/client";
+
 import type { ToolSet } from "ai";
+import { Client } from "eve/client";
 import type { AssistantReply, ChatMessage } from "../brain/ask";
 import type { OnEvent } from "../brain/events";
 import type { PromptParts } from "../brain/prompt";
@@ -14,14 +15,19 @@ import { eveHost } from "./host";
 type Fact = { type: string; data?: Record<string, unknown> };
 
 /** What one stream event means for the answer. Exported for tests. */
-export function readEveEvent(event: Fact, state: { reply: Map<string, string>; replyIds?: string[]; outcome?: string; error?: string; truncated?: boolean }, onEvent: OnEvent): void {
+export function readEveEvent(
+  event: Fact,
+  state: { reply: Map<string, string>; replyIds?: string[]; outcome?: string; error?: string; truncated?: boolean },
+  onEvent: OnEvent,
+): void {
   const data = event.data ?? {};
   switch (event.type) {
     case "content.delta":
       if (typeof data.delta === "string" && data.delta) onEvent({ kind: "text", text: data.delta });
       return;
     case "content.completed":
-      if (data.kind === "text" && data.phase === "reply" && typeof data.partId === "string" && typeof data.value === "string") state.reply.set(data.partId, data.value);
+      if (data.kind === "text" && data.phase === "reply" && typeof data.partId === "string" && typeof data.value === "string")
+        state.reply.set(data.partId, data.value);
       return;
     case "model.started":
       onEvent({ kind: "status", text: "Thinking…" });
@@ -32,7 +38,9 @@ export function readEveEvent(event: Fact, state: { reply: Map<string, string>; r
     case "turn.settled":
       state.outcome = typeof data.outcome === "string" ? data.outcome : "failed";
       if (Array.isArray(data.reply)) state.replyIds = data.reply.filter((id): id is string => typeof id === "string");
-      if (state.outcome !== "completed") state.error ??= typeof (data.error as { message?: unknown } | undefined)?.message === "string" ? (data.error as { message: string }).message : undefined;
+      if (state.outcome !== "completed")
+        state.error ??=
+          typeof (data.error as { message?: unknown } | undefined)?.message === "string" ? (data.error as { message: string }).message : undefined;
       return;
     case "delivery.settled":
       if (data.outcome === "failed" || data.outcome === "refused") {
@@ -73,7 +81,10 @@ export async function runEveQuestion(o: {
     }
     if (o.signal.aborted) throw new DOMException("The operation was aborted.", "AbortError");
     if (state.outcome !== "completed") return { ok: false, error: state.error ? `eve: ${state.error}`.slice(0, 600) : "eve stopped without an answer." };
-    const text = (state.replyIds ?? [...state.reply.keys()]).map((id) => state.reply.get(id) ?? "").filter(Boolean).join("\n\n");
+    const text = (state.replyIds ?? [...state.reply.keys()])
+      .map((id) => state.reply.get(id) ?? "")
+      .filter(Boolean)
+      .join("\n\n");
     return {
       ok: true,
       text,

@@ -1,4 +1,4 @@
-import { PRESCRIBING, citationErrors, findingErrors, type NutrientFinding } from "./nutrients";
+import { citationErrors, findingErrors, type NutrientFinding, PRESCRIBING } from "./nutrients";
 import type { Citation, SafetyId } from "./types";
 
 /**
@@ -105,23 +105,28 @@ export function visualErrors(v: unknown, at: string): string[] {
       else
         for (const it of v.items as unknown[]) {
           if (!isObj(it) || !isStr(it.label) || !isNum(it.value)) errs.push(`${at}: every bar needs a label and a value`);
-          else if ((it.low !== undefined && !(isNum(it.low) && it.low <= it.value)) || (it.high !== undefined && !(isNum(it.high) && it.high >= it.value))) errs.push(`${at}: an interval must contain its value`);
+          else if ((it.low !== undefined && !(isNum(it.low) && it.low <= it.value)) || (it.high !== undefined && !(isNum(it.high) && it.high >= it.value)))
+            errs.push(`${at}: an interval must contain its value`);
           else if (v.scale === "ratio" && !(it.value > 0 && (it.low === undefined || (it.low as number) > 0))) errs.push(`${at}: ratios must be above 0`);
         }
       break;
     }
     case "spectrum": {
       if (!isNum(v.from) || !isNum(v.to) || !(v.from < v.to) || v.from < 100 || v.to > 20000) errs.push(`${at} needs a wavelength range in nm`);
-      if (!Array.isArray(v.bands) || !v.bands.every((b) => isObj(b) && isStr(b.label) && isNum(b.from) && isNum(b.to) && b.from < b.to)) errs.push(`${at}: bands need a label and a range`);
-      if (!Array.isArray(v.marks) || !v.marks.every((m) => isObj(m) && isNum(m.nm) && isStr(m.label) && m.nm >= (v.from as number) && m.nm <= (v.to as number))) errs.push(`${at}: marks need a wavelength inside the range and a label`);
+      if (!Array.isArray(v.bands) || !v.bands.every((b) => isObj(b) && isStr(b.label) && isNum(b.from) && isNum(b.to) && b.from < b.to))
+        errs.push(`${at}: bands need a label and a range`);
+      if (!Array.isArray(v.marks) || !v.marks.every((m) => isObj(m) && isNum(m.nm) && isStr(m.label) && m.nm >= (v.from as number) && m.nm <= (v.to as number)))
+        errs.push(`${at}: marks need a wavelength inside the range and a label`);
       break;
     }
     case "flow":
-      if (!Array.isArray(v.steps) || v.steps.length < 2 || !v.steps.every((s) => isObj(s) && isStr(s.label) && isStr(s.text))) errs.push(`${at} needs at least 2 steps with a label and text`);
+      if (!Array.isArray(v.steps) || v.steps.length < 2 || !v.steps.every((s) => isObj(s) && isStr(s.label) && isStr(s.text)))
+        errs.push(`${at} needs at least 2 steps with a label and text`);
       break;
     case "ranges":
       if (!isStr(v.unit)) errs.push(`${at} needs a unit`);
-      if (!Array.isArray(v.rows) || v.rows.length < 1 || !v.rows.every((r) => isObj(r) && isStr(r.label) && isNum(r.low) && isNum(r.high) && r.low <= r.high)) errs.push(`${at}: rows need a label and a range`);
+      if (!Array.isArray(v.rows) || v.rows.length < 1 || !v.rows.every((r) => isObj(r) && isStr(r.label) && isNum(r.low) && isNum(r.high) && r.low <= r.high))
+        errs.push(`${at}: rows need a label and a range`);
       break;
     default:
       errs.push(`${at} kind must be bars, spectrum, flow or ranges`);
@@ -145,7 +150,10 @@ export function validateLifestyleDef(v: unknown): string[] {
   if (Array.isArray(v.findings) && v.findings.length === 0) errs.push("findings needs at least one finding");
   if (!Array.isArray(v.visuals) || v.visuals.length === 0) errs.push("visuals needs at least one visual");
   else (v.visuals as unknown[]).forEach((x, i) => errs.push(...visualErrors(x, `visual ${i + 1}`)));
-  if (!Array.isArray(v.whoShouldBeCareful) || !v.whoShouldBeCareful.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId)))))
+  if (
+    !Array.isArray(v.whoShouldBeCareful) ||
+    !v.whoShouldBeCareful.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId))))
+  )
     errs.push("whoShouldBeCareful needs with and note (and a known safetyId, if any)");
   if (!strList(v.cautions)) errs.push("cautions must be a list of strings");
   if (!strList(v.unknowns, 1)) errs.push("unknowns needs at least one point: say what isn't known");
@@ -189,7 +197,7 @@ export function wavelengthRgb(nm: number): [number, number, number] | undefined 
   else if (nm < 645) [r, g] = [1, (645 - nm) / 65];
   else r = 1;
   const edge = nm < 420 ? 0.3 + (0.7 * (nm - 380)) / 40 : nm > 700 ? 0.3 + (0.7 * (750 - nm)) / 50 : 1;
-  const c = (x: number) => Math.round(255 * Math.pow(x * edge, 0.8));
+  const c = (x: number) => Math.round(255 * (x * edge) ** 0.8);
   return [c(r), c(g), c(b)];
 }
 

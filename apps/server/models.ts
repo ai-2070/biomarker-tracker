@@ -3,12 +3,12 @@ import { createAnthropic } from "@ai-sdk/anthropic";
 import { createMistral } from "@ai-sdk/mistral";
 import { createOpenAI } from "@ai-sdk/openai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+import { canUse, DEFAULT_CHOICE, type ModelChoice, providerInfo, type UseCheck } from "@bt/shared/core/aiProviders";
 import type { LanguageModel } from "ai";
-import { DEFAULT_CHOICE, canUse, providerInfo, type ModelChoice, type UseCheck } from "@bt/shared/core/aiProviders";
 import { agentInstalled } from "./agents";
+import type { ProviderOptions } from "./brain/cache";
 import { zdrFetch } from "./openrouter";
 import { getSecrets, getSettings } from "./store";
-import type { ProviderOptions } from "./brain/cache";
 
 export interface Ready {
   model: LanguageModel;
@@ -28,7 +28,8 @@ export function assistantCheck(): UseCheck {
   const check = canUse(choice, choice ? s.providers[choice.provider] : undefined, !!(choice && getSecrets().keys[choice.provider]));
   if (!check.ok || !choice) return check;
   const info = providerInfo(choice.provider)!;
-  if (info.kind === "agent" && !agentInstalled(choice.provider)) return { ok: false, reason: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
+  if (info.kind === "agent" && !agentInstalled(choice.provider))
+    return { ok: false, reason: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   return check;
 }
 
@@ -49,15 +50,41 @@ export function readyModel(opts: { cacheKey?: string } = {}): { ok: true; ready:
 
   switch (choice.provider) {
     case "anthropic":
-      return { ok: true, ready: { model: createAnthropic({ apiKey: key, baseURL: "https://api.anthropic.com/v1" })(choice.model), providerOptions: effort ? { anthropic: { effort } } : {}, choice } };
+      return {
+        ok: true,
+        ready: {
+          model: createAnthropic({ apiKey: key, baseURL: "https://api.anthropic.com/v1" })(choice.model),
+          providerOptions: effort ? { anthropic: { effort } } : {},
+          choice,
+        },
+      };
     case "openai":
       // Chat Completions, and store: false, so OpenAI keeps no copy of the response.
-      return { ok: true, ready: { model: createOpenAI({ apiKey: key, baseURL: "https://api.openai.com/v1" }).chat(choice.model), providerOptions: { openai: { store: false, ...(effort ? { reasoningEffort: effort } : {}) } }, choice } };
+      return {
+        ok: true,
+        ready: {
+          model: createOpenAI({ apiKey: key, baseURL: "https://api.openai.com/v1" }).chat(choice.model),
+          providerOptions: { openai: { store: false, ...(effort ? { reasoningEffort: effort } : {}) } },
+          choice,
+        },
+      };
     case "mistral":
-      return { ok: true, ready: { model: createMistral({ apiKey: key, baseURL: "https://api.mistral.ai/v1" })(choice.model), providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {}, choice } };
+      return {
+        ok: true,
+        ready: {
+          model: createMistral({ apiKey: key, baseURL: "https://api.mistral.ai/v1" })(choice.model),
+          providerOptions: effort ? { mistral: { reasoningEffort: effort } } : {},
+          choice,
+        },
+      };
     case "openrouter": {
       // Zero data retention is requested on every call (see openrouter.ts), plus prompt caching (openRouterCache).
-      const p = createOpenAICompatible({ name: "openrouter", baseURL, apiKey: key, fetch: zdrFetch(fetch, { ...(effort ? { reasoning: { effort } } : {}), ...openRouterCache(choice.model, opts.cacheKey) }) });
+      const p = createOpenAICompatible({
+        name: "openrouter",
+        baseURL,
+        apiKey: key,
+        fetch: zdrFetch(fetch, { ...(effort ? { reasoning: { effort } } : {}), ...openRouterCache(choice.model, opts.cacheKey) }),
+      });
       return { ok: true, ready: { model: p.chatModel(choice.model), providerOptions: {}, choice } };
     }
     case "claude-code":

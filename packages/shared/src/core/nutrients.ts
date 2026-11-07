@@ -1,6 +1,6 @@
 import { CLAIM_CATEGORIES, type ClaimCategory } from "./claimEvidence";
-import type { Citation, EvidenceGrade, SafetyId } from "./types";
 import { isIsoDate } from "./dates";
+import type { Citation, EvidenceGrade, SafetyId } from "./types";
 
 /**
  * The vitamins and minerals knowledge base (/knowledge/nutrients/*.json), shown under Supplementation.
@@ -143,7 +143,8 @@ export function citationErrors(v: unknown, where: string): string[] {
   if (!Array.isArray(v) || v.length === 0) return [`${where} needs at least one source`];
   const errs: string[] = [];
   v.forEach((s, i) => {
-    if (!isObj(s) || !isStr(s.title) || typeof s.year !== "number" || !isStr(s.studyType) || !STUDY_TYPES.has(s.studyType)) errs.push(`${where} source ${i + 1} needs title, year and a valid studyType`);
+    if (!isObj(s) || !isStr(s.title) || typeof s.year !== "number" || !isStr(s.studyType) || !STUDY_TYPES.has(s.studyType))
+      errs.push(`${where} source ${i + 1} needs title, year and a valid studyType`);
     else if (!isStr(s.pmid) && !isStr(s.doi)) errs.push(`${where} source ${i + 1} needs a pmid or doi`);
     else if (s.pmid !== undefined && !/^\d+$/.test(String(s.pmid))) errs.push(`${where} source ${i + 1} pmid must be digits`);
   });
@@ -186,23 +187,43 @@ export function validateNutrientDef(v: unknown): string[] {
     else {
       if (v.simpleGuide.factsReviewedOn !== undefined && (typeof v.simpleGuide.factsReviewedOn !== "string" || !isIsoDate(v.simpleGuide.factsReviewedOn)))
         errs.push("simpleGuide factsReviewedOn must be an ISO date");
-      if (v.simpleGuide.claimsSource !== undefined && (!isObj(v.simpleGuide.claimsSource) || !isStr(v.simpleGuide.claimsSource.title) || !isHttpsUrl(v.simpleGuide.claimsSource.url)))
+      if (
+        v.simpleGuide.claimsSource !== undefined &&
+        (!isObj(v.simpleGuide.claimsSource) || !isStr(v.simpleGuide.claimsSource.title) || !isHttpsUrl(v.simpleGuide.claimsSource.url))
+      )
         errs.push("simpleGuide claimsSource needs a title and HTTPS URL");
       const topics = v.simpleGuide.claimTopics;
-      if (topics !== undefined && (!isObj(topics) || !Array.isArray(v.commonUses) ||
-        Object.keys(topics).length !== v.commonUses.length ||
-        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(topics, claim) && isStr(topics[claim]))))
+      if (
+        topics !== undefined &&
+        (!isObj(topics) ||
+          !Array.isArray(v.commonUses) ||
+          Object.keys(topics).length !== v.commonUses.length ||
+          !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(topics, claim) && isStr(topics[claim])))
+      )
         errs.push("simpleGuide claimTopics must name each common claim exactly once");
       const categories = v.simpleGuide.claimCategories;
-      if (categories !== undefined && (!isObj(categories) || !Array.isArray(v.commonUses) ||
-        Object.keys(categories).length !== v.commonUses.length ||
-        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(categories, claim) &&
-          typeof categories[claim] === "string" && CLAIM_CATEGORIES.includes(categories[claim] as ClaimCategory))))
+      if (
+        categories !== undefined &&
+        (!isObj(categories) ||
+          !Array.isArray(v.commonUses) ||
+          Object.keys(categories).length !== v.commonUses.length ||
+          !v.commonUses.every(
+            (claim) =>
+              typeof claim === "string" &&
+              Object.hasOwn(categories, claim) &&
+              typeof categories[claim] === "string" &&
+              CLAIM_CATEGORIES.includes(categories[claim] as ClaimCategory),
+          ))
+      )
         errs.push("simpleGuide claimCategories must group each common claim exactly once");
       const labels = v.simpleGuide.claimLabels;
-      if (labels !== undefined && (!isObj(labels) || !Array.isArray(v.commonUses) ||
-        Object.keys(labels).length !== v.commonUses.length ||
-        !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(labels, claim) && isStr(labels[claim]))))
+      if (
+        labels !== undefined &&
+        (!isObj(labels) ||
+          !Array.isArray(v.commonUses) ||
+          Object.keys(labels).length !== v.commonUses.length ||
+          !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(labels, claim) && isStr(labels[claim])))
+      )
         errs.push("simpleGuide claimLabels must label each common claim exactly once");
     }
   }
@@ -210,7 +231,11 @@ export function validateNutrientDef(v: unknown): string[] {
   if ((basic || v.commonUses !== undefined) && !strList(v.commonUses, basic ? 1 : 0)) errs.push("commonUses must list the purposes of a basic guide");
   if (v.basicSources !== undefined) {
     if (!basic) errs.push("basicSources belong only to basic supplement guides");
-    if (!Array.isArray(v.basicSources) || v.basicSources.length === 0 || !v.basicSources.every((s) => isObj(s) && isStr(s.title) && typeof s.year === "number" && isHttpsUrl(s.url)))
+    if (
+      !Array.isArray(v.basicSources) ||
+      v.basicSources.length === 0 ||
+      !v.basicSources.every((s) => isObj(s) && isStr(s.title) && typeof s.year === "number" && isHttpsUrl(s.url))
+    )
       errs.push("basicSources need a title, year and HTTPS URL");
   }
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
@@ -226,9 +251,18 @@ export function validateNutrientDef(v: unknown): string[] {
   else {
     // Only other supplements may have no reference intake (they aren't essential nutrients).
     if (Array.isArray(r.intake) && r.intake.length === 0 && v.kind !== "supplement") errs.push("a vitamin or mineral needs a reference intake");
-    if (!Array.isArray(r.intake) || !r.intake.every((x) => isObj(x) && isStr(x.group) && typeof x.amount === "number" && x.amount > 0 && UNITS.has(String(x.unit)) && (x.type === "PRI" || x.type === "AI")))
+    if (
+      !Array.isArray(r.intake) ||
+      !r.intake.every(
+        (x) => isObj(x) && isStr(x.group) && typeof x.amount === "number" && x.amount > 0 && UNITS.has(String(x.unit)) && (x.type === "PRI" || x.type === "AI"),
+      )
+    )
       errs.push("reference intake needs group, amount, unit (µg, mg, g) and type (PRI or AI)");
-    if (r.upperLimit !== undefined && !(isObj(r.upperLimit) && typeof r.upperLimit.amount === "number" && UNITS.has(String(r.upperLimit.unit)) && isStr(r.upperLimit.note))) errs.push("upperLimit needs amount, unit and note");
+    if (
+      r.upperLimit !== undefined &&
+      !(isObj(r.upperLimit) && typeof r.upperLimit.amount === "number" && UNITS.has(String(r.upperLimit.unit)) && isStr(r.upperLimit.note))
+    )
+      errs.push("upperLimit needs amount, unit and note");
     if (r.upperLimit === undefined && !isStr(r.noUpperLimit)) errs.push("give an upperLimit or say why there is none (noUpperLimit)");
     if (!(basic && Array.isArray(r.sources) && r.sources.length === 0)) errs.push(...citationErrors(r.sources, "reference"));
   }
@@ -239,12 +273,16 @@ export function validateNutrientDef(v: unknown): string[] {
   }
   if (v.foodFindings !== undefined) errs.push(...findingErrors(v.foodFindings, "food finding"));
   if (basic && Array.isArray(v.foodFindings) && v.foodFindings.length > 0) errs.push("basic guides must not contain graded food findings");
-  if (!Array.isArray(v.interactions) || !v.interactions.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId)))))
+  if (
+    !Array.isArray(v.interactions) ||
+    !v.interactions.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId))))
+  )
     errs.push("interactions need with and note (and a known safetyId, if any)");
   if (!strList(v.cautions)) errs.push("cautions must be a list of strings");
   if (!strList(v.evidenceClaims)) errs.push("evidenceClaims must be a list of ids");
   if (basic && Array.isArray(v.evidenceClaims) && v.evidenceClaims.length > 0) errs.push("basic guides must not link graded evidence claims");
-  if (!(basic && Array.isArray(v.sources) && v.sources.length === 0 && Array.isArray(v.basicSources) && v.basicSources.length > 0)) errs.push(...citationErrors(v.sources, "sources"));
+  if (!(basic && Array.isArray(v.sources) && v.sources.length === 0 && Array.isArray(v.basicSources) && v.basicSources.length > 0))
+    errs.push(...citationErrors(v.sources, "sources"));
   return errs;
 }
 
@@ -270,7 +308,15 @@ export function nutrientText(n: NutrientDef): string[] {
     ...n.forms.flatMap((f) => [f.name, f.note]),
     n.reference.upperLimit?.note ?? "",
     n.reference.noUpperLimit ?? "",
-    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", f.label ?? "", f.line ?? "", ...f.whyThisGrade]),
+    ...[...n.findings, ...(n.foodFindings ?? [])].flatMap((f) => [
+      f.outcome,
+      f.population,
+      f.summary,
+      f.bottomLine ?? "",
+      f.label ?? "",
+      f.line ?? "",
+      ...f.whyThisGrade,
+    ]),
     ...n.interactions.flatMap((x) => [x.with, x.note]),
     ...n.cautions,
   ];
@@ -329,13 +375,25 @@ function searchFields(n: NutrientDef): NutrientMatch[] {
     ...f("Common use", n.commonUses ?? []),
     ...f("Food", n.foodSources.examples),
     ...f("Origin", n.simpleGuide?.origin ?? []),
-    ...f("Trial outcome", n.findings.map((x) => x.outcome)),
-    ...f("Food study", (n.foodFindings ?? []).map((x) => x.outcome)),
-    ...f("Interaction", n.interactions.map((x) => x.with)),
+    ...f(
+      "Trial outcome",
+      n.findings.map((x) => x.outcome),
+    ),
+    ...f(
+      "Food study",
+      (n.foodFindings ?? []).map((x) => x.outcome),
+    ),
+    ...f(
+      "Interaction",
+      n.interactions.map((x) => x.with),
+    ),
     ...f("Sign of too little", n.low.signs),
     ...f("Who runs low", n.low.atRisk),
     ...f("Sign of too much", n.high.signs),
-    ...f("Form", n.forms.map((x) => x.name)),
+    ...f(
+      "Form",
+      n.forms.map((x) => x.name),
+    ),
     ...f("Caution", n.cautions),
     { label: "About", text: n.summary },
   ];

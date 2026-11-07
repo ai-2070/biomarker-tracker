@@ -1,5 +1,19 @@
+import {
+  ageMatch,
+  cutoffsMet,
+  describePlace,
+  type FitnessTestDef,
+  fitnessSummary,
+  isDeviceWalkingAverage,
+  type NormSet,
+  normRow,
+  placeAmongYoungest,
+  placeInRow,
+  placeResult,
+  rowSpan,
+  validateFitnessTest,
+} from "@bt/shared/core/fitnessTests";
 import { describe, expect, it } from "vitest";
-import { ageMatch, cutoffsMet, describePlace, fitnessSummary, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeInRow, placeResult, rowSpan, validateFitnessTest, type FitnessTestDef, type NormSet } from "@bt/shared/core/fitnessTests";
 
 const source = { title: "Made-up norms", year: 2020, studyType: "observational" as const };
 
@@ -25,7 +39,16 @@ const bands: NormSet = {
         { label: "Excellent", min: 39 },
       ],
     },
-    { sex: "f", ageFrom: 20, ageTo: 29, bands: [{ label: "Poor", min: 0, max: 2 }, { label: "Average", min: 3, max: 9 }, { label: "Excellent", min: 10 }] },
+    {
+      sex: "f",
+      ageFrom: 20,
+      ageTo: 29,
+      bands: [
+        { label: "Poor", min: 0, max: 2 },
+        { label: "Average", min: 3, max: 9 },
+        { label: "Excellent", min: 10 },
+      ],
+    },
   ],
 };
 const percentiles: NormSet = {
@@ -39,7 +62,14 @@ const percentiles: NormSet = {
     { sex: "any", ageFrom: 70, p10: 20, p50: 28, p90: 36 },
   ],
 };
-const meanSd: NormSet = { label: "Mean", source, verifiedFrom: "test", population: "test", kind: "mean_sd", rows: [{ sex: "f", ageFrom: 60, ageTo: 69, mean: 1.2, sd: 0.2 }] };
+const meanSd: NormSet = {
+  label: "Mean",
+  source,
+  verifiedFrom: "test",
+  population: "test",
+  kind: "mean_sd",
+  rows: [{ sex: "f", ageFrom: 60, ageTo: 69, mean: 1.2, sd: 0.2 }],
+};
 
 const test: FitnessTestDef = {
   id: "t",
@@ -159,10 +189,28 @@ describe("fitness test norms", () => {
   });
 
   it("validates fitness test files", () => {
-    expect(validateFitnessTest({ ...test, summary: "s", howTo: ["x"], safety: ["x"], limits: ["x"], evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }] })).toEqual([]);
+    expect(
+      validateFitnessTest({
+        ...test,
+        summary: "s",
+        howTo: ["x"],
+        safety: ["x"],
+        limits: ["x"],
+        evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }],
+      }),
+    ).toEqual([]);
     expect(validateFitnessTest({})).not.toEqual([]);
     const broken = { ...percentiles, rows: [{ sex: "m", ageFrom: 40, ageTo: 44, p10: 50, p50: 40 }] };
-    expect(validateFitnessTest({ ...test, howTo: ["x"], safety: ["x"], limits: ["x"], norms: [broken], evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }] }).join()).toMatch(/must not go down/);
+    expect(
+      validateFitnessTest({
+        ...test,
+        howTo: ["x"],
+        safety: ["x"],
+        limits: ["x"],
+        norms: [broken],
+        evidence: [{ claim: "c", grade: "low", whyThisGrade: ["w"], studies: [source] }],
+      }).join(),
+    ).toMatch(/must not go down/);
   });
 
   it("finds the age whose typical result matches yours, after the best age, without guessing past the table", () => {

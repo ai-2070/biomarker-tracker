@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { dayNumber } from "@bt/shared/core/dates";
-import { buildSleepTiming, pairSleepCardiac, sleepClock, type SleepCardiacMetric } from "@bt/shared/core/sleepTiming";
+import { buildSleepTiming, pairSleepCardiac, type SleepCardiacMetric, sleepClock } from "@bt/shared/core/sleepTiming";
 import type { Measurement, SleepSession } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 function session(start: string, end: string, extra: Partial<SleepSession> = {}): SleepSession {
   return { start, end, kind: "asleep", source: "Watch A", ...extra };
@@ -16,7 +16,14 @@ function night(date: string, start: string, end: string, extra: Partial<SleepSes
 }
 
 function cardiac(date: string, value: number, biomarkerId = "resting_hr", extra: Partial<Measurement> = {}): Measurement {
-  return reading(date, { id: `${biomarkerId}-${date}`, biomarkerId, value, originalValue: value, originalUnit: biomarkerId === "resting_hr" ? "bpm" : "ms", ...extra });
+  return reading(date, {
+    id: `${biomarkerId}-${date}`,
+    biomarkerId,
+    value,
+    originalValue: value,
+    originalUnit: biomarkerId === "resting_hr" ? "bpm" : "ms",
+    ...extra,
+  });
 }
 
 const first = night("2026-10-24", "2026-10-23T23:00:00", "2026-10-24T07:00:00");
@@ -26,7 +33,13 @@ describe("source-local sleep windows", () => {
   it("plots previous-day starts across midnight, without using the computer's zone", () => {
     const result = buildSleepTiming([second, first]);
     expect(result.nights.map((n) => n.date)).toEqual(["2026-10-24", "2026-10-25"]);
-    expect(result.nights[0]).toMatchObject({ day: dayNumber(first.date), start: -1, end: 7, midpoint: 3, windows: [{ start: -1, end: 7, kind: "asleep", main: true }] });
+    expect(result.nights[0]).toMatchObject({
+      day: dayNumber(first.date),
+      start: -1,
+      end: 7,
+      midpoint: 3,
+      windows: [{ start: -1, end: 7, kind: "asleep", main: true }],
+    });
     expect(result.nights[0]!.main).toBe(first.sleepSessions![0]);
     expect(result.nights[0]!.measurement).toBe(first);
     expect(result.nights[1]).toMatchObject({ start: 0, end: 8, midpoint: 4, startShiftMinutes: 60, endShiftMinutes: 60, midpointShiftMinutes: 60 });
@@ -43,13 +56,19 @@ describe("source-local sleep windows", () => {
     const nap = session("2026-10-24T14:00:00", "2026-10-24T15:00:00");
     const result = buildSleepTiming([reading(first.date, { sleepSessions: [nap, main] })]);
     expect(result.nights[0]).toMatchObject({ main, start: -1, end: 6, midpoint: 2.5 });
-    expect(result.nights[0]!.windows).toEqual([{ start: 14, end: 15, kind: "asleep", main: false }, { start: -1, end: 6, kind: "asleep", main: true }]);
+    expect(result.nights[0]!.windows).toEqual([
+      { start: 14, end: 15, kind: "asleep", main: false },
+      { start: -1, end: 6, kind: "asleep", main: true },
+    ]);
   });
 
   it("breaks longest-session ties at the later end regardless of array order", () => {
     const early = session("2026-10-24T00:00:00", "2026-10-24T04:00:00");
     const late = session("2026-10-24T12:00:00", "2026-10-24T16:00:00", { kind: "in-bed", source: "Ring" });
-    for (const windows of [[early, late], [late, early]]) {
+    for (const windows of [
+      [early, late],
+      [late, early],
+    ]) {
       const result = buildSleepTiming([reading(first.date, { sleepSessions: windows })]);
       expect(result.nights[0]!.main).toBe(late);
       expect(result.nights[0]!.windows.filter((w) => w.main)).toHaveLength(1);
@@ -157,7 +176,10 @@ describe("adjacent-night clock regularity", () => {
       const result = buildSleepTiming([first, second].map((m) => ({ ...m, sleepSessions: [{ ...m.sleepSessions![0]!, source }] })));
       expect(result.regularity).toEqual({ pairs: 0 });
     }
-    const changedNap = { ...second, sleepSessions: [...second.sleepSessions!, session("2026-10-25T13:00:00", "2026-10-25T14:00:00", { source: "Ring", kind: "in-bed" })] };
+    const changedNap = {
+      ...second,
+      sleepSessions: [...second.sleepSessions!, session("2026-10-25T13:00:00", "2026-10-25T14:00:00", { source: "Ring", kind: "in-bed" })],
+    };
     expect(buildSleepTiming([first, changedNap]).regularity.pairs).toBe(1);
   });
 
@@ -183,9 +205,19 @@ describe("explicit resting measurements on the waking date", () => {
   const nights = buildSleepTiming([first, second]).nights;
 
   it("pairs the selected clock coordinate and the exact resting marker only", () => {
-    const measurements = [cardiac(first.date, 55), cardiac(second.date, 58), cardiac(first.date, 40, "hrv_resting"), cardiac(first.date, 99, "heart_rate"), cardiac(first.date, 99, "exercise_hr"), cardiac(first.date, 99, "hrv")];
+    const measurements = [
+      cardiac(first.date, 55),
+      cardiac(second.date, 58),
+      cardiac(first.date, 40, "hrv_resting"),
+      cardiac(first.date, 99, "heart_rate"),
+      cardiac(first.date, 99, "exercise_hr"),
+      cardiac(first.date, 99, "hrv"),
+    ];
     const start = pairSleepCardiac(nights, measurements, "resting_hr", "start");
-    expect(start.points.map((p) => [p.date, p.x, p.y])).toEqual([[first.date, -1, 55], [second.date, 0, 58]]);
+    expect(start.points.map((p) => [p.date, p.x, p.y])).toEqual([
+      [first.date, -1, 55],
+      [second.date, 0, 58],
+    ]);
     expect(start.points[0]!.measurement).toBe(measurements[0]);
     expect(start.points[0]!.sleep).toBe(nights[0]);
     expect(pairSleepCardiac(nights, measurements, "resting_hr", "end").points.map((p) => p.x)).toEqual([7, 8]);
@@ -194,7 +226,13 @@ describe("explicit resting measurements on the waking date", () => {
   });
 
   it("does not carry nearby days or substitute daytime HRV / Apple SDNN for resting RMSSD", () => {
-    const measurements = [cardiac("2026-10-23", 52), cardiac("2026-10-26", 57), cardiac(first.date, 42, "hrv", { note: "Apple SDNN" }), cardiac(second.date, 80, "heart_rate"), cardiac(second.date, 110, "exercise_hr")];
+    const measurements = [
+      cardiac("2026-10-23", 52),
+      cardiac("2026-10-26", 57),
+      cardiac(first.date, 42, "hrv", { note: "Apple SDNN" }),
+      cardiac(second.date, 80, "heart_rate"),
+      cardiac(second.date, 110, "exercise_hr"),
+    ];
     expect(pairSleepCardiac(nights, measurements, "resting_hr", "midpoint")).toEqual({ points: [], excluded: 2 });
     expect(pairSleepCardiac(nights, measurements, "hrv_resting", "midpoint")).toEqual({ points: [], excluded: 2 });
     expect(pairSleepCardiac(nights, measurements, "hrv" as SleepCardiacMetric, "midpoint")).toEqual({ points: [], excluded: 2 });
@@ -207,8 +245,15 @@ describe("explicit resting measurements on the waking date", () => {
       expect(pairSleepCardiac(nights, [winner, old], "resting_hr", "midpoint")).toEqual({ points: [], excluded: 2 });
     }
     expect(pairSleepCardiac(nights, [cardiac(first.date, 25), cardiac(second.date, 220)], "resting_hr", "midpoint").points.map((p) => p.y)).toEqual([25, 220]);
-    expect(pairSleepCardiac(nights, [cardiac(first.date, 2, "hrv_resting"), cardiac(second.date, 300, "hrv_resting")], "hrv_resting", "midpoint").points.map((p) => p.y)).toEqual([2, 300]);
-    expect(pairSleepCardiac(nights, [cardiac(first.date, 1.9, "hrv_resting"), cardiac(second.date, 300.1, "hrv_resting")], "hrv_resting", "midpoint")).toEqual({ points: [], excluded: 2 });
+    expect(
+      pairSleepCardiac(nights, [cardiac(first.date, 2, "hrv_resting"), cardiac(second.date, 300, "hrv_resting")], "hrv_resting", "midpoint").points.map(
+        (p) => p.y,
+      ),
+    ).toEqual([2, 300]);
+    expect(pairSleepCardiac(nights, [cardiac(first.date, 1.9, "hrv_resting"), cardiac(second.date, 300.1, "hrv_resting")], "hrv_resting", "midpoint")).toEqual({
+      points: [],
+      excluded: 2,
+    });
   });
 
   it("leaves missing shifts absent rather than turning no pairs into zero", () => {

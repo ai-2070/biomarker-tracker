@@ -1,7 +1,8 @@
 // Build all runtime files before `tauri dev` / `tauri build`. No user data is copied.
+
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
 
 const root = path.resolve(import.meta.dirname, "../../..");
 const run = (args: string[]) => execFileSync(process.execPath, args, { cwd: root, stdio: "inherit" });
@@ -21,8 +22,14 @@ run(["run", "build"]);
 const binaries = path.join(root, "apps/desktop/src-tauri/binaries");
 fs.mkdirSync(binaries, { recursive: true });
 run([
-  "build", "--compile", `--target=${bunTarget}`, "--no-compile-autoload-dotenv", "--no-compile-autoload-bunfig",
-  "apps/server/index.ts", "--outfile", path.join(binaries, `biomarker-server-${target}${target.includes("windows") ? ".exe" : ""}`),
+  "build",
+  "--compile",
+  `--target=${bunTarget}`,
+  "--no-compile-autoload-dotenv",
+  "--no-compile-autoload-bunfig",
+  "apps/server/index.ts",
+  "--outfile",
+  path.join(binaries, `biomarker-server-${target}${target.includes("windows") ? ".exe" : ""}`),
 ]);
 
 const resources = path.resolve(root, "apps/desktop/src-tauri/resources");

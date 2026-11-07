@@ -7,15 +7,43 @@ import { spawn } from "node:child_process";
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { LIFE_TABLE_COUNTRIES, validateLifeTables, type LifeTableCountry, type LifeTableFile } from "@bt/shared/core/lifeTable";
+import { LIFE_TABLE_COUNTRIES, type LifeTableCountry, type LifeTableFile, validateLifeTables } from "@bt/shared/core/lifeTable";
+
 const ROOT = join(import.meta.dirname, "..", "..");
 const API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_mlifetable";
 const GEOS: Record<string, string> = {
   EU27_2020: "European Union (27 countries)",
-  AT: "Austria", BE: "Belgium", BG: "Bulgaria", HR: "Croatia", CY: "Cyprus", CZ: "Czechia", DK: "Denmark", EE: "Estonia", FI: "Finland",
-  FR: "France", DE: "Germany", EL: "Greece", HU: "Hungary", IE: "Ireland", IT: "Italy", LV: "Latvia", LT: "Lithuania", LU: "Luxembourg",
-  MT: "Malta", NL: "Netherlands", PL: "Poland", PT: "Portugal", RO: "Romania", SK: "Slovakia", SI: "Slovenia", ES: "Spain", SE: "Sweden",
-  IS: "Iceland", LI: "Liechtenstein", NO: "Norway", CH: "Switzerland",
+  AT: "Austria",
+  BE: "Belgium",
+  BG: "Bulgaria",
+  HR: "Croatia",
+  CY: "Cyprus",
+  CZ: "Czechia",
+  DK: "Denmark",
+  EE: "Estonia",
+  FI: "Finland",
+  FR: "France",
+  DE: "Germany",
+  EL: "Greece",
+  HU: "Hungary",
+  IE: "Ireland",
+  IT: "Italy",
+  LV: "Latvia",
+  LT: "Lithuania",
+  LU: "Luxembourg",
+  MT: "Malta",
+  NL: "Netherlands",
+  PL: "Poland",
+  PT: "Portugal",
+  RO: "Romania",
+  SK: "Slovakia",
+  SI: "Slovenia",
+  ES: "Spain",
+  SE: "Sweden",
+  IS: "Iceland",
+  LI: "Liechtenstein",
+  NO: "Norway",
+  CH: "Switzerland",
 };
 const AGES = ["Y_LT1", ...Array.from({ length: 94 }, (_, i) => `Y${i + 1}`), "Y_GE95"];
 
@@ -49,7 +77,9 @@ export async function collectCountries(fetcher: typeof fetch = fetch, geos: Reco
     const res = await fetcher(`${API}?${params}`);
     if (!res.ok) throw new Error(`${geo}: Eurostat request failed (${res.status}); existing artifact was not replaced`);
     const d = (await res.json()) as JsonStat;
-    const years = Object.keys(d.dimension.time!.category.index).map(Number).sort((a, b) => b - a);
+    const years = Object.keys(d.dimension.time!.category.index)
+      .map(Number)
+      .sort((a, b) => b - a);
     let year = 0;
     let tables: Record<string, { lx: number[]; e95: number }> = {};
     for (const y of years) {
@@ -86,11 +116,9 @@ export async function collectCountries(fetcher: typeof fetch = fetch, geos: Reco
 if (import.meta.main) {
   const cache = resolve(process.env.BT_LIFETABLE_CACHE ?? join(tmpdir(), "biomarker-life-tables"));
   const output = join(cache, "national.json");
-  const national = spawn(process.env.PYTHON ?? "python", [
-    join(import.meta.dirname, "national.py"),
-    "--cache", cache,
-    "--output", output,
-  ], { stdio: "inherit" });
+  const national = spawn(process.env.PYTHON ?? "python", [join(import.meta.dirname, "national.py"), "--cache", cache, "--output", output], {
+    stdio: "inherit",
+  });
   const completed = new Promise<number>((resolve, reject) => {
     national.once("error", reject);
     national.once("close", (code) => resolve(code ?? 1));

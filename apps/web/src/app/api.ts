@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { createTRPCClient, httpLink } from "@trpc/client";
 import type { AppRouter } from "@bt/shared/api/router";
 import type { ServerStatus } from "@bt/shared/api/types";
+import { createTRPCClient, httpLink } from "@trpc/client";
+import { useEffect, useState } from "react";
 
 export type { ServerStatus };
 

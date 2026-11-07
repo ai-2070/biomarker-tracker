@@ -41,11 +41,44 @@ export interface ResolvedLifeTable {
 
 /** Country codes retain Eurostat's EL for Greece. GB is the whole United Kingdom. */
 export const LIFE_TABLE_COUNTRIES: Readonly<Record<string, string>> = {
-  AT: "Austria", BE: "Belgium", BG: "Bulgaria", HR: "Croatia", CY: "Cyprus", CZ: "Czechia", DK: "Denmark", EE: "Estonia", FI: "Finland",
-  FR: "France", DE: "Germany", EL: "Greece", HU: "Hungary", IS: "Iceland", IE: "Ireland", IT: "Italy", LV: "Latvia", LI: "Liechtenstein",
-  LT: "Lithuania", LU: "Luxembourg", MT: "Malta", NL: "Netherlands", NO: "Norway", PL: "Poland", PT: "Portugal", RO: "Romania", SK: "Slovakia",
-  SI: "Slovenia", ES: "Spain", SE: "Sweden", CH: "Switzerland", EU27_2020: "the European Union (average)",
-  US: "United States", GB: "United Kingdom", CA: "Canada", AU: "Australia", NZ: "New Zealand", JP: "Japan",
+  AT: "Austria",
+  BE: "Belgium",
+  BG: "Bulgaria",
+  HR: "Croatia",
+  CY: "Cyprus",
+  CZ: "Czechia",
+  DK: "Denmark",
+  EE: "Estonia",
+  FI: "Finland",
+  FR: "France",
+  DE: "Germany",
+  EL: "Greece",
+  HU: "Hungary",
+  IS: "Iceland",
+  IE: "Ireland",
+  IT: "Italy",
+  LV: "Latvia",
+  LI: "Liechtenstein",
+  LT: "Lithuania",
+  LU: "Luxembourg",
+  MT: "Malta",
+  NL: "Netherlands",
+  NO: "Norway",
+  PL: "Poland",
+  PT: "Portugal",
+  RO: "Romania",
+  SK: "Slovakia",
+  SI: "Slovenia",
+  ES: "Spain",
+  SE: "Sweden",
+  CH: "Switzerland",
+  EU27_2020: "the European Union (average)",
+  US: "United States",
+  GB: "United Kingdom",
+  CA: "Canada",
+  AU: "Australia",
+  NZ: "New Zealand",
+  JP: "Japan",
 };
 
 const TOP = 95;
@@ -124,7 +157,7 @@ export function populationSurvival(t: LifeTable, age: number): PopulationSurviva
   if (!Number.isFinite(end)) return [];
   const point = (a: number): PopulationSurvivalPoint => ({
     age: a,
-    alivePercent: survivors(t, a) / alive * 100,
+    alivePercent: (survivors(t, a) / alive) * 100,
     tailApproximation: a > TOP,
   });
   const points = [point(age)];
@@ -161,7 +194,6 @@ export function compareLifeTables(file: LifeTableFile, age: number, sex: "f" | "
   return { rows, missingSex, maxRemainingYears: rows[0]?.meanRemainingYears ?? 0 };
 }
 
-
 const YEAR_MS = 365.2425 * 86_400_000;
 
 /** The middle of the birth month ("YYYY-MM"), as the app assumes everywhere (only month and year are kept). */
@@ -185,7 +217,13 @@ export const momentAtAge = (birthMonth: string, age: number) => birthMoment(birt
 export function bestBeforeMoments(t: LifeTable, birthMonth: string, today: string) {
   const age = ageAtMoment(birthMonth, Date.parse(`${today}T00:00:00Z`));
   const b = bestBefore(t, age);
-  return { age, ...b, quarterAt: momentAtAge(birthMonth, b.quarter), medianAt: momentAtAge(birthMonth, b.median), threeQuartersAt: momentAtAge(birthMonth, b.threeQuarters) };
+  return {
+    age,
+    ...b,
+    quarterAt: momentAtAge(birthMonth, b.quarter),
+    medianAt: momentAtAge(birthMonth, b.median),
+    threeQuartersAt: momentAtAge(birthMonth, b.threeQuarters),
+  };
 }
 
 /** The table for a person: by sex, or both sexes together when sex isn't known. */
@@ -211,11 +249,24 @@ export function validateLifeTables(v: unknown): string[] {
       continue;
     }
     const s = c.source;
-    if (typeof c.name !== "string" || !c.name.trim() || !s || typeof s.name !== "string" || !s.name.trim()
-      || typeof s.url !== "string" || !s.url.startsWith("https://")
-      || typeof s.retrieved !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s.retrieved)
-      || !s.period || !Number.isInteger(s.period.from) || !Number.isInteger(s.period.to)
-      || s.period.from < 1900 || s.period.to < s.period.from || s.period.to > 2200) errs.push(`${code}: invalid source metadata`);
+    if (
+      typeof c.name !== "string" ||
+      !c.name.trim() ||
+      !s ||
+      typeof s.name !== "string" ||
+      !s.name.trim() ||
+      typeof s.url !== "string" ||
+      !s.url.startsWith("https://") ||
+      typeof s.retrieved !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(s.retrieved) ||
+      !s.period ||
+      !Number.isInteger(s.period.from) ||
+      !Number.isInteger(s.period.to) ||
+      s.period.from < 1900 ||
+      s.period.to < s.period.from ||
+      s.period.to > 2200
+    )
+      errs.push(`${code}: invalid source metadata`);
     if (!c.tables || typeof c.tables !== "object" || !c.tables.f || !c.tables.m) {
       errs.push(`${code}: needs female and male tables`);
       continue;
@@ -230,7 +281,6 @@ export function validateLifeTables(v: unknown): string[] {
   }
   return errs;
 }
-
 
 /**
  * Read the table at a comparison age, then add its remaining years to calendar age.

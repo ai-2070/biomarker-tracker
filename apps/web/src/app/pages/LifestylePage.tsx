@@ -1,27 +1,27 @@
-import { useState } from "react";
+import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
 import { LIFESTYLE_CATEGORIES, type LifestyleCategory, type LifestyleDef } from "@bt/shared/core/lifestyle";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { computeTrend, flagLatest, groupByBiomarker } from "@bt/shared/core/trends";
 import type { SafetyId } from "@bt/shared/core/types";
+import { useState } from "react";
+import names from "../../../../../knowledge/names.json";
 import { AddToProtocol } from "../components/AddToProtocol";
-import { Findings } from "../components/findings";
+import { ClockNote } from "../components/ClockEvidence";
+import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { StudyLink } from "../components/evidence";
+import { Findings } from "../components/findings";
 import { anchorId, jump } from "../components/glance";
 import { SearchIcon } from "../components/icons";
-import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
+import { KnowledgeName } from "../components/KnowledgeName";
 import { LifestyleFigure } from "../components/LifestyleVisuals";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, FlagBadge, LinkButton, PageTitle, cx, inputStyles, eyebrowStyles, linkCardStyles } from "../components/ui";
+import { Button, Card, cx, eyebrowStyles, FlagBadge, inputStyles, LinkButton, linkCardStyles, PageTitle } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, LIFESTYLE, LIFESTYLE_MAP } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-import { ClockNote } from "../components/ClockEvidence";
-import names from "../../../../../knowledge/names.json";
-import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
-import { KnowledgeName } from "../components/KnowledgeName";
 
 const CATEGORY_LABEL: Record<LifestyleCategory, string> = {
   movement: "Movement",
@@ -62,7 +62,12 @@ export function LifestylePage() {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Escape" && query && (e.preventDefault(), setQuery(""))}
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && query) {
+              e.preventDefault();
+              setQuery("");
+            }
+          }}
           placeholder="Search: sauna, blood pressure, sleep"
           aria-label="Search lifestyle topics"
           autoComplete="off"
@@ -87,10 +92,7 @@ export function LifestylePage() {
             .sort((x, y) => LIFESTYLE_CATEGORIES.indexOf(x.category) - LIFESTYLE_CATEGORIES.indexOf(y.category) || x.name.localeCompare(y.name))
             .map((l) => (
               <li key={l.id}>
-                <a
-                  href={href({ name: "lifestyle-item", id: l.id })}
-                  className={cx("flex h-full flex-col gap-3", linkCardStyles)}
-                >
+                <a href={href({ name: "lifestyle-item", id: l.id })} className={cx("flex h-full flex-col gap-3", linkCardStyles)}>
                   <div>
                     <p className={eyebrowStyles}>{CATEGORY_LABEL[l.category]}</p>
                     <h2 className="font-serif text-2xl font-normal">{l.name}</h2>
@@ -100,13 +102,13 @@ export function LifestylePage() {
                 </a>
               </li>
             ))}
-          {shownNames.map(({ name }) => <KnowledgeName key={`name:${name}`} name={name} />)}
+          {shownNames.map(({ name }) => (
+            <KnowledgeName key={`name:${name}`} name={name} />
+          ))}
         </ul>
       )}
 
-      <p className="mt-6 text-sm text-ink-2">
-        For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician.
-      </p>
+      <p className="mt-6 text-sm text-ink-2">For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician.</p>
     </>
   );
 }
@@ -240,7 +242,6 @@ export function LifestyleItemPage({ id }: { id: string }) {
             </div>
           </Card>
 
-
           <Card id="unknowns" className="flex scroll-mt-6 flex-col gap-2">
             <H2>What isn't known yet</H2>
             <ul className="flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
@@ -264,8 +265,8 @@ export function LifestyleItemPage({ id }: { id: string }) {
             <Card className="flex flex-col gap-3">
               <H2>Test it on yourself</H2>
               <p className="text-ink-2">
-                Log it as a habit and pick markers to watch. The app compares your results before and after, allowing for normal day-to-day and
-                test-to-test variation. What it shows is what happened in you, not proof for anyone else.
+                Log it as a habit and pick markers to watch. The app compares your results before and after, allowing for normal day-to-day and test-to-test
+                variation. What it shows is what happened in you, not proof for anyone else.
               </p>
               <div>
                 <LinkButton variant="secondary" href={href({ name: "habits", add: l.name, type: "lifestyle", marker: watch })}>
@@ -276,7 +277,12 @@ export function LifestyleItemPage({ id }: { id: string }) {
           )}
 
           <span id="research" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-          <ResearchPanel name={l.name} terms={[l.name]} question={`What does research say about ${l.name.toLowerCase()}, and is it relevant to my results?`} critical={false} />
+          <ResearchPanel
+            name={l.name}
+            terms={[l.name]}
+            question={`What does research say about ${l.name.toLowerCase()}, and is it relevant to my results?`}
+            critical={false}
+          />
 
           <Card>
             <h2 className="mb-2 font-semibold">General sources</h2>
@@ -288,8 +294,8 @@ export function LifestyleItemPage({ id }: { id: string }) {
               ))}
             </ul>
             <p className="mt-3 text-sm text-ink-2">
-              General information, not a diagnosis or a plan for you. Grades and wording are a first draft, checked against the cited studies but
-              not yet reviewed by a clinician.
+              General information, not a diagnosis or a plan for you. Grades and wording are a first draft, checked against the cited studies but not yet
+              reviewed by a clinician.
             </p>
           </Card>
         </div>

@@ -1,16 +1,28 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { intakeTotals, macroRows, mealsRichIn, nutrientRows, protocolToIntake, supplementKeyFor, upperLimitRoom, validateIntakeItems, type IntakeItem } from "@bt/shared/core/intake";
-import { adultReference, dailyReference, mealSafetyBlock, mealTotals, validateMeal, type FoodDb, type Meal } from "@bt/shared/core/meals";
-import { interactionsFor, validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
-import { validatePlan, type Plan } from "@bt/shared/core/plans";
-import { safetyNotes } from "@bt/shared/core/protocols";
 import { SAFETY_LIMITS } from "@bt/shared/core/foods";
+import {
+  type IntakeItem,
+  intakeTotals,
+  macroRows,
+  mealsRichIn,
+  nutrientRows,
+  protocolToIntake,
+  supplementKeyFor,
+  upperLimitRoom,
+  validateIntakeItems,
+} from "@bt/shared/core/intake";
+import { adultReference, dailyReference, type FoodDb, type Meal, mealSafetyBlock, mealTotals, validateMeal } from "@bt/shared/core/meals";
+import { interactionsFor, type NutrientDef, validateNutrientDef } from "@bt/shared/core/nutrients";
+import { type Plan, validatePlan } from "@bt/shared/core/plans";
+import { safetyNotes } from "@bt/shared/core/protocols";
+import { describe, expect, it } from "vitest";
 
 const knowledge = join(import.meta.dirname, "../../knowledge");
 const foodDb = JSON.parse(readFileSync(join(knowledge, "foods/cofid-all.json"), "utf8")) as FoodDb;
-const nutrients = readdirSync(join(knowledge, "nutrients")).filter((f) => f.endsWith(".json")).map((f) => JSON.parse(readFileSync(join(knowledge, "nutrients", f), "utf8")) as NutrientDef);
+const nutrients = readdirSync(join(knowledge, "nutrients"))
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => JSON.parse(readFileSync(join(knowledge, "nutrients", f), "utf8")) as NutrientDef);
 const nutrient = (id: string) => nutrients.find((n) => n.id === id)!;
 const baseMeal: Meal = { id: "meal", name: "Synthetic meal", createdAt: "2026-10-30", items: [] };
 const basePlan: Plan = { id: "plan", name: "Synthetic protocol", createdAt: "2026-10-30", items: [] };
@@ -20,7 +32,10 @@ describe("nutrition review boundaries", () => {
     const list: IntakeItem[] = Array.from({ length: 60 }, (_, i) => ({ id: `i${i}`, kind: "food", foodId: "14-371", grams: 100 }));
     expect(validateIntakeItems(list)).toEqual([]);
     expect(validateIntakeItems([...list, { ...list[0]!, id: "overflow" }])).toContain("at most 60 items");
-    const plan = { ...basePlan, items: Array.from({ length: 60 }, (_, i) => ({ id: `p${i}`, label: "Own routine", category: "lifestyle" as const, when: "any time" as const })) };
+    const plan = {
+      ...basePlan,
+      items: Array.from({ length: 60 }, (_, i) => ({ id: `p${i}`, label: "Own routine", category: "lifestyle" as const, when: "any time" as const })),
+    };
     expect(validatePlan(plan)).toEqual([]);
     expect(validatePlan({ ...plan, items: [...plan.items, { ...plan.items[0]!, id: "overflow" }] })).toContain("a protocol can have at most 60 items");
     const meal = { ...baseMeal, items: Array.from({ length: 40 }, () => ({ foodId: "14-371", grams: 100 })) };
@@ -31,7 +46,12 @@ describe("nutrition review boundaries", () => {
 
   it("makes split portions of one food safety-equivalent while retaining a below-limit positive control", () => {
     const limits = [SAFETY_LIMITS.anticoagulant!];
-    const block = (grams: number[]) => mealSafetyBlock(grams.map((g) => ({ foodId: "13-573", grams: g })), foodDb, limits);
+    const block = (grams: number[]) =>
+      mealSafetyBlock(
+        grams.map((g) => ({ foodId: "13-573", grams: g })),
+        foodDb,
+        limits,
+      );
     expect(block([10])).toBeUndefined();
     expect(block([10, 10])).toBe(block([20]));
     expect(block([20])).toMatch(/vitamin K/);
@@ -48,7 +68,13 @@ describe("nutrition review boundaries", () => {
   });
 
   it("preserves missing assays as unknown rather than a precise vitamin or macro deficit", () => {
-    const totals = mealTotals([{ foodId: "13-573", grams: 10 }, { foodId: "14-870", grams: 100 }], foodDb);
+    const totals = mealTotals(
+      [
+        { foodId: "13-573", grams: 10 },
+        { foodId: "14-870", grams: 100 },
+      ],
+      foodDb,
+    );
     const row = nutrientRows(totals, foodDb, nutrients, { sex: "f", age: 40 }).find((r) => r.key === "vitaminK1")!;
     expect(row).toMatchObject({ amount: 57.5, measuredIn: 1, of: 2, status: "partial" });
     const protein = macroRows({ protein: { amount: 10, measuredIn: 1, of: 2 } }, 70).find((r) => r.key === "protein")!;
@@ -76,11 +102,20 @@ describe("nutrition review boundaries", () => {
     for (const label of ["Vitamin K2", "MK-7", "Menaquinone"]) expect(supplementKeyFor({ label }, "vitamin_k")).toBeUndefined();
     expect(supplementKeyFor({ label: "Retinyl palmitate" }, "vitamin_a")).toBe("vitaminA");
     expect(supplementKeyFor({ label: "Vitamin K1" }, "vitamin_k")).toBe("vitaminK1");
-    const converted = protocolToIntake({ id: "p", items: [
-      { id: "carotene", label: "Beta-carotene", amount: "5000 µg", category: "supplement", when: "any time" },
-      { id: "k2", label: "Vitamin K2", amount: "100 µg", category: "supplement", when: "any time" },
-      { id: "fish", label: "Fish oil", amount: "500 mg", category: "supplement", when: "any time" },
-    ] }, [], foodDb, nutrients, () => "converted");
+    const converted = protocolToIntake(
+      {
+        id: "p",
+        items: [
+          { id: "carotene", label: "Beta-carotene", amount: "5000 µg", category: "supplement", when: "any time" },
+          { id: "k2", label: "Vitamin K2", amount: "100 µg", category: "supplement", when: "any time" },
+          { id: "fish", label: "Fish oil", amount: "500 mg", category: "supplement", when: "any time" },
+        ],
+      },
+      [],
+      foodDb,
+      nutrients,
+      () => "converted",
+    );
     expect(converted.items).toEqual([{ id: "converted", kind: "supplement", nutrient: "epaDha", amount: 500, name: "Fish oil" }]);
     expect(converted.skipped.map((s) => s.label)).toEqual(["Beta-carotene", "Vitamin K2"]);
   });
@@ -92,8 +127,13 @@ describe("nutrition review boundaries", () => {
       const safety = safetyNotes([label]).map((s) => s.id);
       expect(safety).toEqual(["antiplatelet"]);
       expect(interactionsFor(vitaminE, safety).map((x) => x.safetyId)).toEqual(["antiplatelet"]);
-      expect(safety.flatMap((id) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : [])).toEqual([]);
+      expect(safety.flatMap((id) => (SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []))).toEqual([]);
     }
-    expect(interactionsFor(vitaminE, safetyNotes(["Warfarin"]).map((s) => s.id)).map((x) => x.safetyId)).toEqual(["anticoagulant"]);
+    expect(
+      interactionsFor(
+        vitaminE,
+        safetyNotes(["Warfarin"]).map((s) => s.id),
+      ).map((x) => x.safetyId),
+    ).toEqual(["anticoagulant"]);
   });
 });

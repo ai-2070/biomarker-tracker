@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
-import { buildPeriodSummary, periodBounds, PERIOD_LIMITS, type Period } from "@bt/shared/core/periodSummary";
+import { buildPeriodSummary, PERIOD_LIMITS, type Period, periodBounds } from "@bt/shared/core/periodSummary";
 import type { Measurement } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { loadDefs, measurement } from "../helpers";
 
 const defs = loadDefs();
@@ -14,7 +14,11 @@ const marker = (s: ReturnType<typeof run>, id: string) => s.groups.flatMap((g) =
 describe("periodBounds", () => {
   it("is the last 12 months and the 12 before, or a calendar year (cut at today) and the year before", () => {
     expect(periodBounds(rolling)).toEqual({ from: "2025-11-05", to: "2026-11-04", previous: { from: "2024-11-05", to: "2025-11-04" } });
-    expect(periodBounds({ kind: "year", year: 2025, today: "2026-11-04" })).toEqual({ from: "2025-01-01", to: "2025-12-31", previous: { from: "2024-01-01", to: "2024-12-31" } });
+    expect(periodBounds({ kind: "year", year: 2025, today: "2026-11-04" })).toEqual({
+      from: "2025-01-01",
+      to: "2025-12-31",
+      previous: { from: "2024-01-01", to: "2024-12-31" },
+    });
     expect(periodBounds({ kind: "year", year: 2026, today: "2026-11-04" }).to).toBe("2026-11-04");
   });
 });
@@ -22,7 +26,9 @@ describe("periodBounds", () => {
 describe("buildPeriodSummary with few tests", () => {
   it("compares the year's tests with the year before, each marker with its own results", () => {
     const s = run([
-      m("hemoglobin", "2025-03-01", 120), m("hemoglobin", "2026-02-01", 140), m("hemoglobin", "2026-09-01", 142),
+      m("hemoglobin", "2025-03-01", 120),
+      m("hemoglobin", "2026-02-01", 140),
+      m("hemoglobin", "2026-09-01", 142),
       m("ferritin", "2026-09-01", 40),
     ]);
     expect(s.tests).toEqual(["2026-02-01", "2026-09-01"]);

@@ -69,7 +69,11 @@ export function foodById(db: FoodDb, id: string): Food | undefined {
 /** Salt from sodium (salt = sodium × 2.5), in grams. */
 export const saltFromSodium = (sodiumMg: number) => (sodiumMg * 2.5) / 1000;
 
-const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
 
 /**
  * Other names for foods, as people type them, and the words the UK food table uses: "dark chocolate" is
@@ -170,7 +174,9 @@ const FILLER = new Set(["and", "with", "of", "in", "the", "a", "or", "raw", "fre
  * the page says the food itself isn't in the table.
  */
 export function closestFoods(db: FoodDb, query: string, limit = 6): { id: string; name: string }[] {
-  const words = tableWords(norm(query)).flatMap((q) => q.split(" ")).filter((w) => w.length >= 3 && !FILLER.has(w));
+  const words = tableWords(norm(query))
+    .flatMap((q) => q.split(" "))
+    .filter((w) => w.length >= 3 && !FILLER.has(w));
   const unique = [...new Set(words)];
   if (!unique.length) return [];
   const names = db.foods.map(([id, name]) => ({ id, name, n: norm(name) }));
@@ -218,7 +224,10 @@ export function mealWeight(items: readonly MealItem[]): number {
  * women before or after menopause (taken as 50); zinc at an average phytate intake (600 mg). With
  * sex unknown, only a value for all adults is used.
  */
-export function adultReference(n: NutrientDef, person: { sex?: Sex; age?: number }): { amount: number; unit: string; type: "PRI" | "AI"; group: string } | undefined {
+export function adultReference(
+  n: NutrientDef,
+  person: { sex?: Sex; age?: number },
+): { amount: number; unit: string; type: "PRI" | "AI"; group: string } | undefined {
   if (person.age !== undefined && (!Number.isFinite(person.age) || person.age < 18)) return undefined;
   let groups = n.reference.intake.filter((g) => !/^(pregnan|breastfeed)/i.test(g.group));
   if (groups.some((g) => /\d+ to \d+ years|years and over/.test(g.group))) {
@@ -279,7 +288,11 @@ export function validateExampleMeals(v: unknown, db: FoodDb, claimIds: ReadonlyS
  * limit (vitamin K with blood thinners, potassium with kidney disease, retinol in pregnancy). Same
  * per-portion rule as the food lists on marker pages.
  */
-export function mealSafetyBlock(items: readonly MealItem[], db: FoodDb, limits: readonly { nutrient: string; perPortion: number; reason: string }[]): string | undefined {
+export function mealSafetyBlock(
+  items: readonly MealItem[],
+  db: FoodDb,
+  limits: readonly { nutrient: string; perPortion: number; reason: string }[],
+): string | undefined {
   const portions = new Map<string, number>();
   for (const item of items) portions.set(item.foodId, (portions.get(item.foodId) ?? 0) + item.grams);
   for (const lim of limits) {
@@ -332,7 +345,10 @@ export function coverage(db: FoodDb): Record<string, number> {
  * intake for this person (or, when it depends on sex and sex is unknown, the men's and women's
  * values), and the tolerable upper limit. Population values, never a dose.
  */
-export function dailyReference(n: NutrientDef, person: { sex?: Sex; age?: number }): {
+export function dailyReference(
+  n: NutrientDef,
+  person: { sex?: Sex; age?: number },
+): {
   intake?: { amount: number; unit: string; type: "PRI" | "AI"; group: string };
   bySex?: { men: { amount: number; unit: string }; women: { amount: number; unit: string } };
   upperLimit?: { amount: number; unit: string; note: string };

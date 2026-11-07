@@ -16,10 +16,15 @@ const offsetValid = (value: unknown) => value === undefined || (typeof value ===
 export function isSleepSession(value: unknown): value is SleepSession {
   if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
   const session = value as Record<string, unknown>;
-  if (typeof session.start !== "string" || typeof session.end !== "string" ||
-    (session.kind !== "asleep" && session.kind !== "in-bed" && session.kind !== "session")) return false;
+  if (
+    typeof session.start !== "string" ||
+    typeof session.end !== "string" ||
+    (session.kind !== "asleep" && session.kind !== "in-bed" && session.kind !== "session")
+  )
+    return false;
   if (session.source !== undefined && (typeof session.source !== "string" || session.source.length > 200)) return false;
-  const start = sleepLocalTime(session.start), end = sleepLocalTime(session.end);
+  const start = sleepLocalTime(session.start),
+    end = sleepLocalTime(session.end);
   if (start === undefined || end === undefined || !offsetValid(session.startOffsetMinutes) || !offsetValid(session.endOffsetMinutes)) return false;
   const bothOffsets = typeof session.startOffsetMinutes === "number" && typeof session.endOffsetMinutes === "number";
   const duration = end - start - (bothOffsets ? ((session.endOffsetMinutes as number) - (session.startOffsetMinutes as number)) * 60_000 : 0);

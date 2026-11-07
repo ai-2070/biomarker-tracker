@@ -38,7 +38,8 @@ export function designOf(r: Pick<EvidenceRecord, "pubTypes"> & { title?: string 
   return "other";
 }
 
-const ANIMAL_TITLE = /\b(rats?|mice|mouse|murine|rodents?|pigs?|piglets?|swine|dogs?|canine|cats?|feline|cattle|cows?|calves|sheep|lambs?|goats?|horses?|poultry|chickens?|broilers?|hens?|layers|zebrafish|in vitro|cell lines?)\b/i;
+const ANIMAL_TITLE =
+  /\b(rats?|mice|mouse|murine|rodents?|pigs?|piglets?|swine|dogs?|canine|cats?|feline|cattle|cows?|calves|sheep|lambs?|goats?|horses?|poultry|chickens?|broilers?|hens?|layers|zebrafish|in vitro|cell lines?)\b/i;
 // Not "fish" or "dairy": reviews of people eating fish or dairy foods name them in the title.
 
 /** People, animals, or unclear: from the MeSH tags when the paper has them, otherwise from the title. */
@@ -57,7 +58,11 @@ export function isRetracted(r: Pick<EvidenceRecord, "pubTypes" | "title">): bool
 /** A review of trials of giving the nutrient (not of blood levels in observational studies). */
 export function isTrialReview(r: Pick<EvidenceRecord, "title" | "abstract">): boolean {
   const text = `${r.title} ${r.abstract}`;
-  return /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b|\bintervention (studies|trials)\b|\bplacebo\b|\bcontrol (group|arm)s?\b|\bin (the )?control\b/i.test(text) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text);
+  return (
+    /\brandomi[sz]ed\b|\bRCTs?\b|\bcontrolled trials?\b|\bintervention (studies|trials)\b|\bplacebo\b|\bcontrol (group|arm)s?\b|\bin (the )?control\b/i.test(
+      text,
+    ) && /\bsupplement\w*|\bintervention\w*|\btreatment\b|\badministration\b|\bgiven\b/i.test(text)
+  );
 }
 
 const PEOPLE = "participants|patients|adults|women|men|subjects|individuals|people|persons|children|infants|volunteers|residents|participants";
@@ -70,8 +75,10 @@ const SAMPLE_ONES: Readonly<Record<string, number>> = { one: 1, two: 2, three: 3
  * as participants. Ambiguous/missing counts can remain unknown.
  */
 export function sampleSize(abstract: string): number | undefined {
-  const text = abstract.replace(/\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)(?:[- ](one|two|three|four|five|six|seven|eight|nine))?\b/gi,
-    (_, ten: string, one: string | undefined) => String(SAMPLE_TENS[ten.toLowerCase()]! + (one ? SAMPLE_ONES[one.toLowerCase()]! : 0)));
+  const text = abstract.replace(
+    /\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)(?:[- ](one|two|three|four|five|six|seven|eight|nine))?\b/gi,
+    (_, ten: string, one: string | undefined) => String(SAMPLE_TENS[ten.toLowerCase()]! + (one ? SAMPLE_ONES[one.toLowerCase()]! : 0)),
+  );
   const counts: { n: number; rank: number }[] = [];
   const number = "(?<![\\w-])(\\d{1,3}(?:[,\\s\\u202f\\u00a0]\\d{3})+|\\d+)";
   const assigned = /\b(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\b/i;
@@ -81,14 +88,26 @@ export function sampleSize(abstract: string): number | undefined {
     const after = text.slice(m.index! + m[0].length, m.index! + m[0].length + 120);
     const screened = /\b(?:pre-)?screen(?:ed|ing)\b/i.exec(after);
     const joined = assigned.exec(after);
-    if (rank === 2 && (/(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\s*$/i.test(before) || /^\s*(?:were|was|who were)?\s*(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\b/i.test(after))) rank = 3;
-    if (rank !== 3 && (/\b(?:screened|approached|identified)\s*$/i.test(before) || screened && (!joined || screened.index < joined.index))) return;
+    if (
+      rank === 2 &&
+      (/(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\s*$/i.test(before) ||
+        /^\s*(?:were|was|who were)?\s*(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\b/i.test(after))
+    )
+      rank = 3;
+    if (rank !== 3 && (/\b(?:screened|approached|identified)\s*$/i.test(before) || (screened && (!joined || screened.index < joined.index)))) return;
     if (Number.isFinite(n) && n >= 10 && n <= 5_000_000) counts.push({ n, rank });
   };
   // Only participant descriptors: arbitrary words here also match doses ("2000 IU in adults").
-  const modifiers = "healthy|older|young|younger|elderly|adult|male|female|pregnant|postmenopausal|community-dwelling|randomi[sz]ed|newborn|participating|preschool|high-risk|nulliparous";
+  const modifiers =
+    "healthy|older|young|younger|elderly|adult|male|female|pregnant|postmenopausal|community-dwelling|randomi[sz]ed|newborn|participating|preschool|high-risk|nulliparous";
   for (const m of text.matchAll(new RegExp(`${number}\\s+(?:(?:${modifiers})\\s+){0,3}(?:${PEOPLE})\\b`, "gi"))) grab(m, 2);
-  for (const m of text.matchAll(new RegExp(`${number}\\s+(?:provided consent to participate and\\s+)?(?:were\\s+)?(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\\b`, "gi"))) grab(m, 3);
+  for (const m of text.matchAll(
+    new RegExp(
+      `${number}\\s+(?:provided consent to participate and\\s+)?(?:were\\s+)?(?:randomly (?:assigned|allocated)|randomi[sz]ed|enrolled|recruited)\\b`,
+      "gi",
+    ),
+  ))
+    grab(m, 3);
   for (const m of text.matchAll(/\b[nN]\s*=\s*(\d{1,3}(?:[,\s  ]\d{3})+|\d+)/g)) grab(m, 1);
   const rank = Math.max(0, ...counts.map((c) => c.rank));
   const preferred = counts.filter((c) => c.rank === rank);
@@ -106,12 +125,17 @@ export interface Classified extends EvidenceRecord {
 /** Titles and abstracts as plain text: HTML tags removed and entities decoded ("D&lt;sub&gt;3" → "D3"). */
 export function plainText(s: string): string {
   const named: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
-  const decode = (t: string) => t.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) => (e[0] === "#" ? String.fromCodePoint(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1))) : (named[e.toLowerCase()] ?? m)));
+  const decode = (t: string) =>
+    t.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (m, e: string) =>
+      e[0] === "#" ? String.fromCodePoint(e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : Number(e.slice(1))) : (named[e.toLowerCase()] ?? m),
+    );
   // Decode encoded formatting too, but remove only actual named tags, never "< 30 ... >".
   const tags = /<\/?(?:abstract|title|p|div|span|i|b|em|strong|sub|sup|br|a|section|h[1-6]|jats:[a-z-]+)(?:\s+[^<>]*|\/)?>/gi;
   return decode(decode(s))
     .replace(/<\/?(?:abstract|title|p|div|section|h[1-6])(?:\s+[^<>]*|\/)?>/gi, " ")
-    .replace(tags, "").replace(/\s+/g, " ").trim();
+    .replace(tags, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 /**
@@ -167,7 +191,8 @@ const pick = (r: Classified, why: string): Chosen => ({
 });
 
 /** Titles of reviews that cover several supplements at once ("Nutritional supplements for migraine prevention"). */
-export const SEVERAL_SUPPLEMENTS = /\b(dietary|nutritional) supplements?\b|\bsupplements\b|\bmicronutrients?\b|\bvitamins\b|\bminerals\b|\bnutraceuticals?\b|\bmultivitamins?\b/i;
+export const SEVERAL_SUPPLEMENTS =
+  /\b(dietary|nutritional) supplements?\b|\bsupplements\b|\bmicronutrients?\b|\bvitamins\b|\bminerals\b|\bnutraceuticals?\b|\bmultivitamins?\b/i;
 
 /**
  * Reviews eligible for an outcome: meta-analyses or systematic reviews of trials, in people, not
@@ -176,7 +201,13 @@ export const SEVERAL_SUPPLEMENTS = /\b(dietary|nutritional) supplements?\b|\bsup
  * counts when the topic is in its abstract. A review without an abstract can't be checked for trials,
  * so it is kept for screening rather than dropped.
  */
-export function eligibleReviews(records: readonly Classified[], outcome: string, topicInTitle?: RegExp, excludeTitle?: RegExp, kind: MapKind = "supplement"): Classified[] {
+export function eligibleReviews(
+  records: readonly Classified[],
+  outcome: string,
+  topicInTitle?: RegExp,
+  excludeTitle?: RegExp,
+  kind: MapKind = "supplement",
+): Classified[] {
   return records.filter(
     (r) =>
       (r.design === "meta-analysis" || r.design === "systematic review") &&
@@ -187,13 +218,17 @@ export function eligibleReviews(records: readonly Classified[], outcome: string,
       (anyDesignKind(kind) || isTrialReview(r) || !r.abstract.trim()) &&
       (!topicInTitle || topicInTitle.test(r.title) || (SEVERAL_SUPPLEMENTS.test(r.title) && topicInTitle.test(r.abstract))) &&
       // A review of a different group of people (sepsis, surgery, pregnancy...) answers a different question.
-      (!excludeTitle || !excludeTitle.test(r.title)),
+      !excludeTitle?.test(r.title),
   );
 }
 
 /** How many trials a review pooled, read from its abstract ("41 randomised controlled trials"): the largest such number. */
 export function trialsPooled(abstract: string): number | undefined {
-  const nums = [...abstract.matchAll(/\b(\d{1,4})\s+(?:(?:eligible|independent|individual|double-blind(?:ed)?|placebo-controlled|randomi[sz]ed|controlled|clinical)\s+){0,4}(?:trials|RCTs)\b/gi)].map((m) => Number(m[1]));
+  const nums = [
+    ...abstract.matchAll(
+      /\b(\d{1,4})\s+(?:(?:eligible|independent|individual|double-blind(?:ed)?|placebo-controlled|randomi[sz]ed|controlled|clinical)\s+){0,4}(?:trials|RCTs)\b/gi,
+    ),
+  ].map((m) => Number(m[1]));
   const ok = nums.filter((n) => n >= 2 && n <= 2000);
   return ok.length ? Math.max(...ok) : undefined;
 }
@@ -214,17 +249,26 @@ export function chooseFrom(pool: readonly Classified[], newest = 3, about = "of 
   const metas = pool.filter((r) => r.design === "meta-analysis").sort(byNew);
   const others = pool.filter((r) => r.design !== "meta-analysis").sort(byNew);
   const first = [...metas, ...others].slice(0, newest);
-  const out = first.map((r) => pick(r, `${r.design === "meta-analysis" ? "One of the newest meta-analyses" : "One of the newest systematic reviews"} ${about} (${r.year ?? "year unknown"})`));
+  const out = first.map((r) =>
+    pick(
+      r,
+      `${r.design === "meta-analysis" ? "One of the newest meta-analyses" : "One of the newest systematic reviews"} ${about} (${r.year ?? "year unknown"})`,
+    ),
+  );
   const pooled = (r: Classified) => trialsPooled(r.abstract) ?? 0;
   const widest = [...pool].sort((a, b) => pooled(b) - pooled(a) || (b.year ?? 0) - (a.year ?? 0) || b.citedBy - a.citedBy)[0];
-  if (widest && pooled(widest) > 0 && !first.includes(widest)) out.push(pick(widest, `The most comprehensive review ${about} (${pooled(widest)} trials, ${widest.year ?? "year unknown"})`));
+  if (widest && pooled(widest) > 0 && !first.includes(widest))
+    out.push(pick(widest, `The most comprehensive review ${about} (${pooled(widest)} trials, ${widest.year ?? "year unknown"})`));
   return out;
 }
 
 /** Large trials (at least `minN` people, read from the abstract) on an outcome from a given year on: evidence newer reviews may not include. */
 export function largeTrialsSince(records: readonly Classified[], outcome: string, sinceYear: number, minN = 1000): Chosen[] {
   return records
-    .filter((r) => r.design === "rct" && r.population !== "animal" && !r.retracted && r.outcomes.includes(outcome) && (r.n ?? 0) >= minN && (r.year ?? 0) >= sinceYear)
+    .filter(
+      (r) =>
+        r.design === "rct" && r.population !== "animal" && !r.retracted && r.outcomes.includes(outcome) && (r.n ?? 0) >= minN && (r.year ?? 0) >= sinceYear,
+    )
     .sort((a, b) => (b.n ?? 0) - (a.n ?? 0))
     .map((r) => pick(r, `A large trial (about ${(r.n ?? 0).toLocaleString("en-GB")} people) from ${r.year}, as new as the newest review or newer`));
 }
@@ -329,7 +373,8 @@ export function validateEvidenceMap(v: unknown): string[] {
       }
       if (o.screening) {
         const sc = o.screening;
-        if (!sc.question?.population || !sc.question.intervention || !sc.question.comparison || !sc.question.outcome) e.push(`${o.id}: the screening question is incomplete`);
+        if (!sc.question?.population || !sc.question.intervention || !sc.question.comparison || !sc.question.outcome)
+          e.push(`${o.id}: the screening question is incomplete`);
         if (!sc.by) e.push(`${o.id}: who screened is missing`);
         if (sc.left.length !== sc.counts.partly + sc.counts.no) e.push(`${o.id}: every review left out must be listed`);
         if (sc.left.some((r) => !r.reason)) e.push(`${o.id}: a review left out has no reason`);
@@ -384,7 +429,12 @@ export const questionText = (q: Question, kind: ScreeningMode = "supplement") =>
   `Population: ${q.population}\n${kind === "food" ? "Food or exposure" : kind === "lifestyle" ? "Habit or exposure" : kind === "wholefood" ? "Food" : "Intervention"}: ${q.intervention}\nComparison: ${q.comparison}\nOutcome: ${q.outcome}`;
 
 /** The prompt for one batch of reviews. Abstracts are shortened; the model judges only what it is given. */
-export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[], kind: ScreeningMode = "supplement", maxAbstract = 2500): string {
+export function screeningPrompt(
+  q: Question,
+  reviews: readonly Pick<Classified, "pmid" | "title" | "year" | "abstract">[],
+  kind: ScreeningMode = "supplement",
+  maxAbstract = 2500,
+): string {
   const list = reviews
     .filter((r) => r.pmid)
     .map((r) => `PMID ${r.pmid} (${r.year ?? "year unknown"})\nTitle: ${r.title}\nAbstract: ${r.abstract.slice(0, maxAbstract) || "(none)"}`)
@@ -401,19 +451,19 @@ export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, 
       ? kind === "any-design"
         ? 'fits = "yes": the review pooled or systematically reviewed studies of any design, including laboratory or observational studies, matching the population, intervention or exposure, comparison and outcome (a matching separate analysis or subgroup counts).'
         : eating
-        ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) of people eating or drinking the food itself (whole, juice, or dried and powdered whole food) that match the population, comparison and outcome (a separate analysis or subgroup that matches counts).'
-        : habit
-        ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
-        : 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
+          ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) of people eating or drinking the food itself (whole, juice, or dried and powdered whole food) that match the population, comparison and outcome (a separate analysis or subgroup that matches counts).'
+          : habit
+            ? 'fits = "yes": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
+            : 'fits = "yes": the review pooled or systematically reviewed studies of any design (trials, cohort studies, absorption or feeding studies, analyses of foods) that match the population, food or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).'
       : 'fits = "yes": the review pooled randomised trials matching the population, intervention, comparison and outcome (a separate analysis or subgroup that matches counts).',
     food
       ? kind === "any-design"
         ? 'fits = "partly": close, but part of the population, intervention or exposure, comparison or outcome differs.'
         : eating
-        ? 'fits = "partly": close, but one part differs (for example an extract or supplement of the food instead of the food itself, a group of foods where this one is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
-        : habit
-        ? 'fits = "partly": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
-        : 'fits = "partly": close, but one part differs (for example a supplement instead of the food, a narrower or different group of people, or only one part of the claim).'
+          ? 'fits = "partly": close, but one part differs (for example an extract or supplement of the food instead of the food itself, a group of foods where this one is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
+          : habit
+            ? 'fits = "partly": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).'
+            : 'fits = "partly": close, but one part differs (for example a supplement instead of the food, a narrower or different group of people, or only one part of the claim).'
       : 'fits = "partly": close, but one part differs (for example the vitamin is only given together with something else, a narrower or different group of people, treating an illness instead of preventing it, or the outcome is only a blood marker).',
     'fits = "no": a different question.',
     `Judge only from the title and abstract given. Don't judge whether ${eating ? "the food works" : habit ? "the habit works" : food ? "the claim is true" : "the supplement works"}, and don't use outside knowledge about the paper.`,
@@ -428,7 +478,20 @@ export function screeningPrompt(q: Question, reviews: readonly Pick<Classified, 
 
 /** Canonical input key, collision-free rather than a lossy hash; includes the prompt version and mode. */
 export function screeningInput(q: Question, r: Pick<Classified, "pmid" | "title" | "year" | "abstract" | "design">, kind: ScreeningMode): string {
-  return JSON.stringify(["screening-v1", kind, r.design, q.population, q.intervention, q.comparison, q.outcome, r.pmid, r.year ?? null, r.title, r.abstract, screeningPrompt(q, [r], kind)]);
+  return JSON.stringify([
+    "screening-v1",
+    kind,
+    r.design,
+    q.population,
+    q.intervention,
+    q.comparison,
+    q.outcome,
+    r.pmid,
+    r.year ?? null,
+    r.title,
+    r.abstract,
+    screeningPrompt(q, [r], kind),
+  ]);
 }
 
 /** Reuse only decisions with known attribution and the exact inputs the current screen would receive. */

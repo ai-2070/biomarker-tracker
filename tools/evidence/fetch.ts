@@ -23,7 +23,9 @@ const str = (v: unknown) => (typeof v === "string" ? v : undefined);
 /** The fields the map uses, from one Europe PMC "core" record. */
 function trim(r: Raw) {
   const pubTypes = ((r.pubTypeList as Raw | undefined)?.pubType as string[] | undefined) ?? [];
-  const mesh = (((r.meshHeadingList as Raw | undefined)?.meshHeading as Raw[] | undefined) ?? []).map((m) => str(m.descriptorName)).filter((x): x is string => !!x);
+  const mesh = (((r.meshHeadingList as Raw | undefined)?.meshHeading as Raw[] | undefined) ?? [])
+    .map((m) => str(m.descriptorName))
+    .filter((x): x is string => !!x);
   return {
     pmid: str(r.pmid),
     pmcid: str(r.pmcid),
@@ -76,8 +78,13 @@ const byType = (base: string) => ({
   retracted: `${base} AND PUB_TYPE:"retracted publication"`,
 });
 type Rec = ReturnType<typeof trim> & { matched?: string[] };
-const download = async (q: ReturnType<typeof byType>) => ({ reviews: (await all(q.reviews)) as Rec[], trials: (await all(q.trials)) as Rec[], guidelines: (await all(q.guidelines)) as Rec[] });
-const countAll = async (q: Record<string, string>) => Object.fromEntries(await Promise.all(Object.entries(q).map(async ([k, v]) => [k, await count(v)] as const)));
+const download = async (q: ReturnType<typeof byType>) => ({
+  reviews: (await all(q.reviews)) as Rec[],
+  trials: (await all(q.trials)) as Rec[],
+  guidelines: (await all(q.guidelines)) as Rec[],
+});
+const countAll = async (q: Record<string, string>) =>
+  Object.fromEntries(await Promise.all(Object.entries(q).map(async ([k, v]) => [k, await count(v)] as const)));
 
 let queries: Record<string, string>;
 let counts: Record<string, number>;
@@ -118,5 +125,8 @@ if (topic.kind === "food" || topic.kind === "lifestyle" || topic.kind === "whole
 
 const dir = join(import.meta.dirname, "cache");
 mkdirSync(dir, { recursive: true });
-writeFileSync(join(dir, `${topic.id}.json`), JSON.stringify({ topic: topic.id, fetchedAt: new Date().toISOString().slice(0, 10), queries, counts, ...(outcomeCounts ? { outcomeCounts } : {}), records }));
+writeFileSync(
+  join(dir, `${topic.id}.json`),
+  JSON.stringify({ topic: topic.id, fetchedAt: new Date().toISOString().slice(0, 10), queries, counts, ...(outcomeCounts ? { outcomeCounts } : {}), records }),
+);
 console.log(`saved ${records.reviews.length + records.trials.length + records.guidelines.length} records`);

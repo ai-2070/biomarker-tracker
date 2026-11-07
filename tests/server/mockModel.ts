@@ -30,7 +30,14 @@ export class MockModel extends MockLanguageModelV4 {
           } else parts.push(c as LanguageModelV4StreamPart);
         });
         parts.push({ type: "finish", finishReason: r.finishReason, usage: r.usage, ...(r.providerMetadata ? { providerMetadata: r.providerMetadata } : {}) });
-        return { stream: new ReadableStream<LanguageModelV4StreamPart>({ start(controller) { for (const p of parts) controller.enqueue(p); controller.close(); } }) };
+        return {
+          stream: new ReadableStream<LanguageModelV4StreamPart>({
+            start(controller) {
+              for (const p of parts) controller.enqueue(p);
+              controller.close();
+            },
+          }),
+        };
       },
     });
   }

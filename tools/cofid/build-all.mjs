@@ -1,8 +1,9 @@
 // Extract every CoFID 2021 food with the nutrients the meal builder shows, into knowledge/foods/cofid-all.json.
 // Values copied as published: "Tr" (trace) -> 0; "N" (not measured) or empty -> null (left out, never guessed).
 // Usage: node build-all.mjs <cofid xlsx> <output json>
-import XLSX from "xlsx";
+
 import { writeFileSync } from "node:fs";
+import XLSX from "xlsx";
 
 const [xlsxPath, outPath] = process.argv.slice(2);
 const wb = XLSX.readFile(xlsxPath);
@@ -40,7 +41,7 @@ const NUTRIENTS = [
   ["folate", "1.5 Vitamins", "FOLT", "µg", "Folate"],
   ["vitaminC", "1.5 Vitamins", "VITC", "mg", "Vitamin C"],
 ];
-const UNIT_IN_NAME = { kcal: "(kcal)", g: "(g)", mg: "(mg)", "µg": "(µg)" };
+const UNIT_IN_NAME = { kcal: "(kcal)", g: "(g)", mg: "(mg)", µg: "(µg)" };
 
 function parse(v) {
   if (v === null || v === undefined || v === "" || v === "-" || v === "N") return null;
@@ -75,7 +76,7 @@ const rowsAt = (n, i) => {
   if (!r || r[0] !== all[i][0] || String(r[1]).trim() !== String(all[i][1]).trim()) throw new Error(`row ${i} differs in ${n}`);
   return r;
 };
-const baseIdx = all.map((r, i) => i).filter((i) => i >= 3 && typeof all[i][0] === "string" && /^\d+-\d+$/.test(all[i][0]));
+const baseIdx = all.map((_r, i) => i).filter((i) => i >= 3 && typeof all[i][0] === "string" && /^\d+-\d+$/.test(all[i][0]));
 
 const keys = [...NUTRIENTS.map((n) => n[0]), "epaDha"];
 const foods = [];
@@ -102,13 +103,14 @@ const out = {
     publisher: "Public Health England / UK Government",
     url: "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
     licence: "Open Government Licence v3.0",
-    notes: "Every food in CoFID 2021, values per 100 g edible portion. 'Tr' (trace) stored as 0. Values not measured ('N') or not listed are null: left out, never guessed. EPA + DHA only when both were measured. CoFID uses code 13-669 twice; the second food is 13-669-2.",
+    notes:
+      "Every food in CoFID 2021, values per 100 g edible portion. 'Tr' (trace) stored as 0. Values not measured ('N') or not listed are null: left out, never guessed. EPA + DHA only when both were measured. CoFID uses code 13-669 twice; the second food is 13-669-2.",
   },
   nutrients: Object.fromEntries([...NUTRIENTS.map(([k, , , unit, label]) => [k, { label, unit }]), ["epaDha", { label: "Omega-3 EPA + DHA", unit: "g" }]]),
   keys,
   foods,
 };
-writeFileSync(outPath, JSON.stringify(out) + "\n");
+writeFileSync(outPath, `${JSON.stringify(out)}\n`);
 const measured = keys.map((k, i) => `${k}:${foods.filter((f) => f[2][i] !== null).length}`).join(" ");
 console.log(`wrote ${foods.length} foods`);
 console.log(measured);

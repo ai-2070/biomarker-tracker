@@ -1,23 +1,51 @@
+import { bestBeforeMoments, type LifeTable } from "@bt/shared/core/lifeTable";
+import {
+  coxRisk10,
+  type MortalityInputs,
+  type MortalityModelFile,
+  mortalityRiskAge,
+  predictMortality,
+  validateMortalityModels,
+} from "@bt/shared/core/mortalityModel";
+import { mortalityProjection } from "@bt/shared/core/mortalityProjection";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import modelJson from "../../knowledge/models/mortality.json";
 import evaluationJson from "../../tools/longevity/evaluation.json";
-import { bestBeforeMoments, type LifeTable } from "@bt/shared/core/lifeTable";
-import { coxRisk10, mortalityRiskAge, predictMortality, validateMortalityModels, type MortalityInputs, type MortalityModelFile } from "@bt/shared/core/mortalityModel";
-import { mortalityProjection } from "@bt/shared/core/mortalityProjection";
-import type { Measurement, Profile } from "@bt/shared/core/types";
 
 const file = modelJson as unknown as MortalityModelFile;
-const evaluations = evaluationJson as unknown as { variants: Record<string, { syntheticInferenceOracles: { input: MortalityInputs; lifelinesRisk10: number; lifelinesComparisonRisk10: number }[] }> };
+const evaluations = evaluationJson as unknown as {
+  variants: Record<string, { syntheticInferenceOracles: { input: MortalityInputs; lifelinesRisk10: number; lifelinesComparisonRisk10: number }[] }>;
+};
 const today = "2026-10-31";
 const profile: Profile = { birthMonth: "1971-05", sex: "m", smoking: "never", heightCm: 180, country: "AT" };
-const table: LifeTable = { lx: Array.from({ length: 96 }, (_, age) => age <= 60 ? 100_000 : 100_000 - (age - 60) * 2_000), e95: 3 };
+const table: LifeTable = { lx: Array.from({ length: 96 }, (_, age) => (age <= 60 ? 100_000 : 100_000 - (age - 60) * 2_000)), e95: 3 };
 const raw: MortalityInputs = { age: 55, sex: "m", smoking: "never", bodyFat: 24, waistToHeight: 0.5, phenoAgeGap: -3 };
 let sequence = 0;
 function reading(biomarkerId: string, value: number, date = today, extra: Partial<Measurement> = {}): Measurement {
-  return { id: `synthetic-${sequence++}`, biomarkerId, value, originalValue: value, originalUnit: biomarkerId === "body_fat" ? "%" : biomarkerId === "waist" ? "cm" : "min", date, source: "manual", ...extra };
+  return {
+    id: `synthetic-${sequence++}`,
+    biomarkerId,
+    value,
+    originalValue: value,
+    originalUnit: biomarkerId === "body_fat" ? "%" : biomarkerId === "waist" ? "cm" : "min",
+    date,
+    source: "manual",
+    ...extra,
+  };
 }
 const body = () => [reading("body_fat", 24), reading("waist", 90)];
-const clinicalValues: Record<string, number> = { albumin: 42, creatinine: 90, glucose: 5.5, crp_hs: 1, lymphocyte_pct: 30, mcv: 92, rdw: 13.5, alp: 80, wbc: 6 };
+const clinicalValues: Record<string, number> = {
+  albumin: 42,
+  creatinine: 90,
+  glucose: 5.5,
+  crp_hs: 1,
+  lymphocyte_pct: 30,
+  mcv: 92,
+  rdw: 13.5,
+  alp: 80,
+  wbc: 6,
+};
 const labs = (date = today) => Object.entries(clinicalValues).map(([id, value]) => reading(id, value, date));
 const ago = (days: number) => new Date(Date.parse(`${today}T00:00:00Z`) - days * 86_400_000).toISOString().slice(0, 10);
 
@@ -88,9 +116,21 @@ describe("mortality projection data compatibility", () => {
   });
 
   it("does not use future or stale body readings and respects persisted same-day save order", () => {
-    const invalid = mortalityProjection(table, profile, [reading("body_fat", 24, "2025-10-30"), reading("body_fat", 40, "2026-11-01"), reading("waist", 90)], today, file);
+    const invalid = mortalityProjection(
+      table,
+      profile,
+      [reading("body_fat", 24, "2025-10-30"), reading("body_fat", 40, "2026-11-01"), reading("waist", 90)],
+      today,
+      file,
+    );
     expect(invalid.prediction.status).toBe("unavailable");
-    const ordered = mortalityProjection(table, profile, [reading("body_fat", 24, today, { savedOrder: 2 }), reading("body_fat", 40, today, { savedOrder: 1 }), reading("waist", 90)], today, file);
+    const ordered = mortalityProjection(
+      table,
+      profile,
+      [reading("body_fat", 24, today, { savedOrder: 2 }), reading("body_fat", 40, today, { savedOrder: 1 }), reading("waist", 90)],
+      today,
+      file,
+    );
     expect(ordered.prediction.model?.id).toBe("body");
     expect(ordered.included.find((v) => v.key === "bodyFat")?.value).toBe(24);
   });
@@ -110,7 +150,7 @@ describe("mortality projection data compatibility", () => {
   });
 
   it("does not mix blood draws or widely separated body measurements", () => {
-    const splitLabs = labs().map((m, n) => n < 4 ? { ...m, date: ago(1) } : m);
+    const splitLabs = labs().map((m, n) => (n < 4 ? { ...m, date: ago(1) } : m));
     expect(mortalityProjection(table, profile, [...body(), ...splitLabs], today, file).prediction.model?.id).toBe("body");
     expect(mortalityProjection(table, profile, [...body(), ...labs()], today, file).prediction.model?.id).toBe("clinical");
     const separated = [reading("body_fat", 24, ago(40)), reading("waist", 90)];
@@ -118,15 +158,21 @@ describe("mortality projection data compatibility", () => {
   });
 
   it("accepts a positive CRP detection limit but not other bounded lab values as exact inputs", () => {
-    const boundedCrp = labs().map((m) => m.biomarkerId === "crp_hs" ? { ...m, qualifier: "<" as const } : m);
+    const boundedCrp = labs().map((m) => (m.biomarkerId === "crp_hs" ? { ...m, qualifier: "<" as const } : m));
     expect(mortalityProjection(table, profile, [...body(), ...boundedCrp], today, file).prediction.model?.id).toBe("clinical");
-    const boundedAlbumin = labs().map((m) => m.biomarkerId === "albumin" ? { ...m, qualifier: "<" as const } : m);
+    const boundedAlbumin = labs().map((m) => (m.biomarkerId === "albumin" ? { ...m, qualifier: "<" as const } : m));
     expect(mortalityProjection(table, profile, [...body(), ...boundedAlbumin], today, file).prediction.model?.id).toBe("body");
   });
 
   it("does not assign weights to recorded HRV, DunedinPACE or functional test results", () => {
     const baseline = mortalityProjection(table, profile, body(), today, file);
-    const extra = mortalityProjection(table, profile, [...body(), reading("hrv_resting", 70), reading("dunedinpace", 0.88), reading("grip_strength", 50), reading("gait_speed", 1.4)], today, file);
+    const extra = mortalityProjection(
+      table,
+      profile,
+      [...body(), reading("hrv_resting", 70), reading("dunedinpace", 0.88), reading("grip_strength", 50), reading("gait_speed", 1.4)],
+      today,
+      file,
+    );
     expect(extra.prediction.risk10).toBe(baseline.prediction.risk10);
     expect(extra.adjusted?.medianAt).toBe(baseline.adjusted?.medianAt);
     expect(extra.included.map((v) => v.key)).toEqual(baseline.included.map((v) => v.key));

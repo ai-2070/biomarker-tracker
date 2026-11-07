@@ -1,15 +1,15 @@
-import { TOPICS, validateComparisonTopic, type ComparisonTopicFile } from "@bt/shared/core/foodComparison";
-import { validateFitnessTest, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
-import { validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
+import { type ClockFile, validateClockFile } from "@bt/shared/core/clocks";
 import { validateEvidenceClaim } from "@bt/shared/core/evidence";
+import { type FitnessTestDef, validateFitnessTest } from "@bt/shared/core/fitnessTests";
+import { type ComparisonTopicFile, TOPICS, validateComparisonTopic } from "@bt/shared/core/foodComparison";
 import { CATEGORY_ORDER, validateBiomarkerDef } from "@bt/shared/core/knowledge";
+import { type LifestyleDef, validateLifestyleDef } from "@bt/shared/core/lifestyle";
+import { type NutrientDef, validateNutrientDef } from "@bt/shared/core/nutrients";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "@bt/shared/core/types";
+import { validateWholeFoodDef, type WholeFoodDef } from "@bt/shared/core/wholeFoods";
 import foodTable from "../../../../knowledge/foods/cofid-foods.json";
 import { lowerFirst } from "./format";
-import { validateLifestyleDef, type LifestyleDef } from "@bt/shared/core/lifestyle";
-import { validateWholeFoodDef, type WholeFoodDef } from "@bt/shared/core/wholeFoods";
-import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
-import { validateClockFile, type ClockFile } from "@bt/shared/core/clocks";
 
 // Bundled at build time; nothing is fetched at runtime.
 const modules = import.meta.glob<unknown>("../../../../knowledge/biomarkers/*.json", { eager: true, import: "default" });

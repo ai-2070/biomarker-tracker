@@ -41,10 +41,15 @@ export async function openRouterModels(fetchFn: typeof fetch = fetch): Promise<{
     if (!r.ok) throw new Error(`OpenRouter answered ${r.status}.`);
     return ((await r.json()) as { data?: T[] }).data ?? [];
   };
-  const [zdr, models] = await Promise.all([get<ZdrEndpoint>("https://openrouter.ai/api/v1/endpoints/zdr"), get<OrModel>("https://openrouter.ai/api/v1/models")]);
+  const [zdr, models] = await Promise.all([
+    get<ZdrEndpoint>("https://openrouter.ai/api/v1/endpoints/zdr"),
+    get<OrModel>("https://openrouter.ai/api/v1/models"),
+  ]);
   const withZdr = new Set(zdr.map((e) => e.model_id).filter((x): x is string => typeof x === "string"));
   const list = models
-    .filter((m): m is OrModel & { id: string } => typeof m.id === "string" && !m.id.includes(":") && withZdr.has(m.id) && !!m.supported_parameters?.includes("tools"))
+    .filter(
+      (m): m is OrModel & { id: string } => typeof m.id === "string" && !m.id.includes(":") && withZdr.has(m.id) && !!m.supported_parameters?.includes("tools"),
+    )
     .map((m) => ({ id: m.id, label: m.name ?? m.id }))
     .sort((a, b) => a.label.localeCompare(b.label));
   cache = { at: Date.now(), list };

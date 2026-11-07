@@ -1,39 +1,39 @@
 import "fake-indexeddb/auto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { parseBackup } from "@bt/shared/core/backup";
 import { demoProfile } from "@bt/shared/core/demo";
-import weight from "../../knowledge/biomarkers/weight.json";
-import bodyFat from "../../knowledge/biomarkers/body_fat.json";
-import pace from "../../knowledge/biomarkers/dunedinpace.json";
-import type { BiomarkerDef } from "@bt/shared/core/types";
 import { profileDetailsIn } from "@bt/shared/core/profileCompletion";
+import type { BiomarkerDef } from "@bt/shared/core/types";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   addMeasurement,
   addProtocol,
-  saveDeviceMeasurements,
   createExperiment,
-  deleteHabit,
-  saveHabit,
-  watchHabit,
-  endExperiment,
-  deleteProtocol,
-  saveProtocol,
   deleteEverything,
+  deleteHabit,
+  deleteProtocol,
+  endExperiment,
   exportAll,
+  fillPersonalDetails,
   forgetBrowserAiKey,
   getProfile,
   importBackup,
-  measurementsFor,
-  setProfile,
-  TrackerDB,
-  savePlan,
-  startPlan,
-  stopPlan,
-  fillPersonalDetails,
   LOADED_PROFILE_KEY,
+  measurementsFor,
   saveBirthMonth,
   saveCountry,
+  saveDeviceMeasurements,
+  saveHabit,
+  savePlan,
+  saveProtocol,
+  setProfile,
+  startPlan,
+  stopPlan,
+  TrackerDB,
+  watchHabit,
 } from "../../apps/web/src/db/db";
+import bodyFat from "../../knowledge/biomarkers/body_fat.json";
+import pace from "../../knowledge/biomarkers/dunedinpace.json";
+import weight from "../../knowledge/biomarkers/weight.json";
 
 let db: TrackerDB;
 let n = 0;
@@ -64,20 +64,37 @@ describe("db", () => {
     await db.settings.put({ key: LOADED_PROFILE_KEY, value: "person-a" });
     await setProfile({ name: "Private name", notes: "Private notes", heightCm: 168 }, db);
     const text = "I'm 180 cm. I'm male";
-    const result = await fillPersonalDetails([{ details: [
-      { field: "heightCm", quote: "I'm 180 cm" },
-      { field: "sex", quote: "I'm male" },
-    ] }], text, "2026-10-30", { id: "person-a" }, captureDefs, undefined, db);
+    const result = await fillPersonalDetails(
+      [
+        {
+          details: [
+            { field: "heightCm", quote: "I'm 180 cm" },
+            { field: "sex", quote: "I'm male" },
+          ],
+        },
+      ],
+      text,
+      "2026-10-30",
+      { id: "person-a" },
+      captureDefs,
+      undefined,
+      db,
+    );
     expect(result.added).toEqual([{ field: "sex", value: "m" }]);
     expect(await getProfile(db)).toEqual({ name: "Private name", notes: "Private notes", heightCm: 168, sex: "m" });
   });
 
   it("converts quoted height and saves separate validated calls as one profile update", async () => {
     await setProfile({ name: "Local person" }, db);
-    const result = await fillPersonalDetails([
-      { details: [{ field: "heightCm", quote: "I'm 5 feet 11 inches" }] },
-      { details: [{ field: "diet", quote: "I'm vegetarian" }] },
-    ], "I'm 5 feet 11 inches. I'm vegetarian", "2026-10-30", { id: null, name: "Local person" }, captureDefs, undefined, db);
+    const result = await fillPersonalDetails(
+      [{ details: [{ field: "heightCm", quote: "I'm 5 feet 11 inches" }] }, { details: [{ field: "diet", quote: "I'm vegetarian" }] }],
+      "I'm 5 feet 11 inches. I'm vegetarian",
+      "2026-10-30",
+      { id: null, name: "Local person" },
+      captureDefs,
+      undefined,
+      db,
+    );
     expect(result.sameProfile).toBe(true);
     expect(await getProfile(db)).toEqual({ name: "Local person", heightCm: 180.34, diet: "vegetarian" });
   });
@@ -89,7 +106,9 @@ describe("db", () => {
     expect((await fillPersonalDetails(inputs, "I'm 180 cm", "2026-10-30", { id: "person-a" }, captureDefs, undefined, db)).sameProfile).toBe(false);
     expect(await getProfile(db)).toEqual({ name: "Other person" });
     await db.settings.delete(LOADED_PROFILE_KEY);
-    expect((await fillPersonalDetails(inputs, "I'm 180 cm", "2026-10-30", { id: null, name: "Original person" }, captureDefs, undefined, db)).sameProfile).toBe(false);
+    expect((await fillPersonalDetails(inputs, "I'm 180 cm", "2026-10-30", { id: null, name: "Original person" }, captureDefs, undefined, db)).sameProfile).toBe(
+      false,
+    );
     expect(await getProfile(db)).toEqual({ name: "Other person" });
   });
 
@@ -98,8 +117,18 @@ describe("db", () => {
     const inputs = [{ details: [{ field: "heightCm", quote: "I'm 180 cm" }] }];
     const controller = new AbortController();
     controller.abort();
-    await expect(fillPersonalDetails(inputs, "I'm 180 cm", "2026-10-30", { id: null, name: "Local person" }, captureDefs, controller.signal, db)).rejects.toThrow();
-    const result = await fillPersonalDetails(inputs, "Please read the attached document", "2026-10-30", { id: null, name: "Local person" }, captureDefs, undefined, db);
+    await expect(
+      fillPersonalDetails(inputs, "I'm 180 cm", "2026-10-30", { id: null, name: "Local person" }, captureDefs, controller.signal, db),
+    ).rejects.toThrow();
+    const result = await fillPersonalDetails(
+      inputs,
+      "Please read the attached document",
+      "2026-10-30",
+      { id: null, name: "Local person" },
+      captureDefs,
+      undefined,
+      db,
+    );
     expect(result.added).toEqual([]);
     expect(await getProfile(db)).toEqual({ name: "Local person" });
   });
@@ -111,7 +140,8 @@ describe("db", () => {
     const identity = { id: null, name: "Local person" };
     const result = await fillPersonalDetails([profileDetailsIn(text, date)], text, date, identity, captureDefs, undefined, db);
     expect(result.measurementsAdded.map(({ biomarkerId, value, date }) => ({ biomarkerId, value, date }))).toEqual([
-      { biomarkerId: "weight", value: 102, date }, { biomarkerId: "body_fat", value: 27, date },
+      { biomarkerId: "weight", value: 102, date },
+      { biomarkerId: "body_fat", value: 27, date },
     ]);
     expect(await getProfile(db)).toEqual({ name: "Local person", heightCm: 192, sex: "m" });
     await fillPersonalDetails([], "im 29% body fat", date, identity, captureDefs, undefined, db);
@@ -128,7 +158,8 @@ describe("db", () => {
       fillPersonalDetails([], "my pace of aging is 0.88 today", "2026-10-30", identity, captureDefs, undefined, db),
     ]);
     expect((await measurementsFor("dunedinpace", db)).map(({ date, value }) => ({ date, value }))).toEqual([
-      { date: "2026-10-29", value: 0.9 }, { date: "2026-10-30", value: 0.88 },
+      { date: "2026-10-29", value: 0.9 },
+      { date: "2026-10-30", value: 0.88 },
     ]);
   });
 
@@ -169,10 +200,7 @@ describe("db", () => {
 
   it("saves a missing country once while preserving concurrent profile edits", async () => {
     await setProfile({ name: "Person", heightCm: 192, notes: "New private note", conditions: "asthma" }, db);
-    const results = await Promise.all([
-      saveCountry("US", { id: null, name: "Person" }, db),
-      saveCountry("GB", { id: null, name: "Person" }, db),
-    ]);
+    const results = await Promise.all([saveCountry("US", { id: null, name: "Person" }, db), saveCountry("GB", { id: null, name: "Person" }, db)]);
     expect(results).toEqual([true, false]);
     expect(await getProfile(db)).toEqual({ name: "Person", heightCm: 192, notes: "New private note", conditions: "asthma", country: "US" });
   });
@@ -202,7 +230,15 @@ describe("db", () => {
   });
 
   it("reimports corrected device values in place, adds new days and keeps unrelated results", async () => {
-    const bad = { biomarkerId: "body_fat", value: 20, originalValue: 20, originalUnit: "%", date: "2026-03-01", source: "device" as const, note: "weight.csv: body fat mass" };
+    const bad = {
+      biomarkerId: "body_fat",
+      value: 20,
+      originalValue: 20,
+      originalUnit: "%",
+      date: "2026-03-01",
+      source: "device" as const,
+      note: "weight.csv: body fat mass",
+    };
     const id = await addMeasurement({ ...bad, qualifier: "<", labRange: { high: 30 } }, db);
     const otherDay = await addMeasurement({ ...bad, date: "2026-02-01" }, db);
     const otherMarker = await addMeasurement(sample, db);
@@ -395,7 +431,12 @@ describe("db", () => {
     await watchHabit(p, ["vitamin_d"], 56, "2026-10-28", db);
     const second = await watchHabit(p, ["vitamin_d", "ferritin"], 84, "2026-10-28", db);
     expect(await db.experiments.count()).toBe(1);
-    expect((await db.experiments.get(second))!).toMatchObject({ protocolId: pid, change: "Vitamin D3 1000 IU", markerIds: ["vitamin_d", "ferritin"], chosenOn: "2026-10-28" });
+    expect((await db.experiments.get(second))!).toMatchObject({
+      protocolId: pid,
+      change: "Vitamin D3 1000 IU",
+      markerIds: ["vitamin_d", "ferritin"],
+      chosenOn: "2026-10-28",
+    });
     await saveHabit({ ...p, label: "Vitamin D3 2000 IU", end: "2024-06-01" }, db);
     expect((await db.experiments.get(second))!).toMatchObject({ change: "Vitamin D3 2000 IU", end: "2024-06-01" });
     await deleteHabit({ entry: (await db.protocols.get(pid))! }, db);

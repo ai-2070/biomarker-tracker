@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { Tabs } from "@base-ui/react/tabs";
+import type { ReactNode } from "react";
 import { cx } from "./ui";
 
 export interface SegmentTab<T extends string> {

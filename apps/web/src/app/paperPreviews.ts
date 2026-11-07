@@ -1,7 +1,8 @@
-import { paperById, studyQuery, type FetchFn, type Paper } from "@bt/shared/research/papers";
+import { type FetchFn, type Paper, paperById, studyQuery } from "@bt/shared/research/papers";
 
 /** Recognise paper links only; never turn an arbitrary link or search into a request. */
 export function paperPreviewId(href: string): string | undefined {
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: rejects control characters on purpose
   if (!/^https:\/\//i.test(href) || /[\s\\\u0000-\u001f\u007f]/u.test(href)) return undefined;
   try {
     const url = new URL(href);
@@ -9,6 +10,7 @@ export function paperPreviewId(href: string): string | undefined {
     // Split the URL before decoding: an encoded ? or # belongs to the DOI,
     // whereas an actual query or fragment belongs to the link, not its identity.
     const path = decodeURIComponent(url.pathname);
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: rejects control characters on purpose
     if (/[\u0000-\u001f\u007f]/u.test(path)) return undefined;
     let id: string | undefined;
     let match: RegExpExecArray | null;
@@ -71,16 +73,18 @@ export function createPaperPreviewLoader(fetchFn: FetchFn): (id: string) => Prom
     const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
     const entry: PreviewEntry = {
       pending: true,
-      promise: paperById(id, fetchFn, controller.signal).then(
-        (paper) => {
-          entry.pending = false;
-          return paper;
-        },
-        (error: unknown) => {
-          if (cache.get(query) === entry) cache.delete(query);
-          throw error;
-        },
-      ).finally(() => clearTimeout(timeout)),
+      promise: paperById(id, fetchFn, controller.signal)
+        .then(
+          (paper) => {
+            entry.pending = false;
+            return paper;
+          },
+          (error: unknown) => {
+            if (cache.get(query) === entry) cache.delete(query);
+            throw error;
+          },
+        )
+        .finally(() => clearTimeout(timeout)),
     };
     cache.set(query, entry);
     return entry.promise;

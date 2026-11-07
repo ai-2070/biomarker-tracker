@@ -1,10 +1,34 @@
+import {
+  BODY_FIELDS,
+  bmi,
+  bmiTerms,
+  bmrMifflin,
+  bmrMifflinTerms,
+  heightInCm,
+  heightInFeet,
+  latestBloodPressure,
+  latestBody,
+  recentAverage,
+  rmrCunningham,
+  validateBodyEntry,
+  waistToHeight,
+  waistToHeightBand,
+  waistToHeightYearsLost,
+} from "@bt/shared/core/body";
+import type { Measurement } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { BODY_FIELDS, recentAverage, bmi, bmiTerms, bmrMifflin, bmrMifflinTerms, heightInCm, heightInFeet, rmrCunningham, latestBloodPressure, latestBody, validateBodyEntry, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "@bt/shared/core/body";
-import type { Measurement } from "@bt/shared/core/types";
 
 const today = "2026-10-28";
-const m = (biomarkerId: string, date: string, value: number): Measurement => ({ id: `${biomarkerId}-${date}-${value}`, biomarkerId, date, value, originalValue: value, originalUnit: "", source: "manual" });
+const m = (biomarkerId: string, date: string, value: number): Measurement => ({
+  id: `${biomarkerId}-${date}-${value}`,
+  biomarkerId,
+  date,
+  value,
+  originalValue: value,
+  originalUnit: "",
+  source: "manual",
+});
 
 describe("body knowledge", () => {
   it("has a knowledge entry for every body field", () => {
@@ -27,7 +51,16 @@ describe("profile height units", () => {
       expect(heightInCm(parts.feet, "ft/in", parts.inches)).toBeCloseTo(cm, 1);
     }
   });
-  it.each([[5, 12], [5, -1], [5.5, 0], [-1, 0], [0, 0], [9, 0], [5, NaN], [Infinity, 0]])("rejects invalid feet/inches: %s / %s", (feet, inches) => {
+  it.each([
+    [5, 12],
+    [5, -1],
+    [5.5, 0],
+    [-1, 0],
+    [0, 0],
+    [9, 0],
+    [5, NaN],
+    [Infinity, 0],
+  ])("rejects invalid feet/inches: %s / %s", (feet, inches) => {
     expect(heightInCm(feet, "ft/in", inches)).toBeUndefined();
   });
   it.each([39, 261, NaN, Infinity])("rejects invalid cm: %s", (cm) => {
@@ -82,7 +115,13 @@ describe("basal metabolic rate", () => {
 });
 
 describe("latest readings", () => {
-  const ms = [m("weight", "2026-01-01", 70), m("weight", "2026-03-01", 69), m("bp_systolic", "2026-03-01", 124), m("bp_diastolic", "2026-03-01", 79), m("bp_systolic", "2026-04-01", 130)];
+  const ms = [
+    m("weight", "2026-01-01", 70),
+    m("weight", "2026-03-01", 69),
+    m("bp_systolic", "2026-03-01", 124),
+    m("bp_diastolic", "2026-03-01", 79),
+    m("bp_systolic", "2026-04-01", 130),
+  ];
   it("takes the newest of each", () => {
     expect(latestBody(ms).weight?.value).toBe(69);
     expect(latestBody(ms).waist).toBeUndefined();
@@ -97,7 +136,15 @@ describe("latest readings", () => {
 describe("entering body measurements", () => {
   it("saves the filled fields in canonical units", () => {
     const r = validateBodyEntry(
-      { date: "2026-10-01", values: { weight: { value: "154", unit: "lb" }, bp_systolic: { value: "128", unit: "mmHg" }, bp_diastolic: { value: "82", unit: "mmHg" }, waist: { value: "", unit: "cm" } } },
+      {
+        date: "2026-10-01",
+        values: {
+          weight: { value: "154", unit: "lb" },
+          bp_systolic: { value: "128", unit: "mmHg" },
+          bp_diastolic: { value: "82", unit: "mmHg" },
+          waist: { value: "", unit: "cm" },
+        },
+      },
       BIOMARKER_MAP,
       today,
     );
@@ -113,12 +160,20 @@ describe("entering body measurements", () => {
     expect(!future.ok && future.errors.date).toMatch(/future/);
     const half = validateBodyEntry({ date: today, values: { bp_systolic: { value: "120", unit: "mmHg" } } }, BIOMARKER_MAP, today);
     expect(!half.ok && half.errors.bp_diastolic).toMatch(/both numbers/);
-    const swapped = validateBodyEntry({ date: today, values: { bp_systolic: { value: "80", unit: "mmHg" }, bp_diastolic: { value: "120", unit: "mmHg" } } }, BIOMARKER_MAP, today);
+    const swapped = validateBodyEntry(
+      { date: today, values: { bp_systolic: { value: "80", unit: "mmHg" }, bp_diastolic: { value: "120", unit: "mmHg" } } },
+      BIOMARKER_MAP,
+      today,
+    );
     expect(!swapped.ok && swapped.errors.bp_systolic).toMatch(/higher/);
   });
   it("records whether a glucose reading was fasting, and requires saying", () => {
     const g = (glucoseContext?: "fasting" | "after-meal" | "other") =>
-      validateBodyEntry({ date: today, values: { glucose_home: { value: "99", unit: "mg/dL" } }, ...(glucoseContext ? { glucoseContext } : {}) }, BIOMARKER_MAP, today);
+      validateBodyEntry(
+        { date: today, values: { glucose_home: { value: "99", unit: "mg/dL" } }, ...(glucoseContext ? { glucoseContext } : {}) },
+        BIOMARKER_MAP,
+        today,
+      );
     const fasting = g("fasting");
     expect(fasting.ok && fasting.measurements[0]).toMatchObject({ biomarkerId: "glucose_home", fasted: true });
     expect(fasting.ok && fasting.measurements[0]!.value).toBeCloseTo(5.49, 2);
@@ -131,16 +186,33 @@ describe("entering body measurements", () => {
   });
   it("takes watch values: heart rate, HRV and blood oxygen", () => {
     const r = validateBodyEntry(
-      { date: today, values: { heart_rate: { value: "72", unit: "bpm" }, hrv_resting: { value: "48", unit: "ms" }, spo2: { value: "97", unit: "%" }, exercise_hr: { value: "131", unit: "bpm" } } },
+      {
+        date: today,
+        values: {
+          heart_rate: { value: "72", unit: "bpm" },
+          hrv_resting: { value: "48", unit: "ms" },
+          spo2: { value: "97", unit: "%" },
+          exercise_hr: { value: "131", unit: "bpm" },
+        },
+      },
       BIOMARKER_MAP,
       today,
     );
-    expect(r.ok && r.measurements.map((x) => [x.biomarkerId, x.value])).toEqual([["heart_rate", 72], ["exercise_hr", 131], ["hrv_resting", 48], ["spo2", 97]]);
+    expect(r.ok && r.measurements.map((x) => [x.biomarkerId, x.value])).toEqual([
+      ["heart_rate", 72],
+      ["exercise_hr", 131],
+      ["hrv_resting", 48],
+      ["spo2", 97],
+    ]);
     const bad = validateBodyEntry({ date: today, values: { spo2: { value: "103", unit: "%" } } }, BIOMARKER_MAP, today);
     expect(!bad.ok && bad.errors.spo2).toMatch(/unlikely/);
   });
   it("catches typos", () => {
-    const r = validateBodyEntry({ date: today, values: { weight: { value: "700", unit: "kg" }, resting_hr: { value: "abc", unit: "bpm" } } }, BIOMARKER_MAP, today);
+    const r = validateBodyEntry(
+      { date: today, values: { weight: { value: "700", unit: "kg" }, resting_hr: { value: "abc", unit: "bpm" } } },
+      BIOMARKER_MAP,
+      today,
+    );
     expect(!r.ok && r.errors.weight).toMatch(/unlikely/);
     expect(!r.ok && r.errors.resting_hr).toMatch(/number/);
   });
@@ -148,7 +220,12 @@ describe("entering body measurements", () => {
 
 describe("recent average", () => {
   it("averages the last week when there are enough nights", () => {
-    const nights = [m("sleep_duration", "2026-10-10", 9), m("sleep_duration", "2026-10-23", 6), m("sleep_duration", "2026-10-25", 7), m("sleep_duration", "2026-10-29", 8)];
+    const nights = [
+      m("sleep_duration", "2026-10-10", 9),
+      m("sleep_duration", "2026-10-23", 6),
+      m("sleep_duration", "2026-10-25", 7),
+      m("sleep_duration", "2026-10-29", 8),
+    ];
     expect(recentAverage(nights)).toMatchObject({ value: 7, count: 3 });
     expect(recentAverage(nights.slice(-2))).toBeUndefined();
     expect(recentAverage([])).toBeUndefined();

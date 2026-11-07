@@ -32,7 +32,11 @@ export function bridgeModel(run: string, modelId: string): LanguageModelV4 {
     modelId,
     supportedUrls: {},
     async doGenerate(options) {
-      const out = await bridgeJson<{ result?: Parameters<typeof JSON.stringify>[0]; error?: RemoteError }>("/model", { run, mode: "generate", options: encodeOptions(options) }, options.abortSignal);
+      const out = await bridgeJson<{ result?: Parameters<typeof JSON.stringify>[0]; error?: RemoteError }>(
+        "/model",
+        { run, mode: "generate", options: encodeOptions(options) },
+        options.abortSignal,
+      );
       if (out.error || !out.result) throw remoteError(out.error);
       const result = out.result as Awaited<ReturnType<LanguageModelV4["doGenerate"]>> & { response?: { timestamp?: unknown } };
       if (result.response && typeof result.response.timestamp === "string") result.response.timestamp = new Date(result.response.timestamp);
@@ -42,17 +46,19 @@ export function bridgeModel(run: string, modelId: string): LanguageModelV4 {
       const response = await bridgeFetch("/model", { run, mode: "stream", options: encodeOptions(options) }, options.abortSignal);
       if (!response.body) throw new Error("The model call returned nothing.");
       let buffer = "";
-      const stream = response.body.pipeThrough(new TextDecoderStream()).pipeThrough(new TransformStream<string, LanguageModelV4StreamPart>({
-        transform(chunk, controller) {
-          buffer += chunk;
-          const lines = buffer.split("\n");
-          buffer = lines.pop() ?? "";
-          for (const line of lines) if (line.trim()) controller.enqueue(decodePart(JSON.parse(line) as Record<string, unknown>));
-        },
-        flush(controller) {
-          if (buffer.trim()) controller.enqueue(decodePart(JSON.parse(buffer) as Record<string, unknown>));
-        },
-      }));
+      const stream = response.body.pipeThrough(new TextDecoderStream()).pipeThrough(
+        new TransformStream<string, LanguageModelV4StreamPart>({
+          transform(chunk, controller) {
+            buffer += chunk;
+            const lines = buffer.split("\n");
+            buffer = lines.pop() ?? "";
+            for (const line of lines) if (line.trim()) controller.enqueue(decodePart(JSON.parse(line) as Record<string, unknown>));
+          },
+          flush(controller) {
+            if (buffer.trim()) controller.enqueue(decodePart(JSON.parse(buffer) as Record<string, unknown>));
+          },
+        }),
+      );
       return { stream };
     },
   };

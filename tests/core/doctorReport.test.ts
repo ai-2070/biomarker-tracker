@@ -1,21 +1,43 @@
-import { describe, expect, it } from "vitest";
-import { buildDoctorReport, groupDoctorReportSeries, type DoctorReportInput } from "@bt/shared/core/doctorReport";
+import { buildDoctorReport, type DoctorReportInput, groupDoctorReportSeries } from "@bt/shared/core/doctorReport";
 import type { BiomarkerDef, Measurement, ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const marker = (id: string, extra: Partial<BiomarkerDef> = {}): BiomarkerDef => ({
-  id, name: id, category: "Metabolic", aliases: [], canonicalUnit: "mmol/L", conversions: {},
-  summary: "", high: { meaning: "", commonCauses: [] }, low: { meaning: "", commonCauses: [] },
-  affectedBy: [], sources: [], defaultRanges: [{ low: 3, high: 6 }], ...extra,
+  id,
+  name: id,
+  category: "Metabolic",
+  aliases: [],
+  canonicalUnit: "mmol/L",
+  conversions: {},
+  summary: "",
+  high: { meaning: "", commonCauses: [] },
+  low: { meaning: "", commonCauses: [] },
+  affectedBy: [],
+  sources: [],
+  defaultRanges: [{ low: 3, high: 6 }],
+  ...extra,
 });
 const reading = (id: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
-  id, biomarkerId: "blood", date, value, originalValue: value, originalUnit: "mmol/L", source: "manual", ...extra,
+  id,
+  biomarkerId: "blood",
+  date,
+  value,
+  originalValue: value,
+  originalUnit: "mmol/L",
+  source: "manual",
+  ...extra,
 });
 function fixture(): DoctorReportInput {
   return {
-    generatedOn: "2026-10-31", profile: { name: "Test person", birthMonth: "1980-05", sex: "f", notes: "private profile", heightUnit: "cm", example: true },
-    measurements: [], protocols: [], defs: new Map([
-      ["blood", marker("blood")], ["other", marker("other")],
-      ["body", marker("body", { category: "Body" })], ["aging", marker("aging", { category: "Aging" })],
+    generatedOn: "2026-10-31",
+    profile: { name: "Test person", birthMonth: "1980-05", sex: "f", notes: "private profile", heightUnit: "cm", example: true },
+    measurements: [],
+    protocols: [],
+    defs: new Map([
+      ["blood", marker("blood")],
+      ["other", marker("other")],
+      ["body", marker("body", { category: "Body" })],
+      ["aging", marker("aging", { category: "Aging" })],
       ["sleep", marker("sleep", { category: "Body", judgeAverageOfDays: 7 })],
       ["activity", marker("activity", { category: "Body", judgeSumOfDays: 7 })],
     ]),
@@ -26,12 +48,16 @@ function fixture(): DoctorReportInput {
 describe("buildDoctorReport", () => {
   it("rejects impossible, reversed and future date ranges, including an invalid report date", () => {
     for (const [from, to, generatedOn] of [
-      ["2026-02-30", "2026-10-31", "2026-10-31"], ["2026-10-31", "2026-01-01", "2026-10-31"],
-      ["2026-01-01", "2026-11-01", "2026-10-31"], ["2026-01-01", "2026-10-31", "2026-13-01"],
+      ["2026-02-30", "2026-10-31", "2026-10-31"],
+      ["2026-10-31", "2026-01-01", "2026-10-31"],
+      ["2026-01-01", "2026-11-01", "2026-10-31"],
+      ["2026-01-01", "2026-10-31", "2026-13-01"],
       ["2026-1-01", "2026-10-31", "2026-10-31"],
     ]) {
       const input = fixture();
-      input.options.from = from!; input.options.to = to!; input.generatedOn = generatedOn!;
+      input.options.from = from!;
+      input.options.to = to!;
+      input.generatedOn = generatedOn!;
       expect(() => buildDoctorReport(input)).toThrow();
     }
   });
@@ -40,10 +66,14 @@ describe("buildDoctorReport", () => {
     const input = fixture();
     input.options.markerIds = ["missing", "blood", "blood", "unknown"];
     input.measurements = [
-      reading("late", "2026-10-31", 8, { savedOrder: 8 }), reading("before", "2025-12-31", 1),
-      reading("first", "2026-01-01", 4), reading("earlier-save", "2026-10-31", 7, { savedOrder: 2 }),
-      reading("after", "2026-11-01", 9), reading("unselected", "2026-06-01", 5, { biomarkerId: "other" }),
-      reading("unknown", "2026-06-01", 5, { biomarkerId: "unknown" }), reading("bad-date", "2026-02-30", 5),
+      reading("late", "2026-10-31", 8, { savedOrder: 8 }),
+      reading("before", "2025-12-31", 1),
+      reading("first", "2026-01-01", 4),
+      reading("earlier-save", "2026-10-31", 7, { savedOrder: 2 }),
+      reading("after", "2026-11-01", 9),
+      reading("unselected", "2026-06-01", 5, { biomarkerId: "other" }),
+      reading("unknown", "2026-06-01", 5, { biomarkerId: "unknown" }),
+      reading("bad-date", "2026-02-30", 5),
     ];
     const report = buildDoctorReport(input);
     expect(report.series).toHaveLength(1);
@@ -59,7 +89,8 @@ describe("buildDoctorReport", () => {
 
   it("takes the latest reading from within the selected period, including a singleton", () => {
     const input = fixture();
-    input.options.from = "2026-03-01"; input.options.to = "2026-05-01";
+    input.options.from = "2026-03-01";
+    input.options.to = "2026-05-01";
     input.measurements = [
       reading("after-period", "2026-06-01", 9),
       reading("within", "2026-04-01", 4, { labRange: { low: 2, high: 5 }, note: "private" }),
@@ -91,10 +122,22 @@ describe("buildDoctorReport", () => {
 
   it("uses lab ranges first and preserves source and fasting for every reading", () => {
     const input = fixture();
-    input.defs = new Map([["blood", marker("blood", { defaultRanges: [{ high: 5, fasted: true }, { high: 8, fasted: false }] })]]);
-    input.measurements = [reading("fasting", "2026-01-01", 6, { fasted: true, source: "pdf", lab: "Test lab" }),
+    input.defs = new Map([
+      [
+        "blood",
+        marker("blood", {
+          defaultRanges: [
+            { high: 5, fasted: true },
+            { high: 8, fasted: false },
+          ],
+        }),
+      ],
+    ]);
+    input.measurements = [
+      reading("fasting", "2026-01-01", 6, { fasted: true, source: "pdf", lab: "Test lab" }),
       reading("after-meal", "2026-02-01", 6, { fasted: false }),
-      reading("lab", "2026-03-01", 6, { fasted: true, labRange: { high: 7 } })];
+      reading("lab", "2026-03-01", 6, { fasted: true, labRange: { high: 7 } }),
+    ];
     const series = buildDoctorReport(input).series[0]!;
     expect(series.history.map((r) => r.flag)).toEqual(["high", "normal", "normal"]);
     expect(series.latestFlag).toBe("normal");
@@ -114,9 +157,14 @@ describe("buildDoctorReport", () => {
       reading("above", "2026-02-01", 10, { qualifier: ">", source: "photo", labRange: { low: 2, high: 8 } }),
     ];
     const series = buildDoctorReport(input).series[0]!;
-    expect(series.history.map(({ measurement, flag }) => ({
-      id: measurement.id, value: measurement.value, qualifier: measurement.qualifier, flag,
-    }))).toEqual([
+    expect(
+      series.history.map(({ measurement, flag }) => ({
+        id: measurement.id,
+        value: measurement.value,
+        qualifier: measurement.qualifier,
+        flag,
+      })),
+    ).toEqual([
       { id: "below", value: 1, qualifier: "<", flag: "critical-low" },
       { id: "ambiguous-below", value: 4, qualifier: "<", flag: "unknown" },
       { id: "ambiguous-above", value: 5, qualifier: ">", flag: "unknown" },
@@ -134,12 +182,19 @@ describe("buildDoctorReport", () => {
     const input = fixture();
     input.profile.birthMonth = "1980-05";
     input.options.includeProfile = false;
-    input.defs = new Map([["blood", marker("blood", { defaultRanges: [
-      { high: 5, sex: "f", ageTo: 46, fasted: true },
-      { high: 7, sex: "f", ageFrom: 46, fasted: true },
-      { high: 8, sex: "f", fasted: false },
-      { high: 10, sex: "m", fasted: true },
-    ] })]]);
+    input.defs = new Map([
+      [
+        "blood",
+        marker("blood", {
+          defaultRanges: [
+            { high: 5, sex: "f", ageTo: 46, fasted: true },
+            { high: 7, sex: "f", ageFrom: 46, fasted: true },
+            { high: 8, sex: "f", fasted: false },
+            { high: 10, sex: "m", fasted: true },
+          ],
+        }),
+      ],
+    ]);
     input.measurements = [
       reading("younger", "2026-01-01", 6, { fasted: true }),
       reading("older", "2026-06-01", 6, { fasted: true }),
@@ -160,7 +215,8 @@ describe("buildDoctorReport", () => {
   });
 
   it("retains full blood, aging and body history without flagging daily sleep/activity as weekly values", () => {
-    const input = fixture(); input.options.markerIds = ["blood", "aging", "body", "sleep", "activity"];
+    const input = fixture();
+    input.options.markerIds = ["blood", "aging", "body", "sleep", "activity"];
     input.measurements = input.options.markerIds.flatMap((id) => [
       reading(`${id}-last`, "2026-02-01", 1, { biomarkerId: id }),
       reading(`${id}-first`, "2026-01-01", 2, { biomarkerId: id }),
@@ -179,7 +235,18 @@ describe("buildDoctorReport", () => {
     const input = fixture();
     input.options.markerIds = ["body"];
     input.options.includeNotes = true;
-    input.defs = new Map([["body", marker("body", { category: "Body", defaultRanges: [{ high: 5, fasted: true }, { high: 8, fasted: false }] })]]);
+    input.defs = new Map([
+      [
+        "body",
+        marker("body", {
+          category: "Body",
+          defaultRanges: [
+            { high: 5, fasted: true },
+            { high: 8, fasted: false },
+          ],
+        }),
+      ],
+    ]);
     input.measurements = [
       reading("first", "2026-01-01", 6, { biomarkerId: "body", source: "device", fasted: true, lab: "Home meter", note: "Before breakfast" }),
       reading("middle", "2026-02-01", 7, { biomarkerId: "body", fasted: false, labRange: { high: 6 }, note: "Meter range" }),
@@ -187,9 +254,16 @@ describe("buildDoctorReport", () => {
     ];
     const series = buildDoctorReport(input).series[0]!;
     expect(series.count).toBe(3);
-    expect(series.history.map(({ measurement, flag, range }) => ({
-      id: measurement.id, fasted: measurement.fasted, source: measurement.source, note: measurement.note, flag, high: range?.high,
-    }))).toEqual([
+    expect(
+      series.history.map(({ measurement, flag, range }) => ({
+        id: measurement.id,
+        fasted: measurement.fasted,
+        source: measurement.source,
+        note: measurement.note,
+        flag,
+        high: range?.high,
+      })),
+    ).toEqual([
       { id: "first", fasted: true, source: "device", note: "Before breakfast", flag: "high", high: 5 },
       { id: "middle", fasted: false, source: "manual", note: "Meter range", flag: "high", high: 6 },
       { id: "last", fasted: false, source: "photo", note: "After a meal", flag: "normal", high: 8 },
@@ -207,14 +281,12 @@ describe("buildDoctorReport", () => {
     const input = fixture();
     input.options.markerIds = ["activity"];
     input.defs = new Map([["activity", marker("activity", { category: "Body", judgeSumOfDays: 7, defaultRanges: [{ low: 150 }] })]]);
-    input.measurements = [
-      reading("day-one", "2026-01-01", 30, { biomarkerId: "activity" }),
-      reading("day-two", "2026-01-02", 20, { biomarkerId: "activity" }),
-    ];
+    input.measurements = [reading("day-one", "2026-01-01", 30, { biomarkerId: "activity" }), reading("day-two", "2026-01-02", 20, { biomarkerId: "activity" })];
     const series = buildDoctorReport(input).series[0]!;
     expect(series.latestFlag).toBe("unknown");
     expect(series.history.map(({ range, flag }) => ({ range, flag }))).toEqual([
-      { range: undefined, flag: "unknown" }, { range: undefined, flag: "unknown" },
+      { range: undefined, flag: "unknown" },
+      { range: undefined, flag: "unknown" },
     ]);
     expect(series.latestRange).toBeUndefined();
   });
@@ -222,13 +294,21 @@ describe("buildDoctorReport", () => {
   it("includes only overlapping logged habits, retaining grouped medicine and supplement snapshots", () => {
     const input = fixture();
     const log = (id: string, start: string, end?: string): ProtocolEntry => ({ id, label: id, category: "lifestyle", start, ...(end ? { end } : {}) });
-    input.protocols = [log("ended-before", "2025-01-01", "2025-12-31"), log("ends-at-start", "2025-01-01", "2026-01-01"),
-      log("current", "2025-01-01"), log("ended-within", "2026-02-01", "2026-03-01"),
-      log("starts-at-end", "2026-10-31"), log("future", "2026-11-01")];
-    input.protocols[2]!.plan = { id: "plan", items: [
-      { id: "med", label: "Own medicine", category: "medication", when: "morning", amount: "own amount", note: "private item", days: ["mon"] },
-      { id: "supp", label: "Own supplement", category: "supplement", when: "evening" },
-    ] };
+    input.protocols = [
+      log("ended-before", "2025-01-01", "2025-12-31"),
+      log("ends-at-start", "2025-01-01", "2026-01-01"),
+      log("current", "2025-01-01"),
+      log("ended-within", "2026-02-01", "2026-03-01"),
+      log("starts-at-end", "2026-10-31"),
+      log("future", "2026-11-01"),
+    ];
+    input.protocols[2]!.plan = {
+      id: "plan",
+      items: [
+        { id: "med", label: "Own medicine", category: "medication", when: "morning", amount: "own amount", note: "private item", days: ["mon"] },
+        { id: "supp", label: "Own supplement", category: "supplement", when: "evening" },
+      ],
+    };
     const report = buildDoctorReport(input);
     expect(report.logs.map((l) => l.id)).toEqual(["ends-at-start", "current", "ended-within", "starts-at-end"]);
     expect(report.logs[1]!.plan!.items.map((item) => item.category)).toEqual(["medication", "supplement"]);
@@ -240,23 +320,30 @@ describe("buildDoctorReport", () => {
   });
 
   it("strips private notes by default, omits app metadata, and always discloses example data", () => {
-    const input = fixture(); input.measurements = [reading("one", "2026-01-01", 4, { note: "private result" })];
+    const input = fixture();
+    input.measurements = [reading("one", "2026-01-01", 4, { note: "private result" })];
     const report = buildDoctorReport(input);
-    expect(report.example).toBe(true); expect(report.age).toBe(46);
-    expect(report.profile).not.toHaveProperty("heightUnit"); expect(report.profile).not.toHaveProperty("notes");
+    expect(report.example).toBe(true);
+    expect(report.age).toBe(46);
+    expect(report.profile).not.toHaveProperty("heightUnit");
+    expect(report.profile).not.toHaveProperty("notes");
     expect(report.series[0]!.latest).not.toHaveProperty("note");
     expect(report.series[0]!.history[0]!.measurement).not.toHaveProperty("note");
     input.options.includeNotes = true;
     const withNotes = buildDoctorReport(input);
-    expect(withNotes.profile!.notes).toBe("private profile"); expect(withNotes.series[0]!.history[0]!.measurement.note).toBe("private result");
+    expect(withNotes.profile!.notes).toBe("private profile");
+    expect(withNotes.series[0]!.history[0]!.measurement.note).toBe("private result");
     input.options.includeProfile = false;
     const anonymous = buildDoctorReport(input);
-    expect(anonymous).not.toHaveProperty("profile"); expect(anonymous).not.toHaveProperty("age"); expect(anonymous.example).toBe(true);
+    expect(anonymous).not.toHaveProperty("profile");
+    expect(anonymous).not.toHaveProperty("age");
+    expect(anonymous.example).toBe(true);
   });
 
   it("includes the latest weight on or before the report end even outside the chart selection", () => {
     const input = fixture();
-    input.options.from = "2026-09-01"; input.options.to = "2026-10-01";
+    input.options.from = "2026-09-01";
+    input.options.to = "2026-10-01";
     input.defs = new Map([...input.defs, ["weight", marker("weight", { category: "Body", canonicalUnit: "kg", defaultRanges: undefined })]]);
     input.measurements = [
       reading("blood", "2026-09-15", 4),
@@ -345,10 +432,17 @@ describe("buildDoctorReport", () => {
   });
 
   it("does not mutate inputs and detaches mutable readings, ranges and grouped snapshots", () => {
-    const input = fixture(); input.measurements = [reading("one", "2026-02-01", 4, { note: "secret", labRange: { high: 8 } })];
-    input.protocols = [{ id: "log", label: "Routine", category: "lifestyle", start: "2026-01-01", plan: { id: "plan", items: [
-      { id: "item", label: "Medicine", category: "medication", when: "morning", note: "secret", days: ["mon"] },
-    ] } }];
+    const input = fixture();
+    input.measurements = [reading("one", "2026-02-01", 4, { note: "secret", labRange: { high: 8 } })];
+    input.protocols = [
+      {
+        id: "log",
+        label: "Routine",
+        category: "lifestyle",
+        start: "2026-01-01",
+        plan: { id: "plan", items: [{ id: "item", label: "Medicine", category: "medication", when: "morning", note: "secret", days: ["mon"] }] },
+      },
+    ];
     const before = JSON.stringify(input);
     const report = buildDoctorReport(input);
     expect(JSON.stringify(input)).toBe(before);

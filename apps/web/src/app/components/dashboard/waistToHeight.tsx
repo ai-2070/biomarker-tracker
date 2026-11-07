@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
-import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
-import { WHTR_YEARS_LOST_RATIOS, waistToHeight, waistToHeightBand, waistToHeightYearsLost, type WaistToHeightBand } from "@bt/shared/core/body";
+import { type WaistToHeightBand, WHTR_YEARS_LOST_RATIOS, waistToHeight, waistToHeightBand, waistToHeightYearsLost } from "@bt/shared/core/body";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { sortByDate } from "@bt/shared/core/trends";
 import type { Measurement, Profile } from "@bt/shared/core/types";
+import { useEffect, useRef } from "react";
+import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
 import { formatDate } from "../../format";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
@@ -51,7 +51,13 @@ export function WaistToHeightFigure({ ms, profile, className }: { ms: Measuremen
       label="Waist-to-height"
       href={href({ name: "marker", id: "waist", section: "waist-to-height" })}
       className={className}
-      foot={!profile.heightCm ? "Add your height in Settings → Your data." : !last ? "Measure your waist to see it." : `Waist ÷ height, ${formatDate(last.date)}. The usual guide is below 0.5.`}
+      foot={
+        !profile.heightCm
+          ? "Add your height in Settings → Your data."
+          : !last
+            ? "Measure your waist to see it."
+            : `Waist ÷ height, ${formatDate(last.date)}. The usual guide is below 0.5.`
+      }
     >
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-2 gap-y-2">
@@ -100,8 +106,8 @@ export function WaistToHeightPanel({ ms, profile, scrollTo = false }: { ms: Meas
         <div className="max-w-3xl">
           <h2 className="font-serif text-2xl font-normal">Waist-to-height ratio</h2>
           <p className="mt-1 text-ink-2">
-            Your waist divided by your height. It shows where fat sits: fat around the middle is linked to more health risk than fat elsewhere,
-            and this ratio predicted mortality better than BMI in a British study. It isn't a biological age.
+            Your waist divided by your height. It shows where fat sits: fat around the middle is linked to more health risk than fat elsewhere, and this ratio
+            predicted mortality better than BMI in a British study. It isn't a biological age.
           </p>
         </div>
         <p className="flex flex-wrap items-baseline gap-2">
@@ -116,9 +122,9 @@ export function WaistToHeightPanel({ ms, profile, scrollTo = false }: { ms: Meas
 
       <div className="max-w-3xl text-sm text-ink-2">
         <p>
-          Ranges: below 0.4 may mean low body weight; 0.4 to 0.5 is the usual guide (a waist less than half your height); 0.5 to 0.6 is
-          increased health risk; 0.6 or more is high. Measure halfway between the lowest rib and the top of the hip bone, after breathing out.
-          Not for pregnancy; under 18 the guide differs.
+          Ranges: below 0.4 may mean low body weight; 0.4 to 0.5 is the usual guide (a waist less than half your height); 0.5 to 0.6 is increased health risk;
+          0.6 or more is high. Measure halfway between the lowest rib and the top of the hip bone, after breathing out. Not for pregnancy; under 18 the guide
+          differs.
         </p>
         <p className="mt-2">
           Source: <StudyLink s={ASHWELL_2014} />
@@ -192,7 +198,13 @@ function RatioChart({ series }: { series: { date: string; t: number; ratio: numb
                 ) : null;
               }}
             />
-            <Line dataKey="ratio" stroke="var(--color-ink)" strokeWidth={2} dot={{ r: 4, fill: "var(--color-ink)", stroke: "var(--color-surface)", strokeWidth: 2 }} isAnimationActive={false} />
+            <Line
+              dataKey="ratio"
+              stroke="var(--color-ink)"
+              strokeWidth={2}
+              dot={{ r: 4, fill: "var(--color-ink)", stroke: "var(--color-surface)", strokeWidth: 2 }}
+              isAnimationActive={false}
+            />
           </LineChart>
         )}
       </div>
@@ -226,9 +238,7 @@ function YearsLost({ ratio, lost }: { ratio: number; lost: NonNullable<ReturnTyp
       <figcaption>
         <span className="text-sm font-medium">Years of life lost in the study: {who.toLowerCase()}</span>
         <span className="block text-sm text-ink-2">
-          {who} who are non-smokers, compared with a ratio of {row.sex === "m" ? "0.5" : "0.46"}, if the ratio stays the same for life.
-          {" "}
-          {where}
+          {who} who are non-smokers, compared with a ratio of {row.sex === "m" ? "0.5" : "0.46"}, if the ratio stays the same for life. {where}
         </span>
       </figcaption>
       <ol className="grid max-w-xl grid-cols-4 items-end gap-3" aria-label={`Years of life lost, ${who.toLowerCase()}`}>
@@ -245,18 +255,15 @@ function YearsLost({ ratio, lost }: { ratio: number; lost: NonNullable<ReturnTyp
                   aria-hidden="true"
                 />
               </span>
-              <span className={cx("text-sm tabular-nums", near ? "font-medium text-ink" : "text-ink-2")}>
-                {i === 3 ? "0.8+" : r.toFixed(1)}
-              </span>
+              <span className={cx("text-sm tabular-nums", near ? "font-medium text-ink" : "text-ink-2")}>{i === 3 ? "0.8+" : r.toFixed(1)}</span>
             </li>
           );
         })}
       </ol>
       <p className="max-w-3xl text-sm text-ink-2">
-        An estimate for a group of British adults, not a prediction for you. Smokers in the study lost more years. Waist and life expectancy
-        both depend on many other things.
+        An estimate for a group of British adults, not a prediction for you. Smokers in the study lost more years. Waist and life expectancy both depend on many
+        other things.
       </p>
     </figure>
   );
 }
-

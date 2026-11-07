@@ -38,10 +38,17 @@ export class TurnChunks {
         return;
       case "tool":
         this.endText();
-        this.emit({ type: "tool-input-available", toolCallId: e.id, toolName: e.name, input: { tool: e.tool, ...(e.server ? { server: e.server } : {}), input: e.input }, dynamic: true });
+        this.emit({
+          type: "tool-input-available",
+          toolCallId: e.id,
+          toolName: e.name,
+          input: { tool: e.tool, ...(e.server ? { server: e.server } : {}), input: e.input },
+          dynamic: true,
+        });
         return;
       case "tool_result":
-        if (e.ok) this.emit({ type: "tool-output-available", toolCallId: e.id, output: { ok: true, ...(e.critical ? { critical: true } : {}) }, dynamic: true });
+        if (e.ok)
+          this.emit({ type: "tool-output-available", toolCallId: e.id, output: { ok: true, ...(e.critical ? { critical: true } : {}) }, dynamic: true });
         else this.emit({ type: "tool-output-error", toolCallId: e.id, errorText: "The tool didn't return a usable result.", dynamic: true });
         if (e.studyIds.length) this.emit({ type: "data-studies", data: { ids: e.studyIds } } as UIMessageChunk);
         return;
@@ -64,7 +71,11 @@ export class TurnChunks {
  * Streams one answer. `run` gets an event callback and returns the final reply; closing the request aborts
  * `signal` (the caller wires that), which stops the run and any program it started.
  */
-export async function streamAnswer(res: http.ServerResponse, run: (onEvent: (e: BrainEvent) => void) => Promise<unknown>, opts: { keepAliveMs?: number; messageId?: string } = {}): Promise<void> {
+export async function streamAnswer(
+  res: http.ServerResponse,
+  run: (onEvent: (e: BrainEvent) => void) => Promise<unknown>,
+  opts: { keepAliveMs?: number; messageId?: string } = {},
+): Promise<void> {
   res.writeHead(200, { ...UI_MESSAGE_STREAM_HEADERS, "cache-control": "no-store" });
   const write = (chunk: UIMessageChunk) => {
     if (!res.destroyed && !res.writableEnded) res.write(`data: ${JSON.stringify(chunk)}\n\n`);

@@ -21,10 +21,10 @@ import {
   runAgent,
   which,
 } from "../../apps/server/agents";
-import { installFakeAgents } from "./fakeAgents";
 import { closeRun, openRun, runFor, stableToken } from "../../apps/server/bridge";
 import { createServer } from "../../apps/server/http";
 import { openRouterModels, zdrFetch } from "../../apps/server/openrouter";
+import { installFakeAgents } from "./fakeAgents";
 
 describe("agent programs: arguments", () => {
   it("runs Claude Code without its own tools, with only the app's tools allowed", () => {
@@ -84,7 +84,13 @@ describe("agent programs: arguments", () => {
 describe.skipIf(process.platform === "win32")("agent programs: photos", () => {
   const photo = { mediaType: "image/jpeg" as const, data: Buffer.from("PRIVATE_PHOTO_BYTES").toString("base64") };
   const request = (provider: "claude-code" | "codex" | "hermes" | "openclaw") => ({
-    provider, model: "", system: "Rules.", messages: [{ role: "user" as const, content: "Read this report." }], images: [photo], tools: {}, dataPack: () => "",
+    provider,
+    model: "",
+    system: "Rules.",
+    messages: [{ role: "user" as const, content: "Read this report." }],
+    images: [photo],
+    tools: {},
+    dataPack: () => "",
   });
 
   it("gives Claude Code the photos in a JSON message with the question", async () => {
@@ -95,7 +101,16 @@ describe.skipIf(process.platform === "win32")("agent programs: photos", () => {
       expect(await runAgent(request("claude-code"))).toMatchObject({ ok: true, text: "I can read it." });
       const seen = fakes.seen(dir);
       expect(seen.args[seen.args.indexOf("--input-format") + 1]).toBe("stream-json");
-      expect(JSON.parse(seen.input)).toEqual({ type: "user", message: { role: "user", content: [{ type: "text", text: "Read this report." }, { type: "image", source: { type: "base64", media_type: "image/jpeg", data: photo.data } }] } });
+      expect(JSON.parse(seen.input)).toEqual({
+        type: "user",
+        message: {
+          role: "user",
+          content: [
+            { type: "text", text: "Read this report." },
+            { type: "image", source: { type: "base64", media_type: "image/jpeg", data: photo.data } },
+          ],
+        },
+      });
     } finally {
       fakes.restore();
     }
@@ -138,7 +153,11 @@ describe.skipIf(process.platform === "win32")("agent programs: photos", () => {
 
 describe("agent programs: reading their answers", () => {
   it("Claude Code: the result line, or its error", () => {
-    const ok = ['{"type":"system"}', '{"type":"assistant","message":{}}', '{"type":"result","subtype":"success","is_error":false,"result":"Ferritin is fine."}'].join("\n");
+    const ok = [
+      '{"type":"system"}',
+      '{"type":"assistant","message":{}}',
+      '{"type":"result","subtype":"success","is_error":false,"result":"Ferritin is fine."}',
+    ].join("\n");
     expect(parseClaude(ok, "")).toEqual({ ok: true, text: "Ferritin is fine." });
     const bad = '{"type":"result","subtype":"success","is_error":true,"result":"Invalid API key · Please run /login"}';
     expect(parseClaude(bad, "")).toEqual({ ok: false, error: expect.stringMatching(/run \/login/) });
@@ -162,7 +181,11 @@ describe("agent programs: reading their answers", () => {
   });
 
   it("OpenClaw: payloads, and a down Gateway is recognised", () => {
-    expect(parseOpenClaw('noise {"ok":true,"result":{"payloads":[{"text":"Answer"}],"meta":{"toolSummary":{"tools":["web_search"]}}}}', "")).toEqual({ ok: true, text: "Answer", tools: ["web_search"] });
+    expect(parseOpenClaw('noise {"ok":true,"result":{"payloads":[{"text":"Answer"}],"meta":{"toolSummary":{"tools":["web_search"]}}}}', "")).toEqual({
+      ok: true,
+      text: "Answer",
+      tools: ["web_search"],
+    });
     const down = parseOpenClaw('{"ok":false,"error":"gateway not reachable at ws://127.0.0.1:18789"}', "");
     expect(down).toMatchObject({ ok: false, gatewayDown: true });
   });
@@ -175,9 +198,15 @@ describe("OpenRouter", () => {
       sent = JSON.parse(String(init?.body)) as Record<string, unknown>;
       return new Response("{}");
     }) as typeof fetch;
-    await zdrFetch(base)("https://openrouter.ai/api/v1/chat/completions", { method: "POST", body: JSON.stringify({ model: "m", provider: { zdr: false, order: ["a"] } }) });
+    await zdrFetch(base)("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      body: JSON.stringify({ model: "m", provider: { zdr: false, order: ["a"] } }),
+    });
     expect(sent.provider).toEqual({ order: ["a"], zdr: true, data_collection: "deny" });
-    await zdrFetch(base, { reasoning: { effort: "high" } })("https://openrouter.ai/api/v1/chat/completions", { method: "POST", body: JSON.stringify({ model: "m" }) });
+    await zdrFetch(base, { reasoning: { effort: "high" } })("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      body: JSON.stringify({ model: "m" }),
+    });
     expect(sent.reasoning).toEqual({ effort: "high" });
     expect(sent.provider).toEqual({ zdr: true, data_collection: "deny" });
   });
@@ -215,7 +244,9 @@ describe("bridge: the app's tools for agent programs over MCP", () => {
 
   const connect = async (token: string) => {
     const client = new Client({ name: "test", version: "1" });
-    await client.connect(new StreamableHTTPClientTransport(new URL(`http://127.0.0.1:${port}/mcp`), { requestInit: { headers: { Authorization: `Bearer ${token}` } } }));
+    await client.connect(
+      new StreamableHTTPClientTransport(new URL(`http://127.0.0.1:${port}/mcp`), { requestInit: { headers: { Authorization: `Bearer ${token}` } } }),
+    );
     return client;
   };
 
@@ -266,9 +297,14 @@ describe("bridge: the app's tools for agent programs over MCP", () => {
     const token = stableToken();
     const client = await connect(token);
     try {
-      expect(() => openRun({
-        get_results: tool({ inputSchema: z.object({}), execute: async () => ({ private: "OTHER_SCOPE" }) }),
-      }, "hermes")).toThrow();
+      expect(() =>
+        openRun(
+          {
+            get_results: tool({ inputSchema: z.object({}), execute: async () => ({ private: "OTHER_SCOPE" }) }),
+          },
+          "hermes",
+        ),
+      ).toThrow();
       expect(runFor(token)).toBe(first);
       expect((await client.listTools()).tools.map((t) => t.name)).toEqual(["search_research"]);
       expect((await client.callTool({ name: "get_results", arguments: {} })).isError).toBe(true);

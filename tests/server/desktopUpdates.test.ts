@@ -20,8 +20,10 @@ describe("desktop updates", () => {
     expect(conf.bundle.createUpdaterArtifacts).toBeUndefined();
     expect(JSON.parse(read("apps/desktop/src-tauri/tauri.updater.conf.json"))).toMatchObject({ bundle: { createUpdaterArtifacts: true } });
     const workflow = read(".github/workflows/desktop.yml");
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax, not a template
     expect(workflow).toContain("TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}");
     expect(workflow).toContain("--config src-tauri/tauri.updater.conf.json");
+    // biome-ignore lint/suspicious/noTemplateCurlyInString: GitHub Actions syntax, not a template
     expect(workflow).toContain("uploadUpdaterJson: ${{ env.BT_UPDATER == '1' }}");
     // A release without the key fails instead of shipping installers that can never update.
     expect(workflow).toMatch(/elif \[\[ -n "\$RELEASE_TAG" \]\]; then\n\s+echo "::error::A release needs the TAURI_SIGNING_PRIVATE_KEY/);

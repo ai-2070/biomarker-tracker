@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { criticalResults, durationHours, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();
@@ -78,7 +78,12 @@ describe("results Brain read from a picture", () => {
   });
 
   it("keeps unknown markers apart and refuses a card with none the app tracks", () => {
-    const r = parse({ results: [{ marker: "ferritin", value: "45", unit: "µg/L" }, { marker: "pdw", printed: "PDW 16.1 fL", value: "16.1" }] });
+    const r = parse({
+      results: [
+        { marker: "ferritin", value: "45", unit: "µg/L" },
+        { marker: "pdw", printed: "PDW 16.1 fL", value: "16.1" },
+      ],
+    });
     expect(r.unknownMarkers).toEqual(["pdw"]);
     expect(r.report.unmatched).toEqual(["PDW 16.1 fL"]);
     expect(parseResultProposal({ results: [{ marker: "pdw", value: "16.1" }] }, defs, today)).toMatchObject({ ok: false });

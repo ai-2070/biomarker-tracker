@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { parseLabText } from "@bt/shared/core/importers/labText";
 import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { flagMeasurement } from "@bt/shared/core/trends";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 const defs = loadDefs();
@@ -10,23 +10,38 @@ const today = "2026-10-31";
 
 describe("extended lipid results", () => {
   it("keeps apolipoproteins, ratios and non-HDL separate from LDL, HDL and total cholesterol", () => {
-    const report = parseLabText([
-      "Collection date: 2026-10-20",
-      "Apo A1 140 mg/dL 120 - 180",
-      "Apo B 950 mg/L 600 - 900",
-      "Apo B/Apo A1 ratio 0.68 < 0.90",
-      "LDL/HDL-Quotient 2,7 < 3,0",
-      "Non-HDL cholesterol 160 mg/dL < 145",
-      "LDL cholesterol 130 mg/dL < 116",
-      "HDL cholesterol 50 mg/dL > 40",
-      "Total cholesterol 210 mg/dL < 200",
-    ].join("\n"), catalog);
+    const report = parseLabText(
+      [
+        "Collection date: 2026-10-20",
+        "Apo A1 140 mg/dL 120 - 180",
+        "Apo B 950 mg/L 600 - 900",
+        "Apo B/Apo A1 ratio 0.68 < 0.90",
+        "LDL/HDL-Quotient 2,7 < 3,0",
+        "Non-HDL cholesterol 160 mg/dL < 145",
+        "LDL cholesterol 130 mg/dL < 116",
+        "HDL cholesterol 50 mg/dL > 40",
+        "Total cholesterol 210 mg/dL < 200",
+      ].join("\n"),
+      catalog,
+    );
     expect(report.date).toBe("2026-10-20");
     expect(report.rows.map((r) => r.biomarkerId)).toEqual([
-      "apo_a1", "apo_b", "apo_b_a1_ratio", "ldl_hdl_ratio", "non_hdl_cholesterol", "ldl", "hdl", "total_cholesterol",
+      "apo_a1",
+      "apo_b",
+      "apo_b_a1_ratio",
+      "ldl_hdl_ratio",
+      "non_hdl_cholesterol",
+      "ldl",
+      "hdl",
+      "total_cholesterol",
     ]);
     const saved = report.rows.map((row) => {
-      const result = validateManualEntry({ biomarkerId: row.biomarkerId, value: row.value, unit: row.unit!, date: report.date!, labLow: row.labLow, labHigh: row.labHigh }, defs, today, "pdf");
+      const result = validateManualEntry(
+        { biomarkerId: row.biomarkerId, value: row.value, unit: row.unit!, date: report.date!, labLow: row.labLow, labHigh: row.labHigh },
+        defs,
+        today,
+        "pdf",
+      );
       if (!result.ok) throw new Error(JSON.stringify(result.errors));
       return { id: `lipid-${row.biomarkerId}`, ...result.measurement };
     });

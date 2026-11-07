@@ -1,6 +1,6 @@
 import { isIsoDate } from "../dates";
-import { normalizeUnit } from "../units";
 import type { BiomarkerDef } from "../types";
+import { normalizeUnit } from "../units";
 import { parseLabNumber } from "./manual";
 
 /**
@@ -233,7 +233,9 @@ function parseResultLine(line: string, id: string, rest: string, def: BiomarkerD
   // result can't be known, so the person checks it. Only one extra number, so "low high" range columns are left alone.
   const beforeUnit = unitIdx >= 0 ? after.slice(0, unitIdx).filter((t) => parseLabNumber(t) !== undefined) : [];
   if (beforeUnit.length === 1) {
-    row.problems.push(`Two numbers were read before the unit ("${row.value} ${beforeUnit[0]}"). A decimal point may be missing, or a mark on the page was read as a digit. Check the value against the report.`);
+    row.problems.push(
+      `Two numbers were read before the unit ("${row.value} ${beforeUnit[0]}"). A decimal point may be missing, or a mark on the page was read as a digit. Check the value against the report.`,
+    );
   }
   const problem = decimalProblem(row);
   if (problem) row.problems.push(problem);
@@ -254,7 +256,9 @@ export function decimalProblem(row: Pick<ParsedRow, "value" | "labLow" | "labHig
   const hi = row.labHigh ? parseLabNumber(row.labHigh)?.value : undefined;
   if (v === undefined || v <= 0) return undefined;
   const far = (hi !== undefined && hi > 0 && v > hi * DECIMAL_SUSPICION) || (lo !== undefined && lo > 0 && v < lo / DECIMAL_SUSPICION);
-  return far ? "This value is far outside the lab's own range on the same line. A decimal point may have been missed, in the value or in the range. Check both against the report." : undefined;
+  return far
+    ? "This value is far outside the lab's own range on the same line. A decimal point may have been missed, in the value or in the range. Check both against the report."
+    : undefined;
 }
 
 // Dates
@@ -324,8 +328,8 @@ function findSampleDate(lines: readonly string[], monthFirst: boolean): FoundDat
       const receipt = RECEIPT_WORDS.exec(after);
       const collection = receipt ? after.slice(0, receipt.index) : after;
       const next = lines[i + 1];
-      const d = findDate(collection, monthFirst)
-        ?? (!receipt && next && !BIRTH_WORDS.test(next) && !RECEIPT_WORDS.test(next) ? findDate(next, monthFirst) : undefined);
+      const d =
+        findDate(collection, monthFirst) ?? (!receipt && next && !BIRTH_WORDS.test(next) && !RECEIPT_WORDS.test(next) ? findDate(next, monthFirst) : undefined);
       if (d) collected.push(d);
     }
     if (!fallback && here) fallback = { date: here.date, note: here.note ?? "No collection date was labelled; this is the first date in the report." };
@@ -344,7 +348,10 @@ const URINE_TWIN: Readonly<Record<string, string>> = { creatinine: "urine_creati
 
 /** Percentages and absolute counts share bare names ("Lymphozyten"); the unit tells them apart. */
 const UNIT_TWIN: Readonly<Record<string, string>> = Object.fromEntries(
-  ["neutrophil", "lymphocyte", "monocyte", "eosinophil", "basophil"].flatMap((c) => [[`${c}_pct`, `${c}_abs`], [`${c}_abs`, `${c}_pct`]]),
+  ["neutrophil", "lymphocyte", "monocyte", "eosinophil", "basophil"].flatMap((c) => [
+    [`${c}_pct`, `${c}_abs`],
+    [`${c}_abs`, `${c}_pct`],
+  ]),
 );
 
 /** One result line for the marker its name matched, moved to the twin marker that its heading or unit points to. */
@@ -368,14 +375,17 @@ function readRow(line: string, hit: { id: string; rest: string }, urine: boolean
   if (!row) return undefined;
   if (movedToUrine) row.notes.unshift("Read as a urine test because it's listed under a urine heading.");
   else if (urine && byId.get(row.biomarkerId)!.category !== "Urine") {
-    row.problems.push("This row is under a urine heading in the report, so it is probably a urine test, not a blood test. Tick it only if you're sure it's from blood.");
+    row.problems.push(
+      "This row is under a urine heading in the report, so it is probably a urine test, not a blood test. Tick it only if you're sure it's from blood.",
+    );
   }
   return row;
 }
 
 // Matched against folded headings (lower case, no accents).
 const URINE_SECTION = /^(?:vizelet|urine|urinalysis|urin|harn|spontanurin|sammelurin)(?!\p{L})/u;
-const BLOOD_SECTION = /^(?:verkep|verkemia|klinikai kemia|kemia|serum|szerum|plasma|blood|haematology|hematology|hematologia|blutbild|klinische chemie|chemistry|biochemistry)(?!\p{L})/u;
+const BLOOD_SECTION =
+  /^(?:verkep|verkemia|klinikai kemia|kemia|serum|szerum|plasma|blood|haematology|hematology|hematologia|blutbild|klinische chemie|chemistry|biochemistry)(?!\p{L})/u;
 
 export interface ParseOptions {
   /** Read 05/12/2024 as May 12 (US style). Default: day first. */
@@ -385,7 +395,10 @@ export interface ParseOptions {
 export function parseLabText(text: string, defs: readonly BiomarkerDef[], options: ParseOptions = {}): ParsedReport {
   const aliases = buildAliases(defs);
   const byId = new Map(defs.map((d) => [d.id, d]));
-  const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const lines = text
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
 
   const rows: ParsedRow[] = [];
   const unmatched: string[] = [];

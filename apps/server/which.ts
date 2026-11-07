@@ -29,7 +29,12 @@ function windowsRegistryPath(env: NodeJS.ProcessEnv): string[] {
     try {
       const out = execFileSync("reg", ["query", key, "/v", "Path"], { encoding: "utf8", windowsHide: true, timeout: 5000 });
       const m = /Path\s+REG_(?:EXPAND_)?SZ\s+(.*)/i.exec(out);
-      return m ? m[1]!.trim().replace(/%([^%]+)%/g, (_, v: string) => env[v] ?? env[v.toUpperCase()] ?? `%${v}%`).split(";") : [];
+      return m
+        ? m[1]!
+            .trim()
+            .replace(/%([^%]+)%/g, (_, v: string) => env[v] ?? env[v.toUpperCase()] ?? `%${v}%`)
+            .split(";")
+        : [];
     } catch {
       return [];
     }

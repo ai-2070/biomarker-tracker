@@ -1,28 +1,26 @@
-import { useState } from "react";
-
 import { todayIso } from "@bt/shared/core/dates";
-import { retestDate, type MarkerResult } from "@bt/shared/core/experiments";
-import { chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, type Habit } from "@bt/shared/core/habits";
-import { durationDays, safetyLabels, safetyNotes, type ProtocolCategory } from "@bt/shared/core/protocols";
+import { type MarkerResult, retestDate } from "@bt/shared/core/experiments";
+import { chanceNote, defaultRetestDays, type Habit, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch } from "@bt/shared/core/habits";
+import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import type { Plan } from "@bt/shared/core/plans";
+import { durationDays, type ProtocolCategory, safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { groupByBiomarker } from "@bt/shared/core/trends";
 import type { Experiment, Measurement } from "@bt/shared/core/types";
-import type { Plan } from "@bt/shared/core/plans";
+import { useState } from "react";
 import { deleteExperiment, deleteHabit, saveHabit, watchHabit } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { PlusIcon } from "../components/icons";
-import { SafetyNotices } from "../components/SafetyNotices";
-import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
-
-import { Button, Card, PageTitle, cx, errorStyles, eyebrowStyles, eyebrowSmallStyles, cardStyles } from "../components/ui";
-import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue, valueUnit } from "../format";
-import { useAllMeasurements, useExperiments, useWatchMeasurements, usePlans, useProfile, useProtocols } from "../hooks";
-import { BIOMARKER_MAP, WATCH_DEFS, shortName, watchDef } from "../knowledge";
-import { href } from "../router";
-import { PhaseBadge } from "./ExperimentsPage";
-import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 import { More } from "../components/disclosure";
 import { HabitForm, MarkerPicker, RETEST_OPTIONS } from "../components/habits/HabitForm";
+import { PlusIcon } from "../components/icons";
+import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
+import { SafetyNotices } from "../components/SafetyNotices";
+import { Button, Card, cardStyles, cx, errorStyles, eyebrowSmallStyles, eyebrowStyles, PageTitle } from "../components/ui";
+import { CATEGORY_LABEL, formatChange, formatDate, formatDuration, showWatchValue, valueUnit } from "../format";
+import { useAllMeasurements, useExperiments, usePlans, useProfile, useProtocols, useWatchMeasurements } from "../hooks";
+import { BIOMARKER_MAP, shortName, WATCH_DEFS, watchDef } from "../knowledge";
+import { href } from "../router";
+import { PhaseBadge } from "./ExperimentsPage";
 
 /**
  * Habits: supplements, food, medicines and routines with their dates. Any habit can watch markers;
@@ -54,12 +52,28 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
       </PageTitle>
 
       <div className="flex flex-col gap-5">
-        <SafetyNotices notes={safetyNotes(safetyLabels(habits.flatMap((h) => (h.entry && !h.end ? [h.entry] : [])), profile))} />
+        <SafetyNotices
+          notes={safetyNotes(
+            safetyLabels(
+              habits.flatMap((h) => (h.entry && !h.end ? [h.entry] : [])),
+              profile,
+            ),
+          )}
+        />
 
         {adding ? (
           <Card>
             <h2 className="mb-4 font-serif text-2xl font-normal">New habit</h2>
-            <HabitForm today={today} all={all} tested={tested} prefillLabel={add} prefillMarker={marker} prefillMeal={meal} prefillCategory={type} onDone={() => setAdding(false)} />
+            <HabitForm
+              today={today}
+              all={all}
+              tested={tested}
+              prefillLabel={add}
+              prefillMarker={marker}
+              prefillMeal={meal}
+              prefillCategory={type}
+              onDone={() => setAdding(false)}
+            />
           </Card>
         ) : (
           <div>
@@ -80,8 +94,8 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
               <li>Running 3 times a week</li>
             </ul>
             <p>
-              Habits show on your charts and timeline. Pick markers to watch, and the app compares results from before and after you started
-              with that marker's normal variation.
+              Habits show on your charts and timeline. Pick markers to watch, and the app compares results from before and after you started with that marker's
+              normal variation.
             </p>
           </Card>
         )}
@@ -102,8 +116,8 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
         ))}
 
         <p className="text-sm text-ink-2">
-          A marker changing after you started something doesn't prove that it caused the change. Other things change at the same time, and
-          results vary from test to test. What happened in you may not happen in someone else.
+          A marker changing after you started something doesn't prove that it caused the change. Other things change at the same time, and results vary from
+          test to test. What happened in you may not happen in someone else.
         </p>
       </div>
     </>
@@ -112,7 +126,19 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
 
 // ---- A habit ------------------------------------------------------------------------------------
 
-function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plans: readonly Plan[] | undefined; all: Measurement[]; tested: ReadonlySet<string>; today: string }) {
+function HabitCard({
+  habit: h,
+  plans,
+  all,
+  tested,
+  today,
+}: {
+  habit: Habit;
+  plans: readonly Plan[] | undefined;
+  all: Measurement[];
+  tested: ReadonlySet<string>;
+  today: string;
+}) {
   const [mode, setMode] = useState<"view" | "edit" | "watch">("view");
   const sourcePlan = h.entry?.plan ? plans?.find((p) => p.id === h.entry!.plan!.id) : undefined;
   const days = durationDays(h, today);
@@ -131,7 +157,10 @@ function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plan
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
           {h.watch ? (
-            <a href={href({ name: "experiment", id: h.watch.id })} className="font-medium break-words text-ink underline-offset-2 hover:text-accent hover:underline">
+            <a
+              href={href({ name: "experiment", id: h.watch.id })}
+              className="font-medium break-words text-ink underline-offset-2 hover:text-accent hover:underline"
+            >
               {h.label}
             </a>
           ) : (
@@ -173,13 +202,22 @@ function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plan
             <ul className="flex flex-col divide-y divide-line">
               {h.entry.plan.items.map((item) => (
                 <li key={item.id} className="min-w-0 py-2 break-words">
-                  <p className="font-medium">{item.label}{item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}</p>
-                  <p className="text-sm text-ink-2">{[CATEGORY_LABEL[item.category], TIME_LABEL[whenOf(item).when], whenExtras(item), item.note].filter(Boolean).join(" · ")}</p>
+                  <p className="font-medium">
+                    {item.label}
+                    {item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}
+                  </p>
+                  <p className="text-sm text-ink-2">
+                    {[CATEGORY_LABEL[item.category], TIME_LABEL[whenOf(item).when], whenExtras(item), item.note].filter(Boolean).join(" · ")}
+                  </p>
                 </li>
               ))}
             </ul>
           </More>
-          {sourcePlan && <a href={href({ name: "plan", id: sourcePlan.id })} className="min-h-11 self-start content-center text-sm text-ink underline underline-offset-2">Open source protocol</a>}
+          {sourcePlan && (
+            <a href={href({ name: "plan", id: sourcePlan.id })} className="min-h-11 self-start content-center text-sm text-ink underline underline-offset-2">
+              Open source protocol
+            </a>
+          )}
           <p className="text-sm text-ink-2">Watched markers compare the whole routine, not which item caused a change.</p>
         </div>
       )}
@@ -254,7 +292,10 @@ function ChangeRow({ r }: { r: MarkerResult }) {
   const value = (v?: number) => (v === undefined ? "–" : showWatchValue(def, v, unit));
   return (
     <li className="flex flex-wrap items-center gap-x-3 gap-y-0.5 py-2 sm:grid sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_auto]">
-      <a href={def.id === PHENOAGE_GAP_ID ? href({ name: "phenoage" }) : href({ name: "marker", id: def.id })} className="min-w-0 font-medium text-ink no-underline hover:underline sm:truncate">
+      <a
+        href={def.id === PHENOAGE_GAP_ID ? href({ name: "phenoage" }) : href({ name: "marker", id: def.id })}
+        className="min-w-0 font-medium text-ink no-underline hover:underline sm:truncate"
+      >
         {shortName(def)}
       </a>
       {/* Phones: name and verdict on one line, the numbers below. */}
@@ -265,7 +306,11 @@ function ChangeRow({ r }: { r: MarkerResult }) {
       <span
         className={cx(
           "ml-auto justify-self-end rounded-full px-2 py-0.5 text-xs font-medium whitespace-nowrap sm:ml-0",
-          beyond ? "bg-ok-soft text-ok" : r.verdict === "no-baseline" || r.verdict === "no-variation-data" || r.verdict === "below-limit" ? "bg-warn-soft text-warn" : "bg-sunken text-ink-2",
+          beyond
+            ? "bg-ok-soft text-ok"
+            : r.verdict === "no-baseline" || r.verdict === "no-variation-data" || r.verdict === "below-limit"
+              ? "bg-warn-soft text-warn"
+              : "bg-sunken text-ink-2",
         )}
       >
         {SHORT_VERDICT[r.verdict]}
@@ -276,7 +321,9 @@ function ChangeRow({ r }: { r: MarkerResult }) {
 
 /** A habit that watches nothing yet: one tap on a suggested marker, or pick your own. */
 function WatchSuggestions({ habit: h, tested, today, onPick }: { habit: Habit; tested: ReadonlySet<string>; today: string; onPick: () => void }) {
-  const suggested = suggestMarkers(h.entry ?? h.label, (id) => tested.has(id)).filter((id) => tested.has(id)).slice(0, 3);
+  const suggested = suggestMarkers(h.entry ?? h.label, (id) => tested.has(id))
+    .filter((id) => tested.has(id))
+    .slice(0, 3);
   if (!h.entry) return null;
   return (
     <div className="flex flex-wrap items-center gap-2 border-t border-line pt-3 text-sm">
@@ -300,7 +347,19 @@ function WatchSuggestions({ habit: h, tested, today, onPick }: { habit: Habit; t
 }
 
 /** Choose (or change) the markers a habit watches. */
-function WatchPicker({ habit: h, all, tested, today, onDone }: { habit: Habit; all: Measurement[]; tested: ReadonlySet<string>; today: string; onDone: () => void }) {
+function WatchPicker({
+  habit: h,
+  all,
+  tested,
+  today,
+  onDone,
+}: {
+  habit: Habit;
+  all: Measurement[];
+  tested: ReadonlySet<string>;
+  today: string;
+  onDone: () => void;
+}) {
   const [markerIds, setMarkerIds] = useState<string[]>(h.watch?.markerIds ?? []);
   const [retest, setRetest] = useState(String(h.watch?.retestAfterDays ?? defaultRetestDays(markerIds)));
   const [error, setError] = useState<string | null>(null);
@@ -314,11 +373,30 @@ function WatchPicker({ habit: h, all, tested, today, onDone }: { habit: Habit; a
 
   return (
     <div className="flex flex-col gap-4 border-t border-line pt-3">
-      <MarkerPicker label={h.entry ?? h.label} start={h.start} all={all} tested={tested} markerIds={markerIds} onChange={(ids) => (setMarkerIds(ids), setError(null), setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids)))))} />
+      <MarkerPicker
+        label={h.entry ?? h.label}
+        start={h.start}
+        all={all}
+        tested={tested}
+        markerIds={markerIds}
+        onChange={(ids) => {
+          setMarkerIds(ids);
+          setError(null);
+          setRetest((r) => String(Math.max(Number(r), defaultRetestDays(ids))));
+        }}
+      />
       {error && <p className={errorStyles}>{error}</p>}
-      <ChoiceGroup<string> label="Re-test after" help="Markers need time to respond. HbA1c reflects about the last 3 months." value={retest} onChange={setRetest} options={RETEST_OPTIONS} />
+      <ChoiceGroup<string>
+        label="Re-test after"
+        help="Markers need time to respond. HbA1c reflects about the last 3 months."
+        value={retest}
+        onChange={setRetest}
+        options={RETEST_OPTIONS}
+      />
       <div className="flex flex-wrap gap-2">
-        <Button onClick={() => void save()}>Watch {markerIds.length > 0 ? markerIds.length : ""} {markerIds.length === 1 ? "marker" : "markers"}</Button>
+        <Button onClick={() => void save()}>
+          Watch {markerIds.length > 0 ? markerIds.length : ""} {markerIds.length === 1 ? "marker" : "markers"}
+        </Button>
         <Button variant="quiet" onClick={onDone}>
           Cancel
         </Button>

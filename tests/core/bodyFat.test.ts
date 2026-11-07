@@ -1,22 +1,32 @@
-import { describe, expect, it } from "vitest";
 import { bodyFatBand, bodyFatComparison, bodyFatGuide, fatMassAt, fitnessFatBand } from "@bt/shared/core/bodyFat";
-import type { Measurement, Profile } from "@bt/shared/core/types";
-import { flagLatest, flagMeasurement, flagValue, isOutOfRange, resolveRange } from "@bt/shared/core/trends";
 import { isBiomarkerDef } from "@bt/shared/core/knowledge";
+import { flagLatest, flagMeasurement, flagValue, isOutOfRange, resolveRange } from "@bt/shared/core/trends";
+import type { Measurement, Profile } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { def } from "../helpers";
 
 const reading = (biomarkerId: string, value: number, date = "2026-10-24"): Measurement => ({
-  id: `${biomarkerId}-${date}-${value}`, biomarkerId, value, date, originalValue: value,
-  originalUnit: biomarkerId === "weight" ? "kg" : "%", source: "manual",
+  id: `${biomarkerId}-${date}-${value}`,
+  biomarkerId,
+  value,
+  date,
+  originalValue: value,
+  originalUnit: biomarkerId === "weight" ? "kg" : "%",
+  source: "manual",
 });
 const man: Profile = { sex: "m", birthMonth: "1985-03" };
 
 describe("age- and sex-specific body-fat guides", () => {
   it.each([
-    [20, "m", 8, 20, 25], [39.999, "m", 8, 20, 25],
-    [40, "m", 11, 22, 28], [59.999, "m", 11, 22, 28],
-    [60, "m", 13, 25, 30], [79.999, "m", 13, 25, 30],
-    [20, "f", 21, 33, 39], [40, "f", 23, 34, 40], [60, "f", 24, 36, 42],
+    [20, "m", 8, 20, 25],
+    [39.999, "m", 8, 20, 25],
+    [40, "m", 11, 22, 28],
+    [59.999, "m", 11, 22, 28],
+    [60, "m", 13, 25, 30],
+    [79.999, "m", 13, 25, 30],
+    [20, "f", 21, 33, 39],
+    [40, "f", 23, 34, 40],
+    [60, "f", 24, 36, 42],
   ] as const)("uses the published guide at age %s for %s", (age, sex, low, high, veryHigh) => {
     expect(bodyFatGuide(age, sex)).toMatchObject({ sex, low, high, veryHigh });
   });
@@ -28,8 +38,13 @@ describe("age- and sex-specific body-fat guides", () => {
     expect(bodyFatGuide(35, undefined)).toBeUndefined();
   });
   it.each([
-    [7.99, "below"], [8, "within"], [20, "within"], [20.01, "above"],
-    [24.99, "above"], [25, "high"], [100, "high"],
+    [7.99, "below"],
+    [8, "within"],
+    [20, "within"],
+    [20.01, "above"],
+    [24.99, "above"],
+    [25, "high"],
+    [100, "high"],
   ] as const)("places %s%% on the existing inclusive guide boundaries", (value, expected) => {
     expect(bodyFatBand(value, bodyFatGuide(35, "m")!)).toBe(expected);
   });
@@ -104,7 +119,10 @@ describe("estimated fat mass", () => {
   it("chooses the nearest dated weight, preferring earlier on an equal-distance tie", () => {
     const earlier = reading("weight", 100, "2026-10-23");
     const later = reading("weight", 110, "2026-10-25");
-    for (const weights of [[earlier, later], [later, earlier]]) {
+    for (const weights of [
+      [earlier, later],
+      [later, earlier],
+    ]) {
       const result = fatMassAt(reading("body_fat", 20), weights)!;
       expect(result.kg).toBe(20);
       expect(result.weight.id).toBe(earlier.id);

@@ -1,6 +1,6 @@
-import type { SoonSection } from "../router";
 import { PhoneSyncIcon } from "../components/icons";
 import { PageTitle } from "../components/ui";
+import type { SoonSection } from "../router";
 
 const SECTIONS: Record<SoonSection, { title: string; sub: string; points: string[] }> = {
   devices: {

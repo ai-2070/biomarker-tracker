@@ -1,7 +1,8 @@
 // Extract a curated food list from CoFID 2021 into knowledge/foods/cofid-foods.json.
 // Usage: node build-foods.mjs <cofid xlsx> <output json>
-import XLSX from "xlsx";
+
 import { writeFileSync } from "node:fs";
+import XLSX from "xlsx";
 
 const [xlsxPath, outPath] = process.argv.slice(2);
 const wb = XLSX.readFile(xlsxPath);
@@ -92,11 +93,12 @@ const out = {
     publisher: "Public Health England / UK Government",
     url: "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
     licence: "Open Government Licence v3.0",
-    notes: "Values per 100 g edible portion. 'Tr' (trace) stored as 0. Nutrients that were not measured ('N') or not listed are left out, never guessed. Portions are examples chosen for this app, not from CoFID.",
+    notes:
+      "Values per 100 g edible portion. 'Tr' (trace) stored as 0. Nutrients that were not measured ('N') or not listed are left out, never guessed. Portions are examples chosen for this app, not from CoFID.",
   },
   nutrients,
   foods,
 };
-writeFileSync(outPath, JSON.stringify(out, null, 2) + "\n");
+writeFileSync(outPath, `${JSON.stringify(out, null, 2)}\n`);
 console.log(`wrote ${foods.length} foods`);
 for (const f of foods) console.log(f.id, f.name, JSON.stringify(f.per100g));

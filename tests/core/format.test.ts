@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 import { displayUnitFor, formatHours, showChange, showMeasurement, showRange, showValue, valueUnit } from "../../apps/web/src/app/format";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 
 describe("sleep duration display", () => {
   it.each([
@@ -21,7 +21,13 @@ describe("sleep duration display", () => {
 
   it("keeps lab qualifiers and formats changes and ranges without a second unit", () => {
     const def = BIOMARKER_MAP.get("sleep_duration")!;
-    expect(showMeasurement(def, { id: "sleep", biomarkerId: def.id, date: "2026-03-01", value: 6.5, originalValue: 390, originalUnit: "min", qualifier: "<", source: "device" }, "h")).toBe("<6 h 30 min");
+    expect(
+      showMeasurement(
+        def,
+        { id: "sleep", biomarkerId: def.id, date: "2026-03-01", value: 6.5, originalValue: 390, originalUnit: "min", qualifier: "<", source: "device" },
+        "h",
+      ),
+    ).toBe("<6 h 30 min");
     expect(showChange(def, -1.25, "h")).toBe("−1 h 15 min");
     expect(showChange(def, 0.25, "min")).toBe("+15 min");
     expect(showChange(def, 6.675 - 6.25, "h")).toBe("+26 min");

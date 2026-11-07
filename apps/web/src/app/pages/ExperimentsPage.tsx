@@ -4,25 +4,25 @@ import {
   analyzeMarker,
   BASELINE_WINDOW_DAYS,
   DEFAULT_CVA_RATIO,
-  MIN_PERSONAL,
+  type ExperimentPhase,
   experimentPhase,
+  type MarkerResult,
+  MIN_PERSONAL,
   markersAwaitingRetest,
   retestDate,
-  type ExperimentPhase,
-  type MarkerResult,
 } from "@bt/shared/core/experiments";
 import { pickedAfterResults } from "@bt/shared/core/habits";
+import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
 import type { BiomarkerDef, Experiment, Measurement } from "@bt/shared/core/types";
 import { deleteExperiment, endExperiment } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Button, Card, CheckIcon, LinkButton, Notice, cx } from "../components/ui";
+import { More } from "../components/disclosure";
+import { Button, Card, CheckIcon, cx, LinkButton, Notice } from "../components/ui";
 import { CATEGORY_LABEL, formatChange, formatDate, showMeasurement, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge";
 import { href, navigate } from "../router";
 import { NotFound } from "./NotFound";
-import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
-import { More } from "../components/disclosure";
 
 const PHASE_LABEL: Record<ExperimentPhase, string> = {
   "needs-baseline": "Needs a 'before' test",
@@ -52,7 +52,17 @@ function analyze(e: Experiment, all: readonly Measurement[]): MarkerResult[] {
   });
 }
 
-export function MarkerChoice({ def, checked, onChange, baseline }: { def: BiomarkerDef; checked: boolean; onChange: (v: boolean) => void; baseline?: Measurement }) {
+export function MarkerChoice({
+  def,
+  checked,
+  onChange,
+  baseline,
+}: {
+  def: BiomarkerDef;
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  baseline?: Measurement;
+}) {
   return (
     <label className="flex min-h-11 cursor-pointer items-start gap-3 py-1.5">
       <Checkbox.Root
@@ -113,15 +123,18 @@ export function ExperimentPage({ id }: { id: string }) {
       <div className="flex flex-col gap-5">
         {phase === "due" && (
           <Notice tone="warn" title="Time for the 'after' test">
-            Get {markersAwaitingRetest(results).map((id) => BIOMARKER_MAP.get(id)?.name ?? id).join(", ")} tested, ideally at the same lab and time of day, and in the same state (for example fasting) as before.
-            Then add the results; they'll appear here.
+            Get{" "}
+            {markersAwaitingRetest(results)
+              .map((id) => BIOMARKER_MAP.get(id)?.name ?? id)
+              .join(", ")}{" "}
+            tested, ideally at the same lab and time of day, and in the same state (for example fasting) as before. Then add the results; they'll appear here.
           </Notice>
         )}
         {phase === "running" && <Notice title={`Re-test from ${formatDate(due)}`}>Keep the change going until then.</Notice>}
         {pickedAfterResults(e) && (
           <Notice title="Picked after the results were in">
-            You chose these markers when the "after" results already existed, so treat this as a hint, not a test. It's easy to pick the
-            markers that happened to move. For a fair test, choose markers before you start a change.
+            You chose these markers when the "after" results already existed, so treat this as a hint, not a test. It's easy to pick the markers that happened
+            to move. For a fair test, choose markers before you start a change.
           </Notice>
         )}
 
@@ -132,28 +145,28 @@ export function ExperimentPage({ id }: { id: string }) {
         <Card className="flex flex-col gap-2 text-ink-2">
           <h2 className="font-serif text-2xl font-normal text-ink">How to read this</h2>
           <p>
-            Results vary from test to test even when nothing changes. The shaded band shows how big a change can be from that variation
-            alone, 19 times out of 20. A result outside the band is probably a real change <em>in you</em>.
+            Results vary from test to test even when nothing changes. The shaded band shows how big a change can be from that variation alone, 19 times out of
+            20. A result outside the band is probably a real change <em>in you</em>.
           </p>
           <p>
-            It doesn't prove that your change caused it. Season, illness, other habits or a different lab can also move results. And what
-            happened in you may not happen in someone else.
+            It doesn't prove that your change caused it. Season, illness, other habits or a different lab can also move results. And what happened in you may
+            not happen in someone else.
           </p>
           <p className="text-sm">
-            Normal variation is taken from the EFLM Biological Variation Database (within-person variation, CVI). Labs rarely publish their
-            own measurement error, so it is assumed to be {DEFAULT_CVA_RATIO * 100}% of that, a common quality target. Bands are calculated
-            on a log scale, so rises and falls have different limits.
+            Normal variation is taken from the EFLM Biological Variation Database (within-person variation, CVI). Labs rarely publish their own measurement
+            error, so it is assumed to be {DEFAULT_CVA_RATIO * 100}% of that, a common quality target. Bands are calculated on a log scale, so rises and falls
+            have different limits.
           </p>
           <p className="text-sm">
-            Where no published data exists (body measurements and a few blood ratios), normal variation is estimated from your own results
-            when there are at least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread around their average. With so few
-            results the limits are made wider to stay cautious.
+            Where no published data exists (body measurements and a few blood ratios), normal variation is estimated from your own results when there are at
+            least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread around their average. With so few results the limits are made wider to
+            stay cautious.
           </p>
           {e.markerIds.includes(PHENOAGE_GAP_ID) && (
             <p className="text-sm">
-              The PhenoAge gap is your PhenoAge minus your age at each blood test with all 9 markers, so the year you age between tests doesn't
-              count against you. It is compared in years, and normal variation comes from how much your own gap changed from one blood test to
-              the next before the start (at least {MIN_PERSONAL} tests), which a slow real trend barely affects. A lower gap is a good sign, but nobody has shown that lowering it adds years
+              The PhenoAge gap is your PhenoAge minus your age at each blood test with all 9 markers, so the year you age between tests doesn't count against
+              you. It is compared in years, and normal variation comes from how much your own gap changed from one blood test to the next before the start (at
+              least {MIN_PERSONAL} tests), which a slow real trend barely affects. A lower gap is a good sign, but nobody has shown that lowering it adds years
               of life.
             </p>
           )}
@@ -283,7 +296,8 @@ function Stat({ label, value, def, unit, count }: { label: string; value?: numbe
         {count > 1 ? ` (average of ${count})` : ""}
       </dt>
       <dd className="font-serif text-3xl font-normal tabular-nums">
-        {value === undefined ? "–" : showWatchValue(def, value, unit)} <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : valueUnit(def, unit)}</span>
+        {value === undefined ? "–" : showWatchValue(def, value, unit)}{" "}
+        <span className="text-sm font-normal text-ink-2">{value === undefined ? "" : valueUnit(def, unit)}</span>
       </dd>
     </div>
   );

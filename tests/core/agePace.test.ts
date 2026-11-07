@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { dunedinSummary, phenoAgePace } from "@bt/shared/core/agePace";
+import { describe, expect, it } from "vitest";
 
 /** A test every 6 months, PhenoAge rising `rate` years per calendar year from 40, with an optional wobble. */
 const series = (rate: number, n: number, wobble: number[] = []) =>
@@ -30,7 +30,13 @@ describe("pace of PhenoAge", () => {
   it("uses only the last 3 years, and needs 3 tests over at least a year", () => {
     expect(phenoAgePace(series(0.6, 10))!.tests).toBe(7);
     expect(phenoAgePace(series(0.6, 2))).toBeUndefined();
-    expect(phenoAgePace([{ date: "2026-01-01", years: 40 }, { date: "2026-04-01", years: 40.2 }, { date: "2026-08-01", years: 40.3 }])).toBeUndefined();
+    expect(
+      phenoAgePace([
+        { date: "2026-01-01", years: 40 },
+        { date: "2026-04-01", years: 40.2 },
+        { date: "2026-08-01", years: 40.3 },
+      ]),
+    ).toBeUndefined();
     expect(phenoAgePace([])).toBeUndefined();
   });
   it("counts approximate results", () => {

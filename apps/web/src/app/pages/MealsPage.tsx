@@ -1,16 +1,16 @@
-import { useEffect } from "react";
 import { SAFETY_LIMITS } from "@bt/shared/core/foods";
-import { mealSafetyBlock, mealTotals, mealWeight, type ExampleMeal, type FoodDb, type Meal } from "@bt/shared/core/meals";
+import { type ExampleMeal, type FoodDb, type Meal, mealSafetyBlock, mealTotals, mealWeight } from "@bt/shared/core/meals";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { flagLatest, groupByBiomarker } from "@bt/shared/core/trends";
-import { formatValue } from "@bt/shared/core/units";
 import type { SafetyId } from "@bt/shared/core/types";
+import { formatValue } from "@bt/shared/core/units";
+import { useEffect } from "react";
 import { newId, saveMeal } from "../../db/db";
 import { openBrain } from "../brain/store";
 import { DarkMatterExplainer } from "../components/DarkMatter";
 import { FoodComparison } from "../components/FoodComparison";
 import { BrainIcon, PlusIcon } from "../components/icons";
-import { Button, Card, PageTitle, linkCardStyles, cx } from "../components/ui";
+import { Button, Card, cx, linkCardStyles, PageTitle } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
 import { useAllMeasurements, useMeals, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, nameInSentence } from "../knowledge";
@@ -63,9 +63,7 @@ export function MealsPage({ section }: { section?: string }) {
 
   return (
     <>
-      <PageTitle sub="Build a meal from foods and grams and see what it contains. No targets, no diet plans.">
-        Meals
-      </PageTitle>
+      <PageTitle sub="Build a meal from foods and grams and see what it contains. No targets, no diet plans.">Meals</PageTitle>
       <div className="mb-5 flex flex-wrap gap-2">
         <Button onClick={() => void create()}>
           <PlusIcon /> New meal
@@ -123,7 +121,9 @@ export function MealsPage({ section }: { section?: string }) {
         <section className="flex flex-col gap-3">
           <div>
             <h2 className="font-serif text-2xl font-normal">{mine.length ? "More example meals" : "Example meals"}</h2>
-            <p className="text-ink-2">Each one shows foods from an evidence lever on a marker page. Open one to see its numbers, or save a copy to change it.</p>
+            <p className="text-ink-2">
+              Each one shows foods from an evidence lever on a marker page. Open one to see its numbers, or save a copy to change it.
+            </p>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {rest.map((m) => (
@@ -133,9 +133,7 @@ export function MealsPage({ section }: { section?: string }) {
             ))}
           </ul>
           {blocked.length > 0 && (
-            <p className="text-sm text-ink-2">
-              Not shown because of your habits or profile: {blocked.map((b) => `${b.m.name} (${b.why})`).join("; ")}.
-            </p>
+            <p className="text-sm text-ink-2">Not shown because of your habits or profile: {blocked.map((b) => `${b.m.name} (${b.why})`).join("; ")}.</p>
           )}
         </section>
 
@@ -151,10 +149,7 @@ function MealCard({ to, name, items, db, tag }: { to: string; name: string; item
   const t = db ? mealTotals(items, db) : undefined;
   const g = (k: string) => (t?.[k] && t[k]!.measuredIn > 0 ? formatValue(Math.round(t[k]!.amount * 10) / 10) : "–");
   return (
-    <a
-      href={to}
-      className={cx("flex h-full flex-col gap-2", linkCardStyles)}
-    >
+    <a href={to} className={cx("flex h-full flex-col gap-2", linkCardStyles)}>
       {tag && <span className="self-start rounded-full bg-accent-soft px-2.5 py-0.5 text-sm font-medium text-accent">{tag}</span>}
       <h3 className="font-serif text-xl font-normal">{name}</h3>
       <p className="mt-auto text-sm text-ink-2 tabular-nums">

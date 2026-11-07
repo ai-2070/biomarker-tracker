@@ -58,12 +58,15 @@ export function validateComparisonTopic(v: unknown): string[] {
     if (!VERDICTS.includes(c.verdict as Verdict)) errs.push(`${at}: verdict is invalid`);
     if (!GRADES.has(String(c.grade))) errs.push(`${at}: grade is invalid`);
     if (!FAVOURS.includes(c.favours as Favours)) errs.push(`${at}: favours is invalid`);
-    if (!Array.isArray(c.whyThisGrade) || c.whyThisGrade.length === 0 || !c.whyThisGrade.every(isStr)) errs.push(`${at}: needs at least one reason for its grade`);
-    if (c.bottomLine !== undefined && !(isStr(c.bottomLine) && String(c.bottomLine).length >= 90 && String(c.bottomLine).length <= 340)) errs.push(`${at}: bottomLine must be 90-340 characters`);
+    if (!Array.isArray(c.whyThisGrade) || c.whyThisGrade.length === 0 || !c.whyThisGrade.every(isStr))
+      errs.push(`${at}: needs at least one reason for its grade`);
+    if (c.bottomLine !== undefined && !(isStr(c.bottomLine) && String(c.bottomLine).length >= 90 && String(c.bottomLine).length <= 340))
+      errs.push(`${at}: bottomLine must be 90-340 characters`);
     if (!Array.isArray(c.studies) || c.studies.length === 0) errs.push(`${at}: needs at least one study`);
     else
       (c.studies as Record<string, unknown>[]).forEach((s, j) => {
-        if (!isStr(s.title) || typeof s.year !== "number" || !STUDY_TYPES.has(String(s.studyType))) errs.push(`${at} study ${j + 1}: needs title, year and a valid studyType`);
+        if (!isStr(s.title) || typeof s.year !== "number" || !STUDY_TYPES.has(String(s.studyType)))
+          errs.push(`${at} study ${j + 1}: needs title, year and a valid studyType`);
         else if (!isStr(s.pmid) && !isStr(s.doi)) errs.push(`${at} study ${j + 1}: needs a pmid or doi`);
         else if (s.pmid !== undefined && !/^\d+$/.test(String(s.pmid))) errs.push(`${at} study ${j + 1}: pmid must be digits`);
       });

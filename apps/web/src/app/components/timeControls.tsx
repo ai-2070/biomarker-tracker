@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
-import { MIN_SPAN_DAYS, centerWindow, clampWindow, panWindow, presetWindow, zoomWindow, type TimeWindow } from "@bt/shared/core/timeWindow";
+import { centerWindow, clampWindow, MIN_SPAN_DAYS, panWindow, presetWindow, type TimeWindow, zoomWindow } from "@bt/shared/core/timeWindow";
+import { type KeyboardEvent, type MouseEvent, type PointerEvent, type ReactNode, type RefObject, useEffect, useRef, useState } from "react";
 import { MinusIcon, PlusIcon } from "./icons";
 import { cx } from "./ui";
 
@@ -93,11 +93,13 @@ export function useTimeView(
   const currentView = opts.shared ? opts.shared.view : view;
   const v = currentView ? clampWindow(currentView, full, minSpan) : full;
   const zoomed = v.to - v.from < full.to - full.from - 1;
+  // biome-ignore lint/correctness/useExhaustiveDependencies: full is a new object each render; its bounds are the dependency
   useEffect(() => {
-    setView((previous) => previous ? clampWindow(previous, full, minSpan) : null);
+    setView((previous) => (previous ? clampWindow(previous, full, minSpan) : null));
     setSelection(null);
     drag.current = null;
   }, [full.from, full.to, minSpan]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: runs when the shared window moves; opts is a new object each render
   useEffect(() => {
     if (opts.shared) {
       setSelection(null);
@@ -255,7 +257,7 @@ export function Overview({ t, lines }: { t: TimeView; lines: { points: { day: nu
       onPointerCancel={() => (drag.current = null)}
     >
       {width > 0 && (
-        <svg width={width} height={H} className="block">
+        <svg width={width} height={H} className="block" aria-hidden="true">
           <rect x={0} y={0} width={width} height={H} rx={6} className="fill-sunken" />
           {lines.map((l, i) => (
             <polyline
@@ -354,7 +356,10 @@ export function SelectionBar({ t, children }: { t: TimeView; children: ReactNode
     return <p className="text-sm text-ink-2">Drag across the chart to select a period{t.zoomed ? "; drag the strip below it to move" : ""}.</p>;
   }
   return (
-    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-lg border border-accent/30 bg-accent-soft px-3 py-2 text-sm" aria-live="polite">
+    <div
+      className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-lg border border-accent/30 bg-accent-soft px-3 py-2 text-sm"
+      aria-live="polite"
+    >
       <div className="min-w-0">
         <p className="font-medium text-ink">
           {selFmt.format(fromDay(t.selection.from))} – {selFmt.format(fromDay(t.selection.to))}

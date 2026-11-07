@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
-import { defineConfig, type Plugin } from "vite";
-import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig, type Plugin } from "vite";
 
 // The app version lives in the repository's root package.json (shared with the desktop app).
 const pkg = JSON.parse(fs.readFileSync(path.resolve(import.meta.dirname, "../../package.json"), "utf8")) as { version: string };
@@ -39,10 +39,7 @@ function contentSecurityPolicy(): Plugin {
     name: "content-security-policy",
     apply: "build",
     transformIndexHtml(html) {
-      return html.replace(
-        "<head>",
-        `<head>\n    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`,
-      );
+      return html.replace("<head>", `<head>\n    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`);
     },
   };
 }

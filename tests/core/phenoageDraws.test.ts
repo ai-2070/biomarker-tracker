@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { phenoAge, type PhenoAgeInputs } from "@bt/shared/core/phenoage";
+import { type PhenoAgeInputs, phenoAge } from "@bt/shared/core/phenoage";
 import { ageAt, isBirthMonth, summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
 import type { Measurement } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const panel: Record<string, number> = {
   albumin: 45,
@@ -101,7 +101,14 @@ describe("summarizePhenoAge", () => {
   });
 
   it("uses the later entry when a marker was entered twice on one day", () => {
-    const ms = [...draw("2024-01-01"), ...draw("2024-01-01", { crp_hs: 5 }, Object.keys(panel).filter((k) => k !== "crp_hs"))];
+    const ms = [
+      ...draw("2024-01-01"),
+      ...draw(
+        "2024-01-01",
+        { crp_hs: 5 },
+        Object.keys(panel).filter((k) => k !== "crp_hs"),
+      ),
+    ];
     expect(summarizePhenoAge(ms, "1985-03").draws[0]!.used.crp_hs.value).toBe(5);
   });
 });

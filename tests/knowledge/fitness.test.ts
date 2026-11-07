@@ -1,8 +1,8 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { validateFitnessTest, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
+import { type FitnessTestDef, validateFitnessTest } from "@bt/shared/core/fitnessTests";
 import { PRESCRIBING } from "@bt/shared/core/nutrients";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "fitness");
@@ -28,7 +28,9 @@ describe("knowledge base: fitness tests", () => {
   });
 
   it("never words general information as personal advice", () => {
-    for (const t of tests) for (const line of [t.summary, ...t.howTo, ...t.safety, ...t.limits, ...t.evidence.map((e) => e.claim)]) expect(PRESCRIBING.test(line), `${t.id}: ${line}`).toBe(false);
+    for (const t of tests)
+      for (const line of [t.summary, ...t.howTo, ...t.safety, ...t.limits, ...t.evidence.map((e) => e.claim)])
+        expect(PRESCRIBING.test(line), `${t.id}: ${line}`).toBe(false);
   });
 
   it("never uses the push-up chart whose source couldn't be traced", () => {

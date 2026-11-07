@@ -1,9 +1,9 @@
 // Skills: bundled ones in <repo>/skills (read-only) and the user's own in <data>/skills.
 import fs from "node:fs";
 import path from "node:path";
-import { parseSkill, skillId, type Skill } from "@bt/shared/core/skills";
-import { ROOT, dataPath, getSettings, updateSettings } from "./store";
 import type { SkillListing } from "@bt/shared/api/types";
+import { parseSkill, type Skill, skillId } from "@bt/shared/core/skills";
+import { dataPath, getSettings, ROOT, updateSettings } from "./store";
 
 const BUNDLED = () => path.join(ROOT, "skills");
 const CUSTOM = () => dataPath("skills");
@@ -27,7 +27,6 @@ function readDir(dir: string, source: Skill["source"]): Skill[] {
   }
   return out;
 }
-
 
 export function allSkills(): Skill[] {
   const bundled = readDir(BUNDLED(), "bundled");

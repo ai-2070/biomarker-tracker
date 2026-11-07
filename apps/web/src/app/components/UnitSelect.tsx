@@ -1,5 +1,5 @@
 import { Select } from "@base-ui/react/select";
-import { CheckIcon, ChevronDownIcon, cx, labelStyles, eyebrowSmallStyles } from "./ui";
+import { CheckIcon, ChevronDownIcon, cx, eyebrowSmallStyles, labelStyles } from "./ui";
 
 export interface Option {
   value: string;
@@ -20,7 +20,11 @@ function groupOptions(options: Option[]): { group?: string; options: Option[] }[
 }
 
 const item = (o: Option) => (
-  <Select.Item key={o.value} value={o.value} className="grid min-h-11 cursor-default grid-cols-[1.25rem_1fr] items-center gap-2 px-3 outline-none select-none data-highlighted:bg-accent-soft">
+  <Select.Item
+    key={o.value}
+    value={o.value}
+    className="grid min-h-11 cursor-default grid-cols-[1.25rem_1fr] items-center gap-2 px-3 outline-none select-none data-highlighted:bg-accent-soft"
+  >
     <Select.ItemIndicator className="col-start-1 text-accent">
       <CheckIcon />
     </Select.ItemIndicator>
@@ -103,12 +107,5 @@ export function UnitSelect({
   compact?: boolean;
   labelClassName?: string;
 }) {
-  return (
-    <SimpleSelect
-      {...rest}
-      options={units.map((u) => ({ value: u, label: u }))}
-      value={value || null}
-      placeholder="Choose a unit"
-    />
-  );
+  return <SimpleSelect {...rest} options={units.map((u) => ({ value: u, label: u }))} value={value || null} placeholder="Choose a unit" />;
 }

@@ -1,5 +1,5 @@
+import { inkShare, PICTURE_PAGE_INK, pdfPagePlan } from "@bt/shared/core/importers/pdfText";
 import { describe, expect, it } from "vitest";
-import { PICTURE_PAGE_INK, inkShare, pdfPagePlan } from "@bt/shared/core/importers/pdfText";
 
 /** An RGBA thumbnail with `dark` of `total` pixels black and the rest white. */
 function thumbnail(total: number, dark: number, alpha = 255): Uint8ClampedArray {
@@ -28,7 +28,10 @@ describe("telling scanned PDF pages from blank ones", () => {
   });
 
   it("sends every page with something on it as a picture once one page is a scan, leaving blank pages out", () => {
-    expect(pdfPagePlan([{ hasText: true }, { hasText: false, ink: 0.3 }, { hasText: false, ink: 0 }, { hasText: true }])).toEqual({ kind: "pages", pages: [0, 1, 3] });
+    expect(pdfPagePlan([{ hasText: true }, { hasText: false, ink: 0.3 }, { hasText: false, ink: 0 }, { hasText: true }])).toEqual({
+      kind: "pages",
+      pages: [0, 1, 3],
+    });
     expect(pdfPagePlan([{ hasText: false, ink: PICTURE_PAGE_INK }])).toEqual({ kind: "pages", pages: [0] });
   });
 });

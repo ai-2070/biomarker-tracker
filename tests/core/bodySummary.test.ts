@@ -1,16 +1,17 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { FitnessTestDef } from "@bt/shared/core/fitnessTests";
-import { describe, expect, it } from "vitest";
 import { bodySummary } from "@bt/shared/core/bodySummary";
 import { demoProfile } from "@bt/shared/core/demo";
+import type { FitnessTestDef } from "@bt/shared/core/fitnessTests";
 import type { Measurement } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 describe("body summary for Brain", () => {
   const today = "2026-10-29";
   const demo = demoProfile(today);
-  const s = bodySummary(demo.person, demo.measurements, demo.protocols, today) as ReturnType<typeof bodySummary> & Record<string, { latest: number } | undefined>;
+  const s = bodySummary(demo.person, demo.measurements, demo.protocols, today) as ReturnType<typeof bodySummary> &
+    Record<string, { latest: number } | undefined>;
   it("gives the app's own calculations", () => {
     expect(s.bmi?.value).toBeGreaterThan(20);
     expect(s.basalMetabolicRate?.kcalPerDay).toBeGreaterThan(1000);
@@ -22,7 +23,9 @@ describe("body summary for Brain", () => {
   it("says what's missing instead of guessing", () => {
     const empty = bodySummary({}, [], [], today);
     expect(empty.bmi).toBeUndefined();
-    expect(empty.heartAge).toEqual({ notShown: "Needs your sex, your month and year of birth, your height, a weight, a blood pressure reading, whether you smoke." });
+    expect(empty.heartAge).toEqual({
+      notShown: "Needs your sex, your month and year of birth, your height, a weight, a blood pressure reading, whether you smoke.",
+    });
   });
 });
 
@@ -44,7 +47,9 @@ describe("ranges in the body summary", () => {
     const demo = demoProfile(today);
     const dir = join(import.meta.dirname, "..", "..", "knowledge", "fitness");
     const tests = readdirSync(dir).map((f) => JSON.parse(readFileSync(join(dir, f), "utf8")) as FitnessTestDef);
-    const s = bodySummary(demo.person, demo.measurements, demo.protocols, today, loadDefs(), tests) as unknown as { fitnessTests: { results: { test: string; comparedWith: { place: string }[]; note?: string }[] } };
+    const s = bodySummary(demo.person, demo.measurements, demo.protocols, today, loadDefs(), tests) as unknown as {
+      fitnessTests: { results: { test: string; comparedWith: { place: string }[]; note?: string }[] };
+    };
     const push = s.fitnessTests.results.find((r) => r.test === "Push-ups")!;
     expect(push.comparedWith[0]!.place).toBe("Very good");
     // The example person is 47: the sit-and-rise groups are for 51–80.
@@ -56,12 +61,25 @@ describe("ranges in the body summary", () => {
 describe("sleep timing in Brain's body summary", () => {
   const today = "2026-11-01";
   const recorded = (date: string, extra: Partial<Measurement> = {}): Measurement => ({
-    id: `sleep-${date}`, biomarkerId: "sleep_duration", date, value: 7.5, originalValue: 7.5, originalUnit: "h", source: "device",
+    id: `sleep-${date}`,
+    biomarkerId: "sleep_duration",
+    date,
+    value: 7.5,
+    originalValue: 7.5,
+    originalUnit: "h",
+    source: "device",
     sleepSessions: [{ start: `${date}T00:00:00`, end: `${date}T07:30:00`, kind: "asleep", source: "Watch" }],
     ...extra,
   });
   const resting = (date: string, biomarkerId: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
-    id: `${biomarkerId}-${date}`, biomarkerId, date, value, originalValue: value, originalUnit: biomarkerId === "resting_hr" ? "bpm" : "ms", source: "device", ...extra,
+    id: `${biomarkerId}-${date}`,
+    biomarkerId,
+    date,
+    value,
+    originalValue: value,
+    originalUnit: biomarkerId === "resting_hr" ? "bpm" : "ms",
+    source: "device",
+    ...extra,
   });
 
   it("computes an inclusive last-30-days summary with clocks and compact explicit pair counts", () => {
@@ -83,9 +101,24 @@ describe("sleep timing in Brain's body summary", () => {
     ];
     const summary = bodySummary({}, rows, [], today).sleepTiming;
     expect(summary).toMatchObject({
-      from: "2026-10-03", to: today, nightsWithTiming: 3, durationOnlyNights: 1, invalidNights: 1,
+      from: "2026-10-03",
+      to: today,
+      nightsWithTiming: 3,
+      durationOnlyNights: 1,
+      invalidNights: 1,
       regularity: { pairs: 1, startShiftMinutes: 30, endShiftMinutes: 30, midpointShiftMinutes: 30 },
-      latest: { date: "2026-10-31", kind: "in-bed", source: "Ring", startClock: "23:45", endClock: "07:15", midpointClock: "03:30", startHours: -0.25, endHours: 7.25, midpointHours: 3.5, sessionCount: 1 },
+      latest: {
+        date: "2026-10-31",
+        kind: "in-bed",
+        source: "Ring",
+        startClock: "23:45",
+        endClock: "07:15",
+        midpointClock: "03:30",
+        startHours: -0.25,
+        endHours: 7.25,
+        midpointHours: 3.5,
+        sessionCount: 1,
+      },
       cardiacPairs: {
         restingHeartRate: { sameWakeDatePairs: 1, consecutiveNightShiftPairs: 0, excludedNights: 2 },
         restingHrv: { sameWakeDatePairs: 3, consecutiveNightShiftPairs: 1, excludedNights: 0 },

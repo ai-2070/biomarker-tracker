@@ -1,26 +1,22 @@
-import { useState, type FormEvent, type ReactNode } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-
 import { BASELINE_WINDOW_DAYS, beforeResults } from "@bt/shared/core/experiments";
 import { chanceNote, defaultRetestDays, suggestMarkers } from "@bt/shared/core/habits";
-import { validateProtocol, type ProtocolCategory, type ProtocolField } from "@bt/shared/core/protocols";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import { type ProtocolCategory, type ProtocolField, validateProtocol } from "@bt/shared/core/protocols";
 
 import type { Experiment, Measurement, ProtocolEntry } from "@bt/shared/core/types";
-
+import { type FormEvent, type ReactNode, useState } from "react";
 import { createHabit, saveHabit, startPlan } from "../../../db/db";
-import { ChoiceGroup } from "../ChoiceGroup";
-
-import { SegmentTabs } from "../SegmentTabs";
-import { Button, CheckIcon, Notice, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
 import { CATEGORY_LABEL, formatDate } from "../../format";
 import { useMeals, usePlans } from "../../hooks";
-import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER } from "../../knowledge";
-import { href } from "../../router";
+import { BIOMARKER_MAP, BIOMARKERS, CATEGORY_ORDER } from "../../knowledge";
 import { MarkerChoice } from "../../pages/ExperimentsPage";
-import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
-
+import { href } from "../../router";
+import { ChoiceGroup } from "../ChoiceGroup";
+import { SegmentTabs } from "../SegmentTabs";
 import { SimpleSelect } from "../UnitSelect";
+import { Button, CheckIcon, errorStyles, helpStyles, inputStyles, labelStyles, Notice } from "../ui";
 
 export const RETEST_OPTIONS = [
   { value: "28", label: "4 weeks" },
@@ -49,7 +45,10 @@ export function MarkerPicker({
   // The PhenoAge gap is offered once there's a complete PhenoAge blood test.
   const markers = tested.has(PHENOAGE_GAP_ID) ? [PHENOAGE_GAP_DEF, ...BIOMARKERS] : BIOMARKERS;
   const pool = markers.filter((d) => showAll || tested.has(d.id) || markerIds.includes(d.id) || suggested.includes(d.id));
-  const ordered = [...pool.filter((d) => suggested.includes(d.id)), ...CATEGORY_ORDER.flatMap((c) => pool.filter((d) => d.category === c && !suggested.includes(d.id)))];
+  const ordered = [
+    ...pool.filter((d) => suggested.includes(d.id)),
+    ...CATEGORY_ORDER.flatMap((c) => pool.filter((d) => d.category === c && !suggested.includes(d.id))),
+  ];
   const draft: Experiment = { id: "draft", change: typeof label === "string" ? label : label.label, category: "diet", markerIds, start, retestAfterDays: 56 };
   const allShown = ordered.length > 0 && ordered.every((d) => markerIds.includes(d.id));
   const chance = chanceNote(markerIds.length);
@@ -63,7 +62,9 @@ export function MarkerPicker({
       <div className="mt-1 flex flex-wrap items-center gap-x-3">
         <Button
           variant="link"
-          onClick={() => onChange(allShown ? markerIds.filter((id) => !ordered.some((d) => d.id === id)) : [...new Set([...markerIds, ...ordered.map((d) => d.id)])])}
+          onClick={() =>
+            onChange(allShown ? markerIds.filter((id) => !ordered.some((d) => d.id === id)) : [...new Set([...markerIds, ...ordered.map((d) => d.id)])])
+          }
         >
           {allShown ? "Clear all" : `Select all (${ordered.length})`}
         </Button>
@@ -80,7 +81,14 @@ export function MarkerPicker({
                 def={d}
                 checked={markerIds.includes(d.id)}
                 onChange={(on) => onChange(on ? [...markerIds, d.id] : markerIds.filter((x) => x !== d.id))}
-                baseline={markerIds.includes(d.id) ? beforeResults(draft, all.filter((m) => m.biomarkerId === d.id)).at(-1) : undefined}
+                baseline={
+                  markerIds.includes(d.id)
+                    ? beforeResults(
+                        draft,
+                        all.filter((m) => m.biomarkerId === d.id),
+                      ).at(-1)
+                    : undefined
+                }
               />
             </div>
             {suggested.includes(d.id) && <span className="mt-2.5 shrink-0 rounded-full bg-accent-soft px-2 text-xs text-accent">suggested</span>}
@@ -209,14 +217,17 @@ export function HabitForm({
             />
             {plan?.active ? (
               <p className="text-ink-2">
-                Running since {formatDate(plan.active.since)}. Already recorded in Habits below; <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
+                Running since {formatDate(plan.active.since)}. Already recorded in Habits below;{" "}
+                <a href={href({ name: "plan", id: plan.id })}>open the protocol</a> to stop it.
               </p>
             ) : (
               <>
                 <Field.Root className="flex flex-col gap-1.5 sm:max-w-xs">
                   <Field.Label className={labelStyles}>Start</Field.Label>
                   <Field.Control type="date" value={start} onValueChange={setStart} className={inputStyles} />
-                  <Field.Description className={helpStyles}>Adds one habit named after the protocol, with all items included. Watch markers for the whole routine afterwards.</Field.Description>
+                  <Field.Description className={helpStyles}>
+                    Adds one habit named after the protocol, with all items included. Watch markers for the whole routine afterwards.
+                  </Field.Description>
                 </Field.Root>
                 <div className="flex flex-wrap gap-2">
                   <Button
@@ -240,13 +251,14 @@ export function HabitForm({
             )}
           </>
         )}
-      </div>
+      </div>,
     );
   }
 
   return withSource(
     <form onSubmit={submit} noValidate className="flex flex-col gap-5">
-      {!initial && from === "meal" &&
+      {!initial &&
+        from === "meal" &&
         (meals.length === 0 ? (
           <p className="text-ink-2">
             No meals yet. <a href={href({ name: "meals" })}>Build one in Meals</a>, or write your own.
@@ -262,8 +274,17 @@ export function HabitForm({
         ))}
       <Field.Root invalid={!!errors.label} className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>{initial?.plan ? "Protocol habit name" : "What do you take or change?"}</Field.Label>
-        <Field.Control value={label} onValueChange={setLabel} placeholder="e.g. Vitamin D 2000 IU daily" autoComplete="off" maxLength={100} className={inputStyles} />
-        <Field.Description className={helpStyles}>{initial?.plan ? "Included items stay as recorded when you started." : "Include the amount and how often, if it applies."}</Field.Description>
+        <Field.Control
+          value={label}
+          onValueChange={setLabel}
+          placeholder="e.g. Vitamin D 2000 IU daily"
+          autoComplete="off"
+          maxLength={100}
+          className={inputStyles}
+        />
+        <Field.Description className={helpStyles}>
+          {initial?.plan ? "Included items stay as recorded when you started." : "Include the amount and how often, if it applies."}
+        </Field.Description>
         <Field.Error match={!!errors.label} className={errorStyles}>
           {errors.label}
         </Field.Error>
@@ -277,7 +298,9 @@ export function HabitForm({
             onChange={setCategory}
             options={(Object.keys(CATEGORY_LABEL) as ProtocolCategory[]).map((c) => ({ value: c, label: CATEGORY_LABEL[c] }))}
           />
-          {category === "medication" && <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>}
+          {category === "medication" && (
+            <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>
+          )}
         </>
       )}
 
@@ -333,7 +356,13 @@ export function HabitForm({
                 }}
               />
               {errors.markers && <p className={errorStyles}>{errors.markers}</p>}
-              <ChoiceGroup<string> label="Re-test after" help="Markers need time to respond. HbA1c reflects about the last 3 months." value={retest} onChange={setRetest} options={RETEST_OPTIONS} />
+              <ChoiceGroup<string>
+                label="Re-test after"
+                help="Markers need time to respond. HbA1c reflects about the last 3 months."
+                value={retest}
+                onChange={setRetest}
+                options={RETEST_OPTIONS}
+              />
             </>
           )}
         </div>
@@ -347,6 +376,6 @@ export function HabitForm({
           Cancel
         </Button>
       </div>
-    </form>
+    </form>,
   );
 }

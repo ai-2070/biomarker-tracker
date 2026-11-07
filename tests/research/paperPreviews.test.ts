@@ -1,11 +1,15 @@
+import { EUROPE_PMC, type FetchFn } from "@bt/shared/research/papers";
 import { describe, expect, it, vi } from "vitest";
 import { createPaperPreviewLoader, paperPreviewId } from "../../apps/web/src/app/paperPreviews";
-import { EUROPE_PMC, type FetchFn } from "@bt/shared/research/papers";
 
-const respond = (records: unknown[] = [], status = 200) => new Response(JSON.stringify({
-  hitCount: records.length,
-  resultList: { result: records },
-}), { status });
+const respond = (records: unknown[] = [], status = 200) =>
+  new Response(
+    JSON.stringify({
+      hitCount: records.length,
+      resultList: { result: records },
+    }),
+    { status },
+  );
 
 const record = {
   pmid: "12345678",
@@ -38,12 +42,9 @@ describe("paperPreviewId", () => {
   });
 
   it("keeps encoded DOI reserved characters but not actual URL queries or fragments", () => {
-    expect(paperPreviewId("https://doi.org/10.1000/a%3Fb%23c%26d?tracking=1#link"))
-      .toBe("DOI:10.1000/a?b#c&d");
-    expect(paperPreviewId("https://doi.org/10.1000/a?tracking=1#link"))
-      .toBe("DOI:10.1000/a");
-    expect(paperPreviewId("https://doi.org/10.1000/a%2523b"))
-      .toBe("DOI:10.1000/a%23b");
+    expect(paperPreviewId("https://doi.org/10.1000/a%3Fb%23c%26d?tracking=1#link")).toBe("DOI:10.1000/a?b#c&d");
+    expect(paperPreviewId("https://doi.org/10.1000/a?tracking=1#link")).toBe("DOI:10.1000/a");
+    expect(paperPreviewId("https://doi.org/10.1000/a%2523b")).toBe("DOI:10.1000/a%23b");
   });
 
   it.each([
@@ -117,7 +118,10 @@ describe("createPaperPreviewLoader", () => {
     const request = new URL(url);
     expect(`${request.origin}${request.pathname}`).toBe(EUROPE_PMC);
     expect(Object.fromEntries(request.searchParams)).toEqual({
-      query: "EXT_ID:12345678 AND SRC:MED", format: "json", resultType: "core", pageSize: "1",
+      query: "EXT_ID:12345678 AND SRC:MED",
+      format: "json",
+      resultType: "core",
+      pageSize: "1",
     });
     expect(init?.signal).toBeInstanceOf(AbortSignal);
   });
@@ -144,7 +148,8 @@ describe("createPaperPreviewLoader", () => {
   });
 
   it("shares a rejection but allows the next hover to retry", async () => {
-    const fetchFn = vi.fn<FetchFn>()
+    const fetchFn = vi
+      .fn<FetchFn>()
       .mockRejectedValueOnce(new TypeError("Network unavailable"))
       .mockResolvedValueOnce(respond([record]));
     const load = createPaperPreviewLoader(fetchFn);
@@ -157,7 +162,8 @@ describe("createPaperPreviewLoader", () => {
   });
 
   it("does not cache HTTP errors or malformed responses", async () => {
-    const fetchFn = vi.fn<FetchFn>()
+    const fetchFn = vi
+      .fn<FetchFn>()
       .mockResolvedValueOnce(respond([], 503))
       .mockResolvedValueOnce(new Response("{}"))
       .mockResolvedValueOnce(respond([record]));
@@ -208,7 +214,9 @@ describe("createPaperPreviewLoader", () => {
 
   it("evicts completed entries before pending work", async () => {
     const deferred = deferredResponse();
-    const fetchFn = vi.fn<FetchFn>().mockImplementationOnce(() => deferred.promise)
+    const fetchFn = vi
+      .fn<FetchFn>()
+      .mockImplementationOnce(() => deferred.promise)
       .mockImplementation(async () => respond());
     const load = createPaperPreviewLoader(fetchFn);
     const pending = load("PMID:1");

@@ -14,7 +14,18 @@
       "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/knowledge/**"]
     },
     "//#typecheck:tests": {
-      "inputs": ["tests/**", "tools/**", "tsconfig.json", "apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "knowledge/**", "!**/node_modules/**", "!apps/eve/.output/**", "!apps/eve/.eve/**"]
+      "inputs": [
+        "tests/**",
+        "tools/**",
+        "tsconfig.json",
+        "apps/**/*.ts",
+        "apps/**/*.tsx",
+        "packages/**/*.ts",
+        "knowledge/**",
+        "!**/node_modules/**",
+        "!apps/eve/.output/**",
+        "!apps/eve/.eve/**"
+      ]
     },
     "dev": {
       "dependsOn": ["^build"],

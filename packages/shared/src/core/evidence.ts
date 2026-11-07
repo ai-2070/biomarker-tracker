@@ -22,13 +22,17 @@ export function validateEvidenceClaim(v: unknown): string[] {
   if (!isStr(v.grade) || !(GRADES as readonly string[]).includes(v.grade)) errs.push("grade is invalid");
   if (!Array.isArray(v.whyThisGrade) || v.whyThisGrade.length === 0 || !v.whyThisGrade.every(isStr)) errs.push("whyThisGrade needs at least one reason");
   if (!Array.isArray(v.markers) || v.markers.length === 0) errs.push("markers must list at least one biomarker");
-  else if (!v.markers.every((m) => isObj(m) && isStr(m.biomarkerId) && (m.helpsWhen === "low" || m.helpsWhen === "high"))) errs.push("each marker needs biomarkerId and helpsWhen low|high");
-  if (v.foods !== undefined && !(isObj(v.foods) && isStr(v.foods.nutrient) && Array.isArray(v.foods.foodIds) && v.foods.foodIds.every(isStr))) errs.push("foods needs nutrient and foodIds");
-  if (v.hideWhen !== undefined && !(Array.isArray(v.hideWhen) && v.hideWhen.every((s) => isStr(s) && SAFETY_IDS.has(s)))) errs.push("hideWhen has an unknown id");
+  else if (!v.markers.every((m) => isObj(m) && isStr(m.biomarkerId) && (m.helpsWhen === "low" || m.helpsWhen === "high")))
+    errs.push("each marker needs biomarkerId and helpsWhen low|high");
+  if (v.foods !== undefined && !(isObj(v.foods) && isStr(v.foods.nutrient) && Array.isArray(v.foods.foodIds) && v.foods.foodIds.every(isStr)))
+    errs.push("foods needs nutrient and foodIds");
+  if (v.hideWhen !== undefined && !(Array.isArray(v.hideWhen) && v.hideWhen.every((s) => isStr(s) && SAFETY_IDS.has(s))))
+    errs.push("hideWhen has an unknown id");
   if (!Array.isArray(v.studies) || v.studies.length === 0) errs.push("at least one study is required");
   else
     v.studies.forEach((s, i) => {
-      if (!isObj(s) || !isStr(s.title) || typeof s.year !== "number" || !isStr(s.studyType) || !STUDY_TYPES.has(s.studyType)) errs.push(`study ${i + 1} needs title, year and a valid studyType`);
+      if (!isObj(s) || !isStr(s.title) || typeof s.year !== "number" || !isStr(s.studyType) || !STUDY_TYPES.has(s.studyType))
+        errs.push(`study ${i + 1} needs title, year and a valid studyType`);
       else if (!isStr(s.pmid) && !isStr(s.doi)) errs.push(`study ${i + 1} needs a pmid or doi`);
     });
   // Whole foods and isolated nutrients are different interventions (CLAUDE.md).

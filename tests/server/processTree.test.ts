@@ -154,7 +154,15 @@ describe.skipIf(process.platform === "win32")("agent programs and everything the
     process.env.FAKE_MODE = "wait";
     process.env.FAKE_DIR = dir;
     const controller = new AbortController();
-    const answer = runAgent({ provider: "claude-code", model: "", system: "rules", messages: [{ role: "user", content: "hi" }], tools: {}, dataPack: () => "{}", signal: controller.signal });
+    const answer = runAgent({
+      provider: "claude-code",
+      model: "",
+      system: "rules",
+      messages: [{ role: "user", content: "hi" }],
+      tools: {},
+      dataPack: () => "{}",
+      signal: controller.signal,
+    });
     await until(() => fs.existsSync(path.join(dir, "pids.json")));
     const { agent, helper } = JSON.parse(fs.readFileSync(path.join(dir, "pids.json"), "utf8")) as { agent: number; helper: number };
     controller.abort();
