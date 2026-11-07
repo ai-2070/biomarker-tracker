@@ -10,7 +10,7 @@ import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { SegmentTabs } from "../components/SegmentTabs";
-import { BodyEntryForm } from "../components/dashboard/body";
+import { BodyEntryForm } from "../components/dashboard/BodyEntryForm";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
 import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles, linkCardStyles, cx } from "../components/ui";
