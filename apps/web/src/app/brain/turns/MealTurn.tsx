@@ -5,7 +5,7 @@ import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { formatValue } from "@bt/shared/core/units";
 import { db as localDb, getProfile, saveMeal } from "../../../db/db";
 import { SafetyNotices } from "../../components/SafetyNotices";
-import { Button, CheckIcon } from "../../components/ui";
+import { Button, CheckIcon, cardStyles, cx } from "../../components/ui";
 import { useFoodDb } from "../../foodDb";
 import { useProfile, useProtocols } from "../../hooks";
 import { href } from "../../router";
@@ -67,7 +67,7 @@ export function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+    <div className={cx("flex flex-col gap-3 p-3", cardStyles)}>
       <div>
         <p className="text-sm font-medium">{recommended ? "Suggested meal" : "Meal from your recipe"} · {turn.meal.items.length} foods</p>
         <p className="mt-0.5 font-medium break-words">{turn.meal.name}</p>

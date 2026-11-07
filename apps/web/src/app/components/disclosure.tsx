@@ -2,7 +2,7 @@ import type { ReactNode, Ref } from "react";
 import { Accordion } from "@base-ui/react/accordion";
 import { Collapsible } from "@base-ui/react/collapsible";
 import { ChevronIcon } from "./icons";
-import { cx } from "./ui";
+import { cx, eyebrowSmallStyles } from "./ui";
 
 /**
  * Progressive disclosure, so long pages read as a short list first: a summary on every fold, the
@@ -62,7 +62,7 @@ const MORE_TONE = {
   /** A section heading that opens (the food comparison's evidence map). */
   heading: "font-serif text-xl text-ink",
   /** A small uppercase label (Brain's "3 steps"). */
-  label: "font-mono text-[11px] tracking-[0.12em] text-ink-2 uppercase",
+  label: eyebrowSmallStyles,
 } as const;
 
 /**

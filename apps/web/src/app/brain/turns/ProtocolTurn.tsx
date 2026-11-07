@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 import { itemsByTime, pairWarnings } from "@bt/shared/core/plans";
 import { savePlan } from "../../../db/db";
 import { TIME_LABEL, whenExtras } from "../../components/PlanWhen";
-import { Button, CheckIcon, inputStyles } from "../../components/ui";
+import { Button, CheckIcon, inputStyles, eyebrowSmallStyles, cardStyles, cx } from "../../components/ui";
 import { NUTRIENTS } from "../../knowledge";
 import { href } from "../../router";
 import { setHabitState, type Turn } from "../store";
@@ -47,7 +47,7 @@ export function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" 
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+    <div className={cx("flex flex-col gap-3 p-3", cardStyles)}>
       <div>
         <p className="text-sm font-medium">
           {turn.intent === "recommend" ? "Suggested protocol" : "Protocol from your text"} · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
@@ -65,7 +65,7 @@ export function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" 
       <div className="flex max-h-72 flex-col gap-2 overflow-y-auto rounded-lg bg-sunken p-2 text-sm">
         {groups.map((g) => (
           <div key={g.when}>
-            <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{TIME_LABEL[g.when]}</p>
+            <p className={eyebrowSmallStyles}>{TIME_LABEL[g.when]}</p>
             <ul className="mt-0.5">
               {g.items.map((i) => (
                 <li key={i.id}>

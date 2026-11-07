@@ -12,7 +12,7 @@ import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { LifestyleFigure } from "../components/LifestyleVisuals";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, FlagBadge, LinkButton, PageTitle, cx, inputStyles } from "../components/ui";
+import { Button, Card, FlagBadge, LinkButton, PageTitle, cx, inputStyles, eyebrowStyles, linkCardStyles } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, LIFESTYLE, LIFESTYLE_MAP } from "../knowledge";
@@ -89,10 +89,10 @@ export function LifestylePage() {
               <li key={l.id}>
                 <a
                   href={href({ name: "lifestyle-item", id: l.id })}
-                  className="flex h-full flex-col gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+                  className={cx("flex h-full flex-col gap-3", linkCardStyles)}
                 >
                   <div>
-                    <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{CATEGORY_LABEL[l.category]}</p>
+                    <p className={eyebrowStyles}>{CATEGORY_LABEL[l.category]}</p>
                     <h2 className="font-serif text-2xl font-normal">{l.name}</h2>
                   </div>
                   <p className="text-ink-2">{l.summary}</p>
@@ -139,7 +139,7 @@ export function LifestyleItemPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{CATEGORY_LABEL[l.category]}</p>
+          <p className={eyebrowStyles}>{CATEGORY_LABEL[l.category]}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{l.name}</h1>
           {l.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also called: {l.otherNames.slice(0, 3).join(", ")}</p>}
         </div>

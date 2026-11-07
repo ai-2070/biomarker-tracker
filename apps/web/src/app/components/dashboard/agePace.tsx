@@ -8,11 +8,11 @@ import { formatDate } from "../../format";
 import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
-import { Card, cx } from "../ui";
+import { Card, cx, eyebrowStyles } from "../ui";
 import { PaperLink } from "../PaperLink";
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
-const label = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
+const label = eyebrowStyles;
 const two = (v: number) => v.toFixed(2).replace("-", "−");
 
 /**

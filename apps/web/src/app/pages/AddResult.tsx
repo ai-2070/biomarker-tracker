@@ -13,7 +13,7 @@ import { SegmentTabs } from "../components/SegmentTabs";
 import { BodyEntryForm } from "../components/dashboard/body";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles, linkCardStyles, cx } from "../components/ui";
 import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -139,7 +139,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
           <li key={w.title}>
             <a
               href={href(w.to)}
-              className="flex h-full items-start gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+              className={cx("flex h-full items-start gap-3", linkCardStyles)}
             >
               <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
                 <w.icon />
@@ -304,7 +304,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
         <aside aria-live="polite" className="flex flex-col gap-2">
           {saved.length > 0 && (
             <>
-              <h2 className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Saved just now</h2>
+              <h2 className={eyebrowStyles}>Saved just now</h2>
               <ul className="flex flex-col gap-2">
                 {saved.map(({ measurement: m, flag }) => {
                   const d = BIOMARKER_MAP.get(m.biomarkerId)!;

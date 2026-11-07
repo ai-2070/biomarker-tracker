@@ -4,12 +4,12 @@ import type { McpPreset } from "@bt/shared/core/mcpPresets";
 import { localServer } from "../../api";
 import type { McpServerListing, McpTest } from "@bt/shared/api/types";
 import { ConfirmDialog } from "../ConfirmDialog";
-import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
+import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles, cardStyles, eyebrowStyles } from "../ui";
 import { OnOff } from "./SkillsSettings";
 
 type ServerRow = McpServerListing;
 
-const smallLabel = "font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase";
+const smallLabel = eyebrowStyles;
 
 /** Settings fields for one server's environment values (API keys and similar). */
 function EnvFields({ server, preset, onSaved }: { server: ServerRow; preset: McpPreset; onSaved: () => Promise<void> }) {
@@ -92,7 +92,7 @@ function ServerCard({ server, preset, reload }: { server: ServerRow; preset?: Mc
   const missing = preset?.env.filter((v) => v.required && !(v.secret ? server.secretsSet.includes(v.name) : server.env[v.name])) ?? [];
 
   return (
-    <li className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-4">
+    <li className={cx("flex flex-col gap-3 p-4", cardStyles)}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="font-medium">{server.name}</p>
@@ -259,7 +259,7 @@ export function McpSettings() {
           <h2 className="font-serif text-2xl font-normal">Ready to add</h2>
           <ul className="stagger grid gap-3 md:grid-cols-2">
             {available.map((p) => (
-              <li key={p.id} className="flex flex-col gap-2 rounded-xl border border-line bg-surface p-4">
+              <li key={p.id} className={cx("flex flex-col gap-2 p-4", cardStyles)}>
                 <p className={smallLabel}>{p.category}</p>
                 <p className="font-medium">{p.name}</p>
                 <p className="text-sm text-ink-2">{p.description}</p>

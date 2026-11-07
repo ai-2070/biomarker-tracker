@@ -14,7 +14,7 @@ import { TIME_LABEL, WhenFields, whenExtras, whenFields, whenOf, type WhenValue 
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate } from "../format";
 import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS, WHOLE_FOODS } from "../knowledge";
@@ -127,7 +127,7 @@ export function PlanPage({ id }: { id: string }) {
           ) : (
             itemsByTime(plan).map((g) => (
               <section key={g.when}>
-                <h3 className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{TIME_LABEL[g.when]}</h3>
+                <h3 className={cx("mb-2", eyebrowStyles)}>{TIME_LABEL[g.when]}</h3>
                 <ul className="flex flex-col divide-y divide-line">
                   {g.items.map((item) =>
                     editing === item.id ? (
