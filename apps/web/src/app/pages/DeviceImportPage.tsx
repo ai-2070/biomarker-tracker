@@ -1,33 +1,33 @@
-import { useMemo, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Select } from "@base-ui/react/select";
-import { BODY_FIELDS, DAILY_TOTAL_FIELDS, SLEEP_FIELDS, type BodyField } from "@bt/shared/core/body";
+import { BODY_FIELDS, type BodyField, DAILY_TOTAL_FIELDS, SLEEP_FIELDS } from "@bt/shared/core/body";
 import {
-  DailyTally,
   appleRecords,
+  type DailySeries,
+  DailyTally,
   dailyAverages,
   fileFamily,
   jsonTable,
-  readTable,
   parseCsv,
+  readTable,
   safeCut,
-  tableOf,
-  type DailySeries,
   type TableColumn,
+  tableOf,
 } from "@bt/shared/core/importers/deviceFiles";
 import { zipEntries } from "@bt/shared/core/importers/zipRead";
 import { validSleepSessions } from "@bt/shared/core/sleepSessions";
 import type { Measurement } from "@bt/shared/core/types";
 import { listUnits, matchUnit, toCanonical } from "@bt/shared/core/units";
+import { useMemo, useState } from "react";
 import { saveDeviceMeasurements } from "../../db/db";
+import { More } from "../components/disclosure";
 import { monthFirst } from "../components/LabReview";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, CheckIcon, ChevronDownIcon, LinkButton, Notice, PageTitle, cx } from "../components/ui";
+import { Button, Card, CheckIcon, ChevronDownIcon, cx, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, showValue } from "../format";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName } from "../knowledge";
 import { href } from "../router";
-import { More } from "../components/disclosure";
 
 /** One importable series: a column (joined across daily files of one kind) or an Apple Health type. */
 interface Row {
@@ -91,7 +91,13 @@ interface Candidate {
 }
 
 /** Adds a table's columns to the candidates. False when nothing in it is a body measurement. */
-function tableCandidates(path: string, table: { headers: string[]; data: string[][] }, into: Map<string, Candidate>, skipped: Read["skipped"], ignored: Read["ignored"]): boolean {
+function tableCandidates(
+  path: string,
+  table: { headers: string[]; data: string[][] },
+  into: Map<string, Candidate>,
+  skipped: Read["skipped"],
+  ignored: Read["ignored"],
+): boolean {
   const family = fileFamily(path);
   const file = path.split("/").pop()!;
   const t = readTable(path, table, monthFirst);
@@ -149,11 +155,23 @@ const pickStyles =
 
 /** Where each app hides its export. */
 const SOURCES: [string, string][] = [
-  ["Apple Health", "Health app → your picture → Export All Health Data. Choose the zip (or export.xml): heart rate, blood oxygen, sleep stages, workouts, weight and more. Apple's HRV is a different measure (SDNN) and isn't imported."],
-  ["Fitbit", "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2, sleep and weight are read."],
-  ["Google Fit", "Google Takeout → Fit. Choose the zip or \"Daily activity metrics.csv\"."],
-  ["Samsung Health", "Settings → Download personal data. Choose the zip or full folder: heart rate, overnight heart rate and HRV, oxygen saturation, weight, blood pressure, sleep stages, daily steps and active time are read. Keep the sleep-stage, daily step-trend, daily activity-summary and Energy Score files. Only recorded overnight measurements are taken from Energy Score; the scores and overlapping detail records aren't imported."],
-  ["Garmin", "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2, sleep files the night's stages. Or export a Connect report as CSV."],
+  [
+    "Apple Health",
+    "Health app → your picture → Export All Health Data. Choose the zip (or export.xml): heart rate, blood oxygen, sleep stages, workouts, weight and more. Apple's HRV is a different measure (SDNN) and isn't imported.",
+  ],
+  [
+    "Fitbit",
+    "Google Takeout (takeout.google.com) → Fitbit. Choose the zip or the Fitbit folder: heart rate, resting heart rate, HRV, SpO2, sleep and weight are read.",
+  ],
+  ["Google Fit", 'Google Takeout → Fit. Choose the zip or "Daily activity metrics.csv".'],
+  [
+    "Samsung Health",
+    "Settings → Download personal data. Choose the zip or full folder: heart rate, overnight heart rate and HRV, oxygen saturation, weight, blood pressure, sleep stages, daily steps and active time are read. Keep the sleep-stage, daily step-trend, daily activity-summary and Energy Score files. Only recorded overnight measurements are taken from Energy Score; the scores and overlapping detail records aren't imported.",
+  ],
+  [
+    "Garmin",
+    "Garmin account → Data management → Export your data (arrives by email). Choose the zip or folder; daily summaries give resting heart rate and SpO2, sleep files the night's stages. Or export a Connect report as CSV.",
+  ],
   ["Oura", "membership.ouraring.com → Export data → CSV (sleep, resting heart rate, HRV)."],
   ["Whoop", "Whoop app → Settings → Data export. Choose the zip, or physiological_cycles.csv, sleeps.csv and workouts.csv."],
   ["Withings", "Withings app → profile → Download my data. Choose the zip or weight.csv and bp.csv."],
@@ -203,9 +221,11 @@ export function DeviceImportPage() {
         return dailyAverages(field, u, c.header, c.readings, canonicalOf(field, u));
       };
       const series = make(c.field);
-      if (series.days.length > 0) out.rows.push({ key: `${c.family}|${c.header}`, file: c.files > 1 ? `${c.files} files like ${c.file}` : c.file, include: true, remap: make, series });
+      if (series.days.length > 0)
+        out.rows.push({ key: `${c.family}|${c.header}`, file: c.files > 1 ? `${c.files} files like ${c.file}` : c.file, include: true, remap: make, series });
     }
-    if (sources.length === 0 && out.problems.length === 0) out.problems.push("None of the chosen files can be read here. Choose CSV, JSON or zip files, Apple's export.xml, or a folder.");
+    if (sources.length === 0 && out.problems.length === 0)
+      out.problems.push("None of the chosen files can be read here. Choose CSV, JSON or zip files, Apple's export.xml, or a folder.");
     setBusy(null);
     setRead(out);
   }
@@ -263,7 +283,11 @@ export function DeviceImportPage() {
       </PageTitle>
 
       {saved && (
-        <Notice role="status" title={`Saved ${saved.readings} daily ${saved.readings === 1 ? "value" : "values"} for ${saved.kinds} ${saved.kinds === 1 ? "measurement" : "measurements"}`} className="mb-5">
+        <Notice
+          role="status"
+          title={`Saved ${saved.readings} daily ${saved.readings === 1 ? "value" : "values"} for ${saved.kinds} ${saved.kinds === 1 ? "measurement" : "measurements"}`}
+          className="mb-5"
+        >
           {saved.updated > 0 && `${saved.updated} existing daily ${saved.updated === 1 ? "value was" : "values were"} updated. `}
           <a href={href({ name: "body" })} className="font-medium text-accent">
             See them on Body
@@ -281,11 +305,24 @@ export function DeviceImportPage() {
             <div className="flex flex-wrap gap-3">
               <label className={cx(pickStyles, busy && "pointer-events-none opacity-50")}>
                 Choose files or a zip
-                <input type="file" multiple accept=".zip,.csv,.txt,.json,.xml,application/zip,text/csv,application/json,text/xml" disabled={!!busy} onChange={(e) => void onFiles([...(e.target.files ?? [])])} className="sr-only" />
+                <input
+                  type="file"
+                  multiple
+                  accept=".zip,.csv,.txt,.json,.xml,application/zip,text/csv,application/json,text/xml"
+                  disabled={!!busy}
+                  onChange={(e) => void onFiles([...(e.target.files ?? [])])}
+                  className="sr-only"
+                />
               </label>
               <label className={cx(pickStyles, "bg-surface text-ink border border-line-strong hover:bg-sunken", busy && "pointer-events-none opacity-50")}>
                 Choose a folder
-                <input type="file" {...({ webkitdirectory: "", directory: "" } as Record<string, string>)} disabled={!!busy} onChange={(e) => void onFiles([...(e.target.files ?? [])])} className="sr-only" />
+                <input
+                  type="file"
+                  {...({ webkitdirectory: "", directory: "" } as Record<string, string>)}
+                  disabled={!!busy}
+                  onChange={(e) => void onFiles([...(e.target.files ?? [])])}
+                  className="sr-only"
+                />
               </label>
             </div>
             {busy && (
@@ -295,7 +332,10 @@ export function DeviceImportPage() {
                   {busy.of ? ` (file ${busy.of})` : ""}…
                 </p>
                 <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true">
-                  <div className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out" style={{ transform: `scaleX(${Math.max(0.03, busy.fraction)})` }} />
+                  <div
+                    className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out"
+                    style={{ transform: `scaleX(${Math.max(0.03, busy.fraction)})` }}
+                  />
                 </div>
               </div>
             )}
@@ -310,8 +350,9 @@ export function DeviceImportPage() {
               ))}
             </ul>
             <p className="text-sm">
-              Other CSV and JSON files work too when their columns are named like "Heart rate", "Resting heart rate", "HRV", "SpO2" or "Weight (kg)", next to a date. Each app
-              writes its files a little differently and they change over time; if something isn't recognised, change it in the review, or tell us the column names.
+              Other CSV and JSON files work too when their columns are named like "Heart rate", "Resting heart rate", "HRV", "SpO2" or "Weight (kg)", next to a
+              date. Each app writes its files a little differently and they change over time; if something isn't recognised, change it in the review, or tell us
+              the column names.
             </p>
           </Card>
         </div>
@@ -328,10 +369,18 @@ export function DeviceImportPage() {
           {read.rows.length > 0 && (
             <Card className="flex flex-col gap-3">
               <h2 className="font-serif text-2xl font-normal">Found {read.rows.length === 1 ? "one series" : `${read.rows.length} series`}</h2>
-              <p className="text-ink-2">One value per day: the average of readings, or the total for sleep and activity. Overlapping daily summaries use one file per day, not their sum. Check what each became, change it if needed, and untick what you don't want.</p>
-              <p className="text-sm text-ink-2">Saving replaces existing readings for the same measurement and date, including manually entered readings. Other dates are kept.</p>
+              <p className="text-ink-2">
+                One value per day: the average of readings, or the total for sleep and activity. Overlapping daily summaries use one file per day, not their
+                sum. Check what each became, change it if needed, and untick what you don't want.
+              </p>
+              <p className="text-sm text-ink-2">
+                Saving replaces existing readings for the same measurement and date, including manually entered readings. Other dates are kept.
+              </p>
               {read.rows.some((r) => r.series.field === "sleep_duration") && (
-                <p className="text-sm text-ink-2">Sleep timings keep the export's local clock, not this computer's time zone. Stage-based asleep bounds, in-bed windows and other session estimates are kept distinct. Missing offsets stay unknown; a duration alone never becomes a guessed bedtime.</p>
+                <p className="text-sm text-ink-2">
+                  Sleep timings keep the export's local clock, not this computer's time zone. Stage-based asleep bounds, in-bed windows and other session
+                  estimates are kept distinct. Missing offsets stay unknown; a duration alone never becomes a guessed bedtime.
+                </p>
               )}
               <ul className="flex flex-col divide-y divide-line">
                 {read.rows.map((r, i) => (
@@ -353,8 +402,18 @@ export function DeviceImportPage() {
             </Card>
           )}
           {read.empty.length > 0 && (
-            <More summary={<>{read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (settings, goals and the like)</>} className="text-sm text-ink-2">
-              <p className="break-words">{[...new Set(read.empty)].slice(0, 60).join(", ")}{read.empty.length > 60 ? "…" : ""}</p>
+            <More
+              summary={
+                <>
+                  {read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (settings, goals and the like)
+                </>
+              }
+              className="text-sm text-ink-2"
+            >
+              <p className="break-words">
+                {[...new Set(read.empty)].slice(0, 60).join(", ")}
+                {read.empty.length > 60 ? "…" : ""}
+              </p>
             </More>
           )}
           {read.ignored.some((i) => i.columns.length) && (
@@ -395,7 +454,11 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
     : undefined;
   const timingDays = s.days.filter((d) => validSleepSessions(d.sleepSessions, s.field, d.date));
   const timingSessions = timingDays.flatMap((d) => d.sleepSessions!);
-  const timingKinds = [...new Set(timingSessions.map((session) => session.kind === "asleep" ? "asleep bounds" : session.kind === "in-bed" ? "in-bed windows" : "session estimates"))];
+  const timingKinds = [
+    ...new Set(
+      timingSessions.map((session) => (session.kind === "asleep" ? "asleep bounds" : session.kind === "in-bed" ? "in-bed windows" : "session estimates")),
+    ),
+  ];
   const unknownOffsets = timingSessions.filter((session) => session.startOffsetMinutes === undefined || session.endOffsetMinutes === undefined).length;
   return (
     <li className={cx("flex flex-wrap items-start gap-x-4 gap-y-2 py-3", !r.include && "opacity-70")}>
@@ -416,20 +479,40 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
         </p>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-ink-2">as</span>
-          {r.remap ? <FieldSelect value={s.field} onChange={(f) => onChange((x) => ({ ...x, series: x.remap!(f) }))} /> : <span className="font-medium">{def.name}</span>}
+          {r.remap ? (
+            <FieldSelect value={s.field} onChange={(f) => onChange((x) => ({ ...x, series: x.remap!(f) }))} />
+          ) : (
+            <span className="font-medium">{def.name}</span>
+          )}
           {r.remap && unitsDiffer && (
             <>
               <span className="text-ink-2">in</span>
-              <UnitSelect compact labelClassName="sr-only" label="Unit in the file" units={listUnits(def)} value={matchUnit(def, s.unit) ?? s.unit} onChange={(u) => onChange((x) => ({ ...x, series: x.remap!(s.field, u) }))} />
+              <UnitSelect
+                compact
+                labelClassName="sr-only"
+                label="Unit in the file"
+                units={listUnits(def)}
+                value={matchUnit(def, s.unit) ?? s.unit}
+                onChange={(u) => onChange((x) => ({ ...x, series: x.remap!(s.field, u) }))}
+              />
             </>
           )}
         </div>
         <p className="text-sm text-ink-2">
-          {first && last ? <>{s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest{" "}
-          {SLEEP_FIELDS.has(s.field) && matchedUnit ? showValue(def, toCanonical(def, last.value, matchedUnit), def.canonicalUnit) : `${last.value} ${s.unit}`}</> : "No usable readings for this measurement and unit. Change the mapping or unit to try again."}
+          {first && last ? (
+            <>
+              {s.days.length} {s.days.length === 1 ? "day" : "days"}, {formatDate(first.date)} – {formatDate(last.date)} · latest{" "}
+              {SLEEP_FIELDS.has(s.field) && matchedUnit
+                ? showValue(def, toCanonical(def, last.value, matchedUnit), def.canonicalUnit)
+                : `${last.value} ${s.unit}`}
+            </>
+          ) : (
+            "No usable readings for this measurement and unit. Change the mapping or unit to try again."
+          )}
           {already > 0 && ` · ${already} already saved, will be updated`}
           {s.dropped > 0 && ` · ${s.dropped} impossible ${s.dropped === 1 ? "reading" : "readings"} left out`}
-          {!!s.reconciled && ` · ${s.reconciled} overlapping summary or sample ${s.reconciled === 1 ? "row" : "rows"} left out; one summary file is used per day`}
+          {!!s.reconciled &&
+            ` · ${s.reconciled} overlapping summary or sample ${s.reconciled === 1 ? "row" : "rows"} left out; one summary file is used per day`}
         </p>
         {s.field === "sleep_duration" && (
           <p className="text-sm text-ink-2">
@@ -440,12 +523,16 @@ function SeriesRow({ row: r, earlier, have, onChange }: { row: Row; earlier: Row
         )}
         {overlap && (
           <p className="text-sm text-warn">
-            Overlaps with "{overlap.o.series.from}" above on {overlap.n} {overlap.n === 1 ? "day" : "days"}; on those days the one above is used. If they measure
-            different things (for example heart rate taken only at night), untick one.
+            Overlaps with "{overlap.o.series.from}" above on {overlap.n} {overlap.n === 1 ? "day" : "days"}; on those days the one above is used. If they
+            measure different things (for example heart rate taken only at night), untick one.
           </p>
         )}
         {looksLikePounds && <p className="text-sm text-warn">These numbers look like pounds. If they are, choose lb as the unit.</p>}
-        {!unitOk && <p className="text-sm text-warn">The unit "{s.unit}" doesn't fit {shortName(def)}, so this can't be imported as it.</p>}
+        {!unitOk && (
+          <p className="text-sm text-warn">
+            The unit "{s.unit}" doesn't fit {shortName(def)}, so this can't be imported as it.
+          </p>
+        )}
       </div>
     </li>
   );
@@ -455,7 +542,10 @@ function FieldSelect({ value, onChange }: { value: BodyField; onChange: (f: Body
   const items = BODY_FIELDS.map((f) => ({ value: f, label: BIOMARKER_MAP.get(f)!.name }));
   return (
     <Select.Root items={items} value={value} onValueChange={(v) => v && onChange(v as BodyField)}>
-      <Select.Trigger aria-label="Import as" className="flex min-h-10 items-center justify-between gap-2 rounded-lg border border-line-strong bg-surface px-3 text-ink select-none hover:bg-sunken">
+      <Select.Trigger
+        aria-label="Import as"
+        className="flex min-h-10 items-center justify-between gap-2 rounded-lg border border-line-strong bg-surface px-3 text-ink select-none hover:bg-sunken"
+      >
         <Select.Value className="truncate" />
         <Select.Icon className="text-ink-2">
           <ChevronDownIcon />
@@ -466,7 +556,11 @@ function FieldSelect({ value, onChange }: { value: BodyField; onChange: (f: Body
           <Select.Popup className="min-w-[var(--anchor-width)] origin-[var(--transform-origin)] rounded-lg border border-line bg-surface py-1 text-ink shadow-lg transition-[scale,opacity] duration-100 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             <Select.List className="max-h-[min(22rem,var(--available-height))] overflow-y-auto">
               {items.map((it) => (
-                <Select.Item key={it.value} value={it.value} className="flex min-h-10 cursor-default items-center gap-2 px-3 outline-none data-highlighted:bg-sunken">
+                <Select.Item
+                  key={it.value}
+                  value={it.value}
+                  className="flex min-h-10 cursor-default items-center gap-2 px-3 outline-none data-highlighted:bg-sunken"
+                >
                   <Select.ItemIndicator className="w-4 text-accent">
                     <CheckIcon />
                   </Select.ItemIndicator>

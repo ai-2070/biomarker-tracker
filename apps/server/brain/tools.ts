@@ -2,7 +2,7 @@
 // provider's prompt cache starts with the tools): the app's own tools first, in their fixed order, then the
 // research-server tools. What a tool may do in this request is checked when it runs, not by leaving it out.
 import type { ToolSet } from "ai";
-import { healthTools, type HealthSnapshot } from "../healthTools";
+import { type HealthSnapshot, healthTools } from "../healthTools";
 
 export const EMPTY_SNAPSHOT: HealthSnapshot = { measurements: [], protocols: [], experiments: [], profile: {} };
 

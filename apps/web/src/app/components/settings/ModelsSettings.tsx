@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
-import { EFFORT_LABEL, GROUP_LABEL, canUse, modelEfforts, type Effort, type ProviderConfig, type ProviderId, type ProviderInfo, type Region } from "@bt/shared/core/aiProviders";
-import { localServer } from "../../api";
 import type { AgentProgram, LoadedModelSource, ModelList, SettingsInfo } from "@bt/shared/api/types";
+import {
+  canUse,
+  EFFORT_LABEL,
+  type Effort,
+  GROUP_LABEL,
+  modelEfforts,
+  type ProviderConfig,
+  type ProviderId,
+  type ProviderInfo,
+  type Region,
+} from "@bt/shared/core/aiProviders";
+import { useEffect, useState } from "react";
+import { localServer } from "../../api";
 import { ChoiceGroup } from "../ChoiceGroup";
 import { SimpleSelect } from "../UnitSelect";
-import { Button, Card, CheckIcon, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../ui";
+import { Button, Card, CheckIcon, cx, errorStyles, helpStyles, inputStyles, labelStyles, Notice } from "../ui";
 import { OnOff } from "./SkillsSettings";
 
 type SettingsResponse = SettingsInfo;
@@ -32,11 +42,18 @@ function useLoadedList(info: ProviderInfo, installed: boolean, revision: number)
   useEffect(() => {
     if (!wanted || cached?.revision === revision) return;
     let alive = true;
-    void (info.id === "openrouter" ? localServer.settings.openRouterModels.query() : localServer.settings.loadedModels.query({ source: info.id as LoadedModelSource })).then(
+    void (
+      info.id === "openrouter"
+        ? localServer.settings.openRouterModels.query()
+        : localServer.settings.loadedModels.query({ source: info.id as LoadedModelSource })
+    ).then(
       (list) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list } })),
-      (e: unknown) => alive && setLists((x) => ({ ...x, [info.id]: { revision, list: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } } })),
+      (e: unknown) =>
+        alive && setLists((x) => ({ ...x, [info.id]: { revision, list: { models: [], error: e instanceof Error ? e.message : "Couldn't load the list." } } })),
     );
-    return () => { alive = false; };
+    return () => {
+      alive = false;
+    };
   }, [info.id, wanted, cached, revision]);
   return wanted ? (cached?.revision === revision ? cached.list : null) : { models: [] };
 }
@@ -108,7 +125,7 @@ export function ModelsSettings() {
       const savedSettings = await load(true);
       if (savedSettings) {
         // Reflect server normalization only if the person has not edited or switched the draft meanwhile.
-        setCfg((current) => current === cfg ? savedSettings.configs[provider] ?? {} : current);
+        setCfg((current) => (current === cfg ? (savedSettings.configs[provider] ?? {}) : current));
       }
       setMessage({ tone: "info", text: "Saved." });
     } catch (e) {
@@ -130,7 +147,9 @@ export function ModelsSettings() {
     setMessage(null);
     try {
       const r = await localServer.settings.connectHermes.mutate({ connect });
-      setMessage(r.ok ? { tone: "info", text: connect ? "Hermes now has the app's tools." : "Removed the app's tools from Hermes." } : { tone: "danger", text: r.error });
+      setMessage(
+        r.ok ? { tone: "info", text: connect ? "Hermes now has the app's tools." : "Removed the app's tools from Hermes." } : { tone: "danger", text: r.error },
+      );
       await load(true);
     } finally {
       setConnecting(false);
@@ -150,15 +169,19 @@ export function ModelsSettings() {
 
   const savedCfg = data.configs[provider] ?? {};
   const configFields = new Set([...Object.keys(savedCfg), ...Object.keys(cfg)] as (keyof ProviderConfig)[]);
-  const saved = data.assistant.provider === provider && data.assistant.model === model && data.assistant.effort === effort
-    && !key.trim() && [...configFields].every((field) => cfg[field] === savedCfg[field]);
+  const saved =
+    data.assistant.provider === provider &&
+    data.assistant.model === model &&
+    data.assistant.effort === effort &&
+    !key.trim() &&
+    [...configFields].every((field) => cfg[field] === savedCfg[field]);
 
   return (
     <div className="flex flex-col gap-5">
       <Notice title="Where your questions and data go">
-        Your questions, results and log go to the model you choose here. Programs on this computer (Claude Code, Codex, Hermes, OpenClaw) use your own
-        login, so what they keep depends on that login. Cloud providers with an API key must keep nothing and be in the EU or US. Local models (Ollama,
-        LM Studio) never send anything anywhere.
+        Your questions, results and log go to the model you choose here. Programs on this computer (Claude Code, Codex, Hermes, OpenClaw) use your own login, so
+        what they keep depends on that login. Cloud providers with an API key must keep nothing and be in the EU or US. Local models (Ollama, LM Studio) never
+        send anything anywhere.
       </Notice>
 
       <Card className="flex flex-col gap-5">
@@ -174,7 +197,15 @@ export function ModelsSettings() {
           onChange={(v) => pickProvider(v as ProviderId)}
         />
 
-        {isAgent && <AgentSetup info={info} installed={installed} onCheck={async () => { await load(true); }} />}
+        {isAgent && (
+          <AgentSetup
+            info={info}
+            installed={installed}
+            onCheck={async () => {
+              await load(true);
+            }}
+          />
+        )}
 
         <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-lg bg-sunken p-3 text-sm">
           <dt className="font-medium">Where it runs</dt>
@@ -192,10 +223,18 @@ export function ModelsSettings() {
         )}
 
         <ModelPicker info={info} value={model} onChange={setModel} loaded={loaded} />
-        <p className="text-sm text-ink-2">Deep checks use the same model with a larger search budget. Weaker models may miss more, so pick a stronger one for important claims.</p>
+        <p className="text-sm text-ink-2">
+          Deep checks use the same model with a larger search budget. Weaker models may miss more, so pick a stronger one for important claims.
+        </p>
 
         {info.profileLabel && (
-          <ProfilePicker label={info.profileLabel} value={cfg.profile ?? ""} onChange={(profile) => setCfg({ ...cfg, profile })} loaded={loaded} installed={installed} />
+          <ProfilePicker
+            label={info.profileLabel}
+            value={cfg.profile ?? ""}
+            onChange={(profile) => setCfg({ ...cfg, profile })}
+            loaded={loaded}
+            installed={installed}
+          />
         )}
 
         {efforts.length > 0 && (
@@ -249,7 +288,9 @@ export function ModelsSettings() {
               className={`${inputStyles} sm:max-w-md`}
             />
             <Field.Description className={helpStyles}>
-              {info.retention === "local" ? `Leave empty for the usual ${info.defaultBaseURL}.` : "An OpenAI-compatible endpoint, e.g. https://llm.example.eu/v1."}
+              {info.retention === "local"
+                ? `Leave empty for the usual ${info.defaultBaseURL}.`
+                : "An OpenAI-compatible endpoint, e.g. https://llm.example.eu/v1."}
             </Field.Description>
           </Field.Root>
         )}
@@ -273,7 +314,9 @@ export function ModelsSettings() {
                 </Button>
               )}
             </div>
-            <Field.Description className={helpStyles}>Kept by the app's local server on this computer. It's never shown again or put in backups.</Field.Description>
+            <Field.Description className={helpStyles}>
+              Kept by the app's local server on this computer. It's never shown again or put in backups.
+            </Field.Description>
           </Field.Root>
         )}
 
@@ -338,7 +381,15 @@ function ModelPicker({ info, value, onChange, loaded }: { info: ProviderInfo; va
     return (
       <Field.Root className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>Model</Field.Label>
-        <Field.Control value={value} onValueChange={onChange} list="models-openrouter" placeholder="e.g. anthropic/claude-opus-5.5" autoComplete="off" spellCheck={false} className={`${inputStyles} sm:max-w-md`} />
+        <Field.Control
+          value={value}
+          onValueChange={onChange}
+          list="models-openrouter"
+          placeholder="e.g. anthropic/claude-opus-5.5"
+          autoComplete="off"
+          spellCheck={false}
+          className={`${inputStyles} sm:max-w-md`}
+        />
         <datalist id="models-openrouter">
           {(loaded?.models ?? []).map((m) => (
             <option key={m.id} value={m.id}>
@@ -402,7 +453,19 @@ function ModelPicker({ info, value, onChange, loaded }: { info: ProviderInfo; va
 }
 
 /** Hermes profile or OpenClaw agent: from the program's own list when it can be read. */
-function ProfilePicker({ label, value, onChange, loaded, installed }: { label: string; value: string; onChange: (v: string) => void; loaded: LoadedList | null; installed: boolean }) {
+function ProfilePicker({
+  label,
+  value,
+  onChange,
+  loaded,
+  installed,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  loaded: LoadedList | null;
+  installed: boolean;
+}) {
   const profiles = loaded?.profiles ?? [];
   if (installed && profiles.length > 0) {
     const options = [{ value: DEFAULT, label: "Default" }, ...profiles.map((p) => ({ value: p.id, label: p.label }))];
@@ -411,7 +474,14 @@ function ProfilePicker({ label, value, onChange, loaded, installed }: { label: s
   return (
     <Field.Root className="flex flex-col gap-1.5">
       <Field.Label className={labelStyles}>{label}</Field.Label>
-      <Field.Control value={value} onValueChange={onChange} placeholder="Leave empty for the default" autoComplete="off" spellCheck={false} className={`${inputStyles} sm:max-w-sm`} />
+      <Field.Control
+        value={value}
+        onValueChange={onChange}
+        placeholder="Leave empty for the default"
+        autoComplete="off"
+        spellCheck={false}
+        className={`${inputStyles} sm:max-w-sm`}
+      />
       {installed && loaded === null && <Field.Description className={helpStyles}>Loading the list…</Field.Description>}
     </Field.Root>
   );
@@ -432,7 +502,13 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
       const r = await localServer.agents.openTerminal.mutate({ id: info.id as AgentProgram, action });
       setNote(
         r.ok
-          ? { tone: "info", text: action === "install" ? "A terminal window opened with the installer. When it has finished, sign in (step 2), then press Check again." : "A terminal window opened. Sign in there, then close it." }
+          ? {
+              tone: "info",
+              text:
+                action === "install"
+                  ? "A terminal window opened with the installer. When it has finished, sign in (step 2), then press Check again."
+                  : "A terminal window opened. Sign in there, then close it.",
+            }
           : { tone: "danger", text: r.error ?? "The terminal couldn't be opened. Run the command yourself." },
       );
     } finally {
@@ -488,8 +564,8 @@ function AgentSetup({ info, installed, onCheck }: { info: ProviderInfo; installe
       <div>
         <p className="font-medium">Install {info.label}</p>
         <p className="text-sm text-ink-2">
-          {info.label} isn't on this computer yet. Two steps, once. The buttons open a terminal window that runs {info.label}'s official commands, so you
-          can see what happens and answer its questions.
+          {info.label} isn't on this computer yet. Two steps, once. The buttons open a terminal window that runs {info.label}'s official commands, so you can
+          see what happens and answer its questions.
         </p>
       </div>
       <ol className="flex flex-col gap-4">
@@ -566,13 +642,19 @@ function EveSetting({ eve, onChange }: { eve: SettingsResponse["eve"]; onChange:
         <div>
           <p className="font-medium">Run in eve (preview)</p>
           <p className="text-sm text-ink-2">
-            Brain answers inside eve, a framework for long-running agents, as a private process on this computer. Same model, rules, tools and citation checks. In-progress answers are kept in the app's data folder and deleted when each answer ends. Questions with photos and evidence checks use the usual way.
+            Brain answers inside eve, a framework for long-running agents, as a private process on this computer. Same model, rules, tools and citation checks.
+            In-progress answers are kept in the app's data folder and deleted when each answer ends. Questions with photos and evidence checks use the usual
+            way.
           </p>
           {!eve.built && <p className="mt-1 text-sm text-warn">Not available in this copy: the eve runtime isn't built (bun run eve:build).</p>}
         </div>
         <OnOff checked={eve.on} onChange={(on) => void (busy ? undefined : toggle(on))} label="Run in eve (preview)" />
       </div>
-      {error && <p role="alert" className={errorStyles}>{error}</p>}
+      {error && (
+        <p role="alert" className={errorStyles}>
+          {error}
+        </p>
+      )}
     </div>
   );
 }

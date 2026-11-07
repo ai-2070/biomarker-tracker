@@ -84,11 +84,18 @@ function row(def: BiomarkerDef, r: ProposedResult): ParsedRow {
   }
   const number = parseLabNumber(value);
   if (!number) problems.push("This isn't a number the app can read. Check the value.");
-  for (const [name, bound] of [["start", r.rangeLow], ["end", r.rangeHigh]] as const) {
+  for (const [name, bound] of [
+    ["start", r.rangeLow],
+    ["end", r.rangeHigh],
+  ] as const) {
     if (bound !== undefined && !parseLabNumber(bound)) problems.push(`The range ${name} "${bound}" isn't a number. Check the range.`);
   }
   const parsed: ParsedRow = {
-    line: r.printed ?? [r.marker, r.value, r.unit, r.rangeLow !== undefined || r.rangeHigh !== undefined ? `${r.rangeLow ?? ""}-${r.rangeHigh ?? ""}` : undefined].filter(Boolean).join(" "),
+    line:
+      r.printed ??
+      [r.marker, r.value, r.unit, r.rangeLow !== undefined || r.rangeHigh !== undefined ? `${r.rangeLow ?? ""}-${r.rangeHigh ?? ""}` : undefined]
+        .filter(Boolean)
+        .join(" "),
     biomarkerId: def.id,
     value,
     ...(unit ? { unit } : {}),
@@ -123,7 +130,14 @@ export function parseResultProposal(
     const unit = text(r.unit, 40);
     const rangeLow = text(r.rangeLow, 40);
     const rangeHigh = text(r.rangeHigh, 40);
-    results.push({ marker, value, ...(printed ? { printed } : {}), ...(unit ? { unit } : {}), ...(rangeLow ? { rangeLow } : {}), ...(rangeHigh ? { rangeHigh } : {}) });
+    results.push({
+      marker,
+      value,
+      ...(printed ? { printed } : {}),
+      ...(unit ? { unit } : {}),
+      ...(rangeLow ? { rangeLow } : {}),
+      ...(rangeHigh ? { rangeHigh } : {}),
+    });
   }
   const date = text(o.date, 10);
   const proposal: ResultProposal = { ...(date ? { date } : {}), results };

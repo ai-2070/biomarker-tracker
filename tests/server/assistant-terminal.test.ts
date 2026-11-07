@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
 const mocks = vi.hoisted(() => ({ spawn: vi.fn(), which: vi.fn(), unref: vi.fn() }));
 vi.mock("node:child_process", () => ({ spawn: mocks.spawn }));
 vi.mock("../../apps/server/which", () => ({ which: mocks.which }));
+
 import { openAgentSignIn } from "../../apps/server/terminal";
 
 const platform = Object.getOwnPropertyDescriptor(process, "platform")!;
@@ -10,7 +12,9 @@ beforeEach(() => {
   mocks.which.mockReset();
   mocks.unref.mockClear();
 });
-afterEach(() => { Object.defineProperty(process, "platform", platform); });
+afterEach(() => {
+  Object.defineProperty(process, "platform", platform);
+});
 
 describe("resolved agent sign-in launcher", () => {
   it("assistant-signin-windows launches the detected absolute executable with fixed arguments", () => {
@@ -30,7 +34,7 @@ describe("resolved agent sign-in launcher", () => {
 
   it("assistant-signin-linux quotes the resolved executable, including spaces and apostrophes", () => {
     Object.defineProperty(process, "platform", { ...platform, value: "linux" });
-    mocks.which.mockImplementation((command: string) => command === "hermes" ? "/home/person/New O'Brien Install/hermes" : "/usr/bin/x-terminal-emulator");
+    mocks.which.mockImplementation((command: string) => (command === "hermes" ? "/home/person/New O'Brien Install/hermes" : "/usr/bin/x-terminal-emulator"));
     expect(openAgentSignIn("hermes")).toEqual({ ok: true });
     const [command, args] = mocks.spawn.mock.calls[0]!;
     expect(command).toBe("x-terminal-emulator");

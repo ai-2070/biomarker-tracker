@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
-import { FRAMINGHAM_BMI, framinghamRisk, heartAge, heartAgeData, type HeartAgeInput } from "@bt/shared/core/heartAge";
+import { FRAMINGHAM_BMI, framinghamRisk, type HeartAgeInput, heartAge, heartAgeData } from "@bt/shared/core/heartAge";
 import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const normal = (sex: "m" | "f", age: number): HeartAgeInput => ({ sex, age, systolic: 125, treatedBp: false, smoker: false, diabetes: false, bmi: 22.5 });
 
@@ -12,8 +12,26 @@ describe("Framingham risk and heart age (BMI model)", () => {
     expect(heartAge(normal("f", 30))).toBeCloseTo(30, 9);
   });
   it("uses the published coefficients", () => {
-    expect(FRAMINGHAM_BMI.m).toMatchObject({ lnAge: 3.11296, lnBmi: 0.79277, lnSbpUntreated: 1.85508, lnSbpTreated: 1.92672, smoker: 0.70953, diabetes: 0.5316, s0: 0.88431, mean: 23.9388 });
-    expect(FRAMINGHAM_BMI.f).toMatchObject({ lnAge: 2.72107, lnBmi: 0.51125, lnSbpUntreated: 2.81291, lnSbpTreated: 2.88267, smoker: 0.61868, diabetes: 0.77763, s0: 0.94833, mean: 26.0145 });
+    expect(FRAMINGHAM_BMI.m).toMatchObject({
+      lnAge: 3.11296,
+      lnBmi: 0.79277,
+      lnSbpUntreated: 1.85508,
+      lnSbpTreated: 1.92672,
+      smoker: 0.70953,
+      diabetes: 0.5316,
+      s0: 0.88431,
+      mean: 23.9388,
+    });
+    expect(FRAMINGHAM_BMI.f).toMatchObject({
+      lnAge: 2.72107,
+      lnBmi: 0.51125,
+      lnSbpUntreated: 2.81291,
+      lnSbpTreated: 2.88267,
+      smoker: 0.61868,
+      diabetes: 0.77763,
+      s0: 0.94833,
+      mean: 26.0145,
+    });
   });
   it("equals the real age with normal risk factors, for both sexes and any age", () => {
     for (const sex of ["m", "f"] as const) for (const age of [35, 50, 70]) expect(heartAge(normal(sex, age))).toBeCloseTo(age, 9);
@@ -34,7 +52,15 @@ describe("Framingham risk and heart age (BMI model)", () => {
 });
 
 describe("heart age inputs from the app's data", () => {
-  const m = (biomarkerId: string, date: string, value: number): Measurement => ({ id: `${biomarkerId}${date}${value}`, biomarkerId, date, value, originalValue: value, originalUnit: "", source: "manual" });
+  const m = (biomarkerId: string, date: string, value: number): Measurement => ({
+    id: `${biomarkerId}${date}${value}`,
+    biomarkerId,
+    date,
+    value,
+    originalValue: value,
+    originalUnit: "",
+    source: "manual",
+  });
   const ms = [m("bp_systolic", "2026-09-01", 150), m("bp_systolic", "2026-10-10", 130), m("bp_systolic", "2026-10-28", 126), m("weight", "2026-10-20", 70)];
   const profile = { sex: "f" as const, birthMonth: "1976-06", heightCm: 167, smoking: "never" as const };
 
@@ -56,7 +82,11 @@ describe("heart age inputs from the app's data", () => {
   });
   it("keeps treatment inputs unchanged when medicines become one mixed protocol, at historical dates too", () => {
     const routine: ProtocolEntry = {
-      id: "routine", label: "Daily routine", category: "lifestyle", start: "2026-09-01", end: "2026-10-10",
+      id: "routine",
+      label: "Daily routine",
+      category: "lifestyle",
+      start: "2026-09-01",
+      end: "2026-10-10",
       plan: {
         id: "source",
         items: [
@@ -66,7 +96,9 @@ describe("heart age inputs from the app's data", () => {
         ],
       },
     };
-    const separate = routine.plan!.items.map((i): ProtocolEntry => ({ id: i.id, label: i.label, category: i.category, start: routine.start, end: routine.end }));
+    const separate = routine.plan!.items.map(
+      (i): ProtocolEntry => ({ id: i.id, label: i.label, category: i.category, start: routine.start, end: routine.end }),
+    );
     for (const date of ["2026-08-31", "2026-09-01", "2026-09-15", "2026-10-10", "2026-10-11", "2026-10-29"]) {
       const grouped = heartAgeData(profile, ms, [routine], date);
       expect(grouped).toEqual(heartAgeData(profile, ms, separate, date));
@@ -77,7 +109,10 @@ describe("heart age inputs from the app's data", () => {
   });
   it("only infers treatment from items marked as medicines, not a routine name or other item types", () => {
     const routine: ProtocolEntry = {
-      id: "routine", label: "Amlodipine and metformin notes", category: "medication", start: "2026-01-01",
+      id: "routine",
+      label: "Amlodipine and metformin notes",
+      category: "medication",
+      start: "2026-01-01",
       plan: {
         id: "source",
         items: [{ id: "notes", label: "Metformin and amlodipine research", category: "lifestyle", when: "any time" }],
@@ -86,7 +121,14 @@ describe("heart age inputs from the app's data", () => {
     expect(heartAgeData(profile, ms, [routine], "2026-10-29").input).toMatchObject({ treatedBp: false, diabetes: false });
   });
   it("lists what's missing and marks ages outside 30–74", () => {
-    expect(heartAgeData({}, [], [], "2026-10-29").missing).toEqual(["your sex", "your month and year of birth", "your height", "a weight", "a blood pressure reading", "whether you smoke"]);
+    expect(heartAgeData({}, [], [], "2026-10-29").missing).toEqual([
+      "your sex",
+      "your month and year of birth",
+      "your height",
+      "a weight",
+      "a blood pressure reading",
+      "whether you smoke",
+    ]);
     expect(heartAgeData({ ...profile, birthMonth: "2000-01" }, ms, [], "2026-10-29").outOfRange).toBe("young");
   });
 });

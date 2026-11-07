@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { AlertDialog } from "@base-ui/react/alert-dialog";
+import type { ReactNode } from "react";
 import { buttonStyles, cx, dialogStyles } from "./ui";
 
 /** A confirmation step for anything that deletes or overwrites data. */

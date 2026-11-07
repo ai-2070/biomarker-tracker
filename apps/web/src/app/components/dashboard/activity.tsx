@@ -15,7 +15,15 @@ const whole = (v: number) => Math.round(v).toLocaleString("en-GB");
 function weekly(series: readonly Measurement[], id: string, how: "average" | "total"): Measurement[] {
   const weeks = groupReadings(series, "week", how);
   const done = weeks.at(-1) && weeks.at(-1)!.count < 7 ? weeks.slice(0, -1) : weeks;
-  return done.map((w) => ({ id: `${id}-${w.from}`, biomarkerId: id, date: w.date, value: w.value, originalValue: w.value, originalUnit: "", source: "device" }));
+  return done.map((w) => ({
+    id: `${id}-${w.from}`,
+    biomarkerId: id,
+    date: w.date,
+    value: w.value,
+    originalValue: w.value,
+    originalUnit: "",
+    source: "device",
+  }));
 }
 
 /** Daily steps: last week's average first (one day says little), the latest day under it. */

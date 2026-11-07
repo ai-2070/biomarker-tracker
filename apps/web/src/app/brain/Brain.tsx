@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type DragEvent, type ReactNode } from "react";
 import { providerInfo } from "@bt/shared/core/aiProviders";
 import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
+import { type DragEvent, type ReactNode, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
 import { BrainIcon, CloseIcon, FileIcon, NewChatIcon } from "../components/icons";
@@ -8,9 +8,9 @@ import { Button, cx } from "../components/ui";
 import { useAllMeasurements, useProfile } from "../hooks";
 import { BIOMARKER_MAP } from "../knowledge";
 import { Composer } from "./Composer";
-import { INTERACTIVE_SELECTOR, brainShortcut } from "./logic";
-import { goToSettings, modelLabel, useBrainSettings, type BrainSettings } from "./menus";
-import { addFiles, backToMyChat, closeBrain, newConversation, openBrain, send, takePending, toggleBrain, useBrain, type Turn } from "./store";
+import { brainShortcut, INTERACTIVE_SELECTOR } from "./logic";
+import { type BrainSettings, goToSettings, modelLabel, useBrainSettings } from "./menus";
+import { addFiles, backToMyChat, closeBrain, newConversation, openBrain, send, type Turn, takePending, toggleBrain, useBrain } from "./store";
 import { HabitTurn } from "./turns/HabitTurn";
 import { LiveTurn, StepList } from "./turns/LiveTurn";
 import { MealTurn } from "./turns/MealTurn";
@@ -38,7 +38,9 @@ export function Brain() {
       const target = e.target instanceof Element ? e.target : null;
       const panel = panelRef.current;
       // Dialogs and menus elsewhere on the page keep their keys.
-      const overlayOpen = [...document.querySelectorAll('[role="dialog"], [role="alertdialog"], [role="menu"], [role="listbox"]')].some((el) => !panel?.contains(el));
+      const overlayOpen = [...document.querySelectorAll('[role="dialog"], [role="alertdialog"], [role="menu"], [role="listbox"]')].some(
+        (el) => !panel?.contains(el),
+      );
       const action = brainShortcut(e, { open: brain.open, onInteractive: !!target?.closest(INTERACTIVE_SELECTOR), overlayOpen });
       if (!action) return;
       e.preventDefault();
@@ -194,7 +196,12 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         "lg:inset-auto lg:bottom-5 lg:left-1/2 lg:h-[min(76vh,700px)] lg:w-[min(720px,calc(100vw-3rem))] lg:origin-bottom lg:-translate-x-1/2",
       )}
     >
-      <header className={cx("flex items-center gap-2 border-b border-line py-2 pr-2 pl-4", closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]")}>
+      <header
+        className={cx(
+          "flex items-center gap-2 border-b border-line py-2 pr-2 pl-4",
+          closing ? "animate-brain-content-out" : "animate-brain-content lg:[animation-delay:90ms]",
+        )}
+      >
         <span className="flex size-8 items-center justify-center rounded-full bg-accent-soft text-accent">
           <BrainIcon className="size-[18px]" />
         </span>
@@ -236,7 +243,10 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
           const el = e.currentTarget;
           stickToEnd.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
         }}
-        className={cx("flex-1 overflow-y-auto overscroll-contain px-4 py-4", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]")}
+        className={cx(
+          "flex-1 overflow-y-auto overscroll-contain px-4 py-4",
+          closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]",
+        )}
       >
         {!research && <PersonalCriticalBanner />}
         {fresh && settings === null ? (
@@ -244,7 +254,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         ) : fresh && settings && !ready && brain.turns.length === 0 ? (
           <NeedsModel settings={settings} />
         ) : brain.turns.length === 0 ? (
-          <Welcome settings={fresh ? settings ?? undefined : undefined} research={research} />
+          <Welcome settings={fresh ? (settings ?? undefined) : undefined} research={research} />
         ) : (
           <Conversation turns={brain.turns} busy={brain.busy} model={model} />
         )}
@@ -256,7 +266,9 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         <div className="pointer-events-none absolute inset-1.5 flex animate-fade items-center justify-center rounded-xl border-2 border-dashed border-accent bg-surface/90 text-center backdrop-blur-sm">
           <p className="max-w-xs">
             <span className="block font-medium text-ink">Drop a lab report or a document</span>
-            <span className="text-sm text-ink-2">PDFs with text are read on this computer; photos and scans go to Brain as pictures. You check results before they're saved.</span>
+            <span className="text-sm text-ink-2">
+              PDFs with text are read on this computer; photos and scans go to Brain as pictures. You check results before they're saved.
+            </span>
           </p>
         </div>
       )}
@@ -302,12 +314,14 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       <div className="flex min-h-full flex-col justify-end gap-5">
         <div>
           <p className="font-serif text-3xl">Check the evidence</p>
-          <p className="mt-1 text-ink-2">Ask about a claim or study. Brain looks for human research and explains what it supports, and what is still unknown.</p>
+          <p className="mt-1 text-ink-2">
+            Ask about a claim or study. Brain looks for human research and explains what it supports, and what is still unknown.
+          </p>
         </div>
         <p className="text-xs leading-relaxed text-ink-2">
           Only your question and this public research topic go to {info?.label ?? "your model"}
-          {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}.
-          {" "}Your profile, results, personal chat and files are not included. Avoid typing private health details here.
+          {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Your profile, results, personal chat and files are not
+          included. Avoid typing private health details here.
         </p>
       </div>
     );
@@ -317,7 +331,8 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       <div>
         <p className="font-serif text-3xl">Ask Brain</p>
         <p className="mt-1 text-ink-2">
-          Ask about your results, habits and research. Brain can fill missing profile details you state and draft a meal, protocol or habit when you ask. You review drafts before saving them.
+          Ask about your results, habits and research. Brain can fill missing profile details you state and draft a meal, protocol or habit when you ask. You
+          review drafts before saving them.
         </p>
         <p className="mt-2 text-sm text-ink-2">Drop a lab report here, or use the paperclip, to review and add its results.</p>
       </div>
@@ -337,9 +352,9 @@ function Welcome({ settings, research }: { settings: BrainSettings | undefined; 
       </ul>
       <p className="text-xs leading-relaxed text-ink-2">
         When you ask, your results, log and experiments (with your age, not your name or birth month) go to {info?.label ?? "your model"}
-        {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach are
-        sent as text with your name taken out; lab report PDFs are read here. Photos and scanned pages are sent as pictures, so the model sees
-        everything printed on them, such as your name. Only the values you confirm are saved.
+        {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. Research searches send search terms only. Documents you attach
+        are sent as text with your name taken out; lab report PDFs are read here. Photos and scanned pages are sent as pictures, so the model sees everything
+        printed on them, such as your name. Only the values you confirm are saved.
       </p>
     </div>
   );

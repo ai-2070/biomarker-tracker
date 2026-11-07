@@ -1,21 +1,36 @@
-import { useEffect, useRef, useState } from "react";
 import { todayIso } from "@bt/shared/core/dates";
-import { MAX_MEAL_ITEMS, MACROS, NUTRIENT_OF_KEY, adultReference, foodById, mealNote, mealTotals, mealWeight, saltFromSodium, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "@bt/shared/core/meals";
+import {
+  adultReference,
+  type FoodDb,
+  foodById,
+  MACROS,
+  MAX_MEAL_ITEMS,
+  type Meal,
+  type MealItem,
+  mealNote,
+  mealTotals,
+  mealWeight,
+  NUTRIENT_OF_KEY,
+  saltFromSodium,
+  shareOfReference,
+  type Total,
+} from "@bt/shared/core/meals";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { formatValue } from "@bt/shared/core/units";
+import { useEffect, useRef, useState } from "react";
 import { deleteMeal, newId, saveMeal, updateMeal } from "../../db/db";
+import { AddToProtocol } from "../components/AddToProtocol";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { Fold, FoldGroup } from "../components/disclosure";
 import { GradeBadge } from "../components/evidence";
-import { AddToProtocol } from "../components/AddToProtocol";
-import { Button, Card, LinkButton, Notice, cx, inputStyles, labelStyles } from "../components/ui";
+import { FoodResults } from "../components/FoodResults";
+import { Button, Card, cx, inputStyles, LinkButton, labelStyles, Notice } from "../components/ui";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
 import { useMeals, useProfile } from "../hooks";
 import { BIOMARKER_MAP, EVIDENCE, NUTRIENT_MAP, nameInSentence } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-import { FoodResults } from "../components/FoodResults";
 
 const fmt = (v: number) => formatValue(v < 10 ? Math.round(v * 100) / 100 : Math.round(v * 10) / 10);
 const MACRO_LABEL: Record<(typeof MACROS)[number], string> = {
@@ -51,11 +66,7 @@ export function MealPage({ id, example = false }: { id: string; example?: boolea
       </a>
       <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          {example ? (
-            <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{meal.name}</h1>
-          ) : (
-            <NameField key={meal.id} meal={meal} />
-          )}
+          {example ? <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{meal.name}</h1> : <NameField key={meal.id} meal={meal} />}
           {ex && <p className="mt-1 max-w-2xl text-ink-2">{ex.description}</p>}
         </div>
         {example && <Button onClick={() => void copy()}>Save a copy to change it</Button>}
@@ -79,16 +90,17 @@ function NameField({ meal }: { meal: Meal }) {
   useEffect(() => setName(meal.name), [meal.id, meal.name]);
   return (
     <>
-    <input
-      aria-label="Meal name"
-      value={name}
-      maxLength={80}
-      onChange={(e) => setName(e.target.value)}
-      onBlur={() => {
-        if (name.trim() && name.trim() !== meal.name) void updateMeal(meal.id, (current) => ({ ...current, name: name.trim() })).catch(() => setError("Could not save the meal name. Try again."));
-      }}
-      className="-ml-1 w-full rounded-md border border-transparent bg-transparent px-1 font-serif text-3xl tracking-tight hover:border-line focus:border-line-strong focus:outline-none sm:text-4xl"
-    />
+      <input
+        aria-label="Meal name"
+        value={name}
+        maxLength={80}
+        onChange={(e) => setName(e.target.value)}
+        onBlur={() => {
+          if (name.trim() && name.trim() !== meal.name)
+            void updateMeal(meal.id, (current) => ({ ...current, name: name.trim() })).catch(() => setError("Could not save the meal name. Try again."));
+        }}
+        className="-ml-1 w-full rounded-md border border-transparent bg-transparent px-1 font-serif text-3xl tracking-tight hover:border-line focus:border-line-strong focus:outline-none sm:text-4xl"
+      />
       {error && <Notice tone="warn">{error}</Notice>}
     </>
   );
@@ -109,7 +121,10 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
   }, [meal.id, meal.items]);
   const save = (change: (current: typeof rows) => typeof rows) => {
     const next = change(draft.current);
-    if (next.length > MAX_MEAL_ITEMS) { setError(`A meal can contain at most ${MAX_MEAL_ITEMS} foods. Remove a food before adding another.`); return; }
+    if (next.length > MAX_MEAL_ITEMS) {
+      setError(`A meal can contain at most ${MAX_MEAL_ITEMS} foods. Remove a food before adding another.`);
+      return;
+    }
     draft.current = next;
     setRows(next);
     setError("");
@@ -117,7 +132,9 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
     const items = next.map((r) => r.item);
     void updateMeal(meal.id, (current) => ({ ...current, items }))
       .catch(() => setError("Could not save the meal changes. Please try again."))
-      .finally(() => { pending.current--; });
+      .finally(() => {
+        pending.current--;
+      });
   };
   return (
     <Card className="flex flex-col gap-3">
@@ -132,7 +149,11 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
               <span className="min-w-0 flex-1">{food?.name ?? it.foodId}</span>
               {editable ? (
                 <span className="flex items-center gap-1">
-                  <GramsField grams={it.grams} label={`Grams of ${food?.name ?? "this food"}`} onSave={(grams) => save((current) => current.map((r) => r.key === key ? { ...r, item: { ...r.item, grams } } : r))} />
+                  <GramsField
+                    grams={it.grams}
+                    label={`Grams of ${food?.name ?? "this food"}`}
+                    onSave={(grams) => save((current) => current.map((r) => (r.key === key ? { ...r, item: { ...r.item, grams } } : r)))}
+                  />
                   <span className="text-ink-2">g</span>
                   <Button variant="quiet" className="min-h-10 text-sm" onClick={() => save((current) => current.filter((r) => r.key !== key))}>
                     Remove
@@ -147,7 +168,11 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
       </ul>
       {editable && (
         <div className="flex flex-col gap-2 border-t border-line pt-3">
-          {rows.length >= MAX_MEAL_ITEMS && <p role="status" className="text-sm text-ink-2">A meal can contain at most {MAX_MEAL_ITEMS} foods. Remove a food before adding another.</p>}
+          {rows.length >= MAX_MEAL_ITEMS && (
+            <p role="status" className="text-sm text-ink-2">
+              A meal can contain at most {MAX_MEAL_ITEMS} foods. Remove a food before adding another.
+            </p>
+          )}
           <label className="flex flex-col gap-1.5">
             <span className={labelStyles}>Add a food</span>
             <input
@@ -179,14 +204,24 @@ function Foods({ meal, db, editable }: { meal: Meal; db: FoodDb | undefined; edi
 function GramsField({ grams, label, onSave }: { grams: number; label: string; onSave: (grams: number) => void }) {
   const [value, setValue] = useState(String(grams));
   useEffect(() => setValue(String(grams)), [grams]);
-  return <input type="number" inputMode="decimal" min={1} max={2000} aria-label={label} value={value}
-    onChange={(e) => setValue(e.target.value)}
-    onBlur={() => {
-      const next = Number(value);
-      if (next >= 1 && next <= 2000) { if (next !== grams) onSave(next); }
-      else setValue(String(grams));
-    }}
-    className={cx(inputStyles, "w-24 text-right")} />;
+  return (
+    <input
+      type="number"
+      inputMode="decimal"
+      min={1}
+      max={2000}
+      aria-label={label}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onBlur={() => {
+        const next = Number(value);
+        if (next >= 1 && next <= 2000) {
+          if (next !== grams) onSave(next);
+        } else setValue(String(grams));
+      }}
+      className={cx(inputStyles, "w-24 text-right")}
+    />
+  );
 }
 
 function coverageNote(t: Total | undefined): string | undefined {
@@ -198,8 +233,18 @@ function coverageNote(t: Total | undefined): string | undefined {
 function Totals({ items, db }: { items: MealItem[]; db: FoodDb | undefined }) {
   const profile = useProfile();
   const age = profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined;
-  if (!db) return <Card><p className="text-ink-2">Loading the food table…</p></Card>;
-  if (items.length === 0) return <Card><p className="text-ink-2">The totals appear here once the meal has foods.</p></Card>;
+  if (!db)
+    return (
+      <Card>
+        <p className="text-ink-2">Loading the food table…</p>
+      </Card>
+    );
+  if (items.length === 0)
+    return (
+      <Card>
+        <p className="text-ink-2">The totals appear here once the meal has foods.</p>
+      </Card>
+    );
   const t = mealTotals(items, db);
   const unit = (k: string) => db.nutrients[k]?.unit ?? "";
   const micro = db.keys.filter((k) => !(MACROS as readonly string[]).includes(k) && k !== "retinol");
@@ -250,51 +295,53 @@ function Totals({ items, db }: { items: MealItem[]; db: FoodDb | undefined }) {
               : "Shares of the EU reference intake for a day"
           }
         >
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm tabular-nums">
-          <caption className="mb-2 text-left text-ink-2">
-            Share of the EU reference intake for a whole day
-            {profile.sex ? ` (${profile.sex === "m" ? "men" : "women"}${age !== undefined ? `, ${Math.floor(age)}` : ""})` : " (set your sex in Settings for values that depend on it)"}
-          </caption>
-          <tbody className="divide-y divide-line">
-            {micro.map((k) => {
-              const total = t[k]!;
-              const link = refFor(k);
-              const share = link ? shareOfReference(total, unit(k), link.ref) : undefined;
-              const label = db.nutrients[k]?.label ?? k;
-              return (
-                <tr key={k}>
-                  <td className="py-1.5 pr-3">
-                    {link ? (
-                      <a href={href({ name: "nutrient", id: link.n.id })} className="text-ink underline underline-offset-2">
-                        {label}
-                      </a>
-                    ) : (
-                      label
-                    )}
-                    {coverageNote(total) && <span className="block text-xs text-ink-2">{coverageNote(total)}</span>}
-                  </td>
-                  <td className="py-1.5 pr-3 text-right whitespace-nowrap">{total.measuredIn ? `${fmt(total.amount)} ${unit(k)}` : "–"}</td>
-                  <td className="w-2/5 py-1.5">
-                    {share !== undefined && (
-                      <span className="flex items-center gap-2">
-                        <span aria-hidden="true" className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-sunken">
-                          <span className="absolute inset-y-0 left-0 rounded-full bg-chart-line" style={{ width: `${Math.min(share, 100)}%` }} />
-                        </span>
-                        <span className="w-12 text-right text-ink-2">{share}%</span>
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p className="mt-3 text-xs text-ink-2">
-        EU (EFSA) reference intakes describe what covers the needs of most healthy adults over a day, from all food. A meal isn't meant to reach
-        them, and more isn't better. Food folate is compared with the folate reference as it is.
-      </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm tabular-nums">
+              <caption className="mb-2 text-left text-ink-2">
+                Share of the EU reference intake for a whole day
+                {profile.sex
+                  ? ` (${profile.sex === "m" ? "men" : "women"}${age !== undefined ? `, ${Math.floor(age)}` : ""})`
+                  : " (set your sex in Settings for values that depend on it)"}
+              </caption>
+              <tbody className="divide-y divide-line">
+                {micro.map((k) => {
+                  const total = t[k]!;
+                  const link = refFor(k);
+                  const share = link ? shareOfReference(total, unit(k), link.ref) : undefined;
+                  const label = db.nutrients[k]?.label ?? k;
+                  return (
+                    <tr key={k}>
+                      <td className="py-1.5 pr-3">
+                        {link ? (
+                          <a href={href({ name: "nutrient", id: link.n.id })} className="text-ink underline underline-offset-2">
+                            {label}
+                          </a>
+                        ) : (
+                          label
+                        )}
+                        {coverageNote(total) && <span className="block text-xs text-ink-2">{coverageNote(total)}</span>}
+                      </td>
+                      <td className="py-1.5 pr-3 text-right whitespace-nowrap">{total.measuredIn ? `${fmt(total.amount)} ${unit(k)}` : "–"}</td>
+                      <td className="w-2/5 py-1.5">
+                        {share !== undefined && (
+                          <span className="flex items-center gap-2">
+                            <span aria-hidden="true" className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-sunken">
+                              <span className="absolute inset-y-0 left-0 rounded-full bg-chart-line" style={{ width: `${Math.min(share, 100)}%` }} />
+                            </span>
+                            <span className="w-12 text-right text-ink-2">{share}%</span>
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs text-ink-2">
+            EU (EFSA) reference intakes describe what covers the needs of most healthy adults over a day, from all food. A meal isn't meant to reach them, and
+            more isn't better. Food folate is compared with the folate reference as it is.
+          </p>
         </Fold>
       </FoldGroup>
       <DarkMatterNote />
@@ -344,7 +391,9 @@ function Manage({ meal }: { meal: Meal }) {
         <LinkButton variant="secondary" href={href({ name: "habits", meal: meal.id })}>
           Start as a habit
         </LinkButton>
-        {meal.items.length > 0 && <AddToProtocol label={meal.name} category="diet" extra={{ mealId: meal.id, note: mealNote(meal) }} amountHint="e.g. 1 portion" />}
+        {meal.items.length > 0 && (
+          <AddToProtocol label={meal.name} category="diet" extra={{ mealId: meal.id, note: mealNote(meal) }} amountHint="e.g. 1 portion" />
+        )}
       </div>
       <p className="text-sm text-ink-2">A habit lets you watch markers and see what changed after you started eating it regularly.</p>
       <div>

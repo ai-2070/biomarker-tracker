@@ -1,11 +1,11 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
 import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { CloseIcon, FileIcon, PaperclipIcon, SendIcon, StopIcon } from "../components/icons";
 import { cx } from "../components/ui";
-import { ModelMenu, ToolsMenu, goToSettings, type BrainSettings } from "./menus";
-import { addFiles, addPastedLabText, picturesToResend, removeAttachment, send, setDraft, stop, useBrain, type Attachment } from "./store";
+import { type BrainSettings, goToSettings, ModelMenu, ToolsMenu } from "./menus";
+import { type Attachment, addFiles, addPastedLabText, picturesToResend, removeAttachment, send, setDraft, stop, useBrain } from "./store";
 
-function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model can't be given pictures: its label. */ noPictures?: string }) {
+function AttachmentChip({ a, noPictures }: { a: Attachment /** The chosen model can't be given pictures: its label. */; noPictures?: string }) {
   const pictures = a.images?.length ?? 0;
   const blocked = pictures > 0 && a.status === "ready" && noPictures !== undefined;
   const status =
@@ -22,8 +22,17 @@ function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model
               : "Its text is sent with your question";
   return (
     <span
-      className={cx("flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm", a.status === "error" ? "border-danger/40 bg-danger-soft" : "border-line bg-surface")}
-      title={a.status !== "ready" ? undefined : pictures ? "Sent as it is, shrunk and with location data removed: the model sees everything printed on it, such as your name." : "Sent with your name taken out."}
+      className={cx(
+        "flex max-w-full flex-col gap-1.5 rounded-lg border px-2 py-1 text-xs sm:max-w-sm",
+        a.status === "error" ? "border-danger/40 bg-danger-soft" : "border-line bg-surface",
+      )}
+      title={
+        a.status !== "ready"
+          ? undefined
+          : pictures
+            ? "Sent as it is, shrunk and with location data removed: the model sees everything printed on it, such as your name."
+            : "Sent with your name taken out."
+      }
     >
       <span className="flex items-center gap-2">
         <FileIcon className="size-4 shrink-0 text-ink-2" />
@@ -32,7 +41,12 @@ function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model
           <span className={cx("truncate", a.status === "error" ? "text-danger" : blocked ? "text-warn" : "text-ink-2")}>{status}</span>
         </span>
         {a.status !== "reading" && (
-          <button type="button" onClick={() => removeAttachment(a.id)} aria-label={`Remove ${a.name}`} className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink">
+          <button
+            type="button"
+            onClick={() => removeAttachment(a.id)}
+            aria-label={`Remove ${a.name}`}
+            className="-mr-1 flex size-7 shrink-0 items-center justify-center rounded-md text-ink-2 hover:bg-sunken hover:text-ink"
+          >
             <CloseIcon className="size-3.5" />
           </button>
         )}
@@ -41,7 +55,19 @@ function AttachmentChip({ a, noPictures }: { a: Attachment; /** The chosen model
   );
 }
 
-export function Composer({ settings, ready, model, onSettingsChange, closing }: { settings: BrainSettings | null | undefined; ready: boolean; model: string; onSettingsChange: () => void; closing: boolean }) {
+export function Composer({
+  settings,
+  ready,
+  model,
+  onSettingsChange,
+  closing,
+}: {
+  settings: BrainSettings | null | undefined;
+  ready: boolean;
+  model: string;
+  onSettingsChange: () => void;
+  closing: boolean;
+}) {
   const brain = useBrain();
   const research = brain.scope === "research";
   const textRef = useRef<HTMLTextAreaElement>(null);
@@ -50,7 +76,7 @@ export function Composer({ settings, ready, model, onSettingsChange, closing }: 
   const hasDocs = brain.attachments.some((a) => a.status === "ready" && (a.images?.length || (a.text ?? "").trim()));
   const canSend = !brain.busy && !reading && (brain.draft.trim() !== "" || hasDocs);
   const provider = settings?.assistant.provider;
-  const noPictures = provider && !takesPictures(provider) ? providerInfo(provider)?.label ?? provider : undefined;
+  const noPictures = provider && !takesPictures(provider) ? (providerInfo(provider)?.label ?? provider) : undefined;
 
   useEffect(() => {
     textRef.current?.focus();
@@ -71,7 +97,12 @@ export function Composer({ settings, ready, model, onSettingsChange, closing }: 
   }
 
   return (
-    <div className={cx("border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]", closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]")}>
+    <div
+      className={cx(
+        "border-t border-line bg-surface px-3 pt-3 pb-[max(0.5rem,env(safe-area-inset-bottom))]",
+        closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:100ms] lg:[animation-delay:180ms]",
+      )}
+    >
       {!research && brain.attachments.every((a) => !a.images?.length) && picturesToResend(brain.turns, model) && (
         <p className="mb-2 px-1 text-xs text-ink-2">
           While the card above is open, your next question goes with the same pictures, so Brain can look again (for a row it missed or misread).
@@ -110,7 +141,15 @@ export function Composer({ settings, ready, model, onSettingsChange, closing }: 
             // Lab result rows copied from a report or website: checked and saved in a review card.
             if (!research && addPastedLabText(e.clipboardData.getData("text/plain"))) e.preventDefault();
           }}
-          placeholder={brain.busy ? "Brain is working…" : research ? "Ask about the evidence" : hasDocs ? "What should Brain do with this file?" : "Ask about your results, or drop a lab report"}
+          placeholder={
+            brain.busy
+              ? "Brain is working…"
+              : research
+                ? "Ask about the evidence"
+                : hasDocs
+                  ? "What should Brain do with this file?"
+                  : "Ask about your results, or drop a lab report"
+          }
           className="block max-h-42 min-h-11 w-full resize-none bg-transparent px-3 pt-3 pb-1 text-base text-ink outline-none placeholder:text-ink-2"
         />
         <div className="flex items-center gap-1 px-1.5 pb-1.5">
@@ -148,7 +187,13 @@ export function Composer({ settings, ready, model, onSettingsChange, closing }: 
           )}
           <span className="flex-1" />
           {brain.busy ? (
-            <button type="button" onClick={stop} aria-label="Stop" title="Stop" className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-ink text-surface hover:opacity-85">
+            <button
+              type="button"
+              onClick={stop}
+              aria-label="Stop"
+              title="Stop"
+              className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-ink text-surface hover:opacity-85"
+            >
               <StopIcon className="size-4" />
             </button>
           ) : (

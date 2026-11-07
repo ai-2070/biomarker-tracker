@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { BiomarkerDef, Measurement } from "@bt/shared/core/types";
 
@@ -43,6 +43,9 @@ export interface Deferred<T> {
 export function deferred<T>(): Deferred<T> {
   let resolve!: Deferred<T>["resolve"];
   let reject!: Deferred<T>["reject"];
-  const promise = new Promise<T>((yes, no) => { resolve = yes; reject = no; });
+  const promise = new Promise<T>((yes, no) => {
+    resolve = yes;
+    reject = no;
+  });
   return { promise, resolve, reject };
 }

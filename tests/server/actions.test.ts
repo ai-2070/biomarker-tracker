@@ -1,32 +1,40 @@
-import { tool, type ToolSet } from "ai";
-import { MockModel } from "./mockModel";
+import { type ToolSet, tool } from "ai";
 import { describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { ask } from "../../apps/server/assistant";
 import { callTool, closeRun, openRun } from "../../apps/server/bridge";
-import { healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
+import { type HealthSnapshot, healthTools } from "../../apps/server/healthTools";
 import { foods } from "../../apps/server/knowledge";
 import { toolStep, validateToolResult } from "../../apps/server/steps";
+import { MockModel } from "./mockModel";
 
 vi.mock(import("../../apps/server/mcp"), async (original) => ({
-  ...await original(), assistantTools: vi.fn(async () => ({ tools: {}, servers: [], failed: [] })),
+  ...(await original()),
+  assistantTools: vi.fn(async () => ({ tools: {}, servers: [], failed: [] })),
 }));
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
 const empty = (): HealthSnapshot => ({ measurements: [], protocols: [], experiments: [], profile: {} });
-const call = (tools: ToolSet, name: string, input: unknown) => tools[name]!.execute!(input as never, { toolCallId: "test", messages: [] } as never) as Promise<Record<string, unknown>>;
+const call = (tools: ToolSet, name: string, input: unknown) =>
+  tools[name]!.execute!(input as never, { toolCallId: "test", messages: [] } as never) as Promise<Record<string, unknown>>;
 
 /** A scripted model still executes the real SDK tool loop and its actual handlers. */
 function scripted(calls: { tool: string; input: unknown }[], prompts: unknown[] = []) {
   let next = 0;
-  const model = new MockModel({ doGenerate: async (options) => {
-    prompts.push(options.prompt);
-    const action = calls[next++];
-    return {
-      content: action ? [{ type: "tool-call" as const, toolCallId: `action-${next}`, toolName: action.tool, input: JSON.stringify(action.input) }] : [{ type: "text" as const, text: "Please review the cards." }],
-      finishReason: { unified: action ? "tool-calls" as const : "stop" as const, raw: undefined }, usage, warnings: [],
-    };
-  } });
+  const model = new MockModel({
+    doGenerate: async (options) => {
+      prompts.push(options.prompt);
+      const action = calls[next++];
+      return {
+        content: action
+          ? [{ type: "tool-call" as const, toolCallId: `action-${next}`, toolName: action.tool, input: JSON.stringify(action.input) }]
+          : [{ type: "text" as const, text: "Please review the cards." }],
+        finishReason: { unified: action ? ("tool-calls" as const) : ("stop" as const), raw: undefined },
+        usage,
+        warnings: [],
+      };
+    },
+  });
   return { model, providerOptions: {}, choice: { provider: "ollama" as const, model: "mock" } };
 }
 
@@ -39,7 +47,12 @@ describe("profile detail preparation", () => {
     snapshot.measurements = [{ id: "weight", biomarkerId: "weight", value: 81, originalValue: 81, originalUnit: "kg", date: "2026-10-01", source: "manual" }];
     const userText = "I am 180 cm tall. I was born in April 1984. What is my BMI?";
     const tools = healthTools(snapshot, undefined, { userText, requestText: userText });
-    const result = await call(tools, "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }, { field: "birthMonth", quote: "I was born in April 1984" }] });
+    const result = await call(tools, "save_profile_details", {
+      details: [
+        { field: "heightCm", quote: "I am 180 cm tall" },
+        { field: "birthMonth", quote: "I was born in April 1984" },
+      ],
+    });
     expect(result.added).toEqual(["heightCm", "birthMonth"]);
     expect(result.person).toMatchObject({ heightCm: 180, age: expect.any(Number) });
     expect(JSON.stringify(result)).not.toContain("1984-04");
@@ -51,12 +64,20 @@ describe("profile detail preparation", () => {
   it("does not complete the profile without typed text or accept document/history quotes or overwrites", async () => {
     // Offered on every turn (the tool list stays the same for the prompt cache), but it refuses without typed text.
     const untyped = empty();
-    expect(await call(healthTools(untyped), "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }] })).toMatchObject({ added: [], error: expect.stringMatching(/typed/) });
+    expect(await call(healthTools(untyped), "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }] })).toMatchObject({
+      added: [],
+      error: expect.stringMatching(/typed/),
+    });
     expect(untyped.profile).toEqual({});
     const snapshot = empty();
     snapshot.profile.heightCm = 170;
     const tools = healthTools(snapshot, undefined, { userText: "What is my BMI?", requestText: "What is my BMI?\nDocument: I am 180 cm tall. I am male." });
-    const result = await call(tools, "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }, { field: "sex", quote: "I am male" }] });
+    const result = await call(tools, "save_profile_details", {
+      details: [
+        { field: "heightCm", quote: "I am 180 cm tall" },
+        { field: "sex", quote: "I am male" },
+      ],
+    });
     expect(result.added).toEqual([]);
     expect(snapshot.profile).toEqual({ heightCm: 170 });
   });
@@ -66,7 +87,10 @@ describe("profile detail preparation", () => {
     snapshot.measurements = [{ id: "w", biomarkerId: "weight", value: 81, originalValue: 81, originalUnit: "kg", date: "2026-10-01", source: "manual" }];
     const prompts: unknown[] = [];
     const userText = "I am 180 cm tall. What is my BMI?";
-    const result = await ask([{ role: "user", content: userText }], snapshot, { userText, ready: scripted([{ tool: "get_body_summary", input: {} }], prompts) });
+    const result = await ask([{ role: "user", content: userText }], snapshot, {
+      userText,
+      ready: scripted([{ tool: "get_body_summary", input: {} }], prompts),
+    });
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.steps.map((step) => step.tool)).toEqual(["get_body_summary"]);
@@ -83,7 +107,14 @@ describe("profile detail preparation", () => {
     const userText = "I'm 31, 102kg, 192cm tall, man, 27% body fat. My pace of aging is 0.88 today.";
     const prompts: unknown[] = [];
     const result = await ask([{ role: "user", content: userText }], snapshot, {
-      userText, ready: scripted([{ tool: "get_results", input: {} }, { tool: "get_body_summary", input: {} }], prompts),
+      userText,
+      ready: scripted(
+        [
+          { tool: "get_results", input: {} },
+          { tool: "get_body_summary", input: {} },
+        ],
+        prompts,
+      ),
     });
     expect(result.ok).toBe(true);
     const outputs = JSON.stringify(prompts.at(-1));
@@ -123,7 +154,9 @@ describe("result-driven mutation validation", () => {
     const meal = { intent: "recommend", name: "Porridge example", items: [{ foodId: oat[0], grams: 50 }], note: "Example portion, not a target." };
     const result = await ask([{ role: "user", content: "Recommend a simple walking protocol, a meal and a habit." }], empty(), {
       ready: scripted([
-        { tool: "propose_protocol", input: walking }, { tool: "propose_meal", input: meal }, { tool: "propose_habit", input: habit },
+        { tool: "propose_protocol", input: walking },
+        { tool: "propose_meal", input: meal },
+        { tool: "propose_habit", input: habit },
         { tool: "propose_protocol", input: { ...walking, items: [{ label: "Vitamin D", amount: "4000 IU", category: "supplement", when: "morning" }] } },
         { tool: "propose_meal", input: { ...meal, intent: "unknown" } },
       ]),
@@ -135,16 +168,27 @@ describe("result-driven mutation validation", () => {
 
   it("matches parallel results by call id instead of validating every call to the same tool", async () => {
     let turn = 0;
-    const model = new MockModel({ doGenerate: async () => {
-      const first = turn++ === 0;
-      return {
-        content: first ? [
-          { type: "tool-call" as const, toolCallId: "safe", toolName: "propose_protocol", input: JSON.stringify(walking) },
-          { type: "tool-call" as const, toolCallId: "unsafe", toolName: "propose_protocol", input: JSON.stringify({ ...walking, items: [{ label: "Vitamin D 4000 IU", category: "supplement", when: "morning" }] }) },
-        ] : [{ type: "text" as const, text: "Review the safe card." }],
-        finishReason: { unified: first ? "tool-calls" as const : "stop" as const, raw: undefined }, usage, warnings: [],
-      };
-    } });
+    const model = new MockModel({
+      doGenerate: async () => {
+        const first = turn++ === 0;
+        return {
+          content: first
+            ? [
+                { type: "tool-call" as const, toolCallId: "safe", toolName: "propose_protocol", input: JSON.stringify(walking) },
+                {
+                  type: "tool-call" as const,
+                  toolCallId: "unsafe",
+                  toolName: "propose_protocol",
+                  input: JSON.stringify({ ...walking, items: [{ label: "Vitamin D 4000 IU", category: "supplement", when: "morning" }] }),
+                },
+              ]
+            : [{ type: "text" as const, text: "Review the safe card." }],
+          finishReason: { unified: first ? ("tool-calls" as const) : ("stop" as const), raw: undefined },
+          usage,
+          warnings: [],
+        };
+      },
+    });
     const result = await ask([{ role: "user", content: "Recommend a protocol." }], empty(), {
       ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } },
     });
@@ -156,7 +200,15 @@ describe("result-driven mutation validation", () => {
     const snapshot = empty();
     const userText = "I am 180 cm tall. Recommend a walking protocol.";
     const tools = healthTools(snapshot, undefined, { userText, requestText: userText });
-    const run = openRun({ ...tools, propose_meal: tool({ inputSchema: z.object({}), execute: async (): Promise<unknown> => { throw new Error("Actual failure"); } }) });
+    const run = openRun({
+      ...tools,
+      propose_meal: tool({
+        inputSchema: z.object({}),
+        execute: async (): Promise<unknown> => {
+          throw new Error("Actual failure");
+        },
+      }),
+    });
     try {
       expect((await callTool(run, "save_profile_details", { details: [{ field: "heightCm", quote: "I am 180 cm tall" }] })).isError).toBe(false);
       expect((await callTool(run, "propose_protocol", walking)).isError).toBe(false);
@@ -164,16 +216,24 @@ describe("result-driven mutation validation", () => {
       expect((await callTool(run, "save_profile_details", { details: [{ field: "sex", quote: "I am male" }] })).isError).toBe(true);
       expect((await callTool(run, "propose_meal", {})).isError).toBe(true);
       expect(run.steps.map((step) => step.validated)).toEqual([true, true, false, false, false]);
-    } finally { closeRun(run); }
+    } finally {
+      closeRun(run);
+    }
   });
 });
 
 describe("proposal safety at real handlers", () => {
   it("blocks all three cards at critical results, including meals", async () => {
     const snapshot = empty();
-    snapshot.measurements = [{ id: "k", biomarkerId: "potassium", value: 6.6, originalValue: 6.6, originalUnit: "mmol/L", date: "2026-10-01", source: "manual" }];
+    snapshot.measurements = [
+      { id: "k", biomarkerId: "potassium", value: 6.6, originalValue: 6.6, originalUnit: "mmol/L", date: "2026-10-01", source: "manual" },
+    ];
     const tools = healthTools(snapshot, undefined, { requestText: "Recommend a protocol, a meal and a habit." });
-    for (const [name, input] of [["propose_protocol", walking], ["propose_meal", { intent: "recommend", name: "Meal", items: [] }], ["propose_habit", habit]] as const) {
+    for (const [name, input] of [
+      ["propose_protocol", walking],
+      ["propose_meal", { intent: "recommend", name: "Meal", items: [] }],
+      ["propose_habit", habit],
+    ] as const) {
       expect((await call(tools, name, input)).error).toBeTruthy();
     }
   });
@@ -191,7 +251,9 @@ describe("proposal safety at real handlers", () => {
     expect((await call(tools, "propose_meal", meal)).error).toBeTruthy();
     expect((await call(tools, "propose_meal", { ...meal, items: [{ foodId: low[0], grams: 20 }] })).shownToPerson).toBeTruthy();
     expect((await call(tools, "propose_protocol", walking)).shownToPerson).toBeTruthy();
-    expect((await call(tools, "propose_protocol", { ...walking, items: [{ label: "More potassium foods", category: "diet", when: "midday" }] })).error).toBeTruthy();
+    expect(
+      (await call(tools, "propose_protocol", { ...walking, items: [{ label: "More potassium foods", category: "diet", when: "midday" }] })).error,
+    ).toBeTruthy();
   });
 
   it("preserves the person's own medication amounts but rejects invented amounts and recommended medicines", async () => {
@@ -208,7 +270,9 @@ describe("results read from pictures", () => {
   const ferritin = { marker: "ferritin", printed: "Ferritin 45 µg/L 15-150", value: "45", unit: "µg/L", rangeLow: "15", rangeHigh: "150" };
 
   it("only shows a review card when photos or scanned pages came with the newest question", async () => {
-    expect(await call(healthTools(empty(), undefined, { requestText: "My ferritin is 45" }), "propose_results", { results: [ferritin] })).toMatchObject({ error: expect.stringMatching(/photos or scanned pages/) });
+    expect(await call(healthTools(empty(), undefined, { requestText: "My ferritin is 45" }), "propose_results", { results: [ferritin] })).toMatchObject({
+      error: expect.stringMatching(/photos or scanned pages/),
+    });
     const r = await call(healthTools(empty(), undefined, { requestText: "Read this", images: true }), "propose_results", {
       date: "2026-10-20",
       results: [ferritin, { marker: "potassium", value: "54", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" }, { marker: "pdw", value: "16" }],
@@ -224,12 +288,23 @@ describe("results read from pictures", () => {
   it("reports critical values read from the picture and blocks habit, protocol and meal cards after them", async () => {
     const tools = healthTools(empty(), undefined, { requestText: "Read this and suggest a habit", images: true });
     expect((await call(tools, "propose_habit", habit)).shownToPerson).toBeTruthy();
-    const r = await call(tools, "propose_results", { results: [ferritin, { marker: "potassium", value: "7.2", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" }] });
-    expect(r).toMatchObject({ critical: [{ marker: "Potassium", value: "7.2 mmol/L", level: "very high" }], criticalNote: expect.stringMatching(/contact a doctor/) });
-    for (const [name, input] of [["propose_protocol", walking], ["propose_meal", { intent: "recommend", name: "Meal", items: [] }], ["propose_habit", habit]] as const) {
+    const r = await call(tools, "propose_results", {
+      results: [ferritin, { marker: "potassium", value: "7.2", unit: "mmol/L", rangeLow: "3.5", rangeHigh: "5.1" }],
+    });
+    expect(r).toMatchObject({
+      critical: [{ marker: "Potassium", value: "7.2 mmol/L", level: "very high" }],
+      criticalNote: expect.stringMatching(/contact a doctor/),
+    });
+    for (const [name, input] of [
+      ["propose_protocol", walking],
+      ["propose_meal", { intent: "recommend", name: "Meal", items: [] }],
+      ["propose_habit", habit],
+    ] as const) {
       expect((await call(tools, name, input)).error).toBeTruthy();
     }
-    expect(await call(healthTools(empty(), undefined, { requestText: "Read this", images: true }), "propose_results", { results: [ferritin] })).not.toHaveProperty("critical");
+    expect(
+      await call(healthTools(empty(), undefined, { requestText: "Read this", images: true }), "propose_results", { results: [ferritin] }),
+    ).not.toHaveProperty("critical");
   });
 
   it("returns a checked proposal through the real tool loop when photos are sent", async () => {

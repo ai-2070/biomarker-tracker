@@ -34,7 +34,8 @@ export async function zipEntries(file: Blob): Promise<ZipEntry[]> {
   if (cdOffset === 0xffffffff || count === 0xffff) {
     // zip64: the locator sits just before the end record and points at the zip64 end record.
     const loc = eocd - 20;
-    if (loc < 0 || u32(tail, loc) !== 0x07064b50) throw new Error("This zip file uses a format that can't be read here. Unzip it and choose the folder instead.");
+    if (loc < 0 || u32(tail, loc) !== 0x07064b50)
+      throw new Error("This zip file uses a format that can't be read here. Unzip it and choose the folder instead.");
     const rec = await view(file.slice(u64(tail, loc + 8), u64(tail, loc + 8) + 56));
     count = u64(rec, 32);
     cdSize = u64(rec, 40);
@@ -75,27 +76,33 @@ export async function zipEntries(file: Blob): Promise<ZipEntry[]> {
     const stream = (): ReadableStream<Uint8Array> => {
       let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
       let cancelled = false;
-      const body = new ReadableStream<Uint8Array>({
-        async pull(controller) {
-          if (!reader) {
-            const head = await view(file.slice(localOffset, localOffset + 30));
+      const body = new ReadableStream<Uint8Array>(
+        {
+          async pull(controller) {
+            if (!reader) {
+              const head = await view(file.slice(localOffset, localOffset + 30));
+              if (cancelled) return;
+              const start = localOffset + 30 + u16(head, 26) + u16(head, 28);
+              reader = file
+                .slice(start, start + compressed)
+                .stream()
+                .getReader();
+            }
+            const { done, value } = await reader.read();
             if (cancelled) return;
-            const start = localOffset + 30 + u16(head, 26) + u16(head, 28);
-            reader = file.slice(start, start + compressed).stream().getReader();
-          }
-          const { done, value } = await reader.read();
-          if (cancelled) return;
-          if (done) {
-            reader.releaseLock();
-            controller.close();
-          } else controller.enqueue(value);
+            if (done) {
+              reader.releaseLock();
+              controller.close();
+            } else controller.enqueue(value);
+          },
+          async cancel(reason) {
+            cancelled = true;
+            await reader?.cancel(reason);
+            reader?.releaseLock();
+          },
         },
-        async cancel(reason) {
-          cancelled = true;
-          await reader?.cancel(reason);
-          reader?.releaseLock();
-        },
-      }, { highWaterMark: 0 });
+        { highWaterMark: 0 },
+      );
       return method === 8 ? body.pipeThrough(new DecompressionStream("deflate-raw") as unknown as TransformStream<Uint8Array, Uint8Array>) : body;
     };
     entries.push({

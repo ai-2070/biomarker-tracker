@@ -5,20 +5,20 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { createHTTPHandler } from "@trpc/server/adapters/standalone";
 import { appRouter } from "@bt/shared/api/router";
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
-import { ask, type ChatMessage } from "./assistant";
+import { createHTTPHandler } from "@trpc/server/adapters/standalone";
 import { HttpError, services } from "./api";
-import { handleMcp, setBridgePort } from "./bridge";
-import * as profiles from "./profiles";
-import { parseSnapshot } from "./healthTools";
-import { ROOT } from "./store";
-import { MAX_ZIP_BYTES } from "./zip";
+import { ask, type ChatMessage } from "./assistant";
 import type { OnEvent } from "./brain/events";
-import { streamAnswer } from "./uistream";
+import { handleMcp, setBridgePort } from "./bridge";
 import { handleEveBridge } from "./eve/bridge";
 import { setEveBridgePort } from "./eve/host";
+import { parseSnapshot } from "./healthTools";
+import * as profiles from "./profiles";
+import { ROOT } from "./store";
+import { streamAnswer } from "./uistream";
+import { MAX_ZIP_BYTES } from "./zip";
 
 export const MAX_BODY = 20 * 1024 * 1024;
 const DIST = () => process.env.BT_DIST ?? path.join(ROOT, "apps", "web", "dist");
@@ -110,7 +110,13 @@ function photos(v: unknown): NonNullable<ChatMessage["images"]> {
   for (const i of v) {
     if (typeof i !== "object" || i === null) continue;
     const { mediaType, data } = i as Record<string, unknown>;
-    if ((mediaType === "image/jpeg" || mediaType === "image/png" || mediaType === "image/webp") && typeof data === "string" && data.length < 8_000_000 && /^[A-Za-z0-9+/=]+$/.test(data)) out.push({ mediaType, data });
+    if (
+      (mediaType === "image/jpeg" || mediaType === "image/png" || mediaType === "image/webp") &&
+      typeof data === "string" &&
+      data.length < 8_000_000 &&
+      /^[A-Za-z0-9+/=]+$/.test(data)
+    )
+      out.push({ mediaType, data });
   }
   return out;
 }
@@ -123,7 +129,12 @@ route("POST", "/api/assistant", async (_p, body, signal, req) => {
     const latest = raw.filter((m): m is Json => typeof m === "object" && m !== null && m.role === "user").at(-1);
     const question = str(latest?.content, 20_000)?.trim();
     if (!question) throw new HttpError(400, "Ask a question.");
-    const research = (onEvent?: OnEvent) => ask([{ role: "user", content: question }], { measurements: [], protocols: [], experiments: [], profile: {} }, { researchOnly: true, signal, ...(onEvent ? { onEvent } : {}) });
+    const research = (onEvent?: OnEvent) =>
+      ask(
+        [{ role: "user", content: question }],
+        { measurements: [], protocols: [], experiments: [], profile: {} },
+        { researchOnly: true, signal, ...(onEvent ? { onEvent } : {}) },
+      );
     return wantsStream(req) ? new Streamed(research) : research();
   }
   const snap = parseSnapshot(body.snapshot);
@@ -133,8 +144,13 @@ route("POST", "/api/assistant", async (_p, body, signal, req) => {
   const messages: ChatMessage[] = body.messages.map((m: unknown): ChatMessage => {
     if (typeof m !== "object" || m === null || Array.isArray(m)) throw new HttpError(400, "Each message must have a valid role and text.");
     const message = m as Json;
-    if ((message.role !== "user" && message.role !== "assistant") || typeof message.content !== "string") throw new HttpError(400, "Each message must have a valid role and text.");
-    if (message.content.length > 20_000) throw new HttpError(400, "Each message must be at most 20,000 characters. Shorten the question or its attached text. If this is an earlier message, start a new conversation.");
+    if ((message.role !== "user" && message.role !== "assistant") || typeof message.content !== "string")
+      throw new HttpError(400, "Each message must have a valid role and text.");
+    if (message.content.length > 20_000)
+      throw new HttpError(
+        400,
+        "Each message must be at most 20,000 characters. Shorten the question or its attached text. If this is an earlier message, start a new conversation.",
+      );
     const images = message.role === "user" ? photos(message.images) : [];
     if (!message.content.trim() && images.length === 0) throw new HttpError(400, "Messages cannot be empty.");
     return { role: message.role, content: message.content, ...(images.length ? { images } : {}) };
@@ -142,11 +158,14 @@ route("POST", "/api/assistant", async (_p, body, signal, req) => {
   // Photos only with the newest question; earlier ones aren't sent again.
   for (const m of messages.slice(0, -1)) delete m.images;
   if (messages.length === 0 || messages[messages.length - 1]!.role !== "user") throw new HttpError(400, "Ask a question.");
-  if (body.userText !== undefined && (typeof body.userText !== "string" || !body.userText.trim() ||
-    !messages[messages.length - 1]!.content.startsWith(body.userText))) {
+  if (
+    body.userText !== undefined &&
+    (typeof body.userText !== "string" || !body.userText.trim() || !messages[messages.length - 1]!.content.startsWith(body.userText))
+  ) {
     throw new HttpError(400, "The typed question does not match the latest message.");
   }
-  const personal = (onEvent?: OnEvent) => ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}), ...(onEvent ? { onEvent } : {}) });
+  const personal = (onEvent?: OnEvent) =>
+    ask(messages, snap.snapshot, { signal, ...(typeof body.userText === "string" ? { userText: body.userText } : {}), ...(onEvent ? { onEvent } : {}) });
   return wantsStream(req) ? new Streamed(personal) : personal();
 });
 
@@ -184,7 +203,10 @@ function serveStatic(urlPath: string, res: http.ServerResponse): void {
     res.writeHead(404, { "content-type": "text/plain" }).end("Not found");
     return;
   }
-  res.writeHead(200, { "content-type": TYPES[path.extname(file)] ?? "application/octet-stream", "cache-control": rel.startsWith("/assets/") ? "public, max-age=31536000, immutable" : "no-cache" });
+  res.writeHead(200, {
+    "content-type": TYPES[path.extname(file)] ?? "application/octet-stream",
+    "cache-control": rel.startsWith("/assets/") ? "public, max-age=31536000, immutable" : "no-cache",
+  });
   fs.createReadStream(file).pipe(res);
 }
 

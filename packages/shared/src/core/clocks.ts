@@ -1,4 +1,4 @@
-import { PRESCRIBING, citationErrors, findingErrors, type NutrientFinding } from "./nutrients";
+import { citationErrors, findingErrors, type NutrientFinding, PRESCRIBING } from "./nutrients";
 import type { Citation } from "./types";
 
 /**
@@ -44,9 +44,15 @@ export function validateClockFile(v: unknown): string[] {
     (v.findings as unknown[]).forEach((f, i) => {
       if (!isObj(f)) return;
       const at = `finding ${i + 1}`;
-      if (!Array.isArray(f.clocks) || f.clocks.length === 0 || !f.clocks.every((c) => CLOCKS.includes(c as ClockName))) errs.push(`${at} clocks must be from ${CLOCKS.join(", ")}`);
+      if (!Array.isArray(f.clocks) || f.clocks.length === 0 || !f.clocks.every((c) => CLOCKS.includes(c as ClockName)))
+        errs.push(`${at} clocks must be from ${CLOCKS.join(", ")}`);
       if (!isStr(f.label) || !isStr(f.line)) errs.push(`${at} needs a label and a line`);
-      if (f.about !== undefined && !(Array.isArray(f.about) && f.about.every((a) => isObj(a) && (a.kind === "nutrient" || a.kind === "wholefood" || a.kind === "lifestyle") && isStr(a.id))))
+      if (
+        f.about !== undefined &&
+        !(
+          Array.isArray(f.about) && f.about.every((a) => isObj(a) && (a.kind === "nutrient" || a.kind === "wholefood" || a.kind === "lifestyle") && isStr(a.id))
+        )
+      )
         errs.push(`${at} about must be a list of { kind, id }`);
     });
   }
@@ -56,7 +62,11 @@ export function validateClockFile(v: unknown): string[] {
 
 /** Every piece of text, for the wording check (no personal instructions). */
 export function clockText(f: ClockFile): string[] {
-  return [f.intro, f.caveat, ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", x.label ?? "", x.line ?? "", ...x.whyThisGrade])];
+  return [
+    f.intro,
+    f.caveat,
+    ...f.findings.flatMap((x) => [x.outcome, x.population, x.summary, x.bottomLine ?? "", x.label ?? "", x.line ?? "", ...x.whyThisGrade]),
+  ];
 }
 
 export const clockPrescribes = (f: ClockFile): string[] => clockText(f).filter((t) => PRESCRIBING.test(t));

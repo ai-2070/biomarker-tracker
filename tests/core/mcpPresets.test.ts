@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { MCP_PRESETS, mcpPreset, presetArgs, toolName } from "@bt/shared/core/mcpPresets";
+import { describe, expect, it } from "vitest";
 
 describe("MCP presets", () => {
   it("have unique ids and pinned versions", () => {

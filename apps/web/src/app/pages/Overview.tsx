@@ -1,30 +1,35 @@
-import { useState } from "react";
-import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
-import { ToggleGroup } from "@base-ui/react/toggle-group";
 import { Toggle } from "@base-ui/react/toggle";
-import { computeTrend, flagLatest, groupByBiomarker, isCritical, isOutOfRange, type Flag } from "@bt/shared/core/trends";
-import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
-import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
-import { Button, FlagBadge, LinkButton, PageTitle, cx, inputStyles, labelStyles, eyebrowStyles } from "../components/ui";
-import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../format";
-import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
-import { SafetyNotices } from "../components/SafetyNotices";
-import { DueExperiments } from "../components/DueExperiments";
+import { ToggleGroup } from "@base-ui/react/toggle-group";
+import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
-import { BLOOD_MARKERS, CATEGORY_ORDER, bloodOnly, fullName } from "../knowledge";
-import { href, type ResultsFilter } from "../router";
+import { computeTrend, type Flag, flagLatest, groupByBiomarker, isCritical, isOutOfRange } from "@bt/shared/core/trends";
+import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
+import { useState } from "react";
+import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
+import { DueExperiments } from "../components/DueExperiments";
+import { SafetyNotices } from "../components/SafetyNotices";
 import { SavedResults } from "../components/SavedResults";
 import { SimpleSelect } from "../components/UnitSelect";
+import { Button, cx, eyebrowStyles, FlagBadge, inputStyles, LinkButton, labelStyles, PageTitle } from "../components/ui";
+import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../format";
+import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
+import { BLOOD_MARKERS, bloodOnly, CATEGORY_ORDER, fullName } from "../knowledge";
+import { href, type ResultsFilter } from "../router";
 
 const NO_RESULTS: readonly Measurement[] = [];
 const CATEGORY_OPTIONS = [
   { value: "all", label: "All categories" },
-  ...CATEGORY_ORDER.filter((category) => BLOOD_MARKERS.some((def) => def.category === category))
-    .map((category) => ({ value: category, label: category === "Aging" ? "Aging (DunedinPACE)" : category === "Urine" ? "Urine tests" : category })),
+  ...CATEGORY_ORDER.filter((category) => BLOOD_MARKERS.some((def) => def.category === category)).map((category) => ({
+    value: category,
+    label: category === "Aging" ? "Aging (DunedinPACE)" : category === "Urine" ? "Urine tests" : category,
+  })),
 ];
 
 function normalizeSearch(text: string): string {
-  return text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  return text
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
 }
 
 export function Overview({ show }: { show?: ResultsFilter }) {
@@ -55,10 +60,11 @@ export function Overview({ show }: { show?: ResultsFilter }) {
   }
 
   const search = normalizeSearch(query.trim());
-  const matching = rows.filter(({ def }) => (
-    (category === "all" || def.category === category)
-    && (!search || [def.name, def.abbreviation ?? "", ...def.aliases].some((name) => normalizeSearch(name).includes(search)))
-  ));
+  const matching = rows.filter(
+    ({ def }) =>
+      (category === "all" || def.category === category) &&
+      (!search || [def.name, def.abbreviation ?? "", ...def.aliases].some((name) => normalizeSearch(name).includes(search))),
+  );
   // Missing readings have their own filter; unassessed readings stay under All.
   let outCount = 0;
   let inCount = 0;
@@ -68,11 +74,9 @@ export function Overview({ show }: { show?: ResultsFilter }) {
     if (row.flag === "normal") inCount++;
     if (row.ms.length === 0) emptyCount++;
   }
-  const shown = matching.filter((r) => (
-    show === "empty" ? r.ms.length === 0
-      : show === "out" ? isOutOfRange(r.flag)
-        : show === "in" ? r.flag === "normal" : true
-  ));
+  const shown = matching.filter((r) =>
+    show === "empty" ? r.ms.length === 0 : show === "out" ? isOutOfRange(r.flag) : show === "in" ? r.flag === "normal" : true,
+  );
   const byCategory = new Map<string, typeof rows>();
   for (const row of shown) {
     const list = byCategory.get(row.def.category) ?? [];
@@ -80,16 +84,19 @@ export function Overview({ show }: { show?: ResultsFilter }) {
     byCategory.set(row.def.category, list);
   }
 
-  if (managing) return (
-    <>
-      <CriticalBanner items={critical} />
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-        <PageTitle sub="Correct a saved reading, or select results to delete.">Manage blood results</PageTitle>
-        <Button variant="secondary" onClick={() => setManaging(false)}>Back to blood tests</Button>
-      </div>
-      <SavedResults measurements={all} />
-    </>
-  );
+  if (managing)
+    return (
+      <>
+        <CriticalBanner items={critical} />
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <PageTitle sub="Correct a saved reading, or select results to delete.">Manage blood results</PageTitle>
+          <Button variant="secondary" onClick={() => setManaging(false)}>
+            Back to blood tests
+          </Button>
+        </div>
+        <SavedResults measurements={all} />
+      </>
+    );
 
   const lastDate = all.reduce((d, m) => (m.date > d ? m.date : d), "");
 
@@ -108,17 +115,27 @@ export function Overview({ show }: { show?: ResultsFilter }) {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          {all.length > 0 && <Button variant="secondary" onClick={() => setManaging(true)}>Manage results</Button>}
+          {all.length > 0 && (
+            <Button variant="secondary" onClick={() => setManaging(true)}>
+              Manage results
+            </Button>
+          )}
           <LinkButton href={href({ name: "add" })}>Add result</LinkButton>
         </div>
       </div>
-      {all.length === 0 && <div className="mb-5 flex flex-col gap-3">
-        <p className="text-ink-2">No blood test results saved yet. You can browse every marker under All, or add your first results.</p>
-        <div className="flex flex-wrap gap-2">
-          <LinkButton variant="secondary" href={href({ name: "import" })}>Import a PDF or photo</LinkButton>
-          <LinkButton variant="secondary" href={href({ name: "data" })}>Restore a backup</LinkButton>
+      {all.length === 0 && (
+        <div className="mb-5 flex flex-col gap-3">
+          <p className="text-ink-2">No blood test results saved yet. You can browse every marker under All, or add your first results.</p>
+          <div className="flex flex-wrap gap-2">
+            <LinkButton variant="secondary" href={href({ name: "import" })}>
+              Import a PDF or photo
+            </LinkButton>
+            <LinkButton variant="secondary" href={href({ name: "data" })}>
+              Restore a backup
+            </LinkButton>
+          </div>
         </div>
-      </div>}
+      )}
 
       <DueExperiments all={all} />
       <BioAgeTeaser all={all} profile={profile} />
@@ -131,7 +148,10 @@ export function Overview({ show }: { show?: ResultsFilter }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Escape" && query) { e.preventDefault(); setQuery(""); }
+              if (e.key === "Escape" && query) {
+                e.preventDefault();
+                setQuery("");
+              }
             }}
             placeholder="Name, abbreviation or lab name"
             autoComplete="off"
@@ -143,11 +163,15 @@ export function Overview({ show }: { show?: ResultsFilter }) {
       <ResultsFilterBar
         show={show}
         counts={{ all: matching.length, out: outCount, in: inCount, empty: emptyCount }}
-        onClear={query || category !== "all" || show ? () => {
-          setQuery("");
-          setCategory("all");
-          if (show) location.replace(href({ name: "overview" }));
-        } : undefined}
+        onClear={
+          query || category !== "all" || show
+            ? () => {
+                setQuery("");
+                setCategory("all");
+                if (show) location.replace(href({ name: "overview" }));
+              }
+            : undefined
+        }
       />
 
       {shown.length === 0 && (
@@ -165,26 +189,27 @@ export function Overview({ show }: { show?: ResultsFilter }) {
       <div key={show ?? "all"} className="flex flex-col gap-6">
         {CATEGORY_ORDER.filter((c) => byCategory.has(c)).map((category) => {
           const categoryId = `blood-category-${CATEGORY_ORDER.indexOf(category)}`;
-          return <section key={category} aria-labelledby={categoryId}>
-            <h2 id={categoryId} className={cx("mb-2", eyebrowStyles)}>
-              {category}
-            </h2>
-            <ul className="stagger grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {byCategory
-                .get(category)!
-                .sort((a, b) => a.def.name.localeCompare(b.def.name))
-                .map(({ def, ms, flag }) => (
-                  <li key={def.id}>
-                    <MarkerRow def={def} ms={ms} flag={flag} unit={displayUnitFor(def, units[def.id])} />
-                  </li>
-                ))}
-            </ul>
-          </section>;
+          return (
+            <section key={category} aria-labelledby={categoryId}>
+              <h2 id={categoryId} className={cx("mb-2", eyebrowStyles)}>
+                {category}
+              </h2>
+              <ul className="stagger grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {byCategory
+                  .get(category)!
+                  .sort((a, b) => a.def.name.localeCompare(b.def.name))
+                  .map(({ def, ms, flag }) => (
+                    <li key={def.id}>
+                      <MarkerRow def={def} ms={ms} flag={flag} unit={displayUnitFor(def, units[def.id])} />
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          );
         })}
       </div>
     </>
   );
-
 }
 
 const FILTERS: { value: "all" | ResultsFilter; label: string; count: "all" | ResultsFilter }[] = [
@@ -231,7 +256,11 @@ function ResultsFilterBar({ show, counts, onClear }: { show?: ResultsFilter; cou
           </Toggle>
         ))}
       </ToggleGroup>
-      {onClear && <Button variant="secondary" onClick={onClear}>Clear filters</Button>}
+      {onClear && (
+        <Button variant="secondary" onClick={onClear}>
+          Clear filters
+        </Button>
+      )}
     </div>
   );
 }
@@ -247,15 +276,24 @@ function MarkerRow({ def, ms, flag, unit }: { def: BiomarkerDef; ms: readonly Me
       <div className="min-w-0">
         <div className="font-medium break-words text-ink">{fullName(def)}</div>
         <div className="text-sm text-ink-2">
-          {trend ? <>{formatDate(trend.latest.date)}{change && ` · ${change === "no change" ? "no change" : `${change} ${unit}`} since previous`}</> : "No results yet"}
+          {trend ? (
+            <>
+              {formatDate(trend.latest.date)}
+              {change && ` · ${change === "no change" ? "no change" : `${change} ${unit}`} since previous`}
+            </>
+          ) : (
+            "No results yet"
+          )}
         </div>
       </div>
-      {trend && <div className="flex shrink-0 flex-col items-end gap-1">
-        <div className="text-lg font-semibold whitespace-nowrap text-ink tabular-nums">
-          {showMeasurement(def, trend.latest, unit)} <span className="text-sm font-normal text-ink-2">{valueUnit(def, unit)}</span>
+      {trend && (
+        <div className="flex shrink-0 flex-col items-end gap-1">
+          <div className="text-lg font-semibold whitespace-nowrap text-ink tabular-nums">
+            {showMeasurement(def, trend.latest, unit)} <span className="text-sm font-normal text-ink-2">{valueUnit(def, unit)}</span>
+          </div>
+          <FlagBadge flag={flag} />
         </div>
-        <FlagBadge flag={flag} />
-      </div>}
+      )}
     </a>
   );
 }
@@ -267,7 +305,8 @@ function BioAgeTeaser({ all, profile }: { all: Measurement[]; profile: Profile }
   let text: string;
   if (latest?.status === "ok") text = `About ${formatYears(latest.phenoAge!)} years, from your test on ${formatDate(latest.date)}. An estimate, not a verdict.`;
   else if (latest?.status === "needs-birth-month") text = "You have all 9 markers. Add your month and year of birth to see the estimate.";
-  else if (summary.latestPartial) text = `${9 - summary.latestPartial.missing.length} of 9 markers from your test on ${formatDate(summary.latestPartial.date)}. See what's missing.`;
+  else if (summary.latestPartial)
+    text = `${9 - summary.latestPartial.missing.length} of 9 markers from your test on ${formatDate(summary.latestPartial.date)}. See what's missing.`;
   else return null;
   return (
     <a
@@ -278,8 +317,9 @@ function BioAgeTeaser({ all, profile }: { all: Measurement[]; profile: Profile }
         <span className="block font-medium text-ink">Biological age (PhenoAge)</span>
         <span className="text-sm text-ink-2">{text}</span>
       </span>
-      <span aria-hidden="true" className="text-xl text-accent">→</span>
+      <span aria-hidden="true" className="text-xl text-accent">
+        →
+      </span>
     </a>
   );
 }
-

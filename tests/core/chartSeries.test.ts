@@ -1,5 +1,5 @@
+import { groupingsFor, groupReadings, pointsForWindow, statsBetween } from "@bt/shared/core/chartSeries";
 import { describe, expect, it } from "vitest";
-import { groupReadings, groupingsFor, pointsForWindow, statsBetween } from "@bt/shared/core/chartSeries";
 
 const r = (date: string, value: number) => ({ date, value });
 
@@ -13,11 +13,18 @@ describe("chart series", () => {
   });
   it("averages per week (Monday to Sunday), drawn at the middle of its readings", () => {
     const w = groupReadings(nights, "week");
-    expect(w.map((p) => [p.value, p.count])).toEqual([[7, 3], [5, 1], [9, 1]]);
+    expect(w.map((p) => [p.value, p.count])).toEqual([
+      [7, 3],
+      [5, 1],
+      [9, 1],
+    ]);
     expect(w[0]).toMatchObject({ date: "2026-10-22", from: "2026-10-19", to: "2026-10-25" });
   });
   it("averages per month", () => {
-    expect(groupReadings(nights, "month").map((p) => [p.value, p.count])).toEqual([[6.5, 4], [9, 1]]);
+    expect(groupReadings(nights, "month").map((p) => [p.value, p.count])).toEqual([
+      [6.5, 4],
+      [9, 1],
+    ]);
   });
   it("offers averages only when they combine readings", () => {
     expect(groupingsFor(nights)).toEqual(["each", "week", "month"]);

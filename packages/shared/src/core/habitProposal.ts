@@ -43,7 +43,8 @@ export function parseHabitProposal(input: unknown, defs: ReadonlyMap<string, Bio
   if (label.length > MAX_LABEL) return { ok: false, error: `Keep the name under ${MAX_LABEL} characters.` };
   if (DOSE.test(label)) return { ok: false, error: "Leave out amounts and doses: the person adds those themselves, with their doctor or pharmacist." };
   if (v.category === "medication") return { ok: false, error: "Medicines can't be suggested. The person can add one themselves in Habits." };
-  if (v.category !== "supplement" && v.category !== "diet" && v.category !== "lifestyle") return { ok: false, error: "Category must be supplement, diet or lifestyle." };
+  if (v.category !== "supplement" && v.category !== "diet" && v.category !== "lifestyle")
+    return { ok: false, error: "Category must be supplement, diet or lifestyle." };
   const start = typeof v.start === "string" && v.start.trim() ? v.start.trim() : today;
   if (!isIsoDate(start)) return { ok: false, error: "Start must be a date (YYYY-MM-DD)." };
   const reason = typeof v.reason === "string" ? v.reason.trim().slice(0, 300) : "";

@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
 import { BACKUP_VERSION, createBackup, parseBackup } from "@bt/shared/core/backup";
-import { isIsoDate, daysBetween, todayIso } from "@bt/shared/core/dates";
+import { daysBetween, isIsoDate, todayIso } from "@bt/shared/core/dates";
 import { MAX_ITEMS } from "@bt/shared/core/plans";
 import type { ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { measurement } from "../helpers";
 
 describe("backup", () => {
@@ -12,18 +12,32 @@ describe("backup", () => {
       profile: { sex: "f" },
       measurements: [m],
       protocols: [{ id: "p1", label: "Iron 30 mg", category: "supplement", start: "2024-01-01" }],
-      experiments: [{ id: "e1", change: "Iron 30 mg", category: "supplement", markerIds: ["ferritin"], start: "2024-01-01", retestAfterDays: 56, protocolId: "p1" }],
+      experiments: [
+        { id: "e1", change: "Iron 30 mg", category: "supplement", markerIds: ["ferritin"], start: "2024-01-01", retestAfterDays: 56, protocolId: "p1" },
+      ],
     },
     new Date("2024-05-01T10:00:00Z"),
   );
   const routine: ProtocolEntry = {
-    id: "routine", label: "Daily routine", category: "lifestyle", start: "2024-01-01",
+    id: "routine",
+    label: "Daily routine",
+    category: "lifestyle",
+    start: "2024-01-01",
     plan: {
       id: "source",
-      items: [{
-        id: "item", label: "Oats", amount: "50 g", category: "diet", when: "morning",
-        withFood: true, days: ["mon", "wed", "fri"], note: "My breakfast", mealId: "saved-meal",
-      }],
+      items: [
+        {
+          id: "item",
+          label: "Oats",
+          amount: "50 g",
+          category: "diet",
+          when: "morning",
+          withFood: true,
+          days: ["mon", "wed", "fri"],
+          note: "My breakfast",
+          mealId: "saved-meal",
+        },
+      ],
     },
   };
 
@@ -34,9 +48,20 @@ describe("backup", () => {
 
   it("round-trips source-local sleep windows, naps and supplied offsets without filling missing offsets", () => {
     const sleep = measurement({
-      biomarkerId: "sleep_duration", date: "2026-10-25", value: 8, originalUnit: "h", source: "device",
+      biomarkerId: "sleep_duration",
+      date: "2026-10-25",
+      value: 8,
+      originalUnit: "h",
+      source: "device",
       sleepSessions: [
-        { start: "2026-10-24T23:15:00.125", end: "2026-10-25T07:30:00", kind: "asleep", source: "Synthetic watch", startOffsetMinutes: 120, endOffsetMinutes: 60 },
+        {
+          start: "2026-10-24T23:15:00.125",
+          end: "2026-10-25T07:30:00",
+          kind: "asleep",
+          source: "Synthetic watch",
+          startOffsetMinutes: 120,
+          endOffsetMinutes: 60,
+        },
         { start: "2026-10-25T14:00:00", end: "2026-10-25T14:45:00", kind: "in-bed", source: "Synthetic watch" },
       ],
     });
@@ -53,13 +78,21 @@ describe("backup", () => {
     const session = { start: "2026-10-24T23:00:00", end: "2026-10-25T07:00:00", kind: "asleep" };
     const sleep = { ...m, biomarkerId: "sleep_duration", date: "2026-10-25", qualifier: undefined };
     const damaged: unknown[] = [
-      null, {}, [], [null], new Array(1), Array(65).fill(session),
-      [{ ...session, start: "2026-10-24T23:00:00Z" }], [{ ...session, end: "2026-10-26T07:00:00" }],
-      [{ ...session, kind: ["asleep"] }], [{ ...session, endOffsetMinutes: "60" }],
+      null,
+      {},
+      [],
+      [null],
+      new Array(1),
+      Array(65).fill(session),
+      [{ ...session, start: "2026-10-24T23:00:00Z" }],
+      [{ ...session, end: "2026-10-26T07:00:00" }],
+      [{ ...session, kind: ["asleep"] }],
+      [{ ...session, endOffsetMinutes: "60" }],
     ];
     for (const sleepSessions of damaged) {
       expect(parseBackup({ ...backup, measurements: [m, { ...sleep, sleepSessions }] })).toMatchObject({
-        ok: false, error: expect.stringMatching(/number 2.*damaged/),
+        ok: false,
+        error: expect.stringMatching(/number 2.*damaged/),
       });
     }
     for (const biomarkerId of ["sleep_deep", "sleep_rem", "resting_hr"]) {
@@ -79,12 +112,24 @@ describe("backup", () => {
     const plan = routine.plan!;
     const item = plan.items[0]!;
     const damaged: unknown[] = [
-      null, [], "source", {}, { ...plan, id: "" }, { ...plan, id: 3 }, { ...plan, items: null },
-      { ...plan, items: [null] }, { ...plan, items: [{ ...item, id: "" }] }, { ...plan, items: [{ ...item, label: "" }] },
-      { ...plan, items: [{ ...item, category: "medicine" }] }, { ...plan, items: [{ ...item, when: "lunch" }] },
-      { ...plan, items: [{ ...item, amount: "x".repeat(41) }] }, { ...plan, items: [{ ...item, withFood: "yes" }] },
-      { ...plan, items: [{ ...item, days: ["mon", "mon"] }] }, { ...plan, items: [{ ...item, days: ["someday"] }] },
-      { ...plan, items: [{ ...item, note: "x".repeat(301) }] }, { ...plan, items: [{ ...item, mealId: 3 }] },
+      null,
+      [],
+      "source",
+      {},
+      { ...plan, id: "" },
+      { ...plan, id: 3 },
+      { ...plan, items: null },
+      { ...plan, items: [null] },
+      { ...plan, items: [{ ...item, id: "" }] },
+      { ...plan, items: [{ ...item, label: "" }] },
+      { ...plan, items: [{ ...item, category: "medicine" }] },
+      { ...plan, items: [{ ...item, when: "lunch" }] },
+      { ...plan, items: [{ ...item, amount: "x".repeat(41) }] },
+      { ...plan, items: [{ ...item, withFood: "yes" }] },
+      { ...plan, items: [{ ...item, days: ["mon", "mon"] }] },
+      { ...plan, items: [{ ...item, days: ["someday"] }] },
+      { ...plan, items: [{ ...item, note: "x".repeat(301) }] },
+      { ...plan, items: [{ ...item, mealId: 3 }] },
       { ...plan, items: Array.from({ length: MAX_ITEMS + 1 }, (_, i) => ({ ...item, id: `item-${i}` })) },
     ];
     for (const snapshot of damaged) {

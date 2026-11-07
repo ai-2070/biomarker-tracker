@@ -155,14 +155,30 @@
   & > * {
     animation: enter 360ms var(--ease-soft) both;
   }
-  & > :nth-child(2) { animation-delay: 35ms; }
-  & > :nth-child(3) { animation-delay: 70ms; }
-  & > :nth-child(4) { animation-delay: 105ms; }
-  & > :nth-child(5) { animation-delay: 140ms; }
-  & > :nth-child(6) { animation-delay: 175ms; }
-  & > :nth-child(7) { animation-delay: 210ms; }
-  & > :nth-child(8) { animation-delay: 245ms; }
-  & > :nth-child(n + 9) { animation-delay: 280ms; }
+  & > :nth-child(2) {
+    animation-delay: 35ms;
+  }
+  & > :nth-child(3) {
+    animation-delay: 70ms;
+  }
+  & > :nth-child(4) {
+    animation-delay: 105ms;
+  }
+  & > :nth-child(5) {
+    animation-delay: 140ms;
+  }
+  & > :nth-child(6) {
+    animation-delay: 175ms;
+  }
+  & > :nth-child(7) {
+    animation-delay: 210ms;
+  }
+  & > :nth-child(8) {
+    animation-delay: 245ms;
+  }
+  & > :nth-child(n + 9) {
+    animation-delay: 280ms;
+  }
 }
 
 :root[data-theme="dark"] {
@@ -253,11 +269,22 @@ body {
   .paper-preview {
     --preview-x: 0px;
     --preview-y: 8px;
-    transition: opacity 220ms ease-out, scale 320ms var(--ease-soft), translate 320ms var(--ease-soft);
+    transition:
+      opacity 220ms ease-out,
+      scale 320ms var(--ease-soft),
+      translate 320ms var(--ease-soft);
   }
-  .paper-preview[data-side="bottom"] { --preview-y: -8px; }
-  .paper-preview[data-side="left"] { --preview-x: 8px; --preview-y: 0px; }
-  .paper-preview[data-side="right"] { --preview-x: -8px; --preview-y: 0px; }
+  .paper-preview[data-side="bottom"] {
+    --preview-y: -8px;
+  }
+  .paper-preview[data-side="left"] {
+    --preview-x: 8px;
+    --preview-y: 0px;
+  }
+  .paper-preview[data-side="right"] {
+    --preview-x: -8px;
+    --preview-y: 0px;
+  }
   .paper-preview[data-starting-style] {
     scale: 0.96;
     translate: var(--preview-x) var(--preview-y);
@@ -270,10 +297,18 @@ body {
   .paper-preview-content > * {
     animation: paper-preview-text 300ms var(--ease-soft) backwards;
   }
-  .paper-preview-content > :nth-child(2) { animation-delay: 30ms; }
-  .paper-preview-content > :nth-child(3) { animation-delay: 60ms; }
-  .paper-preview-content > :nth-child(4) { animation-delay: 90ms; }
-  .paper-preview-content > :nth-child(n + 5) { animation-delay: 120ms; }
+  .paper-preview-content > :nth-child(2) {
+    animation-delay: 30ms;
+  }
+  .paper-preview-content > :nth-child(3) {
+    animation-delay: 60ms;
+  }
+  .paper-preview-content > :nth-child(4) {
+    animation-delay: 90ms;
+  }
+  .paper-preview-content > :nth-child(n + 5) {
+    animation-delay: 120ms;
+  }
   /* Finish any text entrance immediately on dismissal, including a quick hover. */
   .paper-preview[data-ending-style] .paper-preview-content > * {
     animation: none;

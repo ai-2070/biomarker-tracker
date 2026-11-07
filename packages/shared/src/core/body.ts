@@ -37,10 +37,44 @@ export type BodyField =
   | "one_leg_stand"
   | "gait_speed"
   | "sitting_rising";
-export const BODY_FIELDS: readonly BodyField[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+export const BODY_FIELDS: readonly BodyField[] = [
+  "weight",
+  "waist",
+  "body_fat",
+  "bp_systolic",
+  "bp_diastolic",
+  "resting_hr",
+  "heart_rate",
+  "exercise_hr",
+  "hrv",
+  "hrv_resting",
+  "spo2",
+  "glucose_home",
+  "sleep_duration",
+  "sleep_deep",
+  "sleep_rem",
+  "vo2max",
+  "steps",
+  "active_minutes",
+  "pushups",
+  "grip_strength",
+  "sit_to_stand_5x",
+  "chair_stand_30s",
+  "one_leg_stand",
+  "gait_speed",
+  "sitting_rising",
+];
 
 /** The fitness tests among the body fields, in the order they're shown. */
-export const FITNESS_FIELDS: readonly BodyField[] = ["pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+export const FITNESS_FIELDS: readonly BodyField[] = [
+  "pushups",
+  "grip_strength",
+  "sit_to_stand_5x",
+  "chair_stand_30s",
+  "one_leg_stand",
+  "gait_speed",
+  "sitting_rising",
+];
 
 /** Sleep is counted per night (dated by the morning you woke up): readings on one day add up, naps included. */
 export const SLEEP_FIELDS: ReadonlySet<BodyField> = new Set(["sleep_duration", "sleep_deep", "sleep_rem"]);
@@ -54,7 +88,11 @@ export const DAILY_TOTAL_FIELDS: ReadonlySet<BodyField> = new Set([...SLEEP_FIEL
 /** Body measurements in groups, for the Body dashboard and the entry form. */
 export const BODY_GROUPS: readonly { id: "size" | "heart" | "sleep" | "activity" | "sugar" | "fitness"; title: string; fields: readonly BodyField[] }[] = [
   { id: "size", title: "Size and composition", fields: ["weight", "waist", "body_fat"] },
-  { id: "heart", title: "Heart and oxygen", fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "vo2max"] },
+  {
+    id: "heart",
+    title: "Heart and oxygen",
+    fields: ["bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "vo2max"],
+  },
   { id: "sleep", title: "Sleep", fields: ["sleep_duration", "sleep_deep", "sleep_rem"] },
   { id: "activity", title: "Activity", fields: ["steps", "active_minutes"] },
   { id: "sugar", title: "Blood sugar", fields: ["glucose_home"] },
@@ -103,7 +141,7 @@ export function heightInCm(value: number, unit: HeightUnit, inches = 0): number 
 /** Height for display in feet and hundredths of an inch, carrying 12 inches into the next foot. */
 export function heightInFeet(cm: number | undefined): { feet: number; inches: number } | undefined {
   if (cm === undefined || heightInCm(cm, "cm") === undefined) return undefined;
-  const hundredths = Math.round(cm / 2.54 * 100);
+  const hundredths = Math.round((cm / 2.54) * 100);
   return { feet: Math.floor(hundredths / 1200), inches: (hundredths % 1200) / 100 };
 }
 
@@ -144,7 +182,14 @@ export function bmrMifflinTerms(
 ): { weight: number; height: number; age: number; sex: number; total: number; outsideStudyAges: boolean } | undefined {
   const total = bmrMifflin(weightKg, heightCm, ageYears, sex);
   if (total === undefined) return undefined;
-  return { weight: 10 * weightKg, height: 6.25 * heightCm!, age: -5 * ageYears!, sex: sex === "m" ? 5 : -161, total, outsideStudyAges: ageYears! < 19 || ageYears! >= 79 };
+  return {
+    weight: 10 * weightKg,
+    height: 6.25 * heightCm!,
+    age: -5 * ageYears!,
+    sex: sex === "m" ? 5 : -161,
+    total,
+    outsideStudyAges: ageYears! < 19 || ageYears! >= 79,
+  };
 }
 
 /**
@@ -262,7 +307,9 @@ export function validateBodyEntry(
     const v = input.values[f]!;
     const r = validateManualEntry({ biomarkerId: f, value: v.value, unit: v.unit, date: input.date }, defs, today);
     if (!r.ok) {
-      const rest = Object.entries(r.errors).filter(([k]) => k !== "date").map(([, e]) => e);
+      const rest = Object.entries(r.errors)
+        .filter(([k]) => k !== "date")
+        .map(([, e]) => e);
       if (rest.length) errors[f] = rest.join(" ");
       continue;
     }

@@ -1,7 +1,7 @@
 import { deflateRawSync } from "node:zlib";
-import { describe, expect, it, vi } from "vitest";
 import { zipEntries } from "@bt/shared/core/importers/zipRead";
 import { crc32, zipStore } from "@bt/shared/core/zipStore";
+import { describe, expect, it, vi } from "vitest";
 
 function compressedZip(data: Uint8Array) {
   const compressed = deflateRawSync(data);
@@ -39,20 +39,27 @@ function trackedBlob(blob: Blob) {
   const originalSlice = blob.slice.bind(blob);
   vi.spyOn(blob, "slice").mockImplementation((start, end) => {
     const part = originalSlice(start, end);
-    Object.defineProperty(part, "stream", { value: () => {
-      stats.opens++;
-      let offset = 0;
-      return new ReadableStream<Uint8Array>({
-        async pull(controller) {
-          if (offset >= part.size) return controller.close();
-          const chunk = new Uint8Array(await part.slice(offset, offset + 65_536).arrayBuffer());
-          offset += chunk.byteLength;
-          stats.bytes += chunk.byteLength;
-          controller.enqueue(chunk);
-        },
-        cancel(reason) { stats.cancelled = reason; },
-      }, { highWaterMark: 0 });
-    } });
+    Object.defineProperty(part, "stream", {
+      value: () => {
+        stats.opens++;
+        let offset = 0;
+        return new ReadableStream<Uint8Array>(
+          {
+            async pull(controller) {
+              if (offset >= part.size) return controller.close();
+              const chunk = new Uint8Array(await part.slice(offset, offset + 65_536).arrayBuffer());
+              offset += chunk.byteLength;
+              stats.bytes += chunk.byteLength;
+              controller.enqueue(chunk);
+            },
+            cancel(reason) {
+              stats.cancelled = reason;
+            },
+          },
+          { highWaterMark: 0 },
+        );
+      },
+    });
     return part;
   });
   return stats;

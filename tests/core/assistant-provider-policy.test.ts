@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { canUse, isLocalUrl, modelEfforts } from "@bt/shared/core/aiProviders";
+import { describe, expect, it } from "vitest";
 
 describe("assistant provider capabilities", () => {
   it("assistant-model-efforts excludes Mistral Large without hiding supported model controls", () => {
@@ -9,7 +9,10 @@ describe("assistant provider capabilities", () => {
     expect(modelEfforts("mistral", "magistral-medium-latest")).toEqual(["low", "high"]);
     expect(modelEfforts("openai", "gpt-test")).toEqual(["low", "medium", "high"]);
     expect(modelEfforts("unknown", "x")).toEqual([]);
-    expect(canUse({ provider: "mistral", model: "mistral-large-latest", effort: "high" }, { zdrConfirmed: true }, true)).toEqual({ ok: false, reason: expect.stringMatching(/doesn't support.*effort/) });
+    expect(canUse({ provider: "mistral", model: "mistral-large-latest", effort: "high" }, { zdrConfirmed: true }, true)).toEqual({
+      ok: false,
+      reason: expect.stringMatching(/doesn't support.*effort/),
+    });
     expect(canUse({ provider: "mistral", model: "mistral-large-latest" }, { zdrConfirmed: true }, true)).toEqual({ ok: true });
     expect(canUse({ provider: "mistral", model: "mistral-medium-latest", effort: "high" }, { zdrConfirmed: true }, true)).toEqual({ ok: true });
   });

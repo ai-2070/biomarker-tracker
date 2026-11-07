@@ -6,7 +6,18 @@ import { daysBetween } from "./dates";
 import { retestDate } from "./experiments";
 import { summarizePhenoAge } from "./phenoageDraws";
 import { isActiveOn } from "./protocols";
-import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, isOutOfRange, resolveRange, sortByDate, type Flag, type ResolvedRange } from "./trends";
+import {
+  computeTrend,
+  type Flag,
+  flagLatest,
+  flagMeasurement,
+  groupByBiomarker,
+  isCritical,
+  isOutOfRange,
+  type ResolvedRange,
+  resolveRange,
+  sortByDate,
+} from "./trends";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export interface DashboardMarker {
@@ -108,7 +119,12 @@ export function buildDashboard(input: {
         const def = defs.get(m.biomarkerId);
         return def ? [{ id: m.biomarkerId, flag: flagMeasurement(def, m, profile) }] : [];
       });
-      return { date, results: ms.length, outOfRange: flags.filter((f) => isOutOfRange(f.flag)).map((f) => f.id), critical: flags.filter((f) => isCritical(f.flag)).map((f) => f.id) };
+      return {
+        date,
+        results: ms.length,
+        outOfRange: flags.filter((f) => isOutOfRange(f.flag)).map((f) => f.id),
+        critical: flags.filter((f) => isCritical(f.flag)).map((f) => f.id),
+      };
     });
 
   const bioAge: BioAgePoint[] = summarizePhenoAge(measurements, profile.birthMonth).draws.flatMap((d) =>

@@ -1,8 +1,7 @@
-import { describe, expect, it } from "vitest";
 import {
-  DailyTally,
   appleRecords,
   columnReadings,
+  DailyTally,
   dailyAverages,
   findDateColumn,
   guessColumn,
@@ -12,6 +11,7 @@ import {
   tableOf,
   toIsoDate,
 } from "@bt/shared/core/importers/deviceFiles";
+import { describe, expect, it } from "vitest";
 
 // Synthetic files shaped like real exports; no real person's data.
 
@@ -68,12 +68,13 @@ describe("recognising columns", () => {
     expect(g("Move Minutes count")).toMatchObject({ field: null, reason: expect.stringMatching(/light activity/) });
     expect(g("Lean body mass")).toBeUndefined();
   });
-  it.each(["body_fat_mass", "bodyFatMass", "Body fat (kg)", "Fat (kg)", "Fat mass (lb)", "Fat mass (kg)"])("does not import %s as a percentage or total body weight", (header) => {
-    const result = readTable("body/weight.csv", tableOf(parseCsv(`date,${header}\n2026-03-01,20\n`))!);
-    expect(result.columns).toEqual([
-      { header: expect.any(String), field: null, unit: "", reason: expect.any(String), readings: [] },
-    ]);
-  });
+  it.each(["body_fat_mass", "bodyFatMass", "Body fat (kg)", "Fat (kg)", "Fat mass (lb)", "Fat mass (kg)"])(
+    "does not import %s as a percentage or total body weight",
+    (header) => {
+      const result = readTable("body/weight.csv", tableOf(parseCsv(`date,${header}\n2026-03-01,20\n`))!);
+      expect(result.columns).toEqual([{ header: expect.any(String), field: null, unit: "", reason: expect.any(String), readings: [] }]);
+    },
+  );
   it("finds the date column", () => {
     const t = tableOf(parseCsv(takeout))!;
     expect(findDateColumn(t.headers, t.data)).toBe(0);
@@ -148,7 +149,13 @@ describe("Apple Health", () => {
 describe("daily tally for big files", () => {
   it("keeps a running average per source and day", () => {
     const t = new DailyTally();
-    for (const [d, v] of [["2026-03-01", 70], ["2026-03-01", 80], ["2026-03-02", 60], ["2026-03-02", 0]] as const) t.add("HeartRate", "heart_rate", "bpm", d, v, (x) => x);
+    for (const [d, v] of [
+      ["2026-03-01", 70],
+      ["2026-03-01", 80],
+      ["2026-03-02", 60],
+      ["2026-03-02", 0],
+    ] as const)
+      t.add("HeartRate", "heart_rate", "bpm", d, v, (x) => x);
     const [s] = t.series();
     expect(s!.days).toEqual([
       { date: "2026-03-01", value: 75, readings: 2 },
@@ -180,7 +187,8 @@ describe("steps and active minutes", () => {
     expect(g("Activity calories")).toBeUndefined();
   });
   it("adds up Fitbit's fairly and very active minutes, with steps from the same file", () => {
-    const csv = "Date,Steps,Minutes Sedentary,Minutes Lightly Active,Minutes Fairly Active,Minutes Very Active\n2026-03-01,8412,600,180,20,15\n2026-03-02,10240,580,200,10,40";
+    const csv =
+      "Date,Steps,Minutes Sedentary,Minutes Lightly Active,Minutes Fairly Active,Minutes Very Active\n2026-03-01,8412,600,180,20,15\n2026-03-02,10240,580,200,10,40";
     const r = readTable("Fitbit/activities.csv", tableOf(parseCsv(csv))!);
     const by = (f: string) => r.columns.find((c) => c.field === f)!;
     expect(by("steps").readings.map((x) => x.value)).toEqual([8412, 10240]);
@@ -213,7 +221,16 @@ describe("steps and active minutes", () => {
     expect(series).toEqual({ "Steps (iPhone)": [4200], "Steps (Apple Watch)": [1300], "Exercise minutes (Apple Watch)": [33] });
   });
   it("leaves out days with no steps at all (the device wasn't worn)", () => {
-    const s = dailyAverages("steps", "steps", "Steps", [{ date: "2026-03-01", value: 0 }, { date: "2026-03-02", value: 6500 }], (v) => v);
+    const s = dailyAverages(
+      "steps",
+      "steps",
+      "Steps",
+      [
+        { date: "2026-03-01", value: 0 },
+        { date: "2026-03-02", value: 6500 },
+      ],
+      (v) => v,
+    );
     expect(s.days.map((d) => d.date)).toEqual(["2026-03-02"]);
     expect(s.dropped).toBe(1);
   });

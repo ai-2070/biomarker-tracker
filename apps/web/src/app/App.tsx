@@ -1,27 +1,38 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { db, deleteEverything, ensureExampleSleepData, forgetBrowserAiKey, getProfile, isOnboarded } from "../db/db";
 import { localServer } from "./api";
+import { openBrain } from "./brain/store";
 import { AppShell, PlainShell } from "./components/AppShell";
 import { Notice } from "./components/ui";
 import { AddResult } from "./pages/AddResult";
-import { IntakePage } from "./pages/IntakePage";
-import { BloodDashboardPage } from "./pages/DashboardPage";
 import { BodyPage } from "./pages/BodyPage";
+import { BloodDashboardPage } from "./pages/DashboardPage";
 import { DeviceImportPage } from "./pages/DeviceImportPage";
+import { ExperimentPage } from "./pages/ExperimentsPage";
+import { HabitsPage } from "./pages/HabitsPage";
 import { HomePage } from "./pages/HomePage";
-import { SoonPage } from "./pages/SoonPage";
-import { SettingsPage } from "./pages/SettingsPage";
-import { openBrain } from "./brain/store";
+import { ImportPage } from "./pages/ImportPage";
+import { IntakePage } from "./pages/IntakePage";
 import { NotFound } from "./pages/NotFound";
 import { Overview } from "./pages/Overview";
 import { PhenoAgePage } from "./pages/PhenoAgePage";
-import { ImportPage } from "./pages/ImportPage";
-import { HabitsPage } from "./pages/HabitsPage";
 import { ProfilesPage } from "./pages/ProfilesPage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { SetupPage } from "./pages/SetupPage";
-import { ExperimentPage } from "./pages/ExperimentsPage";
-import { ProfilesContext, claimWorkingCopy, createProfile, hasBrowserData, listProfiles, loadIntoBrowser, loadedProfileId, startSaving, type ProfilesState, type ProfileSummary } from "./profiles";
-import { href, useRoute, type Route } from "./router";
+import { SoonPage } from "./pages/SoonPage";
+import {
+  claimWorkingCopy,
+  createProfile,
+  hasBrowserData,
+  listProfiles,
+  loadedProfileId,
+  loadIntoBrowser,
+  type ProfileSummary,
+  ProfilesContext,
+  type ProfilesState,
+  startSaving,
+} from "./profiles";
+import { href, type Route, useRoute } from "./router";
 
 // The chart library is large; load it only when a marker page is opened.
 const PeriodSummaryPage = lazy(() => import("./pages/PeriodSummaryPage").then((m) => ({ default: m.PeriodSummaryPage })));
@@ -67,7 +78,7 @@ async function boot(): Promise<Boot> {
   if (loaded && !profiles.some((p) => p.id === loaded)) await deleteEverything();
   if (profiles.length === 0) return { state: "setup", mode: "folders", existing: await db.measurements.count(), root };
   // Preserve all unowned person data before replacing this origin's working copy.
-  if (!loaded && await hasBrowserData()) {
+  if (!loaded && (await hasBrowserData())) {
     const person = await getProfile();
     await createProfile({ ...person, name: person.name || "Saved from this browser" }, { fromBrowser: true });
     return boot();
@@ -167,7 +178,15 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <ImportPage />;
     case "habits":
       // Keyed so a new "add" link opens a fresh form.
-      return <HabitsPage key={`${route.add ?? ""}|${route.marker ?? ""}|${route.meal ?? ""}|${route.type ?? ""}`} add={route.add} marker={route.marker} meal={route.meal} type={route.type} />;
+      return (
+        <HabitsPage
+          key={`${route.add ?? ""}|${route.marker ?? ""}|${route.meal ?? ""}|${route.type ?? ""}`}
+          add={route.add}
+          marker={route.marker}
+          meal={route.meal}
+          type={route.type}
+        />
+      );
     case "wholefoods":
       return <WholeFoodsPage />;
     case "wholefood":
@@ -215,5 +234,12 @@ function OpenBrain({ ask }: { ask?: string }) {
 
 function pageKey(route: Route): string {
   if (route.name === "soon") return `soon/${route.section}`;
-  return route.name === "marker" || route.name === "experiment" || route.name === "nutrient" || route.name === "plan" || route.name === "meal" || route.name === "example-meal" ? `${route.name}/${route.id}` : route.name;
+  return route.name === "marker" ||
+    route.name === "experiment" ||
+    route.name === "nutrient" ||
+    route.name === "plan" ||
+    route.name === "meal" ||
+    route.name === "example-meal"
+    ? `${route.name}/${route.id}`
+    : route.name;
 }

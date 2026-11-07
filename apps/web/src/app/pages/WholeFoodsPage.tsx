@@ -1,33 +1,32 @@
-import { useState } from "react";
 import { todayIso } from "@bt/shared/core/dates";
-import { NUTRIENT_OF_KEY, adultReference, mealTotals, shareOfReference, type FoodDb } from "@bt/shared/core/meals";
+import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
+import { adultReference, type FoodDb, mealTotals, NUTRIENT_OF_KEY, shareOfReference } from "@bt/shared/core/meals";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
-import type { SafetyId } from "@bt/shared/core/types";
+import type { Citation, SafetyId } from "@bt/shared/core/types";
 import { formatValue } from "@bt/shared/core/units";
 import { FOOD_GROUPS, type FoodGroup, type LoreSource, type ModernVerdict, type WholeFoodDef } from "@bt/shared/core/wholeFoods";
-import type { Citation } from "@bt/shared/core/types";
+import { useState } from "react";
+import names from "../../../../../knowledge/names.json";
 import { AddToProtocol } from "../components/AddToProtocol";
-import { StudyLink } from "../components/evidence";
+import { ClockNote } from "../components/ClockEvidence";
+import { More } from "../components/disclosure";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
+import { StudyLink } from "../components/evidence";
 import { Findings } from "../components/findings";
 import { anchorId, jump } from "../components/glance";
 import { SearchIcon } from "../components/icons";
+import { KnowledgeName } from "../components/KnowledgeName";
 import { LifestyleFigure } from "../components/LifestyleVisuals";
+import { PaperLink } from "../components/PaperLink";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, LinkButton, PageTitle, cx, inputStyles, eyebrowStyles, linkCardStyles } from "../components/ui";
+import { Button, Card, cx, eyebrowStyles, inputStyles, LinkButton, linkCardStyles, PageTitle } from "../components/ui";
 import { useFoodDb } from "../foodDb";
 import { useProfile, useProtocols } from "../hooks";
-import { BIOMARKER_MAP, NUTRIENT_MAP, WHOLE_FOODS, WHOLE_FOOD_MAP, fullName } from "../knowledge";
+import { BIOMARKER_MAP, fullName, NUTRIENT_MAP, WHOLE_FOOD_MAP, WHOLE_FOODS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-import { ClockNote } from "../components/ClockEvidence";
-import names from "../../../../../knowledge/names.json";
-import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
-import { KnowledgeName } from "../components/KnowledgeName";
-import { PaperLink } from "../components/PaperLink";
-import { More } from "../components/disclosure";
 
 const GROUP_LABEL: Record<FoodGroup, string> = {
   fruit: "Fruit",
@@ -99,10 +98,7 @@ export function WholeFoodsPage() {
             .sort((a, b) => FOOD_GROUPS.indexOf(a.group) - FOOD_GROUPS.indexOf(b.group) || a.name.localeCompare(b.name))
             .map((f) => (
               <li key={f.id}>
-                <a
-                  href={href({ name: "wholefood", id: f.id })}
-                  className={cx("flex h-full flex-col gap-3", linkCardStyles)}
-                >
+                <a href={href({ name: "wholefood", id: f.id })} className={cx("flex h-full flex-col gap-3", linkCardStyles)}>
                   <div>
                     <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
                     <h2 className="font-serif text-2xl font-normal">{f.name}</h2>
@@ -111,13 +107,15 @@ export function WholeFoodsPage() {
                 </a>
               </li>
             ))}
-          {shownNames.map(({ name }) => <KnowledgeName key={`name:${name}`} name={name} />)}
+          {shownNames.map(({ name }) => (
+            <KnowledgeName key={`name:${name}`} name={name} />
+          ))}
         </ul>
       )}
 
       <p className="mt-6 text-sm text-ink-2">
-        For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician.
-        Most food research follows people over years rather than testing the food in a trial, and the grades say so.
+        For guides with cited studies, grades and wording are a first draft, not yet reviewed by a clinician. Most food research follows people over years
+        rather than testing the food in a trial, and the grades say so.
       </p>
     </>
   );
@@ -264,7 +262,10 @@ export function WholeFoodPage({ id }: { id: string }) {
           {hasEvidenceMap(mapId) && (
             <Card id="evidence-map" className="flex scroll-mt-6 flex-col gap-4">
               <H2>How the evidence was found</H2>
-              <EvidenceMap mapId={mapId} citedTitles={Object.fromEntries(f.findings.flatMap((x) => x.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))} />
+              <EvidenceMap
+                mapId={mapId}
+                citedTitles={Object.fromEntries(f.findings.flatMap((x) => x.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))}
+              />
             </Card>
           )}
 
@@ -272,8 +273,8 @@ export function WholeFoodPage({ id }: { id: string }) {
             <Card className="flex flex-col gap-3">
               <H2>Test it on yourself</H2>
               <p className="text-ink-2">
-                Log it as a habit and pick markers to watch, such as your {fullName(BIOMARKER_MAP.get(watch)!).toLowerCase()}. The app compares your results before
-                and after, allowing for normal variation. What it shows is what happened in you, including everything the food table doesn't measure.
+                Log it as a habit and pick markers to watch, such as your {fullName(BIOMARKER_MAP.get(watch)!).toLowerCase()}. The app compares your results
+                before and after, allowing for normal variation. What it shows is what happened in you, including everything the food table doesn't measure.
               </p>
               <div>
                 <LinkButton variant="secondary" href={href({ name: "habits", add: f.name, type: "diet", marker: watch })}>
@@ -284,7 +285,12 @@ export function WholeFoodPage({ id }: { id: string }) {
           )}
 
           <span id="research" className="-mb-5 block scroll-mt-6" aria-hidden="true" />
-          <ResearchPanel name={f.name} terms={[f.name]} question={`What does research say about eating ${f.name.toLowerCase()}, and is it relevant to my results?`} critical={false} />
+          <ResearchPanel
+            name={f.name}
+            terms={[f.name]}
+            question={`What does research say about eating ${f.name.toLowerCase()}, and is it relevant to my results?`}
+            critical={false}
+          />
 
           <Card>
             <h2 className="mb-2 font-semibold">General sources</h2>
@@ -321,7 +327,13 @@ function SourceLine({ src }: { src: LoreSource | Citation }) {
     return (
       <>
         <span>{src.kind === "ancient text" ? "Text: " : "Source: "}</span>
-        <PaperLink href={url} source={{ title: src.title, authors: src.author, kind: src.kind === "ancient text" ? "Ancient text" : "Scholarship" }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+        <PaperLink
+          href={url}
+          source={{ title: src.title, authors: src.author, kind: src.kind === "ancient text" ? "Ancient text" : "Scholarship" }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink underline underline-offset-2"
+        >
           {src.title}
         </PaperLink>
         {[src.author, src.when].filter(Boolean).length > 0 && <span> ({[src.author, src.when].filter(Boolean).join(", ")})</span>}
@@ -359,7 +371,9 @@ function History({ f }: { f: WholeFoodDef }) {
   };
   // Health: every old use, and the beliefs with a health claim (they carry a verdict).
   const health: HealthBelief[] = [
-    ...(f.lore ?? []).flatMap((l) => (l.modern ? [{ who: l.who, text: l.belief, modern: l.modern, finding: l.finding, note: l.note, sources: l.sources }] : [])),
+    ...(f.lore ?? []).flatMap((l) =>
+      l.modern ? [{ who: l.who, text: l.belief, modern: l.modern, finding: l.finding, note: l.note, sources: l.sources }] : [],
+    ),
     ...(f.history ?? []).map((h) => ({ who: h.who, text: h.use, modern: h.modern, finding: h.finding, note: h.note, sources: h.sources })),
   ];
   const stories = (f.lore ?? []).filter((l) => !l.modern);
@@ -368,9 +382,9 @@ function History({ f }: { f: WholeFoodDef }) {
       <div>
         <H2>Then and now</H2>
         <p className="mt-1 max-w-3xl text-ink-2">
-          What people believed {f.name.toLowerCase()} did for health, long before laboratories, and what modern studies found. People judged a food
-          by eating it and watching what followed, which tests everything in it, including what no food table measures; but watching without a
-          comparison group is also fooled by illnesses that pass on their own, so each belief is checked against the studies.
+          What people believed {f.name.toLowerCase()} did for health, long before laboratories, and what modern studies found. People judged a food by eating it
+          and watching what followed, which tests everything in it, including what no food table measures; but watching without a comparison group is also
+          fooled by illnesses that pass on their own, so each belief is checked against the studies.
         </p>
       </div>
 
@@ -416,9 +430,16 @@ function History({ f }: { f: WholeFoodDef }) {
       )}
 
       {stories.length > 0 && (
-        <More summary={<><span>
-              Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
-            </span></>} boxed>
+        <More
+          summary={
+            <>
+              <span>
+                Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
+              </span>
+            </>
+          }
+          boxed
+        >
           <ul className="flex flex-col gap-4 border-t border-line p-3">
             {stories.map((l) => (
               <li key={`${l.who}|${l.belief}`} className="flex flex-col gap-1 border-l-2 border-line-strong pl-3">
@@ -466,11 +487,16 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
           })
           .sort((a, b) => b.share - a.share)
           .slice(0, 4);
-        const basics = (["energyKcal", "fibre", "sugars", "fat"] as const).flatMap((k) => (amount(k) ? [[db.nutrients[k]?.label ?? k, amount(k)!] as const] : []));
+        const basics = (["energyKcal", "fibre", "sugars", "fat"] as const).flatMap((k) =>
+          amount(k) ? [[db.nutrients[k]?.label ?? k, amount(k)!] as const] : [],
+        );
         return (
           <div key={t.id} className="flex flex-col gap-1.5 text-sm">
             <p>
-              <span className="font-medium">{t.label}</span> <span className="text-ink-2">({name}, {formatValue(t.grams)} g)</span>
+              <span className="font-medium">{t.label}</span>{" "}
+              <span className="text-ink-2">
+                ({name}, {formatValue(t.grams)} g)
+              </span>
             </p>
             <p className="text-ink-2 tabular-nums">{basics.map(([label, v]) => `${label.replace(/ \(.*\)$/, "")} ${v}`).join(" · ")}</p>
             {top.length > 0 && (
@@ -491,8 +517,8 @@ function Measured({ f, db }: { f: WholeFoodDef; db: FoodDb | undefined }) {
         );
       })}
       <p className="text-xs text-ink-2">
-        The table measures about 30 nutrients. The compounds this food is known for, listed above, mostly aren't among them, so these numbers are
-        only part of the story.{" "}
+        The table measures about 30 nutrients. The compounds this food is known for, listed above, mostly aren't among them, so these numbers are only part of
+        the story.{" "}
         <a href={href({ name: "meals", section: "dark-matter" })} className="text-accent">
           What food tables can't tell you
         </a>

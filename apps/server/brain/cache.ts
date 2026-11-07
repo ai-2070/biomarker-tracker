@@ -9,8 +9,8 @@
 //   the zero-retention routing).
 // - Local and other providers: nothing to ask for; a stable prefix already helps servers that reuse it.
 import crypto from "node:crypto";
-import type { generateText, ModelMessage, SystemModelMessage } from "ai";
 import type { ProviderId } from "@bt/shared/core/aiProviders";
+import type { generateText, ModelMessage, SystemModelMessage } from "ai";
 import type { PromptParts } from "./prompt";
 
 /** Per-provider request options, as the AI SDK takes them. */
@@ -36,9 +36,10 @@ export function cacheLayout(provider: ProviderId, parts: PromptParts, messages: 
     ...(parts.request ? [{ role: "system" as const, content: parts.request }] : []),
   ];
   const last = messages.length - 1;
-  const marked = anthropic && last >= 0
-    ? messages.map((m, i) => (i === last ? { ...m, providerOptions: { ...m.providerOptions, ...EPHEMERAL } } as ModelMessage : m))
-    : messages;
+  const marked =
+    anthropic && last >= 0
+      ? messages.map((m, i) => (i === last ? ({ ...m, providerOptions: { ...m.providerOptions, ...EPHEMERAL } } as ModelMessage) : m))
+      : messages;
   const providerOptions: ProviderOptions = provider === "openai" ? { openai: { promptCacheKey: key } } : {};
   return { instructions, messages: marked, providerOptions };
 }

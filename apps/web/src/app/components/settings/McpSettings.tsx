@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { Field } from "@base-ui/react/field";
-import type { McpPreset } from "@bt/shared/core/mcpPresets";
-import { localServer } from "../../api";
 import type { McpServerListing, McpTest } from "@bt/shared/api/types";
+import type { McpPreset } from "@bt/shared/core/mcpPresets";
+import { useEffect, useState } from "react";
+import { localServer } from "../../api";
 import { ConfirmDialog } from "../ConfirmDialog";
-import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles, cardStyles, eyebrowStyles } from "../ui";
+import { Button, Card, cardStyles, cx, errorStyles, eyebrowStyles, helpStyles, inputStyles, labelStyles, Notice } from "../ui";
 import { OnOff } from "./SkillsSettings";
 
 type ServerRow = McpServerListing;
@@ -58,7 +58,19 @@ function EnvFields({ server, preset, onSaved }: { server: ServerRow; preset: Mcp
         );
       })}
       <div className="flex items-center gap-3">
-        <Button variant="secondary" disabled={!changed} onClick={() => void save(Object.fromEntries(Object.entries(values).filter(([, x]) => x.trim()).map(([k, x]) => [k, x.trim()])))}>
+        <Button
+          variant="secondary"
+          disabled={!changed}
+          onClick={() =>
+            void save(
+              Object.fromEntries(
+                Object.entries(values)
+                  .filter(([, x]) => x.trim())
+                  .map(([k, x]) => [k, x.trim()]),
+              ),
+            )
+          }
+        >
           Save settings
         </Button>
         {saved && (
@@ -178,7 +190,9 @@ function AddCustom({ onAdded }: { onAdded: () => Promise<void> }) {
   return (
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">Add another server</h2>
-      <p className={helpStyles}>For a medical or nutrition MCP server that isn't listed. It runs on this computer with the command you give. Only add servers you trust.</p>
+      <p className={helpStyles}>
+        For a medical or nutrition MCP server that isn't listed. It runs on this computer with the command you give. Only add servers you trust.
+      </p>
       <Field.Root className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>Name</Field.Label>
         <Field.Control value={name} onValueChange={setName} placeholder="e.g. My food database" className={`${inputStyles} sm:max-w-sm`} />
@@ -228,10 +242,10 @@ export function McpSettings() {
   return (
     <div className="flex flex-col gap-6">
       <Notice>
-        MCP servers give the assistant extra research tools: literature, clinical trials, medicine labels, genes, medical terms, food data. The
-        ready-made ones are added and switched on from the start. They run on this computer; the first start downloads them, which can take a
-        minute. When Brain calls a source, it receives the tool inputs Brain provides and can contact external services. Source descriptions are not a verified or enforced list of the websites they can contact.
-        These switches control the extra MCP tools. Built-in study search and newer-record checks are separate.
+        MCP servers give the assistant extra research tools: literature, clinical trials, medicine labels, genes, medical terms, food data. The ready-made ones
+        are added and switched on from the start. They run on this computer; the first start downloads them, which can take a minute. When Brain calls a source,
+        it receives the tool inputs Brain provides and can contact external services. Source descriptions are not a verified or enforced list of the websites
+        they can contact. These switches control the extra MCP tools. Built-in study search and newer-record checks are separate.
       </Notice>
       {!data.npx && (
         <Notice tone="warn" title="Node.js isn't installed">

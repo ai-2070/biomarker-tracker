@@ -101,7 +101,10 @@ function isExperiment(v: unknown): v is Experiment {
     v.markerIds.every(isStr) &&
     isStr(v.start) &&
     isIsoDate(v.start) &&
-    isNum(v.retestAfterDays) && Number.isInteger(v.retestAfterDays) && v.retestAfterDays >= 7 && v.retestAfterDays <= 730 &&
+    isNum(v.retestAfterDays) &&
+    Number.isInteger(v.retestAfterDays) &&
+    v.retestAfterDays >= 7 &&
+    v.retestAfterDays <= 730 &&
     optional(v.end, (e) => isStr(e) && isIsoDate(e)) &&
     optional(v.protocolId, isStr) &&
     optional(v.chosenOn, (d) => isStr(d) && isIsoDate(d))
@@ -170,7 +173,11 @@ export function parseBackup(json: unknown): ParseBackupResult {
   if (!Array.isArray(experiments) || !experiments.every(isExperiment)) {
     return { ok: false, error: "The experiments in the backup are damaged." };
   }
-  for (const [name, rows] of [["measurements", json.measurements], ["habits", protocols], ["experiments", experiments]] as const) {
+  for (const [name, rows] of [
+    ["measurements", json.measurements],
+    ["habits", protocols],
+    ["experiments", experiments],
+  ] as const) {
     if (new Set(rows.map((row: { id: string }) => row.id)).size !== rows.length) {
       return { ok: false, error: `The ${name} list in the backup contains duplicate IDs.` };
     }

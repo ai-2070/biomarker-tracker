@@ -15,17 +15,7 @@
  */
 
 /** Biomarker ids (knowledge base) needed from one blood draw. */
-export const PHENOAGE_MARKERS = [
-  "albumin",
-  "creatinine",
-  "glucose",
-  "crp_hs",
-  "lymphocyte_pct",
-  "mcv",
-  "rdw",
-  "alp",
-  "wbc",
-] as const;
+export const PHENOAGE_MARKERS = ["albumin", "creatinine", "glucose", "crp_hs", "lymphocyte_pct", "mcv", "rdw", "alp", "wbc"] as const;
 
 export type PhenoAgeMarker = (typeof PHENOAGE_MARKERS)[number];
 

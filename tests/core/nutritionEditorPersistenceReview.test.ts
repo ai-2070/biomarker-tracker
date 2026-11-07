@@ -1,10 +1,10 @@
 import "fake-indexeddb/auto";
-import Dexie from "dexie";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { TrackerDB, saveMeal, savePlan, startPlan, updateMeal, updatePlan } from "../../apps/web/src/db/db";
 import { addDays, todayIso } from "@bt/shared/core/dates";
 import type { Meal } from "@bt/shared/core/meals";
 import type { Plan } from "@bt/shared/core/plans";
+import Dexie from "dexie";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { saveMeal, savePlan, startPlan, TrackerDB, updateMeal, updatePlan } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
 beforeEach(async () => {
@@ -13,8 +13,19 @@ beforeEach(async () => {
   database = new TrackerDB(`nutrition-review-${crypto.randomUUID()}`);
   await database.open();
 });
-afterEach(async () => { await database.delete(); vi.useRealTimers(); });
-const meal: Meal = { id: "meal", name: "Original", createdAt: "2026-10-30", items: [{ foodId: "spinach", grams: 100 }, { foodId: "almonds", grams: 100 }] };
+afterEach(async () => {
+  await database.delete();
+  vi.useRealTimers();
+});
+const meal: Meal = {
+  id: "meal",
+  name: "Original",
+  createdAt: "2026-10-30",
+  items: [
+    { foodId: "spinach", grams: 100 },
+    { foodId: "almonds", grams: 100 },
+  ],
+};
 const plan: Plan = { id: "plan", name: "Original", createdAt: "2026-10-30", items: [{ id: "first", label: "Walk", category: "lifestyle", when: "any time" }] };
 
 describe("nutrition review persistence", () => {
@@ -26,7 +37,9 @@ describe("nutrition review persistence", () => {
     await expect(saveMeal({ ...fullMeal, items: [...fullMeal.items, meal.items[0]!] }, database)).rejects.toThrow(/40/);
     await expect(updateMeal(meal.id, (current) => ({ ...current, items: [...current.items, meal.items[0]!] }), database)).rejects.toThrow(/40/);
     await expect(savePlan({ ...fullPlan, items: [...fullPlan.items, { ...plan.items[0]!, id: "overflow" }] }, database)).rejects.toThrow(/60/);
-    await expect(updatePlan(plan.id, (current) => ({ ...current, items: [...current.items, { ...plan.items[0]!, id: "overflow" }] }), database)).rejects.toThrow(/60/);
+    await expect(
+      updatePlan(plan.id, (current) => ({ ...current, items: [...current.items, { ...plan.items[0]!, id: "overflow" }] }), database),
+    ).rejects.toThrow(/60/);
     expect(await database.meals.get(meal.id)).toEqual(fullMeal);
     expect(await database.plans.get(plan.id)).toEqual(fullPlan);
   });
@@ -36,12 +49,16 @@ describe("nutrition review persistence", () => {
     const entered = Promise.withResolvers<void>();
     const release = Promise.withResolvers<void>();
     // Each operation represents an independent browser event, not a nested Dexie transaction.
-    const blocker = Dexie.ignoreTransaction(() => database.transaction("rw", database.meals, async () => {
-      entered.resolve();
-      await Dexie.waitFor(release.promise);
-    }));
+    const blocker = Dexie.ignoreTransaction(() =>
+      database.transaction("rw", database.meals, async () => {
+        entered.resolve();
+        await Dexie.waitFor(release.promise);
+      }),
+    );
     await entered.promise;
-    const grams = Dexie.ignoreTransaction(() => updateMeal(meal.id, (current) => ({ ...current, items: current.items.map((item, i) => i === 0 ? { ...item, grams: 125 } : item) }), database));
+    const grams = Dexie.ignoreTransaction(() =>
+      updateMeal(meal.id, (current) => ({ ...current, items: current.items.map((item, i) => (i === 0 ? { ...item, grams: 125 } : item)) }), database),
+    );
     const name = Dexie.ignoreTransaction(() => updateMeal(meal.id, (current) => ({ ...current, name: "Updated" }), database));
     const remove = Dexie.ignoreTransaction(() => updateMeal(meal.id, (current) => ({ ...current, items: current.items.filter((_, i) => i !== 1) }), database));
     release.resolve();

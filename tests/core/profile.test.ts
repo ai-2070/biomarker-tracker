@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
 import { parseBackup } from "@bt/shared/core/backup";
 import { assistantProfile, initials, profileSummary } from "@bt/shared/core/profile";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import type { Profile } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const anna: Profile = {
   name: "Anna Kovacs",
@@ -46,8 +46,18 @@ describe("profile", () => {
   });
 
   it("checks conditions written in the profile for safety notes, with the ongoing log", () => {
-    const labels = safetyLabels([{ id: "1", label: "Warfarin", category: "medication", start: "2025-01-01" }, { id: "2", label: "Metformin", category: "medication", start: "2020-01-01", end: "2021-01-01" }], anna);
+    const labels = safetyLabels(
+      [
+        { id: "1", label: "Warfarin", category: "medication", start: "2025-01-01" },
+        { id: "2", label: "Metformin", category: "medication", start: "2020-01-01", end: "2021-01-01" },
+      ],
+      anna,
+    );
     expect(labels).toEqual(["Warfarin", "hypothyroidism", "chronic kidney disease"]);
-    expect(safetyNotes(labels).map((n) => n.id).sort()).toEqual(["anticoagulant", "kidney"]);
+    expect(
+      safetyNotes(labels)
+        .map((n) => n.id)
+        .sort(),
+    ).toEqual(["anticoagulant", "kidney"]);
   });
 });

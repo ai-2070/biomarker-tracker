@@ -16,22 +16,24 @@ export class UnitError extends Error {
  * and the common "u"/"mc" spellings of micro.
  */
 export function normalizeUnit(unit: string): string {
-  return unit
-    .trim()
-    .replace(/\s+/g, "")
-    .replace(/μ/g, "µ")
-    .replace(/(^|\/)mc(?=g\b)/gi, "$1µ")
-    .replace(/(^|\/)u(?=(g|mol|l|iu)\b)/gi, "$1µ")
-    // Powers of ten as labs print them: "10*9", "10**9", "10E9", "10⁹" -> "10^9"
-    .replace(/10(?:\*\*?|e|\^)?([0-9])(?=\/)/gi, "10^$1")
-    .replace(/10([⁰¹²³⁴⁵⁶⁷⁸⁹])/g, (_, s: string) => `10^${"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(s)}`)
-    // Leading multiplication sign: "x10^9/L", "×10^9/L"
-    .replace(/^[x×]/i, "")
-    .replace(/\*/g, "")
-    // "1,73 m²" -> "1.73m2"
-    .replace(/,/g, ".")
-    .replace(/²/g, "2")
-    .toLowerCase();
+  return (
+    unit
+      .trim()
+      .replace(/\s+/g, "")
+      .replace(/μ/g, "µ")
+      .replace(/(^|\/)mc(?=g\b)/gi, "$1µ")
+      .replace(/(^|\/)u(?=(g|mol|l|iu)\b)/gi, "$1µ")
+      // Powers of ten as labs print them: "10*9", "10**9", "10E9", "10⁹" -> "10^9"
+      .replace(/10(?:\*\*?|e|\^)?([0-9])(?=\/)/gi, "10^$1")
+      .replace(/10([⁰¹²³⁴⁵⁶⁷⁸⁹])/g, (_, s: string) => `10^${"⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(s)}`)
+      // Leading multiplication sign: "x10^9/L", "×10^9/L"
+      .replace(/^[x×]/i, "")
+      .replace(/\*/g, "")
+      // "1,73 m²" -> "1.73m2"
+      .replace(/,/g, ".")
+      .replace(/²/g, "2")
+      .toLowerCase()
+  );
 }
 
 function factorAndOffset(c: Conversion): { factor: number; offset: number } {

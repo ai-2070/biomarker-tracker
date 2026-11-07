@@ -1,7 +1,7 @@
+import { MCP_PRESETS } from "@bt/shared/core/mcpPresets";
 import { tool } from "ai";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { MCP_PRESETS } from "@bt/shared/core/mcpPresets";
 import { assistantTools, ensureDefaultServers, removeServer, researchTools } from "../../apps/server/mcp";
 import { studyIdsFromTool, toolStep } from "../../apps/server/steps";
 import { getSettings, updateSettings } from "../../apps/server/store";

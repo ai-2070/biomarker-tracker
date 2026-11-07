@@ -14,16 +14,14 @@ export interface ProtocolInput {
 
 export type ProtocolField = keyof ProtocolInput;
 
-export type ProtocolValidation =
-  | { ok: true; entry: Omit<ProtocolEntry, "id"> }
-  | { ok: false; errors: Partial<Record<ProtocolField, string>> };
+export type ProtocolValidation = { ok: true; entry: Omit<ProtocolEntry, "id"> } | { ok: false; errors: Partial<Record<ProtocolField, string>> };
 
 export const MAX_LABEL = 80;
 
 export function validateProtocol(input: ProtocolInput, today: string): ProtocolValidation {
   const errors: Partial<Record<ProtocolField, string>> = {};
   const label = input.label.trim();
-  if (!label) errors.label = "Describe what you took or changed, e.g. \"Vitamin D 1000 IU daily\".";
+  if (!label) errors.label = 'Describe what you took or changed, e.g. "Vitamin D 1000 IU daily".';
   else if (label.length > MAX_LABEL) errors.label = `Please keep it under ${MAX_LABEL} characters.`;
 
   if (!(PROTOCOL_CATEGORIES as readonly string[]).includes(input.category)) errors.category = "Choose a type.";
@@ -162,16 +160,24 @@ export function safetyNotes(labels: readonly string[]): SafetyNote[] {
 
 /** What safetyNotes() should look at: ongoing habits (including protocol items) and profile conditions. */
 export function safetyLabels(protocols: readonly ProtocolEntry[], profile: { conditions?: string } = {}): string[] {
-  return [...protocols.filter((p) => !p.end).flatMap((p) => [p.label, ...(p.plan?.items.map((i) => i.label) ?? [])]), ...(profile.conditions ? profile.conditions.split(/[,;\n]+/).map((c) => c.trim()).filter(Boolean) : [])];
+  return [
+    ...protocols.filter((p) => !p.end).flatMap((p) => [p.label, ...(p.plan?.items.map((i) => i.label) ?? [])]),
+    ...(profile.conditions
+      ? profile.conditions
+          .split(/[,;\n]+/)
+          .map((c) => c.trim())
+          .filter(Boolean)
+      : []),
+  ];
 }
 
 /** Actual habit/item types present, in the usual order (supplements, diet, medicines, lifestyle). */
 export function habitTypesIn(ps: readonly Pick<ProtocolEntry, "category" | "plan">[]): ProtocolCategory[] {
-  const present = new Set(ps.flatMap((p) => p.plan ? p.plan.items.map((i) => i.category) : [p.category]));
+  const present = new Set(ps.flatMap((p) => (p.plan ? p.plan.items.map((i) => i.category) : [p.category])));
   return PROTOCOL_CATEGORIES.filter((c) => present.has(c));
 }
 
 /** Habits with any chosen type, including protocol items; each habit appears once. `null` means all. */
 export function ofTypes<T extends Pick<ProtocolEntry, "category" | "plan">>(ps: readonly T[], types: readonly ProtocolCategory[] | null): T[] {
-  return types === null ? [...ps] : ps.filter((p) => p.plan ? p.plan.items.some((i) => types.includes(i.category)) : types.includes(p.category));
+  return types === null ? [...ps] : ps.filter((p) => (p.plan ? p.plan.items.some((i) => types.includes(i.category)) : types.includes(p.category)));
 }

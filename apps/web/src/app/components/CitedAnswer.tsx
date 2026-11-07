@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
 import { checkCitations } from "@bt/shared/ai/citations";
-import { cx } from "./ui";
+import type { ReactNode } from "react";
 import { PaperLink } from "./PaperLink";
+import { cx } from "./ui";
 
 /** Where a verified citation links to. */
 function citeUrl(id: string): string {
@@ -14,9 +14,15 @@ function citeUrl(id: string): string {
 
 /** **bold** inside plain text. Everything is rendered as text, never as HTML. */
 function inline(text: string, keyBase: string): ReactNode[] {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-    part.startsWith("**") && part.endsWith("**") && part.length > 4 ? <strong key={`${keyBase}-${i}`}>{part.slice(2, -2)}</strong> : <span key={`${keyBase}-${i}`}>{part}</span>,
-  );
+  return text
+    .split(/(\*\*[^*]+\*\*)/g)
+    .map((part, i) =>
+      part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
+        <strong key={`${keyBase}-${i}`}>{part.slice(2, -2)}</strong>
+      ) : (
+        <span key={`${keyBase}-${i}`}>{part}</span>
+      ),
+    );
 }
 
 function line(text: string, allowed: ReadonlySet<string>, key: string): ReactNode[] {
@@ -34,7 +40,11 @@ function line(text: string, allowed: ReadonlySet<string>, key: string): ReactNod
         {s.id}
       </PaperLink>
     ) : (
-      <span key={`${key}-${i}`} title="Not one of the studies the assistant retrieved" className="mx-0.5 inline-flex items-center rounded bg-danger-soft px-1.5 font-mono text-xs text-danger line-through">
+      <span
+        key={`${key}-${i}`}
+        title="Not one of the studies the assistant retrieved"
+        className="mx-0.5 inline-flex items-center rounded bg-danger-soft px-1.5 font-mono text-xs text-danger line-through"
+      >
         {s.id}
       </span>
     ),
@@ -49,7 +59,17 @@ export function CitedAnswer({ text, allowed, truncated }: { text: string; allowe
   const flush = () => {
     if (!list) return;
     const items = list.items.map((it, i) => <li key={i}>{line(it, allowed, `li-${blocks.length}-${i}`)}</li>);
-    blocks.push(list.ordered ? <ol key={blocks.length} className="list-decimal pl-5">{items}</ol> : <ul key={blocks.length} className="list-disc pl-5">{items}</ul>);
+    blocks.push(
+      list.ordered ? (
+        <ol key={blocks.length} className="list-decimal pl-5">
+          {items}
+        </ol>
+      ) : (
+        <ul key={blocks.length} className="list-disc pl-5">
+          {items}
+        </ul>
+      ),
+    );
     list = null;
   };
   for (const raw of text.split("\n")) {
@@ -91,8 +111,8 @@ export function CitedAnswer({ text, allowed, truncated }: { text: string; allowe
         )}
         {check.unverified.length > 0 && (
           <li className="font-medium text-danger">
-            {check.unverified.length} {check.unverified.length === 1 ? "citation is" : "citations are"} not among the retrieved studies (struck through). Don't rely on{" "}
-            {check.unverified.length === 1 ? "it" : "them"}.
+            {check.unverified.length} {check.unverified.length === 1 ? "citation is" : "citations are"} not among the retrieved studies (struck through). Don't
+            rely on {check.unverified.length === 1 ? "it" : "them"}.
           </li>
         )}
         {check.looseReferences.length > 0 && (

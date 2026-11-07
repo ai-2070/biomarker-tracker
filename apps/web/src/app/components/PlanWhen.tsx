@@ -1,6 +1,6 @@
-import { useId } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
-import { PLAN_TIMES, WEEKDAYS, daysLabel, normalizeItem, type PlanItem, type PlanTime, type Weekday } from "@bt/shared/core/plans";
+import { daysLabel, normalizeItem, PLAN_TIMES, type PlanItem, type PlanTime, WEEKDAYS, type Weekday } from "@bt/shared/core/plans";
+import { useId } from "react";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { CheckIcon, cx, labelStyles } from "./ui";
 
@@ -48,7 +48,12 @@ export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v
   const toggle = (d: Weekday) => onChange({ ...value, days: value.days.includes(d) ? value.days.filter((x) => x !== d) : [...value.days, d] });
   return (
     <div className="flex flex-col gap-3">
-      <ChoiceGroup<PlanTime> label="When" value={value.when} onChange={(when) => onChange({ ...value, when })} options={PLAN_TIMES.map((t) => ({ value: t, label: TIME_LABEL[t] }))} />
+      <ChoiceGroup<PlanTime>
+        label="When"
+        value={value.when}
+        onChange={(when) => onChange({ ...value, when })}
+        options={PLAN_TIMES.map((t) => ({ value: t, label: TIME_LABEL[t] }))}
+      />
       <div className="flex items-center gap-2">
         <Checkbox.Root
           id={foodId}
@@ -75,7 +80,10 @@ export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v
                 type="button"
                 aria-pressed={on}
                 onClick={() => toggle(d)}
-                className={cx("min-h-11 min-w-12 rounded-lg border px-2 text-sm transition-colors duration-150", on ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken")}
+                className={cx(
+                  "min-h-11 min-w-12 rounded-lg border px-2 text-sm transition-colors duration-150",
+                  on ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
+                )}
               >
                 {DAY_LETTER[d]}
               </button>

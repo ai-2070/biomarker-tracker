@@ -2,8 +2,8 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import type { ModelChoice, ProviderConfig, ProviderId } from "@bt/shared/core/aiProviders";
 import type { McpServerConfig } from "@bt/shared/api/types";
+import type { ModelChoice, ProviderConfig, ProviderId } from "@bt/shared/core/aiProviders";
 
 export type { McpServerConfig };
 
@@ -53,7 +53,6 @@ export function writeJSON(file: string, value: unknown): void {
   }
 }
 
-
 export interface Settings {
   assistant?: ModelChoice;
   providers: Partial<Record<ProviderId, ProviderConfig>>;
@@ -80,7 +79,14 @@ const SECRETS = () => dataPath("secrets.json");
 
 export function getSettings(): Settings {
   const s = readJSON<Partial<Settings>>(SETTINGS(), {});
-  return { providers: s.providers ?? {}, skillsOff: s.skillsOff ?? [], mcp: s.mcp ?? [], ...(s.assistant ? { assistant: s.assistant } : {}), ...(s.mcpSeeded ? { mcpSeeded: true } : {}), ...(typeof s.activeProfile === "string" ? { activeProfile: s.activeProfile } : {}) };
+  return {
+    providers: s.providers ?? {},
+    skillsOff: s.skillsOff ?? [],
+    mcp: s.mcp ?? [],
+    ...(s.assistant ? { assistant: s.assistant } : {}),
+    ...(s.mcpSeeded ? { mcpSeeded: true } : {}),
+    ...(typeof s.activeProfile === "string" ? { activeProfile: s.activeProfile } : {}),
+  };
 }
 
 export function saveSettings(s: Settings): void {

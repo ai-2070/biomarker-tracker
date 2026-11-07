@@ -8,7 +8,13 @@ vi.mock("pdfjs-dist", () => ({
 }));
 vi.mock("pdfjs-dist/build/pdf.worker.min.mjs?url", () => ({ default: "/bundled/pdf-worker.mjs" }));
 
-interface FakeCanvas { width: number; height: number; ink: number; getContext: () => unknown; toDataURL: () => string }
+interface FakeCanvas {
+  width: number;
+  height: number;
+  ink: number;
+  getContext: () => unknown;
+  toDataURL: () => string;
+}
 
 /** A page with this text; without text it is a scan (half ink) unless `ink` says otherwise (0: blank). */
 function pdfPage(value: string, ink = value ? 0 : 0.5) {

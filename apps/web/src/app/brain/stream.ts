@@ -42,7 +42,7 @@ export function liveAnswer(message: UIMessage, status?: string): LiveAnswer {
       });
       if (part.state === "output-available" && (part.output as { critical?: unknown } | undefined)?.critical === true) critical = true;
     } else if (part.type === "data-studies") {
-      for (const id of (part.data as { ids?: unknown }).ids as string[] ?? []) if (typeof id === "string") studyIds.add(id);
+      for (const id of ((part.data as { ids?: unknown }).ids as string[]) ?? []) if (typeof id === "string") studyIds.add(id);
     }
   }
   return { text, steps, studyIds: [...studyIds], ...(status ? { status } : {}), ...(critical ? { critical } : {}) };
@@ -83,7 +83,12 @@ export async function streamAssistant<Reply>(body: object, signal: AbortSignal, 
       } else if (chunk.type === "error") failure = chunk.errorText;
     }
   })();
-  for await (const message of readUIMessageStream({ stream: forMessage, onError: (e) => { failure ??= e instanceof Error ? e.message : String(e); } })) {
+  for await (const message of readUIMessageStream({
+    stream: forMessage,
+    onError: (e) => {
+      failure ??= e instanceof Error ? e.message : String(e);
+    },
+  })) {
     latest = message;
     const done = message.parts.find((p) => p.type === "data-reply");
     if (done) reply = (done as { data: Reply }).data;

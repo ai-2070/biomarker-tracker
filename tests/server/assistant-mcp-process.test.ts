@@ -37,10 +37,18 @@ lines.on("line", (line) => {
 });
 `;
 
-interface FixtureEvent { event: string; pid?: number; method?: string }
+interface FixtureEvent {
+  event: string;
+  pid?: number;
+  method?: string;
+}
 
 function readEvents(dir: string, mode: string): FixtureEvent[] {
-  return fs.readFileSync(path.join(dir, `${mode}.events`), "utf8").trim().split("\n").map((line) => JSON.parse(line) as FixtureEvent);
+  return fs
+    .readFileSync(path.join(dir, `${mode}.events`), "utf8")
+    .trim()
+    .split("\n")
+    .map((line) => JSON.parse(line) as FixtureEvent);
 }
 
 function assertExited(dir: string, mode: string, pid: number): void {
@@ -48,7 +56,11 @@ function assertExited(dir: string, mode: string, pid: number): void {
   expect(fs.existsSync(marker), `${mode}: child exit marker`).toBe(true);
   expect(JSON.parse(fs.readFileSync(marker, "utf8"))).toEqual({ pid, reason: "stdin-end" });
   let failure: unknown;
-  try { process.kill(pid, 0); } catch (error) { failure = error; }
+  try {
+    process.kill(pid, 0);
+  } catch (error) {
+    failure = error;
+  }
   // An arbitrary error is not an exit receipt: require the OS's no-such-process result.
   expect(failure).toMatchObject({ code: "ESRCH" });
 }
@@ -58,7 +70,9 @@ describe("real MCP stdio ownership", () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bt-assistant-mcp-process-"));
     try {
       updateSettings((settings) => {
-        settings.mcp = [{ id: "local-fixture", name: "Local fixture", command: process.execPath, args: ["-e", fixture, "failure", dir], env: {}, enabled: true }];
+        settings.mcp = [
+          { id: "local-fixture", name: "Local fixture", command: process.execPath, args: ["-e", fixture, "failure", dir], env: {}, enabled: true },
+        ];
       });
       const failure = await assistantTools();
       expect(failure.servers).toEqual([]);
@@ -67,10 +81,16 @@ describe("real MCP stdio ownership", () => {
       const failedEvents = readEvents(dir, "failure");
       const failedPid = failedEvents[0]!.pid!;
       expect(failedPid).toBeGreaterThan(0);
-      expect(failedEvents.filter((event) => event.event === "request").map((event) => event.method)).toEqual(["initialize", "notifications/initialized", "tools/list"]);
+      expect(failedEvents.filter((event) => event.event === "request").map((event) => event.method)).toEqual([
+        "initialize",
+        "notifications/initialized",
+        "tools/list",
+      ]);
       assertExited(dir, "failure", failedPid);
 
-      updateSettings((settings) => { settings.mcp[0]!.args = ["-e", fixture, "success", dir]; });
+      updateSettings((settings) => {
+        settings.mcp[0]!.args = ["-e", fixture, "success", dir];
+      });
       const control = await assistantTools();
       expect(control.failed).toEqual([]);
       expect(control.servers).toEqual([{ id: "local-fixture", name: "Local fixture", about: "", tools: 1 }]);

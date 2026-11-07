@@ -1,13 +1,13 @@
 import { todayIso } from "@bt/shared/core/dates";
-import { HUNT_VO2MAX, fitnessAge, vo2maxForAge } from "@bt/shared/core/fitnessAge";
+import { fitnessAge, HUNT_VO2MAX, vo2maxForAge } from "@bt/shared/core/fitnessAge";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { sortByDate } from "@bt/shared/core/trends";
 import type { Measurement, Profile } from "@bt/shared/core/types";
 import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
+import { PaperLink } from "../PaperLink";
 import { Card, LinkButton, Notice } from "../ui";
 import { Figure } from "./widgets";
-import { PaperLink } from "../PaperLink";
 
 const PAPER_URL = "https://pubmed.ncbi.nlm.nih.gov/23691196/";
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
@@ -15,7 +15,11 @@ const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
 /** Latest VO₂max with fitness age, or what's missing. */
 function fitnessOf(ms: readonly Measurement[], profile: Profile) {
   const last = sortByDate(ms.filter((m) => m.biomarkerId === "vo2max")).at(-1);
-  const missing = [!last && "a VO₂max (from a watch, a lab test or typed in)", !profile.sex && "your sex", !profile.birthMonth && "your month and year of birth"].filter(Boolean) as string[];
+  const missing = [
+    !last && "a VO₂max (from a watch, a lab test or typed in)",
+    !profile.sex && "your sex",
+    !profile.birthMonth && "your month and year of birth",
+  ].filter(Boolean) as string[];
   if (!last || !profile.sex || !profile.birthMonth) return { missing };
   const age = ageAt(profile.birthMonth, todayIso());
   return { missing, last, age, fit: fitnessAge(last.value, profile.sex), group: vo2maxForAge(last.value, age, profile.sex) };
@@ -106,15 +110,27 @@ export function FitnessAgeSection({ ms, profile }: { ms: Measurement[]; profile:
         <p>
           <span className="font-medium text-ink">Source: </span>
           treadmill tests of 3,816 healthy adults aged 20–90 in the HUNT 3 Fitness Study, Norway (
-          <PaperLink href={PAPER_URL} source={{ title: "Aerobic capacity reference data in 3816 healthy men and women 20-90 years", authors: "Loe et al.", journal: "PLoS One", year: 2013, n: 3816 }} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
+          <PaperLink
+            href={PAPER_URL}
+            source={{
+              title: "Aerobic capacity reference data in 3816 healthy men and women 20-90 years",
+              authors: "Loe et al.",
+              journal: "PLoS One",
+              year: 2013,
+              n: 3816,
+            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline-offset-2 hover:underline"
+          >
             Loe et al., PLoS One 2013
           </PaperLink>
           ). Group averages are placed at the middle of each age group and joined with straight lines.
         </p>
         <p>
           <span className="font-medium text-ink">Limits: </span>
-          an estimate, not a verdict. Watches estimate VO₂max from heart rate and pace and can be several points off a lab test. The
-          reference group is healthy Norwegian volunteers, who were fitter than many populations, so the result may come out a little old.
+          an estimate, not a verdict. Watches estimate VO₂max from heart rate and pace and can be several points off a lab test. The reference group is healthy
+          Norwegian volunteers, who were fitter than many populations, so the result may come out a little old.
         </p>
       </div>
     </Card>

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { niceStep, niceTicks } from "@bt/shared/core/scale";
+import { describe, expect, it } from "vitest";
 
 describe("niceStep", () => {
   it("rounds to 1, 2, 2.5, 5 or 10 times a power of ten", () => {

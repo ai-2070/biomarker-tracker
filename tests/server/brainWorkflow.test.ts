@@ -1,17 +1,30 @@
-import { MockModel } from "./mockModel";
+import type { ProviderId } from "@bt/shared/core/aiProviders";
+import type { Measurement } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
-import { ask, ASSISTANT_TIMEOUT_MS, promptParts } from "../../apps/server/assistant";
+import { ASSISTANT_TIMEOUT_MS, ask, promptParts } from "../../apps/server/assistant";
 import { cacheKey, cacheLayout } from "../../apps/server/brain/cache";
 import { requestTools } from "../../apps/server/brain/tools";
 import type { HealthSnapshot } from "../../apps/server/healthTools";
 import { openRouterCache, type Ready } from "../../apps/server/models";
-import type { ProviderId } from "@bt/shared/core/aiProviders";
-import type { Measurement } from "@bt/shared/core/types";
+import { MockModel } from "./mockModel";
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
-const m = (id: string, biomarkerId: string, date: string, value: number): Measurement => ({ id, biomarkerId, date, value, originalValue: value, originalUnit: "x", source: "manual" });
+const m = (id: string, biomarkerId: string, date: string, value: number): Measurement => ({
+  id,
+  biomarkerId,
+  date,
+  value,
+  originalValue: value,
+  originalUnit: "x",
+  source: "manual",
+});
 const calm: HealthSnapshot = { measurements: [m("f1", "ferritin", "2024-05-12", 40)], protocols: [], experiments: [], profile: { sex: "f" } };
-const critical: HealthSnapshot = { measurements: [m("k1", "potassium", "2024-05-12", 6.6)], protocols: [{ id: "p", label: "Warfarin", category: "medication", start: "2024-01-01" }], experiments: [], profile: {} };
+const critical: HealthSnapshot = {
+  measurements: [m("k1", "potassium", "2024-05-12", 6.6)],
+  protocols: [{ id: "p", label: "Warfarin", category: "medication", start: "2024-01-01" }],
+  experiments: [],
+  profile: {},
+};
 
 type Call = Parameters<MockModel["doGenerate"]>[0];
 
@@ -23,9 +36,19 @@ function model(toolCalls = 0, provider: ProviderId = "ollama") {
     doGenerate: async (options) => {
       calls.push(options);
       if (n++ < toolCalls) {
-        return { content: [{ type: "tool-call" as const, toolCallId: `c${n}`, toolName: "get_results", input: "{}" }], finishReason: { unified: "tool-calls" as const, raw: undefined }, usage, warnings: [] };
+        return {
+          content: [{ type: "tool-call" as const, toolCallId: `c${n}`, toolName: "get_results", input: "{}" }],
+          finishReason: { unified: "tool-calls" as const, raw: undefined },
+          usage,
+          warnings: [],
+        };
       }
-      return { content: [{ type: "text" as const, text: "Here is what I found." }], finishReason: { unified: "stop" as const, raw: undefined }, usage, warnings: [] };
+      return {
+        content: [{ type: "text" as const, text: "Here is what I found." }],
+        finishReason: { unified: "stop" as const, raw: undefined },
+        usage,
+        warnings: [],
+      };
     },
   });
   const ready: Ready = { model: mock, providerOptions: {}, choice: { provider, model: "mock" } };
@@ -62,7 +85,10 @@ describe("no step limit, one 10-minute limit", () => {
         throw new DOMException("The operation was aborted.", "AbortError");
       },
     });
-    const r = await ask([{ role: "user", content: "hi" }], calm, { ready: { model: slow, providerOptions: {}, choice: { provider: "ollama", model: "mock" } }, signal: controller.signal });
+    const r = await ask([{ role: "user", content: "hi" }], calm, {
+      ready: { model: slow, providerOptions: {}, choice: { provider: "ollama", model: "mock" } },
+      signal: controller.signal,
+    });
     expect(r).toEqual({ ok: false, error: "Stopped." });
   });
 });
@@ -103,7 +129,15 @@ describe("prompt cache layout", () => {
     const first = model();
     await ask([{ role: "user", content: "How am I doing?" }], calm, { ready: first.ready, userText: "How am I doing?" });
     const second = model();
-    await ask([{ role: "user", content: "How am I doing?" }, { role: "assistant", content: "Fine." }, { role: "user", content: "And now?" }], critical, { ready: second.ready });
+    await ask(
+      [
+        { role: "user", content: "How am I doing?" },
+        { role: "assistant", content: "Fine." },
+        { role: "user", content: "And now?" },
+      ],
+      critical,
+      { ready: second.ready },
+    );
     const [a, b] = [first.calls[0]!, second.calls[0]!];
     expect(systemTexts(b)[0]).toBe(systemTexts(a)[0]);
     expect(toolNames(b)).toEqual(toolNames(a));
@@ -113,7 +147,16 @@ describe("prompt cache layout", () => {
 
   it("asks Anthropic to cache the stable part and the conversation so far", () => {
     const parts = { stable: "rules", request: "today" };
-    const layout = cacheLayout("anthropic", parts, [{ role: "user", content: "a" }, { role: "assistant", content: "b" }, { role: "user", content: "c" }], "k");
+    const layout = cacheLayout(
+      "anthropic",
+      parts,
+      [
+        { role: "user", content: "a" },
+        { role: "assistant", content: "b" },
+        { role: "user", content: "c" },
+      ],
+      "k",
+    );
     expect(layout.instructions[0]).toMatchObject({ content: "rules", providerOptions: { anthropic: { cacheControl: { type: "ephemeral" } } } });
     expect(layout.instructions[1]).toEqual({ role: "system", content: "today" });
     expect(layout.messages.map((x) => x.providerOptions)).toEqual([undefined, undefined, { anthropic: { cacheControl: { type: "ephemeral" } } }]);
@@ -132,7 +175,10 @@ describe("prompt cache layout", () => {
   });
 
   it("asks OpenRouter for a stable session, and a cache point for Anthropic models", () => {
-    expect(openRouterCache("anthropic/claude-sonnet-5.5", "biomarker-tracker-personal")).toEqual({ session_id: "biomarker-tracker-personal", cache_control: { type: "ephemeral" } });
+    expect(openRouterCache("anthropic/claude-sonnet-5.5", "biomarker-tracker-personal")).toEqual({
+      session_id: "biomarker-tracker-personal",
+      cache_control: { type: "ephemeral" },
+    });
     expect(openRouterCache("openai/gpt-5", "biomarker-tracker-personal")).toEqual({ session_id: "biomarker-tracker-personal" });
   });
 
@@ -152,12 +198,14 @@ describe.skipIf(process.platform === "win32")("agent programs get the prompt in 
     const fakes = installFakeAgents({ claude: "fake-claude.cjs" });
     try {
       const dir = fakes.dir();
-      process.env.FAKE_LINES = JSON.stringify([{ type: "result", subtype: "success", result: "Contact your doctor about potassium.", modelUsage: { "claude-opus": {} } }]);
+      process.env.FAKE_LINES = JSON.stringify([
+        { type: "result", subtype: "success", result: "Contact your doctor about potassium.", modelUsage: { "claude-opus": {} } },
+      ]);
       const r = await ask([{ role: "user", content: "How am I doing?" }], critical);
       expect(r).toMatchObject({ ok: true, text: "Contact your doctor about potassium." });
       const system = fakes.seen(dir).system!;
       const rules = system.indexOf("You are Brain");
-      const note = system.indexOf('MCP server gives you the user');
+      const note = system.indexOf("MCP server gives you the user");
       const now = system.indexOf("CRITICAL:");
       expect(rules).toBe(0);
       expect(note).toBeGreaterThan(rules);

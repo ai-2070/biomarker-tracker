@@ -1,11 +1,22 @@
 import { deflateRawSync } from "node:zlib";
-import { describe, expect, it } from "vitest";
-import { DailyTally, appleRecords, dailyAverages, fileFamily, jsonTable, parseCsv, readTable, sleepUnit, tableOf, toIsoDate } from "@bt/shared/core/importers/deviceFiles";
-import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { matchUnit, toCanonical } from "@bt/shared/core/units";
-import { zipEntries } from "@bt/shared/core/importers/zipRead";
-import { crc32, zipStore } from "@bt/shared/core/zipStore";
 import type { BodyField } from "@bt/shared/core/body";
+import {
+  appleRecords,
+  DailyTally,
+  dailyAverages,
+  fileFamily,
+  jsonTable,
+  parseCsv,
+  readTable,
+  sleepUnit,
+  tableOf,
+  toIsoDate,
+} from "@bt/shared/core/importers/deviceFiles";
+import { zipEntries } from "@bt/shared/core/importers/zipRead";
+import { matchUnit, toCanonical } from "@bt/shared/core/units";
+import { crc32, zipStore } from "@bt/shared/core/zipStore";
+import { describe, expect, it } from "vitest";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
 
 // Synthetic files shaped like each brand's export, from their documented or commonly seen layouts.
 // No real person's data. Real exports may differ; the review screen lets people remap anything.
@@ -34,7 +45,9 @@ describe("Fitbit (Google Takeout)", () => {
       ]),
     ).toEqual({ heart_rate: [["2026-03-01", 72]] });
     expect(
-      json("Takeout/Fitbit/Global Export Data/resting_heart_rate-2026-03-01.json", [{ dateTime: "03/01/26 00:00:00", value: { date: "03/01/26", value: 58.4, error: 6.2 } }]),
+      json("Takeout/Fitbit/Global Export Data/resting_heart_rate-2026-03-01.json", [
+        { dateTime: "03/01/26 00:00:00", value: { date: "03/01/26", value: 58.4, error: 6.2 } },
+      ]),
     ).toEqual({ resting_hr: [["2026-03-01", 58.4]] });
   });
   it("reads weight with body fat, nightly HRV and daily SpO2", () => {
@@ -42,10 +55,17 @@ describe("Fitbit (Google Takeout)", () => {
       weight: [["2026-03-01", 68.2]],
       body_fat: [["2026-03-01", 29.5]],
     });
-    expect(csv("Heart Rate Variability/Daily Heart Rate Variability Summary - 2026-03.csv", "timestamp,rmssd,nremhr,entropy\n2026-03-01T00:00:00,45.2,55.1,2.9\n")).toEqual({
+    expect(
+      csv("Heart Rate Variability/Daily Heart Rate Variability Summary - 2026-03.csv", "timestamp,rmssd,nremhr,entropy\n2026-03-01T00:00:00,45.2,55.1,2.9\n"),
+    ).toEqual({
       hrv_resting: [["2026-03-01", 45.2]],
     });
-    expect(csv("Oxygen Saturation (SpO2)/Daily SpO2 - 2026-03-01-2026-03-31.csv", "timestamp,average_value,lower_bound,upper_bound\n2026-03-01T00:00:00,96.4,94.0,98.0\n")).toEqual({
+    expect(
+      csv(
+        "Oxygen Saturation (SpO2)/Daily SpO2 - 2026-03-01-2026-03-31.csv",
+        "timestamp,average_value,lower_bound,upper_bound\n2026-03-01T00:00:00,96.4,94.0,98.0\n",
+      ),
+    ).toEqual({
       spo2: [["2026-03-01", 96.4]],
     });
   });
@@ -91,12 +111,19 @@ describe("Huawei Health (data export)", () => {
 
 describe("Zepp / Amazfit", () => {
   it("reads heart rate, body and sport files", () => {
-    expect(csv("HEARTRATE_AUTO/HEARTRATE_AUTO_1700000000000.csv", "date,time,heartRate\n2026-03-01,08:00,68\n2026-03-01,08:10,72\n")).toEqual({ heart_rate: [["2026-03-01", 70]] });
+    expect(csv("HEARTRATE_AUTO/HEARTRATE_AUTO_1700000000000.csv", "date,time,heartRate\n2026-03-01,08:00,68\n2026-03-01,08:10,72\n")).toEqual({
+      heart_rate: [["2026-03-01", 70]],
+    });
     expect(csv("BODY/BODY_1700000000000.csv", "time,weight,height,bmi,fatRate,bodyWaterRate\n2026-03-01 07:00:00+0000,68.4,168,24.2,29.1,51\n")).toEqual({
       weight: [["2026-03-01", 68.4]],
       body_fat: [["2026-03-01", 29.1]],
     });
-    expect(csv("SPORT/SPORT_1700000000000.csv", "type,startTime,sportTime(s),maxPace,minPace,distance(m),avgPace,calories(kcal),avgHeartRate\n1,2026-03-01 18:00:00+0000,2400,0,0,5000,0,320,139\n")).toEqual({
+    expect(
+      csv(
+        "SPORT/SPORT_1700000000000.csv",
+        "type,startTime,sportTime(s),maxPace,minPace,distance(m),avgPace,calories(kcal),avgHeartRate\n1,2026-03-01 18:00:00+0000,2400,0,0,5000,0,320,139\n",
+      ),
+    ).toEqual({
       exercise_hr: [["2026-03-01", 139]],
     });
   });
@@ -110,7 +137,12 @@ describe("Whoop", () => {
         "Cycle start time,Cycle end time,Cycle timezone,Recovery score %,Resting heart rate (bpm),Heart rate variability (ms),Skin temp (celsius),Blood oxygen %,Day Strain,Max HR (bpm),Average HR (bpm)\n2026-03-01 23:10:00,2026-03-02 22:40:00,UTC+01:00,71,55,52,33.6,96.5,10.2,165,68\n",
       ),
     ).toEqual({ resting_hr: [["2026-03-01", 55]], hrv_resting: [["2026-03-01", 52]], spo2: [["2026-03-01", 96.5]], heart_rate: [["2026-03-01", 68]] });
-    expect(csv("my_whoop_data/workouts.csv", "Workout start time,Workout end time,Activity name,Activity Strain,Average HR (bpm),Max HR (bpm)\n2026-03-01 18:00:00,2026-03-01 18:45:00,Running,12.1,142,171\n")).toEqual({
+    expect(
+      csv(
+        "my_whoop_data/workouts.csv",
+        "Workout start time,Workout end time,Activity name,Activity Strain,Average HR (bpm),Max HR (bpm)\n2026-03-01 18:00:00,2026-03-01 18:45:00,Running,12.1,142,171\n",
+      ),
+    ).toEqual({
       exercise_hr: [["2026-03-01", 142]],
     });
   });
@@ -118,7 +150,12 @@ describe("Whoop", () => {
 
 describe("Withings", () => {
   it("reads weight and blood pressure, ignoring fat mass in kg", () => {
-    expect(csv("data_WIT_123/weight.csv", 'Date,"Weight (kg)","Fat mass (kg)","Bone mass (kg)","Muscle mass (kg)","Hydration (kg)",Comments\n"2026-03-01 07:12:00",68.3,19.9,2.6,45.5,35.0,\n')).toEqual({
+    expect(
+      csv(
+        "data_WIT_123/weight.csv",
+        'Date,"Weight (kg)","Fat mass (kg)","Bone mass (kg)","Muscle mass (kg)","Hydration (kg)",Comments\n"2026-03-01 07:12:00",68.3,19.9,2.6,45.5,35.0,\n',
+      ),
+    ).toEqual({
       weight: [["2026-03-01", 68.3]],
     });
     expect(csv("data_WIT_123/bp.csv", 'Date,"Heart rate",Systolic,Diastolic,Comments\n"2026-03-01 07:20:00",58,124,79,\n')).toEqual({
@@ -133,7 +170,8 @@ describe("Samsung Health body composition", () => {
   const path = "samsunghealth/com.samsung.health.weight.20261030120000.csv";
 
   it("imports the percentage, not fat mass, from a zipped weight export", async () => {
-    const text = "com.samsung.shealth.tracker.weight,6302004,4\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass,com.samsung.health.weight.body_fat\n2026-03-01 07:00:00.000,80,20,25\n";
+    const text =
+      "com.samsung.shealth.tracker.weight,6302004,4\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass,com.samsung.health.weight.body_fat\n2026-03-01 07:00:00.000,80,20,25\n";
     const archive = zipStore([{ name: path, data: new TextEncoder().encode(text) }]);
     const [entry] = await zipEntries(new Blob([archive as BlobPart]));
     const table = tableOf(parseCsv(await entry!.text()))!;
@@ -149,7 +187,8 @@ describe("Samsung Health body composition", () => {
   });
 
   it("does not invent a percentage when only fat mass is present", () => {
-    const text = "com.samsung.shealth.tracker.weight\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass\n2026-03-01 07:00:00.000,80,20\n";
+    const text =
+      "com.samsung.shealth.tracker.weight\ncom.samsung.health.weight.start_time,com.samsung.health.weight.weight,com.samsung.health.weight.body_fat_mass\n2026-03-01 07:00:00.000,80,20\n";
     expect(csv(path, text)).toEqual({
       weight: [["2026-03-01", 80]],
     });
@@ -166,7 +205,12 @@ create_time,update_time,source_type,count,day_time
 2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,108,4500,2026-03-01 00:00:00.000
 2026-03-05 10:00:00.000,2026-03-05 11:00:00.000,-2,2000,2026-03-02 00:00:00.000
 `;
-    expect(csv("com.samsung.shealth.step_daily_trend.csv", text)).toEqual({ steps: [["2026-03-01", 4800], ["2026-03-02", 2000]] });
+    expect(csv("com.samsung.shealth.step_daily_trend.csv", text)).toEqual({
+      steps: [
+        ["2026-03-01", 4800],
+        ["2026-03-02", 2000],
+      ],
+    });
   });
 
   it("reads the daily date encoded as UTC-midnight milliseconds", () => {
@@ -184,10 +228,16 @@ create_time,update_time,source_type,count,day_time
   it.each([false, true])("ignores redundant Samsung step files regardless of zip order (reversed: %s)", async (reverse) => {
     const enc = new TextEncoder();
     const files = [
-      { name: "com.samsung.shealth.tracker.pedometer_day_summary.csv", data: enc.encode("date,step_count,walk_step_count,run_step_count\n2026-03-01,5000,4500,500\n") },
+      {
+        name: "com.samsung.shealth.tracker.pedometer_day_summary.csv",
+        data: enc.encode("date,step_count,walk_step_count,run_step_count\n2026-03-01,5000,4500,500\n"),
+      },
       { name: "com.samsung.shealth.tracker.pedometer_step_count.csv", data: enc.encode("date,count\n2026-03-01,7000\n") },
       { name: "com.samsung.shealth.activity.day_summary.csv", data: enc.encode("date,step_count\n2026-03-01,5000\n") },
-      { name: "com.samsung.shealth.step_daily_trend.csv", data: enc.encode("day_time,source_type,count\n2026-03-01,-2,5000\n2026-03-01,0,3000\n2026-03-01,108,4500\n") },
+      {
+        name: "com.samsung.shealth.step_daily_trend.csv",
+        data: enc.encode("day_time,source_type,count\n2026-03-01,-2,5000\n2026-03-01,0,3000\n2026-03-01,108,4500\n"),
+      },
     ];
     const entries = await zipEntries(new Blob([zipStore(reverse ? files.reverse() : files) as BlobPart]));
     const totals = [];
@@ -212,8 +262,14 @@ day_time,source_type,count,speed,update_time
 ${Date.UTC(2026, 2, 2)},-2,6000,1.784,2026-03-05 11:00:00.000
 `;
     expect(csv(path, text)).toEqual({
-      steps: [["2026-03-01", 5000], ["2026-03-02", 6000]],
-      gait_speed: [["2026-03-01", 1.32], ["2026-03-02", 1.78]],
+      steps: [
+        ["2026-03-01", 5000],
+        ["2026-03-02", 6000],
+      ],
+      gait_speed: [
+        ["2026-03-01", 1.32],
+        ["2026-03-02", 1.78],
+      ],
     });
   });
 
@@ -239,7 +295,10 @@ ${Date.UTC(2026, 2, 2)},-2,6000,1.784,2026-03-05 11:00:00.000
     const enc = new TextEncoder();
     const files = [
       { name: path, data: enc.encode("day_time,source_type,count,speed\n2026-03-01,-2,5000,1.321\n") },
-      { name: "com.samsung.shealth.tracker.pedometer_day_summary.csv", data: enc.encode("day_time,speed,gait_speed_avg,gait_speed_max\n2026-03-01,2.4,2.5,2.9\n") },
+      {
+        name: "com.samsung.shealth.tracker.pedometer_day_summary.csv",
+        data: enc.encode("day_time,speed,gait_speed_avg,gait_speed_max\n2026-03-01,2.4,2.5,2.9\n"),
+      },
     ];
     const entries = await zipEntries(new Blob([zipStore(reverse ? files.reverse() : files) as BlobPart]));
     const speeds = [];
@@ -258,15 +317,28 @@ create_time,day_time,active_time,exercise_time,dynamic_active_time,walk_time,run
 2026-03-05 10:00:00.000,2026-03-01 00:00:00.000,845219,0,0,838419,6800,1274
 2026-03-05 10:00:00.000,2026-03-02 00:00:00.000,2700000,120000,0,2580000,120000,5000
 `;
-    expect(csv("com.samsung.shealth.activity.day_summary.csv", text)).toEqual({ active_minutes: [["2026-03-01", 14.1], ["2026-03-02", 45]] });
+    expect(csv("com.samsung.shealth.activity.day_summary.csv", text)).toEqual({
+      active_minutes: [
+        ["2026-03-01", 14.1],
+        ["2026-03-02", 45],
+      ],
+    });
   });
   it("replaces cumulative daily snapshots instead of adding them", () => {
-    const text = "com.samsung.shealth.activity.day_summary\nday_time,update_time,active_time\n2026-03-01,2026-03-02 12:00:00.000,1200000\n2026-03-01,2026-03-02 10:00:00.000,1800000\n";
+    const text =
+      "com.samsung.shealth.activity.day_summary\nday_time,update_time,active_time\n2026-03-01,2026-03-02 12:00:00.000,1200000\n2026-03-01,2026-03-02 10:00:00.000,1800000\n";
     expect(csv("com.samsung.shealth.activity.day_summary.csv", text)).toEqual({ active_minutes: [["2026-03-01", 20]] });
   });
   it("does not import overlapping pedometer or detail-bin active time", () => {
-    expect(csv("com.samsung.shealth.tracker.pedometer_day_summary.csv", "day_time,active_time\n2026-03-01,745753\n2026-03-01,44351\n2026-03-01,605419\n")).toEqual({});
-    expect(json("jsons/com.samsung.shealth.activity.day_summary/example.binning_data.json", [{ date: "2026-03-01", mTotalActiveTime: 60000 }, { date: "2026-03-01", mTotalActiveTime: 120000 }])).toEqual({});
+    expect(
+      csv("com.samsung.shealth.tracker.pedometer_day_summary.csv", "day_time,active_time\n2026-03-01,745753\n2026-03-01,44351\n2026-03-01,605419\n"),
+    ).toEqual({});
+    expect(
+      json("jsons/com.samsung.shealth.activity.day_summary/example.binning_data.json", [
+        { date: "2026-03-01", mTotalActiveTime: 60000 },
+        { date: "2026-03-01", mTotalActiveTime: 120000 },
+      ]),
+    ).toEqual({});
   });
 });
 
@@ -402,7 +474,8 @@ start_time,end_time,sleep_id,stage,time_offset
     });
   });
   it("uses Samsung's negative time-zone offsets when the local wake-up date is the previous day", () => {
-    const text = "com.samsung.health.sleep_stage,7010053,7\nstart_time,end_time,sleep_id,stage,time_offset\n2026-03-02 01:00:00.000,2026-03-02 02:00:00.000,night,40002,UTC-0500\n";
+    const text =
+      "com.samsung.health.sleep_stage,7010053,7\nstart_time,end_time,sleep_id,stage,time_offset\n2026-03-02 01:00:00.000,2026-03-02 02:00:00.000,night,40002,UTC-0500\n";
     expect(csv("com.samsung.health.sleep_stage.csv", text)).toEqual({ sleep_duration: [["2026-03-01", 60]] });
   });
   it.each(["sleep", "sleep_combined", "vitality_score"])("does not import Samsung %s score inputs or time in bed as sleep", (kind) => {
@@ -440,9 +513,26 @@ start_time,end_time,sleep_id,stage,time_offset
           timeInBed: 465,
           efficiency: 92,
           mainSleep: true,
-          levels: { summary: { deep: { count: 4, minutes: 71, thirtyDayAvgMinutes: 65 }, light: { count: 30, minutes: 230 }, rem: { count: 6, minutes: 111 }, wake: { count: 28, minutes: 53 } }, data: [{ dateTime: "x", level: "wake", seconds: 30 }] },
+          levels: {
+            summary: {
+              deep: { count: 4, minutes: 71, thirtyDayAvgMinutes: 65 },
+              light: { count: 30, minutes: 230 },
+              rem: { count: 6, minutes: 111 },
+              wake: { count: 28, minutes: 53 },
+            },
+            data: [{ dateTime: "x", level: "wake", seconds: 30 }],
+          },
         },
-        { logId: 2, dateOfSleep: "2026-03-02", startTime: "2026-03-02T14:00:00.000", endTime: "2026-03-02T14:30:00.000", duration: 1800000, minutesAsleep: 28, mainSleep: false, levels: { summary: { asleep: { count: 1, minutes: 28 } } } },
+        {
+          logId: 2,
+          dateOfSleep: "2026-03-02",
+          startTime: "2026-03-02T14:00:00.000",
+          endTime: "2026-03-02T14:30:00.000",
+          duration: 1800000,
+          minutesAsleep: 28,
+          mainSleep: false,
+          levels: { summary: { asleep: { count: 1, minutes: 28 } } },
+        },
       ]),
     ).toEqual({ sleep_duration: [["2026-03-02", 440]], sleep_deep: [["2026-03-02", 71]], sleep_rem: [["2026-03-02", 111]] });
   });
@@ -453,7 +543,12 @@ start_time,end_time,sleep_id,stage,time_offset
         "Cycle start time,Sleep onset,Wake onset,Sleep performance %,Respiratory rate (rpm),Asleep duration (min),In bed duration (min),Light sleep duration (min),Deep (SWS) duration (min),REM duration (min),Awake duration (min),Sleep need (min),Sleep efficiency %\n2026-03-01 22:50:00,2026-03-01 23:10:00,2026-03-02 06:45:00,88,14.8,420,455,210,95,115,35,470,92\n",
       ),
     ).toEqual({ sleep_duration: [["2026-03-02", 420]], sleep_deep: [["2026-03-02", 95]], sleep_rem: [["2026-03-02", 115]] });
-    expect(csv("oura_sleep.csv", "date,Sleep Score,Total Sleep Duration,Deep Sleep Duration,REM Sleep Duration,Light Sleep Duration,Sleep Efficiency\n2026-03-02,81,26100,5400,6300,14400,90\n")).toEqual({
+    expect(
+      csv(
+        "oura_sleep.csv",
+        "date,Sleep Score,Total Sleep Duration,Deep Sleep Duration,REM Sleep Duration,Light Sleep Duration,Sleep Efficiency\n2026-03-02,81,26100,5400,6300,14400,90\n",
+      ),
+    ).toEqual({
       sleep_duration: [["2026-03-02", 26100]],
       sleep_deep: [["2026-03-02", 5400]],
       sleep_rem: [["2026-03-02", 6300]],
@@ -462,10 +557,22 @@ start_time,end_time,sleep_id,stage,time_offset
   it("adds up a total from stages when there is none (Garmin, Zepp)", () => {
     expect(
       json("DI_CONNECT/DI-Connect-Wellness/2026-03-01_2026-06-01_123_sleepData.json", [
-        { calendarDate: "2026-03-02", deepSleepSeconds: 4800, lightSleepSeconds: 15600, remSleepSeconds: 6000, awakeSleepSeconds: 1200, sleepStartTimestampGMT: "2026-03-01T22:00:00.0" },
+        {
+          calendarDate: "2026-03-02",
+          deepSleepSeconds: 4800,
+          lightSleepSeconds: 15600,
+          remSleepSeconds: 6000,
+          awakeSleepSeconds: 1200,
+          sleepStartTimestampGMT: "2026-03-01T22:00:00.0",
+        },
       ]),
     ).toEqual({ sleep_deep: [["2026-03-02", 4800]], sleep_rem: [["2026-03-02", 6000]], sleep_duration: [["2026-03-02", 26400]] });
-    expect(csv("SLEEP/SLEEP_1700000000000.csv", "date,deepSleepTime,shallowSleepTime,wakeTime,start,stop,REMTime,naps\n2026-03-02,80,250,20,2026-03-01 23:00:00+0000,2026-03-02 06:40:00+0000,100,\n")).toEqual({
+    expect(
+      csv(
+        "SLEEP/SLEEP_1700000000000.csv",
+        "date,deepSleepTime,shallowSleepTime,wakeTime,start,stop,REMTime,naps\n2026-03-02,80,250,20,2026-03-01 23:00:00+0000,2026-03-02 06:40:00+0000,100,\n",
+      ),
+    ).toEqual({
       sleep_deep: [["2026-03-02", 80]],
       sleep_rem: [["2026-03-02", 100]],
       sleep_duration: [["2026-03-02", 430]],
@@ -506,8 +613,14 @@ start_time,end_time,sleep_id,stage,time_offset
 
 describe("VO2max", () => {
   it("reads Garmin, Fitbit and plain columns, but not ranks or fitness ages", () => {
-    expect(json("DI_CONNECT/DI-Connect-Metrics/MetricsMaxMetData_2026.json", [{ calendarDate: "2026-03-01", vO2MaxValue: 41.0, vo2MaxPreciseValue: 41.3, fitnessAge: 38 }])).toEqual({ vo2max: [["2026-03-01", 41]] });
-    expect(csv("Cardio Fitness Score/demographic_vo2_max - 2026-03.csv", "date,demographic_vo2_max,demographic_vo2_max_error\n2026-03-01,42.5,1.2\n")).toEqual({ vo2max: [["2026-03-01", 42.5]] });
+    expect(
+      json("DI_CONNECT/DI-Connect-Metrics/MetricsMaxMetData_2026.json", [
+        { calendarDate: "2026-03-01", vO2MaxValue: 41.0, vo2MaxPreciseValue: 41.3, fitnessAge: 38 },
+      ]),
+    ).toEqual({ vo2max: [["2026-03-01", 41]] });
+    expect(csv("Cardio Fitness Score/demographic_vo2_max - 2026-03.csv", "date,demographic_vo2_max,demographic_vo2_max_error\n2026-03-01,42.5,1.2\n")).toEqual({
+      vo2max: [["2026-03-01", 42.5]],
+    });
     expect(csv("oura.csv", "date,VO2 Max\n2026-03-01,39\n")).toEqual({ vo2max: [["2026-03-01", 39]] });
   });
   it("reads Apple's VO2Max records", () => {

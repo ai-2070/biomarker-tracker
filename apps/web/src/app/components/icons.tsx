@@ -3,7 +3,18 @@ import type { ComponentProps, ReactNode } from "react";
 /** One icon family: 24px grid, 1.75 stroke, round ends. Decorative unless given a label. */
 function Icon({ children, ...props }: ComponentProps<"svg"> & { children: ReactNode }) {
   return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
       {children}
     </svg>
   );

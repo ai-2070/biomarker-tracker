@@ -1,19 +1,10 @@
-import { useMemo } from "react";
 import { buildDashboard } from "@bt/shared/core/dashboard";
 import { todayIso } from "@bt/shared/core/dates";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { useMemo } from "react";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { Timeline } from "../components/dashboard/Timeline";
-import {
-  AskPanel,
-  BioAgeFigure,
-  HabitsPanel,
-  InRangeFigure,
-  MarkerGrid,
-  NextFigure,
-  ToWatchFigure,
-  cardStyles,
-} from "../components/dashboard/widgets";
+import { AskPanel, BioAgeFigure, cardStyles, HabitsPanel, InRangeFigure, MarkerGrid, NextFigure, ToWatchFigure } from "../components/dashboard/widgets";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -33,7 +24,8 @@ export function BloodDashboardPage() {
   const today = todayIso();
   const blood = useMemo(() => (all ? bloodOnly(all) : undefined), [all]);
   const d = useMemo(
-    () => (blood && protocols && experiments ? buildDashboard({ measurements: blood, protocols, experiments, profile, defs: BIOMARKER_MAP, today }) : undefined),
+    () =>
+      blood && protocols && experiments ? buildDashboard({ measurements: blood, protocols, experiments, profile, defs: BIOMARKER_MAP, today }) : undefined,
     [blood, protocols, experiments, profile, today],
   );
 
@@ -103,7 +95,9 @@ export function EmptyBlood() {
       <header>
         <h1 className="font-serif text-4xl font-normal tracking-tight sm:text-5xl">Blood tests</h1>
         <p className="mt-1 text-ink-2">Add your first blood test and this fills in: biological age, what's in range, and a timeline over the years.</p>
-        <LinkButton variant="secondary" href={href({ name: "overview" })} className="mt-4">All results</LinkButton>
+        <LinkButton variant="secondary" href={href({ name: "overview" })} className="mt-4">
+          All results
+        </LinkButton>
       </header>
       <div className="stagger grid gap-3 sm:grid-cols-3">
         <a href={href({ name: "import" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
@@ -117,7 +111,11 @@ export function EmptyBlood() {
         <div className={cx(cardStyles, "flex flex-col gap-2")}>
           <span className="font-medium">Just looking?</span>
           <span className="text-sm text-ink-2">Open a profile with five years of made-up results.</span>
-          {mode === "folders" ? <ExampleProfileButton mode="folders" label="Open an example" /> : <span className="text-sm text-ink-2">Needs the app's local server.</span>}
+          {mode === "folders" ? (
+            <ExampleProfileButton mode="folders" label="Open an example" />
+          ) : (
+            <span className="text-sm text-ink-2">Needs the app's local server.</span>
+          )}
         </div>
       </div>
     </div>

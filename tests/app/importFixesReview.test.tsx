@@ -1,28 +1,37 @@
 import "fake-indexeddb/auto";
-import { isValidElement, type ReactElement, type ReactNode } from "react";
-import type * as ReactModule from "react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { DeviceImportPage } from "../../apps/web/src/app/pages/DeviceImportPage";
-import { Review } from "../../apps/web/src/app/components/LabReview";
 import { parseLabText } from "@bt/shared/core/importers/labText";
-import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { db } from "../../apps/web/src/db/db";
 import type { Measurement } from "@bt/shared/core/types";
+import type * as ReactModule from "react";
+import { isValidElement, type ReactElement, type ReactNode } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Review } from "../../apps/web/src/app/components/LabReview";
+import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
+import { DeviceImportPage } from "../../apps/web/src/app/pages/DeviceImportPage";
+import { db } from "../../apps/web/src/db/db";
 
 // Exercise the real review event handlers and IndexedDB writes without a browser DOM.
 // Hooks are an explicit state harness; the browser smoke still covers Base UI interaction.
-const state = vi.hoisted(() => ({ values: [] as unknown[], cursor: 0, loaded: undefined as (() => void) | undefined, saved: undefined as (() => void) | undefined, existing: [] as Measurement[] }));
+const state = vi.hoisted(() => ({
+  values: [] as unknown[],
+  cursor: 0,
+  loaded: undefined as (() => void) | undefined,
+  saved: undefined as (() => void) | undefined,
+  existing: [] as Measurement[],
+}));
 vi.mock("react", async (original) => ({
-  ...await original<typeof ReactModule>(),
+  ...(await original<typeof ReactModule>()),
   useState(initial: unknown) {
     const slot = state.cursor++;
     if (!(slot in state.values)) state.values[slot] = typeof initial === "function" ? initial() : initial;
-    return [state.values[slot], (next: unknown) => {
-      state.values[slot] = typeof next === "function" ? next(state.values[slot]) : next;
-      const value = state.values[slot];
-      if (value && typeof value === "object" && "rows" in value) state.loaded?.();
-      if (value && typeof value === "object" && "readings" in value && "kinds" in value) state.saved?.();
-    }];
+    return [
+      state.values[slot],
+      (next: unknown) => {
+        state.values[slot] = typeof next === "function" ? next(state.values[slot]) : next;
+        const value = state.values[slot];
+        if (value && typeof value === "object" && "rows" in value) state.loaded?.();
+        if (value && typeof value === "object" && "readings" in value && "kinds" in value) state.saved?.();
+      },
+    ];
   },
   useMemo: (compute: () => unknown) => compute(),
   useId: () => "import-review-test",
@@ -80,17 +89,34 @@ beforeEach(async () => {
 
 describe("import review consumer boundaries", () => {
   it("saves identical pending lab rows once but retains exact and comparator observations", async () => {
-    const report = parseLabText("Collected: 2026-03-01\nFerritin 45 µg/L 15 - 150\nFerritin 45 µg/L 15 - 150\nC-reactive protein < 0.3 mg/L\nC-reactive protein 0.3 mg/L", [...BIOMARKER_MAP.values()]);
+    const report = parseLabText(
+      "Collected: 2026-03-01\nFerritin 45 µg/L 15 - 150\nFerritin 45 µg/L 15 - 150\nC-reactive protein < 0.3 mg/L\nC-reactive protein 0.3 mg/L",
+      [...BIOMARKER_MAP.values()],
+    );
     let skipped = -1;
     const saved = Promise.withResolvers<void>();
-    const tree = Review({ fileName: "synthetic.pdf", fromPicture: false, report, onCancel() {}, onSaved(_rows, count) { skipped = count; saved.resolve(); } });
+    const tree = Review({
+      fileName: "synthetic.pdf",
+      fromPicture: false,
+      report,
+      onCancel() {},
+      onSaved(_rows, count) {
+        skipped = count;
+        saved.resolve();
+      },
+    });
     (saveButton(tree).props.onClick as () => void)();
     await saved.promise;
     const rows = await db.measurements.toArray();
     expect(rows).toHaveLength(3);
     expect(skipped).toBe(1);
     expect(rows.filter((m) => m.biomarkerId === "ferritin")).toHaveLength(1);
-    expect(rows.filter((m) => m.biomarkerId !== "ferritin").map((m) => m.qualifier ?? "exact").sort()).toEqual(["<", "exact"]);
+    expect(
+      rows
+        .filter((m) => m.biomarkerId !== "ferritin")
+        .map((m) => m.qualifier ?? "exact")
+        .sort(),
+    ).toEqual(["<", "exact"]);
   });
 
   it("keeps an empty remapped series correctable and disables saving until it recovers", async () => {
@@ -119,15 +145,16 @@ describe("import review consumer boundaries", () => {
     (saveButton(tree).props.onClick as () => void)();
     await saved.promise;
     const rows = await db.measurements.orderBy("date").toArray();
-    expect(rows.map((m) => [m.date, m.value])).toEqual([["2026-03-01", 8000], ["2026-03-02", 9000]]);
+    expect(rows.map((m) => [m.date, m.value])).toEqual([
+      ["2026-03-01", 8000],
+      ["2026-03-02", 9000],
+    ]);
   });
 
   it("carries dated sleep windows through the real selected-series review and save flow", async () => {
-    const csv = "date,startTime,endTime,total sleep (h)\n2026-03-02,2026-03-01T23:00:00,2026-03-02T06:00:00,7\n2026-03-02,2026-03-02T14:00:00,2026-03-02T14:30:00,0.5";
-    const tree = await choose([
-      new File([csv], "fitbit-sleep-2026-03-02.csv"),
-      new File([csv], "fitbit-sleep-2026-03-03.csv"),
-    ]);
+    const csv =
+      "date,startTime,endTime,total sleep (h)\n2026-03-02,2026-03-01T23:00:00,2026-03-02T06:00:00,7\n2026-03-02,2026-03-02T14:00:00,2026-03-02T14:30:00,0.5";
+    const tree = await choose([new File([csv], "fitbit-sleep-2026-03-02.csv"), new File([csv], "fitbit-sleep-2026-03-03.csv")]);
     const review = text(seriesTree(tree));
     expect(review).toContain("1 night with timing");
     expect(review).toContain("2 recorded windows (session estimates)");
@@ -158,9 +185,7 @@ describe("import review consumer boundaries", () => {
     const rows = await db.measurements.toArray();
     expect(rows).toHaveLength(1);
     expect(rows[0]!.value).toBe(7);
-    expect(rows[0]!.sleepSessions).toEqual([
-      { start: "2026-03-01T23:00:00", end: "2026-03-02T07:00:00", kind: "session", source: "Fitbit" },
-    ]);
+    expect(rows[0]!.sleepSessions).toEqual([{ start: "2026-03-01T23:00:00", end: "2026-03-02T07:00:00", kind: "session", source: "Fitbit" }]);
   });
 
   it("drops timing metadata when the reviewed sleep series is remapped to another marker", async () => {
@@ -198,9 +223,18 @@ describe("import review consumer boundaries", () => {
   });
 
   it.each(["Apple", "Samsung"])("preserves %s parser timings through file selection, review and saving", async (provider) => {
-    const file = provider === "Apple"
-      ? new File(['<Record type="HKCategoryTypeIdentifierSleepAnalysis" value="HKCategoryValueSleepAnalysisAsleep" startDate="2026-03-01 23:00:00 +0100" endDate="2026-03-02 06:00:00 +0100" sourceName="Apple Watch"/>'], "export.xml")
-      : new File(["start_time,end_time,sleep_id,stage,time_offset\n2026-03-01 22:00:00.000,2026-03-02 05:00:00.000,night,40002,UTC+0100"], "com.samsung.health.sleep_stage.csv");
+    const file =
+      provider === "Apple"
+        ? new File(
+            [
+              '<Record type="HKCategoryTypeIdentifierSleepAnalysis" value="HKCategoryValueSleepAnalysisAsleep" startDate="2026-03-01 23:00:00 +0100" endDate="2026-03-02 06:00:00 +0100" sourceName="Apple Watch"/>',
+            ],
+            "export.xml",
+          )
+        : new File(
+            ["start_time,end_time,sleep_id,stage,time_offset\n2026-03-01 22:00:00.000,2026-03-02 05:00:00.000,night,40002,UTC+0100"],
+            "com.samsung.health.sleep_stage.csv",
+          );
     const tree = await choose([file]);
     expect(text(seriesTree(tree))).toContain("1 night with timing");
     expect(text(seriesTree(tree))).toContain("asleep bounds");

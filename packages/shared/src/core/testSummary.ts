@@ -10,9 +10,9 @@ import { rcvBand } from "./experiments";
 import type { NutrientDef } from "./nutrients";
 import { nutrientFor } from "./plans";
 import { isActiveOn } from "./protocols";
-import { flagMeasurement, isCritical, isOutOfRange, resolveRange, sortByDate, type Flag, type ResolvedRange } from "./trends";
-import { formatValue } from "./units";
+import { type Flag, flagMeasurement, isCritical, isOutOfRange, type ResolvedRange, resolveRange, sortByDate } from "./trends";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
+import { formatValue } from "./units";
 
 export interface SummaryResult {
   id: string;
@@ -95,7 +95,8 @@ export interface SummaryInput {
   formatDate?: (iso: string) => string;
 }
 
-const side = (f: Flag): "high" | "low" | undefined => (f === "high" || f === "critical-high" ? "high" : f === "low" || f === "critical-low" ? "low" : undefined);
+const side = (f: Flag): "high" | "low" | undefined =>
+  f === "high" || f === "critical-high" ? "high" : f === "low" || f === "critical-low" ? "low" : undefined;
 
 /** "3.4–5.0", "below 5.0", "above 90" in the canonical unit. */
 export function rangeText(range: Pick<ResolvedRange, "low" | "high"> | undefined, unit: string): string | undefined {
@@ -208,7 +209,13 @@ const list = (names: readonly string[]) => (names.length <= 1 ? names.join("") :
 /** "haemoglobin" inside a sentence, but "LDL cholesterol" and "C-reactive protein" keep their capitals. */
 const inSentence = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
 
-function cautionsFor(results: readonly SummaryResult[], defs: ReadonlyMap<string, BiomarkerDef>, protocols: readonly ProtocolEntry[], nutrients: readonly NutrientDef[], date: string): SummaryCaution[] {
+function cautionsFor(
+  results: readonly SummaryResult[],
+  defs: ReadonlyMap<string, BiomarkerDef>,
+  protocols: readonly ProtocolEntry[],
+  nutrients: readonly NutrientDef[],
+  date: string,
+): SummaryCaution[] {
   const out: SummaryCaution[] = [];
   const ids = new Set(results.map((r) => r.id));
 
@@ -229,30 +236,45 @@ function cautionsFor(results: readonly SummaryResult[], defs: ReadonlyMap<string
     const affected = rule.markers.filter((id) => ids.has(id));
     const caution = nutrient?.cautions.find((c) => rule.caution.test(c));
     if (!nutrient || !caution || affected.length === 0) continue;
-    const habit = active.find((p) =>
-      nutrientFor(p, [nutrient]) || (p.plan?.items ?? []).some((item) => nutrientFor(item, [nutrient])),
-    );
+    const habit = active.find((p) => nutrientFor(p, [nutrient]) || (p.plan?.items ?? []).some((item) => nutrientFor(item, [nutrient])));
     if (habit) out.push({ kind: "supplement", text: caution, markers: affected, nutrientId: nutrient.id, habit: habit.label });
   }
 
   const photo = results.filter((r) => r.measurement.source === "photo");
   if (photo.length) {
-    out.push({ kind: "photo", text: `${photo.length === 1 ? "One result was" : `${photo.length} results were`} read from a photo or a scanned page. Check ${photo.length === 1 ? "it" : "them"} against the paper report.`, markers: photo.map((r) => r.id) });
+    out.push({
+      kind: "photo",
+      text: `${photo.length === 1 ? "One result was" : `${photo.length} results were`} read from a photo or a scanned page. Check ${photo.length === 1 ? "it" : "them"} against the paper report.`,
+      markers: photo.map((r) => r.id),
+    });
   }
 
   const typical = results.filter((r) => r.range?.source === "default" && r.flag !== "unknown");
   if (typical.length) {
-    out.push({ kind: "typical-range", text: `For ${typical.length === 1 ? "one result" : `${typical.length} results`} no lab range was saved, so the app's typical adult range was used. The lab's own range can differ.`, markers: typical.map((r) => r.id) });
+    out.push({
+      kind: "typical-range",
+      text: `For ${typical.length === 1 ? "one result" : `${typical.length} results`} no lab range was saved, so the app's typical adult range was used. The lab's own range can differ.`,
+      markers: typical.map((r) => r.id),
+    });
   }
 
   const bounded = results.filter((r) => r.measurement.qualifier);
   if (bounded.length) {
-    out.push({ kind: "bounded", text: `${bounded.length === 1 ? "One result was" : `${bounded.length} results were`} beyond what the lab measures (shown with < or >), so only that side of the range can be judged.`, markers: bounded.map((r) => r.id) });
+    out.push({
+      kind: "bounded",
+      text: `${bounded.length === 1 ? "One result was" : `${bounded.length} results were`} beyond what the lab measures (shown with < or >), so only that side of the range can be judged.`,
+      markers: bounded.map((r) => r.id),
+    });
   }
   return out;
 }
 
-function questionsFor(flagged: readonly SummaryResult[], cautions: readonly SummaryCaution[], defs: ReadonlyMap<string, BiomarkerDef>, fmtDate: (iso: string) => string): string[] {
+function questionsFor(
+  flagged: readonly SummaryResult[],
+  cautions: readonly SummaryCaution[],
+  defs: ReadonlyMap<string, BiomarkerDef>,
+  fmtDate: (iso: string) => string,
+): string[] {
   const qs: string[] = [];
   for (const r of flagged) {
     const def = defs.get(r.id)!;
@@ -262,7 +284,9 @@ function questionsFor(flagged: readonly SummaryResult[], cautions: readonly Summ
       qs.push(`My ${name} has been ${s} on ${r.streak} tests in a row, since ${fmtDate(r.streakFrom)}. What could explain it, and does it need follow-up?`);
     } else {
       const range = rangeText(r.range, def.canonicalUnit);
-      qs.push(`My ${name} was ${valueText(r.measurement, def.canonicalUnit)}, ${s === "high" ? "above" : "below"} the range${range ? ` (${range})` : ""}. What could explain it, and should it be re-tested?`);
+      qs.push(
+        `My ${name} was ${valueText(r.measurement, def.canonicalUnit)}, ${s === "high" ? "above" : "below"} the range${range ? ` (${range})` : ""}. What could explain it, and should it be re-tested?`,
+      );
     }
   }
   for (const c of cautions) {
@@ -270,6 +294,10 @@ function questionsFor(flagged: readonly SummaryResult[], cautions: readonly Summ
     const names = c.markers.map((id) => inSentence(defs.get(id)?.name ?? id));
     qs.push(`I was taking ${c.habit} around this test. Could it affect my ${list(names)} result${names.length === 1 ? "" : "s"}?`);
   }
-  qs.push(flagged.length ? "Which of these results matter most for me, and when should I have the next test?" : "Is there anything in these results you'd like to follow up, and when should I have the next test?");
+  qs.push(
+    flagged.length
+      ? "Which of these results matter most for me, and when should I have the next test?"
+      : "Is there anything in these results you'd like to follow up, and when should I have the next test?",
+  );
   return qs;
 }

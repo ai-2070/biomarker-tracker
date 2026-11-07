@@ -1,30 +1,52 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import type * as React from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const seam = vi.hoisted(() => ({
-  api: vi.fn(), profile: vi.fn(), shrink: vi.fn(), parse: vi.fn(),
+  api: vi.fn(),
+  profile: vi.fn(),
+  shrink: vi.fn(),
+  parse: vi.fn(),
 }));
-vi.mock("react", async (original) => ({ ...await original<typeof React>(), useSyncExternalStore: (_subscribe: unknown, snapshot: () => unknown) => snapshot() }));
-vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(() => { throw new Error("No local server in this test."); }));
+vi.mock("react", async (original) => ({
+  ...(await original<typeof React>()),
+  useSyncExternalStore: (_subscribe: unknown, snapshot: () => unknown) => snapshot(),
+}));
+vi.mock("../../apps/web/src/app/api", async () =>
+  (await import("./fakeServer")).mockApiModule(() => {
+    throw new Error("No local server in this test.");
+  }),
+);
 // The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
-vi.mock("../../apps/web/src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => seam.api("POST", "/api/assistant", body, signal, onUpdate) }));
+vi.mock("../../apps/web/src/app/brain/stream", () => ({
+  streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => seam.api("POST", "/api/assistant", body, signal, onUpdate),
+}));
 vi.mock("../../apps/web/src/db/db", () => ({
-  db: { ...Object.fromEntries(["measurements", "protocols", "experiments", "plans", "meals", "settings"].map((name) => [name, { toArray: async () => [], get: async () => undefined }])), transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action() },
+  db: {
+    ...Object.fromEntries(
+      ["measurements", "protocols", "experiments", "plans", "meals", "settings"].map((name) => [name, { toArray: async () => [], get: async () => undefined }]),
+    ),
+    transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
+  },
   getProfile: seam.profile,
   LOADED_PROFILE_KEY: "loadedProfile",
 }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "expiration", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../apps/web/src/app/knowledge", () => ({ BIOMARKER_MAP: new Map([["ldl", { id: "ldl", name: "LDL", aliases: [] }]]), BLOOD_MARKERS: [] }));
 vi.mock("../../apps/web/src/app/components/LabReview", () => ({
-  isImage: (f: File) => f.type.startsWith("image/"), isPdf: () => false, monthFirst: false,
+  isImage: (f: File) => f.type.startsWith("image/"),
+  isPdf: () => false,
+  monthFirst: false,
 }));
 vi.mock("@bt/shared/core/importers/labText", () => ({ parseLabText: seam.parse }));
 vi.mock("../../apps/web/src/app/brain/photo", () => ({ shrinkPhoto: seam.shrink }));
+
 import { addFiles, addPastedLabText, habitTurns, newConversation, removeAttachment, send, setDraft, useBrain } from "../../apps/web/src/app/brain/store";
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
-  const promise = new Promise<T>((done) => { resolve = done; });
+  const promise = new Promise<T>((done) => {
+    resolve = done;
+  });
   return { promise, resolve };
 }
 const profile = { name: "Anna Kovacs", sex: "f" };
@@ -61,7 +83,9 @@ describe("assistant preparation boundaries", () => {
   it("prepares a photo when it is attached and sends it with the question, never reading it as text", async () => {
     await addFiles([new File(["image"], "photo.png", { type: "image/png" })]);
     expect(seam.parse).not.toHaveBeenCalled();
-    expect(useBrain().attachments).toMatchObject([{ name: "photo.png", status: "ready", images: [{ mediaType: "image/jpeg", data: "jpeg" }], pictureOf: "photo" }]);
+    expect(useBrain().attachments).toMatchObject([
+      { name: "photo.png", status: "ready", images: [{ mediaType: "image/jpeg", data: "jpeg" }], pictureOf: "photo" },
+    ]);
     await send("Model", "Look");
     expect(seam.api.mock.calls[0]![2].messages[0]).toMatchObject({ content: "Look", images: [{ mediaType: "image/jpeg", data: "jpeg" }] });
     expect(useBrain().turns[0]).toMatchObject({ role: "user", photos: 1, files: ["photo.png"] });
@@ -125,17 +149,50 @@ it("builds cards only from successful complete proposal outputs, never input", (
   const meal = { id: "server", name: "Validated", createdAt: "2026-10-30", items: [{ foodId: "food", grams: 100 }] };
   const input = JSON.stringify({ ...meal, name: "Rejected input" });
   const context = { requestText: "Record my breakfast recipe", safety: [] };
-  expect(habitTurns([{ tool: "propose_meal", input, validated: true, success: false, output: { error: "Unknown food" } }, { tool: "propose_meal", input }], [], "2026-10-30", context)).toEqual([]);
-  expect(habitTurns([{ tool: "propose_meal", input, validated: true, success: true, output: { intent: "record", meal } }], [], "2026-10-30", context)).toMatchObject([{ role: "meal", meal: { name: "Validated" } }]);
-  const plan = { name: "Long protocol", items: Array.from({ length: 60 }, (_, i) => ({ label: `${i}${"a".repeat(78)}`, amount: "b".repeat(40), note: "c".repeat(300), category: "lifestyle", when: "any time", days: ["mon", "tue", "wed", "thu", "fri", "sat"] })) };
+  expect(
+    habitTurns(
+      [
+        { tool: "propose_meal", input, validated: true, success: false, output: { error: "Unknown food" } },
+        { tool: "propose_meal", input },
+      ],
+      [],
+      "2026-10-30",
+      context,
+    ),
+  ).toEqual([]);
+  expect(
+    habitTurns([{ tool: "propose_meal", input, validated: true, success: true, output: { intent: "record", meal } }], [], "2026-10-30", context),
+  ).toMatchObject([{ role: "meal", meal: { name: "Validated" } }]);
+  const plan = {
+    name: "Long protocol",
+    items: Array.from({ length: 60 }, (_, i) => ({
+      label: `${i}${"a".repeat(78)}`,
+      amount: "b".repeat(40),
+      note: "c".repeat(300),
+      category: "lifestyle",
+      when: "any time",
+      days: ["mon", "tue", "wed", "thu", "fri", "sat"],
+    })),
+  };
   expect(JSON.stringify(plan).length).toBeGreaterThan(30_000);
-  const cards = habitTurns([{ tool: "propose_protocol", input: "broken truncated JSON", validated: true, success: true, output: { intent: "record", plan } }], [], "2026-10-30", { requestText: plan.items.map((i) => `${i.label} ${i.amount} ${i.note}`).join("\n"), safety: [] });
+  const cards = habitTurns(
+    [{ tool: "propose_protocol", input: "broken truncated JSON", validated: true, success: true, output: { intent: "record", plan } }],
+    [],
+    "2026-10-30",
+    { requestText: plan.items.map((i) => `${i.label} ${i.amount} ${i.note}`).join("\n"), safety: [] },
+  );
   expect(cards).toMatchObject([{ role: "protocol", plan: { name: "Long protocol", items: plan.items } }]);
 });
 
 it("preserves resolved marker ids from successful habit output rather than untrusted input", () => {
   const proposal = { label: "Walk after dinner", category: "lifestyle", start: "2026-10-30", markerIds: ["ldl"], reason: "Track what changes." };
-  const step = { tool: "propose_habit", input: JSON.stringify({ label: "Untrusted", watchMarkers: [] }), validated: true, success: true, output: { intent: "recommend", shownToPerson: proposal } };
+  const step = {
+    tool: "propose_habit",
+    input: JSON.stringify({ label: "Untrusted", watchMarkers: [] }),
+    validated: true,
+    success: true,
+    output: { intent: "recommend", shownToPerson: proposal },
+  };
   const context = { requestText: "Recommend a walking habit", safety: [] };
   expect(habitTurns([step], [], "2026-10-30", context)).toMatchObject([{ role: "habit", proposal }]);
   expect(habitTurns([{ ...step, success: false }], [], "2026-10-30", context)).toEqual([]);
@@ -152,7 +209,6 @@ it("keeps a full-length earlier photo question intact without overflowing it wit
   expect(messages[0].images).toBeUndefined();
   expect(messages.every((message: { content: string }) => message.content.length <= 20_000)).toBe(true);
 });
-
 
 describe("lab results pasted into Brain", () => {
   const rows = (n: number) => ({ rows: Array.from({ length: n }, (_, i) => ({ biomarkerId: `m${i}` })), unmatched: [] });

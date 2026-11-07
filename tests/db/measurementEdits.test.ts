@@ -1,6 +1,6 @@
 import "fake-indexeddb/auto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { Measurement } from "@bt/shared/core/types";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { deleteMeasurements, TrackerDB, updateMeasurement } from "../../apps/web/src/db/db";
 
 let db: TrackerDB;
@@ -15,11 +15,17 @@ afterEach(async () => {
 });
 
 const editable = {
-  biomarkerId: "glucose_home", value: 5, originalValue: 90,
-  originalUnit: "mg/dL", date: "2026-10-01",
+  biomarkerId: "glucose_home",
+  value: 5,
+  originalValue: 90,
+  originalUnit: "mg/dL",
+  date: "2026-10-01",
 };
 const row = (id: string, savedOrder: number): Measurement => ({
-  ...editable, id, source: "device", savedOrder,
+  ...editable,
+  id,
+  source: "device",
+  savedOrder,
 });
 
 describe("editing saved measurements", () => {
@@ -27,25 +33,42 @@ describe("editing saved measurements", () => {
     const original = row("device-reading", 42);
     await db.measurements.add(original);
     const change = {
-      ...editable, value: 5.5, originalValue: 99, date: "2026-10-02",
-      qualifier: "<" as const, fasted: false, lab: "Meter",
-      labRange: { low: 3.9, high: 7.8 }, note: "Checked the export",
+      ...editable,
+      value: 5.5,
+      originalValue: 99,
+      date: "2026-10-02",
+      qualifier: "<" as const,
+      fasted: false,
+      lab: "Meter",
+      labRange: { low: 3.9, high: 7.8 },
+      note: "Checked the export",
     };
     await updateMeasurement(original.id, change, db);
     expect(await db.measurements.get(original.id)).toEqual({
-      ...change, id: original.id, source: "device", savedOrder: 42,
+      ...change,
+      id: original.id,
+      source: "device",
+      savedOrder: 42,
     });
     expect(await db.measurements.count()).toBe(1);
   });
 
   it("clears every omitted optional editable field instead of merging stale fields", async () => {
     await db.measurements.add({
-      ...row("qualified", 7), source: "pdf", qualifier: ">", lab: "Lab",
-      labRange: { low: 4, high: 6 }, fasted: true, note: "Old note",
+      ...row("qualified", 7),
+      source: "pdf",
+      qualifier: ">",
+      lab: "Lab",
+      labRange: { low: 4, high: 6 },
+      fasted: true,
+      note: "Old note",
     });
     await updateMeasurement("qualified", editable, db);
     expect(await db.measurements.get("qualified")).toEqual({
-      ...editable, id: "qualified", source: "pdf", savedOrder: 7,
+      ...editable,
+      id: "qualified",
+      source: "pdf",
+      savedOrder: 7,
     });
   });
 
@@ -54,7 +77,10 @@ describe("editing saved measurements", () => {
     const stale = { ...editable, id: "another-id", source: "device" as const, savedOrder: 1 };
     await updateMeasurement("current", stale, db);
     expect(await db.measurements.get("current")).toEqual({
-      ...editable, id: "current", source: "manual", savedOrder: 81,
+      ...editable,
+      id: "current",
+      source: "manual",
+      savedOrder: 81,
     });
     expect(await db.measurements.get("another-id")).toBeUndefined();
   });
@@ -71,7 +97,9 @@ describe("editing saved measurements", () => {
   it("rolls an edit back when a write fails", async () => {
     const original = row("failed-edit", 3);
     await db.measurements.add(original);
-    const rejectWrite = () => { throw new Error("Write failed"); };
+    const rejectWrite = () => {
+      throw new Error("Write failed");
+    };
     db.measurements.hook("updating", rejectWrite);
     try {
       await expect(updateMeasurement(original.id, { ...editable, value: 6 }, db)).rejects.toThrow("Write failed");

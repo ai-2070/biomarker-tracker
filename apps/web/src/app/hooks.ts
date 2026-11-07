@@ -1,11 +1,11 @@
-import { validateIntakeItems, type IntakeItem } from "@bt/shared/core/intake";
+import { type IntakeItem, validateIntakeItems } from "@bt/shared/core/intake";
 import type { Meal } from "@bt/shared/core/meals";
-import type { Plan } from "@bt/shared/core/plans";
-import { useSyncExternalStore } from "react";
-import { useLiveQuery } from "dexie-react-hooks";
-import { db, getProfile, measurementsFor } from "../db/db";
-import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
+import type { Plan } from "@bt/shared/core/plans";
+import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { useLiveQuery } from "dexie-react-hooks";
+import { useSyncExternalStore } from "react";
+import { db, getProfile, measurementsFor } from "../db/db";
 
 /** All measurements, live. `undefined` while loading. */
 export function useAllMeasurements(): Measurement[] | undefined {
@@ -112,8 +112,8 @@ export async function setIntakeList(items: IntakeItem[]): Promise<void> {
   await db.transaction("rw", db.settings, async () => {
     const errors = validateIntakeItems(items);
     const current = (await db.settings.get(INTAKE_KEY))?.value;
-    const repairing = Array.isArray(current) && current.length > 60 && items.length < current.length &&
-      items.every((item) => validateIntakeItems([item]).length === 0);
+    const repairing =
+      Array.isArray(current) && current.length > 60 && items.length < current.length && items.every((item) => validateIntakeItems([item]).length === 0);
     if (errors.length && !repairing) throw new Error(errors[0]);
     if (items.length === 0) await db.settings.delete(INTAKE_KEY);
     else await db.settings.put({ key: INTAKE_KEY, value: items });

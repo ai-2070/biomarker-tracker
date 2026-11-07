@@ -6,10 +6,10 @@ import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared
 import { openBrain } from "../../brain/store";
 import { CATEGORY_LABEL, displayUnitFor, formatChange, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../../format";
 import { useDisplayUnits, useWatchMeasurements } from "../../hooks";
-import { BIOMARKER_MAP, WATCH_DEFS, fullName, nameInSentence, shortName, watchDef } from "../../knowledge";
+import { BIOMARKER_MAP, fullName, nameInSentence, shortName, WATCH_DEFS, watchDef } from "../../knowledge";
 import { href } from "../../router";
 import { ArrowRightIcon } from "../icons";
-import { cx, FlagBadge, cardStyles as cardBase, eyebrowSmallStyles, linkCardStyles } from "../ui";
+import { cardStyles as cardBase, cx, eyebrowSmallStyles, FlagBadge, linkCardStyles } from "../ui";
 import { Sparkline } from "./Sparkline";
 
 // Building blocks shared by the dashboards (main, blood tests, body).
@@ -20,20 +20,51 @@ export const cardStyles = cx(cardBase, "p-4 sm:p-5");
 export const labelStyles = eyebrowSmallStyles;
 
 export function firstName(p: Profile): string | undefined {
-  const n = p.name?.replace(/\([^)]*\)/g, "").trim().split(/\s+/)[0];
+  const n = p.name
+    ?.replace(/\([^)]*\)/g, "")
+    .trim()
+    .split(/\s+/)[0];
   return n || undefined;
 }
 
 // ---- Key figures ----------------------------------------------------------------------------
 
-export function Figure({ label, href: to, children, foot, className }: { label: string; href?: string; children: React.ReactNode; foot?: React.ReactNode; className?: string }) {
-  const styles = cx(cardStyles, className, "flex min-h-40 flex-col justify-center gap-2 text-ink", to && "group no-underline transition-[border-color,box-shadow] duration-200 hover:border-accent/40 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent");
-  const content = <>
-    <span className={labelStyles}>{label}</span>
-    <div>{children}</div>
-    {foot && <div className="text-sm text-ink-2">{foot}</div>}
-  </>;
-  return to ? <a href={to} className={styles}>{content}</a> : <section aria-label={label} className={styles}>{content}</section>;
+export function Figure({
+  label,
+  href: to,
+  children,
+  foot,
+  className,
+}: {
+  label: string;
+  href?: string;
+  children: React.ReactNode;
+  foot?: React.ReactNode;
+  className?: string;
+}) {
+  const styles = cx(
+    cardStyles,
+    className,
+    "flex min-h-40 flex-col justify-center gap-2 text-ink",
+    to &&
+      "group no-underline transition-[border-color,box-shadow] duration-200 hover:border-accent/40 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+  );
+  const content = (
+    <>
+      <span className={labelStyles}>{label}</span>
+      <div>{children}</div>
+      {foot && <div className="text-sm text-ink-2">{foot}</div>}
+    </>
+  );
+  return to ? (
+    <a href={to} className={styles}>
+      {content}
+    </a>
+  ) : (
+    <section aria-label={label} className={styles}>
+      {content}
+    </section>
+  );
 }
 
 export function BioAgeFigure({ d, profile }: { d: Dashboard; profile: Profile; today: string }) {
@@ -59,7 +90,12 @@ export function BioAgeFigure({ d, profile }: { d: Dashboard; profile: Profile; t
   const y = (v: number) => 34 - ((v - lo) / (hi - lo)) * 32;
   const x = (i: number) => (pts.length === 1 ? 50 : (i / (pts.length - 1)) * 100);
   return (
-    <Figure label="Biological age" href={href({ name: "phenoage" })} className="col-span-2" foot={`From ${d.bioAge.length} blood ${d.bioAge.length === 1 ? "test" : "tests"} · PhenoAge, an estimate`}>
+    <Figure
+      label="Biological age"
+      href={href({ name: "phenoage" })}
+      className="col-span-2"
+      foot={`From ${d.bioAge.length} blood ${d.bioAge.length === 1 ? "test" : "tests"} · PhenoAge, an estimate`}
+    >
       <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
         <div>
           <p className="flex items-baseline gap-2">
@@ -83,9 +119,26 @@ export function BioAgeFigure({ d, profile }: { d: Dashboard; profile: Profile; t
         </div>
         {pts.length > 1 && (
           <svg viewBox="0 0 100 36" preserveAspectRatio="none" className="block h-14 min-w-32 flex-1" aria-hidden="true">
-            <polygon points={[...pts.map((p, i) => `${x(i)},${y(p.phenoAge)}`), ...[...pts].reverse().map((p, i) => `${x(pts.length - 1 - i)},${y(p.age)}`)].join(" ")} className="fill-chart-band/10" />
-            <polyline points={pts.map((p, i) => `${x(i)},${y(p.age)}`).join(" ")} fill="none" className="stroke-ink-2" strokeWidth={1.25} strokeDasharray="3 3" vectorEffect="non-scaling-stroke" />
-            <polyline points={pts.map((p, i) => `${x(i)},${y(p.phenoAge)}`).join(" ")} fill="none" className="stroke-chart-line" strokeWidth={2} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+            <polygon
+              points={[...pts.map((p, i) => `${x(i)},${y(p.phenoAge)}`), ...[...pts].reverse().map((p, i) => `${x(pts.length - 1 - i)},${y(p.age)}`)].join(" ")}
+              className="fill-chart-band/10"
+            />
+            <polyline
+              points={pts.map((p, i) => `${x(i)},${y(p.age)}`).join(" ")}
+              fill="none"
+              className="stroke-ink-2"
+              strokeWidth={1.25}
+              strokeDasharray="3 3"
+              vectorEffect="non-scaling-stroke"
+            />
+            <polyline
+              points={pts.map((p, i) => `${x(i)},${y(p.phenoAge)}`).join(" ")}
+              fill="none"
+              className="stroke-chart-line"
+              strokeWidth={2}
+              strokeLinejoin="round"
+              vectorEffect="non-scaling-stroke"
+            />
           </svg>
         )}
       </div>
@@ -122,7 +175,14 @@ export function ToWatchFigure({ d, to, className }: { d: Dashboard; to?: string;
       label="To watch"
       className={className}
       href={to ?? href({ name: "overview", ...(n > 0 ? { show: "out" as const } : {}) })}
-      foot={n === 0 ? "Everything in range" : d.toWatch.slice(0, 3).map((m) => `${shortName(m.def)} ${m.flag.includes("low") ? "low" : "high"}`).join(" · ")}
+      foot={
+        n === 0
+          ? "Everything in range"
+          : d.toWatch
+              .slice(0, 3)
+              .map((m) => `${shortName(m.def)} ${m.flag.includes("low") ? "low" : "high"}`)
+              .join(" · ")
+      }
     >
       <p className="flex items-baseline gap-1.5">
         <span className={cx("font-serif text-4xl leading-none sm:text-5xl tabular-nums", d.critical.length ? "text-danger" : n ? "text-warn" : "")}>{n}</span>
@@ -170,10 +230,7 @@ export function MarkerTile({ m }: { m: DashboardMarker }) {
   const tone = isCritical(m.flag) ? "danger" : m.flag === "normal" || m.flag === "unknown" ? "ok" : "warn";
   const prev = m.series.at(-2);
   return (
-    <a
-      href={href({ name: "marker", id: m.def.id })}
-      className={cx("flex h-full flex-col gap-2", linkCardStyles)}
-    >
+    <a href={href({ name: "marker", id: m.def.id })} className={cx("flex h-full flex-col gap-2", linkCardStyles)}>
       <div className="flex items-start justify-between gap-2">
         <span className="min-w-0 leading-snug font-medium" title={fullName(m.def)}>
           {shortName(m.def)}
@@ -197,7 +254,10 @@ export function MarkerRow({ m }: { m: DashboardMarker }) {
   const units = useDisplayUnits();
   const unit = displayUnitFor(m.def, units[m.def.id]);
   return (
-    <a href={href({ name: "marker", id: m.def.id })} className="flex min-h-14 items-center justify-between gap-3 px-4 py-2.5 text-ink no-underline hover:bg-sunken">
+    <a
+      href={href({ name: "marker", id: m.def.id })}
+      className="flex min-h-14 items-center justify-between gap-3 px-4 py-2.5 text-ink no-underline hover:bg-sunken"
+    >
       <span className="min-w-0 font-medium">{shortName(m.def)}</span>
       <span className="flex shrink-0 items-center gap-2">
         <span className="tabular-nums">
@@ -236,10 +296,18 @@ export function MarkerGrid({
         )}
       </div>
       <ul className={cx("divide-y divide-line overflow-hidden sm:hidden", cardBase)}>
-        {shown.map((m) => <li key={m.def.id}><MarkerRow m={m} /></li>)}
+        {shown.map((m) => (
+          <li key={m.def.id}>
+            <MarkerRow m={m} />
+          </li>
+        ))}
       </ul>
       <ul className="stagger hidden gap-3 sm:grid sm:grid-cols-2 xl:grid-cols-3">
-        {shown.map((m) => <li key={m.def.id}><MarkerTile m={m} /></li>)}
+        {shown.map((m) => (
+          <li key={m.def.id}>
+            <MarkerTile m={m} />
+          </li>
+        ))}
       </ul>
     </section>
   );
@@ -270,7 +338,17 @@ const SHORT_PHASE: Record<ExperimentPhase, string> = {
 };
 
 /** Ongoing habits, and past ones whose watched markers have a result. Each says what changed, if it watches markers. */
-export function HabitsPanel({ protocols, experiments, all: results, today }: { protocols: ProtocolEntry[]; experiments: Experiment[]; all: Measurement[]; today: string }) {
+export function HabitsPanel({
+  protocols,
+  experiments,
+  all: results,
+  today,
+}: {
+  protocols: ProtocolEntry[];
+  experiments: Experiment[];
+  all: Measurement[];
+  today: string;
+}) {
   const all = useWatchMeasurements(results) ?? results;
   const habits = habitsOf(protocols, experiments);
   const rows = habits
@@ -311,8 +389,10 @@ export function HabitsPanel({ protocols, experiments, all: results, today }: { p
                       <span className={s.phase === "due" || s.phase === "needs-baseline" ? "text-warn" : ""}>
                         {SHORT_PHASE[s.phase]}: {s.results.map((x) => shortName(BIOMARKER_MAP.get(x.biomarkerId)!)).join(", ")}
                       </span>
+                    ) : h.entry?.plan ? (
+                      "Protocol"
                     ) : (
-                      h.entry?.plan ? "Protocol" : CATEGORY_LABEL[h.category]
+                      CATEGORY_LABEL[h.category]
                     )}
                   </span>
                 </a>
@@ -326,7 +406,9 @@ export function HabitsPanel({ protocols, experiments, all: results, today }: { p
 }
 
 export function AskPanel({ d }: { d: Dashboard }) {
-  const q = d.toWatch[0] ? `What can affect my ${nameInSentence(d.toWatch[0].def)}, and what does research say?` : "How have my results changed over the years?";
+  const q = d.toWatch[0]
+    ? `What can affect my ${nameInSentence(d.toWatch[0].def)}, and what does research say?`
+    : "How have my results changed over the years?";
   return (
     <section className={cx(cardStyles, "bg-accent-soft/60")}>
       <h2 className="font-serif text-xl font-normal">Ask Brain</h2>
@@ -341,4 +423,3 @@ export function AskPanel({ d }: { d: Dashboard }) {
     </section>
   );
 }
-

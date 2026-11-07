@@ -1,7 +1,7 @@
-import type { Measurement } from "@bt/shared/core/types";
 import { todayIso } from "@bt/shared/core/dates";
 import { criticalResults } from "@bt/shared/core/importers/resultProposal";
 import { flagMeasurement, isCritical } from "@bt/shared/core/trends";
+import type { Measurement } from "@bt/shared/core/types";
 import { CriticalBanner, type CriticalItem } from "../../components/CriticalBanner";
 import { FileIcon } from "../../components/icons";
 import { Review } from "../../components/LabReview";
@@ -11,7 +11,7 @@ import { useProfile } from "../../hooks";
 import { BIOMARKER_MAP, fullName } from "../../knowledge";
 import { uploadFile, useProfiles } from "../../profiles";
 import { href } from "../../router";
-import { closeBrain, keepReportFiles, send, updateTurn, type Turn } from "../store";
+import { closeBrain, keepReportFiles, send, type Turn, updateTurn } from "../store";
 
 /** A lab report dropped into Brain, or results Brain read from pictures: check the values, then save them. */
 export function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "review" }>; model: string }) {
@@ -20,7 +20,14 @@ export function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "revie
   async function saved(list: Measurement[], skipped: number, date: string) {
     const note = `${turn.kind === "body" ? "Body measurements" : "Lab report"} from ${date}, ${list.length} ${list.length === 1 ? "value" : "values"} saved (via Brain)`;
     const { kept, errors } = mode === "folders" && active ? await keepReportFiles(active.id, turn.files, note, uploadFile) : { kept: [], errors: [] };
-    updateTurn(turn.id, { state: "saved", saved: list, skipped, date, ...(kept.length ? { kept: kept.join(", ") } : {}), ...(errors.length ? { keepError: errors.join("; ") } : {}) });
+    updateTurn(turn.id, {
+      state: "saved",
+      saved: list,
+      skipped,
+      date,
+      ...(kept.length ? { kept: kept.join(", ") } : {}),
+      ...(errors.length ? { keepError: errors.join("; ") } : {}),
+    });
   }
 
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Nothing saved from {turn.fileName}.</p>;
@@ -30,7 +37,16 @@ export function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "revie
     ? criticalResults(turn.report, BIOMARKER_MAP).flatMap((c, i) => {
         const def = BIOMARKER_MAP.get(c.biomarkerId);
         if (!def) return [];
-        const measurement: Measurement = { id: `${turn.id}-critical-${i}`, biomarkerId: def.id, value: c.value, originalValue: c.value, originalUnit: def.canonicalUnit, date: turn.report.date ?? todayIso(), source: "photo", ...(c.qualifier ? { qualifier: c.qualifier } : {}) };
+        const measurement: Measurement = {
+          id: `${turn.id}-critical-${i}`,
+          biomarkerId: def.id,
+          value: c.value,
+          originalValue: c.value,
+          originalUnit: def.canonicalUnit,
+          date: turn.report.date ?? todayIso(),
+          source: "photo",
+          ...(c.qualifier ? { qualifier: c.qualifier } : {}),
+        };
         return [{ def, measurement, low: c.low }];
       })
     : [];
@@ -47,7 +63,15 @@ export function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "revie
         <span className="min-w-0 truncate font-medium">{turn.fileName}</span>
         <span className="shrink-0 text-ink-2">· {turn.fromPicture ? "read by Brain" : "read on this computer"}</span>
       </p>
-      <Review fileName={turn.fileName} fromPicture={turn.fromPicture} report={turn.report} inChat kind={turn.kind ?? "lab"} onCancel={() => updateTurn(turn.id, { state: "dismissed" })} onSaved={(l, s, d) => void saved(l, s, d)} />
+      <Review
+        fileName={turn.fileName}
+        fromPicture={turn.fromPicture}
+        report={turn.report}
+        inChat
+        kind={turn.kind ?? "lab"}
+        onCancel={() => updateTurn(turn.id, { state: "dismissed" })}
+        onSaved={(l, s, d) => void saved(l, s, d)}
+      />
     </div>
   );
 }
@@ -68,7 +92,8 @@ function SavedReview({ turn, model }: { turn: Extract<Turn, { role: "review" }>;
         <span className="font-medium">
           Saved {list.length} {list.length === 1 ? "result" : "results"}
         </span>{" "}
-        {turn.kind === "body" ? `measured on ${when}` : `from the blood test on ${when}`}.{(turn.skipped ?? 0) > 0 && ` ${turn.skipped} ${turn.skipped === 1 ? "was" : "were"} already saved.`}
+        {turn.kind === "body" ? `measured on ${when}` : `from the blood test on ${when}`}.
+        {(turn.skipped ?? 0) > 0 && ` ${turn.skipped} ${turn.skipped === 1 ? "was" : "were"} already saved.`}
         {turn.kept && <span className="text-ink-2"> The report is kept in this profile's folder.</span>}
       </p>
       {turn.keepError && <p className="text-sm text-warn">The report itself couldn't be kept in the profile folder: {turn.keepError}</p>}
@@ -108,7 +133,17 @@ function SavedReview({ turn, model }: { turn: Extract<Turn, { role: "review" }>;
           >
             Explain these results
           </Button>
-          <Button variant="quiet" onClick={() => void send(model, turn.kind === "body" ? `How do my body measurements from ${when} compare with the weeks before?` : `What changed in my blood test on ${when} compared with my earlier tests?`)}>
+          <Button
+            variant="quiet"
+            onClick={() =>
+              void send(
+                model,
+                turn.kind === "body"
+                  ? `How do my body measurements from ${when} compare with the weeks before?`
+                  : `What changed in my blood test on ${when} compared with my earlier tests?`,
+              )
+            }
+          >
             What changed?
           </Button>
         </div>

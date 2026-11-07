@@ -41,8 +41,24 @@ export function rcvBand(cviPercent: number, nBefore = 1, nAfter = 1, cvaPercent 
 
 /** Two-sided 95% t values by degrees of freedom; between rows the smaller df is used (wider, so cautious). */
 const T_95: readonly [number, number][] = [
-  [1, 12.706], [2, 4.303], [3, 3.182], [4, 2.776], [5, 2.571], [6, 2.447], [7, 2.365], [8, 2.306], [9, 2.262], [10, 2.228], [12, 2.179],
-  [15, 2.131], [20, 2.086], [25, 2.06], [30, 2.042], [40, 2.021], [60, 2.0], [120, 1.98],
+  [1, 12.706],
+  [2, 4.303],
+  [3, 3.182],
+  [4, 2.776],
+  [5, 2.571],
+  [6, 2.447],
+  [7, 2.365],
+  [8, 2.306],
+  [9, 2.262],
+  [10, 2.228],
+  [12, 2.179],
+  [15, 2.131],
+  [20, 2.086],
+  [25, 2.06],
+  [30, 2.042],
+  [40, 2.021],
+  [60, 2.0],
+  [120, 1.98],
 ];
 export function t95(df: number): number {
   let t = Infinity;
@@ -84,7 +100,11 @@ function analyzeDifference(e: Experiment, def: BiomarkerDef, mine: readonly Meas
   r.afterValue = mean(after);
   r.change = r.afterValue - r.beforeValue;
   const start = dayNumber(e.start);
-  const band = differenceBand(sortByDate(mine.filter((m) => dayNumber(m.date) <= start)).map((m) => m.value), before.length, after.length);
+  const band = differenceBand(
+    sortByDate(mine.filter((m) => dayNumber(m.date) <= start)).map((m) => m.value),
+    before.length,
+    after.length,
+  );
   if (!band) return { ...r, verdict: "no-variation-data" };
   r.band = band;
   r.bandFrom = "personal";
@@ -171,7 +191,12 @@ export function analyzeMarker(e: Experiment, def: BiomarkerDef, ms: readonly Mea
   r.change = r.afterValue / r.beforeValue - 1;
   if (!Number.isFinite(r.change)) return { ...r, change: undefined, verdict: "no-variation-data" };
   const bv = def.biologicalVariation;
-  const band = bv ? rcvBand(bv.cvi, before.length, after.length) : personalBand(before.map((m) => m.value), after.map((m) => m.value));
+  const band = bv
+    ? rcvBand(bv.cvi, before.length, after.length)
+    : personalBand(
+        before.map((m) => m.value),
+        after.map((m) => m.value),
+      );
   if (!band) return { ...r, verdict: "no-variation-data" };
   r.band = band;
   r.bandFrom = bv ? "published" : "personal";

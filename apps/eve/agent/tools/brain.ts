@@ -6,10 +6,17 @@ import { bridgeJson, configuration, runOf } from "../lib/bridge";
 export default defineDynamic(async (ctx) => {
   const run = runOf(ctx);
   const config = await configuration(run);
-  return Object.fromEntries(config.tools.map((tool) => [tool.name, defineTool({
-    description: tool.description,
-    inputSchema: tool.inputSchema,
-    toModelOutput: (output: unknown) => toolOutput.text(typeof (output as { text?: unknown })?.text === "string" ? (output as { text: string }).text : JSON.stringify(output)),
-    execute: async (input: unknown, call: { abortSignal?: AbortSignal }) => bridgeJson<{ text: string; isError: boolean }>("/tool", { run, name: tool.name, input }, call.abortSignal),
-  })]));
+  return Object.fromEntries(
+    config.tools.map((tool) => [
+      tool.name,
+      defineTool({
+        description: tool.description,
+        inputSchema: tool.inputSchema,
+        toModelOutput: (output: unknown) =>
+          toolOutput.text(typeof (output as { text?: unknown })?.text === "string" ? (output as { text: string }).text : JSON.stringify(output)),
+        execute: async (input: unknown, call: { abortSignal?: AbortSignal }) =>
+          bridgeJson<{ text: string; isError: boolean }>("/tool", { run, name: tool.name, input }, call.abortSignal),
+      }),
+    ]),
+  );
 });

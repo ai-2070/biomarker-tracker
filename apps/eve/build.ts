@@ -9,7 +9,12 @@ const root = path.resolve(import.meta.dirname, "../..");
 const runtime = import.meta.dirname;
 for (let attempt = 0; ; attempt++) {
   // No telemetry (CLAUDE.md): eve's CLI reports usage to Vercel unless told not to.
-  const build = spawnSync(process.execPath, [path.join(root, "node_modules/eve/bin/eve.js"), "build"], { cwd: runtime, encoding: "utf8", maxBuffer: 64 * 1024 * 1024, env: { ...process.env, EVE_TELEMETRY_DISABLED: "1" } });
+  const build = spawnSync(process.execPath, [path.join(root, "node_modules/eve/bin/eve.js"), "build"], {
+    cwd: runtime,
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024,
+    env: { ...process.env, EVE_TELEMETRY_DISABLED: "1" },
+  });
   const output = `${build.stdout ?? ""}${build.stderr ?? ""}`;
   // Windows file scanners can hold a newly written file briefly.
   if (build.status && process.platform === "win32" && attempt < 2 && /EBUSY|EPERM/.test(output)) {
@@ -17,7 +22,12 @@ for (let attempt = 0; ; attempt++) {
     continue;
   }
   // Only the summary: eve lists every output file.
-  process.stdout.write(output.split("\n").filter((line) => !/^\s+[├└]─/.test(line)).join("\n"));
+  process.stdout.write(
+    output
+      .split("\n")
+      .filter((line) => !/^\s+[├└]─/.test(line))
+      .join("\n"),
+  );
   if (build.status !== 0) throw new Error("The eve runtime build failed.");
   break;
 }

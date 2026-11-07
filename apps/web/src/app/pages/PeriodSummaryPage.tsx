@@ -1,13 +1,13 @@
-import { useMemo, useState, type ReactNode } from "react";
 import { todayIso } from "@bt/shared/core/dates";
 import { buildPeriodSummary, type PeriodMarker } from "@bt/shared/core/periodSummary";
 import { isCritical } from "@bt/shared/core/trends";
+import { type ReactNode, useMemo, useState } from "react";
 import { askBrain } from "../brain/store";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { cardStyles } from "../components/dashboard/widgets";
 import { SummaryTabs } from "../components/SummaryTabs";
 import { SimpleSelect } from "../components/UnitSelect";
-import { Button, FlagBadge, LinkButton, cx } from "../components/ui";
+import { Button, cx, FlagBadge, LinkButton } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement, showValue, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile } from "../hooks";
 import { BIOMARKER_MAP, CATEGORY_ORDER, fullName } from "../knowledge";
@@ -29,14 +29,21 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
     () =>
       all
         ? buildPeriodSummary({
-            measurements: all, defs: BIOMARKER_MAP, profile, categoryOrder: CATEGORY_ORDER, formatDate,
+            measurements: all,
+            defs: BIOMARKER_MAP,
+            profile,
+            categoryOrder: CATEGORY_ORDER,
+            formatDate,
             period: year ? { kind: "year", year, today } : { kind: "rolling", end: today },
           })
         : undefined,
     [all, profile, year, today],
   );
   const years = useMemo(
-    () => [...new Set((all ?? []).filter((m) => BIOMARKER_MAP.get(m.biomarkerId)?.category !== "Body").map((m) => Number(m.date.slice(0, 4))))].sort((a, b) => b - a),
+    () =>
+      [...new Set((all ?? []).filter((m) => BIOMARKER_MAP.get(m.biomarkerId)?.category !== "Body").map((m) => Number(m.date.slice(0, 4))))].sort(
+        (a, b) => b - a,
+      ),
     [all],
   );
 
@@ -47,7 +54,9 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
         <SummaryTabs current="year" />
         <h1 className="font-serif text-4xl font-normal tracking-tight">Year summary</h1>
         <p className="text-ink-2">There are no blood tests yet. Add one and its summary appears here.</p>
-        <LinkButton href={href({ name: "import" })} className="self-start">Import a lab report</LinkButton>
+        <LinkButton href={href({ name: "import" })} className="self-start">
+          Import a lab report
+        </LinkButton>
       </div>
     );
   }
@@ -68,8 +77,10 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
           <h1 className="font-serif text-4xl font-normal tracking-tight text-balance sm:text-5xl">Year summary</h1>
           <p className="mt-1 text-ink-2">
             {formatDate(s.from)} to {formatDate(s.to)}:{" "}
-            {s.tests.length === 0 ? "no blood test" : `${s.tests.length} blood ${s.tests.length === 1 ? "test" : "tests"} (${s.tests.map(formatDate).join(", ")})`}.{" "}
-            In {before}: {s.previousTests.length === 0 ? "none" : `${s.previousTests.length} ${s.previousTests.length === 1 ? "test" : "tests"}`}.
+            {s.tests.length === 0
+              ? "no blood test"
+              : `${s.tests.length} blood ${s.tests.length === 1 ? "test" : "tests"} (${s.tests.map(formatDate).join(", ")})`}
+            . In {before}: {s.previousTests.length === 0 ? "none" : `${s.previousTests.length} ${s.previousTests.length === 1 ? "test" : "tests"}`}.
           </p>
         </div>
         <SimpleSelect
@@ -91,7 +102,9 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
           {s.groups.map((g) => (
             <Section key={g.category} title={CATEGORY_TITLE[g.category] ?? g.category}>
               <ul className="flex flex-col divide-y divide-line">
-                {g.markers.map((m) => <MarkerRow key={m.id} m={m} unit={unitOf(m.id)} before={before} />)}
+                {g.markers.map((m) => (
+                  <MarkerRow key={m.id} m={m} unit={unitOf(m.id)} before={before} />
+                ))}
               </ul>
             </Section>
           ))}
@@ -126,7 +139,11 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
               <Button
                 variant="secondary"
                 className="self-start"
-                onClick={() => askBrain(`Explain my year summary for ${year ? year : "the last 12 months"}: what changed compared with before, what stayed outside the range, any clear trends, and what I could ask my doctor.`)}
+                onClick={() =>
+                  askBrain(
+                    `Explain my year summary for ${year ? year : "the last 12 months"}: what changed compared with before, what stayed outside the range, any clear trends, and what I could ask my doctor.`,
+                  )
+                }
               >
                 Explain this year
               </Button>
@@ -135,7 +152,9 @@ export function PeriodSummaryPage({ year }: { year?: number }) {
           <div className={cx(cardStyles, "flex flex-col gap-2 text-sm text-ink-2")}>
             <h2 className="font-serif text-xl font-normal text-ink">With only a few tests</h2>
             <ul className="flex list-disc flex-col gap-1 pl-5">
-              {s.limits.map((l) => <li key={l}>{l}</li>)}
+              {s.limits.map((l) => (
+                <li key={l}>{l}</li>
+              ))}
             </ul>
           </div>
         </aside>
@@ -175,13 +194,15 @@ function MarkerRow({ m, unit, before }: { m: PeriodMarker; unit: string; before:
   return (
     <li className="flex flex-col gap-1 py-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <a href={href({ name: "marker", id: m.id })} className="font-medium">{fullName(def)}</a>
+        <a href={href({ name: "marker", id: m.id })} className="font-medium">
+          {fullName(def)}
+        </a>
         <FlagBadge flag={m.lastFlag} />
       </div>
       <p className="text-sm">
         {m.results.length} {m.results.length === 1 ? "result" : "results"}
-        {m.outside > 0 && <span className="text-warn"> · {m.outside} outside the range</span>} · latest {showMeasurement(def, m.last, unit)} {valueUnit(def, unit)} on{" "}
-        {formatDate(m.last.date)}
+        {m.outside > 0 && <span className="text-warn"> · {m.outside} outside the range</span>} · latest {showMeasurement(def, m.last, unit)}{" "}
+        {valueUnit(def, unit)} on {formatDate(m.last.date)}
       </p>
       {versus ? <p className="text-sm text-ink-2">{versus}</p> : <p className="text-sm text-ink-2">No earlier result to compare with.</p>}
       {m.trend && (
@@ -201,12 +222,19 @@ function Questions({ questions }: { questions: string[] }) {
     <div className={cx(cardStyles, "flex flex-col gap-2")}>
       <h2 className="font-serif text-xl font-normal">Questions for your doctor</h2>
       <ol className="flex list-decimal flex-col gap-1.5 pl-5 text-sm">
-        {questions.map((q) => <li key={q}>{q}</li>)}
+        {questions.map((q) => (
+          <li key={q}>{q}</li>
+        ))}
       </ol>
       <Button
         variant="quiet"
         className="self-start"
-        onClick={() => void navigator.clipboard?.writeText(questions.map((q, i) => `${i + 1}. ${q}`).join("\n")).then(() => setCopied(true), () => setCopied(false))}
+        onClick={() =>
+          void navigator.clipboard?.writeText(questions.map((q, i) => `${i + 1}. ${q}`).join("\n")).then(
+            () => setCopied(true),
+            () => setCopied(false),
+          )
+        }
       >
         {copied ? "Copied" : "Copy the questions"}
       </Button>

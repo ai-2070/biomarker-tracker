@@ -1,5 +1,4 @@
-import { useMemo, useRef, useState } from "react";
-import { ageHistory, type AgeHistory, type AgePoint } from "@bt/shared/core/ageHistory";
+import { type AgeHistory, type AgePoint, ageHistory } from "@bt/shared/core/ageHistory";
 import { pointsForWindow } from "@bt/shared/core/chartSeries";
 import { dayNumber, todayIso } from "@bt/shared/core/dates";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
@@ -7,13 +6,14 @@ import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/pr
 import { niceTicks } from "@bt/shared/core/scale";
 import { timeTicks } from "@bt/shared/core/timeWindow";
 import type { Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { useMemo, useRef, useState } from "react";
 import { formatDate, formatYears } from "../../format";
 import { HabitTypes, Toggle, useChartPrefs } from "../chartHabits";
-import { ProtocolLanes } from "../ProtocolLanes";
-import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
-import { Card, cx, eyebrowStyles } from "../ui";
-import { InlineBirthMonth } from "../InlineBirthMonth";
 import { More } from "../disclosure";
+import { InlineBirthMonth } from "../InlineBirthMonth";
+import { ProtocolLanes } from "../ProtocolLanes";
+import { Overview, SelectionBar, segBtn, segGroup, TimeControls, useTimeView, useWidth } from "../timeControls";
+import { Card, cx, eyebrowStyles } from "../ui";
 
 /**
  * The three age estimates over time on one chart, with calendar age as a dashed line. Each series
@@ -41,7 +41,21 @@ const dayFmt = new Intl.DateTimeFormat(undefined, { day: "numeric", month: "shor
 const isoOfDay = (day: number) => new Date(Math.round(day) * DAY_MS).toISOString().slice(0, 10);
 const signed = (n: number) => `${n > 0 ? "+" : n < 0 ? "−" : ""}${formatYears(Math.abs(n))}`;
 
-function Marker({ shape, x, y, color, hollow, size = 4.5 }: { shape: "circle" | "square" | "diamond"; x: number; y: number; color: string; hollow?: boolean; size?: number }) {
+function Marker({
+  shape,
+  x,
+  y,
+  color,
+  hollow,
+  size = 4.5,
+}: {
+  shape: "circle" | "square" | "diamond";
+  x: number;
+  y: number;
+  color: string;
+  hollow?: boolean;
+  size?: number;
+}) {
   const common = { fill: hollow ? "var(--color-surface)" : color, stroke: hollow ? color : "var(--color-surface)", strokeWidth: hollow ? 2 : 1.5 };
   if (shape === "circle") return <circle cx={x} cy={y} r={size} {...common} />;
   if (shape === "square") return <rect x={x - size} y={y - size} width={size * 2} height={size * 2} rx={1.5} {...common} />;
@@ -76,7 +90,15 @@ function Key({ s, on, onChange, disabled }: { s: (typeof SERIES)[number] | null;
   );
 }
 
-export function AgesChart({ measurements, profile, protocols }: { measurements: readonly Measurement[]; profile: Profile; protocols: readonly ProtocolEntry[] }) {
+export function AgesChart({
+  measurements,
+  profile,
+  protocols,
+}: {
+  measurements: readonly Measurement[];
+  profile: Profile;
+  protocols: readonly ProtocolEntry[];
+}) {
   const history = useMemo(() => ageHistory(profile, measurements, protocols), [profile, measurements, protocols]);
   if (!profile.birthMonth) {
     return (
@@ -190,7 +212,10 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
 
   const latest = available.map((s) => ({ s, p: history[s.id].at(-1)! }));
   const summary = `Chart of your age estimates from ${formatDate(fromIso)} to ${formatDate(toIso)}. ${latest
-    .map(({ s, p }) => `${s.label}: ${p.bound ? (p.bound === "younger" ? "25 or younger" : "75 or older") : `${formatYears(p.years)} years`} on ${formatDate(p.date)}, calendar age ${formatYears(p.age)}`)
+    .map(
+      ({ s, p }) =>
+        `${s.label}: ${p.bound ? (p.bound === "younger" ? "25 or younger" : "75 or older") : `${formatYears(p.years)} years`} on ${formatDate(p.date)}, calendar age ${formatYears(p.age)}`,
+    )
     .join(". ")}.`;
 
   return (
@@ -309,7 +334,15 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
               )}
               {shown.calendar &&
                 (mode === "ages" ? (
-                  <line x1={x(v.from)} x2={x(v.to)} y1={y(calAt(v.from))} y2={y(calAt(v.to))} stroke="var(--color-ink-2)" strokeWidth={1.5} strokeDasharray="5 5" />
+                  <line
+                    x1={x(v.from)}
+                    x2={x(v.to)}
+                    y1={y(calAt(v.from))}
+                    y2={y(calAt(v.to))}
+                    stroke="var(--color-ink-2)"
+                    strokeWidth={1.5}
+                    strokeDasharray="5 5"
+                  />
                 ) : (
                   <line x1={PAD_L} x2={PAD_L + plotW} y1={y(0)} y2={y(0)} stroke="var(--color-ink-2)" strokeWidth={1.5} strokeDasharray="5 5" />
                 ))}
@@ -328,13 +361,21 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
                       // Close together (many readings, narrow screen): smaller markers.
                       const gap = i > 0 ? x(dayNumber(p.date)) - x(dayNumber(pts[i - 1]!.date)) : Infinity;
                       const tight = Math.min(gap, i + 1 < pts.length ? x(dayNumber(pts[i + 1]!.date)) - x(dayNumber(p.date)) : Infinity) < 14;
-                      return <Marker key={p.date} shape={s.shape} x={x(dayNumber(p.date))} y={y(value(p))} color={s.color} hollow={!!p.approximate || !!p.bound} size={tight ? 2.5 : 4.5} />;
+                      return (
+                        <Marker
+                          key={p.date}
+                          shape={s.shape}
+                          x={x(dayNumber(p.date))}
+                          y={y(value(p))}
+                          color={s.color}
+                          hollow={!!p.approximate || !!p.bound}
+                          size={tight ? 2.5 : 4.5}
+                        />
+                      );
                     })}
                 </g>
               ))}
-              {hover && hs && (
-                <Marker shape={hs.shape} x={x(dayNumber(hover.p.date))} y={y(value(hover.p))} color={hs.color} size={7} />
-              )}
+              {hover && hs && <Marker shape={hs.shape} x={x(dayNumber(hover.p.date))} y={y(value(hover.p))} color={hs.color} size={7} />}
             </g>
 
             {ends.map(({ s, p, y: ly }) => (
@@ -343,7 +384,12 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
               </text>
             ))}
             {shown.calendar && mode === "ages" && (
-              <text x={PAD_L + plotW + 10} y={Math.min(Math.max(y(calAt(v.to)) + 4, TOP + 4), plotBottom)} className="fill-ink-2 text-[12px]" opacity={ends.some((e) => Math.abs(e.y - y(calAt(v.to))) < 12) ? 0 : 1}>
+              <text
+                x={PAD_L + plotW + 10}
+                y={Math.min(Math.max(y(calAt(v.to)) + 4, TOP + 4), plotBottom)}
+                className="fill-ink-2 text-[12px]"
+                opacity={ends.some((e) => Math.abs(e.y - y(calAt(v.to))) < 12) ? 0 : 1}
+              >
                 Calendar {formatYears(calAt(v.to))}
               </text>
             )}
@@ -371,11 +417,23 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
         )}
       </div>
 
-      {t.zoomed && <Overview t={t} lines={visible.map(({ s }) => ({ points: history[s.id].map((p) => ({ day: dayNumber(p.date), value: value(p) })), color: s.color }))} />}
+      {t.zoomed && (
+        <Overview t={t} lines={visible.map(({ s }) => ({ points: history[s.id].map((p) => ({ day: dayNumber(p.date), value: value(p) })), color: s.color }))} />
+      )}
 
-      {prefs.habits && habitTypes.length > 1 && <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />}
+      {prefs.habits && habitTypes.length > 1 && (
+        <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />
+      )}
       {prefs.habits && (
-        <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} inset={{ left: PAD_L, right: PAD_R }} />
+        <ProtocolLanes
+          protocols={shownHabits}
+          from={fromIso}
+          to={toIso}
+          today={today}
+          selected={habit}
+          onSelect={setHabit}
+          inset={{ left: PAD_L, right: PAD_R }}
+        />
       )}
 
       <SelectionBar t={t}>
@@ -395,13 +453,13 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
       </SelectionBar>
 
       <p className="text-sm text-ink-2">
-        Hollow markers are approximate: a PhenoAge with a CRP below the lab's limit, or a fitness age at the end of the table (25 or younger, 75 or
-        older). Heart age uses your current smoking answer for past dates too.
+        Hollow markers are approximate: a PhenoAge with a CRP below the lab's limit, or a fitness age at the end of the table (25 or younger, 75 or older).
+        Heart age uses your current smoking answer for past dates too.
       </p>
       <p className="text-sm text-ink-2">
         <span className="font-medium text-ink">Why there's no combined age: </span>
-        the three measure different things in different ways (blood chemistry linked to mortality, the risk of heart disease, and fitness compared
-        with healthy Norwegian adults). An average of them wouldn't mean anything, so each is shown on its own.
+        the three measure different things in different ways (blood chemistry linked to mortality, the risk of heart disease, and fitness compared with healthy
+        Norwegian adults). An average of them wouldn't mean anything, so each is shown on its own.
       </p>
 
       <More summary="Show as a table" boxed>
@@ -423,7 +481,9 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
                   <tr key={`${s.id}-${p.date}`}>
                     <td className="px-3 py-2 whitespace-nowrap">{formatDate(p.date)}</td>
                     <td className="px-3 py-2">{s.label}</td>
-                    <td className="px-3 py-2">{p.bound ? (p.bound === "younger" ? "25 or younger" : "75 or older") : `${formatYears(p.years)}${p.approximate ? " (approximate)" : ""}`}</td>
+                    <td className="px-3 py-2">
+                      {p.bound ? (p.bound === "younger" ? "25 or younger" : "75 or older") : `${formatYears(p.years)}${p.approximate ? " (approximate)" : ""}`}
+                    </td>
                     <td className="px-3 py-2">{formatYears(p.age)}</td>
                   </tr>
                 ))}

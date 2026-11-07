@@ -1,8 +1,21 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
-import { habitForPlan, itemsByTime, nutrientFor, pairWarnings, planFromFile, planFromProposal, planToFile, validatePlan, type Plan, daysLabel, normalizeItem, itemErrors } from "@bt/shared/core/plans";
+import {
+  daysLabel,
+  habitForPlan,
+  itemErrors,
+  itemsByTime,
+  normalizeItem,
+  nutrientFor,
+  type Plan,
+  pairWarnings,
+  planFromFile,
+  planFromProposal,
+  planToFile,
+  validatePlan,
+} from "@bt/shared/core/plans";
+import { describe, expect, it } from "vitest";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "nutrients");
 const nutrients = readdirSync(DIR).map((f) => JSON.parse(readFileSync(join(DIR, f), "utf8")) as NutrientDef);
@@ -38,7 +51,11 @@ describe("protocols", () => {
       // Old "with meals" items: any time, taken with a meal.
       ["any time", ["b", "c"]],
     ]);
-    expect(itemsByTime(plan).at(-1)!.items.every((i) => i.withFood)).toBe(true);
+    expect(
+      itemsByTime(plan)
+        .at(-1)!
+        .items.every((i) => i.withFood),
+    ).toBe(true);
   });
 
   it("links supplements to the vitamins and minerals knowledge base by name or form", () => {
@@ -59,7 +76,10 @@ describe("protocols", () => {
   });
 
   it("keeps a link to one of the person's meals, but not in a shared file", () => {
-    const withMeal = { ...plan, items: [...plan.items, { id: "m", label: "Lentil soup", category: "diet" as const, when: "midday" as const, mealId: "meal-1" }] };
+    const withMeal = {
+      ...plan,
+      items: [...plan.items, { id: "m", label: "Lentil soup", category: "diet" as const, when: "midday" as const, mealId: "meal-1" }],
+    };
     expect(validatePlan(withMeal)).toEqual([]);
     expect(validatePlan({ ...withMeal, items: [{ ...withMeal.items.at(-1)!, mealId: 5 }] })).not.toEqual([]);
     const file = planToFile(withMeal);
@@ -86,7 +106,14 @@ describe("protocols", () => {
 
   it("builds a protocol Brain wrote down from the person's text, with fresh ids, never running", () => {
     const r = planFromProposal(
-      { name: " Standard Routine ", items: [{ label: "Creatine", category: "supplement", when: "morning" }, { label: "Iron", category: "supplement", when: "evening", note: "Only if deficient", amount: " " }], active: { since: "2026-01-01", habitIds: [] } },
+      {
+        name: " Standard Routine ",
+        items: [
+          { label: "Creatine", category: "supplement", when: "morning" },
+          { label: "Iron", category: "supplement", when: "evening", note: "Only if deficient", amount: " " },
+        ],
+        active: { since: "2026-01-01", habitIds: [] },
+      },
       id,
       "2026-10-29T00:00:00.000Z",
     );
@@ -96,14 +123,14 @@ describe("protocols", () => {
     expect(r.plan.items[1]).toEqual({ id: expect.any(String), label: "Iron", category: "supplement", when: "evening", note: "Only if deficient" });
     expect(r.plan.active).toBeUndefined();
     expect(planFromProposal({ name: "X", items: [] }, id, "x")).toMatchObject({ ok: false });
-    expect(planFromProposal({ name: "X", items: [{ label: "A", category: "supplement", when: "noon" }] }, id, "x")).toMatchObject({ ok: false, error: expect.stringMatching(/time/) });
+    expect(planFromProposal({ name: "X", items: [{ label: "A", category: "supplement", when: "noon" }] }, id, "x")).toMatchObject({
+      ok: false,
+      error: expect.stringMatching(/time/),
+    });
   });
 
   it("starts the whole routine as one named habit and preserves its complete item snapshot", () => {
-    const source: Plan = { ...plan, items: [
-      { ...plan.items[0]!, withFood: true, days: ["fri", "mon"], note: "My own amount" },
-      ...plan.items.slice(1),
-    ] };
+    const source: Plan = { ...plan, items: [{ ...plan.items[0]!, withFood: true, days: ["fri", "mon"], note: "My own amount" }, ...plan.items.slice(1)] };
     const habit = habitForPlan(source, "2026-11-01");
     expect(habit).toMatchObject({ label: "Morning stack", category: "lifestyle", start: "2026-11-01", plan: { id: "p1" } });
     expect(habit.plan!.items[1]).toMatchObject({ label: "Iron bisglycinate", when: "any time", withFood: true });
@@ -116,7 +143,11 @@ describe("protocols", () => {
   it("keeps 'with a meal' and days of the week apart from the time of day, and reads old 'with meals' items", () => {
     const old = { id: "x", label: "Iron", category: "supplement" as const, when: "with meals" as const };
     expect(normalizeItem(old)).toEqual({ id: "x", label: "Iron", category: "supplement", when: "any time", withFood: true });
-    expect(normalizeItem({ ...old, when: "morning", withFood: true, days: ["fri", "mon", "wed"] })).toMatchObject({ when: "morning", withFood: true, days: ["mon", "wed", "fri"] });
+    expect(normalizeItem({ ...old, when: "morning", withFood: true, days: ["fri", "mon", "wed"] })).toMatchObject({
+      when: "morning",
+      withFood: true,
+      days: ["mon", "wed", "fri"],
+    });
     expect(normalizeItem({ ...old, when: "morning", days: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] })).not.toHaveProperty("days");
     expect(daysLabel(["mon", "wed", "fri"])).toBe("Mon, Wed, Fri");
     expect(daysLabel(["mon", "tue", "wed", "thu", "fri"])).toBe("Weekdays");
@@ -128,4 +159,3 @@ describe("protocols", () => {
     expect(itemErrors({ ...old, when: "morning", withFood: true, days: ["sat"] })).toEqual([]);
   });
 });
-

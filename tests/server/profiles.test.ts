@@ -8,14 +8,27 @@ import { getSettings } from "../../apps/server/store";
 import { crc32, readZip, safeEntryName, writeZip } from "../../apps/server/zip";
 import { statusOf, trpcClient } from "./trpc";
 
-const m = (id: string, date: string, value: number) => ({ id, biomarkerId: "ferritin", date, value, originalValue: value, originalUnit: "µg/L", source: "manual" as const });
+const m = (id: string, date: string, value: number) => ({
+  id,
+  biomarkerId: "ferritin",
+  date,
+  value,
+  originalValue: value,
+  originalUnit: "µg/L",
+  source: "manual" as const,
+});
 const pdf = Buffer.from("%PDF-1.4\n% synthetic test file, no patient data\n");
 
 describe("zip", () => {
   it("round-trips files, compressed or stored", () => {
     const big = Buffer.from("results ".repeat(2000));
     const tiny = Buffer.from("x");
-    const back = readZip(writeZip([{ name: "a/results.json", data: big }, { name: "a/files/2026-10-28 r.pdf", data: tiny }]));
+    const back = readZip(
+      writeZip([
+        { name: "a/results.json", data: big },
+        { name: "a/files/2026-10-28 r.pdf", data: tiny },
+      ]),
+    );
     expect(back.map((e) => e.name)).toEqual(["a/results.json", "a/files/2026-10-28 r.pdf"]);
     expect(back[0]!.data.equals(big)).toBe(true);
     expect(back[1]!.data.equals(tiny)).toBe(true);
@@ -36,7 +49,8 @@ describe("profiles: one folder per person", () => {
   it("creates a readable folder with everything in it", () => {
     const p = profiles.createProfile({ person: { name: "Anna Kovács", sex: "f", birthMonth: "1984-04" }, measurements: [m("1", "2024-05-12", 46)] });
     expect(p.id).toMatch(/^anna-kovacs-[0-9a-f]{4}$/);
-    for (const f of ["profile.json", "results.json", "log.json", "experiments.json", "protocols.json", "settings.json", "files.json", "README.txt"]) expect(fs.existsSync(path.join(p.folder, f))).toBe(true);
+    for (const f of ["profile.json", "results.json", "log.json", "experiments.json", "protocols.json", "settings.json", "files.json", "README.txt"])
+      expect(fs.existsSync(path.join(p.folder, f))).toBe(true);
     expect(p.results).toBe(1);
     expect(p.lastResult).toBe("2024-05-12");
     expect(profiles.getProfileData(p.id).person).toEqual({ name: "Anna Kovács", sex: "f", birthMonth: "1984-04" });
@@ -50,7 +64,11 @@ describe("profiles: one folder per person", () => {
 
   it("saves changes and keeps only display settings", () => {
     const p = profiles.createProfile({ person: { name: "Ben" } });
-    profiles.saveProfileData(p.id, { person: { name: "Ben", heightCm: 180 }, measurements: [m("a", "2025-01-01", 30)], settings: { displayUnits: { ferritin: "ng/mL" }, ai: { key: "sk-x" } } });
+    profiles.saveProfileData(p.id, {
+      person: { name: "Ben", heightCm: 180 },
+      measurements: [m("a", "2025-01-01", 30)],
+      settings: { displayUnits: { ferritin: "ng/mL" }, ai: { key: "sk-x" } },
+    });
     const d = profiles.getProfileData(p.id);
     expect(d.person.heightCm).toBe(180);
     expect(d.measurements).toHaveLength(1);
@@ -64,7 +82,9 @@ describe("profiles: one folder per person", () => {
     expect(profiles.getProfileData(p.id).settings.claimEvidence).toEqual(history);
     const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
     expect(profiles.getProfileData(restored.id).settings.claimEvidence).toEqual(history);
-    expect(() => profiles.saveProfileData(p.id, { person: { name: "History fixture" }, settings: { unrelated: "x".repeat(200_001) } })).toThrow(/Too many settings/);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "History fixture" }, settings: { unrelated: "x".repeat(200_001) } })).toThrow(
+      /Too many settings/,
+    );
     expect(profiles.getProfileData(p.id).settings.claimEvidence).toEqual(history);
   });
 
@@ -83,7 +103,12 @@ describe("profiles: one folder per person", () => {
   });
 
   it("keeps protocols in protocols.json, through saving and backups, and refuses damaged ones", () => {
-    const plan = { id: "pl", name: "Stack", createdAt: "2026-10-01T00:00:00.000Z", items: [{ id: "i", label: "Vitamin D3", amount: "1000 IU", category: "supplement", when: "morning" }] };
+    const plan = {
+      id: "pl",
+      name: "Stack",
+      createdAt: "2026-10-01T00:00:00.000Z",
+      items: [{ id: "i", label: "Vitamin D3", amount: "1000 IU", category: "supplement", when: "morning" }],
+    };
     const p = profiles.createProfile({ person: { name: "Eva" }, plans: [plan] });
     expect(JSON.parse(fs.readFileSync(path.join(p.folder, "protocols.json"), "utf8"))).toEqual([plan]);
     const restored = profiles.restoreZip(profiles.backupZip(p.id).data);
@@ -93,18 +118,32 @@ describe("profiles: one folder per person", () => {
     profiles.saveProfileData(p.id, { person: { name: "Eva" }, plans: [plan], meals: [meal] });
     expect(JSON.parse(fs.readFileSync(path.join(p.folder, "meals.json"), "utf8"))).toEqual([meal]);
     expect(profiles.getProfileData(profiles.restoreZip(profiles.backupZip(p.id).data).id).meals).toEqual([meal]);
-    expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, meals: [{ ...meal, items: [{ foodId: "11-788", grams: 0 }] }] })).toThrow(/meal is damaged/);
+    expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, meals: [{ ...meal, items: [{ foodId: "11-788", grams: 0 }] }] })).toThrow(
+      /meal is damaged/,
+    );
   });
 
   it("preserves started protocol snapshots through save and zip restore, and rejects corrupted log items", () => {
     const routine = {
-      id: "routine", label: "Daily routine", category: "lifestyle", start: "2026-10-01",
+      id: "routine",
+      label: "Daily routine",
+      category: "lifestyle",
+      start: "2026-10-01",
       plan: {
         id: "deleted-source",
-        items: [{
-          id: "warfarin", label: "Warfarin", amount: "as prescribed", category: "medication", when: "evening",
-          withFood: true, days: ["mon", "wed"], note: "Copied from my routine", mealId: "saved-meal",
-        }],
+        items: [
+          {
+            id: "warfarin",
+            label: "Warfarin",
+            amount: "as prescribed",
+            category: "medication",
+            when: "evening",
+            withFood: true,
+            days: ["mon", "wed"],
+            note: "Copied from my routine",
+            mealId: "saved-meal",
+          },
+        ],
       },
     };
     const p = profiles.createProfile({ person: { name: "Snapshot test" }, protocols: [routine] });
@@ -119,18 +158,33 @@ describe("profiles: one folder per person", () => {
     const corrupt = { ...edited, plan: { ...routine.plan, items: [{ ...routine.plan.items[0], when: "lunch" }] } };
     expect(() => profiles.createProfile({ person: { name: "Broken snapshot" }, protocols: [corrupt] })).toThrow(/protocol list.*damaged/);
     expect(() => profiles.saveProfileData(p.id, { person: { name: "Snapshot test" }, protocols: [corrupt] })).toThrow(/protocol list.*damaged/);
-    const corruptZip = writeZip(readZip(profiles.backupZip(p.id).data).map((entry) =>
-      entry.name.endsWith("/log.json") ? { ...entry, data: Buffer.from(JSON.stringify([corrupt])) } : entry,
-    ));
+    const corruptZip = writeZip(
+      readZip(profiles.backupZip(p.id).data).map((entry) =>
+        entry.name.endsWith("/log.json") ? { ...entry, data: Buffer.from(JSON.stringify([corrupt])) } : entry,
+      ),
+    );
     expect(() => profiles.restoreZip(corruptZip)).toThrow(/protocol list.*damaged/);
   });
 
   it("preserves source-local sleep windows through folder saves and zip restore, with no inferred offsets", () => {
     const sleep = {
-      id: "sleep", savedOrder: 7, biomarkerId: "sleep_duration", date: "2026-10-25",
-      value: 8, originalValue: 480, originalUnit: "min", source: "device",
+      id: "sleep",
+      savedOrder: 7,
+      biomarkerId: "sleep_duration",
+      date: "2026-10-25",
+      value: 8,
+      originalValue: 480,
+      originalUnit: "min",
+      source: "device",
       sleepSessions: [
-        { start: "2026-10-24T23:15:00.125", end: "2026-10-25T07:30:00", kind: "asleep", source: "Synthetic watch", startOffsetMinutes: 120, endOffsetMinutes: 60 },
+        {
+          start: "2026-10-24T23:15:00.125",
+          end: "2026-10-25T07:30:00",
+          kind: "asleep",
+          source: "Synthetic watch",
+          startOffsetMinutes: 120,
+          endOffsetMinutes: 60,
+        },
         { start: "2026-10-25T14:00:00", end: "2026-10-25T14:30:00", kind: "session", source: "Synthetic watch" },
       ],
     };
@@ -167,9 +221,9 @@ describe("profiles: one folder per person", () => {
       expect(() => profiles.createProfile({ person: { name: "Broken timing" }, measurements: [damaged] })).toThrow(/Measurement.*damaged/);
       expect(() => profiles.saveProfileData(p.id, { person: { name: "Timing validation" }, measurements: [damaged] })).toThrow(/Measurement.*damaged/);
       expect(profiles.getProfileData(p.id).measurements).toEqual([sleep]);
-      const corruptZip = writeZip(readZip(zip).map((entry) =>
-        entry.name.endsWith("/results.json") ? { ...entry, data: Buffer.from(JSON.stringify([damaged])) } : entry,
-      ));
+      const corruptZip = writeZip(
+        readZip(zip).map((entry) => (entry.name.endsWith("/results.json") ? { ...entry, data: Buffer.from(JSON.stringify([damaged])) } : entry)),
+      );
       expect(() => profiles.restoreZip(corruptZip)).toThrow(/Measurement.*damaged/);
     }
     const results = path.join(p.folder, "results.json");
@@ -183,7 +237,11 @@ describe("profiles: one folder per person", () => {
   });
 
   it("backs up to a zip and restores it as a new profile, with files", () => {
-    const p = profiles.createProfile({ person: { name: "Dora", diet: "vegan" }, measurements: [m("x", "2025-02-02", 20)], protocols: [{ id: "p", label: "Iron 30 mg", category: "supplement", start: "2025-01-01" }] });
+    const p = profiles.createProfile({
+      person: { name: "Dora", diet: "vegan" },
+      measurements: [m("x", "2025-02-02", 20)],
+      protocols: [{ id: "p", label: "Iron 30 mg", category: "supplement", start: "2025-01-01" }],
+    });
     profiles.addFile(p.id, "report.pdf", pdf, "Lab report");
     const { data, fileName } = profiles.backupZip(p.id);
     expect(fileName).toMatch(/^biomarker-tracker-dora-[0-9a-f]{4}-\d{4}-\d{2}-\d{2}\.zip$/);
@@ -230,7 +288,11 @@ describe("profiles over HTTP", () => {
 
     // Uploads need the app's header like every change.
     expect((await fetch(url(`/api/profiles/${profile.id}/files?name=r.pdf`), { method: "POST", body: pdf })).status).toBe(403);
-    const up = await fetch(url(`/api/profiles/${profile.id}/files?name=r.pdf&note=Lab%20report`), { method: "POST", headers: { "x-bt": "1", "content-type": "application/pdf" }, body: pdf });
+    const up = await fetch(url(`/api/profiles/${profile.id}/files?name=r.pdf&note=Lab%20report`), {
+      method: "POST",
+      headers: { "x-bt": "1", "content-type": "application/pdf" },
+      body: pdf,
+    });
     const { file } = (await up.json()) as { file: { name: string } };
     const down = await fetch(url(`/api/profiles/${profile.id}/files/${encodeURIComponent(file.name)}`));
     expect(down.headers.get("content-type")).toBe("application/pdf");
@@ -238,7 +300,11 @@ describe("profiles over HTTP", () => {
 
     const zip = await fetch(url(`/api/profiles/${profile.id}/backup`));
     expect(zip.headers.get("content-disposition")).toMatch(/attachment/);
-    const restored = await fetch(url("/api/profiles/restore"), { method: "POST", headers: { "x-bt": "1", "content-type": "application/zip" }, body: Buffer.from(await zip.arrayBuffer()) });
+    const restored = await fetch(url("/api/profiles/restore"), {
+      method: "POST",
+      headers: { "x-bt": "1", "content-type": "application/zip" },
+      body: Buffer.from(await zip.arrayBuffer()),
+    });
     expect(((await restored.json()) as { profile: { person: { name: string } } }).profile.person.name).toBe("Finn");
   });
 

@@ -1,18 +1,19 @@
 // Profiles in the page. With the local server, each profile is a folder on this computer and this
 // browser holds a working copy of the open one: every change is saved to the folder shortly after.
 // Without the server (a static copy of the app) there is one profile, kept in this browser.
-import { createContext, useContext, useSyncExternalStore } from "react";
-import { liveQuery } from "dexie";
-import type { Profile } from "@bt/shared/core/types";
+
+import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
 import { createBackup, parseBackup } from "@bt/shared/core/backup";
 import { todayIso } from "@bt/shared/core/dates";
 import { demoProfile } from "@bt/shared/core/demo";
-import { profilesInFolder, zipStore } from "@bt/shared/core/zipStore";
-import { db, deleteEverything, getProfile, importBackup, setOnboarded, LOADED_PROFILE_KEY } from "../db/db";
-import { localServer } from "./api";
-import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
-import { validatePlan } from "@bt/shared/core/plans";
 import { validateMeal } from "@bt/shared/core/meals";
+import { validatePlan } from "@bt/shared/core/plans";
+import type { Profile } from "@bt/shared/core/types";
+import { profilesInFolder, zipStore } from "@bt/shared/core/zipStore";
+import { liveQuery } from "dexie";
+import { createContext, useContext, useSyncExternalStore } from "react";
+import { db, deleteEverything, getProfile, importBackup, LOADED_PROFILE_KEY, setOnboarded } from "../db/db";
+import { localServer } from "./api";
 
 export type { ProfileSummary, StoredFile };
 
@@ -40,7 +41,8 @@ export async function loadedProfileId(): Promise<string | null> {
 /** Everything in this browser, as saved to a profile folder. */
 export async function browserData(expectedId?: string): Promise<ProfileData> {
   return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-    if (expectedId !== undefined && (await loadedProfileId()) !== expectedId) throw new Error("Another profile owns this browser's working copy. Reload before editing.");
+    if (expectedId !== undefined && (await loadedProfileId()) !== expectedId)
+      throw new Error("Another profile owns this browser's working copy. Reload before editing.");
     const [measurements, protocols, experiments, plans, meals, person, settings] = await Promise.all([
       db.measurements.toArray(),
       db.protocols.toArray(),
@@ -50,7 +52,15 @@ export async function browserData(expectedId?: string): Promise<ProfileData> {
       getProfile(),
       db.settings.toArray(),
     ]);
-    return { person, measurements, protocols, experiments, plans, meals, settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])) };
+    return {
+      person,
+      measurements,
+      protocols,
+      experiments,
+      plans,
+      meals,
+      settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])),
+    };
   });
 }
 
@@ -61,15 +71,17 @@ export function claimWorkingCopy(): Promise<void> {
   if (!navigator.locks) return Promise.reject(new Error("Folder profiles need a browser with Web Locks support. Use a current browser on localhost."));
   // The app's ES2023 browser baseline predates Promise.withResolvers.
   const promise = new Promise<void>((resolve, reject) => {
-    void navigator.locks.request("biomarker-tracker-working-copy", { ifAvailable: true }, async (lock) => {
-      if (!lock) {
-        reject(new Error("This app is already open in another tab. Close that tab, then reload this one to edit profiles."));
-        return;
-      }
-      resolve();
-      // The browser releases this lock when the page closes or reloads.
-      await new Promise<void>(() => {});
-    }).catch(reject);
+    void navigator.locks
+      .request("biomarker-tracker-working-copy", { ifAvailable: true }, async (lock) => {
+        if (!lock) {
+          reject(new Error("This app is already open in another tab. Close that tab, then reload this one to edit profiles."));
+          return;
+        }
+        resolve();
+        // The browser releases this lock when the page closes or reloads.
+        await new Promise<void>(() => {});
+      })
+      .catch(reject);
   });
   workingCopyLock = promise;
   return promise;
@@ -78,16 +90,24 @@ export function claimWorkingCopy(): Promise<void> {
 /** Include every person-owned table and setting, not just blood results, in migration decisions. */
 export async function hasBrowserData(): Promise<boolean> {
   const d = await browserData();
-  return d.measurements.length + d.protocols.length + d.experiments.length + d.plans.length + d.meals.length > 0 ||
-    Object.values(d.person).some((v) => v !== undefined && v !== "") || Object.keys(d.settings).length > 0;
+  return (
+    d.measurements.length + d.protocols.length + d.experiments.length + d.plans.length + d.meals.length > 0 ||
+    Object.values(d.person).some((v) => v !== undefined && v !== "") ||
+    Object.keys(d.settings).length > 0
+  );
 }
 
 /** Replaces this browser's copy with a profile from its folder. */
 export async function loadIntoBrowser(id: string): Promise<void> {
   const d = await localServer.profiles.data.query({ id });
-  const checked = parseBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()));
+  const checked = parseBackup(
+    createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()),
+  );
   if (!checked.ok) throw new Error(checked.error);
-  for (const [label, rows, validate] of [["protocols", d.plans ?? [], validatePlan], ["meals", d.meals ?? [], validateMeal]] as const) {
+  for (const [label, rows, validate] of [
+    ["protocols", d.plans ?? [], validatePlan],
+    ["meals", d.meals ?? [], validateMeal],
+  ] as const) {
     if (new Set(rows.map((row) => row.id)).size !== rows.length || rows.some((row) => validate(row).length > 0)) {
       throw new Error(`The profile's ${label} list is damaged or contains duplicate IDs.`);
     }
@@ -96,23 +116,23 @@ export async function loadIntoBrowser(id: string): Promise<void> {
   const previous = syncing?.id;
   stopSaving();
   try {
-  await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-    await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear()]);
-    const keep = (await db.settings.toArray()).filter((s) => s.key === "ai");
-    await db.settings.clear();
-    await db.measurements.bulkPut(d.measurements);
-    await db.protocols.bulkPut(d.protocols);
-    await db.experiments.bulkPut(d.experiments);
-    await db.plans.bulkPut(d.plans ?? []);
-    await db.meals.bulkPut(d.meals ?? []);
-    await db.settings.bulkPut([
-      ...keep,
-      ...Object.entries(d.settings).map(([key, value]) => ({ key, value })),
-      { key: "profile", value: d.person },
-      { key: "onboarded", value: true },
-      { key: LOADED_PROFILE_KEY, value: id },
-    ]);
-  });
+    await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
+      await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear()]);
+      const keep = (await db.settings.toArray()).filter((s) => s.key === "ai");
+      await db.settings.clear();
+      await db.measurements.bulkPut(d.measurements);
+      await db.protocols.bulkPut(d.protocols);
+      await db.experiments.bulkPut(d.experiments);
+      await db.plans.bulkPut(d.plans ?? []);
+      await db.meals.bulkPut(d.meals ?? []);
+      await db.settings.bulkPut([
+        ...keep,
+        ...Object.entries(d.settings).map(([key, value]) => ({ key, value })),
+        { key: "profile", value: d.person },
+        { key: "onboarded", value: true },
+        { key: LOADED_PROFILE_KEY, value: id },
+      ]);
+    });
   } catch (error) {
     if (previous) startSaving(previous);
     throw error;
@@ -181,22 +201,27 @@ async function push(): Promise<void> {
       } else {
         // Otherwise only what changed: years of daily device readings aren't re-sent for one new result.
         const changed = changedParts(now, s.saved);
-        if (changed.length) await localServer.profiles.saveParts.mutate({ id: s.id, parts: Object.fromEntries(changed.map((part) => [part, data[part as keyof ProfileData]])) });
+        if (changed.length)
+          await localServer.profiles.saveParts.mutate({ id: s.id, parts: Object.fromEntries(changed.map((part) => [part, data[part as keyof ProfileData]])) });
       }
       s.saved = now;
     }
     if (syncing === s) setStatus("saved");
-  })().catch((error: unknown) => {
-    if (syncing === s) {
-      s.dirty = true;
-      // The folder may have part of a save, or none: the next attempt sends everything.
-      s.saved = undefined;
-      setStatus("error");
-      clearTimeout(s.timer);
-      s.timer = setTimeout(() => void push().catch(() => {}), 5000);
-    }
-    throw error;
-  }).finally(() => { s.inFlight = undefined; });
+  })()
+    .catch((error: unknown) => {
+      if (syncing === s) {
+        s.dirty = true;
+        // The folder may have part of a save, or none: the next attempt sends everything.
+        s.saved = undefined;
+        setStatus("error");
+        clearTimeout(s.timer);
+        s.timer = setTimeout(() => void push().catch(() => {}), 5000);
+      }
+      throw error;
+    })
+    .finally(() => {
+      s.inFlight = undefined;
+    });
   return s.inFlight;
 }
 
@@ -221,7 +246,9 @@ export function startSaving(id: string): () => void {
     },
   });
   s.unsubscribe = () => sub.unsubscribe();
-  return () => { if (syncing === s) stopSaving(); };
+  return () => {
+    if (syncing === s) stopSaving();
+  };
 }
 
 function stopSaving(): void {
@@ -314,7 +341,10 @@ export async function createExampleProfile(mode: "folders" | "browser", to = "#/
     await openLoaded(profile.id, to);
     return;
   }
-  await importBackup(createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()), "replace");
+  await importBackup(
+    createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()),
+    "replace",
+  );
   await db.plans.clear();
   await db.plans.bulkPut(d.plans);
   await setOnboarded();
@@ -351,7 +381,11 @@ export async function loadProfileFolder(list: FileList, to = "#/"): Promise<void
 /** Keeps a scanned report or other document in the open profile's folder. */
 export async function uploadFile(profileId: string, file: File, note?: string): Promise<StoredFile> {
   const q = new URLSearchParams({ name: file.name, ...(note ? { note } : {}) });
-  const res = await fetch(`/api/profiles/${profileId}/files?${q}`, { method: "POST", headers: { "x-bt": "1", "content-type": file.type || "application/octet-stream" }, body: file });
+  const res = await fetch(`/api/profiles/${profileId}/files?${q}`, {
+    method: "POST",
+    headers: { "x-bt": "1", "content-type": file.type || "application/octet-stream" },
+    body: file,
+  });
   const body = (await res.json().catch(() => ({}))) as { file?: StoredFile; error?: string };
   if (!res.ok || !body.file) throw new Error(body.error ?? "The file couldn't be saved.");
   return body.file;

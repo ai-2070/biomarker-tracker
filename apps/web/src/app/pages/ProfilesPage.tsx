@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { todayIso } from "@bt/shared/core/dates";
 import { initials, profileSummary } from "@bt/shared/core/profile";
+import { useState } from "react";
 import { localServer } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { Button, Card, LinkButton, Notice, PageTitle, buttonStyles, cx } from "../components/ui";
-import { formatDate } from "../format";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";
-import { deleteProfileFolder, switchProfile, useProfiles, type ProfileSummary } from "../profiles";
+import { Button, buttonStyles, Card, cx, LinkButton, Notice, PageTitle } from "../components/ui";
+import { formatDate } from "../format";
+import { deleteProfileFolder, type ProfileSummary, switchProfile, useProfiles } from "../profiles";
 import { href } from "../router";
 
 export function Avatar({ name, size = "md" }: { name?: string; size?: "sm" | "md" }) {
@@ -98,8 +98,12 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
                   <div className="min-w-0 flex-1">
                     <p className="flex flex-wrap items-center gap-2 text-lg font-medium">
                       {p.person.name || "Unnamed"}
-                      {active && <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[11px] tracking-wide text-accent uppercase">Open now</span>}
-                      {p.person.example && <span className="rounded-full bg-warn-soft px-2 py-0.5 font-mono text-[11px] tracking-wide text-warn uppercase">Example data</span>}
+                      {active && (
+                        <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[11px] tracking-wide text-accent uppercase">Open now</span>
+                      )}
+                      {p.person.example && (
+                        <span className="rounded-full bg-warn-soft px-2 py-0.5 font-mono text-[11px] tracking-wide text-warn uppercase">Example data</span>
+                      )}
                     </p>
                     {summary && <p className="text-ink-2">{summary}</p>}
                     <p className="text-sm text-ink-2">{countLine(p)}</p>
@@ -138,11 +142,7 @@ export function ProfilesPage({ choosing, onNew }: { choosing?: { profiles: Profi
       </ul>
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        {onNew ? (
-          <Button onClick={onNew}>New profile</Button>
-        ) : (
-          <LinkButton href={href({ name: "setup" })}>New profile</LinkButton>
-        )}
+        {onNew ? <Button onClick={onNew}>New profile</Button> : <LinkButton href={href({ name: "setup" })}>New profile</LinkButton>}
         <LoadProfile />
       </div>
       <div className="mt-4">

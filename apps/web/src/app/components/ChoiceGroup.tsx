@@ -1,6 +1,6 @@
-import { useId } from "react";
 import { Radio } from "@base-ui/react/radio";
 import { RadioGroup } from "@base-ui/react/radio-group";
+import { useId } from "react";
 import { helpStyles, labelStyles } from "./ui";
 
 /** A row of large, tappable radio choices. */

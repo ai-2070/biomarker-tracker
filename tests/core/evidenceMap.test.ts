@@ -1,5 +1,25 @@
+import {
+  chooseFrom,
+  chooseReviews,
+  classify,
+  compareWithPage,
+  designOf,
+  type EvidenceRecord,
+  eligibleReviews,
+  isRetracted,
+  isTrialReview,
+  largeTrialsSince,
+  parseScreening,
+  perYear,
+  plainText,
+  populationOf,
+  sampleSize,
+  screeningPrompt,
+  splitByScreening,
+  trialsPooled,
+  validateEvidenceMap,
+} from "@bt/shared/core/evidenceMap";
 import { describe, expect, it } from "vitest";
-import { chooseFrom, chooseReviews, classify, eligibleReviews, parseScreening, plainText, screeningPrompt, splitByScreening, trialsPooled, validateEvidenceMap, compareWithPage, designOf, isRetracted, isTrialReview, largeTrialsSince, perYear, populationOf, sampleSize, type EvidenceRecord } from "@bt/shared/core/evidenceMap";
 
 const OUT = [{ id: "fractures", title: /\bfractur\w*/i }];
 const rec = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: [], mesh: ["Humans"], citedBy: 0, ...o });
@@ -24,7 +44,9 @@ describe("evidence maps", () => {
 
   it("knows a review of supplement trials from a review of blood levels", () => {
     expect(isTrialReview({ title: "Vitamin D supplementation and fractures: a meta-analysis of randomized controlled trials", abstract: "" })).toBe(true);
-    expect(isTrialReview({ title: "Serum 25-hydroxyvitamin D and fracture risk: a meta-analysis of cohort studies", abstract: "Prospective cohorts." })).toBe(false);
+    expect(isTrialReview({ title: "Serum 25-hydroxyvitamin D and fracture risk: a meta-analysis of cohort studies", abstract: "Prospective cohorts." })).toBe(
+      false,
+    );
   });
 
   it("reads trial sizes from abstracts", () => {
@@ -37,9 +59,26 @@ describe("evidence maps", () => {
   it("chooses the newest meta-analyses of trials, then the most cited, by rule", () => {
     const meta = (year: number, citedBy: number, pmid: string): EvidenceRecord =>
       rec({ pmid, year, citedBy, title: "Vitamin D supplementation and fractures: a meta-analysis of randomized trials", pubTypes: ["Meta-Analysis"] });
-    const records = [meta(2014, 900, "old"), meta(2021, 50, "a"), meta(2023, 20, "b"), meta(2024, 5, "c"), meta(2019, 10, "d"),
-      rec({ pmid: "obs", year: 2025, title: "Serum vitamin D and fractures: meta-analysis of cohort studies", abstract: "We pooled 12 prospective cohort studies of serum 25-hydroxyvitamin D.", pubTypes: ["Meta-Analysis"] }),
-      rec({ pmid: "ret", year: 2025, title: "Vitamin D supplementation and fractures: meta-analysis of randomized trials", pubTypes: ["Meta-Analysis", "Retracted Publication"] })].map((r) => classify(r, OUT));
+    const records = [
+      meta(2014, 900, "old"),
+      meta(2021, 50, "a"),
+      meta(2023, 20, "b"),
+      meta(2024, 5, "c"),
+      meta(2019, 10, "d"),
+      rec({
+        pmid: "obs",
+        year: 2025,
+        title: "Serum vitamin D and fractures: meta-analysis of cohort studies",
+        abstract: "We pooled 12 prospective cohort studies of serum 25-hydroxyvitamin D.",
+        pubTypes: ["Meta-Analysis"],
+      }),
+      rec({
+        pmid: "ret",
+        year: 2025,
+        title: "Vitamin D supplementation and fractures: meta-analysis of randomized trials",
+        pubTypes: ["Meta-Analysis", "Retracted Publication"],
+      }),
+    ].map((r) => classify(r, OUT));
     // The oldest one pooled the most trials: it's added as the most comprehensive, not for its citations.
     records[0]!.abstract = "We pooled 41 randomized controlled trials.";
     const chosen = chooseReviews(records, "fractures");
@@ -48,8 +87,14 @@ describe("evidence maps", () => {
   });
 
   it("finds large trials as new as the newest review", () => {
-    const trial = (pmid: string, year: number, n: number) => classify(rec({ pmid, year, title: "Vitamin D and incident fractures", abstract: `We enrolled ${n} participants.`, pubTypes: ["Randomized Controlled Trial"] }), OUT);
-    expect(largeTrialsSince([trial("big", 2022, 25871), trial("small", 2023, 300), trial("early", 2010, 2256)], "fractures", 2021).map((t) => t.pmid)).toEqual(["big"]);
+    const trial = (pmid: string, year: number, n: number) =>
+      classify(
+        rec({ pmid, year, title: "Vitamin D and incident fractures", abstract: `We enrolled ${n} participants.`, pubTypes: ["Randomized Controlled Trial"] }),
+        OUT,
+      );
+    expect(largeTrialsSince([trial("big", 2022, 25871), trial("small", 2023, 300), trial("early", 2010, 2256)], "fractures", 2021).map((t) => t.pmid)).toEqual([
+      "big",
+    ]);
   });
 
   it("counts reviews and trials per year, leaving out animals and retractions", () => {
@@ -63,7 +108,14 @@ describe("evidence maps", () => {
   });
 
   it("compares the page's own studies with the chosen ones", () => {
-    const r = compareWithPage(["a", "x"], [{ pmid: "a", title: "A", citedBy: 1, why: "" }, { pmid: "b", title: "B", citedBy: 1, why: "" }], []);
+    const r = compareWithPage(
+      ["a", "x"],
+      [
+        { pmid: "a", title: "A", citedBy: 1, why: "" },
+        { pmid: "b", title: "B", citedBy: 1, why: "" },
+      ],
+      [],
+    );
     expect(r.alsoChosen).toEqual(["a"]);
     expect(r.citedNotChosen).toEqual(["x"]);
     expect(r.chosenNotCited.map((c) => c.pmid)).toEqual(["b"]);
@@ -72,7 +124,16 @@ describe("evidence maps", () => {
   it("cleans titles, and only counts reviews with the topic in their title when asked", () => {
     expect(plainText("Vitamin D&lt;sub&gt;3&lt;/sub&gt; and falls")).toBe("Vitamin D3 and falls");
     expect(plainText("<i>In vitro</i> &amp; trials")).toBe("In vitro & trials");
-    const broad = classify(rec({ pmid: "broad", year: 2025, title: "Interventions for preventing falls in older people: meta-analysis of randomized trials", abstract: "Vitamin D supplementation was one of many.", pubTypes: ["Meta-Analysis"] }), [{ id: "falls", title: /falls/i }]);
+    const broad = classify(
+      rec({
+        pmid: "broad",
+        year: 2025,
+        title: "Interventions for preventing falls in older people: meta-analysis of randomized trials",
+        abstract: "Vitamin D supplementation was one of many.",
+        pubTypes: ["Meta-Analysis"],
+      }),
+      [{ id: "falls", title: /falls/i }],
+    );
     expect(chooseReviews([broad], "falls").map((c) => c.pmid)).toEqual(["broad"]);
     expect(chooseReviews([broad], "falls", 3, /vitamin D/i)).toEqual([]);
   });
@@ -81,7 +142,15 @@ describe("evidence maps", () => {
     expect(trialsPooled("We included 46 randomised controlled trials (75 541 participants).")).toBe(46);
     expect(trialsPooled("Data from 11 double-blind placebo-controlled trials and 3 cohorts.")).toBe(11);
     expect(trialsPooled("Serum levels.")).toBeUndefined();
-    const sepsis = classify(rec({ pmid: "s", year: 2026, title: "Vitamin D supplementation and mortality in sepsis: meta-analysis of randomized trials", pubTypes: ["Meta-Analysis"] }), [{ id: "mortality", title: /mortality/i }]);
+    const sepsis = classify(
+      rec({
+        pmid: "s",
+        year: 2026,
+        title: "Vitamin D supplementation and mortality in sepsis: meta-analysis of randomized trials",
+        pubTypes: ["Meta-Analysis"],
+      }),
+      [{ id: "mortality", title: /mortality/i }],
+    );
     expect(chooseReviews([sepsis], "mortality", 3, /vitamin D/i, /\bsepsis\b/i)).toEqual([]);
   });
 
@@ -100,7 +169,8 @@ describe("evidence maps", () => {
       for (const f of ['"yes"', '"partly"', '"no"']) expect(prompt).toContain(f);
     });
     it("keeps only well-formed answers about the reviews asked", () => {
-      const text = 'Here you go: [{"pmid":"1","fits":"yes","reason":"Matches."},{"pmid":2,"fits":"partly","reason":"Only with calcium."},{"pmid":"9","fits":"yes","reason":"Not asked."},{"pmid":"1","fits":"no","reason":"Duplicate."},{"pmid":"3","fits":"maybe","reason":"Bad."},{"pmid":"4","fits":"no","reason":" "}]';
+      const text =
+        'Here you go: [{"pmid":"1","fits":"yes","reason":"Matches."},{"pmid":2,"fits":"partly","reason":"Only with calcium."},{"pmid":"9","fits":"yes","reason":"Not asked."},{"pmid":"1","fits":"no","reason":"Duplicate."},{"pmid":"3","fits":"maybe","reason":"Bad."},{"pmid":"4","fits":"no","reason":" "}]';
       expect(parseScreening(text, ["1", "2", "3", "4"])).toEqual([
         { pmid: "1", fits: "yes", reason: "Matches." },
         { pmid: "2", fits: "partly", reason: "Only with calcium." },
@@ -110,7 +180,9 @@ describe("evidence maps", () => {
     });
     it("splits by the decisions, never counting an unscreened review as fitting, and chooses from the fitting ones", () => {
       const r = (pmid: string, year: number) =>
-        classify(rec({ pmid, year, title: `Vitamin D and diabetes: meta-analysis of randomized trials ${pmid}`, pubTypes: ["Meta-Analysis"] }), [{ id: "diabetes", title: /diabetes/i }]);
+        classify(rec({ pmid, year, title: `Vitamin D and diabetes: meta-analysis of randomized trials ${pmid}`, pubTypes: ["Meta-Analysis"] }), [
+          { id: "diabetes", title: /diabetes/i },
+        ]);
       const pool = [r("a", 2025), r("b", 2024), r("c", 2023)];
       const split = splitByScreening(pool, [
         { pmid: "a", fits: "no", reason: "Glycemic control in people with diabetes." },
@@ -141,10 +213,26 @@ describe("evidence maps", () => {
         left: [{ pmid: "b", title: "B", fits: "no" as const, reason: "Other people." }],
       },
     };
-    const map = { topic: "t", nutrientId: "t", name: "t", builtAt: "2026-10-29", fetchedAt: "", source: "", queries: {}, rules: ["r"], counts: { all: 1, retrieved: 1, animal: 0, retracted: 0, reviews: 2, trials: 0, guidelines: 0 }, guidelines: [], outcomes: [outcome] };
+    const map = {
+      topic: "t",
+      nutrientId: "t",
+      name: "t",
+      builtAt: "2026-10-29",
+      fetchedAt: "",
+      source: "",
+      queries: {},
+      rules: ["r"],
+      counts: { all: 1, retrieved: 1, animal: 0, retracted: 0, reviews: 2, trials: 0, guidelines: 0 },
+      guidelines: [],
+      outcomes: [outcome],
+    };
     expect(validateEvidenceMap(map)).toEqual([]);
-    expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, chosenReviews: [{ pmid: "b", title: "B", citedBy: 0, why: "Newest" }] }] })).toContain("diabetes: a chosen review was screened out");
-    expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, screening: { ...outcome.screening, left: [{ ...outcome.screening.left[0]!, reason: "" }] } }] })).toContain("diabetes: a review left out has no reason");
+    expect(validateEvidenceMap({ ...map, outcomes: [{ ...outcome, chosenReviews: [{ pmid: "b", title: "B", citedBy: 0, why: "Newest" }] }] })).toContain(
+      "diabetes: a chosen review was screened out",
+    );
+    expect(
+      validateEvidenceMap({ ...map, outcomes: [{ ...outcome, screening: { ...outcome.screening, left: [{ ...outcome.screening.left[0]!, reason: "" }] } }] }),
+    ).toContain("diabetes: a review left out has no reason");
   });
 });
 
@@ -152,8 +240,18 @@ describe("eligible reviews: several supplements, missing abstracts", () => {
   const rec2 = (o: Partial<EvidenceRecord>): EvidenceRecord => ({ title: "", abstract: "", pubTypes: ["Meta-Analysis"], mesh: ["Humans"], citedBy: 0, ...o });
   const outcomes = [{ id: "migraine", title: /migraine/i }];
   it("counts a review of several supplements when the nutrient is in its abstract, and keeps reviews without an abstract", () => {
-    const several = classify(rec2({ pmid: "1", title: "Nutritional supplements for migraine prevention", abstract: "Randomized trials of magnesium, riboflavin and CoQ10 supplementation." }), outcomes);
-    const other = classify(rec2({ pmid: "2", title: "Acupuncture for migraine", abstract: "Randomized trials of acupuncture treatment; magnesium was not studied... magnesium" }), outcomes);
+    const several = classify(
+      rec2({
+        pmid: "1",
+        title: "Nutritional supplements for migraine prevention",
+        abstract: "Randomized trials of magnesium, riboflavin and CoQ10 supplementation.",
+      }),
+      outcomes,
+    );
+    const other = classify(
+      rec2({ pmid: "2", title: "Acupuncture for migraine", abstract: "Randomized trials of acupuncture treatment; magnesium was not studied... magnesium" }),
+      outcomes,
+    );
     const noAbstract = classify(rec2({ pmid: "3", title: "Magnesium for migraine: a meta-analysis" }), outcomes);
     const ids = eligibleReviews([several, other, noAbstract], "migraine", /magnesium/i).map((r) => r.pmid);
     expect(ids).toEqual(["1", "3"]);
@@ -172,15 +270,31 @@ describe("maps of claims about foods", () => {
     expect(classify(rec3({ title: "Mercury exposure" }), outcomes).outcomes).toEqual(["mercury"]);
   });
   it("counts reviews of any design for food claims, and words the screening question for a food", () => {
-    const cohort = classify(rec3({ pmid: "c", title: "Fish intake and mortality: meta-analysis of cohort studies", abstract: "We pooled 20 prospective cohort studies.", matched: ["fish"] }), [{ id: "fish" }]);
+    const cohort = classify(
+      rec3({
+        pmid: "c",
+        title: "Fish intake and mortality: meta-analysis of cohort studies",
+        abstract: "We pooled 20 prospective cohort studies.",
+        matched: ["fish"],
+      }),
+      [{ id: "fish" }],
+    );
     expect(eligibleReviews([cohort], "fish").map((r) => r.pmid)).toEqual([]);
     expect(eligibleReviews([cohort], "fish", undefined, undefined, "food").map((r) => r.pmid)).toEqual(["c"]);
     // Lifestyle maps count reviews of any design too, and ask about a habit.
     expect(eligibleReviews([cohort], "fish", undefined, undefined, "lifestyle").map((r) => r.pmid)).toEqual(["c"]);
-    const habit = screeningPrompt({ population: "Adults", intervention: "Sauna bathing", comparison: "No sauna", outcome: "Death" }, [{ pmid: "c", title: "T", year: 2020, abstract: "A" }], "lifestyle");
+    const habit = screeningPrompt(
+      { population: "Adults", intervention: "Sauna bathing", comparison: "No sauna", outcome: "Death" },
+      [{ pmid: "c", title: "T", year: 2020, abstract: "A" }],
+      "lifestyle",
+    );
     expect(habit).toContain("Habit or exposure: Sauna bathing");
     expect(habit).toContain("whether the habit works");
-    const prompt = screeningPrompt({ population: "People", intervention: "Eating fish", comparison: "Less fish", outcome: "Death" }, [{ pmid: "c", title: "T", year: 2020, abstract: "A" }], "food");
+    const prompt = screeningPrompt(
+      { population: "People", intervention: "Eating fish", comparison: "Less fish", outcome: "Death" },
+      [{ pmid: "c", title: "T", year: 2020, abstract: "A" }],
+      "food",
+    );
     expect(prompt).toContain("Food or exposure: Eating fish");
     expect(prompt).toContain("studies of any design");
     expect(prompt).toContain("whether the claim is true");
@@ -194,12 +308,19 @@ describe("maps of claims about foods", () => {
 
 describe("the newest reviews", () => {
   it("reads a review's design from its title when PubMed hasn't tagged it yet", () => {
-    expect(designOf({ pubTypes: ["Journal Article"], title: "Effect of creatine on kidney function: a systematic review and meta-analysis" })).toBe("meta-analysis");
+    expect(designOf({ pubTypes: ["Journal Article"], title: "Effect of creatine on kidney function: a systematic review and meta-analysis" })).toBe(
+      "meta-analysis",
+    );
     expect(designOf({ pubTypes: ["Review", "Journal Article"], title: "Impact of creatine on kidney health: a systematic review" })).toBe("systematic review");
     expect(designOf({ pubTypes: ["Journal Article"], title: "Creatine and memory in older adults" })).toBe("other");
     expect(designOf({ pubTypes: ["Randomized Controlled Trial"], title: "A trial of creatine" })).toBe("rct");
   });
   it("counts a review of controlled studies as a review of trials", () => {
-    expect(isTrialReview({ title: "Creatine and kidney function: a meta-analysis", abstract: "12 studies (177 in the creatine group and 263 in control) of creatine supplementation." })).toBe(true);
+    expect(
+      isTrialReview({
+        title: "Creatine and kidney function: a meta-analysis",
+        abstract: "12 studies (177 in the creatine group and 263 in control) of creatine supplementation.",
+      }),
+    ).toBe(true);
   });
 });

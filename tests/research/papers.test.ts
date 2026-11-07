@@ -1,25 +1,24 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import {
   cleanText,
   europePmcQuery,
   europePmcUrl,
+  type FetchFn,
   kindFromPubTypes,
   markerTerms,
+  paperById,
   parseEuropePmc,
   parsePubmedSearch,
   parsePubmedSummary,
   pubmedTerm,
   sanitizeTopic,
-  paperById,
   searchPapers,
   studyQuery,
-  type FetchFn,
 } from "@bt/shared/research/papers";
+import { describe, expect, it } from "vitest";
 
-const fixture = (name: string): unknown =>
-  JSON.parse(readFileSync(join(import.meta.dirname, "..", "fixtures", "research", name), "utf8"));
+const fixture = (name: string): unknown => JSON.parse(readFileSync(join(import.meta.dirname, "..", "fixtures", "research", name), "utf8"));
 
 describe("query building", () => {
   it("uses the marker name without brackets and skips very short abbreviations", () => {

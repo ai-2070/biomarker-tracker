@@ -27,7 +27,8 @@ export async function bridgeFetch(operation: string, body: unknown, signal?: Abo
   const token = process.env.BT_EVE_BRIDGE_TOKEN;
   if (!origin || !token) throw new Error("The Biomarker Tracker bridge is not configured.");
   const url = new URL(operation.replace(/^\//, ""), origin.endsWith("/") ? origin : `${origin}/`);
-  if (url.protocol !== "http:" || url.hostname !== "127.0.0.1" || url.origin !== new URL(origin).origin) throw new Error("The Biomarker Tracker bridge must be local.");
+  if (url.protocol !== "http:" || url.hostname !== "127.0.0.1" || url.origin !== new URL(origin).origin)
+    throw new Error("The Biomarker Tracker bridge must be local.");
   const response = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
