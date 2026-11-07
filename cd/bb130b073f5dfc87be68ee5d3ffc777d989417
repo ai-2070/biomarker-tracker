@@ -1,0 +1,129 @@
+apps/web/src/app/components/BodyFatComparison.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 59-60,224
+apps/web/src/app/pages/WholeFoodsPage.tsx
+  s_dfac4fc6fbc70c::t_795eafc8f46020 76-81,440-442
+packages/shared/src/core/lifestyle.ts
+  s_dfac4fc6fbc70c::t_314ce616daf338 200
+apps/web/src/app/components/SleepTimingPanel.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 111
+packages/shared/src/core/backup.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 136
+tests/core/importFixes.test.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 164,172-173,175
+apps/web/src/app/paperPreviews.ts
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 5,13
+tests/server/assistant.test.ts
+  s_dfac4fc6fbc70c::t_314ce616daf338 15
+apps/web/src/app/components/LifestyleVisuals.tsx
+  s_dfac4fc6fbc70c::t_314ce616daf338 93
+apps/web/src/app/components/ClaimEvidencePanel.tsx
+  s_dfac4fc6fbc70c::t_39a080515838b9 69
+apps/web/src/app/components/DoctorReportChart.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 59,110,137
+apps/web/src/app/pages/DataPage.tsx
+  s_dfac4fc6fbc70c::t_39a080515838b9 114
+tests/core/sleepImport.test.ts
+  s_dfac4fc6fbc70c::t_795eafc8f46020 81
+tests/app/assistant-settings.test.ts
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 24
+  s_dfac4fc6fbc70c::t_314ce616daf338 85
+apps/web/src/app/pages/SupplementsPage.tsx
+  s_dfac4fc6fbc70c::t_795eafc8f46020 60-65
+  s_dfac4fc6fbc70c::t_493d72b57063fb 109
+packages/shared/src/core/claimEvidence.ts
+  s_dfac4fc6fbc70c::t_314ce616daf338 246,260
+  s_dfac4fc6fbc70c::t_795eafc8f46020 279
+tests/app/disclosure.test.tsx
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 42-45
+tools/cofid/build-all.mjs
+  s_dfac4fc6fbc70c::t_493d72b57063fb 79,113
+apps/web/src/app/components/intake/LoadProtocol.tsx
+  s_dfac4fc6fbc70c::t_314ce616daf338 10
+  s_dfac4fc6fbc70c::t_795eafc8f46020 47-50
+packages/shared/src/ai/citations.ts
+  s_dfac4fc6fbc70c::t_314ce616daf338 19
+tests/server/serverPersistenceFixes.test.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 286,314
+tests/app/assistant-privacy-regressions.test.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 29,33
+apps/web/src/index.css
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 341,351
+tests/server/desktopUpdates.test.ts
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 23,26
+packages/shared/src/core/heartAge.ts
+  s_dfac4fc6fbc70c::t_314ce616daf338 50
+apps/web/src/app/components/settings/ModelsSettings.tsx
+  s_dfac4fc6fbc70c::t_39a080515838b9 91,378
+  s_dfac4fc6fbc70c::t_493d72b57063fb 97
+  s_dfac4fc6fbc70c::t_a19fd37fb391f1 580
+  s_dfac4fc6fbc70c::t_3da2c5076e4464 492-502
+  s_dfac4fc6fbc70c::t_60d721aeec326a 591
+tests/core/evidenceFixesReview.test.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 92
+apps/web/src/app/components/timeControls.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 260
+  s_dfac4fc6fbc70c::t_39a080515838b9 96,102
+apps/web/src/app/components/dashboard/CountryPopulationReference.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 153
+tests/server/assistant-safety-regressions.test.ts
+  s_dfac4fc6fbc70c::t_493d72b57063fb 121
+tools/cofid/build-foods.mjs
+  s_dfac4fc6fbc70c::t_493d72b57063fb 102
+biome.json
+  s_dfac4fc6fbc70c::t_411d21426baef8 50-51,70-72
+  s_dfac4fc6fbc70c::t_44780141db8ffa 14,58-66
+  s_dfac4fc6fbc70c::t_302607ea330384 67
+  s_dfac4fc6fbc70c::t_54f377e51a53d8 3-7,23-40,49,52-57,68-69,76-78
+tests/app/fakeServer.ts
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 8
+apps/web/src/app/components/dashboard/AgesChart.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 277
+apps/web/src/app/components/settings/SkillsSettings.tsx
+  s_dfac4fc6fbc70c::t_39a080515838b9 43
+packages/shared/src/core/evidenceMap.ts
+  s_dfac4fc6fbc70c::t_795eafc8f46020 221
+packages/shared/src/core/importers/zipRead.ts
+  s_dfac4fc6fbc70c::t_542e5fdacb4f1b 67-74
+apps/web/src/app/pages/LifestylePage.tsx
+  s_dfac4fc6fbc70c::t_795eafc8f46020 65-70
+apps/web/src/app/pages/HabitsPage.tsx
+  s_dfac4fc6fbc70c::t_795eafc8f46020 382-386
+apps/web/src/app/components/settings/McpSettings.tsx
+  s_dfac4fc6fbc70c::t_39a080515838b9 224
+tests/app/brainStore.test.ts
+  s_dfac4fc6fbc70c::t_286ea1408e03a0 294,495,608,618,629
+apps/web/src/app/components/NormChart.tsx
+  s_dfac4fc6fbc70c::t_6d704cf8b2e519 91
+apps/desktop/scripts/smoke.ts
+  s_dfac4fc6fbc70c::t_7454a04700fe3e 91-96
+apps/server/agents.ts
+  s_dfac4fc6fbc70c::t_4ec92ff147c852 71-73
+apps/web/src/app/brain/store.ts
+  s_dfac4fc6fbc70c::t_b2c828db106b2f 355-358
+apps/web/src/app/lifeTables.ts
+  s_dfac4fc6fbc70c::t_a822749ac9d167 6,9-10
+apps/web/src/app/pdf.ts
+  s_dfac4fc6fbc70c::t_856a64bea56ba9 3,30
+packages/shared/src/core/importers/deviceFiles.ts
+  s_dfac4fc6fbc70c::t_4da051fe5d390a 1171-1174
+packages/shared/src/core/plans.ts
+  s_dfac4fc6fbc70c::t_4a56e93eb3d151 211,224
+tests/app/brainStream.test.ts
+  s_dfac4fc6fbc70c::t_db61f739ab867a 9-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cdbb130b073f5dfc87be68ee5d3ffc777d989417",
+  "prompts": {},
+  "sessions": {
+    "s_dfac4fc6fbc70c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "59b812aa-7454-41eb-b074-ab48034510c7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
