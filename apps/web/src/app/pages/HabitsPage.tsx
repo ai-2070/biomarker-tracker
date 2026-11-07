@@ -367,13 +367,12 @@ function MarkerPicker({
         {Math.round(BASELINE_WINDOW_DAYS / 30)} months before the start.
       </p>
       <div className="mt-1 flex flex-wrap items-center gap-x-3">
-        <button
-          type="button"
+        <Button
+          variant="link"
           onClick={() => onChange(allShown ? markerIds.filter((id) => !ordered.some((d) => d.id === id)) : [...new Set([...markerIds, ...ordered.map((d) => d.id)])])}
-          className="min-h-11 text-sm font-medium text-accent underline-offset-2 hover:underline"
         >
           {allShown ? "Clear all" : `Select all (${ordered.length})`}
-        </button>
+        </Button>
         <span className="text-sm text-ink-2" aria-live="polite">
           {markerIds.length} {markerIds.length === 1 ? "marker" : "markers"} chosen
         </span>

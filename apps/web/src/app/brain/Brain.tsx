@@ -224,9 +224,9 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
       {research && (
         <div className="flex flex-wrap items-center gap-x-3 border-b border-line px-4 py-1">
           <p className="min-w-0 flex-1 text-xs leading-relaxed text-ink-2">Research only · Profile and results excluded</p>
-          <button type="button" onClick={backToMyChat} className="min-h-11 shrink-0 text-sm font-medium text-accent underline-offset-4 hover:underline">
+          <Button variant="link" onClick={backToMyChat} className="shrink-0">
             Back to my chat
-          </button>
+          </Button>
         </div>
       )}
 

@@ -6,7 +6,7 @@ import { GradeBadge, StudyLink } from "./evidence";
 import { More } from "./disclosure";
 import { Glance } from "./glance";
 import { SegmentTabs } from "./SegmentTabs";
-import { Card, cx, eyebrowStyles } from "./ui";
+import { Button, Card, cx, eyebrowStyles } from "./ui";
 
 const HEADING: Record<ComparisonTopic, string> = {
   matrix: "The animal matrix",
@@ -154,9 +154,9 @@ function Claim({ c, onShowMap }: { c: ComparisonClaim; onShowMap?: () => void })
           ))}
         </ul>
         {onShowMap && (
-          <button type="button" onClick={onShowMap} className="mt-2 min-h-11 text-sm text-accent">
+          <Button variant="link" onClick={onShowMap} className="mt-2">
             How the evidence for this claim was found
-          </button>
+          </Button>
         )}
       </More>
     </article>
