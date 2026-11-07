@@ -1,20 +1,33 @@
-import { describe, expect, it } from "vitest";
-import { proposalIntent, proposalIssue, type AssistantProposalContext } from "@bt/shared/core/assistantProposal";
-import { parseHabitProposal } from "@bt/shared/core/habitProposal";
+import { type AssistantProposalContext, proposalIntent, proposalIssue } from "@bt/shared/core/assistantProposal";
 import { SAFETY_LIMITS } from "@bt/shared/core/foods";
-import { mealSafetyBlock, mealTotals, validateMeal, type FoodDb } from "@bt/shared/core/meals";
+import { parseHabitProposal } from "@bt/shared/core/habitProposal";
+import { type FoodDb, mealSafetyBlock, mealTotals, validateMeal } from "@bt/shared/core/meals";
 import { planFromProposal } from "@bt/shared/core/plans";
 import type { SafetyId } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const context: AssistantProposalContext = { requestText: "Suggest a simple routine and a breakfast idea.", safety: [], critical: false };
 const item = { label: "Walk after dinner", category: "lifestyle", when: "evening" };
 const protocol = { intent: "recommend", name: "Evening routine", items: [item] };
 const habit = { intent: "recommend", label: "Walk after dinner", category: "lifestyle", reason: "You asked for a simple habit to watch." };
-const meal = { intent: "recommend", name: "Oats and berries", items: [{ foodId: "oats", grams: 50 }, { foodId: "berries", grams: 80 }], note: "Example portions: 50 grams oats and 80 g berries." };
+const meal = {
+  intent: "recommend",
+  name: "Oats and berries",
+  items: [
+    { foodId: "oats", grams: 50 },
+    { foodId: "berries", grams: 80 },
+  ],
+  note: "Example portions: 50 grams oats and 80 g berries.",
+};
 const foods: FoodDb = {
   keys: ["energyKcal", "protein", "vitaminK1", "potassium", "retinol"],
   nutrients: {},
-  foods: [["oats", "Oats", [380, 12, 0, 100, 0]], ["berries", "Berries", [50, 1, 0, 100, 0]], ["spinach", "Spinach", [30, 3, 500, 600, 0]], ["liver", "Liver", [150, 20, 0, 100, 1000]]],
+  foods: [
+    ["oats", "Oats", [380, 12, 0, 100, 0]],
+    ["berries", "Berries", [50, 1, 0, 100, 0]],
+    ["spinach", "Spinach", [30, 3, 500, 600, 0]],
+    ["liver", "Liver", [150, 20, 0, 100, 1000]],
+  ],
 };
 
 describe("assistant proposal intents", () => {
@@ -44,7 +57,8 @@ describe("requested recommendation drafts", () => {
       { ...item, category: "medication" },
       { ...item, label: "Metformin", category: "lifestyle" },
       { ...item, note: "Add aspirin" },
-    ]) expect(proposalIssue("protocol", { ...protocol, items: [unsafe] }, context)).toBeDefined();
+    ])
+      expect(proposalIssue("protocol", { ...protocol, items: [unsafe] }, context)).toBeDefined();
     expect(proposalIssue("habit", { ...habit, label: "Start atorvastatin" }, context)).toBeDefined();
     expect(proposalIssue("meal", { ...meal, note: "Add metformin" }, context)).toBeDefined();
   });
@@ -55,7 +69,8 @@ describe("requested recommendation drafts", () => {
       { ...item, label: "Magnesium 200 mg", category: "supplement" },
       { ...item, note: "Two capsules at bedtime" },
       { ...item, note: "Use 200 milligrams" },
-    ]) expect(proposalIssue("protocol", { ...protocol, items: [unsafe] }, context)).toBeDefined();
+    ])
+      expect(proposalIssue("protocol", { ...protocol, items: [unsafe] }, context)).toBeDefined();
     expect(proposalIssue("protocol", { ...protocol, description: "Magnesium 200mg" }, context)).toBeDefined();
     expect(proposalIssue("protocol", { ...protocol, source: "Magnesium 200mg" }, context)).toBeDefined();
     expect(proposalIssue("habit", { ...habit, reason: "Add 2 capsules of magnesium." }, context)).toBeDefined();
@@ -66,20 +81,36 @@ describe("requested recommendation drafts", () => {
   });
 
   it("allows practical activity timing examples, but not amounts disguised as lifestyle supplements", () => {
-    const timed = { ...protocol, items: [
-      { ...item, amount: "20 minutes" },
-      { label: "Casual strength training", category: "lifestyle", when: "any time", amount: "2 sessions per week" },
-    ] };
+    const timed = {
+      ...protocol,
+      items: [
+        { ...item, amount: "20 minutes" },
+        { label: "Casual strength training", category: "lifestyle", when: "any time", amount: "2 sessions per week" },
+      ],
+    };
     expect(proposalIssue("protocol", timed, context)).toBeUndefined();
     expect(proposalIssue("protocol", { ...protocol, items: [{ ...item, label: "Creatine", amount: "20 minutes" }] }, context)).toBeDefined();
   });
 
   it("blocks all drafts for critical results and rejects restriction or treatment instructions", () => {
-    for (const [kind, input] of [["protocol", protocol], ["habit", habit], ["meal", meal]] as const) {
+    for (const [kind, input] of [
+      ["protocol", protocol],
+      ["habit", habit],
+      ["meal", meal],
+    ] as const) {
       expect(proposalIssue(kind, input, { ...context, critical: true })).toBeDefined();
       expect(proposalIssue(kind, { ...input, intent: "record" }, { ...context, critical: true })).toBeDefined();
     }
-    for (const note of ["Eat only 1200 kcal", "1500 calories per day", "Under 1200 calories", "1200 kcal target", "Lose 5 kg", "A weight-loss plan", "Your dose is 2 capsules", "You should start medication"]) {
+    for (const note of [
+      "Eat only 1200 kcal",
+      "1500 calories per day",
+      "Under 1200 calories",
+      "1200 kcal target",
+      "Lose 5 kg",
+      "A weight-loss plan",
+      "Your dose is 2 capsules",
+      "You should start medication",
+    ]) {
       expect(proposalIssue("meal", { ...meal, note }, context)).toBeDefined();
       expect(proposalIssue("protocol", { ...protocol, description: note }, context)).toBeDefined();
       expect(proposalIssue("habit", { ...habit, reason: note }, context)).toBeDefined();
@@ -115,9 +146,14 @@ describe("requested recommendation drafts", () => {
 });
 
 describe("recording only the newest supplied routine", () => {
-  const source = { ...context, requestText: "Please record my routine: metformin 500 mg in the morning; Magnesium 200 mg at bedtime, only if deficient; Walk after dinner." };
+  const source = {
+    ...context,
+    requestText: "Please record my routine: metformin 500 mg in the morning; Magnesium 200 mg at bedtime, only if deficient; Walk after dinner.",
+  };
   const recorded = {
-    intent: "record", name: "My routine", items: [
+    intent: "record",
+    name: "My routine",
+    items: [
       { label: "Metformin", amount: "500 mg", category: "medication", when: "morning" },
       { label: "Magnesium", amount: "200 mg", category: "supplement", when: "bedtime", note: "only if deficient" },
       item,
@@ -136,12 +172,25 @@ describe("recording only the newest supplied routine", () => {
       { ...recorded.items[1], amount: "2 mg" },
       { ...recorded.items[1], note: "Double your dose" },
       { ...recorded.items[1], note: "Increase until symptoms improve" },
-    ]) expect(proposalIssue("protocol", { ...recorded, items: [changed] }, source)).toBeDefined();
+    ])
+      expect(proposalIssue("protocol", { ...recorded, items: [changed] }, source)).toBeDefined();
     expect(proposalIssue("protocol", recorded, { ...context, requestText: "Use the earlier routine." })).toBeDefined();
-    expect(proposalIssue("protocol", { ...recorded, items: [{ ...recorded.items[0], amount: "200 mg" }] }, { ...context, requestText: "Metformin 500 mg and Magnesium 200 mg" })).toBeDefined();
+    expect(
+      proposalIssue(
+        "protocol",
+        { ...recorded, items: [{ ...recorded.items[0], amount: "200 mg" }] },
+        { ...context, requestText: "Metformin 500 mg and Magnesium 200 mg" },
+      ),
+    ).toBeDefined();
   });
   it("does not confuse a substring, a form number, or a decimal amount with another source item", () => {
-    expect(proposalIssue("protocol", { ...recorded, items: [{ label: "Iron", category: "supplement", when: "any time" }] }, { ...context, requestText: "Record my thyroid routine." })).toBeDefined();
+    expect(
+      proposalIssue(
+        "protocol",
+        { ...recorded, items: [{ label: "Iron", category: "supplement", when: "any time" }] },
+        { ...context, requestText: "Record my thyroid routine." },
+      ),
+    ).toBeDefined();
     const decimal = { ...recorded, items: [{ label: "Vitamin D3", amount: "2,5 µg", category: "supplement", when: "morning" }] };
     expect(proposalIssue("protocol", decimal, { ...context, requestText: "Record Vitamin D3 2,5 µg in the morning." })).toBeUndefined();
   });

@@ -11,7 +11,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { anyDesignKind } from "@bt/shared/core/evidenceMap";
-import { SCREENING_DIR, loadTopic, type ScreeningFile } from "./load";
+import { loadTopic, SCREENING_DIR, type ScreeningFile } from "./load";
 import { screenOutcome } from "./screening";
 
 const { topic, eligible, screening, screeningFile } = loadTopic(process.argv[2]);
@@ -19,7 +19,18 @@ const model = process.argv[3] ?? "opus";
 const empty = mkdtempSync(join(tmpdir(), "bt-screen-"));
 
 function ask(prompt: string): Promise<string> {
-  const args = ["-p", "--output-format", "json", "--model", model, "--tools", "", "--no-session-persistence", "--system-prompt", "You screen systematic reviews for an evidence map. Answer only with the JSON asked for."];
+  const args = [
+    "-p",
+    "--output-format",
+    "json",
+    "--model",
+    model,
+    "--tools",
+    "",
+    "--no-session-persistence",
+    "--system-prompt",
+    "You screen systematic reviews for an evidence map. Answer only with the JSON asked for.",
+  ];
   const child = spawn("claude", args, { cwd: empty, stdio: ["pipe", "pipe", "pipe"], windowsHide: true });
   let out = "";
   let err = "";
@@ -40,7 +51,11 @@ function ask(prompt: string): Promise<string> {
   });
 }
 
-const file: ScreeningFile = screening ?? { topic: topic.id, by: "Per-decision attribution; legacy decisions have unknown input/model provenance", outcomes: {} };
+const file: ScreeningFile = screening ?? {
+  topic: topic.id,
+  by: "Per-decision attribution; legacy decisions have unknown input/model provenance",
+  outcomes: {},
+};
 const save = () => {
   mkdirSync(SCREENING_DIR, { recursive: true });
   writeFileSync(screeningFile, JSON.stringify(file, null, 1));
@@ -52,8 +67,12 @@ await Promise.all(
     const mode = anyDesignKind(topic.kind) ? topic.kind! : o.anyDesign ? "any-design" : "supplement";
     const reviews = eligible(o.id);
     const done = await screenOutcome({
-      question: o.question, reviews, mode, previous: prev?.decisions ?? [],
-      by: `Claude Code (${model}), titles and abstracts only`, ask,
+      question: o.question,
+      reviews,
+      mode,
+      previous: prev?.decisions ?? [],
+      by: `Claude Code (${model}), titles and abstracts only`,
+      ask,
       onBatch(decisions) {
         file.outcomes[o.id] = { question: o.question, at: new Date().toISOString().slice(0, 10), decisions };
         save();
@@ -63,4 +82,8 @@ await Promise.all(
   }),
 );
 const all = Object.values(file.outcomes).flatMap((x) => x.decisions);
-console.log("done:", { yes: all.filter((d) => d.fits === "yes").length, partly: all.filter((d) => d.fits === "partly").length, no: all.filter((d) => d.fits === "no").length });
+console.log("done:", {
+  yes: all.filter((d) => d.fits === "yes").length,
+  partly: all.filter((d) => d.fits === "partly").length,
+  no: all.filter((d) => d.fits === "no").length,
+});

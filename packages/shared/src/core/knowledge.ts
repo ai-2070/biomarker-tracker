@@ -1,15 +1,7 @@
-import { normalizeUnit } from "./units";
 import type { BiomarkerCategory, BiomarkerDef, Conversion } from "./types";
+import { normalizeUnit } from "./units";
 
-const STUDY_TYPES = new Set([
-  "meta-analysis",
-  "rct",
-  "observational",
-  "animal",
-  "in vitro",
-  "review",
-  "guideline",
-]);
+const STUDY_TYPES = new Set(["meta-analysis", "rct", "observational", "animal", "in vitro", "review", "guideline"]);
 
 /** Every marker category, in the order lists show them. */
 export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
@@ -81,14 +73,16 @@ export function validateBiomarkerDef(v: unknown): string[] {
         else if (isNum(r.low) && isNum(r.high) && r.low >= r.high) errs.push("range low must be below high");
         else if (isObj(r) && r.sex !== undefined && r.sex !== "m" && r.sex !== "f") errs.push("range sex must be m or f");
         else if (isObj(r) && r.fasted !== undefined && typeof r.fasted !== "boolean") errs.push("range fasted must be true or false");
-        else if (isObj(r) && ((r.ageFrom !== undefined && !isNum(r.ageFrom)) || (r.ageTo !== undefined && !isNum(r.ageTo)))) errs.push("range ages must be numbers");
+        else if (isObj(r) && ((r.ageFrom !== undefined && !isNum(r.ageFrom)) || (r.ageTo !== undefined && !isNum(r.ageTo))))
+          errs.push("range ages must be numbers");
         else if (isObj(r) && isNum(r.ageFrom) && isNum(r.ageTo) && r.ageFrom >= r.ageTo) errs.push("range ageFrom must be below ageTo");
       }
     }
   }
   if (v.criticalRange !== undefined && !isObj(v.criticalRange)) errs.push("criticalRange must be an object");
   if (v.comparisonOnly !== undefined && typeof v.comparisonOnly !== "boolean") errs.push("comparisonOnly must be true or false");
-  if (v.judgeAverageOfDays !== undefined && !(isNum(v.judgeAverageOfDays) && v.judgeAverageOfDays >= 2)) errs.push("judgeAverageOfDays must be a number of days (2 or more)");
+  if (v.judgeAverageOfDays !== undefined && !(isNum(v.judgeAverageOfDays) && v.judgeAverageOfDays >= 2))
+    errs.push("judgeAverageOfDays must be a number of days (2 or more)");
   if (v.judgeSumOfDays !== undefined && !(isNum(v.judgeSumOfDays) && v.judgeSumOfDays >= 2)) errs.push("judgeSumOfDays must be a number of days (2 or more)");
   if (v.judgeSumOfDays !== undefined && v.judgeAverageOfDays !== undefined) errs.push("a marker is judged on an average or on a total, not both");
   if (v.personalRange !== undefined && typeof v.personalRange !== "boolean") errs.push("personalRange must be true or false");
@@ -99,7 +93,8 @@ export function validateBiomarkerDef(v: unknown): string[] {
     const bv = v.biologicalVariation;
     if (!isObj(bv) || !isNum(bv.cvi) || bv.cvi <= 0 || bv.cvi > 200) errs.push("biologicalVariation.cvi must be a percentage above 0");
     else if (!isNum(bv.ciLow) || !isNum(bv.ciHigh) || bv.ciLow > bv.cvi || bv.ciHigh < bv.cvi) errs.push("biologicalVariation CI must contain the CVI");
-    else if (!isNum(bv.studies) || bv.studies < 1 || !isNonEmptyStr(bv.source) || !isNonEmptyStr(bv.url)) errs.push("biologicalVariation needs studies, source and url");
+    else if (!isNum(bv.studies) || bv.studies < 1 || !isNonEmptyStr(bv.source) || !isNonEmptyStr(bv.url))
+      errs.push("biologicalVariation needs studies, source and url");
   }
 
   // Evidence and sources

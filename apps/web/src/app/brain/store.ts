@@ -1,25 +1,25 @@
-import { useSyncExternalStore } from "react";
-import { parseLabText, type ParsedReport } from "@bt/shared/core/importers/labText";
-import { assistantProfile } from "@bt/shared/core/profile";
-import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
-import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
-import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
-import type { LiveAnswer } from "./stream";
-import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
-import { isImage, isPdf, monthFirst } from "../components/LabReview";
-import { isTextFile, questionWithFiles, redactName } from "./logic";
-import { shrinkPhoto, type PreparedPhoto } from "./photo";
-import { criticalResults, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
+import { type AssistantProposalContext, type ProposalIntent, proposalIntent, proposalIssue } from "@bt/shared/core/assistantProposal";
 import { todayIso } from "@bt/shared/core/dates";
-import { parseHabitProposal, type HabitProposal } from "@bt/shared/core/habitProposal";
-import { planFromProposal, type Plan } from "@bt/shared/core/plans";
-import { validateMeal, type Meal } from "@bt/shared/core/meals";
-import { flagLatest, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
-import { proposalIntent, proposalIssue, type AssistantProposalContext, type ProposalIntent } from "@bt/shared/core/assistantProposal";
-import { profileDetailsIn, type ProfileDetailChange } from "@bt/shared/core/profileCompletion";
-import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { type HabitProposal, parseHabitProposal } from "@bt/shared/core/habitProposal";
+import { type ParsedReport, parseLabText } from "@bt/shared/core/importers/labText";
+import { criticalResults, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
+import { type Meal, validateMeal } from "@bt/shared/core/meals";
 import { measurementsIn } from "@bt/shared/core/measurementCompletion";
+import { type Plan, planFromProposal } from "@bt/shared/core/plans";
+import { assistantProfile } from "@bt/shared/core/profile";
+import { type ProfileDetailChange, profileDetailsIn } from "@bt/shared/core/profileCompletion";
+import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
+import { flagLatest, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
+import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
+import { useSyncExternalStore } from "react";
+import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
+import { isImage, isPdf, monthFirst } from "../components/LabReview";
+import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
+import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
+import { isTextFile, questionWithFiles, redactName } from "./logic";
+import { type PreparedPhoto, shrinkPhoto } from "./photo";
+import type { LiveAnswer } from "./stream";
 
 // Brain's state lives outside React, so the conversation stays while you move between pages (not across reloads).
 
@@ -47,7 +47,17 @@ export type Turn =
       /** The pictures themselves, the files they came from and the model they went to: sent again with a follow-up while their card is open. */
       pictures?: { images: PreparedPhoto[]; files: File[]; model: string };
     }
-  | { id: string; role: "assistant"; content: string; model: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
+  | {
+      id: string;
+      role: "assistant";
+      content: string;
+      model: string;
+      steps: Step[];
+      studyIds: string[];
+      truncated: boolean;
+      failedServers: { name: string; error: string }[];
+      note?: string;
+    }
   /** The answer while it streams: replaced by the final turn (or an error) when the reply arrives. */
   | ({ id: string; role: "live"; model: string } & LiveAnswer)
   | { id: string; role: "error"; content: string }
@@ -113,7 +123,16 @@ export interface BrainState {
 }
 
 type Reply =
-  | { ok: true; text: string; model?: string; steps: Step[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; note?: string }
+  | {
+      ok: true;
+      text: string;
+      model?: string;
+      steps: Step[];
+      studyIds: string[];
+      truncated: boolean;
+      failedServers: { name: string; error: string }[];
+      note?: string;
+    }
   | { ok: false; error: string };
 
 type Thread = Pick<BrainState, "draft" | "turns" | "busy" | "attachments" | "pending"> & { researchContext?: string };
@@ -131,11 +150,20 @@ interface Request {
 let request: Request | null = null;
 let nextId = 0;
 const newId = () => `b${++nextId}`;
-const notify = () => { for (const l of listeners) l(); };
+const notify = () => {
+  for (const l of listeners) l();
+};
 
 function set(patch: Partial<BrainState> | ((s: BrainState) => Partial<BrainState>)) {
   state = { ...state, ...(typeof patch === "function" ? patch(state) : patch) };
-  threads[state.scope] = { ...threads[state.scope], draft: state.draft, turns: state.turns, busy: state.busy, attachments: state.attachments, pending: state.pending };
+  threads[state.scope] = {
+    ...threads[state.scope],
+    draft: state.draft,
+    turns: state.turns,
+    busy: state.busy,
+    attachments: state.attachments,
+    pending: state.pending,
+  };
   notify();
 }
 
@@ -238,7 +266,9 @@ export async function readWithBrain(file: File, pages?: PreparedPhoto[]): Promis
   // A scanned PDF's pages, already drawn by the Import page, are attached as they are rather than drawn again.
   if (pages?.length) {
     if (!threads.personal.attachments.some((a) => a.file === file)) {
-      setThread("personal", (s) => ({ attachments: [...s.attachments, { id: newId(), name: file.name, size: file.size, status: "ready", images: pages, pictureOf: "pdf", file }] }));
+      setThread("personal", (s) => ({
+        attachments: [...s.attachments, { id: newId(), name: file.name, size: file.size, status: "ready", images: pages, pictureOf: "pdf", file }],
+      }));
     }
   } else await addFiles([file]);
   if (threads.personal.attachments.some((a) => a.file === file && a.status === "ready")) askBrain(READ_REPORT_QUESTION);
@@ -254,13 +284,20 @@ export function addPastedLabText(text: string): boolean {
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>
-  setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)) }));
+  setThread("personal", (s) => ({
+    turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)),
+  }));
 
 /**
  * Habit cards from Brain's propose_habit calls, checked again here (the same rules as the server) and
  * never while a result is critical: then the person should contact a doctor first.
  */
-export function habitTurns(steps: readonly Step[], measurements: readonly Measurement[], today: string, context: Omit<AssistantProposalContext, "critical">): Turn[] {
+export function habitTurns(
+  steps: readonly Step[],
+  measurements: readonly Measurement[],
+  today: string,
+  context: Omit<AssistantProposalContext, "critical">,
+): Turn[] {
   const critical = [...groupByBiomarker(measurements)].some(([id, ms]) => {
     const def = BIOMARKER_MAP.get(id);
     return !!def && isCritical(flagLatest(def, ms));
@@ -315,7 +352,10 @@ export async function keepReportFiles(
   const errors: string[] = [];
   for (const file of files) {
     let byProfile = keptFiles.get(file);
-    if (!byProfile) keptFiles.set(file, (byProfile = new Map()));
+    if (!byProfile) {
+      byProfile = new Map();
+      keptFiles.set(file, byProfile);
+    }
     let pending = byProfile.get(profileId);
     if (!pending) {
       pending = upload(profileId, file, note).then((f) => f.originalName);
@@ -338,7 +378,8 @@ export async function keepReportFiles(
 export function resultTurns(steps: readonly Step[], files: File[], today: string): Turn[] {
   const fileName = files.length === 1 ? files[0]!.name : files.length > 1 ? `${files.length} pictures` : "your pictures";
   return steps.flatMap((st): Turn[] => {
-    if (st.server !== undefined || st.tool !== "propose_results" || st.validated !== true || st.success !== true || !st.output || typeof st.output !== "object") return [];
+    if (st.server !== undefined || st.tool !== "propose_results" || st.validated !== true || st.success !== true || !st.output || typeof st.output !== "object")
+      return [];
     const r = parseResultProposal((st.output as { shownToPerson?: unknown }).shownToPerson, BIOMARKER_MAP, today);
     if (!r.ok) return [];
     return [{ id: newId(), role: "review", fileName, files, fromPicture: true, report: r.report, state: "open", kind: proposalKind(r.report, BIOMARKER_MAP) }];
@@ -393,7 +434,11 @@ export async function addFiles(files: File[]): Promise<void> {
         const { readPdf } = await import("../pdf");
         const pdf = await readPdf(file, progress);
         if (pdf.kind === "pages") {
-          update((s) => ({ attachments: s.attachments.map((a) => (a.id === id ? { ...a, status: "ready", stage: undefined, fraction: undefined, images: pdf.pages, pictureOf: "pdf", file } : a)) }));
+          update((s) => ({
+            attachments: s.attachments.map((a) =>
+              a.id === id ? { ...a, status: "ready", stage: undefined, fraction: undefined, images: pdf.pages, pictureOf: "pdf", file } : a,
+            ),
+          }));
           continue;
         }
         text = pdf.text;
@@ -421,10 +466,31 @@ export async function addFiles(files: File[]): Promise<void> {
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
   return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded, activity] = await Promise.all([db.measurements.toArray(), db.protocols.toArray(), db.experiments.toArray(), db.plans.toArray(), db.meals.toArray(), getProfile(), db.settings.get(EXPIRATION_KEY), db.settings.get(LOADED_PROFILE_KEY), db.settings.get(MORTALITY_ACTIVITY_KEY)]);
+    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded, activity] = await Promise.all([
+      db.measurements.toArray(),
+      db.protocols.toArray(),
+      db.experiments.toArray(),
+      db.plans.toArray(),
+      db.meals.toArray(),
+      getProfile(),
+      db.settings.get(EXPIRATION_KEY),
+      db.settings.get(LOADED_PROFILE_KEY),
+      db.settings.get(MORTALITY_ACTIVITY_KEY),
+    ]);
     const identity = { id: typeof loaded?.value === "string" ? loaded.value : null, name: profile.name };
     // Identity and name stay local. The server turns birth month into an age before a tool returns it.
-    return { measurements, protocols, experiments, plans, meals, profile: assistantProfile(profile), name: profile.name, identity, expirationDate: expiration?.value === true, mortalityActivityIsLeisure: activity?.value === true };
+    return {
+      measurements,
+      protocols,
+      experiments,
+      plans,
+      meals,
+      profile: assistantProfile(profile),
+      name: profile.name,
+      identity,
+      expirationDate: expiration?.value === true,
+      mortalityActivityIsLeisure: activity?.value === true,
+    };
   });
 }
 
@@ -452,7 +518,16 @@ export async function send(model: string, text?: string): Promise<void> {
   const pictures = ready.filter((a) => a.images?.length);
   const attached = pictures.flatMap((a) => a.images!);
   if (attached.length > MAX_PHOTOS) {
-    set((s) => ({ turns: [...s.turns, { id: newId(), role: "error", content: `Send up to ${MAX_PHOTOS} photos or pages at a time. Remove some and try again; your attachments are still here.` }] }));
+    set((s) => ({
+      turns: [
+        ...s.turns,
+        {
+          id: newId(),
+          role: "error",
+          content: `Send up to ${MAX_PHOTOS} photos or pages at a time. Remove some and try again; your attachments are still here.`,
+        },
+      ],
+    }));
     return;
   }
   // A follow-up about an open card read from pictures sends those pictures again, so Brain can look again.
@@ -471,9 +546,7 @@ export async function send(model: string, text?: string): Promise<void> {
     if (scope === "research") {
       // Only the public claim supplied to this thread accompanies a follow-up, never chat history.
       const context = threads.research.researchContext;
-      sent = context && context !== question
-        ? `Public research topic:\n${context}\n\nLatest question:\n${question}`
-        : question;
+      sent = context && context !== question ? `Public research topic:\n${context}\n\nLatest question:\n${question}` : question;
       if (!context) threads.research.researchContext = question;
     } else {
       sent = questionWithFiles(
@@ -482,7 +555,11 @@ export async function send(model: string, text?: string): Promise<void> {
       );
     }
     const user: Turn = {
-      id: newId(), role: "user", content: question, sent, files: ready.map((d) => d.name),
+      id: newId(),
+      role: "user",
+      content: question,
+      sent,
+      files: ready.map((d) => d.name),
       ...(images.length ? { photos: images.length, pictures: { images, files: pictureFiles, model } } : {}),
       ...(again ? { photosAgain: true } : {}),
     };
@@ -533,7 +610,11 @@ export async function send(model: string, text?: string): Promise<void> {
       const inputs: unknown[] = detected.details.length ? [detected] : [];
       for (const step of r.steps) {
         if (step.server !== undefined || step.tool !== "save_profile_details" || step.validated !== true) continue;
-        try { inputs.push(JSON.parse(step.input)); } catch { /* Invalid tool payloads cannot update a profile. */ }
+        try {
+          inputs.push(JSON.parse(step.input));
+        } catch {
+          /* Invalid tool payloads cannot update a profile. */
+        }
       }
       // With pictures, typed readings ("my HbA1c is 5.6%") go on the picture's card, dated by the report, not saved as today's.
       const readingDefs: ReadonlyMap<string, BiomarkerDef> = images.length ? new Map() : BIOMARKER_MAP;
@@ -545,7 +626,8 @@ export async function send(model: string, text?: string): Promise<void> {
           if (!result.sameProfile) return dropLive();
           effectiveProfile = result.profile;
           effectiveMeasurements = [...effectiveMeasurements, ...result.measurementsAdded];
-          if (result.added.length || result.measurementsAdded.length) profileTurns.push({ id: newId(), role: "profile", changes: result.added, measurements: result.measurementsAdded });
+          if (result.added.length || result.measurementsAdded.length)
+            profileTurns.push({ id: newId(), role: "profile", changes: result.added, measurements: result.measurementsAdded });
         } catch {
           if (!isCurrent(mine)) return;
           profileSaveError = "Your details couldn't be saved. You can add profile details in Settings and measurements in Add data.";
@@ -562,16 +644,33 @@ export async function send(model: string, text?: string): Promise<void> {
         ...(r.ok
           ? [
               ...results,
-              { id: newId(), role: "assistant" as const, content: r.text, model: r.model ?? model, steps: r.steps, studyIds: r.studyIds, truncated: r.truncated, failedServers: r.failedServers, ...((r.note || profileSaveError) ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}) },
+              {
+                id: newId(),
+                role: "assistant" as const,
+                content: r.text,
+                model: r.model ?? model,
+                steps: r.steps,
+                studyIds: r.studyIds,
+                truncated: r.truncated,
+                failedServers: r.failedServers,
+                ...(r.note || profileSaveError ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}),
+              },
               ...profileTurns,
-              ...(snap && !pictureCritical ? habitTurns(r.steps, effectiveMeasurements, questionDate, { requestText: sent, safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id) }) : []),
+              ...(snap && !pictureCritical
+                ? habitTurns(r.steps, effectiveMeasurements, questionDate, {
+                    requestText: sent,
+                    safety: safetyNotes(safetyLabels(snap.protocols, effectiveProfile)).map((n) => n.id),
+                  })
+                : []),
             ]
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],
     }));
   } catch (e) {
     if (!isCurrent(mine)) return;
-    set((s) => ({ turns: [...s.turns.filter((t) => t.role !== "live"), { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }] }));
+    set((s) => ({
+      turns: [...s.turns.filter((t) => t.role !== "live"), { id: newId(), role: "error", content: e instanceof Error ? e.message : "Something went wrong." }],
+    }));
   } finally {
     if (request === mine) {
       request = null;

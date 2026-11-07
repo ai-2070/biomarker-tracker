@@ -1,22 +1,35 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { createElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { IntakeItem } from "@bt/shared/core/intake";
 import type { FoodDb, Meal } from "@bt/shared/core/meals";
 import type { Measurement, Profile } from "@bt/shared/core/types";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const state = vi.hoisted(() => ({ all: [] as Measurement[], profile: { sex: "f", birthMonth: "1986-10" } as Profile, items: [] as IntakeItem[], meals: [] as Meal[], foodDb: undefined as FoodDb | undefined }));
+const state = vi.hoisted(() => ({
+  all: [] as Measurement[],
+  profile: { sex: "f", birthMonth: "1986-10" } as Profile,
+  items: [] as IntakeItem[],
+  meals: [] as Meal[],
+  foodDb: undefined as FoodDb | undefined,
+}));
 vi.mock("../../apps/web/src/app/hooks", () => ({
-  useAllMeasurements: () => state.all, useProfile: () => state.profile, useProtocols: () => [], usePlans: () => [],
-  useMeals: () => state.meals, useIntakeList: () => state.items, useDisplayUnits: () => ({}), setIntakeList: vi.fn(async () => {}),
+  useAllMeasurements: () => state.all,
+  useProfile: () => state.profile,
+  useProtocols: () => [],
+  usePlans: () => [],
+  useMeals: () => state.meals,
+  useIntakeList: () => state.items,
+  useDisplayUnits: () => ({}),
+  setIntakeList: vi.fn(async () => {}),
 }));
 vi.mock("../../apps/web/src/app/foodDb", () => ({ useFoodDb: () => state.foodDb, EXAMPLE_MEALS: [] }));
 vi.mock("../../apps/web/src/app/components/ResearchPanel", () => {
   return { ResearchPanel: ({ critical }: { critical: boolean }) => createElement("div", { "data-research-critical": String(critical) }) };
 });
 vi.mock("../../apps/web/src/app/components/EvidenceMap", () => ({ hasEvidenceMap: () => false, EvidenceMap: () => null }));
+
 import { IntakePage } from "../../apps/web/src/app/pages/IntakePage";
 import { NutrientPage } from "../../apps/web/src/app/pages/NutrientPage";
 
@@ -29,7 +42,15 @@ beforeEach(() => {
   state.foodDb = JSON.parse(readFileSync(join(import.meta.dirname, "../../knowledge/foods/cofid-all.json"), "utf8")) as FoodDb;
 });
 afterEach(() => vi.useRealTimers());
-const potassium = (value: number): Measurement => ({ id: "critical", biomarkerId: "potassium", value, originalValue: value, originalUnit: "mmol/L", date: "2026-10-29", source: "manual" });
+const potassium = (value: number): Measurement => ({
+  id: "critical",
+  biomarkerId: "potassium",
+  value,
+  originalValue: value,
+  originalUnit: "mmol/L",
+  date: "2026-10-29",
+  source: "manual",
+});
 
 describe("nutrition review visible safety boundaries", () => {
   it("replaces intake food-increase ideas with urgent handling for a latest critical result", () => {
@@ -56,7 +77,10 @@ describe("nutrition review visible safety boundaries", () => {
   });
 
   it("shows partial measurement coverage rather than an exact shortfall", () => {
-    state.items = [{ id: "s", kind: "food", foodId: "13-573", grams: 10 }, { id: "a", kind: "food", foodId: "14-870", grams: 100 }];
+    state.items = [
+      { id: "s", kind: "food", foodId: "13-573", grams: 10 },
+      { id: "a", kind: "food", foodId: "14-870", grams: 100 },
+    ];
     const html = renderToStaticMarkup(createElement(IntakePage));
     expect(html).toContain("Measured in 1 of 2 sources; the rest is unknown.");
     expect(html).toContain("Partly measured");

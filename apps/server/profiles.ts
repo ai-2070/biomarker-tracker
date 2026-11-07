@@ -10,17 +10,19 @@
 //     files/            scanned lab reports and other documents
 //     files.json        list of those files
 //     README.txt        what this folder is
+
+import { spawn } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import { spawn } from "node:child_process";
-import { cleanProfile, isProfile, parseBackup } from "@bt/shared/core/backup";
-import { validatePlan, type Plan } from "@bt/shared/core/plans";
-import { validateMeal, type Meal } from "@bt/shared/core/meals";
-import type { Measurement, Profile } from "@bt/shared/core/types";
 import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
+import { cleanProfile, isProfile, parseBackup } from "@bt/shared/core/backup";
+import { type Meal, validateMeal } from "@bt/shared/core/meals";
+import { type Plan, validatePlan } from "@bt/shared/core/plans";
+import type { Measurement, Profile } from "@bt/shared/core/types";
 
 export type { ProfileData, ProfileSummary, StoredFile };
+
 import { dataPath, getSettings, readJSON, syncDirectory, updateSettings, writeJSON } from "./store";
 import { MAX_ZIP_BYTES, MAX_ZIP_EXPANDED_BYTES, readZip, writeZip, type ZipEntry } from "./zip";
 
@@ -54,9 +56,6 @@ interface ProfileFile {
   updatedAt: string;
   person: Profile;
 }
-
-
-
 
 const README = `This folder is one Biomarker Tracker profile: everything about one person.
 
@@ -104,7 +103,8 @@ function newId(name: string): string {
 const readRequired = <T>(dir: string, name: string): T => JSON.parse(fs.readFileSync(path.join(dir, name), "utf8")) as T;
 function readMeta(dir: string): ProfileFile {
   const meta = readRequired<ProfileFile>(dir, "profile.json");
-  if (meta?.app !== "biomarker-tracker" || !isProfile(meta.person) || !meta.person.name) throw new ProfileError(400, "The profile details on disk are damaged.");
+  if (meta?.app !== "biomarker-tracker" || !isProfile(meta.person) || !meta.person.name)
+    throw new ProfileError(400, "The profile details on disk are damaged.");
   return meta;
 }
 
@@ -117,7 +117,11 @@ function recoverSave(dir: string): void {
   const text = readJSON<unknown>(file, undefined);
   if (text === undefined) return;
   const journal = text as { previous?: Record<string, string | null> } | null;
-  if (!journal?.previous || SNAPSHOT_FILES.some((name) => !Object.hasOwn(journal.previous!, name) || (journal.previous![name] !== null && typeof journal.previous![name] !== "string"))) throw new Error("The profile save journal is damaged.");
+  if (
+    !journal?.previous ||
+    SNAPSHOT_FILES.some((name) => !Object.hasOwn(journal.previous!, name) || (journal.previous![name] !== null && typeof journal.previous![name] !== "string"))
+  )
+    throw new Error("The profile save journal is damaged.");
   for (const name of SNAPSHOT_FILES) {
     const previous = journal.previous[name];
     if (previous === null) fs.rmSync(path.join(dir, name), { force: true });
@@ -158,9 +162,23 @@ function validPlans(v: unknown): Plan[] {
 function validateData(input: DataInput): Omit<ProfileData, "settings"> {
   const person = input.person ?? {};
   if (!isProfile(person)) throw new ProfileError(400, "The person's details are damaged.");
-  const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: input.measurements ?? [], protocols: input.protocols ?? [], experiments: input.experiments ?? [], profile: {} });
+  const r = parseBackup({
+    app: "biomarker-tracker",
+    version: 2,
+    measurements: input.measurements ?? [],
+    protocols: input.protocols ?? [],
+    experiments: input.experiments ?? [],
+    profile: {},
+  });
   if (!r.ok) throw new ProfileError(400, r.error);
-  return { person: cleanProfile(person), measurements: r.backup.measurements, protocols: r.backup.protocols, experiments: r.backup.experiments, plans: validPlans(input.plans), meals: validMeals(input.meals) };
+  return {
+    person: cleanProfile(person),
+    measurements: r.backup.measurements,
+    protocols: r.backup.protocols,
+    experiments: r.backup.experiments,
+    plans: validPlans(input.plans),
+    meals: validMeals(input.meals),
+  };
 }
 
 function validSettings(v: unknown): Record<string, unknown> {
@@ -170,7 +188,8 @@ function validSettings(v: unknown): Record<string, unknown> {
   // Search audits and immutable check history are larger than ordinary display preferences.
   const { claimEvidence, ...preferences } = out;
   if (JSON.stringify(preferences).length > 200_000) throw new ProfileError(400, "Too many settings.");
-  if (claimEvidence !== undefined && JSON.stringify(claimEvidence).length > 8_000_000) throw new ProfileError(400, "Evidence history is too large to save in this profile.");
+  if (claimEvidence !== undefined && JSON.stringify(claimEvidence).length > 8_000_000)
+    throw new ProfileError(400, "Evidence history is too large to save in this profile.");
   return out;
 }
 
@@ -178,7 +197,12 @@ function validSettings(v: unknown): Record<string, unknown> {
  * Writes a profile generation. `only` limits the write to those component files (a partial save); profile.json
  * is always written. Every file is still journalled, so a crash rolls back to the previous generation.
  */
-function writeAll(dir: string, meta: ProfileFile, data: Omit<ProfileData, "settings"> & { settings?: Record<string, unknown> }, only?: ReadonlySet<string>): void {
+function writeAll(
+  dir: string,
+  meta: ProfileFile,
+  data: Omit<ProfileData, "settings"> & { settings?: Record<string, unknown> },
+  only?: ReadonlySet<string>,
+): void {
   recoverSave(dir);
   const next: Record<(typeof SNAPSHOT_FILES)[number], unknown> = {
     "results.json": data.measurements,
@@ -260,9 +284,14 @@ function createCompleteProfile(input: DataInput, attachments: { originalName: st
     writeAll(staging, meta, { ...data, settings: validSettings(input.settings) });
     for (const file of attachments) addFileAt(staging, file.originalName, file.data, file.note);
     const summary: ProfileSummary = {
-      id, person: data.person, createdAt: now, updatedAt: now, results: data.measurements.length,
-      lastResult: data.measurements.reduce<string | null>((d, m) => !d || m.date > d ? m.date : d, null),
-      files: attachments.length, folder: dir,
+      id,
+      person: data.person,
+      createdAt: now,
+      updatedAt: now,
+      results: data.measurements.length,
+      lastResult: data.measurements.reduce<string | null>((d, m) => (!d || m.date > d ? m.date : d), null),
+      files: attachments.length,
+      folder: dir,
     };
     fs.renameSync(staging, dir);
     return summary;
@@ -277,7 +306,8 @@ export function getProfileData(id: string): ProfileData {
   const measurements = readRequired<unknown>(dir, "results.json");
   const protocols = readRequired<unknown>(dir, "log.json");
   const experiments = readJSON<unknown>(path.join(dir, "experiments.json"), []);
-  if (!Array.isArray(measurements) || !Array.isArray(protocols) || !Array.isArray(experiments)) throw new ProfileError(400, "The profile history on disk is damaged.");
+  if (!Array.isArray(measurements) || !Array.isArray(protocols) || !Array.isArray(experiments))
+    throw new ProfileError(400, "The profile history on disk is damaged.");
   const data = validateData({
     person: meta.person,
     measurements,
@@ -360,10 +390,12 @@ function listFilesAt(dir: string): StoredFile[] {
 /** A safe file name: the original name's letters, with the date in front, never overwriting. */
 export function storedName(dir: string, originalName: string, today: string): string {
   const ext = path.extname(originalName).toLowerCase();
-  const points = Array.from(path
-    .basename(originalName, path.extname(originalName))
-    .replace(/[^\p{L}\p{N} ._()-]+/gu, "_")
-    .replace(/^[.\s]+/, "")).slice(0, 80);
+  const points = Array.from(
+    path
+      .basename(originalName, path.extname(originalName))
+      .replace(/[^\p{L}\p{N} ._()-]+/gu, "_")
+      .replace(/^[.\s]+/, ""),
+  ).slice(0, 80);
   // Leave room for the date, extension and collision suffix on byte-limited filesystems.
   let bytes = Buffer.byteLength(points.join(""), "utf8");
   while (bytes > 180) bytes -= Buffer.byteLength(points.pop()!, "utf8");
@@ -388,7 +420,17 @@ function addFileAt(dir: string, originalName: string, data: Buffer, note?: strin
   const name = storedName(filesDir, path.basename(originalName), new Date().toISOString().slice(0, 10));
   fs.writeFileSync(path.join(filesDir, name), data);
   const originalBase = path.basename(originalName, path.extname(originalName));
-  const entry: StoredFile = { name, originalName: Array.from(originalBase).slice(0, 200 - ext.length).join("") + ext, size: data.length, type, addedAt: new Date().toISOString(), ...(note ? { note: Array.from(note).slice(0, 200).join("") } : {}) };
+  const entry: StoredFile = {
+    name,
+    originalName:
+      Array.from(originalBase)
+        .slice(0, 200 - ext.length)
+        .join("") + ext,
+    size: data.length,
+    type,
+    addedAt: new Date().toISOString(),
+    ...(note ? { note: Array.from(note).slice(0, 200).join("") } : {}),
+  };
   try {
     writeJSON(path.join(dir, "files.json"), [...listFilesAt(dir), entry]);
   } catch (error) {
@@ -435,7 +477,8 @@ export function backupZip(id: string): { data: Buffer; fileName: string } {
         const full = path.join(dir, r);
         const stat = fs.statSync(full);
         expanded += stat.size;
-        if (expanded > MAX_ZIP_EXPANDED_BYTES) throw new ProfileError(413, "This profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
+        if (expanded > MAX_ZIP_EXPANDED_BYTES)
+          throw new ProfileError(413, "This profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
         entries.push({ name: `${id}/${r}`, data: fs.readFileSync(full), modified: stat.mtime });
       }
     }
@@ -472,7 +515,11 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     settings: json("settings.json", {}),
   };
   const index = json("files.json", []);
-  if (!Array.isArray(index) || index.some((f) => !f || typeof f !== "object" || typeof f.name !== "string" || (f.originalName !== undefined && typeof f.originalName !== "string"))) throw new ProfileError(400, "files.json in the backup is damaged.");
+  if (
+    !Array.isArray(index) ||
+    index.some((f) => !f || typeof f !== "object" || typeof f.name !== "string" || (f.originalName !== undefined && typeof f.originalName !== "string"))
+  )
+    throw new ProfileError(400, "files.json in the backup is damaged.");
   const listed = index as Partial<StoredFile>[];
   const attachments: { originalName: string; data: Buffer; note?: string; order: number; name: string }[] = [];
   for (const e of entries) {
@@ -481,18 +528,28 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     if (name.includes("/") || !FILE_TYPES[path.extname(name).toLowerCase()]) continue;
     const order = listed.findIndex((f) => f.name === name);
     const info = order >= 0 ? listed[order] : undefined;
-    attachments.push({ originalName: info?.originalName || name, data: e.data, ...(typeof info?.note === "string" ? { note: info.note } : {}), order: order >= 0 ? order : Number.MAX_SAFE_INTEGER, name });
+    attachments.push({
+      originalName: info?.originalName || name,
+      data: e.data,
+      ...(typeof info?.note === "string" ? { note: info.note } : {}),
+      order: order >= 0 ? order : Number.MAX_SAFE_INTEGER,
+      name,
+    });
   }
   // Keep the saved order from files.json, not the order the zip happens to list files in
   // (that depends on the file system). Unlisted files follow, by name.
   attachments.sort((a, b) => a.order - b.order || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
-  return createCompleteProfile(input, attachments.map(({ order: _order, name: _name, ...a }) => a));
+  return createCompleteProfile(
+    input,
+    attachments.map(({ order: _order, name: _name, ...a }) => a),
+  );
 }
 
 /** Opens the profile's folder in the computer's file manager. */
 export async function revealFolder(id: string): Promise<void> {
   const dir = dirOf(id);
-  const [cmd, args]: [string, string[]] = process.platform === "win32" ? ["explorer.exe", [dir]] : process.platform === "darwin" ? ["open", [dir]] : ["xdg-open", [dir]];
+  const [cmd, args]: [string, string[]] =
+    process.platform === "win32" ? ["explorer.exe", [dir]] : process.platform === "darwin" ? ["open", [dir]] : ["xdg-open", [dir]];
   const { promise, resolve, reject } = Promise.withResolvers<void>();
   const child = spawn(cmd, args, { detached: true, stdio: "ignore" });
   child.on("error", () => reject(new ProfileError(500, "Couldn't open the folder. Open it manually from its path instead.")));

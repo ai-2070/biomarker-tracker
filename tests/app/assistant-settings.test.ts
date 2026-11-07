@@ -1,21 +1,27 @@
-import { beforeEach, expect, it, vi } from "vitest";
+import { PROVIDERS } from "@bt/shared/core/aiProviders";
 import type * as React from "react";
 import type { ReactElement, ReactNode } from "react";
-import { PROVIDERS } from "@bt/shared/core/aiProviders";
+import { beforeEach, expect, it, vi } from "vitest";
 
 // A synchronous hook host exercises these components' actual state/effect logic without a DOM dependency.
 const host = vi.hoisted(() => ({ slots: [] as unknown[], cursor: 0, effects: [] as (() => void)[], dirty: false, api: vi.fn() }));
 vi.mock("react", async (original) => ({
-  ...await original<typeof React>(),
+  ...(await original<typeof React>()),
   useState: (initial: unknown) => {
     const index = host.cursor++;
     if (!(index in host.slots)) host.slots[index] = typeof initial === "function" ? initial() : initial;
-    return [host.slots[index], (next: unknown) => {
-      const value = typeof next === "function" ? next(host.slots[index]) : next;
-      if (!Object.is(value, host.slots[index])) { host.slots[index] = value; host.dirty = true; }
-    }];
+    return [
+      host.slots[index],
+      (next: unknown) => {
+        const value = typeof next === "function" ? next(host.slots[index]) : next;
+        if (!Object.is(value, host.slots[index])) {
+          host.slots[index] = value;
+          host.dirty = true;
+        }
+      },
+    ];
   },
-  useEffect: (effect: () => void | (() => void), deps: unknown[]) => {
+  useEffect: (effect: React.EffectCallback, deps: unknown[]) => {
     const index = host.cursor++;
     const previous = host.slots[index] as { deps: unknown[]; cleanup?: () => void } | undefined;
     if (previous && deps.every((dep, i) => Object.is(dep, previous.deps[i]))) return;
@@ -28,8 +34,9 @@ vi.mock("react", async (original) => ({
 }));
 vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(host.api));
 vi.mock("../../apps/web/src/app/brain/store", () => ({ closeBrain: vi.fn() }));
-import { ModelsSettings } from "../../apps/web/src/app/components/settings/ModelsSettings";
+
 import { useBrainSettings } from "../../apps/web/src/app/brain/menus";
+import { ModelsSettings } from "../../apps/web/src/app/components/settings/ModelsSettings";
 
 function render<T>(component: () => T): T {
   let result!: T;
@@ -55,18 +62,27 @@ function button(tree: ReactNode, text: string) {
   return match!;
 }
 const settings = {
-  providers: PROVIDERS, configs: { ollama: { baseURL: "http://127.0.0.1:11434/v1" } },
-  hasKey: {}, installed: {}, hermesConnected: false, assistant: { provider: "ollama", model: "old" }, chosen: true, ready: { ok: true },
+  providers: PROVIDERS,
+  configs: { ollama: { baseURL: "http://127.0.0.1:11434/v1" } },
+  hasKey: {},
+  installed: {},
+  hermesConnected: false,
+  assistant: { provider: "ollama", model: "old" },
+  chosen: true,
+  ready: { ok: true },
 };
 
 beforeEach(() => {
   for (const slot of host.slots) (slot as { cleanup?: () => void } | undefined)?.cleanup?.();
-  host.slots = []; host.effects = []; host.cursor = 0; host.dirty = false;
+  host.slots = [];
+  host.effects = [];
+  host.cursor = 0;
+  host.dirty = false;
   host.api.mockReset();
 });
 
 it("blocks saved-only testing for an edited connection and reloads discovery after saving", async () => {
-  let current = structuredClone(settings);
+  const current = structuredClone(settings);
   let models = [{ id: "old", label: "Old endpoint model" }];
   host.api.mockImplementation(async (_kind: string, path: string, input?: { id?: string; source?: string; baseURL: string }) => {
     if (path === "settings.loadedModels" && input?.source === "ollama") return { models };
@@ -88,11 +104,19 @@ it("blocks saved-only testing for an edited connection and reloads discovery aft
   expect(button(tree, "Test").props.disabled).toBe(true);
   (button(tree, "Save").props.onClick as () => void)();
   // Each awaited boundary is a settled mocked HTTP request, not a clock-based wait.
-  for (let i = 0; i < 6; i++) { await Promise.resolve(); tree = render(ModelsSettings); }
+  for (let i = 0; i < 6; i++) {
+    await Promise.resolve();
+    tree = render(ModelsSettings);
+  }
   const picker = elements(tree).find((e) => {
     const loaded = e.props.loaded;
-    return !!loaded && typeof loaded === "object" && "models" in loaded && Array.isArray(loaded.models)
-      && loaded.models.some((model) => model && typeof model === "object" && "id" in model && model.id === "new");
+    return (
+      !!loaded &&
+      typeof loaded === "object" &&
+      "models" in loaded &&
+      Array.isArray(loaded.models) &&
+      loaded.models.some((model) => model && typeof model === "object" && "id" in model && model.id === "new")
+    );
   });
   expect(picker).toBeDefined();
   expect(button(tree, "Test").props.disabled).toBe(false);
@@ -101,7 +125,12 @@ it("blocks saved-only testing for an edited connection and reloads discovery aft
 });
 
 it("does not treat a replacement API key as saved", async () => {
-  host.api.mockResolvedValue({ ...settings, configs: { openai: { region: "US", zeroDataRetention: true } }, hasKey: { openai: true }, assistant: { provider: "openai", model: "gpt-5.4" } });
+  host.api.mockResolvedValue({
+    ...settings,
+    configs: { openai: { region: "US", zeroDataRetention: true } },
+    hasKey: { openai: true },
+    assistant: { provider: "openai", model: "gpt-5.4" },
+  });
   render(ModelsSettings);
   await Promise.resolve();
   let tree = render(ModelsSettings);
@@ -122,7 +151,12 @@ it("requires a fresh settings reply for every opening, including cached readines
   result = render(() => useBrainSettings(true));
   expect(result.fresh).toBe(true);
   render(() => useBrainSettings(false));
-  host.api.mockImplementationOnce(() => new Promise((done) => { resolve = done; }));
+  host.api.mockImplementationOnce(
+    () =>
+      new Promise((done) => {
+        resolve = done;
+      }),
+  );
   result = render(() => useBrainSettings(true));
   expect(result.settings?.ready.ok).toBe(true); // cached display remains useful
   expect(result.fresh).toBe(false); // but cannot consume a pending question

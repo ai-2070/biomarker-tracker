@@ -1,23 +1,22 @@
 import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE } from "@bt/shared/core/phenoage";
-import { summarizePhenoAge, type PhenoAgeDraw } from "@bt/shared/core/phenoageDraws";
+import { type PhenoAgeDraw, summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
 import type { Profile } from "@bt/shared/core/types";
-import { InlineBirthMonth } from "../components/InlineBirthMonth";
-import { FitnessForYourAge } from "../components/dashboard/fitness";
-import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
-import { formatDate, formatYears, showMeasurement } from "../format";
-import { useAllMeasurements, useProfile, useProtocols, useShowExpirationDate } from "../hooks";
-import { HeartAgeSection } from "../components/dashboard/heartAge";
-import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
+import { ClockEvidence } from "../components/ClockEvidence";
 import { AgesChart } from "../components/dashboard/AgesChart";
 import { PaceOfAging } from "../components/dashboard/agePace";
 import { CountryPopulationReference } from "../components/dashboard/CountryPopulationReference";
 import { ExpirationDate } from "../components/dashboard/ExpirationDate";
-import { bodyOnly } from "../knowledge";
-import { BIOMARKER_MAP, fullName } from "../knowledge";
-import { href } from "../router";
-import { ClockEvidence } from "../components/ClockEvidence";
-import { PaperLink } from "../components/PaperLink";
+import { FitnessForYourAge } from "../components/dashboard/fitness";
+import { FitnessAgeSection } from "../components/dashboard/fitnessAge";
+import { HeartAgeSection } from "../components/dashboard/heartAge";
 import { More } from "../components/disclosure";
+import { InlineBirthMonth } from "../components/InlineBirthMonth";
+import { PaperLink } from "../components/PaperLink";
+import { Card, LinkButton, Notice, PageTitle } from "../components/ui";
+import { formatDate, formatYears, showMeasurement } from "../format";
+import { useAllMeasurements, useProfile, useProtocols, useShowExpirationDate } from "../hooks";
+import { BIOMARKER_MAP, bodyOnly, fullName } from "../knowledge";
+import { href } from "../router";
 
 const LEVINE_URL = "https://pubmed.ncbi.nlm.nih.gov/29676998/";
 
@@ -47,10 +46,7 @@ export function PhenoAgePage() {
           <NeedsMarkers partial={summary.latestPartial} />
         ) : latest.status === "needs-birth-month" ? (
           <Card className="flex flex-col gap-4">
-            <p>
-              You have a complete set of markers from {formatDate(latest.date)}. To calculate biological age, enter your month and year
-              of birth.
-            </p>
+            <p>You have a complete set of markers from {formatDate(latest.date)}. To calculate biological age, enter your month and year of birth.</p>
             <InlineBirthMonth profile={profile} forLabel="PhenoAge" />
           </Card>
         ) : latest.status === "too-young" ? (
@@ -59,8 +55,8 @@ export function PhenoAgePage() {
           </Notice>
         ) : latest.status === "crp-zero" ? (
           <Notice tone="warn" title="CRP of 0 can't be used">
-            The CRP from {formatDate(latest.date)} is saved as 0. Labs usually report a very low CRP as something like "&lt;0.3". Delete
-            that result and enter it the way your report shows it.
+            The CRP from {formatDate(latest.date)} is saved as 0. Labs usually report a very low CRP as something like "&lt;0.3". Delete that result and enter
+            it the way your report shows it.
           </Notice>
         ) : (
           <>
@@ -82,9 +78,7 @@ export function PhenoAgePage() {
 function Result({ draw }: { draw: PhenoAgeDraw }) {
   const diff = draw.difference!;
   const diffText =
-    Math.abs(diff) < 0.05
-      ? "the same as your calendar age"
-      : `${formatYears(Math.abs(diff))} years ${diff < 0 ? "lower" : "higher"} than your calendar age`;
+    Math.abs(diff) < 0.05 ? "the same as your calendar age" : `${formatYears(Math.abs(diff))} years ${diff < 0 ? "lower" : "higher"} than your calendar age`;
   return (
     <Card className="flex flex-col gap-4">
       <div>
@@ -103,8 +97,8 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
             const def = BIOMARKER_MAP.get(biomarkerId)!;
             return (
               <p key={biomarkerId}>
-                {fullName(def)} was reported as "{showMeasurement(def, draw.used[biomarkerId], def.canonicalUnit)} {def.canonicalUnit}", so
-                the limit was used. The real value is {qualifier === "<" ? "lower" : "higher"}, so the estimate may be slightly off.
+                {fullName(def)} was reported as "{showMeasurement(def, draw.used[biomarkerId], def.canonicalUnit)} {def.canonicalUnit}", so the limit was used.
+                The real value is {qualifier === "<" ? "lower" : "higher"}, so the estimate may be slightly off.
               </p>
             );
           })}
@@ -112,8 +106,8 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
       )}
 
       <p className="text-ink-2">
-        Small differences, and changes from one test to the next, are often just normal variation. A recent cold or infection can push it up
-        for a few weeks. Watch the trend over years rather than a single number.
+        Small differences, and changes from one test to the next, are often just normal variation. A recent cold or infection can push it up for a few weeks.
+        Watch the trend over years rather than a single number.
       </p>
 
       <More summary="Values used" boxed>
@@ -123,7 +117,10 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
             const m = draw.used[id];
             return (
               <li key={id}>
-                <a href={href({ name: "marker", id })} className="flex min-h-11 items-center justify-between gap-3 px-3 py-2 text-ink no-underline hover:bg-sunken">
+                <a
+                  href={href({ name: "marker", id })}
+                  className="flex min-h-11 items-center justify-between gap-3 px-3 py-2 text-ink no-underline hover:bg-sunken"
+                >
                   <span>{fullName(def)}</span>
                   <span className="whitespace-nowrap tabular-nums">
                     {showMeasurement(def, m, def.canonicalUnit)} <span className="text-ink-2">{def.canonicalUnit}</span>
@@ -176,8 +173,8 @@ function NeedsMarkers({ partial, newer }: { partial?: { date: string; missing: s
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">{newer ? `Your newest test (${formatDate(partial!.date)}) is incomplete` : "What's needed"}</h2>
       <p className="text-ink-2">
-        All 9 markers must come from the <span className="font-medium text-ink">same blood test</span>, because values from different days
-        can't be combined. Most are part of a standard blood count and metabolic panel. CRP is sometimes ordered separately.
+        All 9 markers must come from the <span className="font-medium text-ink">same blood test</span>, because values from different days can't be combined.
+        Most are part of a standard blood count and metabolic panel. CRP is sometimes ordered separately.
         {partial && !newer && ` Your newest test, from ${formatDate(partial.date)}, has ${9 - missing.size} of 9.`}
       </p>
       <ul className="grid gap-1 sm:grid-cols-2">
@@ -211,21 +208,21 @@ function Explanation({ profile }: { profile: Profile }) {
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">What is PhenoAge?</h2>
       <p>
-        PhenoAge is a formula published by Morgan Levine and colleagues in 2018. They used a large US national health survey (NHANES) to
-        find which routine blood markers, together with age, best predicted how many people died over the following years. The formula
-        turns that risk into an age: the calendar age at which an average person in that survey had the same risk.
+        PhenoAge is a formula published by Morgan Levine and colleagues in 2018. They used a large US national health survey (NHANES) to find which routine
+        blood markers, together with age, best predicted how many people died over the following years. The formula turns that risk into an age: the calendar
+        age at which an average person in that survey had the same risk.
       </p>
       <p>
-        So a PhenoAge below your calendar age means your markers looked like those of a typical younger person in that population. It does
-        not measure how your cells or organs are ageing.
+        So a PhenoAge below your calendar age means your markers looked like those of a typical younger person in that population. It does not measure how your
+        cells or organs are ageing.
       </p>
       <h3 className="font-semibold">Things to keep in mind</h3>
       <ul className="list-disc pl-5 text-ink-2">
         <li>It's a statistical estimate for groups of people. For one person it can be off in either direction.</li>
         <li>It was built from US adults. It may fit other populations less well.</li>
         <li>
-          Short-term things move it: infections raise CRP and white cells, eating before the test raises glucose, and dehydration or high
-          muscle mass can raise creatinine.
+          Short-term things move it: infections raise CRP and white cells, eating before the test raises glucose, and dehydration or high muscle mass can raise
+          creatinine.
         </li>
         <li>Lab methods differ, so comparing tests from the same lab is more reliable.</li>
         <li>Many things that matter for health aren't captured by these 9 markers at all.</li>
@@ -236,7 +233,13 @@ function Explanation({ profile }: { profile: Profile }) {
       </p>
       <p className="text-sm text-ink-2">
         Source:{" "}
-        <PaperLink href={LEVINE_URL} source={{ title: "An epigenetic biomarker of aging for lifespan and healthspan", authors: "Levine et al.", journal: "Aging", year: 2018 }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+        <PaperLink
+          href={LEVINE_URL}
+          source={{ title: "An epigenetic biomarker of aging for lifespan and healthspan", authors: "Levine et al.", journal: "Aging", year: 2018 }}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink underline underline-offset-2"
+        >
           An epigenetic biomarker of aging for lifespan and healthspan
         </PaperLink>{" "}
         (Levine et al., Aging, 2018). The clinical formula is in Table 1 and the supplement.

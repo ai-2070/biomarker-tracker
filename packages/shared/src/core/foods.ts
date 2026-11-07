@@ -41,9 +41,7 @@ export function selectFoods(table: FoodTable, nutrient: string, foodIds: readonl
       out.unmeasured.push(food);
       continue;
     }
-    const block = safety
-      .map((s) => SAFETY_LIMITS[s])
-      .find((lim) => lim !== undefined && (amountIn(food, lim.nutrient) ?? 0) >= lim.perPortion);
+    const block = safety.map((s) => SAFETY_LIMITS[s]).find((lim) => lim !== undefined && (amountIn(food, lim.nutrient) ?? 0) >= lim.perPortion);
     if (block) out.hidden.push({ food, reason: block.reason });
     else out.shown.push({ food, amount });
   }

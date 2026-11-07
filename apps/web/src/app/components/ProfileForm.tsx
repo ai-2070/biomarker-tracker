@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Field } from "@base-ui/react/field";
-import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
 import { heightInCm, heightInFeet } from "@bt/shared/core/body";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
 import type { Diet, HeightUnit, Profile, Sex, Smoking } from "@bt/shared/core/types";
+import { useState } from "react";
 import { BirthMonthField } from "./BirthMonthField";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { SimpleSelect } from "./UnitSelect";
@@ -48,7 +48,17 @@ function withField<K extends keyof Profile>(p: Profile, key: K, value: Profile[K
 }
 
 /** Name, birth month, sex and height. */
-export function ProfileBasics({ value, onChange, nameRequired, required = false }: { value: Profile; onChange: (p: Profile) => void; nameRequired?: boolean; required?: boolean }) {
+export function ProfileBasics({
+  value,
+  onChange,
+  nameRequired,
+  required = false,
+}: {
+  value: Profile;
+  onChange: (p: Profile) => void;
+  nameRequired?: boolean;
+  required?: boolean;
+}) {
   return (
     <div className="flex flex-col gap-5">
       <Field.Root className="flex flex-col gap-1.5">
@@ -65,10 +75,16 @@ export function ProfileBasics({ value, onChange, nameRequired, required = false 
       </Field.Root>
       {/* Keep partial setup input mounted; Settings can receive a saved birth month later. */}
       <BirthMonthField
-        key={required ? "setup" : value.birthMonth ?? "none"}
+        key={required ? "setup" : (value.birthMonth ?? "none")}
         value={value.birthMonth}
         help="Used for age-specific reference ranges and age estimates. Only the month and year are kept."
-        onValidityChange={required ? (valid) => { if (!valid) onChange(withField(value, "birthMonth", undefined)); } : undefined}
+        onValidityChange={
+          required
+            ? (valid) => {
+                if (!valid) onChange(withField(value, "birthMonth", undefined));
+              }
+            : undefined
+        }
         onChange={(birthMonth) => onChange({ ...value, birthMonth })}
       />
       <ChoiceGroup<SexChoice>
@@ -82,7 +98,13 @@ export function ProfileBasics({ value, onChange, nameRequired, required = false 
           ...(!required ? [{ value: "unset" as const, label: "Prefer not to say" }] : []),
         ]}
       />
-      <HeightField value={value.heightCm} unit={value.heightUnit ?? "cm"} onUnitChange={(heightUnit) => onChange({ ...value, heightUnit })} onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))} onDraftChange={required ? (heightCm) => onChange(withField(value, "heightCm", heightCm)) : undefined} />
+      <HeightField
+        value={value.heightCm}
+        unit={value.heightUnit ?? "cm"}
+        onUnitChange={(heightUnit) => onChange({ ...value, heightUnit })}
+        onChange={(heightCm) => onChange(withField(value, "heightCm", heightCm))}
+        onDraftChange={required ? (heightCm) => onChange(withField(value, "heightCm", heightCm)) : undefined}
+      />
     </div>
   );
 }
@@ -98,7 +120,13 @@ export function ProfileDetails({ value, onChange, showNotes }: { value: Profile;
         onChange={(v) => onChange(withField(value, "country", v === "unset" ? undefined : v))}
         className="sm:max-w-sm"
       />
-      <SimpleSelect label="Diet" options={DIETS} value={value.diet ?? "unset"} onChange={(v) => onChange(withField(value, "diet", v === "unset" ? undefined : (v as Diet)))} className="sm:max-w-sm" />
+      <SimpleSelect
+        label="Diet"
+        options={DIETS}
+        value={value.diet ?? "unset"}
+        onChange={(v) => onChange(withField(value, "diet", v === "unset" ? undefined : (v as Diet)))}
+        className="sm:max-w-sm"
+      />
       <ChoiceGroup<SmokingChoice>
         label="Smoking"
         value={value.smoking ?? "unset"}
@@ -156,13 +184,26 @@ function imperialFields(cm: number | undefined): { feet: string; inches: string 
 }
 
 /** Settings save on blur; setup also validates its unsaved draft as it is typed. Unit changes preserve the stored height. */
-function HeightField({ value, unit, onUnitChange, onChange, onDraftChange }: { value?: number; unit: HeightUnit; onUnitChange: (unit: HeightUnit) => void; onChange: (cm: number | undefined) => void; onDraftChange?: (cm: number | undefined) => void }) {
+function HeightField({
+  value,
+  unit,
+  onUnitChange,
+  onChange,
+  onDraftChange,
+}: {
+  value?: number;
+  unit: HeightUnit;
+  onUnitChange: (unit: HeightUnit) => void;
+  onChange: (cm: number | undefined) => void;
+  onDraftChange?: (cm: number | undefined) => void;
+}) {
   const [text, setText] = useState(value === undefined ? "" : String(value));
   const [imperial, setImperial] = useState(() => imperialFields(value));
   const [typing, setTyping] = useState(false);
-  const cm = unit === "cm"
-    ? heightInCm(Number(text.replace(",", ".")), unit)
-    : heightInCm(Number(imperial.feet.replace(",", ".")), unit, Number(imperial.inches.replace(",", ".")));
+  const cm =
+    unit === "cm"
+      ? heightInCm(Number(text.replace(",", ".")), unit)
+      : heightInCm(Number(imperial.feet.replace(",", ".")), unit, Number(imperial.inches.replace(",", ".")));
   const hasText = unit === "cm" ? text.trim() !== "" : imperial.feet.trim() !== "" || imperial.inches.trim() !== "";
   const wrong = !typing && hasText && cm === undefined;
 
@@ -226,7 +267,11 @@ function HeightField({ value, unit, onUnitChange, onChange, onDraftChange }: { v
           ))}
         </div>
       )}
-      {wrong && <p className={helpStyles} role="alert">{unit === "cm" ? "Between 40 and 260 cm, so it isn't saved yet." : "Check your height and use inches below 12. It isn't saved yet."}</p>}
+      {wrong && (
+        <p className={helpStyles} role="alert">
+          {unit === "cm" ? "Between 40 and 260 cm, so it isn't saved yet." : "Check your height and use inches below 12. It isn't saved yet."}
+        </p>
+      )}
     </div>
   );
 }

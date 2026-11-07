@@ -5,15 +5,20 @@ import type { BrainSettings } from "../../apps/web/src/app/brain/menus";
 
 const state = vi.hoisted(() => ({ settings: undefined as unknown, fresh: true }));
 vi.mock("../../apps/web/src/app/brain/menus", async (original) => ({
-  ...await original<typeof import("../../apps/web/src/app/brain/menus")>(),
+  ...(await original<typeof import("../../apps/web/src/app/brain/menus")>()),
   useBrainSettings: () => ({ settings: state.settings, fresh: state.fresh, reload: () => {} }),
 }));
 vi.mock("../../apps/web/src/app/brain/store", () => ({ readWithBrain: vi.fn() }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ useProfile: () => ({}), useAllMeasurements: () => [] }));
+
 import { SendPicture } from "../../apps/web/src/app/pages/ImportPage";
 
 const settings = (provider: string, model: string, ok = true, reason?: string): BrainSettings => ({
-  configs: {}, hasKey: {}, installed: {}, assistant: { provider, model } as BrainSettings["assistant"], ready: { ok, ...(reason ? { reason } : {}) },
+  configs: {},
+  hasKey: {},
+  installed: {},
+  assistant: { provider, model } as BrainSettings["assistant"],
+  ready: { ok, ...(reason ? { reason } : {}) },
 });
 const photo = { file: new File(["x"], "report.jpg", { type: "image/jpeg" }) };
 const render = (picture: { file: File; pages?: { mediaType: "image/jpeg"; data: string }[] } = photo) =>

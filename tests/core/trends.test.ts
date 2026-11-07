@@ -1,12 +1,11 @@
-import { describe, expect, it } from "vitest";
 import {
   computeTrend,
   flagLatest,
   flagMeasurement,
   flagValue,
   groupByBiomarker,
-  isCritical,
   isAlreadySaved,
+  isCritical,
   isOutOfRange,
   latestByBiomarker,
   paddedDomain,
@@ -15,6 +14,7 @@ import {
   slope,
   sortByDate,
 } from "@bt/shared/core/trends";
+import { describe, expect, it } from "vitest";
 import { def, measurement } from "../helpers";
 
 describe("resolveRange", () => {
@@ -90,7 +90,10 @@ describe("markers judged on a week's average (sleep)", () => {
     expect(flagLatest(sleep, [night("2026-10-27", 5), night("2026-10-28", 5)], profile)).toBe("unknown");
   });
   it("flags other markers on their latest reading", () => {
-    const k = [measurement({ biomarkerId: "potassium", date: "2026-01-01", value: 3 }), measurement({ biomarkerId: "potassium", date: "2026-02-01", value: 4.2 })];
+    const k = [
+      measurement({ biomarkerId: "potassium", date: "2026-01-01", value: 3 }),
+      measurement({ biomarkerId: "potassium", date: "2026-02-01", value: 4.2 }),
+    ];
     expect(flagLatest(def("potassium"), k)).toBe("normal");
   });
 });
@@ -129,10 +132,21 @@ describe("flagValue", () => {
 describe("slope", () => {
   it("is undefined for fewer than two points or no spread in x", () => {
     expect(slope([{ x: 1, y: 1 }])).toBeUndefined();
-    expect(slope([{ x: 1, y: 1 }, { x: 1, y: 5 }])).toBeUndefined();
+    expect(
+      slope([
+        { x: 1, y: 1 },
+        { x: 1, y: 5 },
+      ]),
+    ).toBeUndefined();
   });
   it("fits a straight line exactly", () => {
-    expect(slope([{ x: 0, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 5 }])).toBeCloseTo(2);
+    expect(
+      slope([
+        { x: 0, y: 1 },
+        { x: 1, y: 3 },
+        { x: 2, y: 5 },
+      ]),
+    ).toBeCloseTo(2);
   });
 });
 
@@ -161,24 +175,15 @@ describe("computeTrend", () => {
     expect(t?.lastDate).toBe("2024-07-01");
   });
   it("computes the rate of change per year", () => {
-    const t = computeTrend([
-      measurement({ date: "2022-01-01", value: 100 }),
-      measurement({ date: "2024-01-01", value: 120 }),
-    ]);
+    const t = computeTrend([measurement({ date: "2022-01-01", value: 100 }), measurement({ date: "2024-01-01", value: 120 })]);
     expect(t?.ratePerYear).toBeCloseTo(10, 1);
   });
   it("leaves percent change undefined when the previous value is zero", () => {
-    const t = computeTrend([
-      measurement({ date: "2022-01-01", value: 0 }),
-      measurement({ date: "2023-01-01", value: 1 }),
-    ]);
+    const t = computeTrend([measurement({ date: "2022-01-01", value: 0 }), measurement({ date: "2023-01-01", value: 1 })]);
     expect(t?.percentChange).toBeUndefined();
   });
   it("has no rate when all samples are from the same day", () => {
-    const t = computeTrend([
-      measurement({ date: "2022-01-01", value: 1 }),
-      measurement({ date: "2022-01-01", value: 2 }),
-    ]);
+    const t = computeTrend([measurement({ date: "2022-01-01", value: 1 }), measurement({ date: "2022-01-01", value: 2 })]);
     expect(t?.ratePerYear).toBeUndefined();
   });
 });

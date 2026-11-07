@@ -1,10 +1,11 @@
 // Biomarker Tracker's local server. Run: bun apps/server/index.ts [--port 4820]
 // Listens on 127.0.0.1 only.
-import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
-import { createServer } from "./http";
-import { DATA } from "./store";
-import { killAllTrees, killAllTreesNow, stopTreesOnExit } from "./processTree";
+
 import { stopEve } from "./eve/host";
+import { createServer } from "./http";
+import { ensureDefaultServers, stopAll, warmUp } from "./mcp";
+import { killAllTrees, killAllTreesNow, stopTreesOnExit } from "./processTree";
+import { DATA } from "./store";
 
 const i = process.argv.indexOf("--port");
 const port = Number(i > 0 ? process.argv[i + 1] : process.env.BT_PORT || 4820);

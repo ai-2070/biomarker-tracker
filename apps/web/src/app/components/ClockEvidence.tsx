@@ -1,4 +1,4 @@
-import { clockFindingsAbout, type ClockAbout } from "@bt/shared/core/clocks";
+import { type ClockAbout, clockFindingsAbout } from "@bt/shared/core/clocks";
 import { CLOCK_FILE } from "../knowledge";
 import { href } from "../router";
 import { GradeDots } from "./evidence";

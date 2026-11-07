@@ -1,5 +1,5 @@
 import { dayNumber, isIsoDate } from "./dates";
-import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE, phenoAge, type PhenoAgeInputs, type PhenoAgeMarker } from "./phenoage";
+import { PHENOAGE_MARKERS, PHENOAGE_MIN_AGE, type PhenoAgeInputs, type PhenoAgeMarker, phenoAge } from "./phenoage";
 import { sortByDate } from "./trends";
 import type { Measurement } from "./types";
 

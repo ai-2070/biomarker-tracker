@@ -1,8 +1,18 @@
 import "fake-indexeddb/auto";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { db, deleteEverything, getProfile } from "../../apps/web/src/db/db";
-import { browserData, createProfile, deleteProfileFolder, flushSaving, hasBrowserData, loadIntoBrowser, restoreProfile, startSaving, switchProfile } from "../../apps/web/src/app/profiles";
 import { setIntakeList } from "../../apps/web/src/app/hooks";
+import {
+  browserData,
+  createProfile,
+  deleteProfileFolder,
+  flushSaving,
+  hasBrowserData,
+  loadIntoBrowser,
+  restoreProfile,
+  startSaving,
+  switchProfile,
+} from "../../apps/web/src/app/profiles";
+import { db, deleteEverything, getProfile } from "../../apps/web/src/db/db";
 import { FakeError, fakeServer } from "./fakeServer";
 
 const row = { id: "m", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" as const };
@@ -10,16 +20,32 @@ let stop: (() => void) | undefined;
 const empty = { person: { name: "B" }, measurements: [], protocols: [], experiments: [], plans: [], meals: [], settings: {} };
 async function seedA() {
   await db.measurements.put(row);
-  await db.settings.bulkPut([{ key: "profile", value: { name: "A" } }, { key: "loadedProfile", value: "a" }, { key: "onboarded", value: true }]);
+  await db.settings.bulkPut([
+    { key: "profile", value: { name: "A" } },
+    { key: "loadedProfile", value: "a" },
+    { key: "onboarded", value: true },
+  ]);
 }
-beforeEach(async () => { await db.open(); await deleteEverything(); vi.stubGlobal("location", { hash: "", reload: vi.fn() }); });
-afterEach(async () => { stop?.(); stop = undefined; vi.unstubAllGlobals(); await db.delete(); });
+beforeEach(async () => {
+  await db.open();
+  await deleteEverything();
+  vi.stubGlobal("location", { hash: "", reload: vi.fn() });
+});
+afterEach(async () => {
+  stop?.();
+  stop = undefined;
+  vi.unstubAllGlobals();
+  await db.delete();
+});
 
 describe("profile persistence review repairs", () => {
   it("reconciles retained pending edits on startup without needing a new edit", async () => {
     await seedA();
     const puts: unknown[] = [];
-    fakeServer(({ path, input }) => { puts.push({ path, ...input }); return { ok: true }; });
+    fakeServer(({ path, input }) => {
+      puts.push({ path, ...input });
+      return { ok: true };
+    });
     stop = startSaving("a");
     await vi.waitFor(() => expect(puts).toHaveLength(1), { timeout: 2000 });
     expect(puts[0]).toMatchObject({ path: "profiles.save", id: "a", data: { person: { name: "A" }, measurements: [row] } });
@@ -40,7 +66,10 @@ describe("profile persistence review repairs", () => {
   it("does not switch or erase the working copy when its flush fails", async () => {
     await seedA();
     const requests: string[] = [];
-    fakeServer(({ path, input }) => { requests.push(`${path} ${input.id}`); throw new FakeError("disk full"); });
+    fakeServer(({ path, input }) => {
+      requests.push(`${path} ${input.id}`);
+      throw new FakeError("disk full");
+    });
     stop = startSaving("a");
     await expect(switchProfile("b")).rejects.toThrow("disk full");
     expect(requests).toEqual(["profiles.save a"]);
@@ -52,11 +81,14 @@ describe("profile persistence review repairs", () => {
   it("keeps autosave available after an invalid restore request", async () => {
     await seedA();
     const saves: { person: { name: string } }[] = [];
-    fakeServer(({ input }) => {
-      // A full save, or after the first one only the changed parts.
-      saves.push(input.parts ?? input.data);
-      return { ok: true };
-    }, (url) => url.endsWith("/restore") ? Response.json({ error: "damaged ZIP" }, { status: 400 }) : Response.json({}, { status: 404 }));
+    fakeServer(
+      ({ input }) => {
+        // A full save, or after the first one only the changed parts.
+        saves.push(input.parts ?? input.data);
+        return { ok: true };
+      },
+      (url) => (url.endsWith("/restore") ? Response.json({ error: "damaged ZIP" }, { status: 400 }) : Response.json({}, { status: 404 })),
+    );
     stop = startSaving("a");
     await expect(restoreProfile(new File(["bad"], "bad.zip"))).rejects.toThrow("damaged ZIP");
     await db.settings.put({ key: "profile", value: { name: "Edited A" } });
@@ -74,11 +106,15 @@ describe("profile persistence review repairs", () => {
       return { ok: true };
     });
     stop = startSaving("a");
-    const fail = (_changes: unknown, key: unknown) => { if (key === "loadedProfile") throw new Error("adoption failed"); };
+    const fail = (_changes: unknown, key: unknown) => {
+      if (key === "loadedProfile") throw new Error("adoption failed");
+    };
     db.settings.hook("updating", fail);
     try {
       await expect(createProfile({ name: "B" }, { fromBrowser: true })).rejects.toThrow("adoption failed");
-    } finally { db.settings.hook("updating").unsubscribe(fail); }
+    } finally {
+      db.settings.hook("updating").unsubscribe(fail);
+    }
     await db.settings.put({ key: "profile", value: { name: "Still A" } });
     await flushSaving();
     expect(saves.at(-1)?.person.name).toBe("Still A");
@@ -97,7 +133,10 @@ describe("profile persistence review repairs", () => {
     fakeServer(async ({ input }) => {
       active += 1;
       maximumActive = Math.max(maximumActive, active);
-      if (++calls === 1) { firstStarted.resolve(); await releaseFirst.promise; }
+      if (++calls === 1) {
+        firstStarted.resolve();
+        await releaseFirst.promise;
+      }
       writes.push((input.parts ?? input.data).measurements.length);
       active -= 1;
       return { ok: true };
@@ -111,7 +150,9 @@ describe("profile persistence review repairs", () => {
       // A database barrier completes any snapshot read already admitted by the second flush.
       await browserData("a");
       expect(maximumActive).toBe(1);
-    } finally { releaseFirst.resolve(); }
+    } finally {
+      releaseFirst.resolve();
+    }
     await Promise.all([first, second]);
     expect(maximumActive).toBe(1);
     expect(writes.at(-1)).toBe(2);
@@ -128,7 +169,9 @@ describe("profile persistence review repairs", () => {
 
   it("a failed profile fetch preserves the source working copy", async () => {
     await seedA();
-    fakeServer(() => { throw new FakeError("results.json cannot be read"); });
+    fakeServer(() => {
+      throw new FakeError("results.json cannot be read");
+    });
     await expect(loadIntoBrowser("b")).rejects.toThrow(/cannot be read/);
     expect(await db.measurements.toArray()).toEqual([row]);
     expect((await db.settings.get("loadedProfile"))?.value).toBe("a");

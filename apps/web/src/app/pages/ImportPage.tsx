@@ -1,20 +1,20 @@
-import { useState } from "react";
 import { Field } from "@base-ui/react/field";
-import { parseLabText, type ParsedReport } from "@bt/shared/core/importers/labText";
+import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
+import { type ParsedReport, parseLabText } from "@bt/shared/core/importers/labText";
 import { flagMeasurement, isCritical } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
-import { uploadFile, useProfiles } from "../profiles";
+import { useState } from "react";
+import { modelLabel, useBrainSettings } from "../brain/menus";
+import type { PreparedPhoto } from "../brain/photo";
+import { readWithBrain } from "../brain/store";
 import { CriticalBanner } from "../components/CriticalBanner";
-import { Button, Card, FlagBadge, LinkButton, Notice, PageTitle, inputStyles } from "../components/ui";
+import { isImage, isPdf, monthFirst, Review } from "../components/LabReview";
+import { Button, Card, FlagBadge, inputStyles, LinkButton, Notice, PageTitle } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
+import { uploadFile, useProfiles } from "../profiles";
 import { href } from "../router";
-import { Review, isImage, isPdf, monthFirst } from "../components/LabReview";
-import { readWithBrain } from "../brain/store";
-import type { PreparedPhoto } from "../brain/photo";
-import { modelLabel, useBrainSettings } from "../brain/menus";
-import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 
 type Step =
   | { name: "pick" }
@@ -29,7 +29,11 @@ export function ImportPage() {
   async function saved(saved: Measurement[], skipped: number, file: File | undefined, date: string | undefined) {
     if (!file || mode !== "folders" || !active) return setStep({ name: "done", saved, skipped });
     try {
-      const f = await uploadFile(active.id, file, `Lab report${date ? ` from ${date}` : ""}, ${saved.length} ${saved.length === 1 ? "result" : "results"} saved`);
+      const f = await uploadFile(
+        active.id,
+        file,
+        `Lab report${date ? ` from ${date}` : ""}, ${saved.length} ${saved.length === 1 ? "result" : "results"} saved`,
+      );
       setStep({ name: "done", saved, skipped, kept: f.originalName });
     } catch (e) {
       setStep({ name: "done", saved, skipped, keepError: e instanceof Error ? e.message : "unknown error" });
@@ -41,7 +45,9 @@ export function ImportPage() {
       <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
       {step.name === "pick" && (
         <PickFile
-          onParsed={(fileName, text, file) => setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })}
+          onParsed={(fileName, text, file) =>
+            setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })
+          }
         />
       )}
       {step.name === "review" && (
@@ -125,8 +131,8 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           results and shows them to you to check. You're asked first. Only the values you confirm are saved.
         </p>
         <p className="text-sm text-ink-2">
-          For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take
-          the photo right here.
+          For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take the photo
+          right here.
         </p>
         <label className="flex flex-col gap-1.5">
           <span className="sr-only">Lab report PDF or photo</span>
@@ -146,7 +152,10 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
             <p className="text-ink-2">{progress ? `${progress.stage}…` : "Reading…"}</p>
             {progress && (
               <div className="h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true">
-                <div className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out" style={{ transform: `scaleX(${Math.max(0.03, progress.fraction)})` }} />
+                <div
+                  className="h-full origin-left rounded-full bg-accent transition-transform duration-300 ease-out"
+                  style={{ transform: `scaleX(${Math.max(0.03, progress.fraction)})` }}
+                />
               </div>
             )}
           </div>
@@ -209,7 +218,10 @@ function Done({ saved, skipped, onAnother }: { saved: Measurement[]; skipped: nu
           <ul className="flex flex-col divide-y divide-line">
             {flagged.map(({ m, def, flag }) => (
               <li key={m.id}>
-                <a href={href({ name: "marker", id: def.id })} className="flex min-h-11 items-center justify-between gap-3 py-2 text-ink no-underline hover:bg-sunken">
+                <a
+                  href={href({ name: "marker", id: def.id })}
+                  className="flex min-h-11 items-center justify-between gap-3 py-2 text-ink no-underline hover:bg-sunken"
+                >
                   <span className="min-w-0 truncate">{fullName(def)}</span>
                   <span className="flex shrink-0 items-center gap-2">
                     <span className="tabular-nums">
@@ -245,7 +257,12 @@ export function SendPicture({ picture, onSend, onCancel }: { picture: PictureFil
       Type the values in
     </LinkButton>
   );
-  if (!fresh && settings === undefined) return <p className="text-ink-2" role="status">Checking which AI model is set up…</p>;
+  if (!fresh && settings === undefined)
+    return (
+      <p className="text-ink-2" role="status">
+        Checking which AI model is set up…
+      </p>
+    );
   if (settings === null) {
     return (
       <Notice tone="warn" title="Photos and scans need Brain">
@@ -280,10 +297,10 @@ export function SendPicture({ picture, onSend, onCancel }: { picture: PictureFil
   }
   return (
     <Notice title="Send to Brain to read?">
-      <span className="font-medium text-ink">{what}</span> goes to {modelLabel(settings.assistant)} as {picture.pages && picture.pages.length > 1 ? "pictures" : "a picture"}
-      {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. The model sees everything printed on it, including your
-      name, birth date and ID numbers; crop or cover them first if you prefer. Location data in photos is removed. Nothing is saved until you check
-      the values.
+      <span className="font-medium text-ink">{what}</span> goes to {modelLabel(settings.assistant)} as{" "}
+      {picture.pages && picture.pages.length > 1 ? "pictures" : "a picture"}
+      {info?.retention === "depends" ? ", which keeps data according to your own login" : ""}. The model sees everything printed on it, including your name,
+      birth date and ID numbers; crop or cover them first if you prefer. Location data in photos is removed. Nothing is saved until you check the values.
       <span className="mt-3 flex flex-wrap gap-2">
         <Button onClick={onSend}>Send to Brain</Button>
         <Button variant="quiet" onClick={onCancel}>

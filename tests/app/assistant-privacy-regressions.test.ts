@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { CitedAnswer } from "../../apps/web/src/app/components/CitedAnswer";
+import { describe, expect, it } from "vitest";
 import { questionWithFiles, redactName } from "../../apps/web/src/app/brain/logic";
+import { CitedAnswer } from "../../apps/web/src/app/components/CitedAnswer";
 
 describe("assistant document privacy and transport boundaries", () => {
   it.each([
@@ -26,11 +26,11 @@ describe("assistant document privacy and transport boundaries", () => {
   });
 
   it("budgets the entire prepared message and discloses document shortening", () => {
-    const sent = questionWithFiles("Q".repeat(8000), [{ name: "note.txt", text: "X".repeat(13_990) + "END_SENTINEL" }]);
+    const sent = questionWithFiles("Q".repeat(8000), [{ name: "note.txt", text: `${"X".repeat(13_990)}END_SENTINEL` }]);
     expect(sent.length).toBeLessThanOrEqual(20_000);
     expect(sent).toContain("the rest of this file was left out");
     expect(sent).not.toContain("END_SENTINEL");
-    const whole = questionWithFiles("Q".repeat(8000), [{ name: "note.txt", text: "X".repeat(100) + "END_SENTINEL" }]);
+    const whole = questionWithFiles("Q".repeat(8000), [{ name: "note.txt", text: `${"X".repeat(100)}END_SENTINEL` }]);
     expect(whole).toContain("END_SENTINEL");
     expect(whole).not.toContain("left out");
     expect(() => questionWithFiles("Q".repeat(20_001), [])).toThrow(/20,000/);

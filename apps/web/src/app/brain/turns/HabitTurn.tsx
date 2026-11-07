@@ -1,12 +1,12 @@
-import { useId, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { todayIso } from "@bt/shared/core/dates";
 import type { HabitProposal } from "@bt/shared/core/habitProposal";
 import { defaultRetestDays } from "@bt/shared/core/habits";
 import { safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
+import { useId, useState } from "react";
 import { createHabit } from "../../../db/db";
 import { SafetyNotices } from "../../components/SafetyNotices";
-import { Button, CheckIcon, cx, inputStyles, eyebrowSmallStyles, cardStyles } from "../../components/ui";
+import { Button, CheckIcon, cardStyles, cx, eyebrowSmallStyles, inputStyles } from "../../components/ui";
 import { BIOMARKER_MAP, fullName } from "../../knowledge";
 import { href } from "../../router";
 import { setHabitState, type Turn } from "../store";

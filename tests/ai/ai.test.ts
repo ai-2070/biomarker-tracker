@@ -1,6 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { checkCitations, normalizeId } from "@bt/shared/ai/citations";
-
+import { describe, expect, it } from "vitest";
 
 describe("citation checker", () => {
   const allowed = new Set(["PMID:1001", "PMID:1002", "PMCID:PMC555"]);

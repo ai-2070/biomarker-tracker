@@ -1,8 +1,9 @@
 // What the page's tRPC calls do (the router and its input checks are in @bt/shared/api/router).
-import { generateText } from "ai";
-import { PROVIDERS, isLocalUrl, modelEfforts, providerInfo, type ProviderId } from "@bt/shared/core/aiProviders";
-import { MCP_PRESETS } from "@bt/shared/core/mcpPresets";
+
 import type { ApiServices } from "@bt/shared/api/types";
+import { isLocalUrl, modelEfforts, PROVIDERS, type ProviderId, providerInfo } from "@bt/shared/core/aiProviders";
+import { MCP_PRESETS } from "@bt/shared/core/mcpPresets";
+import { generateText } from "ai";
 import { agentInstalled, hermesConnected, hermesProfiles, isAgent, openclawAgents, setHermesConnection, testAgent } from "./agents";
 import { checkClaimEvidence } from "./claimEvidence";
 import { eveBuilt, stopEve } from "./eve/host";
@@ -128,7 +129,13 @@ export const services: ApiServices = {
       const r = readyModel();
       if (!r.ok) return { ok: false, error: r.reason };
       try {
-        const res = await generateText({ model: r.ready.model, prompt: "Reply with the single word OK.", maxOutputTokens: 200, providerOptions: r.ready.providerOptions, abortSignal: AbortSignal.timeout(60_000) });
+        const res = await generateText({
+          model: r.ready.model,
+          prompt: "Reply with the single word OK.",
+          maxOutputTokens: 200,
+          providerOptions: r.ready.providerOptions,
+          abortSignal: AbortSignal.timeout(60_000),
+        });
         return { ok: true, reply: res.text.slice(0, 100) };
       } catch (e) {
         return { ok: false, error: describeModelError(e) };

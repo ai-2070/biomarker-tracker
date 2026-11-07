@@ -72,7 +72,16 @@ export function itemErrors(v: unknown): string[] {
   if (!CATEGORIES.includes(v.category as PlanCategory)) errs.push("item type is invalid");
   if (!READ_TIMES.includes(v.when as PlanTime)) errs.push("item time is invalid");
   if (v.withFood !== undefined && typeof v.withFood !== "boolean") errs.push("'with a meal' must be yes or no");
-  if (v.days !== undefined && !(Array.isArray(v.days) && v.days.length >= 1 && v.days.length <= 7 && new Set(v.days).size === v.days.length && v.days.every((d) => WEEKDAYS.includes(d as Weekday))))
+  if (
+    v.days !== undefined &&
+    !(
+      Array.isArray(v.days) &&
+      v.days.length >= 1 &&
+      v.days.length <= 7 &&
+      new Set(v.days).size === v.days.length &&
+      v.days.every((d) => WEEKDAYS.includes(d as Weekday))
+    )
+  )
     errs.push("the days of the week are invalid");
   if (!optStr(v.note, 300)) errs.push("notes must be under 300 characters");
   if (!optStr(v.mealId, 64)) errs.push("the meal link is damaged");
@@ -94,7 +103,16 @@ export function validatePlan(v: unknown): string[] {
     if (v.items.length > MAX_ITEMS) errs.push(`a protocol can have at most ${MAX_ITEMS} items`);
     for (const e of new Set(v.items.flatMap(itemErrors))) errs.push(e);
   }
-  if (v.active !== undefined && !(isObj(v.active) && typeof v.active.since === "string" && isIsoDate(v.active.since) && Array.isArray(v.active.habitIds) && v.active.habitIds.every((x) => typeof x === "string")))
+  if (
+    v.active !== undefined &&
+    !(
+      isObj(v.active) &&
+      typeof v.active.since === "string" &&
+      isIsoDate(v.active.since) &&
+      Array.isArray(v.active.habitIds) &&
+      v.active.habitIds.every((x) => typeof x === "string")
+    )
+  )
     errs.push("active is damaged");
   return errs;
 }
@@ -172,7 +190,9 @@ export function daysLabel(days: readonly Weekday[] | undefined): string | undefi
   const set = new Set(days);
   if (set.size === 5 && ["mon", "tue", "wed", "thu", "fri"].every((d) => set.has(d as Weekday))) return "Weekdays";
   if (set.size === 2 && set.has("sat") && set.has("sun")) return "Weekends";
-  return WEEKDAYS.filter((d) => set.has(d)).map((d) => DAY_SHORT[d]).join(", ");
+  return WEEKDAYS.filter((d) => set.has(d))
+    .map((d) => DAY_SHORT[d])
+    .join(", ");
 }
 
 /** Items grouped by time of day, in the day's order; empty times are left out. */
@@ -182,8 +202,13 @@ export function itemsByTime(p: Plan): { when: PlanTime; items: PlanItem[] }[] {
 }
 
 /** Lower case, letters and digits only, single spaces. */
-const words = (s: string) => s.toLowerCase().replace(/\(.*?\)/g, " ").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const words = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/\(.*?\)/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim();
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /**
  * The vitamin or mineral an item is about, by its name or other names: "Vitamin D3" (a form number
@@ -196,7 +221,7 @@ export function nutrientFor(item: Pick<PlanItem, "label" | "category">, nutrient
     .flatMap((n) => [n.name, ...n.otherNames].map((name) => ({ n, name: words(name) })))
     .filter((x) => x.name.length >= 3)
     .sort((a, b) => b.name.length - a.name.length);
-  return names.find(({ name }) => new RegExp(`(^| )${escape(name)}\\d*( |$)`).test(label))?.n;
+  return names.find(({ name }) => new RegExp(`(^| )${escapeRegExp(name)}\\d*( |$)`).test(label))?.n;
 }
 
 export interface PairWarning {
@@ -210,12 +235,15 @@ export interface PairWarning {
  * nutrient's interaction names another nutrient in the same protocol (iron and calcium, zinc and copper).
  */
 export function pairWarnings(p: Plan, nutrients: readonly NutrientDef[]): PairWarning[] {
-  const linked = [...new Map(p.items.flatMap((i) => (nutrientFor(i, nutrients) ? [[nutrientFor(i, nutrients)!.id, nutrientFor(i, nutrients)!] as const] : []))).values()];
+  const linked = [
+    ...new Map(p.items.flatMap((i) => (nutrientFor(i, nutrients) ? [[nutrientFor(i, nutrients)!.id, nutrientFor(i, nutrients)!] as const] : []))).values(),
+  ];
   const out: PairWarning[] = [];
   for (const n of linked) {
     for (const x of n.interactions) {
       const other = linked.find((m) => m.id !== n.id && x.with.toLowerCase().includes(m.name.toLowerCase()));
-      if (other && !out.some((w) => (w.a === other.name && w.b === n.name) || (w.a === n.name && w.b === other.name))) out.push({ a: n.name, b: other.name, note: x.note });
+      if (other && !out.some((w) => (w.a === other.name && w.b === n.name) || (w.a === n.name && w.b === other.name)))
+        out.push({ a: n.name, b: other.name, note: x.note });
     }
   }
   return out;

@@ -17,7 +17,8 @@ export const PHENOAGE_GAP_DEF: BiomarkerDef = {
   canonicalUnit: "years",
   conversions: { years: 1 },
   changeScale: "difference",
-  summary: "Your PhenoAge minus your calendar age at each complete blood test. Below zero means your blood markers looked like those of a typical younger person in the study the formula came from.",
+  summary:
+    "Your PhenoAge minus your calendar age at each complete blood test. Below zero means your blood markers looked like those of a typical younger person in the study the formula came from.",
   high: { meaning: "Higher than your age.", commonCauses: [] },
   low: { meaning: "Lower than your age.", commonCauses: [] },
   affectedBy: [],
@@ -28,7 +29,18 @@ export const PHENOAGE_GAP_DEF: BiomarkerDef = {
 export function phenoAgeGaps(measurements: readonly Measurement[], birthMonth: string | undefined): Measurement[] {
   return summarizePhenoAge(measurements, birthMonth).draws.flatMap((d) =>
     d.status === "ok" && d.difference !== undefined
-      ? [{ id: `phenoage-gap-${d.date}`, biomarkerId: PHENOAGE_GAP_ID, value: d.difference, originalValue: d.difference, originalUnit: "years", date: d.date, source: "manual" as const, note: "Worked out from this blood test" }]
+      ? [
+          {
+            id: `phenoage-gap-${d.date}`,
+            biomarkerId: PHENOAGE_GAP_ID,
+            value: d.difference,
+            originalValue: d.difference,
+            originalUnit: "years",
+            date: d.date,
+            source: "manual" as const,
+            note: "Worked out from this blood test",
+          },
+        ]
       : [],
   );
 }
@@ -36,5 +48,9 @@ export function phenoAgeGaps(measurements: readonly Measurement[], birthMonth: s
 /** The person's results plus their PhenoAge gaps, and the marker list with the gap in it, for habit watches. */
 export function withPhenoAgeGap(measurements: readonly Measurement[], birthMonth: string | undefined, defs: ReadonlyMap<string, BiomarkerDef>) {
   const gaps = phenoAgeGaps(measurements, birthMonth);
-  return { measurements: gaps.length ? [...measurements, ...gaps] : measurements, defs: new Map([...defs, [PHENOAGE_GAP_ID, PHENOAGE_GAP_DEF]]) as ReadonlyMap<string, BiomarkerDef>, hasGap: gaps.length > 0 };
+  return {
+    measurements: gaps.length ? [...measurements, ...gaps] : measurements,
+    defs: new Map([...defs, [PHENOAGE_GAP_ID, PHENOAGE_GAP_DEF]]) as ReadonlyMap<string, BiomarkerDef>,
+    hasGap: gaps.length > 0,
+  };
 }

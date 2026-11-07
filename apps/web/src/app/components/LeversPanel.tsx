@@ -1,18 +1,18 @@
 import { selectLevers } from "@bt/shared/core/evidence";
 import { selectFoods } from "@bt/shared/core/foods";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
-import { useProfile } from "../hooks";
 import type { Flag } from "@bt/shared/core/trends";
-import { formatValue } from "@bt/shared/core/units";
 import type { BiomarkerDef, Citation, EvidenceClaim, Profile, ProtocolEntry, SafetyId } from "@bt/shared/core/types";
-import { EVIDENCE, FOODS, nameInSentence } from "../knowledge";
+import { formatValue } from "@bt/shared/core/units";
 import { lowerFirst } from "../format";
+import { useProfile } from "../hooks";
+import { EVIDENCE, FOODS, nameInSentence } from "../knowledge";
 import { href } from "../router";
-import { SafetyNotices } from "./SafetyNotices";
 import { Chip, More, Row, Rows } from "./disclosure";
 import { GradeBadge } from "./evidence";
-import { cx } from "./ui";
 import { PaperLink } from "./PaperLink";
+import { SafetyNotices } from "./SafetyNotices";
+import { cx } from "./ui";
 
 const KIND: Record<EvidenceClaim["kind"], string> = {
   food: "Food",
@@ -33,7 +33,12 @@ const DIRECTION: Record<EvidenceClaim["direction"], string> = {
  * amounts. Explains, never prescribes. Hidden for critical values.
  */
 /** What the levers section is called for this marker and result, and whether there is anything to show. */
-export function leversHeading(def: BiomarkerDef, flag: Flag | undefined, protocols: ProtocolEntry[], profile: Profile): { title: string; count: number; focus?: "low" | "high" } {
+export function leversHeading(
+  def: BiomarkerDef,
+  flag: Flag | undefined,
+  protocols: ProtocolEntry[],
+  profile: Profile,
+): { title: string; count: number; focus?: "low" | "high" } {
   const safety: SafetyId[] = safetyNotes(safetyLabels(protocols, profile)).map((n) => n.id);
   const sel = selectLevers(def.id, flag, EVIDENCE, safety);
   return {
@@ -57,8 +62,8 @@ export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag:
   return (
     <div className="flex flex-col gap-3">
       <p className="text-ink-2">
-        {sel.focus ? `Because your latest result is ${sel.focus}: what research says can help, strongest evidence first.` : "Strongest evidence first."} Options to
-        discuss with your doctor, not instructions.
+        {sel.focus ? `Because your latest result is ${sel.focus}: what research says can help, strongest evidence first.` : "Strongest evidence first."} Options
+        to discuss with your doctor, not instructions.
       </p>
       <SafetyNotices notes={notes} />
       <Rows>
@@ -139,9 +144,7 @@ function FoodList({ claim: c, safety }: { claim: EvidenceClaim; safety: SafetyId
   if (sel.shown.length === 0 && sel.hidden.length === 0) return null;
   return (
     <div className="rounded-lg bg-sunken p-3">
-      <p className="mb-2 text-sm font-medium">
-        Examples: {lowerFirst(nutrient.label)} in a typical portion
-      </p>
+      <p className="mb-2 text-sm font-medium">Examples: {lowerFirst(nutrient.label)} in a typical portion</p>
       <table className="w-full text-sm">
         <thead className="sr-only">
           <tr>
@@ -171,8 +174,8 @@ function FoodList({ claim: c, safety }: { claim: EvidenceClaim; safety: SafetyId
       )}
       {foods.note && <p className="mt-2 text-sm text-ink-2">{foods.note}</p>}
       <p className="mt-2 text-xs text-ink-2">
-        Measured values from {FOODS.source.name}. Nutrient numbers cover ~150 measured compounds; foods contain thousands more that aren't
-        tracked. Portions are examples, not recommendations.
+        Measured values from {FOODS.source.name}. Nutrient numbers cover ~150 measured compounds; foods contain thousands more that aren't tracked. Portions are
+        examples, not recommendations.
       </p>
     </div>
   );
@@ -191,7 +194,13 @@ function StudyLink({ s }: { s: Citation }) {
   };
   return (
     <>
-      <PaperLink href={url} source={{ title: s.title, year: s.year, kind: type[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
+      <PaperLink
+        href={url}
+        source={{ title: s.title, year: s.year, kind: type[s.studyType], n: s.n }}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-ink underline underline-offset-2"
+      >
         {s.title}
       </PaperLink>{" "}
       ({s.year}, {type[s.studyType]}

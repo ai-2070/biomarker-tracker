@@ -1,37 +1,37 @@
 // The assistant's built-in tools. Every number comes from the tested core (packages/shared/src/core);
 // the model only explains. Tools work on the snapshot the page sends with each question.
-import { tool, type ToolSet } from "ai";
-import { z } from "zod";
+
+import { phenoAgePace } from "@bt/shared/core/agePace";
+import { proposalIssue } from "@bt/shared/core/assistantProposal";
 import { parseBackup } from "@bt/shared/core/backup";
+import { bodySummary } from "@bt/shared/core/bodySummary";
 import { todayIso } from "@bt/shared/core/dates";
 import { selectLevers } from "@bt/shared/core/evidence";
 import { analyzeMarker, rcvBand, retestDate } from "@bt/shared/core/experiments";
 import { SAFETY_LIMITS, selectFoods } from "@bt/shared/core/foods";
+import { parseHabitProposal } from "@bt/shared/core/habitProposal";
 import { chanceNote, pickedAfterResults } from "@bt/shared/core/habits";
+import { criticalResults, MAX_PROPOSED_RESULTS, parseResultProposal } from "@bt/shared/core/importers/resultProposal";
+import { CATEGORY_ORDER } from "@bt/shared/core/knowledge";
+import { ageAtMoment, bestBefore, bestBeforeMoments, lifeTablePeriod, populationSurvival, type ResolvedLifeTable, tableFor } from "@bt/shared/core/lifeTable";
+import { closestFoods, dailyReference, foodNameNote, type Meal, mealSafetyBlock, mealTotals, searchFoods, validateMeal } from "@bt/shared/core/meals";
+import { mortalityProjection } from "@bt/shared/core/mortalityProjection";
+import { buildPeriodSummary } from "@bt/shared/core/periodSummary";
+import { personalRange } from "@bt/shared/core/personalRange";
 import { ageAt, isBirthMonth, summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import { nutrientFor, PLAN_TIMES, type Plan, type PlanTime, pairWarnings, planFromProposal, validatePlan, WEEKDAYS, type Weekday } from "@bt/shared/core/plans";
 import { assistantProfile } from "@bt/shared/core/profile";
 import { completeProfileDetails, PROFILE_DETAIL_FIELDS } from "@bt/shared/core/profileCompletion";
-import { proposalIssue } from "@bt/shared/core/assistantProposal";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
-import { personalRange } from "@bt/shared/core/personalRange";
+import { buildTestSummary, rangeText, type SummaryResult, valueText } from "@bt/shared/core/testSummary";
 import { computeTrend, flagLatest, flagMeasurement, groupByBiomarker, isCritical, recentAverage, resolveRange, sortByDate } from "@bt/shared/core/trends";
-import { buildTestSummary, rangeText, valueText, type SummaryResult } from "@bt/shared/core/testSummary";
-import { CATEGORY_ORDER } from "@bt/shared/core/knowledge";
-import { buildPeriodSummary } from "@bt/shared/core/periodSummary";
-import { roundForDisplay } from "@bt/shared/core/units";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry, SafetyId } from "@bt/shared/core/types";
-import { markerTerms, paperById, searchPapers, type SearchFilter } from "@bt/shared/research/papers";
-import { bodySummary } from "@bt/shared/core/bodySummary";
-import { parseHabitProposal } from "@bt/shared/core/habitProposal";
-import { MAX_PROPOSED_RESULTS, criticalResults, parseResultProposal } from "@bt/shared/core/importers/resultProposal";
-import { PLAN_TIMES, WEEKDAYS, nutrientFor, pairWarnings, planFromProposal, validatePlan, type Plan, type PlanTime, type Weekday } from "@bt/shared/core/plans";
-import { closestFoods, dailyReference, foodNameNote, mealSafetyBlock, mealTotals, searchFoods, validateMeal, type Meal } from "@bt/shared/core/meals";
-import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge } from "./knowledge";
+import { roundForDisplay } from "@bt/shared/core/units";
+import { markerTerms, paperById, type SearchFilter, searchPapers } from "@bt/shared/research/papers";
+import { type ToolSet, tool } from "ai";
+import { z } from "zod";
+import { findLifestyle, findMarker, findNutrient, findWholeFood, foods, knowledge, lifeTables, mortalityModels } from "./knowledge";
 import { enabledSkills, getSkill } from "./skills";
-import { phenoAgePace } from "@bt/shared/core/agePace";
-import { ageAtMoment, bestBefore, bestBeforeMoments, lifeTablePeriod, populationSurvival, tableFor, type ResolvedLifeTable } from "@bt/shared/core/lifeTable";
-import { mortalityProjection } from "@bt/shared/core/mortalityProjection";
-import { lifeTables, mortalityModels } from "./knowledge";
 
 export interface HealthSnapshot {
   measurements: Measurement[];
@@ -51,7 +51,14 @@ export interface HealthSnapshot {
 /** Validate what the page sent, with the same checks as a backup file. */
 export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot } | { ok: false; error: string } {
   const o = (typeof v === "object" && v !== null ? v : {}) as Record<string, unknown>;
-  const r = parseBackup({ app: "biomarker-tracker", version: 2, measurements: o.measurements ?? [], protocols: o.protocols ?? [], experiments: o.experiments ?? [], profile: o.profile ?? {} });
+  const r = parseBackup({
+    app: "biomarker-tracker",
+    version: 2,
+    measurements: o.measurements ?? [],
+    protocols: o.protocols ?? [],
+    experiments: o.experiments ?? [],
+    profile: o.profile ?? {},
+  });
   if (!r.ok) return { ok: false, error: r.error };
   const { measurements, protocols, experiments, profile } = r.backup;
   const plans = Array.isArray(o.plans) ? o.plans : [];
@@ -59,13 +66,34 @@ export function parseSnapshot(v: unknown): { ok: true; snapshot: HealthSnapshot 
   const meals = Array.isArray(o.meals) ? o.meals : [];
   if (meals.length > 1000 || meals.some((m) => validateMeal(m).length > 0)) return { ok: false, error: "The meals are damaged." };
   // Name and private notes are dropped here too, even if a page sent them.
-  return { ok: true, snapshot: { measurements, protocols, experiments, profile: assistantProfile(profile), plans: plans as Plan[], meals: meals as Meal[], expirationDate: o.expirationDate === true, mortalityActivityIsLeisure: o.mortalityActivityIsLeisure === true } };
+  return {
+    ok: true,
+    snapshot: {
+      measurements,
+      protocols,
+      experiments,
+      profile: assistantProfile(profile),
+      plans: plans as Plan[],
+      meals: meals as Meal[],
+      expirationDate: o.expirationDate === true,
+      mortalityActivityIsLeisure: o.mortalityActivityIsLeisure === true,
+    },
+  };
 }
 
 const r = (n: number | undefined) => (n === undefined ? undefined : roundForDisplay(n));
 
 function rangeOut(range: { low?: number; high?: number; source: string; comparisonOnly?: boolean } | undefined) {
-  return range ? { low: r(range.low), high: r(range.high), source: range.comparisonOnly ? "published population comparison" : range.source === "lab" ? "lab's own range" : "typical adult range", ...(range.comparisonOnly ? { comparisonOnly: true, note: "For comparison only, not clinical low/high limits or minimum/maximum healthy body fat." } : {}) } : null;
+  return range
+    ? {
+        low: r(range.low),
+        high: r(range.high),
+        source: range.comparisonOnly ? "published population comparison" : range.source === "lab" ? "lab's own range" : "typical adult range",
+        ...(range.comparisonOnly
+          ? { comparisonOnly: true, note: "For comparison only, not clinical low/high limits or minimum/maximum healthy body fat." }
+          : {}),
+      }
+    : null;
 }
 
 export function safetyOf(s: HealthSnapshot): SafetyId[] {
@@ -137,7 +165,10 @@ function nowOf(s: HealthSnapshot, def: BiomarkerDef, ms: Measurement[]) {
   return {
     flag: flagLatest(def, ms, s.profile),
     ...(def.judgeAverageOfDays
-      ? { judgedOn: `the average of the last ${def.judgeAverageOfDays} days, never one reading`, average: week ? r(week.value) : "not enough readings (needs 3)" }
+      ? {
+          judgedOn: `the average of the last ${def.judgeAverageOfDays} days, never one reading`,
+          average: week ? r(week.value) : "not enough readings (needs 3)",
+        }
       : {}),
     ...(def.personalRange
       ? {
@@ -176,8 +207,12 @@ export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
       fasted: m.fasted ?? null,
     })),
     now: nowOf(s, def, ms),
-    trend: t && t.count > 1 ? { changeSincePrevious: r(t.change), percentChange: r(t.percentChange), ratePerYear: r(t.ratePerYear), since: t.previous?.date } : null,
-    normalVariation: bv && band ? { withinPersonCV: `${bv.cvi}%`, oneTestToNextBand: `${r(band.down * 100)}% to +${r(band.up * 100)}%`, source: bv.source } : "not known for this marker",
+    trend:
+      t && t.count > 1 ? { changeSincePrevious: r(t.change), percentChange: r(t.percentChange), ratePerYear: r(t.ratePerYear), since: t.previous?.date } : null,
+    normalVariation:
+      bv && band
+        ? { withinPersonCV: `${bv.cvi}%`, oneTestToNextBand: `${r(band.down * 100)}% to +${r(band.up * 100)}%`, source: bv.source }
+        : "not known for this marker",
     sources: def.sources.map((c) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType })),
   };
 }
@@ -212,7 +247,13 @@ export function levers(s: HealthSnapshot, def: BiomarkerDef) {
               nutrient: c.foods!.nutrient,
               perPortion: f.shown.map((x) => `${x.food.name}, ${x.food.portion.grams} g: ${r(x.amount)} ${unit}`),
               hidden: f.hidden.map((h) => `${h.food.name} (${h.reason})`),
-              note: [c.foods!.note, "Nutrient numbers cover ~150 measured compounds; foods contain thousands more that aren't tracked.", `Source: ${foods.source.name}.`].filter(Boolean).join(" "),
+              note: [
+                c.foods!.note,
+                "Nutrient numbers cover ~150 measured compounds; foods contain thousands more that aren't tracked.",
+                `Source: ${foods.source.name}.`,
+              ]
+                .filter(Boolean)
+                .join(" "),
             }
           : null,
       };
@@ -222,7 +263,11 @@ export function levers(s: HealthSnapshot, def: BiomarkerDef) {
 
 export function biologicalAge(s: HealthSnapshot) {
   const sum = summarizePhenoAge(s.measurements, s.profile.birthMonth);
-  const pace = phenoAgePace(sum.draws.filter((d) => d.status === "ok" && d.phenoAge !== undefined).map((d) => ({ date: d.date, years: d.phenoAge!, approximate: d.approximate.length > 0 })));
+  const pace = phenoAgePace(
+    sum.draws
+      .filter((d) => d.status === "ok" && d.phenoAge !== undefined)
+      .map((d) => ({ date: d.date, years: d.phenoAge!, approximate: d.approximate.length > 0 })),
+  );
   const dunedin = s.measurements.filter((m) => m.biomarkerId === "dunedinpace").sort((a, b) => a.date.localeCompare(b.date));
   const reference = populationTableFor(s);
   return {
@@ -235,7 +280,8 @@ export function biologicalAge(s: HealthSnapshot) {
       approximateBecause: d.approximate.map((a) => `${a.biomarkerId} reported as "${a.qualifier}" a limit`),
     })),
     latestIncomplete: sum.latestPartial ?? null,
-    about: "PhenoAge (Levine et al. 2018): 9 routine markers and age turned into the age at which an average person in a US survey had the same risk. An estimate, not a measurement.",
+    about:
+      "PhenoAge (Levine et al. 2018): 9 routine markers and age turned into the age at which an average person in a US survey had the same risk. An estimate, not a measurement.",
     phenoAgePace: pace
       ? {
           pace: Math.round(pace.pace * 100) / 100,
@@ -244,19 +290,23 @@ export function biologicalAge(s: HealthSnapshot) {
           tests: pace.tests,
           from: pace.from,
           to: pace.to,
-          about: "Computed by the app: PhenoAge years per calendar year across this person's own tests in the last 3 years (slope, 95% range). 1.0 = in step with the calendar. Not DunedinPACE. Say 'unclear' when the range includes 1.",
+          about:
+            "Computed by the app: PhenoAge years per calendar year across this person's own tests in the last 3 years (slope, 95% range). 1.0 = in step with the calendar. Not DunedinPACE. Say 'unclear' when the range includes 1.",
         }
       : "Needs at least 3 PhenoAge results over a year or more.",
     dunedinPace: dunedin.length
       ? {
           results: dunedin.map((m) => ({ date: m.date, value: m.value })),
-          about: "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
+          about:
+            "DunedinPACE (Belsky et al., eLife 2022, PMID 35029144): a DNA methylation blood test from a specialised lab, recorded as the lab reported it. 1.0 = one year of biological aging per calendar year. Linked with illness, disability and mortality in studies; a lower value doesn't prove aging was slowed.",
         }
       : "No DunedinPACE result recorded (it needs a DNA methylation test, not a routine blood test).",
     countryPopulationReference: typeof reference === "string" ? reference : countryPopulationReference(reference),
     expirationDate: !s.expirationDate
       ? "Turned off in Settings (it's off by default). Don't estimate it or a date of death; say it can be turned on in Settings → Appearance if the person asks."
-      : typeof reference === "string" ? reference : bestBeforeFor(s, reference),
+      : typeof reference === "string"
+        ? reference
+        : bestBeforeFor(s, reference),
   };
 }
 
@@ -277,9 +327,10 @@ function populationTableFor(s: HealthSnapshot): PopulationTable | string {
   const country = p.country ? file.countries[p.country] : undefined;
   if (!country) return "Needs a supported country the person lives in (Settings → Your data), for its population life table.";
   const found = tableFor(file, p.country, p.sex);
-  if (!found) return !p.sex
-    ? `Needs the person's sex in Settings; ${country.name} has no both-sex life table. The saved country does not need changing.`
-    : `No life table is available for the saved sex in ${country.name}; no other sex's figures are substituted.`;
+  if (!found)
+    return !p.sex
+      ? `Needs the person's sex in Settings; ${country.name} has no both-sex life table. The saved country does not need changing.`
+      : `No life table is available for the saved sex in ${country.name}; no other sex's figures are substituted.`;
   return { found, currentAge, note: file.note };
 }
 
@@ -324,20 +375,26 @@ function bestBeforeFor(s: HealthSnapshot, { found }: PopulationTable) {
     aQuarterLivePast: d(head.threeQuartersAt),
     averageRemainingYears: Math.round(head.expectancy * 10) / 10,
     populationReference: { medianDate: d(plain.medianAt), aQuarterDieBefore: d(plain.quarterAt), aQuarterLivePast: d(plain.threeQuartersAt) },
-    fittedTenYearMortality: prediction?.status === "ok" && prediction.risk10 !== undefined && selected ? {
-      percent: r(prediction.risk10 * 100),
-      model: selected.label,
-      version: models!.version,
-      riskEquivalentAge: prediction.riskAgeBound ? `${prediction.riskAgeBound} the model's ${selected.ageFrom}–${selected.ageTo - 1} age range; no exact lifetime extrapolation` : r(prediction.riskAge),
-      heldOutEvaluation: selected.evaluation,
-      includedInputs: projection!.included,
-      limits: models!.limitations,
-    } : { notShown: prediction?.reasons ?? ["The offline-fitted models could not be loaded; no coefficients are guessed."] },
+    fittedTenYearMortality:
+      prediction?.status === "ok" && prediction.risk10 !== undefined && selected
+        ? {
+            percent: r(prediction.risk10 * 100),
+            model: selected.label,
+            version: models!.version,
+            riskEquivalentAge: prediction.riskAgeBound
+              ? `${prediction.riskAgeBound} the model's ${selected.ageFrom}–${selected.ageTo - 1} age range; no exact lifetime extrapolation`
+              : r(prediction.riskAge),
+            heldOutEvaluation: selected.evaluation,
+            includedInputs: projection!.included,
+            limits: models!.limitations,
+          }
+        : { notShown: prediction?.reasons ?? ["The offline-fitted models could not be loaded; no coefficients are guessed."] },
     notUsed: projection?.notUsed ?? [],
     assumptions: projection?.cautions ?? [],
     lifeTable: `${found.source.name}: ${found.name}, ${lifeTablePeriod(found.source.period)}, ${found.sex === "f" ? "women" : found.sex === "m" ? "men" : "both sexes"}`,
     source: found.source,
-    about: "The country reference is a population life table, not this person's predicted death. A separately fitted US cohort score estimates ten-year all-cause mortality; it is not the original PhenoAge equation or heart-attack risk. The experimental lifetime projection reads the country table at a fitted risk-equivalent age and assumes that age gap persists. This transfer between countries and from ten years to lifetime has NOT been validated. The displayed date range is the middle half of the shifted population, NOT an individual confidence interval. HRV, DunedinPACE and functional tests have no weights in this model. Never invent weights, add years from separate studies, estimate a date when off, or say this is when the person will die.",
+    about:
+      "The country reference is a population life table, not this person's predicted death. A separately fitted US cohort score estimates ten-year all-cause mortality; it is not the original PhenoAge equation or heart-attack risk. The experimental lifetime projection reads the country table at a fitted risk-equivalent age and assumes that age gap persists. This transfer between countries and from ten years to lifetime has NOT been validated. The displayed date range is the middle half of the shifted population, NOT an individual confidence interval. HRV, DunedinPACE and functional tests have no weights in this model. Never invent weights, add years from separate studies, estimate a date when off, or say this is when the person will die.",
   };
 }
 
@@ -351,7 +408,11 @@ export function experimentResults(s: HealthSnapshot) {
     ...(s.protocols.some((p) => p.id === e.protocolId && p.plan) ? { comparisonScope: WHOLE_PROTOCOL_COMPARISON } : {}),
     chosenOn: e.chosenOn ?? null,
     pickedAfterResults: pickedAfterResults(e),
-    interpretation: pickedAfterResults(e) ? "A hint, not a test: these markers were selected after follow-up results were available." : e.chosenOn ? "Markers were selected before follow-up results were available." : "When these markers were selected is not recorded.",
+    interpretation: pickedAfterResults(e)
+      ? "A hint, not a test: these markers were selected after follow-up results were available."
+      : e.chosenOn
+        ? "Markers were selected before follow-up results were available."
+        : "When these markers were selected is not recorded.",
     caution: chanceNote(e.markerIds.length) ?? null,
     markers: e.markerIds.flatMap((id) => {
       const def = defs.get(id);
@@ -365,7 +426,12 @@ export function experimentResults(s: HealthSnapshot) {
           after: r(a.afterValue),
           changePercent: a.change === undefined ? null : r(a.change * 100),
           normalVariationBand: a.band ? `${r(a.band.down * 100)}% to +${r(a.band.up * 100)}%` : null,
-          normalVariationFrom: a.bandFrom === "personal" ? "the person's own readings before and after" : a.bandFrom === "published" ? "published biological variation (EFLM)" : null,
+          normalVariationFrom:
+            a.bandFrom === "personal"
+              ? "the person's own readings before and after"
+              : a.bandFrom === "published"
+                ? "published biological variation (EFLM)"
+                : null,
         },
       ];
     }),
@@ -378,7 +444,13 @@ const notFound = (q: string) => ({ error: `No marker called "${q}". Use get_resu
 export function yearSummaryFor(s: HealthSnapshot, year?: number) {
   const { defs } = knowledge();
   const today = todayIso();
-  const t = buildPeriodSummary({ measurements: s.measurements, defs, profile: s.profile, categoryOrder: CATEGORY_ORDER, period: year ? { kind: "year", year, today } : { kind: "rolling", end: today } });
+  const t = buildPeriodSummary({
+    measurements: s.measurements,
+    defs,
+    profile: s.profile,
+    categoryOrder: CATEGORY_ORDER,
+    period: year ? { kind: "year", year, today } : { kind: "rolling", end: today },
+  });
   const unit = (id: string) => defs.get(id)!.canonicalUnit;
   return {
     period: { from: t.from, to: t.to },
@@ -394,30 +466,52 @@ export function yearSummaryFor(s: HealthSnapshot, year?: number) {
         results: m.results.map((x) => `${x.date}: ${valueText(x, unit(m.id))}`),
         outsideRange: m.outside,
         latestFlag: m.lastFlag,
-        ...(m.versusBefore ? {
-          versusBefore: {
-            now: `${r(m.versusBefore.now)} ${unit(m.id)} (${m.versusBefore.nNow === 1 ? "one result" : `geometric mean of ${m.versusBefore.nNow}`})`,
-            before: `${r(m.versusBefore.before)} ${unit(m.id)} (${m.versusBefore.beforeDate ? `last earlier result, ${m.versusBefore.beforeDate}` : m.versusBefore.nBefore === 1 ? "one result in the period before" : `geometric mean of ${m.versusBefore.nBefore} in the period before`})`,
-            changePercent: r(m.versusBefore.changePercent),
-            beyondNormalVariation: m.versusBefore.beyondNormalVariation ?? "unknown (no published or personal variation)",
-          },
-        } : { versusBefore: "nothing earlier to compare with" }),
+        ...(m.versusBefore
+          ? {
+              versusBefore: {
+                now: `${r(m.versusBefore.now)} ${unit(m.id)} (${m.versusBefore.nNow === 1 ? "one result" : `geometric mean of ${m.versusBefore.nNow}`})`,
+                before: `${r(m.versusBefore.before)} ${unit(m.id)} (${m.versusBefore.beforeDate ? `last earlier result, ${m.versusBefore.beforeDate}` : m.versusBefore.nBefore === 1 ? "one result in the period before" : `geometric mean of ${m.versusBefore.nBefore} in the period before`})`,
+                changePercent: r(m.versusBefore.changePercent),
+                beyondNormalVariation: m.versusBefore.beyondNormalVariation ?? "unknown (no published or personal variation)",
+              },
+            }
+          : { versusBefore: "nothing earlier to compare with" }),
         trend: m.trend
-          ? { verdict: m.trend.verdict, percentPerYear: r(m.trend.percentPerYear), interval95: [r(m.trend.low), r(m.trend.high)], tests: m.trend.tests, since: m.trend.from }
+          ? {
+              verdict: m.trend.verdict,
+              percentPerYear: r(m.trend.percentPerYear),
+              interval95: [r(m.trend.low), r(m.trend.high)],
+              tests: m.trend.tests,
+              since: m.trend.from,
+            }
           : "not enough results for a trend (needs 3 over a year or more)",
       })),
     })),
-    notMeasured: t.notMeasured.map((n) => ({ name: n.name, last: `${n.last.date}: ${valueText(n.last, unit(n.id))}`, flag: n.lastFlag, monthsOld: n.monthsOld })),
+    notMeasured: t.notMeasured.map((n) => ({
+      name: n.name,
+      last: `${n.last.date}: ${valueText(n.last, unit(n.id))}`,
+      flag: n.lastFlag,
+      monthsOld: n.monthsOld,
+    })),
     questionsForTheDoctor: t.questions,
     limits: t.limits,
-    howToUse: "Explain these facts plainly. Say when a change can't be told apart from normal variation; never describe a trend that isn't returned, never fill in missing months, and never say what the person has, what causes it or what to take. A critical latest result comes first: contact a doctor. End with the questions for the doctor.",
+    howToUse:
+      "Explain these facts plainly. Say when a change can't be told apart from normal variation; never describe a trend that isn't returned, never fill in missing months, and never say what the person has, what causes it or what to take. A critical latest result comes first: contact a doctor. End with the questions for the doctor.",
   };
 }
 
 /** The app's summary of one blood test (the page shows the same), compact for the model. */
 export function testSummaryFor(s: HealthSnapshot, date?: string) {
   const { defs, nutrients } = knowledge();
-  const t = buildTestSummary({ measurements: s.measurements, defs, profile: s.profile, protocols: s.protocols, nutrients, categoryOrder: CATEGORY_ORDER, ...(date ? { date } : {}) });
+  const t = buildTestSummary({
+    measurements: s.measurements,
+    defs,
+    profile: s.profile,
+    protocols: s.protocols,
+    nutrients,
+    categoryOrder: CATEGORY_ORDER,
+    ...(date ? { date } : {}),
+  });
   if (!t) return { error: "There are no blood tests yet." };
   const item = (x: SummaryResult) => {
     const unit = defs.get(x.id)!.canonicalUnit;
@@ -441,19 +535,29 @@ export function testSummaryFor(s: HealthSnapshot, date?: string) {
     results: t.results,
     inRange: t.inRange,
     critical: t.critical.map(item),
-    ...(t.critical.length ? { criticalNote: "Critical results come first: tell the person to contact a doctor (urgently if unwell) before any other commentary, and keep the rest brief." } : {}),
+    ...(t.critical.length
+      ? {
+          criticalNote:
+            "Critical results come first: tell the person to contact a doctor (urgently if unwell) before any other commentary, and keep the rest brief.",
+        }
+      : {}),
     outsideRange: t.outOfRange.map((g) => ({ category: g.category, results: g.items.map(item) })),
     backInRange: t.backInRange.map((x) => ({ name: x.name, result: valueText(x.measurement, defs.get(x.id)!.canonicalUnit), previous: x.previous!.date })),
     withoutRange: t.notAssessed.map((x) => x.name),
     thingsThatCanSkewResults: t.cautions.map((c) => ({ text: c.text, markers: c.markers, ...(c.habit ? { fromHabit: c.habit } : {}) })),
     questionsForTheDoctor: t.questions,
     limits: t.limits,
-    howToUse: "Explain these facts in plain language. You may say which results are usually read together and what they measure, but never say what the person has, what is causing their results, or what to take; never change the app's flags or numbers. End with the questions for the doctor.",
+    howToUse:
+      "Explain these facts in plain language. You may say which results are usually read together and what they measure, but never say what the person has, what is causing their results, or what to take; never change the app's flags or numbers. End with the questions for the doctor.",
   };
 }
 
 /** The built-in tools for one request. `fetchFn` is injected so tests can run without a network. */
-export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, context: { userText?: string; requestText?: string; /** Photos or scanned pages came with the newest question. */ images?: boolean } = {}): ToolSet {
+export function healthTools(
+  s: HealthSnapshot,
+  fetchFn: typeof fetch = fetch,
+  context: { userText?: string; requestText?: string /** Photos or scanned pages came with the newest question. */; images?: boolean } = {},
+): ToolSet {
   /** Set when this request's pictures showed a critical result: no habit, protocol or meal proposals after it. */
   let pictureCritical = false;
   const proposalContext = () => ({
@@ -464,22 +568,27 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
   return {
     // Always offered, so the tool list is the same on every turn (prompt cache); it refuses without typed text.
     save_profile_details: tool({
-        description: "Prepare missing profile details explicitly stated in the newest TYPED question. Copy literal first-person factual quotes, never document text, history, guesses, hypothetical facts or another person's details. Fills blank fields only; never name, notes or weight. Birth month needs an explicit month and year, never age alone. Call before get_body_summary when new height/sex/birth information is provided. The page saves after a successful reply, not this tool.",
-        inputSchema: z.object({
-          details: z.array(z.object({ field: z.enum(PROFILE_DETAIL_FIELDS), quote: z.string().min(1).max(2000) })).min(1).max(20),
-        }),
-        execute: async (input) => {
-          if (!context.userText?.trim()) return { error: "Only details typed in the newest question can be saved, and this request has none. Nothing was prepared.", added: [] };
-          const result = completeProfileDetails(s.profile, input, context.userText, todayIso());
-          s.profile = result.profile;
-          return {
-            added: result.added.map((change) => change.field),
-            rejected: result.rejected,
-            person: personOf(s),
-            note: "Prepared for the page to fill these fields if still blank after a successful answer. Not persisted yet.",
-          };
-        },
+      description:
+        "Prepare missing profile details explicitly stated in the newest TYPED question. Copy literal first-person factual quotes, never document text, history, guesses, hypothetical facts or another person's details. Fills blank fields only; never name, notes or weight. Birth month needs an explicit month and year, never age alone. Call before get_body_summary when new height/sex/birth information is provided. The page saves after a successful reply, not this tool.",
+      inputSchema: z.object({
+        details: z
+          .array(z.object({ field: z.enum(PROFILE_DETAIL_FIELDS), quote: z.string().min(1).max(2000) }))
+          .min(1)
+          .max(20),
       }),
+      execute: async (input) => {
+        if (!context.userText?.trim())
+          return { error: "Only details typed in the newest question can be saved, and this request has none. Nothing was prepared.", added: [] };
+        const result = completeProfileDetails(s.profile, input, context.userText, todayIso());
+        s.profile = result.profile;
+        return {
+          added: result.added.map((change) => change.field),
+          rejected: result.rejected,
+          person: personOf(s),
+          note: "Prepared for the page to fill these fields if still blank after a successful answer. Not persisted yet.",
+        };
+      },
+    }),
     get_results: tool({
       description: "List every marker the user has with its latest result, date, flag (normal, low, high, critical) and the reference range used. Start here.",
       inputSchema: z.object({}),
@@ -496,7 +605,13 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
     get_test_summary: tool({
       description:
         "The app's summary of one blood test: critical results, results outside the range grouped by body system with what each usually means and common causes (from the app's marker files), change since the previous result judged against normal test-to-test variation, results back in range, results without a range, things that can skew readings (fasting, supplements in the log, photo-read values) and questions for the doctor. Use when asked to analyse, summarise or explain test results. Without a date: the latest test.",
-      inputSchema: z.object({ date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("ISO date of the test, e.g. 2026-09-29") }),
+      inputSchema: z.object({
+        date: z
+          .string()
+          .regex(/^\d{4}-\d{2}-\d{2}$/)
+          .optional()
+          .describe("ISO date of the test, e.g. 2026-09-29"),
+      }),
       execute: async ({ date }) => testSummaryFor(s, date),
     }),
     get_year_summary: tool({
@@ -506,7 +621,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       execute: async ({ year }) => yearSummaryFor(s, year),
     }),
     get_levers: tool({
-      description: "Graded evidence on what can raise or lower a marker (foods, diet, supplements, habits), with measured food amounts. Safety filters for the user's log are already applied.",
+      description:
+        "Graded evidence on what can raise or lower a marker (foods, diet, supplements, habits), with measured food amounts. Safety filters for the user's log are already applied.",
       inputSchema: z.object({ marker: z.string() }),
       execute: async ({ marker }) => {
         const def = findMarker(marker);
@@ -541,12 +657,19 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
                 days: i.days?.length ? i.days : WEEKDAYS,
                 withFood: i.withFood ?? false,
                 ...(i.note ? { note: i.note } : {}),
-                ...(n ? {
-                  nutrient: n.name,
-                  ...(n.researchStatus === "not-reviewed"
-                    ? { researchStatus: n.researchStatus }
-                    : { euReferenceForThisPerson: dailyReference(n, { sex: s.profile.sex, age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined }) }),
-                } : {}),
+                ...(n
+                  ? {
+                      nutrient: n.name,
+                      ...(n.researchStatus === "not-reviewed"
+                        ? { researchStatus: n.researchStatus }
+                        : {
+                            euReferenceForThisPerson: dailyReference(n, {
+                              sex: s.profile.sex,
+                              age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined,
+                            }),
+                          }),
+                    }
+                  : {}),
               };
             }),
             interactionsBetweenItems: pairWarnings(p, nutrients),
@@ -565,12 +688,22 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         items: z
           .array(
             z.object({
-              label: z.string().describe("For record, copy the person's item; for recommend, a plain food, supplement or activity name without medicines or doses"),
-              amount: z.string().optional().describe("Record: only the person's supplied amount. Recommend: general activity duration/frequency examples only; never supplement doses or food amounts."),
+              label: z
+                .string()
+                .describe("For record, copy the person's item; for recommend, a plain food, supplement or activity name without medicines or doses"),
+              amount: z
+                .string()
+                .optional()
+                .describe(
+                  "Record: only the person's supplied amount. Recommend: general activity duration/frequency examples only; never supplement doses or food amounts.",
+                ),
               category: z.enum(["supplement", "diet", "medication", "lifestyle"]),
               when: z.enum(PLAN_TIMES as unknown as [PlanTime, ...PlanTime[]]),
               withFood: z.boolean().optional().describe("True when they said to take it with a meal or food"),
-              days: z.array(z.enum(WEEKDAYS as unknown as [Weekday, ...Weekday[]])).optional().describe("Only when they named days of the week, e.g. ['mon','wed','fri']"),
+              days: z
+                .array(z.enum(WEEKDAYS as unknown as [Weekday, ...Weekday[]]))
+                .optional()
+                .describe("Only when they named days of the week, e.g. ['mon','wed','fri']"),
               note: z.string().optional(),
             }),
           )
@@ -623,7 +756,10 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       inputSchema: z.object({
         intent: z.enum(["record", "recommend"]),
         name: z.string().min(1).max(80),
-        items: z.array(z.object({ foodId: z.string(), grams: z.number().positive().max(2000) })).min(1).max(40),
+        items: z
+          .array(z.object({ foodId: z.string(), grams: z.number().positive().max(2000) }))
+          .min(1)
+          .max(40),
         note: z.string().max(1000).optional(),
       }),
       execute: async (input) => {
@@ -633,7 +769,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const errs = validateMeal({ ...input, id: "x", createdAt: "x" }, db);
         if (errs.length) return { error: `${errs[0]}. Look the food up with find_foods.` };
         if (input.intent === "recommend") {
-          const limits = safetyOf(s).flatMap((id) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+          const limits = safetyOf(s).flatMap((id) => (SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []));
           const block = mealSafetyBlock(input.items, db, limits);
           if (block) return { error: `Discuss this food change with your doctor: ${block}.` };
         }
@@ -661,7 +797,10 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
               name: m.name,
               foods: m.items.map((i) => `${db.foods.find((f) => f[0] === i.foodId)?.[1] ?? i.foodId}: ${i.grams} g`),
               totals: Object.fromEntries(
-                db.keys.map((k) => [k, `${Math.round(t[k]!.amount * 100) / 100} ${db.nutrients[k]!.unit}${t[k]!.measuredIn < t[k]!.of ? ` (measured in ${t[k]!.measuredIn} of ${t[k]!.of} foods)` : ""}`]),
+                db.keys.map((k) => [
+                  k,
+                  `${Math.round(t[k]!.amount * 100) / 100} ${db.nutrients[k]!.unit}${t[k]!.measuredIn < t[k]!.of ? ` (measured in ${t[k]!.measuredIn} of ${t[k]!.of} foods)` : ""}`,
+                ]),
               ),
             };
           }),
@@ -675,12 +814,37 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       inputSchema: z.object({ nutrient: z.string().describe("Name or id, e.g. vitamin D, iron, magnesium") }),
       execute: async ({ nutrient }) => {
         const n = findNutrient(nutrient);
-        if (!n) return { error: `No entry for "${nutrient}". Entries: ${knowledge().nutrients.map((x) => x.name).join(", ")}.` };
-        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
-        const finding = (f: (typeof n.findings)[number]) => ({ outcome: f.outcome, studiedIn: f.population, effect: f.effect, grade: f.grade, whyThisGrade: f.whyThisGrade, summary: f.summary, studies: f.studies.map(cite) });
+        if (!n)
+          return {
+            error: `No entry for "${nutrient}". Entries: ${knowledge()
+              .nutrients.map((x) => x.name)
+              .join(", ")}.`,
+          };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({
+          id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`,
+          title: c.title,
+          year: c.year,
+          type: c.studyType,
+        });
+        const finding = (f: (typeof n.findings)[number]) => ({
+          outcome: f.outcome,
+          studiedIn: f.population,
+          effect: f.effect,
+          grade: f.grade,
+          whyThisGrade: f.whyThisGrade,
+          summary: f.summary,
+          studies: f.studies.map(cite),
+        });
         return {
           ...n,
-          reference: { ...n.reference, note: n.researchStatus === "not-reviewed" ? "This basic guide does not provide reference intakes or upper-limit values." : "EFSA population values for healthy adults. Not a target or a dose for this person.", sources: n.reference.sources.map(cite) },
+          reference: {
+            ...n.reference,
+            note:
+              n.researchStatus === "not-reviewed"
+                ? "This basic guide does not provide reference intakes or upper-limit values."
+                : "EFSA population values for healthy adults. Not a target or a dose for this person.",
+            sources: n.reference.sources.map(cite),
+          },
           findings: n.findings.map(finding),
           ...(n.foodFindings ? { foodFindings: n.foodFindings.map(finding) } : {}),
           sources: n.sources.map(cite),
@@ -694,11 +858,29 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       inputSchema: z.object({ food: z.string().describe("Name or id, e.g. olive oil, blueberries, ginger") }),
       execute: async ({ food }) => {
         const f = findWholeFood(food);
-        if (!f) return { error: `No entry for "${food}". Entries: ${knowledge().wholeFoods.map((x) => x.name).join(", ")}. For nutrients per 100 g of any food, use find_foods.` };
-        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
+        if (!f)
+          return {
+            error: `No entry for "${food}". Entries: ${knowledge()
+              .wholeFoods.map((x) => x.name)
+              .join(", ")}. For nutrients per 100 g of any food, use find_foods.`,
+          };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({
+          id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`,
+          title: c.title,
+          year: c.year,
+          type: c.studyType,
+        });
         return {
           ...f,
-          findings: f.findings.map((x) => ({ outcome: x.outcome, studiedIn: x.population, effect: x.effect, grade: x.grade, whyThisGrade: x.whyThisGrade, summary: x.summary, studies: x.studies.map(cite) })),
+          findings: f.findings.map((x) => ({
+            outcome: x.outcome,
+            studiedIn: x.population,
+            effect: x.effect,
+            grade: x.grade,
+            whyThisGrade: x.whyThisGrade,
+            summary: x.summary,
+            studies: x.studies.map(cite),
+          })),
           visuals: f.visuals.map((v) => ({ ...v, sources: v.sources.map(cite) })),
           sources: f.sources.map(cite),
           safetyNotesFromLog: safetyOf(s).filter((id) => f.whoShouldBeCareful.some((x) => x.safetyId === id)),
@@ -711,11 +893,29 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       inputSchema: z.object({ topic: z.string().describe("Name or id, e.g. sauna, walking, cold shower, red light") }),
       execute: async ({ topic }) => {
         const l = findLifestyle(topic);
-        if (!l) return { error: `No entry for "${topic}". Entries: ${knowledge().lifestyle.map((x) => x.name).join(", ")}.` };
-        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({ id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`, title: c.title, year: c.year, type: c.studyType });
+        if (!l)
+          return {
+            error: `No entry for "${topic}". Entries: ${knowledge()
+              .lifestyle.map((x) => x.name)
+              .join(", ")}.`,
+          };
+        const cite = (c: { pmid?: string; doi?: string; title: string; year: number; studyType: string }) => ({
+          id: c.pmid ? `PMID:${c.pmid}` : `DOI:${c.doi}`,
+          title: c.title,
+          year: c.year,
+          type: c.studyType,
+        });
         return {
           ...l,
-          findings: l.findings.map((f) => ({ outcome: f.outcome, studiedIn: f.population, effect: f.effect, grade: f.grade, whyThisGrade: f.whyThisGrade, summary: f.summary, studies: f.studies.map(cite) })),
+          findings: l.findings.map((f) => ({
+            outcome: f.outcome,
+            studiedIn: f.population,
+            effect: f.effect,
+            grade: f.grade,
+            whyThisGrade: f.whyThisGrade,
+            summary: f.summary,
+            studies: f.studies.map(cite),
+          })),
           visuals: l.visuals.map((v) => ({ ...v, sources: v.sources.map(cite) })),
           sources: l.sources.map(cite),
           safetyNotesFromLog: safetyOf(s).filter((id) => l.whoShouldBeCareful.some((x) => x.safetyId === id)),
@@ -723,7 +923,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
       },
     }),
     get_biological_age: tool({
-      description: "App-computed PhenoAge history and pace, recorded DunedinPACE, and (only when turned on) the country life-table reference and experimental jointly fitted mortality projection, with included/excluded inputs, held-out calibration and limits. Never invent missing weights or a date when off.",
+      description:
+        "App-computed PhenoAge history and pace, recorded DunedinPACE, and (only when turned on) the country life-table reference and experimental jointly fitted mortality projection, with included/excluded inputs, held-out calibration and limits. Never invent missing weights or a date when off.",
       inputSchema: z.object({}),
       execute: async () => biologicalAge(s),
     }),
@@ -735,7 +936,7 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
     }),
     compare_before_after: tool({
       description:
-        "What changed for habits that watch markers (the \"What changed\" part of Habits): before, after, the change, and whether it is bigger than normal test-to-test variation.",
+        'What changed for habits that watch markers (the "What changed" part of Habits): before, after, the change, and whether it is bigger than normal test-to-test variation.',
       inputSchema: z.object({}),
       execute: async () => ({ experiments: experimentResults(s), today: todayIso() }),
     }),
@@ -769,17 +970,34 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         "Show a review card of the results you read from the photos or scanned pages sent with the newest question: a lab report, a health app screen, a blood pressure monitor, a scale. One entry per result. Copy each value, unit and range exactly as printed; never calculate, convert, round or guess, and leave out anything you can't read clearly. The app matches units and flags doubtful values; nothing is saved until the person checks every value against the picture and presses Save. Then answer briefly; don't list every value again. On a follow-up about an open card (a row missed or misread), the same pictures come again: propose only the rows the person asked about.",
       inputSchema: z.object({
         date: z.string().optional().describe("The sample or measurement date printed on the picture, as YYYY-MM-DD. Leave out when none is printed."),
-        results: z.array(z.object({
-          marker: z.string().describe(`The app's marker id (its name in brackets; one marker covers every lab's name for the test): ${[...knowledge().defs.values()].map((d) => `${d.id} (${d.name})`).sort().join(", ")}. Results for other tests: leave them out.`),
-          printed: z.string().optional().describe("The result's line as printed (test name, value, unit, range), shown on the card. Never names, birth dates or ID numbers."),
-          value: z.string().describe("As printed, e.g. '5,4', '<0.3', '8,120', '7 h 12 min'"),
-          unit: z.string().optional().describe("As printed, e.g. 'µmol/L', 'G/l', 'lbs'"),
-          rangeLow: z.string().optional().describe("Lower end of the printed reference range"),
-          rangeHigh: z.string().optional().describe("Upper end of the printed reference range"),
-        })).min(1).max(MAX_PROPOSED_RESULTS),
+        results: z
+          .array(
+            z.object({
+              marker: z.string().describe(
+                `The app's marker id (its name in brackets; one marker covers every lab's name for the test): ${[...knowledge().defs.values()]
+                  .map((d) => `${d.id} (${d.name})`)
+                  .sort()
+                  .join(", ")}. Results for other tests: leave them out.`,
+              ),
+              printed: z
+                .string()
+                .optional()
+                .describe("The result's line as printed (test name, value, unit, range), shown on the card. Never names, birth dates or ID numbers."),
+              value: z.string().describe("As printed, e.g. '5,4', '<0.3', '8,120', '7 h 12 min'"),
+              unit: z.string().optional().describe("As printed, e.g. 'µmol/L', 'G/l', 'lbs'"),
+              rangeLow: z.string().optional().describe("Lower end of the printed reference range"),
+              rangeHigh: z.string().optional().describe("Upper end of the printed reference range"),
+            }),
+          )
+          .min(1)
+          .max(MAX_PROPOSED_RESULTS),
       }),
       execute: async (input) => {
-        if (!context.images) return { error: "This only shows results read from photos or scanned pages sent with the newest question, and it has none. Values the person types are saved by the app itself." };
+        if (!context.images)
+          return {
+            error:
+              "This only shows results read from photos or scanned pages sent with the newest question, and it has none. Values the person types are saved by the app itself.",
+          };
         const r = parseResultProposal(input, knowledge().defs, todayIso());
         if (!r.ok) return { error: r.error };
         const toCheck = r.report.rows.filter((row) => row.problems.length > 0);
@@ -793,7 +1011,8 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
           ...(critical.length
             ? {
                 critical,
-                criticalNote: "These results, as read, are far outside the usual range. The app shows an urgent banner first. Start your answer by saying to contact a doctor now (or emergency services if the person feels unwell) and to check the value against the report; say nothing else about these results, and don't suggest causes or actions.",
+                criticalNote:
+                  "These results, as read, are far outside the usual range. The app shows an urgent banner first. Start your answer by saying to contact a doctor now (or emergency services if the person feels unwell) and to check the value against the report; say nothing else about these results, and don't suggest causes or actions.",
               }
             : {}),
           resultsOnCard: r.report.rows.length,
@@ -819,7 +1038,14 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         return {
           source: res.source,
           total: res.total,
-          studies: res.papers.map((p) => ({ id: p.id, title: p.title, year: p.year, type: p.kind, journal: p.journal, abstract: p.abstract?.slice(0, 1500) ?? null })),
+          studies: res.papers.map((p) => ({
+            id: p.id,
+            title: p.title,
+            year: p.year,
+            type: p.kind,
+            journal: p.journal,
+            abstract: p.abstract?.slice(0, 1500) ?? null,
+          })),
         };
       },
     }),
@@ -831,7 +1057,18 @@ export function healthTools(s: HealthSnapshot, fetchFn: typeof fetch = fetch, co
         const p = await paperById(id, (u, i) => fetchFn(u, i), AbortSignal.timeout(20_000));
         if (!p) return { error: "No study with that ID was found on Europe PMC." };
         return {
-          studies: [{ id: p.id, title: p.title, year: p.year ?? null, type: p.kind, journal: p.journal ?? null, authors: p.authors ?? null, freeFullText: p.openAccess, abstract: p.abstract?.slice(0, 4000) ?? null }],
+          studies: [
+            {
+              id: p.id,
+              title: p.title,
+              year: p.year ?? null,
+              type: p.kind,
+              journal: p.journal ?? null,
+              authors: p.authors ?? null,
+              freeFullText: p.openAccess,
+              abstract: p.abstract?.slice(0, 4000) ?? null,
+            },
+          ],
         };
       },
     }),

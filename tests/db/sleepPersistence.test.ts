@@ -1,11 +1,17 @@
 import "fake-indexeddb/auto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createBackup, parseBackup } from "@bt/shared/core/backup";
 import { sortByDate } from "@bt/shared/core/trends";
 import type { Measurement, SleepSession } from "@bt/shared/core/types";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
-  addMeasurement, addMeasurements, deleteMeasurements, exportAll, importBackup,
-  saveDeviceMeasurements, TrackerDB, updateMeasurement,
+  addMeasurement,
+  addMeasurements,
+  deleteMeasurements,
+  exportAll,
+  importBackup,
+  saveDeviceMeasurements,
+  TrackerDB,
+  updateMeasurement,
 } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
@@ -13,15 +19,22 @@ beforeEach(async () => {
   database = new TrackerDB(`sleep-persistence-${crypto.randomUUID()}`);
   await database.open();
 });
-afterEach(async () => { await database.delete(); });
+afterEach(async () => {
+  await database.delete();
+});
 
 const timing: SleepSession[] = [
   { start: "2026-10-24T23:15:00", end: "2026-10-25T07:30:00", kind: "asleep", source: "Synthetic watch", startOffsetMinutes: 120, endOffsetMinutes: 60 },
   { start: "2026-10-25T14:00:00", end: "2026-10-25T14:30:00", kind: "session", source: "Synthetic watch" },
 ];
 const sleep: Omit<Measurement, "id"> = {
-  biomarkerId: "sleep_duration", date: "2026-10-25", value: 8, originalValue: 480,
-  originalUnit: "min", source: "device", sleepSessions: timing,
+  biomarkerId: "sleep_duration",
+  date: "2026-10-25",
+  value: 8,
+  originalValue: 480,
+  originalUnit: "min",
+  source: "device",
+  sleepSessions: timing,
 };
 const { sleepSessions: _timing, ...durationOnly } = sleep;
 
@@ -50,11 +63,25 @@ describe("sleep timing in stored measurements", () => {
 
   it("retains validated imported timing through note, unit and lab-only edits using the latest stored row", async () => {
     const id = await addMeasurement(sleep, database);
-    await updateMeasurement(id, {
-      ...durationOnly, originalValue: 8, originalUnit: "h", note: "Checked", lab: "Watch export",
-    }, database);
+    await updateMeasurement(
+      id,
+      {
+        ...durationOnly,
+        originalValue: 8,
+        originalUnit: "h",
+        note: "Checked",
+        lab: "Watch export",
+      },
+      database,
+    );
     expect(await database.measurements.get(id)).toEqual({
-      ...sleep, id, savedOrder: 1, originalValue: 8, originalUnit: "h", note: "Checked", lab: "Watch export",
+      ...sleep,
+      id,
+      savedOrder: 1,
+      originalValue: 8,
+      originalUnit: "h",
+      note: "Checked",
+      lab: "Watch export",
     });
     await updateMeasurement(id, durationOnly, database);
     expect(await database.measurements.get(id)).toEqual({ ...sleep, id, savedOrder: 1 });
@@ -66,14 +93,20 @@ describe("sleep timing in stored measurements", () => {
     await saveDeviceMeasurements([{ ...sleep, sleepSessions: replacement }], database);
     await updateMeasurement(id, { ...durationOnly, note: "Edited after reimport" }, database);
     expect(await database.measurements.get(id)).toEqual({
-      ...sleep, id, savedOrder: 1, sleepSessions: replacement, note: "Edited after reimport",
+      ...sleep,
+      id,
+      savedOrder: 1,
+      sleepSessions: replacement,
+      note: "Edited after reimport",
     });
   });
 
   it("rolls a timing-clearing edit back if its write fails", async () => {
     const id = await addMeasurement(sleep, database);
     const original = await database.measurements.get(id);
-    const rejectEdit = () => { throw new Error("Edit failed"); };
+    const rejectEdit = () => {
+      throw new Error("Edit failed");
+    };
     database.measurements.hook("updating", rejectEdit);
     try {
       await expect(updateMeasurement(id, { ...durationOnly, value: 7 }, database)).rejects.toThrow("Edit failed");
@@ -87,23 +120,28 @@ describe("sleep timing in stored measurements", () => {
     const id = await addMeasurement(sleep, database);
     const original = await database.measurements.get(id);
     const injected: unknown[] = [
-      [], null, [{ ...timing[0]!, start: "2026-10-24T22:00:00" }],
+      [],
+      null,
+      [{ ...timing[0]!, start: "2026-10-24T22:00:00" }],
       [{ ...timing[0]!, source: "Another watch" }, timing[1]],
       [{ ...timing[0]!, startOffsetMinutes: 60 }, timing[1]],
     ];
     for (const sleepSessions of injected) {
-      await expect(updateMeasurement(id, { ...sleep, note: "Not saved", sleepSessions } as Omit<Measurement, "id">, database)).rejects.toThrow(/only be changed by importing/);
+      await expect(updateMeasurement(id, { ...sleep, note: "Not saved", sleepSessions } as Omit<Measurement, "id">, database)).rejects.toThrow(
+        /only be changed by importing/,
+      );
       expect(await database.measurements.get(id)).toEqual(original);
     }
   });
 
-  it.each([
-    { value: 7.5 }, { date: "2026-10-26" }, { biomarkerId: "sleep_deep" }, { qualifier: "<" as const },
-  ])("clears stale timing when the reading changes: %j", async (change) => {
-    const id = await addMeasurement(sleep, database);
-    await updateMeasurement(id, { ...sleep, ...change }, database);
-    expect(await database.measurements.get(id)).toEqual({ ...durationOnly, ...change, id, savedOrder: 1 });
-  });
+  it.each([{ value: 7.5 }, { date: "2026-10-26" }, { biomarkerId: "sleep_deep" }, { qualifier: "<" as const }])(
+    "clears stale timing when the reading changes: %j",
+    async (change) => {
+      const id = await addMeasurement(sleep, database);
+      await updateMeasurement(id, { ...sleep, ...change }, database);
+      expect(await database.measurements.get(id)).toEqual({ ...durationOnly, ...change, id, savedOrder: 1 });
+    },
+  );
 
   it("clears timing when a qualifier is removed and never lets an editor attach timing to a duration-only result", async () => {
     const id = await addMeasurement({ ...sleep, qualifier: ">" }, database);
@@ -170,7 +208,9 @@ describe("sleep timing in stored measurements", () => {
   it("rolls back a complete reimport, including timing changes, when any write fails", async () => {
     const id = await addMeasurement(durationOnly, database);
     const original = await database.measurements.get(id);
-    const rejectNewRow = () => { throw new Error("Write failed"); };
+    const rejectNewRow = () => {
+      throw new Error("Write failed");
+    };
     database.measurements.hook("creating", rejectNewRow);
     try {
       await expect(saveDeviceMeasurements([sleep, { ...durationOnly, date: "2026-10-26" }], database)).rejects.toThrow("Write failed");

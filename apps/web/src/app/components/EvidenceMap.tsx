@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutcome, type MapKind } from "@bt/shared/core/evidenceMap";
+import { useEffect, useRef, useState } from "react";
 import { formatDate } from "../format";
+import { More } from "./disclosure";
+import { PaperLink as PreviewPaperLink } from "./PaperLink";
 import { SegmentTabs } from "./SegmentTabs";
 import { useWidth } from "./timeControls";
 import { Button, cx } from "./ui";
-import { PaperLink as PreviewPaperLink } from "./PaperLink";
-import { More } from "./disclosure";
 
 /**
  * How the evidence behind a nutrient's findings was found: every PubMed record searched, the counts left
@@ -36,7 +36,13 @@ const TRIAL_COLOR = "var(--color-age-blood)";
 function PaperLink({ c }: { c: Pick<Chosen, "pmid" | "doi" | "title" | "year" | "firstAuthor" | "journal" | "n"> }) {
   const url = c.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}/` : `https://doi.org/${c.doi}`;
   return (
-    <PreviewPaperLink href={url} source={{ title: c.title, year: c.year, authors: c.firstAuthor, journal: c.journal, n: c.n }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+    <PreviewPaperLink
+      href={url}
+      source={{ title: c.title, year: c.year, authors: c.firstAuthor, journal: c.journal, n: c.n }}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-ink underline-offset-2 hover:underline"
+    >
       {c.title}
     </PreviewPaperLink>
   );
@@ -64,17 +70,41 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
       </div>
 
       <ol className={cx("grid gap-2", c.all !== undefined ? "sm:grid-cols-4" : "sm:grid-cols-3")} aria-label="From every record to the studies used">
-        {c.all !== undefined && <Step big={n(c.all)} text={food ? `records match the searches for these ${claim}s` : `records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`} />}
+        {c.all !== undefined && (
+          <Step
+            big={n(c.all)}
+            text={food ? `records match the searches for these ${claim}s` : `records mention ${map.name}${map.scope ? `, ${map.scope}` : ""}`}
+          />
+        )}
         <Step big={n(c.retrieved)} text="are reviews, randomised trials or guidelines: all downloaded" />
-        <Step big={`${n(c.reviews)} · ${n(c.trials)}`} text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`} />
+        <Step
+          big={`${n(c.reviews)} · ${n(c.trials)}`}
+          text={`reviews · trials in people (${c.animal} animal studies and ${c.retracted} retracted papers left out)`}
+        />
         {o.screening ? (
-          <Step big={`${o.screening.counts.yes}`} text={`${o.screening.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "reviews answer"} the question (${o.label}), of ${o.counts.trialReviews} the rules found`} />
+          <Step
+            big={`${o.screening.counts.yes}`}
+            text={`${o.screening.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "reviews answer"} the question (${o.label}), of ${o.counts.trialReviews} the rules found`}
+          />
         ) : (
-          <Step big={`${o.counts.trialReviews}`} text={food || o.anyDesign ? `systematic reviews of any study design (${o.label}), after the rules below` : `reviews of ${map.name} trials (${o.label}), after the rules below`} />
+          <Step
+            big={`${o.counts.trialReviews}`}
+            text={
+              food || o.anyDesign
+                ? `systematic reviews of any study design (${o.label}), after the rules below`
+                : `reviews of ${map.name} trials (${o.label}), after the rules below`
+            }
+          />
         )}
       </ol>
 
-      <SegmentTabs label={food ? "Claim" : "Outcome"} tabs={map.outcomes.map((x) => ({ value: x.id, label: x.label }))} value={o.id} onChange={setOutcomeId} className="flex flex-col gap-6">
+      <SegmentTabs
+        label={food ? "Claim" : "Outcome"}
+        tabs={map.outcomes.map((x) => ({ value: x.id, label: x.label }))}
+        value={o.id}
+        onChange={setOutcomeId}
+        className="flex flex-col gap-6"
+      >
         <EvidenceOutcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
       </SegmentTabs>
 
@@ -87,16 +117,21 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         <p className="mt-3 font-medium">What the rules can't do yet</p>
         <ul className="mt-1 flex list-disc flex-col gap-1.5 pl-5 text-ink-2">
           <li>
-            The rules and the screening read titles and abstracts, not the full papers. Without screening, a review of blood-sugar control in people
-            who already have diabetes could be chosen for "preventing diabetes". A model can still misjudge a review, so every decision is listed with
-            its reason, and a clinician still has to check them.
+            The rules and the screening read titles and abstracts, not the full papers. Without screening, a review of blood-sugar control in people who already
+            have diabetes could be chosen for "preventing diabetes". A model can still misjudge a review, so every decision is listed with its reason, and a
+            clinician still has to check them.
           </li>
           <li>They don't judge quality (risk of bias), which needs reading each paper's methods.</li>
-          <li>They don't say which way the evidence points: that comes from reading the chosen reviews, as the {kind === "food" ? "verdicts" : "findings"} on this page do.</li>
+          <li>
+            They don't say which way the evidence points: that comes from reading the chosen reviews, as the {kind === "food" ? "verdicts" : "findings"} on this
+            page do.
+          </li>
           <li>Trial sizes and the number of trials a review pooled are read from abstracts and can be missing or off.</li>
           <li>Overlap is not shown: citing a trial in a bibliography does not mean a review included or pooled it.</li>
         </ul>
-        <p className="mt-3 text-sm text-ink-2">The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.</p>
+        <p className="mt-3 text-sm text-ink-2">
+          The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.
+        </p>
       </More>
     </div>
   );
@@ -111,7 +146,19 @@ function Step({ big, text }: { big: string; text: string }) {
   );
 }
 
-export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: EvidenceMapOutcome; name: string; food: boolean; kind: MapKind; citedTitles: Record<string, string> }) {
+export function EvidenceOutcome({
+  o,
+  name,
+  food,
+  kind,
+  citedTitles,
+}: {
+  o: EvidenceMapOutcome;
+  name: string;
+  food: boolean;
+  kind: MapKind;
+  citedTitles: Record<string, string>;
+}) {
   const claim = kind === "food" ? "claim" : "finding";
   const verdict = kind === "food" ? "verdict" : "finding";
   const anyDesign = food || !!o.anyDesign;
@@ -121,15 +168,23 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
     <div className="flex flex-col gap-6">
       {food ? (
         <p className="max-w-3xl">
-          {o.counts.all !== undefined && <>{n(o.counts.all)} records match this {claim}'s search. </>}
+          {o.counts.all !== undefined && (
+            <>
+              {n(o.counts.all)} records match this {claim}'s search.{" "}
+            </>
+          )}
           {n(o.counts.reviews)} systematic reviews and {n(o.counts.trials)} randomised trials in people fit its words
-          {o.screening ? `; ${o.screening.counts.yes} of the reviews ${legacy ? "were historically marked as answering" : "answer"} the question below` : ""}, and {o.counts.largeTrials} trials had 1,000 people or more.
+          {o.screening ? `; ${o.screening.counts.yes} of the reviews ${legacy ? "were historically marked as answering" : "answer"} the question below` : ""},
+          and {o.counts.largeTrials} trials had 1,000 people or more.
         </p>
       ) : (
         <p className="max-w-3xl">
-          {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title;{" "}
-          {o.counts.trialReviews} are {anyDesign ? `systematic reviews of any study design about ${name}` : `reviews of ${name} trials`}{o.screening ? ` (${o.screening.counts.yes} ${legacy ? "historically marked as answering" : "answer"} the question below)` : " eligible under the rules, not screened against the question"}, and{" "}
-          {o.counts.largeTrials} trials had 1,000 people or more.
+          {n(o.counts.reviews)} reviews and {n(o.counts.trials)} randomised trials in people have this outcome in their title; {o.counts.trialReviews} are{" "}
+          {anyDesign ? `systematic reviews of any study design about ${name}` : `reviews of ${name} trials`}
+          {o.screening
+            ? ` (${o.screening.counts.yes} ${legacy ? "historically marked as answering" : "answer"} the question below)`
+            : " eligible under the rules, not screened against the question"}
+          , and {o.counts.largeTrials} trials had 1,000 people or more.
         </p>
       )}
 
@@ -142,7 +197,9 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
         {o.chosenReviews.length === 0 && (
           <p className="max-w-3xl rounded-lg bg-sunken p-3 text-sm">
             <span className="font-medium">No {anyDesign ? "systematic review" : "review of trials"} chosen for this question yet</span>
-            {o.screening && o.screening.counts.unscreened > 0 ? `: ${o.screening.counts.unscreened} eligible reviews still need screening with current inputs.` : " The rules and screening have not selected an answering review."}{" "}
+            {o.screening && o.screening.counts.unscreened > 0
+              ? `: ${o.screening.counts.unscreened} eligible reviews still need screening with current inputs.`
+              : " The rules and screening have not selected an answering review."}{" "}
             {kind === "food"
               ? "The verdict rests on the studies it cites, such as single absorption studies, trials or studies that follow people over time, so it is less certain."
               : "The finding rests on the studies it cites, such as single trials or studies that follow people over time, so it is less certain."}
@@ -167,7 +224,6 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
         {o.newerLargeTrials.length > 0 && <NewerTrials key={o.id} trials={o.newerLargeTrials} />}
       </section>
 
-
       <section className="flex max-w-3xl flex-col gap-2 rounded-lg bg-sunken p-3">
         <h3 className="font-medium">Compared with this page</h3>
         {o.finding ? (
@@ -176,7 +232,13 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
             <ul className="flex flex-col gap-1 text-sm">
               {[...o.page.alsoChosen, ...o.page.citedNotChosen].map((p) => (
                 <li key={p}>
-                  <PreviewPaperLink href={`https://pubmed.ncbi.nlm.nih.gov/${p}/`} source={{ title: citedTitles[p] }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+                  <PreviewPaperLink
+                    href={`https://pubmed.ncbi.nlm.nih.gov/${p}/`}
+                    source={{ title: citedTitles[p] }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-ink underline-offset-2 hover:underline"
+                  >
                     {citedTitles[p] ?? `PMID ${p}`}
                   </PreviewPaperLink>{" "}
                   <span className="text-ink-2">· {o.page.alsoChosen.includes(p) ? "also chosen by the rules" : "not chosen by the rules"}</span>
@@ -185,8 +247,9 @@ export function EvidenceOutcome({ o, name, food, kind, citedTitles }: { o: Evide
             </ul>
             {o.page.chosenNotCited.length > 0 && (
               <p className="text-sm">
-                <span className="font-medium">To check:</span> {o.page.chosenNotCited.length} chosen {o.page.chosenNotCited.length === 1 ? "study isn't" : "studies aren't"} on the
-                page yet. A newer review can change a {verdict}; until someone reads them, the {verdict} stays as written.
+                <span className="font-medium">To check:</span> {o.page.chosenNotCited.length} chosen{" "}
+                {o.page.chosenNotCited.length === 1 ? "study isn't" : "studies aren't"} on the page yet. A newer review can change a {verdict}; until someone
+                reads them, the {verdict} stays as written.
               </p>
             )}
           </>
@@ -206,14 +269,17 @@ function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"
     <>
       <h4 className="mt-2 font-medium">Large trials as new as these reviews</h4>
       <p className="text-sm text-ink-2">
-        Trials of 1,000 people or more with this outcome in the title, from the year of the newest chosen review on. The reviews may not include
-        them yet, and they weren't screened against the question, so some may be about a nearby one.
+        Trials of 1,000 people or more with this outcome in the title, from the year of the newest chosen review on. The reviews may not include them yet, and
+        they weren't screened against the question, so some may be about a nearby one.
       </p>
       <ul className="flex flex-col gap-1.5">
         {shown.map((t) => (
           <li key={t.pmid ?? t.title}>
             <PaperLink c={t} />
-            <span className="text-sm text-ink-2"> · {t.year} · about {n(t.n ?? 0)} people</span>
+            <span className="text-sm text-ink-2">
+              {" "}
+              · {t.year} · about {n(t.n ?? 0)} people
+            </span>
           </li>
         ))}
       </ul>
@@ -247,19 +313,24 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
         ))}
       </dl>
       <p className="text-ink-2">
-        <span className="font-medium text-ink">{yes}</span> {yes === 1 ? "review" : "reviews"} {s.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "answer"} it, {partly} only partly, {no} not.
+        <span className="font-medium text-ink">{yes}</span> {yes === 1 ? "review" : "reviews"}{" "}
+        {s.provenance === "legacy-inputs-unverified" ? "historically marked as answering" : "answer"} it, {partly} only partly, {no} not.
         {unscreened > 0 ? ` ${unscreened} not checked with current inputs.` : ""}{" "}
         {s.provenance === "legacy-inputs-unverified"
           ? `Historical selections are retained for inspection. The exact screening inputs and per-decision model provenance were not recorded, so these decisions are not validated for current inputs. Legacy file attribution: ${s.by} (${formatDate(s.at)}); individual attribution is unknown.`
           : s.decisions?.length
             ? `Only reviews screened as answering with current inputs can be chosen. Checked by ${s.by} (${formatDate(s.at)}).`
-            : "There are no current screening decisions. Eligible reviews must be screened before selection."}
-        {" "}Not yet checked by a clinician.
+            : "There are no current screening decisions. Eligible reviews must be screened before selection."}{" "}
+        Not yet checked by a clinician.
       </p>
       {s.provenance === "current" && s.decisions && s.decisions.length > 0 && (
         <More summary="Each screening decision and its provenance" tone="small">
           <ul className="flex flex-col gap-2 text-sm">
-            {s.decisions.map((d) => <li key={d.pmid}>PMID {d.pmid}: {d.fits} — {d.reason} · {d.by} ({d.at})</li>)}
+            {s.decisions.map((d) => (
+              <li key={d.pmid}>
+                PMID {d.pmid}: {d.fits} — {d.reason} · {d.by} ({d.at})
+              </li>
+            ))}
           </ul>
         </More>
       )}
@@ -268,7 +339,13 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
           <ul className="flex flex-col gap-2.5">
             {s.left.map((r) => (
               <li key={r.pmid} className="text-sm">
-                <PreviewPaperLink href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`} source={{ title: r.title, year: r.year }} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-2 hover:underline">
+                <PreviewPaperLink
+                  href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`}
+                  source={{ title: r.title, year: r.year }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink underline-offset-2 hover:underline"
+                >
                   {r.title}
                 </PreviewPaperLink>
                 <span className="text-ink-2"> · {r.year}</span>
@@ -303,7 +380,9 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
   const y = (v: number) => pad.t + (1 - v / max) * (H - pad.t - pad.b);
   const x = (year: number) => pad.l + (year - first) * bw;
   const maxN = Math.max(1, ...o.largeTrials.map((t) => t.n));
-  const ticks = [first, ...Array.from({ length: Math.floor(years / 5) + 1 }, (_, i) => Math.ceil(first / 5) * 5 + i * 5)].filter((v, i, a) => v <= last && a.indexOf(v) === i);
+  const ticks = [first, ...Array.from({ length: Math.floor(years / 5) + 1 }, (_, i) => Math.ceil(first / 5) * 5 + i * 5)].filter(
+    (v, i, a) => v <= last && a.indexOf(v) === i,
+  );
   return (
     <figure className="flex flex-col gap-2">
       <figcaption className="text-sm font-medium">Reviews and trials on this outcome, by year</figcaption>
@@ -340,7 +419,16 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
             ))}
             {/* Large trials: one dot each, under the axis, sized by the number of people. */}
             {o.largeTrials.map((t, i) => (
-              <circle key={`${t.pmid}-${i}`} cx={x(t.year) + bw / 2} cy={H + 18} r={3 + Math.sqrt(t.n / maxN) * 10} fill="none" stroke="var(--color-ink)" strokeWidth={1.5} opacity={0.7}>
+              <circle
+                key={`${t.pmid}-${i}`}
+                cx={x(t.year) + bw / 2}
+                cy={H + 18}
+                r={3 + Math.sqrt(t.n / maxN) * 10}
+                fill="none"
+                stroke="var(--color-ink)"
+                strokeWidth={1.5}
+                opacity={0.7}
+              >
                 <title>{`${t.year}: ${t.title} (about ${n(t.n)} people)`}</title>
               </circle>
             ))}
@@ -383,4 +471,3 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
     </figure>
   );
 }
-

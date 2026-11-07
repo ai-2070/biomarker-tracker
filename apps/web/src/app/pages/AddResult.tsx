@@ -1,24 +1,37 @@
-import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "@bt/shared/core/dates";
-import { validateManualEntry, type ManualEntryField } from "@bt/shared/core/importers/manual";
-import { flagMeasurement, isCritical, type Flag } from "@bt/shared/core/trends";
-import { listUnits } from "@bt/shared/core/units";
+import { type ManualEntryField, validateManualEntry } from "@bt/shared/core/importers/manual";
+import { type Flag, flagMeasurement, isCritical } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
+import { listUnits } from "@bt/shared/core/units";
+import { type FormEvent, useState } from "react";
 import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
-import { SegmentTabs } from "../components/SegmentTabs";
 import { BodyEntryForm } from "../components/dashboard/BodyEntryForm";
+import { More } from "../components/disclosure";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
+import { SegmentTabs } from "../components/SegmentTabs";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles, linkCardStyles, cx } from "../components/ui";
+import {
+  Button,
+  Card,
+  cx,
+  errorStyles,
+  eyebrowStyles,
+  FlagBadge,
+  helpStyles,
+  inputStyles,
+  labelStyles,
+  linkCardStyles,
+  Notice,
+  PageTitle,
+} from "../components/ui";
 import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
-import { More } from "../components/disclosure";
 
 type Fasted = "yes" | "no" | "unknown";
 
@@ -28,8 +41,18 @@ interface Saved {
 }
 
 const WAYS = [
-  { title: "Import a lab report", text: "A PDF or a photo of your report: all results at once. Photos are read on this device.", to: { name: "import" } as const, icon: FileIcon },
-  { title: "From a device or app", text: "Export files from Apple Health, Garmin, Fitbit, Oura, Samsung, Withings and others.", to: { name: "device-import" } as const, icon: PhoneSyncIcon },
+  {
+    title: "Import a lab report",
+    text: "A PDF or a photo of your report: all results at once. Photos are read on this device.",
+    to: { name: "import" } as const,
+    icon: FileIcon,
+  },
+  {
+    title: "From a device or app",
+    text: "Export files from Apple Health, Garmin, Fitbit, Oura, Samsung, Withings and others.",
+    to: { name: "device-import" } as const,
+    icon: PhoneSyncIcon,
+  },
 ];
 
 type Kind = "blood" | "body";
@@ -137,10 +160,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
       <ul className="mb-8 grid gap-3 sm:grid-cols-2">
         {WAYS.map((w) => (
           <li key={w.title}>
-            <a
-              href={href(w.to)}
-              className={cx("flex h-full items-start gap-3", linkCardStyles)}
-            >
+            <a href={href(w.to)} className={cx("flex h-full items-start gap-3", linkCardStyles)}>
               <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
                 <w.icon />
               </span>
@@ -156,183 +176,183 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
       <h2 className="mb-3 font-serif text-2xl font-normal">Type it in</h2>
       <SegmentTabs
         label="What to add"
-        tabs={KINDS.map((k) => ({ value: k.id, label: <><k.icon width={16} height={16} />{k.label}</> }))}
+        tabs={KINDS.map((k) => ({
+          value: k.id,
+          label: (
+            <>
+              <k.icon width={16} height={16} />
+              {k.label}
+            </>
+          ),
+        }))}
         value={kind}
         onChange={setKind}
         listClassName="mb-4"
       >
-      {kind === "body" ? (
-        <BodyPanel />
-      ) : (
-      <div>
-      <p className="mb-4 max-w-3xl text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
-
-      {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <Card>
-          <form onSubmit={submit} noValidate className="flex flex-col gap-5">
-            <div id="marker-picker">
-              <BiomarkerPicker bloodOnly value={biomarkerId} onChange={chooseMarker} error={errors.biomarkerId} />
-            </div>
-
-            <div className="grid grid-cols-[1fr_9rem] gap-3 sm:grid-cols-[1fr_12rem]">
-              <Field.Root invalid={!!errors.value} className="flex min-w-0 flex-col gap-1.5">
-                <Field.Label className={labelStyles}>Result</Field.Label>
-                <Field.Control
-                  value={value}
-                  onValueChange={(v) => {
-                    setValue(v);
-                    setWarnings([]);
-                  }}
-                  inputMode="decimal"
-                  autoComplete="off"
-                  placeholder="e.g. 5.4"
-                  className={inputStyles}
-                />
-                <Field.Error match={!!errors.value} className={errorStyles}>
-                  {errors.value}
-                </Field.Error>
-              </Field.Root>
-              <div className="flex min-w-0 flex-col gap-1.5">
-                <UnitSelect
-                  label="Unit"
-                  units={def ? listUnits(def) : []}
-                  value={unit}
-                  onChange={(u) => {
-                    setUnit(u);
-                    setWarnings([]);
-                  }}
-                  disabled={!def}
-                />
-                {errors.unit && <p className={errorStyles}>{errors.unit}</p>}
-              </div>
-            </div>
-            <p className={`${helpStyles} -mt-3`}>
-              If your report says something like "&lt;0.3", type it exactly like that.
+        {kind === "body" ? (
+          <BodyPanel />
+        ) : (
+          <div>
+            <p className="mb-4 max-w-3xl text-ink-2">
+              Copy one value from your lab report. You can add several results from the same report one after another.
             </p>
 
-            <Field.Root invalid={!!errors.date} className="flex flex-col gap-1.5">
-              <Field.Label className={labelStyles}>Date of the blood test</Field.Label>
-              <Field.Control
-                type="date"
-                value={date}
-                max={today}
-                onValueChange={setDate}
-                className={`${inputStyles} sm:max-w-56`}
-              />
-              <Field.Error match={!!errors.date} className={errorStyles}>
-                {errors.date}
-              </Field.Error>
-            </Field.Root>
-
-            <More summary="More details (optional)" boxed>
-              <div className="flex flex-col gap-5 border-t border-line p-3">
-                <div className="flex flex-col gap-1.5">
-                  <span className={labelStyles}>Lab's reference range</span>
-                  <span className={helpStyles}>
-                    Printed next to the result on most reports. Use the same unit as the result. If you leave it empty, a typical
-                    adult range is used.
-                  </span>
-                  <div className="grid grid-cols-2 gap-3">
-                    <Field.Root invalid={!!errors.labLow} className="flex flex-col gap-1">
-                      <Field.Label className="text-sm text-ink-2">From</Field.Label>
-                      <Field.Control value={labLow} onValueChange={setLabLow} inputMode="decimal" className={inputStyles} />
-                      <Field.Error match={!!errors.labLow} className={errorStyles}>
-                        {errors.labLow}
-                      </Field.Error>
-                    </Field.Root>
-                    <Field.Root invalid={!!errors.labHigh} className="flex flex-col gap-1">
-                      <Field.Label className="text-sm text-ink-2">To</Field.Label>
-                      <Field.Control value={labHigh} onValueChange={setLabHigh} inputMode="decimal" className={inputStyles} />
-                      <Field.Error match={!!errors.labHigh} className={errorStyles}>
-                        {errors.labHigh}
-                      </Field.Error>
-                    </Field.Root>
+            {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
+              <Card>
+                <form onSubmit={submit} noValidate className="flex flex-col gap-5">
+                  <div id="marker-picker">
+                    <BiomarkerPicker bloodOnly value={biomarkerId} onChange={chooseMarker} error={errors.biomarkerId} />
                   </div>
-                </div>
 
-                <ChoiceGroup<Fasted>
-                  label="Were you fasting?"
-                  help="No food for at least 8 hours before the test. This matters for glucose and triglycerides."
-                  value={fasted}
-                  onChange={setFasted}
-                  options={[
-                    { value: "yes", label: "Yes" },
-                    { value: "no", label: "No" },
-                    { value: "unknown", label: "Not sure" },
-                  ]}
-                />
+                  <div className="grid grid-cols-[1fr_9rem] gap-3 sm:grid-cols-[1fr_12rem]">
+                    <Field.Root invalid={!!errors.value} className="flex min-w-0 flex-col gap-1.5">
+                      <Field.Label className={labelStyles}>Result</Field.Label>
+                      <Field.Control
+                        value={value}
+                        onValueChange={(v) => {
+                          setValue(v);
+                          setWarnings([]);
+                        }}
+                        inputMode="decimal"
+                        autoComplete="off"
+                        placeholder="e.g. 5.4"
+                        className={inputStyles}
+                      />
+                      <Field.Error match={!!errors.value} className={errorStyles}>
+                        {errors.value}
+                      </Field.Error>
+                    </Field.Root>
+                    <div className="flex min-w-0 flex-col gap-1.5">
+                      <UnitSelect
+                        label="Unit"
+                        units={def ? listUnits(def) : []}
+                        value={unit}
+                        onChange={(u) => {
+                          setUnit(u);
+                          setWarnings([]);
+                        }}
+                        disabled={!def}
+                      />
+                      {errors.unit && <p className={errorStyles}>{errors.unit}</p>}
+                    </div>
+                  </div>
+                  <p className={`${helpStyles} -mt-3`}>If your report says something like "&lt;0.3", type it exactly like that.</p>
 
-                <Field.Root className="flex flex-col gap-1.5">
-                  <Field.Label className={labelStyles}>Lab name</Field.Label>
-                  <Field.Control value={lab} onValueChange={setLab} autoComplete="off" className={inputStyles} />
-                </Field.Root>
+                  <Field.Root invalid={!!errors.date} className="flex flex-col gap-1.5">
+                    <Field.Label className={labelStyles}>Date of the blood test</Field.Label>
+                    <Field.Control type="date" value={date} max={today} onValueChange={setDate} className={`${inputStyles} sm:max-w-56`} />
+                    <Field.Error match={!!errors.date} className={errorStyles}>
+                      {errors.date}
+                    </Field.Error>
+                  </Field.Root>
 
-                <Field.Root className="flex flex-col gap-1.5">
-                  <Field.Label className={labelStyles}>Note</Field.Label>
-                  <Field.Control
-                    render={<textarea rows={2} />}
-                    value={note}
-                    onValueChange={setNote}
-                    placeholder="e.g. had a cold that week"
-                    className={`${inputStyles} py-2`}
-                  />
-                </Field.Root>
-              </div>
-            </More>
-
-            {warnings.length > 0 && (
-              <Notice tone="warn" title="Please check the unit" role="alert">
-                {warnings.map((w) => (
-                  <p key={w}>{w}</p>
-                ))}
-                <p className="mt-1">If the value and unit are correct, press "Save anyway".</p>
-              </Notice>
-            )}
-
-            <div className="flex flex-wrap gap-2">
-              <Button type="submit" disabled={saving}>
-                {warnings.length > 0 ? "Save anyway" : "Save result"}
-              </Button>
-              <a href={href({ name: "overview" })} className="inline-flex min-h-11 items-center px-3 text-ink-2 underline-offset-2 hover:underline">
-                Done
-              </a>
-            </div>
-          </form>
-        </Card>
-
-        <aside aria-live="polite" className="flex flex-col gap-2">
-          {saved.length > 0 && (
-            <>
-              <h2 className={eyebrowStyles}>Saved just now</h2>
-              <ul className="flex flex-col gap-2">
-                {saved.map(({ measurement: m, flag }) => {
-                  const d = BIOMARKER_MAP.get(m.biomarkerId)!;
-                  return (
-                    <li key={m.id}>
-                      <a
-                        href={href({ name: "marker", id: d.id })}
-                        className="flex items-center justify-between gap-2 rounded-lg border border-line bg-surface p-3 no-underline hover:bg-sunken"
-                      >
-                        <span className="min-w-0">
-                          <span className="block truncate font-medium text-ink">{fullName(d)}</span>
-                          <span className="text-sm text-ink-2">
-                            {showMeasurement(d, m, d.canonicalUnit)} {valueUnit(d, d.canonicalUnit)} ·{" "}
-                            {formatDate(m.date)}
-                          </span>
+                  <More summary="More details (optional)" boxed>
+                    <div className="flex flex-col gap-5 border-t border-line p-3">
+                      <div className="flex flex-col gap-1.5">
+                        <span className={labelStyles}>Lab's reference range</span>
+                        <span className={helpStyles}>
+                          Printed next to the result on most reports. Use the same unit as the result. If you leave it empty, a typical adult range is used.
                         </span>
-                        <FlagBadge flag={flag} />
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
-        </aside>
-      </div>
-      </div>
-      )}
+                        <div className="grid grid-cols-2 gap-3">
+                          <Field.Root invalid={!!errors.labLow} className="flex flex-col gap-1">
+                            <Field.Label className="text-sm text-ink-2">From</Field.Label>
+                            <Field.Control value={labLow} onValueChange={setLabLow} inputMode="decimal" className={inputStyles} />
+                            <Field.Error match={!!errors.labLow} className={errorStyles}>
+                              {errors.labLow}
+                            </Field.Error>
+                          </Field.Root>
+                          <Field.Root invalid={!!errors.labHigh} className="flex flex-col gap-1">
+                            <Field.Label className="text-sm text-ink-2">To</Field.Label>
+                            <Field.Control value={labHigh} onValueChange={setLabHigh} inputMode="decimal" className={inputStyles} />
+                            <Field.Error match={!!errors.labHigh} className={errorStyles}>
+                              {errors.labHigh}
+                            </Field.Error>
+                          </Field.Root>
+                        </div>
+                      </div>
+
+                      <ChoiceGroup<Fasted>
+                        label="Were you fasting?"
+                        help="No food for at least 8 hours before the test. This matters for glucose and triglycerides."
+                        value={fasted}
+                        onChange={setFasted}
+                        options={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                          { value: "unknown", label: "Not sure" },
+                        ]}
+                      />
+
+                      <Field.Root className="flex flex-col gap-1.5">
+                        <Field.Label className={labelStyles}>Lab name</Field.Label>
+                        <Field.Control value={lab} onValueChange={setLab} autoComplete="off" className={inputStyles} />
+                      </Field.Root>
+
+                      <Field.Root className="flex flex-col gap-1.5">
+                        <Field.Label className={labelStyles}>Note</Field.Label>
+                        <Field.Control
+                          render={<textarea rows={2} />}
+                          value={note}
+                          onValueChange={setNote}
+                          placeholder="e.g. had a cold that week"
+                          className={`${inputStyles} py-2`}
+                        />
+                      </Field.Root>
+                    </div>
+                  </More>
+
+                  {warnings.length > 0 && (
+                    <Notice tone="warn" title="Please check the unit" role="alert">
+                      {warnings.map((w) => (
+                        <p key={w}>{w}</p>
+                      ))}
+                      <p className="mt-1">If the value and unit are correct, press "Save anyway".</p>
+                    </Notice>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    <Button type="submit" disabled={saving}>
+                      {warnings.length > 0 ? "Save anyway" : "Save result"}
+                    </Button>
+                    <a href={href({ name: "overview" })} className="inline-flex min-h-11 items-center px-3 text-ink-2 underline-offset-2 hover:underline">
+                      Done
+                    </a>
+                  </div>
+                </form>
+              </Card>
+
+              <aside aria-live="polite" className="flex flex-col gap-2">
+                {saved.length > 0 && (
+                  <>
+                    <h2 className={eyebrowStyles}>Saved just now</h2>
+                    <ul className="flex flex-col gap-2">
+                      {saved.map(({ measurement: m, flag }) => {
+                        const d = BIOMARKER_MAP.get(m.biomarkerId)!;
+                        return (
+                          <li key={m.id}>
+                            <a
+                              href={href({ name: "marker", id: d.id })}
+                              className="flex items-center justify-between gap-2 rounded-lg border border-line bg-surface p-3 no-underline hover:bg-sunken"
+                            >
+                              <span className="min-w-0">
+                                <span className="block truncate font-medium text-ink">{fullName(d)}</span>
+                                <span className="text-sm text-ink-2">
+                                  {showMeasurement(d, m, d.canonicalUnit)} {valueUnit(d, d.canonicalUnit)} · {formatDate(m.date)}
+                                </span>
+                              </span>
+                              <FlagBadge flag={flag} />
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                )}
+              </aside>
+            </div>
+          </div>
+        )}
       </SegmentTabs>
     </>
   );

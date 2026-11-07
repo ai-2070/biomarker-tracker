@@ -1,11 +1,14 @@
-import { useId } from "react";
 import { Combobox } from "@base-ui/react/combobox";
 import type { BiomarkerDef } from "@bt/shared/core/types";
+import { useId } from "react";
 import { BIOMARKERS, BLOOD_MARKERS, fullName } from "../knowledge";
 import { CheckIcon, ChevronDownIcon, cx, errorStyles, labelStyles } from "./ui";
 
 function normalize(s: string): string {
-  return s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  return s
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
 }
 
 /** Match on name, abbreviation and any alias, so lab spellings ("Kalium", "LDL-C") work. */
@@ -59,10 +62,7 @@ export function BiomarkerPicker({
             aria-describedby={error ? errorId : undefined}
             className="h-11 w-full min-w-0 rounded-lg bg-transparent pr-11 pl-3 text-base text-ink outline-none placeholder:text-muted"
           />
-          <Combobox.Trigger
-            aria-label="Show all markers"
-            className="absolute right-0 flex h-11 w-11 items-center justify-center text-ink-2"
-          >
+          <Combobox.Trigger aria-label="Show all markers" className="absolute right-0 flex h-11 w-11 items-center justify-center text-ink-2">
             <ChevronDownIcon />
           </Combobox.Trigger>
         </Combobox.InputGroup>
@@ -77,9 +77,7 @@ export function BiomarkerPicker({
         <Combobox.Positioner className="z-50 outline-none" sideOffset={4}>
           <Combobox.Popup className="w-[var(--anchor-width)] max-w-[var(--available-width)] origin-[var(--transform-origin)] overflow-hidden rounded-lg border border-line bg-surface text-ink shadow-lg transition-[scale,opacity] duration-100 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
             <Combobox.Empty>
-              <div className="px-3 py-4 text-ink-2">
-                No marker found. More markers will be added over time.
-              </div>
+              <div className="px-3 py-4 text-ink-2">No marker found. More markers will be added over time.</div>
             </Combobox.Empty>
             <Combobox.List className="max-h-[min(22rem,var(--available-height))] overflow-y-auto overscroll-contain py-1 outline-0 data-empty:p-0">
               {(d: BiomarkerDef) => (

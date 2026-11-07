@@ -1,8 +1,8 @@
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { validateComparisonTopic, type ComparisonTopicFile } from "@bt/shared/core/foodComparison";
+import { type ComparisonTopicFile, validateComparisonTopic } from "@bt/shared/core/foodComparison";
 import { PRESCRIBING } from "@bt/shared/core/nutrients";
+import { describe, expect, it } from "vitest";
 
 const DIR = join(import.meta.dirname, "..", "..", "knowledge", "food-comparison");
 const files = existsSync(DIR)
@@ -25,6 +25,13 @@ describe("knowledge base: animal foods, fruit and plants compared", () => {
     for (const c of files.flatMap((f) => f.json.claims)) expect(c.bottomLine, c.id).toBeTruthy();
   });
   it("rejects claims without sources", () => {
-    expect(validateComparisonTopic({ topic: "safety", title: "T", intro: "I", claims: [{ id: "x", claim: "c", verdict: "supported", grade: "high", favours: "neither", summary: "s", whyThisGrade: ["r"], studies: [] }] })).toContain("claim 1: needs at least one study");
+    expect(
+      validateComparisonTopic({
+        topic: "safety",
+        title: "T",
+        intro: "I",
+        claims: [{ id: "x", claim: "c", verdict: "supported", grade: "high", favours: "neither", summary: "s", whyThisGrade: ["r"], studies: [] }],
+      }),
+    ).toContain("claim 1: needs at least one study");
   });
 });

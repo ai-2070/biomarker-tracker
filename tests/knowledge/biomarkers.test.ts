@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { foldLabName } from "@bt/shared/core/importers/labText";
 import { validateBiomarkerDef } from "@bt/shared/core/knowledge";
 import type { BiomarkerDef } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { loadKnowledgeFiles } from "../helpers";
 
 const files = loadKnowledgeFiles();
@@ -49,7 +49,9 @@ describe("knowledge base: biomarkers", () => {
       vitamins: ["vitamin_d", "b12", "folate"],
       inflammation: ["crp_hs"],
     };
-    const missing = Object.values(groups).flat().filter((id) => !ids.has(id));
+    const missing = Object.values(groups)
+      .flat()
+      .filter((id) => !ids.has(id));
     expect(missing).toEqual([]);
   });
 
@@ -83,9 +85,7 @@ describe("validateBiomarkerDef", () => {
     expect(errs).toContain("source 1 needs a pmid or doi");
   });
   it("requires the canonical unit to have factor 1", () => {
-    expect(validateBiomarkerDef({ ...valid, conversions: { [valid.canonicalUnit]: 2 } })).toContain(
-      "the canonical unit must have conversion factor 1",
-    );
+    expect(validateBiomarkerDef({ ...valid, conversions: { [valid.canonicalUnit]: 2 } })).toContain("the canonical unit must have conversion factor 1");
   });
   it("rejects inverted ranges", () => {
     expect(validateBiomarkerDef({ ...valid, defaultRanges: [{ low: 5, high: 1 }] })).toContain("range low must be below high");

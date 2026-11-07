@@ -1,4 +1,10 @@
-const words = (text: string): string[] => text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/['’]/g, "").match(/[\p{L}\p{N}]+/gu) ?? [];
+const words = (text: string): string[] =>
+  text
+    .normalize("NFD")
+    .replace(/\p{M}/gu, "")
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .match(/[\p{L}\p{N}]+/gu) ?? [];
 
 /** Search catalogue names without inventing guide content or searchable health claims. */
 export function searchKnowledgeNames<T extends { name: string }>(entries: readonly T[], query: string): readonly T[] {

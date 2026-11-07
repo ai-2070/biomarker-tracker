@@ -2,13 +2,13 @@
 // until it stops calling tools (a claim check also stops once its assessment is submitted); the time limit is
 // the caller's signal (10 minutes). Text and tool calls are reported as they happen (onEvent); the reply is
 // built from the same results as before, after the stream ends.
-import { isLoopFinished, streamText, type ModelMessage, type StopCondition, type ToolSet } from "ai";
+import { isLoopFinished, type ModelMessage, type StopCondition, streamText, type ToolSet } from "ai";
 import { describeModelError, type Ready } from "../models";
-import { studyIdsFromTool, toolStep, validateToolResult, type ToolStep } from "../steps";
+import { studyIdsFromTool, type ToolStep, toolStep, validateToolResult } from "../steps";
 import type { AssistantReply } from "./ask";
 import { cacheLayout, mergeProviderOptions } from "./cache";
 import type { ClaimReview } from "./claimReview";
-import { noEvents, toolFinished, toolStarted, type OnEvent } from "./events";
+import { noEvents, type OnEvent, toolFinished, toolStarted } from "./events";
 import type { PromptParts } from "./prompt";
 
 export function stopCondition(claim?: ClaimReview): StopCondition<ToolSet> {

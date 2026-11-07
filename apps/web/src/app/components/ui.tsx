@@ -1,5 +1,5 @@
-import type { ComponentProps, ReactNode } from "react";
 import type { Flag } from "@bt/shared/core/trends";
+import type { ComponentProps, ReactNode } from "react";
 import { FLAG_LABEL } from "../format";
 
 export function cx(...parts: (string | false | null | undefined)[]): string {
@@ -63,13 +63,7 @@ const flagIcon: Record<Flag, string> = {
 /** Status is always icon + text, never colour alone. */
 export function FlagBadge({ flag, className }: { flag: Flag; className?: string }) {
   return (
-    <span
-      className={cx(
-        "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-sm font-medium whitespace-nowrap",
-        flagStyle[flag],
-        className,
-      )}
-    >
+    <span className={cx("inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-sm font-medium whitespace-nowrap", flagStyle[flag], className)}>
       <span aria-hidden="true" className="font-bold">
         {flagIcon[flag]}
       </span>
@@ -86,7 +80,13 @@ const toneStyle: Record<Tone, string> = {
   danger: "border-danger/40 bg-danger-soft text-ink",
 };
 
-export function Notice({ tone = "info", title, children, className, role }: {
+export function Notice({
+  tone = "info",
+  title,
+  children,
+  className,
+  role,
+}: {
   tone?: Tone;
   title?: ReactNode;
   children?: ReactNode;
@@ -116,7 +116,8 @@ export const eyebrowSmallStyles = "font-mono text-[11px] font-medium tracking-[0
 /** The card look on any element (Card is a <section> with padding): add padding and layout. */
 export const cardStyles = "rounded-xl border border-line bg-surface";
 /** A card that is a link: lifts a little on hover. Add layout (flex, gap). */
-export const linkCardStyles = "rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm";
+export const linkCardStyles =
+  "rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm";
 /** A Base UI Dialog.Popup in the middle of the screen. Add a width, e.g. w-[34rem]. */
 export const dialogStyles =
   "fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0";

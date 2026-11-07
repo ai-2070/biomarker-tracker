@@ -1,7 +1,7 @@
-import { BrainIcon } from "../../components/icons";
 import { CitedAnswer } from "../../components/CitedAnswer";
-import type { Step, Turn } from "../store";
 import { More } from "../../components/disclosure";
+import { BrainIcon } from "../../components/icons";
+import type { Step, Turn } from "../store";
 
 export const TOOL_TEXT: Record<string, string> = {
   get_results: "Looked at your results",
@@ -47,12 +47,18 @@ export function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live"
         </p>
       )}
       {/* Not read out word by word; the status line below says what is happening. */}
-      {turn.text && <div aria-live="off"><CitedAnswer text={turn.text} allowed={checked} /></div>}
+      {turn.text && (
+        <div aria-live="off">
+          <CitedAnswer text={turn.text} allowed={checked} />
+        </div>
+      )}
       {turn.steps.length > 0 && (
         <ul aria-live="off" className="flex flex-col gap-1 border-l-2 border-line pl-3 text-sm text-ink-2">
           {turn.steps.map((step, i) => (
             <li key={i} className="flex items-baseline gap-2">
-              <span aria-hidden="true" className={step.success === undefined ? "text-accent" : step.success ? "text-ok" : "text-warn"}>{step.success === undefined ? "•" : step.success ? "✓" : "!"}</span>
+              <span aria-hidden="true" className={step.success === undefined ? "text-accent" : step.success ? "text-ok" : "text-warn"}>
+                {step.success === undefined ? "•" : step.success ? "✓" : "!"}
+              </span>
               <span>{step.server ? `Using ${step.server}: ${step.tool}` : (TOOL_TEXT[step.tool] ?? step.tool)}</span>
               <span className="sr-only">{step.success === undefined ? "running" : step.success ? "done" : "didn't work"}</span>
             </li>
@@ -74,11 +80,20 @@ export function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live"
 export function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; error: string }[] }) {
   if (steps.length === 0 && failed.length === 0) return null;
   return (
-    <More summary={<>{steps.length} {steps.length === 1 ? "step" : "steps"}</>} tone="label" className="text-sm text-ink-2">
+    <More
+      summary={
+        <>
+          {steps.length} {steps.length === 1 ? "step" : "steps"}
+        </>
+      }
+      tone="label"
+      className="text-sm text-ink-2"
+    >
       <ul className="flex flex-col gap-1 border-l-2 border-line pb-1 pl-3">
         {steps.map((s, i) => (
           <li key={i}>
-            {s.server ? `Used ${s.server}: ${s.tool}` : (TOOL_TEXT[s.tool] ?? s.tool)} {s.input !== "{}" && <span className="font-mono text-xs break-all">{s.input}</span>}
+            {s.server ? `Used ${s.server}: ${s.tool}` : (TOOL_TEXT[s.tool] ?? s.tool)}{" "}
+            {s.input !== "{}" && <span className="font-mono text-xs break-all">{s.input}</span>}
           </li>
         ))}
         {failed.map((f) => (

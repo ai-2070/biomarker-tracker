@@ -9,352 +9,154 @@
         "displayName": "Ground",
         "canonical": "#f4f6f7",
         "dark": "#121317",
-        "tonalRamp": [
-          "#1d2224",
-          "#343a3d",
-          "#4f5659",
-          "#6d7477",
-          "#8e9598",
-          "#b2b8bb",
-          "#d6dbdd",
-          "#f4f6f7"
-        ]
+        "tonalRamp": ["#1d2224", "#343a3d", "#4f5659", "#6d7477", "#8e9598", "#b2b8bb", "#d6dbdd", "#f4f6f7"]
       },
       "page": {
         "role": "neutral",
         "displayName": "Page",
         "canonical": "#ffffff",
         "dark": "#15161a",
-        "tonalRamp": [
-          "#1f1f1f",
-          "#3b3b3b",
-          "#5a5a5a",
-          "#7a7a7a",
-          "#9c9c9c",
-          "#bfbfbf",
-          "#e2e2e2",
-          "#ffffff"
-        ]
+        "tonalRamp": ["#1f1f1f", "#3b3b3b", "#5a5a5a", "#7a7a7a", "#9c9c9c", "#bfbfbf", "#e2e2e2", "#ffffff"]
       },
       "surface": {
         "role": "neutral",
         "displayName": "Paper",
         "canonical": "#ffffff",
         "dark": "#1e1f24",
-        "tonalRamp": [
-          "#1f1f1f",
-          "#3b3b3b",
-          "#5a5a5a",
-          "#7a7a7a",
-          "#9c9c9c",
-          "#bfbfbf",
-          "#e2e2e2",
-          "#ffffff"
-        ]
+        "tonalRamp": ["#1f1f1f", "#3b3b3b", "#5a5a5a", "#7a7a7a", "#9c9c9c", "#bfbfbf", "#e2e2e2", "#ffffff"]
       },
       "sunken": {
         "role": "neutral",
         "displayName": "Well",
         "canonical": "#f5f7f9",
         "dark": "#26272d",
-        "tonalRamp": [
-          "#1c2126",
-          "#333a40",
-          "#4e565d",
-          "#6c747b",
-          "#8d959c",
-          "#b1b8be",
-          "#d6dce1",
-          "#f5f7f9"
-        ]
+        "tonalRamp": ["#1c2126", "#333a40", "#4e565d", "#6c747b", "#8d959c", "#b1b8be", "#d6dce1", "#f5f7f9"]
       },
       "ink": {
         "role": "neutral",
         "displayName": "Ink",
         "canonical": "#12161b",
         "dark": "#eceae3",
-        "tonalRamp": [
-          "#12161b",
-          "#2a3038",
-          "#454c56",
-          "#636b76",
-          "#848c97",
-          "#a8afb8",
-          "#cdd2d8",
-          "#eef0f2"
-        ]
+        "tonalRamp": ["#12161b", "#2a3038", "#454c56", "#636b76", "#848c97", "#a8afb8", "#cdd2d8", "#eef0f2"]
       },
       "ink-2": {
         "role": "neutral",
         "displayName": "Ink 2",
         "canonical": "#545b65",
         "dark": "#a3a098",
-        "tonalRamp": [
-          "#14171b",
-          "#2b3036",
-          "#434a53",
-          "#545b65",
-          "#7d848d",
-          "#a3a9b0",
-          "#c9cdd2",
-          "#eef0f2"
-        ]
+        "tonalRamp": ["#14171b", "#2b3036", "#434a53", "#545b65", "#7d848d", "#a3a9b0", "#c9cdd2", "#eef0f2"]
       },
       "muted": {
         "role": "neutral",
         "displayName": "Muted (placeholders)",
         "canonical": "#69707a",
         "dark": "#94918a",
-        "tonalRamp": [
-          "#15181c",
-          "#2d3238",
-          "#474d55",
-          "#69707a",
-          "#8a9098",
-          "#aeb3b9",
-          "#d2d5d9",
-          "#f0f1f3"
-        ]
+        "tonalRamp": ["#15181c", "#2d3238", "#474d55", "#69707a", "#8a9098", "#aeb3b9", "#d2d5d9", "#f0f1f3"]
       },
       "line": {
         "role": "neutral",
         "displayName": "Hairline",
         "canonical": "#e4e7eb",
         "dark": "#2c2d33",
-        "tonalRamp": [
-          "#1a1d21",
-          "#33373d",
-          "#50555c",
-          "#70757d",
-          "#92979e",
-          "#b6bac0",
-          "#e4e7eb",
-          "#f6f7f8"
-        ]
+        "tonalRamp": ["#1a1d21", "#33373d", "#50555c", "#70757d", "#92979e", "#b6bac0", "#e4e7eb", "#f6f7f8"]
       },
       "line-strong": {
         "role": "neutral",
         "displayName": "Hairline Strong",
         "canonical": "#cfd4da",
         "dark": "#3d3e45",
-        "tonalRamp": [
-          "#191c20",
-          "#31363c",
-          "#4d535a",
-          "#6c727a",
-          "#8d939a",
-          "#afb4ba",
-          "#cfd4da",
-          "#eef0f2"
-        ]
+        "tonalRamp": ["#191c20", "#31363c", "#4d535a", "#6c727a", "#8d939a", "#afb4ba", "#cfd4da", "#eef0f2"]
       },
       "accent": {
         "role": "primary",
         "displayName": "Chart Green",
         "canonical": "#17785d",
         "dark": "#3dbf98",
-        "tonalRamp": [
-          "#062a20",
-          "#0b4535",
-          "#11604a",
-          "#17785d",
-          "#2d9a7a",
-          "#5fbd9e",
-          "#a3dcc8",
-          "#e8f5f0"
-        ]
+        "tonalRamp": ["#062a20", "#0b4535", "#11604a", "#17785d", "#2d9a7a", "#5fbd9e", "#a3dcc8", "#e8f5f0"]
       },
       "accent-ink": {
         "role": "primary",
         "displayName": "On Accent",
         "canonical": "#ffffff",
         "dark": "#0f1013",
-        "tonalRamp": [
-          "#1f1f1f",
-          "#3b3b3b",
-          "#5a5a5a",
-          "#7a7a7a",
-          "#9c9c9c",
-          "#bfbfbf",
-          "#e2e2e2",
-          "#ffffff"
-        ]
+        "tonalRamp": ["#1f1f1f", "#3b3b3b", "#5a5a5a", "#7a7a7a", "#9c9c9c", "#bfbfbf", "#e2e2e2", "#ffffff"]
       },
       "accent-soft": {
         "role": "primary",
         "displayName": "Mint Wash",
         "canonical": "#e8f5f0",
         "dark": "#15302a",
-        "tonalRamp": [
-          "#062a20",
-          "#0b4535",
-          "#11604a",
-          "#17785d",
-          "#2d9a7a",
-          "#5fbd9e",
-          "#a3dcc8",
-          "#e8f5f0"
-        ]
+        "tonalRamp": ["#062a20", "#0b4535", "#11604a", "#17785d", "#2d9a7a", "#5fbd9e", "#a3dcc8", "#e8f5f0"]
       },
       "chart-line": {
         "role": "primary",
         "displayName": "Line Green",
         "canonical": "#1e9070",
         "dark": "#2aa382",
-        "tonalRamp": [
-          "#082e23",
-          "#0f4a39",
-          "#16674f",
-          "#1e9070",
-          "#3daa89",
-          "#6ec5a8",
-          "#aadfcc",
-          "#e6f6f0"
-        ]
+        "tonalRamp": ["#082e23", "#0f4a39", "#16674f", "#1e9070", "#3daa89", "#6ec5a8", "#aadfcc", "#e6f6f0"]
       },
       "chart-band": {
         "role": "primary",
         "displayName": "Range Band (used at 10-15%)",
         "canonical": "#1e9070",
         "dark": "#2aa382",
-        "tonalRamp": [
-          "#082e23",
-          "#0f4a39",
-          "#16674f",
-          "#1e9070",
-          "#3daa89",
-          "#6ec5a8",
-          "#aadfcc",
-          "#e6f6f0"
-        ]
+        "tonalRamp": ["#082e23", "#0f4a39", "#16674f", "#1e9070", "#3daa89", "#6ec5a8", "#aadfcc", "#e6f6f0"]
       },
       "chart-out": {
         "role": "secondary",
         "displayName": "Out-of-range point (results chart)",
         "canonical": "#b4391e",
         "dark": "#e0644e",
-        "tonalRamp": [
-          "#3a1209",
-          "#5e1d0f",
-          "#862915",
-          "#b4391e",
-          "#d4583c",
-          "#e98a72",
-          "#f5bfb1",
-          "#fbece8"
-        ]
+        "tonalRamp": ["#3a1209", "#5e1d0f", "#862915", "#b4391e", "#d4583c", "#e98a72", "#f5bfb1", "#fbece8"]
       },
       "ok": {
         "role": "secondary",
         "displayName": "Range Green",
         "canonical": "#17785d",
         "dark": "#4cc79e",
-        "tonalRamp": [
-          "#062a20",
-          "#0b4535",
-          "#11604a",
-          "#17785d",
-          "#2d9a7a",
-          "#5fbd9e",
-          "#a3dcc8",
-          "#e7f4ee"
-        ]
+        "tonalRamp": ["#062a20", "#0b4535", "#11604a", "#17785d", "#2d9a7a", "#5fbd9e", "#a3dcc8", "#e7f4ee"]
       },
       "ok-soft": {
         "role": "secondary",
         "displayName": "Range Green Wash",
         "canonical": "#e7f4ee",
         "dark": "#15302a",
-        "tonalRamp": [
-          "#062a20",
-          "#0b4535",
-          "#11604a",
-          "#17785d",
-          "#2d9a7a",
-          "#5fbd9e",
-          "#a3dcc8",
-          "#e7f4ee"
-        ]
+        "tonalRamp": ["#062a20", "#0b4535", "#11604a", "#17785d", "#2d9a7a", "#5fbd9e", "#a3dcc8", "#e7f4ee"]
       },
       "warn": {
         "role": "secondary",
         "displayName": "Lab Amber",
         "canonical": "#8a6206",
         "dark": "#e3b341",
-        "tonalRamp": [
-          "#2e2002",
-          "#4a3404",
-          "#6a4b05",
-          "#8a6206",
-          "#b3841a",
-          "#d6aa44",
-          "#ecd08a",
-          "#fbf3df"
-        ]
+        "tonalRamp": ["#2e2002", "#4a3404", "#6a4b05", "#8a6206", "#b3841a", "#d6aa44", "#ecd08a", "#fbf3df"]
       },
       "warn-soft": {
         "role": "secondary",
         "displayName": "Amber Wash",
         "canonical": "#fbf3df",
         "dark": "#33290f",
-        "tonalRamp": [
-          "#2e2002",
-          "#4a3404",
-          "#6a4b05",
-          "#8a6206",
-          "#b3841a",
-          "#d6aa44",
-          "#ecd08a",
-          "#fbf3df"
-        ]
+        "tonalRamp": ["#2e2002", "#4a3404", "#6a4b05", "#8a6206", "#b3841a", "#d6aa44", "#ecd08a", "#fbf3df"]
       },
       "danger": {
         "role": "secondary",
         "displayName": "Critical Red",
         "canonical": "#b4391e",
         "dark": "#f08a74",
-        "tonalRamp": [
-          "#3a1209",
-          "#5e1d0f",
-          "#862915",
-          "#b4391e",
-          "#d4583c",
-          "#e98a72",
-          "#f5bfb1",
-          "#fbece8"
-        ]
+        "tonalRamp": ["#3a1209", "#5e1d0f", "#862915", "#b4391e", "#d4583c", "#e98a72", "#f5bfb1", "#fbece8"]
       },
       "danger-soft": {
         "role": "secondary",
         "displayName": "Critical Wash",
         "canonical": "#fbece8",
         "dark": "#3a1c15",
-        "tonalRamp": [
-          "#3a1209",
-          "#5e1d0f",
-          "#862915",
-          "#b4391e",
-          "#d4583c",
-          "#e98a72",
-          "#f5bfb1",
-          "#fbece8"
-        ]
+        "tonalRamp": ["#3a1209", "#5e1d0f", "#862915", "#b4391e", "#d4583c", "#e98a72", "#f5bfb1", "#fbece8"]
       },
       "danger-strong": {
         "role": "secondary",
         "displayName": "Destructive Fill",
         "canonical": "#b4391e",
         "dark": "#c24a33",
-        "tonalRamp": [
-          "#3a1209",
-          "#5e1d0f",
-          "#862915",
-          "#b4391e",
-          "#d4583c",
-          "#e98a72",
-          "#f5bfb1",
-          "#fbece8"
-        ]
+        "tonalRamp": ["#3a1209", "#5e1d0f", "#862915", "#b4391e", "#d4583c", "#e98a72", "#f5bfb1", "#fbece8"]
       }
     },
     "typographyMeta": {

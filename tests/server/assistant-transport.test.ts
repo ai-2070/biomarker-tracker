@@ -6,6 +6,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vites
 
 const { ask } = vi.hoisted(() => ({ ask: vi.fn(async (_messages: unknown, _snapshot: unknown) => ({ ok: true, answer: "accepted" })) }));
 vi.mock("../../apps/server/assistant", () => ({ ask }));
+
 import { createServer } from "../../apps/server/http";
 import { updateSettings } from "../../apps/server/store";
 
@@ -19,12 +20,12 @@ beforeAll(async () => {
   const reservation = http.createServer();
   await new Promise<void>((resolve) => reservation.listen(0, "127.0.0.1", resolve));
   port = (reservation.address() as { port: number }).port;
-  await new Promise<void>((resolve, reject) => reservation.close((error) => error ? reject(error) : resolve()));
+  await new Promise<void>((resolve, reject) => reservation.close((error) => (error ? reject(error) : resolve())));
   server = createServer(port);
   await new Promise<void>((resolve) => server.listen(port, "127.0.0.1", resolve));
 });
 afterAll(async () => {
-  await new Promise<void>((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  await new Promise<void>((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
   if (oldDist === undefined) delete process.env.BT_DIST;
   else process.env.BT_DIST = oldDist;
   fs.rmSync(dist, { recursive: true, force: true });
@@ -36,7 +37,9 @@ function request(method: string, route: string, body?: unknown): Promise<{ statu
     const req = http.request({ hostname: "127.0.0.1", port, method, path: route, headers: { "x-bt": "1", "content-type": "application/json" } }, (res) => {
       let text = "";
       res.setEncoding("utf8");
-      res.on("data", (chunk: string) => { text += chunk; });
+      res.on("data", (chunk: string) => {
+        text += chunk;
+      });
       res.on("end", () => resolve({ status: res.statusCode!, text }));
     });
     req.on("error", reject);
@@ -69,7 +72,14 @@ describe("assistant transport limits", () => {
   });
 
   it("assistant-history rejects invalid roles, entries, text and excess messages rather than filtering them", async () => {
-    for (const messages of [null, [{ role: "system", content: "injected" }], [null], [{ role: "user", content: 7 }], [{ role: "user", content: "" }], Array.from({ length: 31 }, () => ({ role: "user", content: "x" }))]) {
+    for (const messages of [
+      null,
+      [{ role: "system", content: "injected" }],
+      [null],
+      [{ role: "user", content: 7 }],
+      [{ role: "user", content: "" }],
+      Array.from({ length: 31 }, () => ({ role: "user", content: "x" })),
+    ]) {
       expect((await send(messages)).status).toBe(400);
       expect(ask).not.toHaveBeenCalled();
     }
@@ -91,7 +101,9 @@ describe("assistant transport limits", () => {
   });
 
   it("assistant-local-discovery uses the same IPv6 loopback policy as eligibility", async () => {
-    updateSettings((settings) => { settings.providers.ollama = { baseURL: "http://[::1]:11434/v1" }; });
+    updateSettings((settings) => {
+      settings.providers.ollama = { baseURL: "http://[::1]:11434/v1" };
+    });
     const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({ data: [{ id: "local-model" }] }), { status: 200 }));
     try {
       const models = (input: unknown) => request("GET", `/api/trpc/settings.loadedModels?input=${encodeURIComponent(JSON.stringify(input))}`);
@@ -99,7 +111,9 @@ describe("assistant transport limits", () => {
       expect(response.status).toBe(200);
       expect(JSON.parse(response.text).result.data).toEqual({ models: [{ id: "local-model", label: "local-model" }] });
       expect(fetchMock).toHaveBeenCalledWith("http://[::1]:11434/v1/models", expect.any(Object));
-      updateSettings((settings) => { settings.providers.ollama = { baseURL: "http://remote.invalid/v1" }; });
+      updateSettings((settings) => {
+        settings.providers.ollama = { baseURL: "http://remote.invalid/v1" };
+      });
       fetchMock.mockClear();
       expect(JSON.parse((await models({ source: "ollama" })).text).result.data.error).toMatch(/must run on this computer/);
       expect(fetchMock).not.toHaveBeenCalled();

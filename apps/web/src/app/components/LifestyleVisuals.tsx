@@ -1,18 +1,18 @@
-import { useState } from "react";
 import {
+  type BarsVisual,
   barsDomain,
+  type FlowVisual,
   intervalRows,
+  type LifestyleVisual,
   labelAnchor,
   labelRows,
-  scalePosition,
-  wavelengthRgb,
-  type BarsVisual,
-  type FlowVisual,
-  type LifestyleVisual,
   type RangesVisual,
   type SpectrumVisual,
+  scalePosition,
+  wavelengthRgb,
 } from "@bt/shared/core/lifestyle";
 import { formatValue } from "@bt/shared/core/units";
+import { useState } from "react";
 import { StudyLink } from "./evidence";
 import { cx } from "./ui";
 
@@ -90,7 +90,7 @@ function ratioTicks(min: number, max: number): number[] {
 
 function linearTicks(min: number, max: number): number[] {
   const raw = (max - min) / 4;
-  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const mag = 10 ** Math.floor(Math.log10(raw));
   const step = [1, 2, 2.5, 5, 10].map((m) => m * mag).find((s) => s >= raw) ?? raw;
   const out: number[] = [];
   for (let t = Math.ceil(min / step) * step; t <= max + 1e-9; t += step) out.push(Number(t.toPrecision(6)));
@@ -134,19 +134,34 @@ function Bars({ v }: { v: BarsVisual }) {
                   {log ? (
                     <>
                       {it.low !== undefined && it.high !== undefined && (
-                        <span aria-hidden="true" className="absolute top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-accent" style={{ left: pct(at(it.low)), width: pct(at(it.high) - at(it.low)) }} />
+                        <span
+                          aria-hidden="true"
+                          className="absolute top-1/2 h-0.5 -translate-y-1/2 rounded-full bg-accent"
+                          style={{ left: pct(at(it.low)), width: pct(at(it.high) - at(it.low)) }}
+                        />
                       )}
                       <span
                         aria-hidden="true"
-                        className={cx("absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-surface", isRef ? "bg-ink-2" : "bg-accent")}
+                        className={cx(
+                          "absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-surface",
+                          isRef ? "bg-ink-2" : "bg-accent",
+                        )}
                         style={{ left: pct(at(it.value)) }}
                       />
                     </>
                   ) : (
                     <>
-                      <span aria-hidden="true" className="absolute top-1 bottom-1 rounded-r bg-accent/80" style={{ left: pct(at(Math.min(0, it.value))), width: pct(Math.abs(at(it.value) - at(0))) }} />
+                      <span
+                        aria-hidden="true"
+                        className="absolute top-1 bottom-1 rounded-r bg-accent/80"
+                        style={{ left: pct(at(Math.min(0, it.value))), width: pct(Math.abs(at(it.value) - at(0))) }}
+                      />
                       {it.low !== undefined && it.high !== undefined && (
-                        <span aria-hidden="true" className="absolute top-1/2 h-0.5 -translate-y-1/2 bg-ink" style={{ left: pct(at(it.low)), width: pct(at(it.high) - at(it.low)) }} />
+                        <span
+                          aria-hidden="true"
+                          className="absolute top-1/2 h-0.5 -translate-y-1/2 bg-ink"
+                          style={{ left: pct(at(it.low)), width: pct(at(it.high) - at(it.low)) }}
+                        />
                       )}
                     </>
                   )}
@@ -179,8 +194,8 @@ function Bars({ v }: { v: BarsVisual }) {
       {log && ref && (
         <p className="text-xs text-ink-2">
           <span aria-hidden="true" className="mr-1.5 inline-block h-3 w-px translate-y-0.5 bg-ink-2" />
-          {num(ref.value)} = {ref.label}. Dots are the estimates, lines their 95% confidence intervals; the scale is logarithmic, so half and double are
-          equally far from {num(ref.value)}.
+          {num(ref.value)} = {ref.label}. Dots are the estimates, lines their 95% confidence intervals; the scale is logarithmic, so half and double are equally
+          far from {num(ref.value)}.
         </p>
       )}
     </div>
@@ -227,14 +242,15 @@ function Spectrum({ v }: { v: SpectrumVisual }) {
       </div>
 
       {/* Named bands: brackets in rows so none overlap; a name inside only when it fits, every band listed below. */}
-      {v.bands.length > 0 && (
-        <BandBrackets bands={v.bands} at={at} />
-      )}
+      {v.bands.length > 0 && <BandBrackets bands={v.bands} at={at} />}
 
       {/* Marked wavelengths, one lane per group: numbers on the axis, names in the list below. */}
       {groups.map((g) => {
         const marks = v.marks.filter((m) => (m.group ?? "") === g);
-        const rows = labelRows(marks.map((m) => at(m.nm)), 0.07);
+        const rows = labelRows(
+          marks.map((m) => at(m.nm)),
+          0.07,
+        );
         const height = Math.max(...rows) + 1;
         return (
           <div key={g || "marks"} className="flex flex-col gap-1">
@@ -284,7 +300,12 @@ function BandBrackets({ bands, at }: { bands: SpectrumVisual["bands"]; at: (nm: 
           // About 0.6 characters per 1% of width at phone size is too optimistic; names show from 22% wide, or when short.
           const fits = w >= 0.22 || (w >= 0.12 && b.label.length <= 12);
           return (
-            <div key={b.label} className="absolute flex flex-col" style={{ left: pct(spans[i]!.from), width: pct(w), top: `${rows[i]! * 1.5}rem` }} title={`${b.label}: ${b.from}–${b.to} nm`}>
+            <div
+              key={b.label}
+              className="absolute flex flex-col"
+              style={{ left: pct(spans[i]!.from), width: pct(w), top: `${rows[i]! * 1.5}rem` }}
+              title={`${b.label}: ${b.from}–${b.to} nm`}
+            >
               <span className="h-1.5 rounded-full border-x border-ink-2/60 bg-ink-2/20" />
               {fits && <span className="truncate text-xs text-ink-2">{b.label}</span>}
             </div>
@@ -297,10 +318,10 @@ function BandBrackets({ bands, at }: { bands: SpectrumVisual["bands"]; at: (nm: 
             {/* A colour swatch only when the whole band is visible, or the whole band is invisible. */}
             {!wavelengthRgb(b.from) === !wavelengthRgb(b.to) ? <Swatch nm={(b.from + b.to) / 2} /> : <span className="size-3 shrink-0" />}
             <span>
-            <span className="font-medium tabular-nums">
-              {b.from}–{b.to} nm
-            </span>{" "}
-            <span className="text-ink-2">{b.label}</span>
+              <span className="font-medium tabular-nums">
+                {b.from}–{b.to} nm
+              </span>{" "}
+              <span className="text-ink-2">{b.label}</span>
             </span>
           </li>
         ))}
@@ -315,7 +336,11 @@ function Swatch({ nm }: { nm: number }) {
     <span
       aria-hidden="true"
       className="mt-1 size-3 shrink-0 rounded-sm border border-line-strong"
-      style={rgb ? { backgroundColor: `rgb(${rgb.join(" ")})` } : { backgroundImage: "repeating-linear-gradient(135deg, var(--color-ink-2) 0 1px, transparent 1px 4px)" }}
+      style={
+        rgb
+          ? { backgroundColor: `rgb(${rgb.join(" ")})` }
+          : { backgroundImage: "repeating-linear-gradient(135deg, var(--color-ink-2) 0 1px, transparent 1px 4px)" }
+      }
       title={rgb ? undefined : "Invisible to the eye"}
     />
   );
@@ -328,7 +353,10 @@ function Flow({ v }: { v: FlowVisual }) {
     <ol className={cx("grid gap-2", v.steps.length <= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3", v.steps.length === 3 && "lg:grid-cols-3")}>
       {v.steps.map((s, i) => (
         <li key={s.label} className="relative flex gap-3 rounded-lg bg-sunken p-3">
-          <span aria-hidden="true" className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-soft font-mono text-sm font-medium text-accent">
+          <span
+            aria-hidden="true"
+            className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-soft font-mono text-sm font-medium text-accent"
+          >
             {i + 1}
           </span>
           <span className="flex flex-col gap-0.5">
@@ -418,7 +446,11 @@ function FigureTable({ v }: { v: LifestyleVisual }) {
             ))}
           </tbody>
         </table>
-        {v.reference && <p className="mt-2 text-xs text-ink-2">{num(v.reference.value)} = {v.reference.label}.</p>}
+        {v.reference && (
+          <p className="mt-2 text-xs text-ink-2">
+            {num(v.reference.value)} = {v.reference.label}.
+          </p>
+        )}
       </div>
     );
   if (v.kind === "spectrum")

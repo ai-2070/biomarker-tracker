@@ -2,28 +2,29 @@
 // Modes: personal (the person's data and proposal tools), research-only (public research, no personal data),
 // claim review (research-only with a structured, submitted assessment) and claim session (an audited claim
 // workflow with its own tools). Engines: an API or local model (apiModel.ts) or an agent program (agentRun.ts).
-import type { ModelMessage } from "ai";
+
 import { providerInfo } from "@bt/shared/core/aiProviders";
+import type { ClaimAssessment } from "@bt/shared/core/claimEvidence";
 import { todayIso } from "@bt/shared/core/dates";
 import { measurementsIn } from "@bt/shared/core/measurementCompletion";
 import { completeProfileDetails, profileDetailsIn } from "@bt/shared/core/profileCompletion";
 import { skillIndex } from "@bt/shared/core/skills";
-import type { ClaimAssessment } from "@bt/shared/core/claimEvidence";
+import type { ModelMessage } from "ai";
 import { isAgent } from "../agents";
 import type { ClaimSearchSession } from "../claimSearchSession";
-import { resultsOverview, safetyOf, type HealthSnapshot } from "../healthTools";
+import { runEveQuestion } from "../eve/run";
+import { type HealthSnapshot, resultsOverview, safetyOf } from "../healthTools";
 import { knowledge } from "../knowledge";
 import { assistantTools } from "../mcp";
-import { assistantCheck, currentChoice, readyModel, type Ready } from "../models";
+import { assistantCheck, currentChoice, type Ready, readyModel } from "../models";
 import { enabledSkills } from "../skills";
 import type { ToolStep } from "../steps";
+import { getSettings } from "../store";
 import { runAgentQuestion } from "./agentRun";
 import { runApiModel } from "./apiModel";
-import { runEveQuestion } from "../eve/run";
-import { getSettings } from "../store";
 import { cacheKey } from "./cache";
-import type { OnEvent } from "./events";
 import { ClaimReview } from "./claimReview";
+import type { OnEvent } from "./events";
 import { promptParts } from "./prompt";
 import { EMPTY_SNAPSHOT, requestTools } from "./tools";
 
@@ -38,7 +39,17 @@ export interface ChatMessage {
 }
 
 export type AssistantReply =
-  | { ok: true; text: string; model: string; steps: ToolStep[]; studyIds: string[]; truncated: boolean; failedServers: { name: string; error: string }[]; claimAssessment?: ClaimAssessment; /** e.g. answered without the app's tools */ note?: string }
+  | {
+      ok: true;
+      text: string;
+      model: string;
+      steps: ToolStep[];
+      studyIds: string[];
+      truncated: boolean;
+      failedServers: { name: string; error: string }[];
+      claimAssessment?: ClaimAssessment /** e.g. answered without the app's tools */;
+      note?: string;
+    }
   | { ok: false; error: string };
 
 export interface AskOptions {
@@ -80,17 +91,22 @@ function withTypedDetails(snapshot: HealthSnapshot, userText: string | undefined
   const measurements = [...snapshot.measurements];
   if (userText && readings) {
     for (const reading of measurementsIn(userText, today, knowledge().defs)) {
-      if (!measurements.some((m) => m.biomarkerId === reading.biomarkerId && m.date === reading.date)) measurements.push({ ...reading, id: crypto.randomUUID() });
+      if (!measurements.some((m) => m.biomarkerId === reading.biomarkerId && m.date === reading.date))
+        measurements.push({ ...reading, id: crypto.randomUUID() });
     }
   }
   return { ...snapshot, profile, measurements };
 }
 
 function modelMessages(messages: ChatMessage[]): ModelMessage[] {
-  return messages.map((m): ModelMessage =>
-    m.role === "user" && m.images?.length
-      ? { role: "user", content: [{ type: "text", text: m.content }, ...m.images.map((i) => ({ type: "file" as const, data: i.data, mediaType: i.mediaType }))] }
-      : { role: m.role, content: m.content },
+  return messages.map(
+    (m): ModelMessage =>
+      m.role === "user" && m.images?.length
+        ? {
+            role: "user",
+            content: [{ type: "text", text: m.content }, ...m.images.map((i) => ({ type: "file" as const, data: i.data, mediaType: i.mediaType }))],
+          }
+        : { role: m.role, content: m.content },
   );
 }
 
@@ -106,9 +122,12 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   }
   const latest = messages.at(-1);
   const requestText = latest?.role === "user" ? latest.content : "";
-  const images = latest?.role === "user" ? latest.images ?? [] : [];
-  if (!opts.researchOnly && opts.userText !== undefined &&
-    (typeof opts.userText !== "string" || !opts.userText.trim() || !requestText.startsWith(opts.userText))) {
+  const images = latest?.role === "user" ? (latest.images ?? []) : [];
+  if (
+    !opts.researchOnly &&
+    opts.userText !== undefined &&
+    (typeof opts.userText !== "string" || !opts.userText.trim() || !requestText.startsWith(opts.userText))
+  ) {
     return { ok: false, error: "The typed question does not match the latest message." };
   }
   if (!opts.researchOnly) snapshot = withTypedDetails(snapshot, opts.userText, images.length === 0);
@@ -134,7 +153,16 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   const claim = opts.claimReview ? new ClaimReview(opts.claimSession) : undefined;
   let tools = opts.claimSession
     ? { ...opts.claimSession.tools }
-    : requestTools({ snapshot, researchOnly: opts.researchOnly, claimReview: opts.claimReview, serverTools: servers.tools, fetchFn: opts.fetchFn, userText: opts.userText, requestText, images: images.length > 0 });
+    : requestTools({
+        snapshot,
+        researchOnly: opts.researchOnly,
+        claimReview: opts.claimReview,
+        serverTools: servers.tools,
+        fetchFn: opts.fetchFn,
+        userText: opts.userText,
+        requestText,
+        images: images.length > 0,
+      });
   if (claim) tools = claim.prepare(tools);
   const parts = promptParts({
     skills: skillIndex(enabledSkills()),
@@ -148,7 +176,20 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   const signal = opts.signal ? AbortSignal.any([opts.signal, AbortSignal.timeout(ASSISTANT_TIMEOUT_MS)]) : AbortSignal.timeout(ASSISTANT_TIMEOUT_MS);
 
   if (agent) {
-    return runAgentQuestion({ agent, parts, messages, images, tools, snapshot, researchOnly: !!opts.researchOnly, claim, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
+    return runAgentQuestion({
+      agent,
+      parts,
+      messages,
+      images,
+      tools,
+      snapshot,
+      researchOnly: !!opts.researchOnly,
+      claim,
+      failedServers: servers.failed,
+      signal,
+      userSignal: opts.signal,
+      ...(opts.onEvent ? { onEvent: opts.onEvent } : {}),
+    });
   }
 
   if (!ready) return { ok: false, error: "Set up a model first." };
@@ -158,7 +199,31 @@ export async function ask(messages: ChatMessage[], snapshot: HealthSnapshot, opt
   // eve (opt-in) for ordinary questions; claim checks and photos keep the built-in loop.
   const engine = opts.engine ?? (getSettings().eve === true ? "eve" : "builtin");
   if (engine === "eve" && !claim && !messages.some((m) => m.images?.length)) {
-    return runEveQuestion({ ready, parts, messages, tools, key, modelLabel, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
+    return runEveQuestion({
+      ready,
+      parts,
+      messages,
+      tools,
+      key,
+      modelLabel,
+      failedServers: servers.failed,
+      signal,
+      userSignal: opts.signal,
+      ...(opts.onEvent ? { onEvent: opts.onEvent } : {}),
+    });
   }
-  return runApiModel({ ready, parts, messages: modelMessages(messages), tools, key, claim, modelLabel, maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16_000 : 8000, failedServers: servers.failed, signal, userSignal: opts.signal, ...(opts.onEvent ? { onEvent: opts.onEvent } : {}) });
+  return runApiModel({
+    ready,
+    parts,
+    messages: modelMessages(messages),
+    tools,
+    key,
+    claim,
+    modelLabel,
+    maxOutputTokens: opts.claimSession?.research.depth === "deep" ? 16_000 : 8000,
+    failedServers: servers.failed,
+    signal,
+    userSignal: opts.signal,
+    ...(opts.onEvent ? { onEvent: opts.onEvent } : {}),
+  });
 }

@@ -8,8 +8,8 @@ import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema, type Tool } from "@modelcontextprotocol/sdk/types.js";
 import { asSchema, type ToolSet } from "ai";
-import { studyIdsFromTool, toolStep, validateToolResult, type ToolStep } from "./steps";
-import { toolFinished, toolStarted, type OnEvent } from "./brain/events";
+import { type OnEvent, toolFinished, toolStarted } from "./brain/events";
+import { studyIdsFromTool, type ToolStep, toolStep, validateToolResult } from "./steps";
 import { getSecrets, updateSecrets } from "./store";
 
 export const BRIDGE_NAME = "biomarker-tracker";
@@ -114,7 +114,8 @@ export async function handleMcp(req: http.IncomingMessage, res: http.ServerRespo
   // While idle (e.g. Hermes checking the connection), list the tools but don't run them.
   server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: await listTools(run === "idle" ? idleTools() : run.tools) }));
   server.setRequestHandler(CallToolRequestSchema, async (r) => {
-    if (run === "idle") return { content: [{ type: "text", text: "Ask your question in the Biomarker Tracker app; its tools only work while it is answering." }], isError: true };
+    if (run === "idle")
+      return { content: [{ type: "text", text: "Ask your question in the Biomarker Tracker app; its tools only work while it is answering." }], isError: true };
     const out = await callTool(run, r.params.name, r.params.arguments ?? {});
     return { content: [{ type: "text", text: out.text }], isError: out.isError };
   });

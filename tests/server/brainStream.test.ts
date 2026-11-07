@@ -3,17 +3,22 @@ import http from "node:http";
 import path from "node:path";
 import { DefaultChatTransport, readUIMessageStream, type UIMessage, type UIMessageChunk } from "ai";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { ask } from "../../apps/server/assistant";
-import { toolFinished, type BrainEvent } from "../../apps/server/brain/events";
 import { claudeLines, codexLines, hermesLines } from "../../apps/server/agents";
+import { ask } from "../../apps/server/assistant";
+import { type BrainEvent, toolFinished } from "../../apps/server/brain/events";
 import type { HealthSnapshot } from "../../apps/server/healthTools";
 import { createServer } from "../../apps/server/http";
 import { TurnChunks } from "../../apps/server/uistream";
-import { installFakeAgents, type FakeAgents } from "./fakeAgents";
+import { type FakeAgents, installFakeAgents } from "./fakeAgents";
 import { MockModel } from "./mockModel";
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
-const snapshot: HealthSnapshot = { measurements: [{ id: "f1", biomarkerId: "ferritin", date: "2024-05-12", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" }], protocols: [], experiments: [], profile: {} };
+const snapshot: HealthSnapshot = {
+  measurements: [{ id: "f1", biomarkerId: "ferritin", date: "2024-05-12", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" }],
+  protocols: [],
+  experiments: [],
+  profile: {},
+};
 
 describe("events to UI message chunks", () => {
   it("opens and closes text around tools, and ends with the verified reply", () => {
@@ -28,15 +33,33 @@ describe("events to UI message chunks", () => {
     turn.event({ kind: "text", text: "Done." });
     turn.finish({ ok: true, text: "Done." });
     expect(chunks.map((c) => c.type)).toEqual([
-      "start", "start-step", "data-status", "text-start", "text-delta", "text-delta", "text-end",
-      "tool-input-available", "tool-output-available", "data-studies", "text-start", "text-delta", "text-end", "data-reply", "finish-step", "finish",
+      "start",
+      "start-step",
+      "data-status",
+      "text-start",
+      "text-delta",
+      "text-delta",
+      "text-end",
+      "tool-input-available",
+      "tool-output-available",
+      "data-studies",
+      "text-start",
+      "text-delta",
+      "text-end",
+      "data-reply",
+      "finish-step",
+      "finish",
     ]);
     expect(chunks.find((c) => c.type === "data-status")).toMatchObject({ transient: true });
   });
 
   it("marks a picture's critical results on the tool's output, so the page can warn before Brain's text", () => {
     const shown = { shownToPerson: { results: [] } };
-    expect(toolFinished("c1", "propose_results", {}, { ...shown, critical: [{ marker: "Potassium" }] })).toMatchObject({ kind: "tool_result", ok: true, critical: true });
+    expect(toolFinished("c1", "propose_results", {}, { ...shown, critical: [{ marker: "Potassium" }] })).toMatchObject({
+      kind: "tool_result",
+      ok: true,
+      critical: true,
+    });
     expect(toolFinished("c1", "propose_results", {}, shown)).not.toHaveProperty("critical");
     expect(toolFinished("c1", "get_results", {}, { critical: ["Potassium"] })).not.toHaveProperty("critical");
     expect(toolFinished("c1", "propose_results", {}, { error: "x", critical: [{}] })).not.toHaveProperty("critical");
@@ -61,18 +84,37 @@ describe("the agent programs' output, read as it arrives", () => {
       { type: "stream_event", event: { type: "content_block_delta", delta: { type: "text_delta", text: "ferritin" } } },
       { type: "stream_event", parent_tool_use_id: "t", event: { type: "content_block_delta", delta: { type: "text_delta", text: "SUBAGENT" } } },
       { type: "assistant", message: { id: "m1", content: [{ type: "text", text: "Your ferritin" }] } },
-      { type: "assistant", message: { id: "m2", content: [{ type: "text", text: " is fine." }, { type: "tool_use", name: "x" }] } },
+      {
+        type: "assistant",
+        message: {
+          id: "m2",
+          content: [
+            { type: "text", text: " is fine." },
+            { type: "tool_use", name: "x" },
+          ],
+        },
+      },
       { type: "result", subtype: "success", result: "Your ferritin is fine." },
     ]);
-    expect(out).toEqual([{ kind: "text", text: "Your " }, { kind: "text", text: "ferritin" }, { kind: "text", text: " is fine." }]);
+    expect(out).toEqual([
+      { kind: "text", text: "Your " },
+      { kind: "text", text: "ferritin" },
+      { kind: "text", text: " is fine." },
+    ]);
   });
 
   it("Codex: each finished message; Hermes: its text lines", () => {
-    expect(collect(codexLines, [
-      { type: "item.started", item: { type: "reasoning" } },
-      { type: "item.completed", item: { type: "agent_message", text: "One." } },
-      { type: "item.completed", item: { type: "agent_message", text: "Two." } },
-    ])).toEqual([{ kind: "status", text: "Thinking…" }, { kind: "text", text: "One." }, { kind: "text", text: "\n\nTwo." }]);
+    expect(
+      collect(codexLines, [
+        { type: "item.started", item: { type: "reasoning" } },
+        { type: "item.completed", item: { type: "agent_message", text: "One." } },
+        { type: "item.completed", item: { type: "agent_message", text: "Two." } },
+      ]),
+    ).toEqual([
+      { kind: "status", text: "Thinking…" },
+      { kind: "text", text: "One." },
+      { kind: "text", text: "\n\nTwo." },
+    ]);
     expect(collect(hermesLines, [{ type: "text", text: "Hi" }, { type: "result", text: "Hi" }, "not json"])).toEqual([{ kind: "text", text: "Hi" }]);
   });
 });
@@ -81,12 +123,26 @@ describe("API models stream text and tool calls", () => {
   it("reports text as it arrives and each tool call with its result, then returns the same reply", async () => {
     let n = 0;
     const model = new MockModel({
-      doGenerate: async () => n++ === 0
-        ? { content: [{ type: "tool-call" as const, toolCallId: "c1", toolName: "get_results", input: "{}" }], finishReason: { unified: "tool-calls" as const, raw: undefined }, usage, warnings: [] }
-        : { content: [{ type: "text" as const, text: "Your ferritin is in range." }], finishReason: { unified: "stop" as const, raw: undefined }, usage, warnings: [] },
+      doGenerate: async () =>
+        n++ === 0
+          ? {
+              content: [{ type: "tool-call" as const, toolCallId: "c1", toolName: "get_results", input: "{}" }],
+              finishReason: { unified: "tool-calls" as const, raw: undefined },
+              usage,
+              warnings: [],
+            }
+          : {
+              content: [{ type: "text" as const, text: "Your ferritin is in range." }],
+              finishReason: { unified: "stop" as const, raw: undefined },
+              usage,
+              warnings: [],
+            },
     });
     const events: BrainEvent[] = [];
-    const r = await ask([{ role: "user", content: "How is my ferritin?" }], snapshot, { ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } }, onEvent: (e) => events.push(e) });
+    const r = await ask([{ role: "user", content: "How is my ferritin?" }], snapshot, {
+      ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } },
+      onEvent: (e) => events.push(e),
+    });
     expect(r).toMatchObject({ ok: true, text: "Your ferritin is in range." });
     expect(events[0]).toMatchObject({ kind: "tool", id: "c1", tool: "get_results" });
     expect(events[1]).toEqual({ kind: "tool_result", id: "c1", ok: true, studyIds: [] });
@@ -131,12 +187,14 @@ describe.skipIf(process.platform === "win32")("the page's stream, end to end", (
   });
 
   const body = { messages: [{ role: "user", content: "How is my ferritin?" }], snapshot, userText: "How is my ferritin?" };
-  const transport = () => new DefaultChatTransport<UIMessage>({
-    api: `http://127.0.0.1:${port}/api/assistant`,
-    headers: { "x-bt": "1", accept: "text/event-stream" },
-    prepareSendMessagesRequest: () => ({ body }),
-  });
-  const send = (signal?: AbortSignal) => transport().sendMessages({ chatId: "brain", messages: [], trigger: "submit-message", messageId: undefined, abortSignal: signal });
+  const transport = () =>
+    new DefaultChatTransport<UIMessage>({
+      api: `http://127.0.0.1:${port}/api/assistant`,
+      headers: { "x-bt": "1", accept: "text/event-stream" },
+      prepareSendMessagesRequest: () => ({ body }),
+    });
+  const send = (signal?: AbortSignal) =>
+    transport().sendMessages({ chatId: "brain", messages: [], trigger: "submit-message", messageId: undefined, abortSignal: signal });
 
   it("streams Claude Code's text and the app's tool calls, then the verified reply", async () => {
     fakes.dir();
@@ -152,7 +210,9 @@ describe.skipIf(process.platform === "win32")("the page's stream, end to end", (
       const stream = await send();
       const [forMessage, forChunks] = stream.tee();
       const chunks: UIMessageChunk[] = [];
-      const reading = (async () => { for await (const c of forChunks) chunks.push(c); })();
+      const reading = (async () => {
+        for await (const c of forChunks) chunks.push(c);
+      })();
       let last: UIMessage | undefined;
       for await (const m of readUIMessageStream({ stream: forMessage })) last = structuredClone(m);
       await reading;
@@ -172,7 +232,9 @@ describe.skipIf(process.platform === "win32")("the page's stream, end to end", (
   it("closing the stream stops the question and the program it started", async () => {
     const dir = fakes.dir();
     process.env.FAKE_HANG = "1";
-    process.env.FAKE_LINES = JSON.stringify([{ type: "stream_event", event: { type: "content_block_delta", delta: { type: "text_delta", text: "Thinking" } } }]);
+    process.env.FAKE_LINES = JSON.stringify([
+      { type: "stream_event", event: { type: "content_block_delta", delta: { type: "text_delta", text: "Thinking" } } },
+    ]);
     try {
       const controller = new AbortController();
       const stream = await send(controller.signal);
@@ -190,7 +252,12 @@ describe.skipIf(process.platform === "win32")("the page's stream, end to end", (
   it("still answers JSON to callers that don't ask for a stream, and refuses bad requests before streaming", async () => {
     fakes.dir();
     process.env.FAKE_LINES = JSON.stringify([{ type: "result", subtype: "success", result: "Fine." }]);
-    const post = (b: unknown, accept?: string) => fetch(`http://127.0.0.1:${port}/api/assistant`, { method: "POST", headers: { "content-type": "application/json", "x-bt": "1", ...(accept ? { accept } : {}) }, body: JSON.stringify(b) });
+    const post = (b: unknown, accept?: string) =>
+      fetch(`http://127.0.0.1:${port}/api/assistant`, {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-bt": "1", ...(accept ? { accept } : {}) },
+        body: JSON.stringify(b),
+      });
     const json = await post(body);
     expect(json.headers.get("content-type")).toMatch(/application\/json/);
     expect(await json.json()).toMatchObject({ ok: true, text: "Fine." });

@@ -1,15 +1,23 @@
-import { describe, expect, it } from "vitest";
 import { addDays } from "@bt/shared/core/dates";
 import { demoProfile } from "@bt/shared/core/demo";
 import { analyzeMarker, differenceBand } from "@bt/shared/core/experiments";
-import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID, phenoAgeGaps, withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
 import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID, phenoAgeGaps, withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
 import type { Experiment, Measurement } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const today = "2026-10-30";
 const demo = demoProfile(today);
 
-const gap = (date: string, value: number): Measurement => ({ id: date, biomarkerId: PHENOAGE_GAP_ID, value, originalValue: value, originalUnit: "years", date, source: "manual" });
+const gap = (date: string, value: number): Measurement => ({
+  id: date,
+  biomarkerId: PHENOAGE_GAP_ID,
+  value,
+  originalValue: value,
+  originalUnit: "years",
+  date,
+  source: "manual",
+});
 const watch = (start: string): Experiment => ({ id: "w", change: "Habit", category: "diet", markerIds: [PHENOAGE_GAP_ID], start, retestAfterDays: 56 });
 
 describe("PhenoAge gap for habit watches", () => {

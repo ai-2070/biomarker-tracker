@@ -1,9 +1,9 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import { selectLevers, validateEvidenceClaim } from "@bt/shared/core/evidence";
 import { amountIn, selectFoods, validateFoodTable } from "@bt/shared/core/foods";
 import type { EvidenceClaim, FoodTable } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { loadDefs } from "../helpers";
 
 const ROOT = join(import.meta.dirname, "..", "..", "knowledge");
@@ -27,7 +27,10 @@ describe("knowledge base: evidence claims", () => {
 
   it("matches each marker's affectedBy list exactly", () => {
     for (const [id, d] of defs) {
-      const fromClaims = claims.filter((c) => c.markers.some((m) => m.biomarkerId === id)).map((c) => c.id).sort();
+      const fromClaims = claims
+        .filter((c) => c.markers.some((m) => m.biomarkerId === id))
+        .map((c) => c.id)
+        .sort();
       expect(d.affectedBy.map((r) => r.evidenceId).sort(), id).toEqual(fromClaims);
     }
   });

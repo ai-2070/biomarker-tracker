@@ -35,14 +35,21 @@ export function ageHistory(profile: Profile, measurements: readonly Measurement[
   const birth = profile.birthMonth;
 
   const blood = summarizePhenoAge(measurements, birth).draws.flatMap((d) =>
-    d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined ? [{ date: d.date, years: d.phenoAge, age: d.age, ...(d.approximate.length ? { approximate: true } : {}) }] : [],
+    d.status === "ok" && d.phenoAge !== undefined && d.age !== undefined
+      ? [{ date: d.date, years: d.phenoAge, age: d.age, ...(d.approximate.length ? { approximate: true } : {}) }]
+      : [],
   );
 
   // Heart age as it was on each day with a blood pressure reading: only readings and weights up to that day.
   const sorted = sortByDate(measurements);
   const bpDays = [...new Set(sorted.filter((m) => m.biomarkerId === "bp_systolic").map((m) => m.date))];
   const heart = bpDays.flatMap((date) => {
-    const h = heartAgeData(profile, sorted.filter((m) => m.date <= date), protocols, date);
+    const h = heartAgeData(
+      profile,
+      sorted.filter((m) => m.date <= date),
+      protocols,
+      date,
+    );
     return h.input && !h.outOfRange ? [{ date, years: heartAge(h.input), age: h.input.age }] : [];
   });
 

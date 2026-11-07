@@ -55,13 +55,19 @@ export function ProtocolLanes({
               <span className="block truncate text-sm">
                 {p.label}{" "}
                 <span className="text-ink-2">
-                  · {p.plan ? "Protocol" : CATEGORY_LABEL[p.category]}, {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
+                  · {p.plan ? "Protocol" : CATEGORY_LABEL[p.category]},{" "}
+                  {p.end ? `${formatDate(p.start)} – ${formatDate(p.end)}` : `since ${formatDate(p.start)}`}
                 </span>
               </span>
               <span className="relative mt-1 block h-2" style={{ marginLeft: inset.left - 8, marginRight: inset.right - 8 }} aria-hidden="true">
                 <span className="absolute inset-y-0 w-full rounded-full bg-sunken" />
                 <span
-                  className={cx("absolute inset-y-0", on ? "bg-ink" : "bg-ink-2/60", lane.cutStart ? "rounded-l-none" : "rounded-l-full", lane.cutEnd ? "rounded-r-none" : "rounded-r-full")}
+                  className={cx(
+                    "absolute inset-y-0",
+                    on ? "bg-ink" : "bg-ink-2/60",
+                    lane.cutStart ? "rounded-l-none" : "rounded-l-full",
+                    lane.cutEnd ? "rounded-r-none" : "rounded-r-full",
+                  )}
                   style={{ left: `${lane.leftPct}%`, width: `${lane.widthPct}%` }}
                 />
               </span>

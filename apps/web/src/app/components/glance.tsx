@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import type { EvidenceGrade } from "@bt/shared/core/types";
+import type { ReactNode } from "react";
 import { reveal } from "./disclosure";
 import { GradeDots } from "./evidence";
 
@@ -57,4 +57,9 @@ export function jump(e: React.MouseEvent, id: string) {
 }
 
 /** A stable id for a card, from its text. */
-export const anchorId = (prefix: string, text: string) => `${prefix}-${text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").slice(0, 60)}`;
+export const anchorId = (prefix: string, text: string) =>
+  `${prefix}-${text
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 60)}`;

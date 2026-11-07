@@ -1,17 +1,17 @@
-import Dexie, { type EntityTable } from "dexie";
-import { createBackup, type Backup } from "@bt/shared/core/backup";
+import { type Backup, createBackup } from "@bt/shared/core/backup";
+import { todayIso } from "@bt/shared/core/dates";
+import { exampleSleepUpdates } from "@bt/shared/core/demo";
 import { syncWatch, watchFor } from "@bt/shared/core/habits";
-import { habitForPlan, validatePlan, type Plan } from "@bt/shared/core/plans";
-import { validateMeal, type Meal } from "@bt/shared/core/meals";
-import { validateProtocol } from "@bt/shared/core/protocols";
-import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
-import { completeProfileDetails, type ProfileCompletion } from "@bt/shared/core/profileCompletion";
+import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import { type Meal, validateMeal } from "@bt/shared/core/meals";
 import { measurementsIn } from "@bt/shared/core/measurementCompletion";
 import { isBirthMonth } from "@bt/shared/core/phenoageDraws";
-import { todayIso } from "@bt/shared/core/dates";
-import { LIFE_TABLE_COUNTRIES } from "@bt/shared/core/lifeTable";
+import { habitForPlan, type Plan, validatePlan } from "@bt/shared/core/plans";
+import { completeProfileDetails, type ProfileCompletion } from "@bt/shared/core/profileCompletion";
+import { validateProtocol } from "@bt/shared/core/protocols";
 import { validSleepSessions } from "@bt/shared/core/sleepSessions";
-import { exampleSleepUpdates } from "@bt/shared/core/demo";
+import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import Dexie, { type EntityTable } from "dexie";
 
 interface Setting {
   key: string;
@@ -45,12 +45,14 @@ export class TrackerDB extends Dexie {
     this.version(5).stores({ intake: "id, date" });
     this.version(6).stores({ intake: null });
     // v7: save order, not random UUID order, breaks ties on the same sample date.
-    this.version(7).stores({ measurements: "id, biomarkerId, date, [biomarkerId+date], savedOrder" }).upgrade(async (tx) => {
-      const rows = await tx.table<Measurement>("measurements").toArray();
-      let order = rows.reduce((max, m) => Math.max(max, m.savedOrder ?? 0), 0);
-      for (const row of rows) if (row.savedOrder === undefined) row.savedOrder = ++order;
-      await tx.table<Measurement>("measurements").bulkPut(rows);
-    });
+    this.version(7)
+      .stores({ measurements: "id, biomarkerId, date, [biomarkerId+date], savedOrder" })
+      .upgrade(async (tx) => {
+        const rows = await tx.table<Measurement>("measurements").toArray();
+        let order = rows.reduce((max, m) => Math.max(max, m.savedOrder ?? 0), 0);
+        for (const row of rows) if (row.savedOrder === undefined) row.savedOrder = ++order;
+        await tx.table<Measurement>("measurements").bulkPut(rows);
+      });
   }
 }
 
@@ -112,7 +114,8 @@ export async function stopPlan(p: Plan, today: string, database = db): Promise<v
         await database.experiments.filter((e) => e.protocolId === id).delete();
       } else {
         await database.protocols.put({ ...h, end: today });
-        for (const e of await database.experiments.filter((x) => x.protocolId === id).toArray()) await database.experiments.put(syncWatch(e, { ...h, end: today }));
+        for (const e of await database.experiments.filter((x) => x.protocolId === id).toArray())
+          await database.experiments.put(syncWatch(e, { ...h, end: today }));
       }
     }
     const { active: _a, ...rest } = current;
@@ -192,21 +195,36 @@ export async function updateMeasurement(id: string, measurement: Omit<Measuremen
     // Timing describes the imported reading, not an independently editable diary entry.
     const { sleepSessions: submittedTiming, ...editable } = measurement;
     const storedTiming = validSleepSessions(current.sleepSessions, current.biomarkerId, current.date) ? current.sleepSessions : undefined;
-    if (submittedTiming !== undefined && (
-      !validSleepSessions(submittedTiming, current.biomarkerId, current.date) || !storedTiming ||
-      submittedTiming.length !== storedTiming.length || !submittedTiming.every((session, index) => {
-        const stored = storedTiming[index]!;
-        return session.start === stored.start && session.end === stored.end && session.kind === stored.kind &&
-          session.source === stored.source && session.startOffsetMinutes === stored.startOffsetMinutes &&
-          session.endOffsetMinutes === stored.endOffsetMinutes;
-      })
-    )) throw new Error("Sleep timing can only be changed by importing device data.");
-    const sameReading = current.biomarkerId === measurement.biomarkerId && current.date === measurement.date &&
-      current.value === measurement.value && current.qualifier === measurement.qualifier;
+    if (
+      submittedTiming !== undefined &&
+      (!validSleepSessions(submittedTiming, current.biomarkerId, current.date) ||
+        !storedTiming ||
+        submittedTiming.length !== storedTiming.length ||
+        !submittedTiming.every((session, index) => {
+          const stored = storedTiming[index]!;
+          return (
+            session.start === stored.start &&
+            session.end === stored.end &&
+            session.kind === stored.kind &&
+            session.source === stored.source &&
+            session.startOffsetMinutes === stored.startOffsetMinutes &&
+            session.endOffsetMinutes === stored.endOffsetMinutes
+          );
+        }))
+    )
+      throw new Error("Sleep timing can only be changed by importing device data.");
+    const sameReading =
+      current.biomarkerId === measurement.biomarkerId &&
+      current.date === measurement.date &&
+      current.value === measurement.value &&
+      current.qualifier === measurement.qualifier;
     const sleepSessions = sameReading ? storedTiming : undefined;
     await database.measurements.put({
-      ...editable, ...(sleepSessions ? { sleepSessions } : {}),
-      id: current.id, source: current.source, savedOrder: current.savedOrder,
+      ...editable,
+      ...(sleepSessions ? { sleepSessions } : {}),
+      id: current.id,
+      source: current.source,
+      savedOrder: current.savedOrder,
     });
   });
 }
@@ -232,7 +250,10 @@ export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "sourc
     if (!incoming.has(key)) incoming.set(key, m);
   }
   return database.transaction("rw", database.measurements, async () => {
-    const existing = await database.measurements.where("[biomarkerId+date]").anyOf([...incoming.values()].map((m) => [m.biomarkerId, m.date])).toArray();
+    const existing = await database.measurements
+      .where("[biomarkerId+date]")
+      .anyOf([...incoming.values()].map((m) => [m.biomarkerId, m.date]))
+      .toArray();
     const matchesByDay = new Map<string, Measurement[]>();
     for (const m of existing) {
       const key = `${m.biomarkerId}|${m.date}`;
@@ -258,7 +279,6 @@ export async function saveDeviceMeasurements(ms: Omit<Measurement, "id" | "sourc
     return { added, updated };
   });
 }
-
 
 export async function measurementsFor(biomarkerId: string, database = db): Promise<Measurement[]> {
   return database.measurements.where("[biomarkerId+date]").between([biomarkerId, Dexie.minKey], [biomarkerId, Dexie.maxKey]).toArray();
@@ -405,8 +425,7 @@ export async function setProfile(profile: Profile, database = db): Promise<void>
 
 /** Fill the missing birth month without replacing another profile or concurrent profile edits. */
 export async function saveBirthMonth(birthMonth: string, identity: ProfileWriteIdentity, today = todayIso(), database = db): Promise<boolean> {
-  if (!isBirthMonth(birthMonth) || birthMonth > today.slice(0, 7))
-    throw new Error("Enter a valid month and year of birth, not in the future.");
+  if (!isBirthMonth(birthMonth) || birthMonth > today.slice(0, 7)) throw new Error("Enter a valid month and year of birth, not in the future.");
   return database.transaction("rw", database.settings, async () => {
     const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
     const id = typeof loaded === "string" ? loaded : null;
@@ -424,8 +443,8 @@ export async function saveCountry(country: string, identity: ProfileWriteIdentit
     const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
     const id = typeof loaded === "string" ? loaded : null;
     const current = await getProfile(database);
-    if (id !== identity.id || (id === null && current.name !== identity.name)
-      || (current.country && Object.hasOwn(LIFE_TABLE_COUNTRIES, current.country))) return false;
+    if (id !== identity.id || (id === null && current.name !== identity.name) || (current.country && Object.hasOwn(LIFE_TABLE_COUNTRIES, current.country)))
+      return false;
     await setProfile({ ...current, country }, database);
     return true;
   });
@@ -433,15 +452,22 @@ export async function saveCountry(country: string, identity: ProfileWriteIdentit
 
 /** Apply validated quotes to the same profile, re-reading blanks so concurrent Settings edits win. */
 export async function fillPersonalDetails(
-  inputs: readonly unknown[], userText: string, today: string, identity: ProfileWriteIdentity,
-  defs: ReadonlyMap<string, BiomarkerDef>, signal?: AbortSignal, database = db,
+  inputs: readonly unknown[],
+  userText: string,
+  today: string,
+  identity: ProfileWriteIdentity,
+  defs: ReadonlyMap<string, BiomarkerDef>,
+  signal?: AbortSignal,
+  database = db,
 ): Promise<ProfileFillResult> {
   signal?.throwIfAborted();
   let onAbort: (() => void) | undefined;
   try {
     return await database.transaction("rw", database.settings, database.measurements, async () => {
       const transaction = Dexie.currentTransaction!;
-      onAbort = () => { if (transaction.active) transaction.abort(); };
+      onAbort = () => {
+        if (transaction.active) transaction.abort();
+      };
       signal?.addEventListener("abort", onAbort, { once: true });
       signal?.throwIfAborted();
       const loaded = (await database.settings.get(LOADED_PROFILE_KEY))?.value;
@@ -511,37 +537,45 @@ export type ImportMode = "merge" | "replace";
  */
 export async function importBackup(backup: Backup, mode: ImportMode, database = db): Promise<void> {
   backup.measurements.forEach(checkSleepSessions);
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
-    if (mode === "replace") {
+  await database.transaction(
+    "rw",
+    [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings],
+    async () => {
+      if (mode === "replace") {
+        await database.measurements.clear();
+        await database.protocols.clear();
+        await database.experiments.clear();
+        await database.plans.clear();
+        await database.meals.clear();
+        const personal = (await database.settings.toArray()).filter((s) => !["ai", "loadedProfile", "onboarded"].includes(s.key));
+        await database.settings.bulkDelete(personal.map((s) => s.key));
+        await database.measurements.bulkPut(backup.measurements);
+        await database.protocols.bulkPut(backup.protocols);
+        await database.experiments.bulkPut(backup.experiments);
+        await setProfile(backup.profile, database);
+        return;
+      }
+      // bulkPut replaces rows with the same id and keeps all others.
+      await database.measurements.bulkPut(backup.measurements);
+      await database.protocols.bulkPut(backup.protocols);
+      await database.experiments.bulkPut(backup.experiments);
+      const profile = await getProfile(database);
+      await setProfile({ ...backup.profile, ...profile }, database);
+    },
+  );
+}
+
+export async function deleteEverything(database = db): Promise<void> {
+  await database.transaction(
+    "rw",
+    [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings],
+    async () => {
       await database.measurements.clear();
       await database.protocols.clear();
       await database.experiments.clear();
       await database.plans.clear();
       await database.meals.clear();
-      const personal = (await database.settings.toArray()).filter((s) => !["ai", "loadedProfile", "onboarded"].includes(s.key));
-      await database.settings.bulkDelete(personal.map((s) => s.key));
-      await database.measurements.bulkPut(backup.measurements);
-      await database.protocols.bulkPut(backup.protocols);
-      await database.experiments.bulkPut(backup.experiments);
-      await setProfile(backup.profile, database);
-      return;
-    }
-    // bulkPut replaces rows with the same id and keeps all others.
-    await database.measurements.bulkPut(backup.measurements);
-    await database.protocols.bulkPut(backup.protocols);
-    await database.experiments.bulkPut(backup.experiments);
-    const profile = await getProfile(database);
-    await setProfile({ ...backup.profile, ...profile }, database);
-  });
-}
-
-export async function deleteEverything(database = db): Promise<void> {
-  await database.transaction("rw", [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings], async () => {
-    await database.measurements.clear();
-    await database.protocols.clear();
-    await database.experiments.clear();
-    await database.plans.clear();
-    await database.meals.clear();
-    await database.settings.clear();
-  });
+      await database.settings.clear();
+    },
+  );
 }

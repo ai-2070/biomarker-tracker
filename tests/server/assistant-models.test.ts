@@ -1,16 +1,32 @@
+import type { ProviderId } from "@bt/shared/core/aiProviders";
 import { generateText } from "ai";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { readyModel } from "../../apps/server/models";
 import { updateSecrets, updateSettings } from "../../apps/server/store";
-import type { ProviderId } from "@bt/shared/core/aiProviders";
 
 afterEach(() => {
   vi.restoreAllMocks();
   vi.unstubAllEnvs();
 });
 
-const completion = { id: "mock-completion", object: "chat.completion", created: 0, model: "test-model", choices: [{ index: 0, message: { role: "assistant", content: "accepted" }, finish_reason: "stop" }], usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 } };
-const anthropic = { id: "mock-message", type: "message", role: "assistant", model: "test-model", content: [{ type: "text", text: "accepted" }], stop_reason: "end_turn", stop_sequence: null, usage: { input_tokens: 1, output_tokens: 1 } };
+const completion = {
+  id: "mock-completion",
+  object: "chat.completion",
+  created: 0,
+  model: "test-model",
+  choices: [{ index: 0, message: { role: "assistant", content: "accepted" }, finish_reason: "stop" }],
+  usage: { prompt_tokens: 1, completion_tokens: 1, total_tokens: 2 },
+};
+const anthropic = {
+  id: "mock-message",
+  type: "message",
+  role: "assistant",
+  model: "test-model",
+  content: [{ type: "text", text: "accepted" }],
+  stop_reason: "end_turn",
+  stop_sequence: null,
+  usage: { input_tokens: 1, output_tokens: 1 },
+};
 
 describe("named provider transport policy", () => {
   it.each([
@@ -25,12 +41,23 @@ describe("named provider transport policy", () => {
       settings.assistant = { provider, model };
       settings.providers[provider] = { zdrConfirmed: true, baseURL: "http://saved-override.invalid/v1" };
     });
-    updateSecrets((secrets) => { secrets.keys[provider] = "SENTINEL_KEY"; });
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify(provider === "anthropic" ? anthropic : completion), { status: 200, headers: { "content-type": "application/json" } }));
+    updateSecrets((secrets) => {
+      secrets.keys[provider] = "SENTINEL_KEY";
+    });
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(
+        new Response(JSON.stringify(provider === "anthropic" ? anthropic : completion), { status: 200, headers: { "content-type": "application/json" } }),
+      );
     const ready = readyModel();
     expect(ready.ok).toBe(true);
     if (!ready.ok) throw new Error(ready.reason);
-    const result = await generateText({ model: ready.ready.model, providerOptions: ready.ready.providerOptions, prompt: "HEALTH_PROMPT_SENTINEL", maxRetries: 0 });
+    const result = await generateText({
+      model: ready.ready.model,
+      providerOptions: ready.ready.providerOptions,
+      prompt: "HEALTH_PROMPT_SENTINEL",
+      maxRetries: 0,
+    });
     expect(result.text).toBe("accepted");
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const [url, options] = fetchMock.mock.calls[0]!;
@@ -44,8 +71,12 @@ describe("named provider transport policy", () => {
       settings.assistant = { provider: "custom", model: "test-model" };
       settings.providers.custom = { zdrConfirmed: true, region: "EU", baseURL: "https://chosen.example/v1" };
     });
-    updateSecrets((secrets) => { secrets.keys.custom = "CUSTOM_KEY"; });
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify(completion), { status: 200, headers: { "content-type": "application/json" } }));
+    updateSecrets((secrets) => {
+      secrets.keys.custom = "CUSTOM_KEY";
+    });
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(new Response(JSON.stringify(completion), { status: 200, headers: { "content-type": "application/json" } }));
     const ready = readyModel();
     if (!ready.ok) throw new Error(ready.reason);
     expect((await generateText({ model: ready.ready.model, prompt: "custom-control", maxRetries: 0 })).text).toBe("accepted");
@@ -58,15 +89,23 @@ describe("named provider transport policy", () => {
       settings.assistant = { provider, model: "mistral-large-latest", effort: "low" };
       settings.providers[provider] = { zdrConfirmed: true };
     });
-    updateSecrets((secrets) => { secrets.keys[provider] = "SENTINEL_KEY"; });
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async () => new Response(JSON.stringify(completion), { status: 200, headers: { "content-type": "application/json" } }));
+    updateSecrets((secrets) => {
+      secrets.keys[provider] = "SENTINEL_KEY";
+    });
+    const fetchMock = vi
+      .spyOn(globalThis, "fetch")
+      .mockImplementation(async () => new Response(JSON.stringify(completion), { status: 200, headers: { "content-type": "application/json" } }));
     expect(readyModel()).toEqual({ ok: false, reason: expect.stringMatching(/doesn't support.*effort/) });
     expect(fetchMock).not.toHaveBeenCalled();
     for (const effort of ["low", "high"] as const) {
-      updateSettings((settings) => { settings.assistant = { provider, model: "mistral-medium-latest", effort }; });
+      updateSettings((settings) => {
+        settings.assistant = { provider, model: "mistral-medium-latest", effort };
+      });
       const ready = readyModel();
       if (!ready.ok) throw new Error(ready.reason);
-      expect((await generateText({ model: ready.ready.model, providerOptions: ready.ready.providerOptions, prompt: "effort-control", maxRetries: 0 })).text).toBe("accepted");
+      expect(
+        (await generateText({ model: ready.ready.model, providerOptions: ready.ready.providerOptions, prompt: "effort-control", maxRetries: 0 })).text,
+      ).toBe("accepted");
       const body = JSON.parse(String(fetchMock.mock.calls.at(-1)?.[1]?.body));
       expect(body.reasoning_effort).toBe(effort);
     }

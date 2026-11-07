@@ -1,12 +1,5 @@
+import { mortalityFromPhenoAge, mortalityScore, type PhenoAgeInputs, phenoAge, phenoAgeFromLogHazard, phenoAgeLogHazard } from "@bt/shared/core/phenoage";
 import { describe, expect, it } from "vitest";
-import {
-  mortalityFromPhenoAge,
-  mortalityScore,
-  phenoAge,
-  phenoAgeFromLogHazard,
-  phenoAgeLogHazard,
-  type PhenoAgeInputs,
-} from "@bt/shared/core/phenoage";
 
 const typical: PhenoAgeInputs = {
   albumin: 45,

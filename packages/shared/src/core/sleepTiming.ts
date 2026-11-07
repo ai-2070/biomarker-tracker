@@ -32,10 +32,7 @@ export type SleepCardiacMetric = "resting_hr" | "hrv_resting";
 export type SleepTimingMetric = "start" | "end" | "midpoint" | "shift";
 
 /** Longest recorded window, not an estimate of sleep onset from the daily duration. */
-export function buildSleepTiming(
-  measurements: readonly Measurement[],
-  options: { from?: string; to?: string; today?: string } = {},
-): SleepTimingSummary {
+export function buildSleepTiming(measurements: readonly Measurement[], options: { from?: string; to?: string; today?: string } = {}): SleepTimingSummary {
   const result: SleepTimingSummary = { nights: [], regularity: { pairs: 0 }, durationOnlyNights: 0, invalidNights: 0 };
   const shifts = { start: 0, end: 0, midpoint: 0 };
   for (const m of dailyWinners(measurements, "sleep_duration").values()) {
@@ -61,21 +58,31 @@ export function buildSleepTiming(
     const windows = m.sleepSessions.map((session) => {
       const start = sleepLocalTime(session.start)!;
       const end = sleepLocalTime(session.end)!;
-      const elapsed = end - start - (session.startOffsetMinutes !== undefined && session.endOffsetMinutes !== undefined
-        ? (session.endOffsetMinutes - session.startOffsetMinutes) * 60_000 : 0);
+      const elapsed =
+        end -
+        start -
+        (session.startOffsetMinutes !== undefined && session.endOffsetMinutes !== undefined
+          ? (session.endOffsetMinutes - session.startOffsetMinutes) * 60_000
+          : 0);
       return { session, start, end, elapsed };
     });
     // Stable tie-breaks keep a provider's record order from changing the principal window.
     const main = windows.reduce((a, b) => {
       const kindOrder = a.session.kind < b.session.kind ? -1 : a.session.kind > b.session.kind ? 1 : 0;
-      const sourceA = a.session.source ?? "", sourceB = b.session.source ?? "";
-      const order = b.elapsed - a.elapsed || b.end - a.end || b.start - a.start || kindOrder ||
+      const sourceA = a.session.source ?? "",
+        sourceB = b.session.source ?? "";
+      const order =
+        b.elapsed - a.elapsed ||
+        b.end - a.end ||
+        b.start - a.start ||
+        kindOrder ||
         (sourceA < sourceB ? -1 : sourceA > sourceB ? 1 : 0) ||
         (a.session.startOffsetMinutes ?? 0) - (b.session.startOffsetMinutes ?? 0) ||
         (a.session.endOffsetMinutes ?? 0) - (b.session.endOffsetMinutes ?? 0);
       return order <= 0 ? a : b;
     });
-    const start = (main.start - midnight) / HOUR, end = (main.end - midnight) / HOUR;
+    const start = (main.start - midnight) / HOUR,
+      end = (main.end - midnight) / HOUR;
     const night: SleepNight = {
       date: m.date,
       day,
@@ -87,8 +94,13 @@ export function buildSleepTiming(
       midpoint: (start + end) / 2,
     };
     const previous = result.nights.at(-1);
-    if (previous && night.day - previous.day === 1 && night.main.kind === previous.main.kind &&
-      night.main.source?.trim() && night.main.source === previous.main.source) {
+    if (
+      previous &&
+      night.day - previous.day === 1 &&
+      night.main.kind === previous.main.kind &&
+      night.main.source?.trim() &&
+      night.main.source === previous.main.source
+    ) {
       night.startShiftMinutes = clockShift(previous.start, night.start);
       night.endShiftMinutes = clockShift(previous.end, night.end);
       night.midpointShiftMinutes = clockShift(previous.midpoint, night.midpoint);
@@ -122,8 +134,17 @@ export function pairSleepCardiac(
   for (const sleep of nights) {
     const measurement = winners.get(sleep.date);
     const x = timing === "shift" ? sleep.midpointShiftMinutes : sleep[timing];
-    if (!measurement || !isIsoDate(measurement.date) || measurement.qualifier !== undefined || !Number.isFinite(measurement.value) ||
-      measurement.value < range.min || measurement.value > range.max || x === undefined || !Number.isFinite(x)) continue;
+    if (
+      !measurement ||
+      !isIsoDate(measurement.date) ||
+      measurement.qualifier !== undefined ||
+      !Number.isFinite(measurement.value) ||
+      measurement.value < range.min ||
+      measurement.value > range.max ||
+      x === undefined ||
+      !Number.isFinite(x)
+    )
+      continue;
     points.push({ date: sleep.date, x, y: measurement.value, sleep, measurement });
   }
   return { points, excluded: nights.length - points.length };
@@ -132,7 +153,7 @@ export function pairSleepCardiac(
 /** A source-local clock, wrapped at midnight; rounding can carry into the following day. */
 export function sleepClock(hours: number): string {
   if (!Number.isFinite(hours)) return "—";
-  const minutes = Math.round(((hours % 24 + 24) % 24) * 60 + 1e-9) % 1440;
+  const minutes = Math.round((((hours % 24) + 24) % 24) * 60 + 1e-9) % 1440;
   return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
 }
 
@@ -144,5 +165,5 @@ function dailyWinners(measurements: readonly Measurement[], id: string): Map<str
 
 // The half-day tie is always earlier (−720), rather than depending on input sign.
 function clockShift(previous: number, current: number): number {
-  return (((current - previous) * 60 + 720) % 1440 + 1440) % 1440 - 720;
+  return (((((current - previous) * 60 + 720) % 1440) + 1440) % 1440) - 720;
 }

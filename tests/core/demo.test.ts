@@ -1,13 +1,13 @@
-import { describe, expect, it } from "vitest";
 import { parseBackup } from "@bt/shared/core/backup";
 import { addDays } from "@bt/shared/core/dates";
-import { DEMO_BODY_IDS, DEMO_UNITS, demoProfile, demoBodyMeasurements } from "@bt/shared/core/demo";
+import { DEMO_BODY_IDS, DEMO_UNITS, demoBodyMeasurements, demoProfile } from "@bt/shared/core/demo";
 import { analyzeMarker } from "@bt/shared/core/experiments";
 import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
 import { isActiveOn } from "@bt/shared/core/protocols";
-import { validSleepSessions, sleepLocalTime } from "@bt/shared/core/sleepSessions";
+import { sleepLocalTime, validSleepSessions } from "@bt/shared/core/sleepSessions";
 import { buildSleepTiming, pairSleepCardiac } from "@bt/shared/core/sleepTiming";
 import { flagMeasurement, groupByBiomarker } from "@bt/shared/core/trends";
+import { describe, expect, it } from "vitest";
 import { def, loadDefs } from "../helpers";
 
 const today = "2026-10-28";
@@ -103,7 +103,11 @@ describe("made-up example sleep timing", () => {
     expect(demoProfile(today).measurements.filter((m) => m.biomarkerId === "sleep_duration" && m.source === "device")).toEqual(daily);
     expect(demo.measurements.filter((m) => m.biomarkerId !== "sleep_duration").every((m) => m.sleepSessions === undefined)).toBe(true);
     // The older monthly sample nights remain duration-only.
-    expect(series("sleep_duration").filter((m) => m.source !== "device").every((m) => m.sleepSessions === undefined)).toBe(true);
+    expect(
+      series("sleep_duration")
+        .filter((m) => m.source !== "device")
+        .every((m) => m.sleepSessions === undefined),
+    ).toBe(true);
   });
 
   it("gives the fictional sleep comparison matching resting pulse and resting HRV on every nightly date", () => {

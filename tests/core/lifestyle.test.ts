@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { barsDomain, intervalRows, labelAnchor, labelRows, scalePosition, wavelengthRgb } from "@bt/shared/core/lifestyle";
+import { describe, expect, it } from "vitest";
 
 describe("lifestyle drawing helpers", () => {
   it("gives visible light a colour and nothing outside it", () => {
@@ -22,10 +22,23 @@ describe("lifestyle drawing helpers", () => {
   });
 
   it("makes a scale that holds every interval and the reference line", () => {
-    const d = barsDomain({ scale: "ratio", reference: { value: 1, label: "ref" }, items: [{ label: "a", value: 0.8, low: 0.7, high: 0.9 }, { label: "b", value: 0.6, low: 0.5, high: 0.72 }] });
+    const d = barsDomain({
+      scale: "ratio",
+      reference: { value: 1, label: "ref" },
+      items: [
+        { label: "a", value: 0.8, low: 0.7, high: 0.9 },
+        { label: "b", value: 0.6, low: 0.5, high: 0.72 },
+      ],
+    });
     expect(d.min).toBeLessThan(0.5);
     expect(d.max).toBeGreaterThan(1);
-    const l = barsDomain({ scale: "linear", items: [{ label: "a", value: 4 }, { label: "b", value: 10, high: 12 }] });
+    const l = barsDomain({
+      scale: "linear",
+      items: [
+        { label: "a", value: 4 },
+        { label: "b", value: 10, high: 12 },
+      ],
+    });
     expect(l.min).toBe(0);
     expect(l.max).toBeGreaterThan(12);
   });
@@ -36,7 +49,14 @@ describe("lifestyle drawing helpers", () => {
   });
 
   it("puts overlapping ranges on separate rows, and touching ones on the same row", () => {
-    expect(intervalRows([{ from: 0, to: 0.3 }, { from: 0.3, to: 0.5 }, { from: 0.2, to: 0.9 }, { from: 0.6, to: 1 }])).toEqual([0, 0, 1, 0]);
+    expect(
+      intervalRows([
+        { from: 0, to: 0.3 },
+        { from: 0.3, to: 0.5 },
+        { from: 0.2, to: 0.9 },
+        { from: 0.6, to: 1 },
+      ]),
+    ).toEqual([0, 0, 1, 0]);
   });
 
   it("anchors labels at the edges so they stay inside", () => {

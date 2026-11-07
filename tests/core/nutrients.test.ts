@@ -1,5 +1,14 @@
+import {
+  findingCounts,
+  interactionsFor,
+  type NutrientDef,
+  type NutrientFinding,
+  searchNutrients,
+  sortFindings,
+  strongestBenefit,
+  validateNutrientDef,
+} from "@bt/shared/core/nutrients";
 import { describe, expect, it } from "vitest";
-import { findingCounts, interactionsFor, searchNutrients, sortFindings, strongestBenefit, validateNutrientDef, type NutrientDef, type NutrientFinding } from "@bt/shared/core/nutrients";
 
 const study = { pmid: "1", title: "A trial", year: 2020, studyType: "rct" as const };
 const finding = (outcome: string, effect: NutrientFinding["effect"], grade: NutrientFinding["grade"]): NutrientFinding => ({
@@ -59,11 +68,13 @@ describe("vitamins and minerals", () => {
   });
   it("accepts sourced basic guides without inventing findings or deficiency signs", () => {
     expect(validateNutrientDef(basic)).toEqual([]);
-    expect(validateNutrientDef({
-      ...basic,
-      sources: [],
-      basicSources: [{ title: "Public safety guidance", year: 2025, url: "https://example.org/safety" }],
-    })).toEqual([]);
+    expect(
+      validateNutrientDef({
+        ...basic,
+        sources: [],
+        basicSources: [{ title: "Public safety guidance", year: 2025, url: "https://example.org/safety" }],
+      }),
+    ).toEqual([]);
   });
   it("does not let unreviewed guides present graded benefits or omit their purpose", () => {
     expect(validateNutrientDef({ ...basic, commonUses: [] })).not.toEqual([]);
@@ -83,7 +94,8 @@ describe("vitamins and minerals", () => {
   it("keeps live checks attached to their exact claim and rejects unsafe metadata", () => {
     const claim = basic.commonUses![0]!;
     const simpleGuide = {
-      origin: ["Cultivated algae"], dosage: ["A safety assessment, not a personal dose."],
+      origin: ["Cultivated algae"],
+      dosage: ["A safety assessment, not a personal dose."],
       factsReviewedOn: "2026-10-31",
       claimsSource: { title: "Research notes", url: "https://example.org/notes" },
       claimTopics: { [claim]: "relaxation" },
@@ -121,14 +133,20 @@ describe("vitamins and minerals", () => {
   });
   it("requires real sources and safe source links on basic guides", () => {
     expect(validateNutrientDef({ ...basic, sources: [] })).not.toEqual([]);
-    expect(validateNutrientDef({
-      ...basic, sources: [],
-      basicSources: [{ title: "Unsafe link", year: 2025, url: "javascript:alert(1)" }],
-    })).not.toEqual([]);
-    expect(validateNutrientDef({
-      ...basic, sources: [],
-      basicSources: [{ title: "Broken link", year: 2025, url: "not a URL" }],
-    })).not.toEqual([]);
+    expect(
+      validateNutrientDef({
+        ...basic,
+        sources: [],
+        basicSources: [{ title: "Unsafe link", year: 2025, url: "javascript:alert(1)" }],
+      }),
+    ).not.toEqual([]);
+    expect(
+      validateNutrientDef({
+        ...basic,
+        sources: [],
+        basicSources: [{ title: "Broken link", year: 2025, url: "not a URL" }],
+      }),
+    ).not.toEqual([]);
   });
   it("finds basic guides by their common uses", () => {
     expect(searchNutrients([n, basic], "relaxation").map((x) => x.n.id)).toEqual(["basic_supplement"]);
@@ -156,7 +174,10 @@ describe("vitamins and minerals", () => {
     // Words start words: "fish" finds "Oily fish" and "Fish"; "ish" finds nothing.
     expect(searchNutrients(all, "fish").map((x) => x.n.id)).toEqual(["test_nutrient", "d"]);
     expect(searchNutrients(all, "ish")).toEqual([]);
-    expect(searchNutrients(all, "warfarin").map((x) => [x.n.id, x.match?.label])).toEqual([["test_nutrient", "Interaction"], ["d", "Interaction"]]);
+    expect(searchNutrients(all, "warfarin").map((x) => [x.n.id, x.match?.label])).toEqual([
+      ["test_nutrient", "Interaction"],
+      ["d", "Interaction"],
+    ]);
     // Every word must match somewhere; a part with all of them wins.
     expect(searchNutrients(all, "oily fish").map((x) => x.match)).toEqual([{ label: "Food", text: "Oily fish" }]);
     expect(searchNutrients(all, "vitamin warfarin").map((x) => x.n.id)).toEqual(["d"]);

@@ -1,13 +1,13 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import { MAX_SKILL_CHARS, parseSkill, skillId, skillIndex } from "@bt/shared/core/skills";
+import { describe, expect, it } from "vitest";
 
 const SKILLS_DIR = join(import.meta.dirname, "..", "..", "skills");
 
 describe("parseSkill", () => {
   it("reads name, description and instructions", () => {
-    const r = parseSkill("---\nname: Evidence review\ndescription: \"Use when weighing studies.\"\n---\n\n# Steps\n1. Search\n");
+    const r = parseSkill('---\nname: Evidence review\ndescription: "Use when weighing studies."\n---\n\n# Steps\n1. Search\n');
     expect(r).toEqual({ ok: true, name: "Evidence review", description: "Use when weighing studies.", body: "# Steps\n1. Search" });
   });
   it("accepts Windows line endings and a byte-order mark", () => {

@@ -1,14 +1,34 @@
-import { useState, type ComponentType, type ReactNode, type SVGProps } from "react";
 import { Dialog } from "@base-ui/react/dialog";
+import { type ComponentType, type ReactNode, type SVGProps, useState } from "react";
+import { Brain } from "../brain/Brain";
+import { openBrain, useBrain } from "../brain/store";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP } from "../knowledge";
 import { useProfiles, useSaveStatus } from "../profiles";
 import { href, type Route } from "../router";
-import { Brain } from "../brain/Brain";
-import { openBrain, useBrain } from "../brain/store";
-import { AgeIcon, BodyIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, IntakeIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, LeafIcon, StarIcon, SunIcon } from "./icons";
-import { REPO_URL } from "./settings/AboutSettings";
+import {
+  AgeIcon,
+  BodyIcon,
+  BookIcon,
+  BowlIcon,
+  BrainIcon,
+  ClipboardIcon,
+  CloseIcon,
+  DashboardIcon,
+  DropIcon,
+  GitHubIcon,
+  IntakeIcon,
+  LeafIcon,
+  MenuIcon,
+  PhoneSyncIcon,
+  PillIcon,
+  PlusIcon,
+  SettingsIcon,
+  StarIcon,
+  SunIcon,
+} from "./icons";
 import { ProfileMenu } from "./ProfileMenu";
+import { REPO_URL } from "./settings/AboutSettings";
 import { buttonStyles, cx, eyebrowSmallStyles } from "./ui";
 
 interface NavItem {
@@ -26,19 +46,56 @@ const BLOOD: NavItem = {
   to: { name: "blood" },
   icon: DropIcon,
   // Add data covers blood, body and devices, so it doesn't belong to Blood tests (lab report import does).
-  active: (r) => r.name === "blood" || r.name === "test-summary" || r.name === "period-summary" || r.name === "overview" || (r.name === "marker" && !isBodyRoute(r)) || r.name === "import",
+  active: (r) =>
+    r.name === "blood" ||
+    r.name === "test-summary" ||
+    r.name === "period-summary" ||
+    r.name === "overview" ||
+    (r.name === "marker" && !isBodyRoute(r)) ||
+    r.name === "import",
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
 const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
 const PLANS: NavItem = { label: "Protocols", to: { name: "plans" }, icon: ClipboardIcon, active: (r) => r.name === "plans" || r.name === "plan" };
 const INTAKE: NavItem = { label: "Intake analyzer", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
-const MEALS: NavItem = { label: "Meals", to: { name: "meals" }, icon: BowlIcon, active: (r) => r.name === "meals" || r.name === "meal" || r.name === "example-meal" };
-const SUPPLEMENTS: NavItem = { label: "Supplementation", to: { name: "supplements" }, icon: BookIcon, active: (r) => r.name === "supplements" || r.name === "nutrient" };
-const WHOLE_FOODS_NAV: NavItem = { label: "Foods", to: { name: "wholefoods" }, icon: LeafIcon, active: (r) => r.name === "wholefoods" || r.name === "wholefood" };
-const LIFESTYLE_NAV: NavItem = { label: "Lifestyle", to: { name: "lifestyle" }, icon: SunIcon, active: (r) => r.name === "lifestyle" || r.name === "lifestyle-item" };
-const DEVICES: NavItem = { label: "Devices", to: { name: "soon", section: "devices" }, icon: PhoneSyncIcon, active: (r) => r.name === "soon" && r.section === "devices", soon: true };
-const SETTINGS: NavItem = { label: "Settings", to: { name: "data" }, icon: SettingsIcon, active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup" };
+const MEALS: NavItem = {
+  label: "Meals",
+  to: { name: "meals" },
+  icon: BowlIcon,
+  active: (r) => r.name === "meals" || r.name === "meal" || r.name === "example-meal",
+};
+const SUPPLEMENTS: NavItem = {
+  label: "Supplementation",
+  to: { name: "supplements" },
+  icon: BookIcon,
+  active: (r) => r.name === "supplements" || r.name === "nutrient",
+};
+const WHOLE_FOODS_NAV: NavItem = {
+  label: "Foods",
+  to: { name: "wholefoods" },
+  icon: LeafIcon,
+  active: (r) => r.name === "wholefoods" || r.name === "wholefood",
+};
+const LIFESTYLE_NAV: NavItem = {
+  label: "Lifestyle",
+  to: { name: "lifestyle" },
+  icon: SunIcon,
+  active: (r) => r.name === "lifestyle" || r.name === "lifestyle-item",
+};
+const DEVICES: NavItem = {
+  label: "Devices",
+  to: { name: "soon", section: "devices" },
+  icon: PhoneSyncIcon,
+  active: (r) => r.name === "soon" && r.section === "devices",
+  soon: true,
+};
+const SETTINGS: NavItem = {
+  label: "Settings",
+  to: { name: "data" },
+  icon: SettingsIcon,
+  active: (r) => r.name === "data" || r.name === "profiles" || r.name === "setup",
+};
 
 const GROUPS: { label?: string; items: NavItem[] }[] = [
   { items: [DASHBOARD] },
@@ -145,7 +202,10 @@ function BottomTabs({ route }: { route: Route }) {
   const moreActive = !TABS.some((t) => t.active(route));
   return (
     <>
-      <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm lg:hidden">
+      <nav
+        aria-label="Main"
+        className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm lg:hidden"
+      >
         <ul className="mx-auto grid max-w-lg grid-cols-5">
           {TABS.map((t) => {
             const active = t.active(route);
@@ -155,7 +215,10 @@ function BottomTabs({ route }: { route: Route }) {
                 <a
                   href={href(t.to)}
                   aria-current={active ? "page" : undefined}
-                  className={cx("flex min-h-14 flex-col items-center justify-center gap-0.5 text-[11px] no-underline", active ? "font-medium text-accent" : "text-ink-2")}
+                  className={cx(
+                    "flex min-h-14 flex-col items-center justify-center gap-0.5 text-[11px] no-underline",
+                    active ? "font-medium text-accent" : "text-ink-2",
+                  )}
                 >
                   <Icon />
                   {t.label}
@@ -171,7 +234,10 @@ function BottomTabs({ route }: { route: Route }) {
               type="button"
               onClick={() => setOpen(true)}
               aria-haspopup="dialog"
-              className={cx("flex min-h-14 w-full flex-col items-center justify-center gap-0.5 text-[11px]", moreActive ? "font-medium text-accent" : "text-ink-2")}
+              className={cx(
+                "flex min-h-14 w-full flex-col items-center justify-center gap-0.5 text-[11px]",
+                moreActive ? "font-medium text-accent" : "text-ink-2",
+              )}
             >
               <MenuIcon />
               More
@@ -223,7 +289,11 @@ function TopBar() {
     <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-line bg-surface/95 px-4 py-1.5 backdrop-blur-sm lg:hidden">
       <Logo className="text-lg" />
       <div className="flex items-center gap-1.5">
-        <a href={href({ name: "add" })} aria-label="Add data" className="flex size-11 items-center justify-center rounded-full text-accent hover:bg-accent-soft">
+        <a
+          href={href({ name: "add" })}
+          aria-label="Add data"
+          className="flex size-11 items-center justify-center rounded-full text-accent hover:bg-accent-soft"
+        >
           <PlusIcon />
         </a>
         <ProfileMenu />
@@ -263,12 +333,19 @@ function AppBanners() {
 function AppFooter() {
   return (
     <footer className="mt-14 space-y-2 border-t border-line pt-5 text-sm text-ink-2">
-      <p className="font-medium text-ink">Not medical advice. For information and personal record-keeping, not for diagnosis or treatment. Not yet reviewed by a clinician.</p>
-      <p>Your profile stays on this computer. Search terms go to the research sources you’ve switched on (<a href={href({ name: "data", tab: "mcp" })} className="text-accent underline underline-offset-2">see research sources in Settings</a>). What you ask goes only to the AI model of your choice, which stays on your computer if you use a local one.</p>
+      <p className="font-medium text-ink">
+        Not medical advice. For information and personal record-keeping, not for diagnosis or treatment. Not yet reviewed by a clinician.
+      </p>
+      <p>
+        Your profile stays on this computer. Search terms go to the research sources you’ve switched on (
+        <a href={href({ name: "data", tab: "mcp" })} className="text-accent underline underline-offset-2">
+          see research sources in Settings
+        </a>
+        ). What you ask goes only to the AI model of your choice, which stays on your computer if you use a local one.
+      </p>
     </footer>
   );
 }
-
 
 /** The working app: sidebar on large screens, top bar and bottom tabs on small ones. */
 export function AppShell({ route, wide, children }: { route: Route; wide: boolean; children: ReactNode }) {
@@ -278,7 +355,11 @@ export function AppShell({ route, wide, children }: { route: Route; wide: boolea
       <Sidebar route={route} />
       <TopBar />
       <div className="lg:pl-64">
-        <main id="main" tabIndex={-1} className={cx("mx-auto w-full px-4 pt-5 pb-28 outline-none sm:px-6 lg:px-10 lg:pt-8 lg:pb-28", wide ? "max-w-7xl" : "max-w-4xl")}>
+        <main
+          id="main"
+          tabIndex={-1}
+          className={cx("mx-auto w-full px-4 pt-5 pb-28 outline-none sm:px-6 lg:px-10 lg:pt-8 lg:pb-28", wide ? "max-w-7xl" : "max-w-4xl")}
+        >
           <div className="mb-5 flex flex-col gap-2 empty:hidden">
             <AppBanners />
           </div>

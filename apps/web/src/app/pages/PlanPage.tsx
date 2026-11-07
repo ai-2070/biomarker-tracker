@@ -1,27 +1,27 @@
-import { useState, type FormEvent } from "react";
 import { Field } from "@base-ui/react/field";
 import { addDays, todayIso } from "@bt/shared/core/dates";
-import { interactionsFor } from "@bt/shared/core/nutrients";
 import { dailyReference, mealNote } from "@bt/shared/core/meals";
+import { interactionsFor } from "@bt/shared/core/nutrients";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
-import { formatValue } from "@bt/shared/core/units";
-import { MAX_ITEMS, itemsByTime, nutrientFor, pairWarnings, planToFile, type Plan, type PlanItem, type PlanTime } from "@bt/shared/core/plans";
-import { safetyLabels, safetyNotes, validateProtocol, type ProtocolCategory } from "@bt/shared/core/protocols";
+import { itemsByTime, MAX_ITEMS, nutrientFor, type Plan, type PlanItem, type PlanTime, pairWarnings, planToFile } from "@bt/shared/core/plans";
+import { type ProtocolCategory, safetyLabels, safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
 import type { SafetyId } from "@bt/shared/core/types";
-import { deletePlan, newId, savePlan, updatePlan, startPlan, stopPlan } from "../../db/db";
+import { formatValue } from "@bt/shared/core/units";
+import { wholeFoodFor } from "@bt/shared/core/wholeFoods";
+import { type FormEvent, useState } from "react";
+import { deletePlan, newId, savePlan, startPlan, stopPlan, updatePlan } from "../../db/db";
 import { ChoiceGroup } from "../components/ChoiceGroup";
-import { TIME_LABEL, WhenFields, whenExtras, whenFields, whenOf, type WhenValue } from "../components/PlanWhen";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { PlusIcon } from "../components/icons";
+import { TIME_LABEL, WhenFields, type WhenValue, whenExtras, whenFields, whenOf } from "../components/PlanWhen";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, Notice, cx, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles } from "../components/ui";
+import { SimpleSelect } from "../components/UnitSelect";
+import { Button, Card, cx, errorStyles, eyebrowStyles, helpStyles, inputStyles, labelStyles, Notice } from "../components/ui";
 import { CATEGORY_LABEL, formatDate } from "../format";
 import { useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { NUTRIENTS, WHOLE_FOODS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
-import { wholeFoodFor } from "@bt/shared/core/wholeFoods";
-import { SimpleSelect } from "../components/UnitSelect";
 
 /** One protocol: its items as a day's schedule, warnings, and start / stop / share. */
 export function PlanPage({ id }: { id: string }) {
@@ -44,8 +44,13 @@ export function PlanPage({ id }: { id: string }) {
   const withYou = [...new Map(linked.flatMap(({ n }) => interactionsFor(n, safety).map((x) => [`${n.id}|${x.with}`, { n, x }] as const))).values()];
   const pairs = pairWarnings(plan, NUTRIENTS);
   const update = async (change: (current: Plan) => Plan) => {
-    try { await updatePlan(plan.id, change); setSaveError(""); setEditing(null); }
-    catch (error) { setSaveError(error instanceof Error ? error.message : "Could not save the protocol. Please try again."); }
+    try {
+      await updatePlan(plan.id, change);
+      setSaveError("");
+      setEditing(null);
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "Could not save the protocol. Please try again.");
+    }
   };
 
   return (
@@ -68,39 +73,43 @@ export function PlanPage({ id }: { id: string }) {
           </Button>
         </div>
       )}
-      {saveError && <Notice tone="warn" className="mb-4">{saveError}</Notice>}
+      {saveError && (
+        <Notice tone="warn" className="mb-4">
+          {saveError}
+        </Notice>
+      )}
 
       {/* Wide screens: the day on the left; start, checks and sharing beside it. Phones: one column in this order. */}
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_22rem] lg:grid-rows-[auto_1fr] lg:gap-x-8">
         <div className="flex flex-col gap-5 lg:col-start-2 lg:row-start-1">
-        <StartStop plan={plan} />
+          <StartStop plan={plan} />
 
-        {(notes.length > 0 || withYou.length > 0 || pairs.length > 0) && (
-          <Card className="flex flex-col gap-3">
-            <h2 className="font-serif text-2xl font-normal">Check before you start</h2>
-            <SafetyNotices notes={notes} />
-            {(pairs.length > 0 || withYou.length > 0) && (
-              <ul className="flex flex-col divide-y divide-warn/20 rounded-lg bg-warn-soft px-3">
-                {pairs.map((w) => (
-                  <li key={`${w.a}|${w.b}`} className="py-2.5">
-                    <span className="font-medium">
-                      {w.a} and {w.b}:
-                    </span>{" "}
-                    {w.note}
-                  </li>
-                ))}
-                {withYou.map(({ n, x }) => (
-                  <li key={`${n.id}|${x.with}`} className="py-2.5">
-                    <span className="font-medium">
-                      {n.name} and your {x.with.toLowerCase()}:
-                    </span>{" "}
-                    {x.note}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </Card>
-        )}
+          {(notes.length > 0 || withYou.length > 0 || pairs.length > 0) && (
+            <Card className="flex flex-col gap-3">
+              <h2 className="font-serif text-2xl font-normal">Check before you start</h2>
+              <SafetyNotices notes={notes} />
+              {(pairs.length > 0 || withYou.length > 0) && (
+                <ul className="flex flex-col divide-y divide-warn/20 rounded-lg bg-warn-soft px-3">
+                  {pairs.map((w) => (
+                    <li key={`${w.a}|${w.b}`} className="py-2.5">
+                      <span className="font-medium">
+                        {w.a} and {w.b}:
+                      </span>{" "}
+                      {w.note}
+                    </li>
+                  ))}
+                  {withYou.map(({ n, x }) => (
+                    <li key={`${n.id}|${x.with}`} className="py-2.5">
+                      <span className="font-medium">
+                        {n.name} and your {x.with.toLowerCase()}:
+                      </span>{" "}
+                      {x.note}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Card>
+          )}
         </div>
 
         <Card className="flex flex-col gap-4 self-start lg:col-start-1 lg:row-span-2 lg:row-start-1">
@@ -112,8 +121,14 @@ export function PlanPage({ id }: { id: string }) {
               </Button>
             )}
           </div>
-          {plan.active && <p className="text-sm text-ink-2">Changes here don't change what's already recorded in Habits; stop and start the protocol again to use them.</p>}
-          {plan.items.length >= MAX_ITEMS && <p role="status" className="text-sm text-ink-2">A protocol can contain at most {MAX_ITEMS} items. Remove an item before adding another.</p>}
+          {plan.active && (
+            <p className="text-sm text-ink-2">Changes here don't change what's already recorded in Habits; stop and start the protocol again to use them.</p>
+          )}
+          {plan.items.length >= MAX_ITEMS && (
+            <p role="status" className="text-sm text-ink-2">
+              A protocol can contain at most {MAX_ITEMS} items. Remove an item before adding another.
+            </p>
+          )}
           {editing === "new" && (
             <ItemForm
               onSave={(item) => {
@@ -154,12 +169,12 @@ export function PlanPage({ id }: { id: string }) {
         </Card>
 
         <div className="flex flex-col gap-5 lg:col-start-2 lg:row-start-2">
-        <Share plan={plan} />
+          <Share plan={plan} />
 
-        <p className="text-sm text-ink-2">
-          Amounts are your own; the app never suggests what or how much to take. EU intakes and upper limits (EFSA) describe groups of healthy
-          adults from all food, not a dose for you. Talk to your doctor or pharmacist before starting supplements, especially with medicines.
-        </p>
+          <p className="text-sm text-ink-2">
+            Amounts are your own; the app never suggests what or how much to take. EU intakes and upper limits (EFSA) describe groups of healthy adults from all
+            food, not a dose for you. Talk to your doctor or pharmacist before starting supplements, especially with medicines.
+          </p>
         </div>
       </div>
     </>
@@ -176,7 +191,10 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   // A whole food (olive oil, blueberries…) links to its research page.
   const food = n || item.category === "medication" ? undefined : wholeFoodFor(item.label, WHOLE_FOODS);
   // The day's EU reference values for this nutrient, next to the person's own amount.
-  const ref = n && n.researchStatus !== "not-reviewed" ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined }) : undefined;
+  const ref =
+    n && n.researchStatus !== "not-reviewed"
+      ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined })
+      : undefined;
   const intake = ref?.intake
     ? `${num(ref.intake.amount)} ${ref.intake.unit} a day`
     : ref?.bySex
@@ -190,7 +208,9 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
           {item.amount && <span className="font-normal text-ink-2"> · {item.amount}</span>}
         </p>
         {(item.category !== "supplement" || item.note || whenExtras(item)) && (
-          <p className="text-sm text-ink-2">{[item.category !== "supplement" && CATEGORY_LABEL[item.category], whenExtras(item), item.note].filter(Boolean).join(" · ")}</p>
+          <p className="text-sm text-ink-2">
+            {[item.category !== "supplement" && CATEGORY_LABEL[item.category], whenExtras(item), item.note].filter(Boolean).join(" · ")}
+          </p>
         )}
         {n && (
           <p className="mt-1 flex flex-wrap gap-x-2 text-sm text-ink-2">
@@ -203,7 +223,10 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
             )}
             {ref?.upperLimit && (
               <span title={ref.upperLimit.note}>
-                · upper limit <span className="text-ink tabular-nums">{num(ref.upperLimit.amount)} {ref.upperLimit.unit}</span>
+                · upper limit{" "}
+                <span className="text-ink tabular-nums">
+                  {num(ref.upperLimit.amount)} {ref.upperLimit.unit}
+                </span>
               </span>
             )}
             <a href={href({ name: "nutrient", id: n.id })} className="text-ink underline underline-offset-2">
@@ -230,7 +253,17 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   );
 }
 
-function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem; onSave: (item: PlanItem) => void; onCancel: () => void; onRemove?: () => void }) {
+function ItemForm({
+  initial,
+  onSave,
+  onCancel,
+  onRemove,
+}: {
+  initial?: PlanItem;
+  onSave: (item: PlanItem) => void;
+  onCancel: () => void;
+  onRemove?: () => void;
+}) {
   const [label, setLabel] = useState(initial?.label ?? "");
   const [amount, setAmount] = useState(initial?.amount ?? "");
   const [category, setCategory] = useState<ProtocolCategory>(initial?.category ?? "supplement");
@@ -256,7 +289,7 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
 
   function submit(e: FormEvent) {
     e.preventDefault();
-    if (!label.trim()) return setError("Name the item, e.g. \"Vitamin D3\" or \"Zone 2 cardio\".");
+    if (!label.trim()) return setError('Name the item, e.g. "Vitamin D3" or "Zone 2 cardio".');
     onSave({
       id: initial?.id ?? newId(),
       label: label.trim(),
@@ -286,7 +319,14 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
       <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
         <Field.Root invalid={!!error} className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Item</Field.Label>
-          <Field.Control value={label} onValueChange={setLabel} placeholder="e.g. Vitamin D3, Olive oil, Zone 2 cardio" maxLength={80} autoComplete="off" className={inputStyles} />
+          <Field.Control
+            value={label}
+            onValueChange={setLabel}
+            placeholder="e.g. Vitamin D3, Olive oil, Zone 2 cardio"
+            maxLength={80}
+            autoComplete="off"
+            className={inputStyles}
+          />
           <Field.Error match={!!error} className={errorStyles}>
             {error}
           </Field.Error>
@@ -307,7 +347,14 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
       <WhenFields value={timing} onChange={setTiming} />
       <Field.Root className="flex flex-col gap-1.5">
         <Field.Label className={labelStyles}>Note (optional)</Field.Label>
-        <Field.Control value={note} onValueChange={setNote} placeholder="e.g. with breakfast, 3 times a week" maxLength={300} autoComplete="off" className={inputStyles} />
+        <Field.Control
+          value={note}
+          onValueChange={setNote}
+          placeholder="e.g. with breakfast, 3 times a week"
+          maxLength={300}
+          autoComplete="off"
+          className={inputStyles}
+        />
       </Field.Root>
       <div className="flex flex-wrap gap-2">
         <Button type="submit">{initial ? "Save" : "Add"}</Button>
@@ -336,10 +383,17 @@ function DetailsForm({ plan, onDone }: { plan: Plan; onDone: () => void }) {
     try {
       await updatePlan(plan.id, (current) => {
         const { description: _d, source: _s, ...rest } = current;
-        return { ...rest, name: name.trim(), ...(description.trim() ? { description: description.trim() } : {}), ...(source.trim() ? { source: source.trim() } : {}) };
+        return {
+          ...rest,
+          name: name.trim(),
+          ...(description.trim() ? { description: description.trim() } : {}),
+          ...(source.trim() ? { source: source.trim() } : {}),
+        };
       });
       onDone();
-    } catch (error) { setError(error instanceof Error ? error.message : "Could not save the protocol. Please try again."); }
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Could not save the protocol. Please try again.");
+    }
   }
 
   return (
@@ -358,7 +412,14 @@ function DetailsForm({ plan, onDone }: { plan: Plan; onDone: () => void }) {
         </Field.Root>
         <Field.Root className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Source (optional)</Field.Label>
-          <Field.Control value={source} onValueChange={setSource} placeholder="e.g. a book, a website, my doctor" maxLength={300} autoComplete="off" className={inputStyles} />
+          <Field.Control
+            value={source}
+            onValueChange={setSource}
+            placeholder="e.g. a book, a website, my doctor"
+            maxLength={300}
+            autoComplete="off"
+            className={inputStyles}
+          />
         </Field.Root>
         <div className="flex flex-wrap gap-2">
           <Button type="submit">Save</Button>
@@ -406,7 +467,9 @@ function StartStop({ plan }: { plan: Plan }) {
   return (
     <Card className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-ink-2">Add one habit named after this protocol, with all its items kept as details. Watch markers for the whole routine, not individual items.</p>
+        <p className="text-ink-2">
+          Add one habit named after this protocol, with all its items kept as details. Watch markers for the whole routine, not individual items.
+        </p>
         {!open && (
           <Button onClick={() => setOpen(true)} disabled={plan.items.length === 0}>
             Start protocol
@@ -419,7 +482,17 @@ function StartStop({ plan }: { plan: Plan }) {
             <span className={labelStyles}>Start date</span>
             <input type="date" value={start} max={latestStart} onChange={(e) => setStart(e.target.value)} className={cx(inputStyles, "w-48")} />
           </label>
-          <Button disabled={!!startError} onClick={() => void startPlan(plan, start).then(() => { setError(""); setOpen(false); }).catch((e: unknown) => setError(e instanceof Error ? e.message : "Could not start the protocol. Please try again."))}>
+          <Button
+            disabled={!!startError}
+            onClick={() =>
+              void startPlan(plan, start)
+                .then(() => {
+                  setError("");
+                  setOpen(false);
+                })
+                .catch((e: unknown) => setError(e instanceof Error ? e.message : "Could not start the protocol. Please try again."))
+            }
+          >
             Add 1 habit
           </Button>
           <Button variant="quiet" onClick={() => setOpen(false)}>
@@ -438,13 +511,24 @@ function Share({ plan }: { plan: Plan }) {
     const blob = new Blob([planToFile(plan)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `${plan.name.replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "").toLowerCase() || "protocol"}.protocol.json`;
+    a.download = `${
+      plan.name
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-|-$/g, "")
+        .toLowerCase() || "protocol"
+    }.protocol.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
   async function duplicate() {
     const { active: _a, ...rest } = plan;
-    const copy: Plan = { ...rest, id: newId(), name: `${plan.name} (copy)`.slice(0, 80), items: plan.items.map((i) => ({ ...i, id: newId() })), createdAt: new Date().toISOString() };
+    const copy: Plan = {
+      ...rest,
+      id: newId(),
+      name: `${plan.name} (copy)`.slice(0, 80),
+      items: plan.items.map((i) => ({ ...i, id: newId() })),
+      createdAt: new Date().toISOString(),
+    };
     await savePlan(copy);
     location.hash = href({ name: "plan", id: copy.id });
   }
@@ -460,7 +544,11 @@ function Share({ plan }: { plan: Plan }) {
         trigger="Delete"
         triggerVariant="quiet"
         title="Delete this protocol?"
-        description={plan.active ? "Its recorded history stays in Habits, with all included items and results." : "This can't be undone. Any recorded history in Habits is kept."}
+        description={
+          plan.active
+            ? "Its recorded history stays in Habits, with all included items and results."
+            : "This can't be undone. Any recorded history in Habits is kept."
+        }
         confirmLabel="Delete protocol"
         onConfirm={async () => {
           await deletePlan(plan.id);

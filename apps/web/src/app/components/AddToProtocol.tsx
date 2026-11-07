@@ -1,18 +1,28 @@
-import { useState } from "react";
 import { Dialog } from "@base-ui/react/dialog";
 import type { PlanCategory, PlanItem } from "@bt/shared/core/plans";
+import { useState } from "react";
 import { newId, savePlan } from "../../db/db";
 import { usePlans } from "../hooks";
 import { href } from "../router";
-import { WhenFields, whenFields, whenOf, type WhenValue } from "./PlanWhen";
-import { Button, buttonStyles, cx, inputStyles, labelStyles, dialogStyles } from "./ui";
+import { WhenFields, type WhenValue, whenFields, whenOf } from "./PlanWhen";
 import { SimpleSelect } from "./UnitSelect";
+import { Button, buttonStyles, cx, dialogStyles, inputStyles, labelStyles } from "./ui";
 
 /**
  * "Add to a protocol" from a supplement's page: the item's name, the person's own amount (optional, never
  * suggested), when it's taken, and which protocol (or a new one). Saved straight to the protocol.
  */
-export function AddToProtocol({ label, category = "supplement", extra, amountHint = "e.g. 25 µg" }: { label: string; category?: PlanCategory; extra?: Pick<PlanItem, "mealId" | "note">; amountHint?: string }) {
+export function AddToProtocol({
+  label,
+  category = "supplement",
+  extra,
+  amountHint = "e.g. 25 µg",
+}: {
+  label: string;
+  category?: PlanCategory;
+  extra?: Pick<PlanItem, "mealId" | "note">;
+  amountHint?: string;
+}) {
   const plans = usePlans() ?? [];
   const [open, setOpen] = useState(false);
   const [planId, setPlanId] = useState<string>("");
@@ -24,7 +34,14 @@ export function AddToProtocol({ label, category = "supplement", extra, amountHin
   const full = target ? target.items.length >= 60 : false;
 
   function add() {
-    const item = { id: newId(), label: name.trim().slice(0, 80) || label, ...(amount.trim() ? { amount: amount.trim().slice(0, 40) } : {}), category, ...whenFields(timing), ...extra };
+    const item = {
+      id: newId(),
+      label: name.trim().slice(0, 80) || label,
+      ...(amount.trim() ? { amount: amount.trim().slice(0, 40) } : {}),
+      category,
+      ...whenFields(timing),
+      ...extra,
+    };
     if (target) void savePlan({ ...target, items: [...target.items, item] }).then(() => setSaved({ id: target.id, name: target.name }));
     else {
       const p = { id: newId(), name: "My protocol", items: [item], createdAt: new Date().toISOString() };
@@ -46,7 +63,9 @@ export function AddToProtocol({ label, category = "supplement", extra, amountHin
         <Dialog.Popup className={cx(dialogStyles, "w-[34rem]")}>
           <div>
             <Dialog.Title className="font-serif text-2xl font-normal">Add to a protocol</Dialog.Title>
-            <Dialog.Description className="mt-1 text-ink-2">Your own amount, from the label or your doctor. The app never suggests what or how much to take.</Dialog.Description>
+            <Dialog.Description className="mt-1 text-ink-2">
+              Your own amount, from the label or your doctor. The app never suggests what or how much to take.
+            </Dialog.Description>
           </div>
           {saved ? (
             <p role="status">
@@ -73,7 +92,14 @@ export function AddToProtocol({ label, category = "supplement", extra, amountHin
                 </label>
                 <label className="flex flex-col gap-1.5">
                   <span className={labelStyles}>Amount (optional)</span>
-                  <input value={amount} onChange={(e) => setAmount(e.target.value)} maxLength={40} placeholder={amountHint} autoComplete="off" className={inputStyles} />
+                  <input
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    maxLength={40}
+                    placeholder={amountHint}
+                    autoComplete="off"
+                    className={inputStyles}
+                  />
                 </label>
               </div>
               <WhenFields value={timing} onChange={setTiming} />

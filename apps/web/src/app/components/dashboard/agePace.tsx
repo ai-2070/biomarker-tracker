@@ -1,15 +1,15 @@
-import { useMemo } from "react";
 import { ageHistory } from "@bt/shared/core/ageHistory";
 import { dunedinSummary, phenoAgePace } from "@bt/shared/core/agePace";
 import { todayIso } from "@bt/shared/core/dates";
 import { sortByDate } from "@bt/shared/core/trends";
 import type { Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { useMemo } from "react";
 import { formatDate } from "../../format";
 import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";
 import { StudyLink } from "../evidence";
-import { Card, cx, eyebrowStyles } from "../ui";
 import { PaperLink } from "../PaperLink";
+import { Card, cx, eyebrowStyles } from "../ui";
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
 const label = eyebrowStyles;
@@ -20,7 +20,15 @@ const two = (v: number) => v.toFixed(2).replace("-", "−");
  * (computed here, with its uncertainty), and DunedinPACE, a DNA methylation test the app only records.
  * Kept apart: they're different measures, and neither is averaged with the other.
  */
-export function PaceOfAging({ measurements, profile, protocols }: { measurements: readonly Measurement[]; profile: Profile; protocols: readonly ProtocolEntry[] }) {
+export function PaceOfAging({
+  measurements,
+  profile,
+  protocols,
+}: {
+  measurements: readonly Measurement[];
+  profile: Profile;
+  protocols: readonly ProtocolEntry[];
+}) {
   const pace = useMemo(() => phenoAgePace(ageHistory(profile, measurements, protocols).blood), [profile, measurements, protocols]);
   const dunedin = sortByDate(measurements.filter((m) => m.biomarkerId === "dunedinpace"));
   const lastDunedin = dunedin.at(-1);
@@ -32,8 +40,8 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
       <div>
         <h2 className="font-serif text-2xl font-normal">Pace of aging</h2>
         <p className="mt-1 max-w-3xl text-ink-2">
-          How fast you age, rather than how old you seem: 1.0 means one year of aging per calendar year, below 1 slower, above 1 faster. Two
-          different measures, shown apart.
+          How fast you age, rather than how old you seem: 1.0 means one year of aging per calendar year, below 1 slower, above 1 faster. Two different measures,
+          shown apart.
         </p>
       </div>
 
@@ -51,19 +59,21 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
                 {pace.verdict === "falling"
                   ? "Your PhenoAge went down across these tests, even at the top of that range."
                   : pace.verdict === "slower"
-                  ? "Slower than the calendar, even at the top of that range."
-                  : pace.verdict === "faster"
-                    ? "Faster than the calendar, even at the bottom of that range."
-                    : "That range includes 1.0, so these tests can't tell it apart from the calendar's pace."}
+                    ? "Slower than the calendar, even at the top of that range."
+                    : pace.verdict === "faster"
+                      ? "Faster than the calendar, even at the bottom of that range."
+                      : "That range includes 1.0, so these tests can't tell it apart from the calendar's pace."}
               </p>
               <p className="text-sm text-ink-2">
                 From {pace.tests} blood tests between {formatDate(pace.from)} and {formatDate(pace.to)} (the last 3 years)
-                {pace.approximate > 0 ? `, ${pace.approximate} of them approximate (CRP below the lab's limit)` : ""}. One test can move PhenoAge a lot
-                (an infection raises CRP), so the range is wide with few tests and narrows with more.
+                {pace.approximate > 0 ? `, ${pace.approximate} of them approximate (CRP below the lab's limit)` : ""}. One test can move PhenoAge a lot (an
+                infection raises CRP), so the range is wide with few tests and narrows with more.
               </p>
             </>
           ) : (
-            <p className="text-ink-2">Needs at least 3 PhenoAge results spread over a year or more. Each one needs the 9 PhenoAge markers from the same blood draw.</p>
+            <p className="text-ink-2">
+              Needs at least 3 PhenoAge results spread over a year or more. Each one needs the 9 PhenoAge markers from the same blood draw.
+            </p>
           )}
           <p className="text-sm text-ink-2">
             Calculated by this app from your own results. It isn't DunedinPACE: PhenoAge was built to predict mortality, not to measure pace.
@@ -91,8 +101,8 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
           ) : (
             <>
               <p className="text-ink-2">
-                Not measured. It needs a DNA methylation test of a blood sample from a specialised lab, not a routine blood test. If you have a
-                result, add it and it's charted here.
+                Not measured. It needs a DNA methylation test of a blood sample from a specialised lab, not a routine blood test. If you have a result, add it
+                and it's charted here.
               </p>
               <a href={href({ name: "add", marker: "dunedinpace" })} className="text-sm text-accent">
                 Add a DunedinPACE result
@@ -100,8 +110,8 @@ export function PaceOfAging({ measurements, profile, protocols }: { measurements
             </>
           )}
           <p className="text-sm text-ink-2">
-            The app records the number your lab reports and never calculates it. In studies, a faster DunedinPACE went with more illness,
-            disability and earlier death; a lower number doesn't prove aging was slowed.
+            The app records the number your lab reports and never calculates it. In studies, a faster DunedinPACE went with more illness, disability and earlier
+            death; a lower number doesn't prove aging was slowed.
           </p>
           {def && (
             <ul className="flex flex-col gap-1 text-sm text-ink-2">
@@ -137,7 +147,13 @@ export function DunedinScores({ results }: { results: readonly { date: string; v
       {s.bestThree ? (
         <p>
           <span className="font-medium">Leaderboard score:</span> {two(s.bestThree.value)}, the average of your best 3 of those tests, as the{" "}
-          <PaperLink href={RO_URL} source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }} target="_blank" rel="noopener noreferrer" className="text-accent">
+          <PaperLink
+            href={RO_URL}
+            source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent"
+          >
             Rejuvenation Olympics
           </PaperLink>{" "}
           ranks people (lower is better; its leaders average about 0.50).
@@ -145,15 +161,21 @@ export function DunedinScores({ results }: { results: readonly { date: string; v
       ) : (
         <p className="text-ink-2">
           A leaderboard score (the{" "}
-          <PaperLink href={RO_URL} source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }} target="_blank" rel="noopener noreferrer" className="text-accent">
+          <PaperLink
+            href={RO_URL}
+            source={{ title: "DunedinPACE leaderboard", authors: "Rejuvenation Olympics" }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent"
+          >
             Rejuvenation Olympics
           </PaperLink>{" "}
           rule: the best 3 tests within 2 years) needs 3 tests in 2 years.
         </p>
       )}
       <p className="text-ink-2">
-        Picking the best 3 keeps the lucky results, so the leaderboard score is always at or below your average. Your average is the better guide to
-        your pace. The leaderboard's own reading of "2 years" isn't spelled out; here it's the 2 years up to your latest test, with tests under 4 years old.
+        Picking the best 3 keeps the lucky results, so the leaderboard score is always at or below your average. Your average is the better guide to your pace.
+        The leaderboard's own reading of "2 years" isn't spelled out; here it's the 2 years up to your latest test, with tests under 4 years old.
       </p>
     </div>
   );

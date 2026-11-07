@@ -247,6 +247,8 @@ bun dev            # everything: the page with hot reload (http://localhost:5173
 bun run server     # only the local server
 bun run test       # Vitest: core logic, knowledge base, database, server
 bun run typecheck  # every package, plus tests and tools
+bun run check      # Biome: lint, formatting and import order (read-only)
+bun run format     # Biome: format, sort imports and apply safe lint fixes
 bun run build      # typecheck, the static page in apps/web/dist/ and the eve runtime
 ```
 

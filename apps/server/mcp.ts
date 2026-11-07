@@ -1,14 +1,15 @@
 // MCP servers: ready-made medical ones (packages/shared/src/core/mcpPresets.ts) or the user's own.
 // Started on first use; their tools are handed to the assistant.
-import { createMCPClient } from "@ai-sdk/mcp";
-import { StdioClientTransport, getDefaultEnvironment } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { asSchema, tool, type ToolSet } from "ai";
-import { z } from "zod";
+
 import crypto from "node:crypto";
-import { MCP_PRESETS, mcpPreset, presetArgs, type McpPreset } from "@bt/shared/core/mcpPresets";
-import { getSecrets, getSettings, updateSecrets, updateSettings, type McpServerConfig } from "./store";
-import { which } from "./which";
+import { createMCPClient } from "@ai-sdk/mcp";
 import type { McpServerListing } from "@bt/shared/api/types";
+import { MCP_PRESETS, type McpPreset, mcpPreset, presetArgs } from "@bt/shared/core/mcpPresets";
+import { getDefaultEnvironment, StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { asSchema, type ToolSet, tool } from "ai";
+import { z } from "zod";
+import { getSecrets, getSettings, type McpServerConfig, updateSecrets, updateSettings } from "./store";
+import { which } from "./which";
 
 /** How long a question waits for a server that is still starting (it keeps starting in the background). */
 const START_WAIT_MS = 45_000;
@@ -42,7 +43,7 @@ export function resolveCommand(command: string, args: string[], win = IS_WIN): {
  * so keys the user has set for other programs don't reach third-party servers.
  */
 export function serverEnv(cfg: McpServerConfig, secrets: Record<string, string>): Record<string, string> {
-  const presetFixed = cfg.presetId ? mcpPreset(cfg.presetId)?.fixedEnv ?? {} : {};
+  const presetFixed = cfg.presetId ? (mcpPreset(cfg.presetId)?.fixedEnv ?? {}) : {};
   return { ...getDefaultEnvironment(), ...presetFixed, ...cfg.env, ...secrets };
 }
 
@@ -160,14 +161,19 @@ export function researchTools(byServer: Map<string, ToolSet>): ToolSet {
     research_tools: tool({
       // The ids are in the system prompt's server list; keeping them out of the description keeps the tool
       // definitions the same while servers start or fail (prompt cache).
-      description: "List the tools of one connected research server (ids are in the research server list), with what each needs. Call this before use_research_tool.",
+      description:
+        "List the tools of one connected research server (ids are in the research server list), with what each needs. Call this before use_research_tool.",
       inputSchema: z.object({ server: z.string().describe("Server id") }),
       execute: async ({ server }) => {
         const set = byServer.get(server);
         if (!set) return { error: `No server called "${server}". Connected: ${serverIds.join(", ")}.` };
         const tools = [];
         for (const [name, t] of Object.entries(set)) {
-          tools.push({ name, description: typeof t.description === "string" ? t.description.slice(0, 400) : "", input: await asSchema(t.inputSchema).jsonSchema });
+          tools.push({
+            name,
+            description: typeof t.description === "string" ? t.description.slice(0, 400) : "",
+            input: await asSchema(t.inputSchema).jsonSchema,
+          });
         }
         return { server, tools };
       },
@@ -211,7 +217,6 @@ export function ensureDefaultServers(npx = hasNpx()): void {
     s.mcpSeeded = true;
   });
 }
-
 
 export function listServers(): McpServerListing[] {
   const secrets = getSecrets().mcpEnv;

@@ -5,14 +5,17 @@ import { vi } from "vitest";
 export interface FakeCall {
   /** The procedure, e.g. "profiles.save". */
   path: string;
-  // Inputs are inspected freely in tests.
+  // biome-ignore lint/suspicious/noExplicitAny: inputs are inspected freely in tests
   input: any;
   method: string;
 }
 
 /** Throw this from a handler to answer with an error and HTTP status. */
 export class FakeError extends Error {
-  constructor(message: string, readonly status = 500) {
+  constructor(
+    message: string,
+    readonly status = 500,
+  ) {
     super(message);
   }
 }
@@ -34,7 +37,10 @@ export function fakeServer(
       return Response.json({ result: { data: (await handle({ path: decodeURIComponent(path), input, method })) ?? null } });
     } catch (e) {
       const status = e instanceof FakeError ? e.status : 500;
-      return Response.json({ error: { message: e instanceof Error ? e.message : String(e), code: -32603, data: { code: "INTERNAL_SERVER_ERROR", httpStatus: status } } }, { status });
+      return Response.json(
+        { error: { message: e instanceof Error ? e.message : String(e), code: -32603, data: { code: "INTERNAL_SERVER_ERROR", httpStatus: status } } },
+        { status },
+      );
     }
   });
   vi.stubGlobal("fetch", fetcher);
@@ -49,12 +55,13 @@ type ClientCall = (kind: "query" | "mutate", path: string, input?: unknown, opts
  */
 export function mockApiModule(call: ClientCall) {
   const at = (path: string[]): unknown =>
-    new Proxy({}, {
-      get: (_target, key) =>
-        key === "query" || key === "mutate"
-          ? (input?: unknown, opts?: unknown) => call(key, path.join("."), input, opts)
-          : at([...path, String(key)]),
-    });
+    new Proxy(
+      {},
+      {
+        get: (_target, key) =>
+          key === "query" || key === "mutate" ? (input?: unknown, opts?: unknown) => call(key, path.join("."), input, opts) : at([...path, String(key)]),
+      },
+    );
   return { localServer: at([]), useServerStatus: () => null };
 }
 

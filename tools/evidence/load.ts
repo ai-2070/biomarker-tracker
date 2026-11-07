@@ -1,12 +1,12 @@
 /** Shared by build.ts and screen.ts: a topic's downloaded records (fetch.ts), classified, one per paper. */
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { anyDesignKind, classify, eligibleReviews, type Decision, type EvidenceRecord, type Question } from "@bt/shared/core/evidenceMap";
+import { anyDesignKind, classify, type Decision, type EvidenceRecord, eligibleReviews, type Question } from "@bt/shared/core/evidenceMap";
 import type { ComparisonTopicFile } from "@bt/shared/core/foodComparison";
-import type { NutrientDef } from "@bt/shared/core/nutrients";
 import type { LifestyleDef } from "@bt/shared/core/lifestyle";
-import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import type { NutrientDef } from "@bt/shared/core/nutrients";
 import type { Citation } from "@bt/shared/core/types";
+import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
 import { TOPICS } from "./topics";
 
 export const ROOT = join(import.meta.dirname, "..", "..");
@@ -34,7 +34,7 @@ export function loadTopic(id: string | undefined) {
   };
   // Food and lifestyle maps: a search per claim or finding, reviews of any design.
   const food = anyDesignKind(topic.kind);
-  const read = <T,>(...path: string[]) => JSON.parse(readFileSync(join(ROOT, "knowledge", ...path), "utf8")) as T;
+  const read = <T>(...path: string[]) => JSON.parse(readFileSync(join(ROOT, "knowledge", ...path), "utf8")) as T;
   // What each outcome checks, and the studies it cites: a nutrient finding, or a food comparison claim.
   const claims = topic.kind === "food" ? read<ComparisonTopicFile>("food-comparison", `${topic.comparisonId}.json`).claims : [];
   const findings =
@@ -42,9 +42,15 @@ export function loadTopic(id: string | undefined) {
       ? read<LifestyleDef>("lifestyle", `${topic.lifestyleId}.json`).findings
       : topic.kind === "wholefood"
         ? read<WholeFoodDef>("wholefoods", `${topic.wholeFoodId}.json`).findings
-        : topic.kind === "food" ? [] : read<NutrientDef>("nutrients", `${topic.nutrientId}.json`).findings;
+        : topic.kind === "food"
+          ? []
+          : read<NutrientDef>("nutrients", `${topic.nutrientId}.json`).findings;
   const studiesFor = (finding: string | undefined): Citation[] =>
-    !finding ? [] : topic.kind === "food" ? (claims.find((c) => c.id === finding)?.studies ?? []) : (findings.find((f) => f.outcome === finding)?.studies ?? []);
+    !finding
+      ? []
+      : topic.kind === "food"
+        ? (claims.find((c) => c.id === finding)?.studies ?? [])
+        : (findings.find((f) => f.outcome === finding)?.studies ?? []);
   // One record per paper (a review can also be a guideline).
   const seen = new Set<string>();
   const records = [...raw.records.guidelines, ...raw.records.reviews, ...raw.records.trials]

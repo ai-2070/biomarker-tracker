@@ -1,10 +1,5 @@
+import { type ManualEntryInput, parseLabNumber, plausibilityWarnings, validateManualEntry } from "@bt/shared/core/importers/manual";
 import { describe, expect, it } from "vitest";
-import {
-  parseLabNumber,
-  plausibilityWarnings,
-  validateManualEntry,
-  type ManualEntryInput,
-} from "@bt/shared/core/importers/manual";
 import { def, loadDefs } from "../helpers";
 
 describe("parseLabNumber", () => {

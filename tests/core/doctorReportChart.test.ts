@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { reportChartGeometry } from "@bt/shared/core/doctorReportChart";
 import { fromCanonical, toCanonical } from "@bt/shared/core/units";
+import { describe, expect, it } from "vitest";
 import { def, measurement } from "../helpers";
 
 const box = { left: 92, top: 28, width: 524, height: 146 };
@@ -63,7 +63,11 @@ describe("reportChartGeometry", () => {
     expect(chart.points).toHaveLength(7);
     expect(chart.points[2]!.x).toBe(chart.points[3]!.x);
     expect(chart.points[2]!.y).toBe(chart.points[3]!.y);
-    expect(chart.points.slice(2, 5).map((point) => [point.overlapIndex, point.overlapCount])).toEqual([[0, 2], [1, 2], [0, 1]]);
+    expect(chart.points.slice(2, 5).map((point) => [point.overlapIndex, point.overlapCount])).toEqual([
+      [0, 2],
+      [1, 2],
+      [0, 1],
+    ]);
     expect(chart.segments.map((segment) => segment.map((point) => point.measurement))).toEqual([rows.slice(0, 2), rows.slice(5)]);
   });
 
@@ -91,7 +95,9 @@ describe("reportChartGeometry", () => {
 
   it("positions offset-unit values and returns ticks in canonical units, including negative display values", () => {
     const hba1c = def("hba1c");
-    const rows = [-5, 25, 55].map((value, index) => measurement({ biomarkerId: hba1c.id, date: `2026-01-0${index + 1}`, value: toCanonical(hba1c, value, "mmol/mol") }));
+    const rows = [-5, 25, 55].map((value, index) =>
+      measurement({ biomarkerId: hba1c.id, date: `2026-01-0${index + 1}`, value: toCanonical(hba1c, value, "mmol/mol") }),
+    );
     const chart = reportChartGeometry(hba1c, rows, "mmol/mol", "2026-01-01", "2026-01-03", box);
     const low = fromCanonical(hba1c, chart.yTicks[0]!.canonicalValue, "mmol/mol");
     const high = fromCanonical(hba1c, chart.yTicks.at(-1)!.canonicalValue, "mmol/mol");
@@ -106,7 +112,14 @@ describe("reportChartGeometry", () => {
 
   it("keeps sleep durations and axis values in canonical hours for the existing hours/minutes formatter", () => {
     const sleep = def("sleep_duration");
-    const chart = reportChartGeometry(sleep, [measurement({ biomarkerId: sleep.id, date: "2026-01-01", value: 7.5 }), measurement({ biomarkerId: sleep.id, date: "2026-01-02", value: 8 })], sleep.canonicalUnit, "2026-01-01", "2026-01-02", box);
+    const chart = reportChartGeometry(
+      sleep,
+      [measurement({ biomarkerId: sleep.id, date: "2026-01-01", value: 7.5 }), measurement({ biomarkerId: sleep.id, date: "2026-01-02", value: 8 })],
+      sleep.canonicalUnit,
+      "2026-01-01",
+      "2026-01-02",
+      box,
+    );
     expect(chart.points.map((point) => point.measurement.value)).toEqual([7.5, 8]);
     expect(chart.points[0]!.y).toBeGreaterThan(chart.points[1]!.y);
     expect(chart.yTicks[0]!.canonicalValue).toBeLessThanOrEqual(7.5);
@@ -114,7 +127,9 @@ describe("reportChartGeometry", () => {
   });
 
   it("does not downsample dense histories and retains the full selected date window", () => {
-    const rows = Array.from({ length: 800 }, (_, index) => measurement({ date: "2026-01-02", value: index % 100, ...(index % 11 === 0 ? { qualifier: "<" as const } : {}) }));
+    const rows = Array.from({ length: 800 }, (_, index) =>
+      measurement({ date: "2026-01-02", value: index % 100, ...(index % 11 === 0 ? { qualifier: "<" as const } : {}) }),
+    );
     const chart = reportChartGeometry(ferritin, rows, "µg/L", "2020-01-01", "2026-10-31", box);
     expect(chart.points).toHaveLength(rows.length);
     expect(new Set(chart.points.map((point) => point.measurement.id)).size).toBe(rows.length);

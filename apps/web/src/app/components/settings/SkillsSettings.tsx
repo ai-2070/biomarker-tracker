@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { Field } from "@base-ui/react/field";
 import { Switch } from "@base-ui/react/switch";
-import { localServer } from "../../api";
 import type { SkillListing } from "@bt/shared/api/types";
+import { useEffect, useState } from "react";
+import { localServer } from "../../api";
 import { ConfirmDialog } from "../ConfirmDialog";
-import { Button, Card, Notice, helpStyles, inputStyles, labelStyles, cardStyles, cx } from "../ui";
+import { Button, Card, cardStyles, cx, helpStyles, inputStyles, labelStyles, Notice } from "../ui";
 
 type SkillRow = SkillListing;
 
@@ -40,6 +40,7 @@ export function SkillsSettings() {
   const [error, setError] = useState<string | null>(null);
 
   const load = () => localServer.skills.list.query().then((r) => setSkills(r.skills));
+  // biome-ignore lint/correctness/useExhaustiveDependencies: load once on mount
   useEffect(() => {
     void load().catch((e: unknown) => setError(e instanceof Error ? e.message : "Couldn't load skills."));
   }, []);
@@ -72,8 +73,8 @@ export function SkillsSettings() {
   return (
     <div className="flex flex-col gap-5">
       <Notice>
-        Skills are step-by-step instructions in plain words. The assistant sees their names and loads one when a question needs it. The built-in ones
-        cover medical and nutrition research; you can switch them off or add your own.
+        Skills are step-by-step instructions in plain words. The assistant sees their names and loads one when a question needs it. The built-in ones cover
+        medical and nutrition research; you can switch them off or add your own.
       </Notice>
       <ul className="stagger flex flex-col gap-2">
         {skills.map((s) => (
@@ -81,7 +82,10 @@ export function SkillsSettings() {
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-medium">
-                  {s.name} <span className="ml-1 rounded-full bg-sunken px-2 py-0.5 font-mono text-[11px] tracking-wide text-ink-2 uppercase">{s.source === "bundled" ? "Built-in" : "Yours"}</span>
+                  {s.name}{" "}
+                  <span className="ml-1 rounded-full bg-sunken px-2 py-0.5 font-mono text-[11px] tracking-wide text-ink-2 uppercase">
+                    {s.source === "bundled" ? "Built-in" : "Yours"}
+                  </span>
                 </p>
                 <p className="text-sm text-ink-2">{s.description}</p>
               </div>
@@ -106,7 +110,11 @@ export function SkillsSettings() {
                 />
               )}
             </div>
-            {open[s.id] !== undefined && <pre className="animate-enter mt-2 max-h-80 overflow-auto rounded-lg bg-sunken p-3 font-mono text-xs whitespace-pre-wrap text-ink-2">{open[s.id]}</pre>}
+            {open[s.id] !== undefined && (
+              <pre className="animate-enter mt-2 max-h-80 overflow-auto rounded-lg bg-sunken p-3 font-mono text-xs whitespace-pre-wrap text-ink-2">
+                {open[s.id]}
+              </pre>
+            )}
           </li>
         ))}
       </ul>
@@ -115,8 +123,16 @@ export function SkillsSettings() {
         <h2 className="font-serif text-2xl font-normal">Add your own skill</h2>
         <Field.Root className="flex flex-col gap-1.5">
           <Field.Label className={labelStyles}>Skill (SKILL.md format)</Field.Label>
-          <Field.Control render={<textarea rows={10} />} value={draft} onValueChange={setDraft} placeholder={TEMPLATE} className={`${inputStyles} py-2 font-mono text-sm`} />
-          <Field.Description className={helpStyles}>A name and a description between --- lines, then the instructions. Keep the safety rules: explain, don't prescribe.</Field.Description>
+          <Field.Control
+            render={<textarea rows={10} />}
+            value={draft}
+            onValueChange={setDraft}
+            placeholder={TEMPLATE}
+            className={`${inputStyles} py-2 font-mono text-sm`}
+          />
+          <Field.Description className={helpStyles}>
+            A name and a description between --- lines, then the instructions. Keep the safety rules: explain, don't prescribe.
+          </Field.Description>
         </Field.Root>
         {error && <Notice tone="danger">{error}</Notice>}
         <div className="flex gap-2">

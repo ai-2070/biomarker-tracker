@@ -1,6 +1,6 @@
-import { inkShare, pdfPagePlan, piecesToLines, type PdfPageInfo, type TextPiece } from "@bt/shared/core/importers/pdfText";
-import type { PDFPageProxy } from "pdfjs-dist";
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
+import { inkShare, type PdfPageInfo, pdfPagePlan, piecesToLines, type TextPiece } from "@bt/shared/core/importers/pdfText";
+import type { PDFDocumentProxy, PDFPageProxy } from "pdfjs-dist";
 import { MAX_PHOTO_SIDE, type PreparedPhoto } from "./brain/photo";
 
 export class PdfReadError extends Error {
@@ -27,7 +27,7 @@ export async function readPdf(file: File, progress?: (fraction: number, stage: s
   pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
 
   const data = new Uint8Array(await file.arrayBuffer());
-  let doc;
+  let doc: PDFDocumentProxy;
   try {
     doc = await pdfjs.getDocument({
       data,
@@ -72,7 +72,10 @@ export async function readPdf(file: File, progress?: (fraction: number, stage: s
     if (plan.kind === "text") return { kind: "text", text: lines.join("\n") };
 
     if (plan.pages.length > MAX_PHOTOS) {
-      throw new PdfReadError(`This PDF has scanned pages and ${plan.pages.length} pages to read; Brain reads up to ${MAX_PHOTOS} at a time. Split it into smaller PDFs so every result page can be read.`, "invalid");
+      throw new PdfReadError(
+        `This PDF has scanned pages and ${plan.pages.length} pages to read; Brain reads up to ${MAX_PHOTOS} at a time. Split it into smaller PDFs so every result page can be read.`,
+        "invalid",
+      );
     }
     const pages: PreparedPhoto[] = [];
     for (const [n, index] of plan.pages.entries()) {

@@ -16,7 +16,7 @@ export interface CitationCheck {
 }
 
 const BRACKET = /\[([^\]\n]{0,200})\]/g;
-const ID_IN_TEXT = /\b(PMID|PMCID|DOI)\s*:?\s*(10\.\d{4,9}\/[^\s\[\]<>"{}]+|PMC\d+|\d{4,9})/gi;
+const ID_IN_TEXT = /\b(PMID|PMCID|DOI)\s*:?\s*(10\.\d{4,9}\/[^\s[\]<>"{}]+|PMC\d+|\d{4,9})/gi;
 const LOOSE = /\b\p{Lu}[\p{L}'-]+(?: and \p{Lu}[\p{L}'-]+)? et al\.?,? \(?(?:19|20)\d{2}\)?/gu;
 
 /** Normalise "PMID 123", "pmid:123", "PMCID: PMC9" to "PMID:123" / "PMCID:PMC9". */

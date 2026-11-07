@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
+import { describe, expect, it } from "vitest";
 
 const names = [{ name: "Red clover" }, { name: "Lion's mane" }, { name: "L-theanine" }, { name: "Broccoli" }];
 

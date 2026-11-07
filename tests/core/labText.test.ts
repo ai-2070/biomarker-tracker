@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { candidateUnits, findDate, foldLabName, parseLabText, truncatedUnit, type ParsedRow } from "@bt/shared/core/importers/labText";
-import { piecesToLines } from "@bt/shared/core/importers/pdfText";
+import { candidateUnits, findDate, foldLabName, type ParsedRow, parseLabText, truncatedUnit } from "@bt/shared/core/importers/labText";
 import { validateManualEntry } from "@bt/shared/core/importers/manual";
+import { piecesToLines } from "@bt/shared/core/importers/pdfText";
+import { describe, expect, it } from "vitest";
 import { def, loadDefs } from "../helpers";
 
 const defs = [...loadDefs().values()];
@@ -160,7 +160,10 @@ describe("Hungarian hospital report (synthetic, layout of a real clinic printout
 
   it("unticks a blood test name under a urine heading when no urine test of that name exists", () => {
     const glucose = report.rows.filter((r) => r.biomarkerId === "glucose");
-    expect(glucose.map((r) => [r.value, r.problems.some((p) => /urine heading/.test(p))])).toEqual([["5.1", false], ["0.3", true]]);
+    expect(glucose.map((r) => [r.value, r.problems.some((p) => /urine heading/.test(p))])).toEqual([
+      ["5.1", false],
+      ["0.3", true],
+    ]);
   });
 
   it("lists tests the app doesn't track", () => {
@@ -183,7 +186,16 @@ describe("names as photos and labs print them", () => {
   });
 
   it("strips blood specimen prefixes but not urine ones", () => {
-    const r = parseLabText(["S-Kalium   4.1   mmol/L", "P-Glukose   5.0   mmol/L", "Plasma Sodium   140   mmol/L", "U-Kreatinin   8.0   mmol/L", "Urine creatinine   8.0   mmol/L"].join("\n"), defs);
+    const r = parseLabText(
+      [
+        "S-Kalium   4.1   mmol/L",
+        "P-Glukose   5.0   mmol/L",
+        "Plasma Sodium   140   mmol/L",
+        "U-Kreatinin   8.0   mmol/L",
+        "Urine creatinine   8.0   mmol/L",
+      ].join("\n"),
+      defs,
+    );
     // "U-Kreatinin" isn't read as blood creatinine; "Urine creatinine" is its own urine test.
     expect(r.rows.map((x) => x.biomarkerId)).toEqual(["potassium", "glucose", "sodium", "urine_creatinine"]);
   });

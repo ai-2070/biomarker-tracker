@@ -1,10 +1,10 @@
-import { describe, expect, it } from "vitest";
 import { ageHistory } from "@bt/shared/core/ageHistory";
 import { demoProfile } from "@bt/shared/core/demo";
 import { fitnessAge } from "@bt/shared/core/fitnessAge";
 import { heartAge, heartAgeData } from "@bt/shared/core/heartAge";
 import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
 import type { Measurement } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const today = "2026-10-29";
 const demo = demoProfile(today);
@@ -30,7 +30,11 @@ describe("age history for the Biological age chart", () => {
     const vo2 = demo.measurements.filter((m) => m.biomarkerId === "vo2max");
     expect(h.fitness).toHaveLength(vo2.length);
     expect(h.fitness[0]!.years).toBeCloseTo(fitnessAge(vo2[0]!.value, "f").age, 9);
-    const top = ageHistory({ ...demo.person }, [{ id: "x", biomarkerId: "vo2max", date: "2026-01-01", value: 60, originalValue: 60, originalUnit: "mL/kg/min", source: "manual" } as Measurement], []);
+    const top = ageHistory(
+      { ...demo.person },
+      [{ id: "x", biomarkerId: "vo2max", date: "2026-01-01", value: 60, originalValue: 60, originalUnit: "mL/kg/min", source: "manual" } as Measurement],
+      [],
+    );
     expect(top.fitness[0]).toMatchObject({ years: 25, bound: "younger" });
   });
   it("puts calendar age beside each estimate, and shows nothing without a birth month", () => {

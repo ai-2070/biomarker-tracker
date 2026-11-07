@@ -1,20 +1,16 @@
-import { useState } from "react";
-
-import { SUPPLEMENT_NUTRIENTS, parseLabelAmount, supplementKeyFor, type IntakeItem } from "@bt/shared/core/intake";
-import { foodById, mealTotals, type FoodDb, type Meal } from "@bt/shared/core/meals";
+import { type IntakeItem, parseLabelAmount, SUPPLEMENT_NUTRIENTS, supplementKeyFor } from "@bt/shared/core/intake";
+import { type FoodDb, foodById, type Meal, mealTotals } from "@bt/shared/core/meals";
 import { nutrientFor } from "@bt/shared/core/plans";
-
 import { formatValue } from "@bt/shared/core/units";
+import { useState } from "react";
 import { newId } from "../../../db/db";
-
-import { SegmentTabs } from "../SegmentTabs";
-import { Button, Card, inputStyles, labelStyles } from "../ui";
 import { usePlans } from "../../hooks";
 import { NUTRIENTS } from "../../knowledge";
 import { href } from "../../router";
 import { FoodResults } from "../FoodResults";
-
+import { SegmentTabs } from "../SegmentTabs";
 import { SimpleSelect } from "../UnitSelect";
+import { Button, Card, inputStyles, labelStyles } from "../ui";
 import { LoadProtocol, ToProtocol } from "./LoadProtocol";
 
 /** The list of meals and foods, with ways to add more. */
@@ -91,71 +87,88 @@ export function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db
           onChange={setMode}
           className="flex flex-col gap-3"
         >
-        {mode === "meal" ? (
-          meals.length === 0 ? (
-            <p className="text-sm text-ink-2">
-              No meals yet. <a href={href({ name: "meals" })}>Build one in Meals</a>, or add single foods.
-            </p>
-          ) : (
-            <form
-              className="flex flex-wrap items-end gap-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const p = Number(portions);
-                const id = mealId || meals[0]!.id;
-                if (!(p >= 0.25 && p <= 10)) return;
-                save([...items, { id: newId(), kind: "meal", mealId: id, portions: p }]);
-              }}
-            >
-              <SimpleSelect
-                label="Meal"
-                options={meals.map((m) => ({ value: m.id, label: m.name }))}
-                value={mealId || meals[0]!.id}
-                onChange={setMealId}
-                className="min-w-0 flex-1"
-              />
-              <label className="flex w-24 flex-col gap-1.5">
-                <span className={labelStyles}>Portions</span>
-                <input type="number" inputMode="decimal" min={0.25} max={10} step={0.25} value={portions} onChange={(e) => setPortions(e.target.value)} className={inputStyles} />
-              </label>
-              <Button type="submit">Add</Button>
-            </form>
-          )
-        ) : mode === "supplement" ? (
-          <SupplementForm add={(it) => save([...items, it])} />
-        ) : (
-          <div className="flex flex-col gap-2">
-            <div className="flex items-end gap-2">
-              <label className="flex min-w-0 flex-1 flex-col gap-1.5">
-                <span className={labelStyles}>Food</span>
-                <input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={db ? "e.g. banana, cheddar, rice boiled" : "Loading the food table…"}
-                  disabled={!db}
-                  autoComplete="off"
-                  className={inputStyles}
+          {mode === "meal" ? (
+            meals.length === 0 ? (
+              <p className="text-sm text-ink-2">
+                No meals yet. <a href={href({ name: "meals" })}>Build one in Meals</a>, or add single foods.
+              </p>
+            ) : (
+              <form
+                className="flex flex-wrap items-end gap-2"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const p = Number(portions);
+                  const id = mealId || meals[0]!.id;
+                  if (!(p >= 0.25 && p <= 10)) return;
+                  save([...items, { id: newId(), kind: "meal", mealId: id, portions: p }]);
+                }}
+              >
+                <SimpleSelect
+                  label="Meal"
+                  options={meals.map((m) => ({ value: m.id, label: m.name }))}
+                  value={mealId || meals[0]!.id}
+                  onChange={setMealId}
+                  className="min-w-0 flex-1"
                 />
-              </label>
-              <label className="flex w-24 flex-col gap-1.5">
-                <span className={labelStyles}>Grams</span>
-                <input type="number" inputMode="decimal" min={1} max={2000} value={grams} onChange={(e) => setGrams(e.target.value)} className={inputStyles} />
-              </label>
+                <label className="flex w-24 flex-col gap-1.5">
+                  <span className={labelStyles}>Portions</span>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    min={0.25}
+                    max={10}
+                    step={0.25}
+                    value={portions}
+                    onChange={(e) => setPortions(e.target.value)}
+                    className={inputStyles}
+                  />
+                </label>
+                <Button type="submit">Add</Button>
+              </form>
+            )
+          ) : mode === "supplement" ? (
+            <SupplementForm add={(it) => save([...items, it])} />
+          ) : (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-end gap-2">
+                <label className="flex min-w-0 flex-1 flex-col gap-1.5">
+                  <span className={labelStyles}>Food</span>
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder={db ? "e.g. banana, cheddar, rice boiled" : "Loading the food table…"}
+                    disabled={!db}
+                    autoComplete="off"
+                    className={inputStyles}
+                  />
+                </label>
+                <label className="flex w-24 flex-col gap-1.5">
+                  <span className={labelStyles}>Grams</span>
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    min={1}
+                    max={2000}
+                    value={grams}
+                    onChange={(e) => setGrams(e.target.value)}
+                    className={inputStyles}
+                  />
+                </label>
+              </div>
+              <FoodResults
+                db={db}
+                query={query}
+                limit={10}
+                action={`Add ${grams} g`}
+                onPick={(f) => {
+                  const g = Number(grams);
+                  if (!(g >= 1 && g <= 2000)) return;
+                  save([...items, { id: newId(), kind: "food", foodId: f.id, grams: g }]);
+                  setQuery("");
+                }}
+              />
             </div>
-            <FoodResults
-              db={db}
-              query={query}
-              limit={10}
-              action={`Add ${grams} g`}
-              onPick={(f) => {
-                const g = Number(grams);
-                if (!(g >= 1 && g <= 2000)) return;
-                save([...items, { id: newId(), kind: "food", foodId: f.id, grams: g }]);
-                setQuery("");
-              }}
-            />
-          </div>
-        )}
+          )}
         </SegmentTabs>
       </div>
       {items.length > 0 && db && <ToProtocol items={items} meals={meals} db={db} />}
@@ -220,11 +233,25 @@ function SupplementForm({ add }: { add: (it: IntakeItem) => void }) {
       <div className="flex items-end gap-2">
         <label className="flex w-32 flex-col gap-1.5">
           <span className={labelStyles}>Amount ({unit})</span>
-          <input type="text" inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="from the label" className={inputStyles} />
+          <input
+            type="text"
+            inputMode="decimal"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="from the label"
+            className={inputStyles}
+          />
         </label>
         <label className="flex min-w-0 flex-1 flex-col gap-1.5">
           <span className={labelStyles}>Name (optional)</span>
-          <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} placeholder="e.g. Vitamin D3" autoComplete="off" className={inputStyles} />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={80}
+            placeholder="e.g. Vitamin D3"
+            autoComplete="off"
+            className={inputStyles}
+          />
         </label>
       </div>
       <div>

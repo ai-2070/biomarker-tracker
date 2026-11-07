@@ -1,11 +1,11 @@
 import { bmi, bmrMifflin, latestBloodPressure, latestBody, recentAverage, waistToHeight, waistToHeightBand } from "./body";
-import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData } from "./heartAge";
 import { fitnessAge, vo2maxForAge } from "./fitnessAge";
-import { ageAt } from "./phenoageDraws";
+import { type FitnessTestDef, fitnessSummary } from "./fitnessTests";
+import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData } from "./heartAge";
 import { personalRange } from "./personalRange";
+import { ageAt } from "./phenoageDraws";
+import { buildSleepTiming, pairSleepCardiac, type SleepCardiacMetric, sleepClock } from "./sleepTiming";
 import { flagLatest, recentTotal, resolveRange, sortByDate } from "./trends";
-import { fitnessSummary, type FitnessTestDef } from "./fitnessTests";
-import { buildSleepTiming, pairSleepCardiac, sleepClock, type SleepCardiacMetric } from "./sleepTiming";
 import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "./types";
 
 const r1 = (v: number) => Math.round(v * 10) / 10;
@@ -59,7 +59,13 @@ export function bodySummary(
       latest: r1(last.value),
       date: last.date,
       ...(week ? { lastWeekAverage: r1(week.value), lastWeekReadings: week.count } : {}),
-      ...(range ? { range: { low: range.low, high: range.high, ...(range.comparisonOnly ? { comparisonOnly: true } : {}) }, ...(range.comparisonOnly ? { rangeUse: "Population comparison only, not clinical low/high limits or minimum/maximum healthy body fat." } : {}), ...(def?.judgeAverageOfDays ? { rangeCheckedAgainst: "the last week's average, not one night" } : {}) } : {}),
+      ...(range
+        ? {
+            range: { low: range.low, high: range.high, ...(range.comparisonOnly ? { comparisonOnly: true } : {}) },
+            ...(range.comparisonOnly ? { rangeUse: "Population comparison only, not clinical low/high limits or minimum/maximum healthy body fat." } : {}),
+            ...(def?.judgeAverageOfDays ? { rangeCheckedAgainst: "the last week's average, not one night" } : {}),
+          }
+        : {}),
       ...(flag && flag !== "unknown" ? { flag } : {}),
       ...(usual
         ? {
@@ -80,10 +86,22 @@ export function bodySummary(
     ...(w ? { weightKg: { latest: r1(w.value), date: w.date } } : {}),
     ...(b !== undefined ? { bmi: { value: r1(b), note: "No range is used: BMI can't tell muscle from fat. Never a target." } } : {}),
     ...(latest.waist && waistToHeight(latest.waist.value, profile.heightCm) !== undefined
-      ? { waistToHeight: { value: Math.round(waistToHeight(latest.waist.value, profile.heightCm)! * 100) / 100, guide: "below 0.5 is the usual guide", range: waistToHeightBand(waistToHeight(latest.waist.value, profile.heightCm)!) } }
+      ? {
+          waistToHeight: {
+            value: Math.round(waistToHeight(latest.waist.value, profile.heightCm)! * 100) / 100,
+            guide: "below 0.5 is the usual guide",
+            range: waistToHeightBand(waistToHeight(latest.waist.value, profile.heightCm)!),
+          },
+        }
       : {}),
     ...(bmr !== undefined
-      ? { basalMetabolicRate: { kcalPerDay: Math.round(bmr), method: "Mifflin-St Jeor", note: "Resting metabolic rate (often called basal metabolic rate): an estimate (about ±10%) of energy used at rest. Not a target and not an intake recommendation." } }
+      ? {
+          basalMetabolicRate: {
+            kcalPerDay: Math.round(bmr),
+            method: "Mifflin-St Jeor",
+            note: "Resting metabolic rate (often called basal metabolic rate): an estimate (about ±10%) of energy used at rest. Not a target and not an intake recommendation.",
+          },
+        }
       : {}),
     ...(bp
       ? {
@@ -109,20 +127,22 @@ export function bodySummary(
       durationOnlyNights: sleep.durationOnlyNights,
       invalidNights: sleep.invalidNights,
       regularity: sleep.regularity,
-      ...(lastSleep ? {
-        latest: {
-          date: lastSleep.date,
-          kind: lastSleep.main.kind,
-          ...(lastSleep.main.source ? { source: lastSleep.main.source } : {}),
-          startClock: sleepClock(lastSleep.start),
-          endClock: sleepClock(lastSleep.end),
-          midpointClock: sleepClock(lastSleep.midpoint),
-          startHours: lastSleep.start,
-          endHours: lastSleep.end,
-          midpointHours: lastSleep.midpoint,
-          sessionCount: lastSleep.windows.length,
-        },
-      } : {}),
+      ...(lastSleep
+        ? {
+            latest: {
+              date: lastSleep.date,
+              kind: lastSleep.main.kind,
+              ...(lastSleep.main.source ? { source: lastSleep.main.source } : {}),
+              startClock: sleepClock(lastSleep.start),
+              endClock: sleepClock(lastSleep.end),
+              midpointClock: sleepClock(lastSleep.midpoint),
+              startHours: lastSleep.start,
+              endHours: lastSleep.end,
+              midpointHours: lastSleep.midpoint,
+              sessionCount: lastSleep.windows.length,
+            },
+          }
+        : {}),
       cardiacPairs: {
         restingHeartRate: cardiacPairs("resting_hr"),
         restingHrv: cardiacPairs("hrv_resting"),
@@ -132,32 +152,55 @@ export function bodySummary(
         "Regularity is the average absolute shortest clock shift in minutes between consecutive waking dates with the same window kind and a known unchanged source. Individual shifts are signed: later positive, earlier negative. No score, threshold or ideal bedtime.",
         "Clock midpoints are halfway between local-clock bounds, not elapsed-time midpoints across offset changes. Recorded offsets affect longest-session selection only when both are known.",
         "Cardiac counts match only the exact waking date and only resting heart rate or resting RMSSD HRV; missing dates are not carried. Same-date readings need not cover the same sleep window. No correlation or causal effect is calculated; alcohol, illness, training, medicines and device differences can affect both.",
-        ...(sleep.regularity.pairs ? [] : ["No eligible adjacent-night pairs: at least two consecutive waking dates with valid timing, the same kind and a known unchanged source are needed. Missing shift values are unavailable, not zero."]),
+        ...(sleep.regularity.pairs
+          ? []
+          : [
+              "No eligible adjacent-night pairs: at least two consecutive waking dates with valid timing, the same kind and a known unchanged source are needed. Missing shift values are unavailable, not zero.",
+            ]),
         "Duration-only saved nights need device-file re-import to obtain recorded timing; old real profiles are never filled with guessed times.",
       ],
     },
     ...opt("vo2maxMlKgMin", latestOf("vo2max")),
-    ...opt("dailySteps", (() => {
-      const s = latestOf("steps");
-      return s && { ...s, note: "No official target, so no range. In studies, the risk of dying fell with more steps up to about 6,000-8,000 a day at 60 and over and 8,000-10,000 under 60 (associations in groups, not a goal)." };
-    })()),
-    ...opt("activeMinutes", (() => {
-      const s = latestOf("active_minutes");
-      const total = recentTotal(series("active_minutes"));
-      return (
-        s && {
-          ...s,
-          ...(total ? { last7DaysTotal: Math.round(total.value), last7DaysWithReadings: total.days } : {}),
-          note: "Minutes of moderate or harder activity per day. The WHO advises adults 150-300 minutes of moderate (or 75-150 of vigorous) activity a week; the range is checked against the last 7 days' total, never one day.",
-        }
-      );
-    })()),
+    ...opt(
+      "dailySteps",
+      (() => {
+        const s = latestOf("steps");
+        return (
+          s && {
+            ...s,
+            note: "No official target, so no range. In studies, the risk of dying fell with more steps up to about 6,000-8,000 a day at 60 and over and 8,000-10,000 under 60 (associations in groups, not a goal).",
+          }
+        );
+      })(),
+    ),
+    ...opt(
+      "activeMinutes",
+      (() => {
+        const s = latestOf("active_minutes");
+        const total = recentTotal(series("active_minutes"));
+        return (
+          s && {
+            ...s,
+            ...(total ? { last7DaysTotal: Math.round(total.value), last7DaysWithReadings: total.days } : {}),
+            note: "Minutes of moderate or harder activity per day. The WHO advises adults 150-300 minutes of moderate (or 75-150 of vigorous) activity a week; the range is checked against the last 7 days' total, never one day.",
+          }
+        );
+      })(),
+    ),
     ...fitness(profile, measurements, today),
     ...(tests?.length
       ? (() => {
-          const done = fitnessSummary(tests, measurements, { ...(profile.sex ? { sex: profile.sex } : {}), ...(profile.birthMonth ? { ageAt: (d: string) => ageAt(profile.birthMonth!, d) } : {}) });
+          const done = fitnessSummary(tests, measurements, {
+            ...(profile.sex ? { sex: profile.sex } : {}),
+            ...(profile.birthMonth ? { ageAt: (d: string) => ageAt(profile.birthMonth!, d) } : {}),
+          });
           return done.length
-            ? { fitnessTests: { results: done, note: "Timed tests are compared with published norms for age and sex, not targets or diagnoses. Device walking averages are not timed tests and have no test-norm comparison. Timed-test thresholds are ones doctors use, worth mentioning to a doctor." } }
+            ? {
+                fitnessTests: {
+                  results: done,
+                  note: "Timed tests are compared with published norms for age and sex, not targets or diagnoses. Device walking averages are not timed tests and have no test-norm comparison. Timed-test thresholds are ones doctors use, worth mentioning to a doctor.",
+                },
+              }
             : {};
         })()
       : {}),
@@ -167,8 +210,15 @@ export function bodySummary(
             years: r1(heartAge(h.input)),
             actualAge: r1(h.input.age),
             tenYearCardiovascularRiskPercent: r1(framinghamRisk(h.input) * 100),
-            inputs: { systolic: Math.round(h.input.systolic), bmi: r1(h.input.bmi), smoker: h.input.smoker, bloodPressureMedicine: h.input.treatedBp, diabetes: h.input.diabetes },
-            method: "Framingham office-based model with BMI (D'Agostino 2008). An estimate for ages 30-74 without heart disease; built on clinic blood pressure.",
+            inputs: {
+              systolic: Math.round(h.input.systolic),
+              bmi: r1(h.input.bmi),
+              smoker: h.input.smoker,
+              bloodPressureMedicine: h.input.treatedBp,
+              diabetes: h.input.diabetes,
+            },
+            method:
+              "Framingham office-based model with BMI (D'Agostino 2008). An estimate for ages 30-74 without heart disease; built on clinic blood pressure.",
           }
         : h.outOfRange
           ? { notShown: `Only for ages ${AGE_RANGE.min}-${AGE_RANGE.max}.` }
@@ -193,7 +243,8 @@ function fitness(profile: Profile, measurements: readonly Measurement[], today: 
       actualAge: r1(age),
       vo2max: r1(last.value),
       ageGroupAverage: `${g.mean} mL/kg/min for healthy ${profile.sex === "m" ? "men" : "women"} aged ${g.group} (SD ${g.sd})`,
-      method: "Age at which healthy Norwegian adults (HUNT 3 Fitness Study, Loe 2013, treadmill-measured) averaged this VO2max. Watch estimates can be several points off.",
+      method:
+        "Age at which healthy Norwegian adults (HUNT 3 Fitness Study, Loe 2013, treadmill-measured) averaged this VO2max. Watch estimates can be several points off.",
     },
   };
 }

@@ -3,14 +3,7 @@ import type { Plan } from "./plans";
 
 export type Sex = "m" | "f";
 
-export type StudyType =
-  | "meta-analysis"
-  | "rct"
-  | "observational"
-  | "animal"
-  | "in vitro"
-  | "review"
-  | "guideline";
+export type StudyType = "meta-analysis" | "rct" | "observational" | "animal" | "in vitro" | "review" | "guideline";
 
 export interface Citation {
   pmid?: string;

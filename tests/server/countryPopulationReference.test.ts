@@ -1,15 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { dataPack } from "../../apps/server/assistant";
-import { biologicalAge, healthTools, type HealthSnapshot } from "../../apps/server/healthTools";
-import * as knowledge from "../../apps/server/knowledge";
 import * as projection from "@bt/shared/core/mortalityProjection";
 import type { Measurement, Profile } from "@bt/shared/core/types";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { dataPack } from "../../apps/server/assistant";
+import { biologicalAge, type HealthSnapshot, healthTools } from "../../apps/server/healthTools";
+import * as knowledge from "../../apps/server/knowledge";
 
 const today = "2026-11-01";
 const snapshot = (profile: Profile, expirationDate = false, measurements: Measurement[] = []): HealthSnapshot => ({
-  profile, expirationDate, measurements, protocols: [], experiments: [],
+  profile,
+  expirationDate,
+  measurements,
+  protocols: [],
+  experiments: [],
 });
 const adult: Profile = { birthMonth: "1971-05", sex: "m", smoking: "never", heightCm: 180, country: "CA" };
 const body = (): Measurement[] => [
@@ -29,10 +33,16 @@ afterEach(() => {
 
 describe("biological-age country population reference", () => {
   it("serves code-derived conditional survival through tools and the tool-less summary with dates off, without loading or running fitted models", async () => {
-    vi.spyOn(knowledge, "mortalityModels").mockImplementation(() => { throw new Error("Fitted models must not load with dates off"); });
-    vi.spyOn(projection, "mortalityProjection").mockImplementation(() => { throw new Error("No fitted projection with dates off"); });
+    vi.spyOn(knowledge, "mortalityModels").mockImplementation(() => {
+      throw new Error("Fitted models must not load with dates off");
+    });
+    vi.spyOn(projection, "mortalityProjection").mockImplementation(() => {
+      throw new Error("No fitted projection with dates off");
+    });
     const s = snapshot(adult, false, body());
-    const biological = await healthTools(s).get_biological_age!.execute!({}, { toolCallId: "population", messages: [] } as never) as ReturnType<typeof biologicalAge>;
+    const biological = (await healthTools(s).get_biological_age!.execute!({}, { toolCallId: "population", messages: [] } as never)) as ReturnType<
+      typeof biologicalAge
+    >;
     const reference = biological.countryPopulationReference;
     if (typeof reference === "string") throw new Error(reference);
     const file = knowledge.lifeTables()!;
@@ -47,7 +57,7 @@ describe("biological-age country population reference", () => {
     // rather than accepting a birth-cohort percentage or an adjusted model age.
     const floor = Math.floor(age);
     const aliveNow = table.lx[floor]! + (table.lx[floor + 1]! - table.lx[floor]!) * (age - floor);
-    expect(reference.survivalByAge[1]!.alivePercent).toBeCloseTo(100 * table.lx[floor + 1]! / aliveNow, 10);
+    expect(reference.survivalByAge[1]!.alivePercent).toBeCloseTo((100 * table.lx[floor + 1]!) / aliveNow, 10);
     expect(reference.survivalByAge.at(-1)!.alivePercent).toBeLessThanOrEqual(1);
     expect(reference.survivalByAge.some((point) => point.age > 95 && point.tailApproximation)).toBe(true);
     expect(reference.middleHalfAges[0]).toBeLessThan(reference.medianAge);

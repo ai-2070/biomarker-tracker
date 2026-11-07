@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { SAFETY_LIMITS } from "@bt/shared/core/foods";
 import { foodById, mealSafetyBlock, mealTotals } from "@bt/shared/core/meals";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { formatValue } from "@bt/shared/core/units";
-import { db as localDb, getProfile, saveMeal } from "../../../db/db";
+import { useState } from "react";
+import { getProfile, db as localDb, saveMeal } from "../../../db/db";
 import { SafetyNotices } from "../../components/SafetyNotices";
 import { Button, CheckIcon, cardStyles, cx } from "../../components/ui";
 import { useFoodDb } from "../../foodDb";
@@ -23,7 +23,7 @@ export function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
   const [error, setError] = useState<string>();
   const recommended = turn.intent === "recommend";
   const safety = safetyNotes(safetyLabels(habits ?? [], profile));
-  const limits = safety.flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+  const limits = safety.flatMap(({ id }) => (SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []));
   const blocked = recommended && foodDb ? mealSafetyBlock(turn.meal.items, foodDb, limits) : undefined;
   if (turn.state === "dismissed") return <p className="text-center text-sm text-ink-2">Meal not saved.</p>;
   if (turn.state === "saved") {
@@ -49,8 +49,7 @@ export function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
       if (recommended) {
         // Read again at the click, so a Settings or Habits change cannot leave a stale safe draft.
         const [currentProfile, currentHabits] = await Promise.all([getProfile(), localDb.protocols.toArray()]);
-        const currentLimits = safetyNotes(safetyLabels(currentHabits, currentProfile))
-          .flatMap(({ id }) => SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []);
+        const currentLimits = safetyNotes(safetyLabels(currentHabits, currentProfile)).flatMap(({ id }) => (SAFETY_LIMITS[id] ? [SAFETY_LIMITS[id]!] : []));
         const issue = mealSafetyBlock(turn.meal.items, foodDb, currentLimits);
         if (issue) {
           setError(`${issue}. Talk to your doctor before changing these foods.`);
@@ -69,7 +68,9 @@ export function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
   return (
     <div className={cx("flex flex-col gap-3 p-3", cardStyles)}>
       <div>
-        <p className="text-sm font-medium">{recommended ? "Suggested meal" : "Meal from your recipe"} · {turn.meal.items.length} foods</p>
+        <p className="text-sm font-medium">
+          {recommended ? "Suggested meal" : "Meal from your recipe"} · {turn.meal.items.length} foods
+        </p>
         <p className="mt-0.5 font-medium break-words">{turn.meal.name}</p>
       </div>
       <ul className="flex flex-col gap-0.5 rounded-lg bg-sunken p-2 text-sm">
@@ -86,12 +87,22 @@ export function MealTurn({ turn }: { turn: Extract<Turn, { role: "meal" }> }) {
           <span className="block text-xs text-ink-2">Worked out by the app from the food table. Vitamins and minerals are on the meal's page.</span>
         </p>
       )}
-      <p className="text-xs text-ink-2">{recommended
-        ? "These are example food portions, not a daily target or a complete diet. Review them before saving; you can edit the meal afterwards."
-        : "Check that the foods and weights match your recipe; you can change them after saving."}</p>
+      <p className="text-xs text-ink-2">
+        {recommended
+          ? "These are example food portions, not a daily target or a complete diet. Review them before saving; you can edit the meal afterwards."
+          : "Check that the foods and weights match your recipe; you can change them after saving."}
+      </p>
       {recommended && safety.length > 0 && <SafetyNotices notes={safety} />}
-      {blocked && <p role="alert" className="rounded-lg bg-warn-soft p-2 text-sm">{blocked}. Talk to your doctor before changing these foods. This suggestion cannot be saved.</p>}
-      {error && <p role="alert" className="text-sm text-danger">{error}</p>}
+      {blocked && (
+        <p role="alert" className="rounded-lg bg-warn-soft p-2 text-sm">
+          {blocked}. Talk to your doctor before changing these foods. This suggestion cannot be saved.
+        </p>
+      )}
+      {error && (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      )}
       <div className="flex flex-wrap gap-2">
         <Button disabled={saving || !foodDb || !!blocked || (recommended && !habits)} onClick={() => void save()}>
           {saving ? "Saving…" : "Save meal"}

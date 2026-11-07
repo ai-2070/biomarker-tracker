@@ -3,7 +3,7 @@
 // program may start MCP servers, shells or model helpers of its own. Stopping sends SIGTERM to the whole
 // group, then SIGKILL to whatever is still running after a short grace period. On Windows, taskkill /t
 // ends the tree. The server stops every group it still owns when it shuts down or exits.
-import { spawn, spawnSync, type ChildProcess, type SpawnOptions } from "node:child_process";
+import { type ChildProcess, type SpawnOptions, spawn, spawnSync } from "node:child_process";
 
 const IS_WIN = process.platform === "win32";
 
@@ -40,7 +40,9 @@ function signalGroup(child: ChildProcess, signal: NodeJS.Signals): boolean {
     try {
       // Not a group leader (never expected with spawnTree): signal the child itself.
       if (child.exitCode === null && child.signalCode === null) return child.kill(signal);
-    } catch { /* already gone */ }
+    } catch {
+      /* already gone */
+    }
     return false;
   }
 }

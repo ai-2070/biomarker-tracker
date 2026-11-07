@@ -1,7 +1,7 @@
-import { ageAt } from "./phenoageDraws";
 import { bmi, latestBody } from "./body";
-import { sortByDate } from "./trends";
+import { ageAt } from "./phenoageDraws";
 import { isActiveOn } from "./protocols";
+import { sortByDate } from "./trends";
 import type { Measurement, Profile, ProtocolEntry } from "./types";
 
 /**
@@ -47,7 +47,7 @@ function sum(i: HeartAgeInput): number {
 /** Predicted 10-year risk of a heart attack, stroke or other cardiovascular event (0–1). */
 export function framinghamRisk(i: HeartAgeInput): number {
   const c = FRAMINGHAM_BMI[i.sex];
-  return 1 - Math.pow(c.s0, Math.exp(sum(i) - c.mean));
+  return 1 - c.s0 ** Math.exp(sum(i) - c.mean);
 }
 
 /** The age at which a person with normal risk factors has the same predicted risk. */
@@ -60,7 +60,8 @@ export function heartAge(i: HeartAgeInput): number {
 /** Blood pressure medicines by name (generic and common brands), for "treated for high blood pressure". */
 const BP_MEDICINES =
   /amlodipine|nifedipine|felodipine|lercanidipine|lisinopril|ramipril|enalapril|perindopril|captopril|quinapril|losartan|valsartan|candesartan|irbesartan|telmisartan|olmesartan|bisoprolol|metoprolol|atenolol|nebivolol|carvedilol|propranolol|hydrochlorothiazide|chlorthalidone|indapamide|spironolactone|doxazosin|blood pressure|antihypertensive|norvasc|zestril|cozaar|diovan|concor/i;
-const DIABETES_MEDICINES = /metformin|insulin|gliclazide|glimepiride|glipizide|sitagliptin|linagliptin|empagliflozin|dapagliflozin|canagliflozin|pioglitazone|jardiance|forxiga|januvia/i;
+const DIABETES_MEDICINES =
+  /metformin|insulin|gliclazide|glimepiride|glipizide|sitagliptin|linagliptin|empagliflozin|dapagliflozin|canagliflozin|pioglitazone|jardiance|forxiga|januvia/i;
 
 /** Only affirmative history may change a numerical risk input; uncertain mentions need confirmation. */
 function affirmativeHistory(text: string, pattern: RegExp): boolean | undefined {
@@ -71,7 +72,11 @@ function affirmativeHistory(text: string, pattern: RegExp): boolean | undefined 
     const before = clause.slice(0, match.index);
     const through = clause.slice(0, match.index + match[0].length);
     const after = clause.slice(match.index + match[0].length);
-    if (/\b(no|not|without|denies|denied|negative for|untreated)\b/i.test(through) || /^\s*:?\s*(?:(?:is|was)\s+)?(?:no\b|absent\b|ruled out\b|negative\b|denied\b|not (?:present|diagnosed|treated)\b)/i.test(after)) continue;
+    if (
+      /\b(no|not|without|denies|denied|negative for|untreated)\b/i.test(through) ||
+      /^\s*:?\s*(?:(?:is|was)\s+)?(?:no\b|absent\b|ruled out\b|negative\b|denied\b|not (?:present|diagnosed|treated)\b)/i.test(after)
+    )
+      continue;
     if (/\?|\b(possible|suspected|uncertain|maybe|family history|rule out)\b/i.test(before + after)) uncertain = true;
     else return true;
   }
@@ -102,9 +107,9 @@ export function heartAgeData(profile: Profile, measurements: readonly Measuremen
   const weight = latestBody(measurements).weight;
   const b = weight ? bmi(weight.value, profile.heightCm) : undefined;
 
-  const activeMeds = protocols.filter((p) => isActiveOn(p, today)).flatMap((p) =>
-    p.plan ? p.plan.items.filter((i) => i.category === "medication").map((i) => i.label) : p.category === "medication" ? [p.label] : [],
-  );
+  const activeMeds = protocols
+    .filter((p) => isActiveOn(p, today))
+    .flatMap((p) => (p.plan ? p.plan.items.filter((i) => i.category === "medication").map((i) => i.label) : p.category === "medication" ? [p.label] : []));
   const conditions = profile.conditions ?? "";
   const bpHistory = affirmativeHistory(conditions, /(blood pressure|hypertension).{0,30}(medicine|medication|tablet|pill|treat)\w*|antihypertensive/i);
   const diabetesHistory = affirmativeHistory(conditions, /\bdiabet(?:es|ic)\b/i);
@@ -122,7 +127,13 @@ export function heartAgeData(profile: Profile, measurements: readonly Measuremen
   if (!last) missing.push("a blood pressure reading");
   if (!profile.smoking) missing.push("whether you smoke");
 
-  const from = { systolicReadings: recent.length, ...(last ? { systolicDate: last.date } : {}), ...(weight ? { bmiDate: weight.date } : {}), treatedBp, diabetes } as HeartAgeData["from"];
+  const from = {
+    systolicReadings: recent.length,
+    ...(last ? { systolicDate: last.date } : {}),
+    ...(weight ? { bmiDate: weight.date } : {}),
+    treatedBp,
+    diabetes,
+  } as HeartAgeData["from"];
   if (missing.length || !last || !b || !profile.sex || !profile.birthMonth) return { missing, from };
   const age = ageAt(profile.birthMonth, today);
   const input: HeartAgeInput = {

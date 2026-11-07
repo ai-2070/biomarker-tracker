@@ -1,14 +1,14 @@
+import type { Profile } from "@bt/shared/core/types";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { BrainState } from "../../apps/web/src/app/brain/store";
 import type * as BrainStore from "../../apps/web/src/app/brain/store";
-import ferritin from "../../knowledge/biomarkers/ferritin.json";
-import weight from "../../knowledge/biomarkers/weight.json";
+import type { BrainState } from "../../apps/web/src/app/brain/store";
+import type { ProfileFillResult } from "../../apps/web/src/db/db";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
+import ferritin from "../../knowledge/biomarkers/ferritin.json";
 import potassium from "../../knowledge/biomarkers/potassium.json";
+import weight from "../../knowledge/biomarkers/weight.json";
 import { deferred } from "../helpers";
-import type { Profile } from "@bt/shared/core/types";
-import type { ProfileFillResult } from "../../apps/web/src/db/db";
 
 const mocks = vi.hoisted(() => ({
   api: vi.fn<(...args: unknown[]) => Promise<unknown>>(),
@@ -22,9 +22,15 @@ const mocks = vi.hoisted(() => ({
 
 // Exercise the real external store without mounting a UI or loading PDF workers.
 vi.mock("react", () => ({ useSyncExternalStore: (_subscribe: unknown, snapshot: () => BrainState) => snapshot() }));
-vi.mock("../../apps/web/src/app/api", async () => (await import("./fakeServer")).mockApiModule(() => { throw new Error("No local server in this test."); }));
+vi.mock("../../apps/web/src/app/api", async () =>
+  (await import("./fakeServer")).mockApiModule(() => {
+    throw new Error("No local server in this test.");
+  }),
+);
 // The streamed answer (stream.ts) resolves with the same reply the JSON API gave; tests drive it through api.
-vi.mock("../../apps/web/src/app/brain/stream", () => ({ streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate) }));
+vi.mock("../../apps/web/src/app/brain/stream", () => ({
+  streamAssistant: (body: unknown, signal: AbortSignal, onUpdate: unknown) => mocks.api("POST", "/api/assistant", body, signal, onUpdate),
+}));
 vi.mock("../../apps/web/src/db/db", () => ({
   db: {
     transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
@@ -41,7 +47,8 @@ vi.mock("../../apps/web/src/db/db", () => ({
 }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../apps/web/src/app/knowledge", () => ({
-  BLOOD_MARKERS: [ferritin], BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace, potassium].map((def) => [def.id, def])),
+  BLOOD_MARKERS: [ferritin],
+  BIOMARKER_MAP: new Map([ferritin, weight, bodyFat, pace, potassium].map((def) => [def.id, def])),
 }));
 vi.mock("../../apps/web/src/app/components/LabReview", () => ({
   isPdf: (file: File) => file.type === "application/pdf",
@@ -49,7 +56,6 @@ vi.mock("../../apps/web/src/app/components/LabReview", () => ({
   monthFirst: false,
 }));
 vi.mock("../../apps/web/src/app/brain/photo", () => ({ shrinkPhoto: mocks.shrinkPhoto }));
-
 
 const reply = (text = "Public evidence answer") => ({ ok: true, text, steps: [], studyIds: ["PMID:123"], truncated: false, failedServers: [] });
 const claim = "Check human evidence for oral astaxanthin and skin elasticity.";
@@ -164,7 +170,18 @@ describe("research Brain thread", () => {
     await brain.addFiles([file, new File(["photo"], "photo.jpg", { type: "image/jpeg" })]);
     expect(read).not.toHaveBeenCalled();
     expect(mocks.shrinkPhoto).not.toHaveBeenCalled();
-    const steps = [{ tool: "propose_habit", validated: true, success: true, input: "{}", output: { intent: "recommend", shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] } } }];
+    const steps = [
+      {
+        tool: "propose_habit",
+        validated: true,
+        success: true,
+        input: "{}",
+        output: {
+          intent: "recommend",
+          shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] },
+        },
+      },
+    ];
     expect(brain.habitTurns(steps, [], "2026-10-30", { requestText: "Recommend a breakfast habit", safety: [] })).toHaveLength(1);
     mocks.api.mockResolvedValue({ ...reply(), steps });
     await brain.send("Research model");
@@ -175,26 +192,34 @@ describe("research Brain thread", () => {
 });
 
 describe("research preparation and response races", () => {
-  it.each(["resolve", "reject"] as const)("discards delayed personal snapshot %s after switching, without a duplicate request or lost draft", async (finish) => {
-    const pending = deferred<unknown[]>();
-    mocks.measurements.mockReturnValue(pending.promise);
-    brain.setDraft("PRIVATE_DRAFT");
-    await brain.addFiles([new File(["PRIVATE_FILE"], "private.txt", { type: "text/plain" })]);
-    const sending = brain.send("Personal model");
-    expect(brain.useBrain().busy).toBe(true);
-    await brain.send("Personal model");
-    expect(mocks.measurements).toHaveBeenCalledTimes(1);
-    brain.askResearchBrain(claim);
-    await brain.send("Research model");
-    if (finish === "resolve") pending.resolve([]);
-    else pending.reject(new Error("PRIVATE_SNAPSHOT_FAILURE"));
-    await sending;
-    expect(mocks.api).toHaveBeenCalledTimes(1);
-    expect(mocks.api.mock.calls[0]?.[2]).toEqual({ scope: "research", messages: [{ role: "user", content: claim }] });
-    expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "assistant"]);
-    brain.backToMyChat();
-    expect(brain.useBrain()).toMatchObject({ draft: "PRIVATE_DRAFT", busy: false, turns: [], attachments: [{ name: "private.txt", status: "ready", text: "PRIVATE_FILE" }] });
-  });
+  it.each(["resolve", "reject"] as const)(
+    "discards delayed personal snapshot %s after switching, without a duplicate request or lost draft",
+    async (finish) => {
+      const pending = deferred<unknown[]>();
+      mocks.measurements.mockReturnValue(pending.promise);
+      brain.setDraft("PRIVATE_DRAFT");
+      await brain.addFiles([new File(["PRIVATE_FILE"], "private.txt", { type: "text/plain" })]);
+      const sending = brain.send("Personal model");
+      expect(brain.useBrain().busy).toBe(true);
+      await brain.send("Personal model");
+      expect(mocks.measurements).toHaveBeenCalledTimes(1);
+      brain.askResearchBrain(claim);
+      await brain.send("Research model");
+      if (finish === "resolve") pending.resolve([]);
+      else pending.reject(new Error("PRIVATE_SNAPSHOT_FAILURE"));
+      await sending;
+      expect(mocks.api).toHaveBeenCalledTimes(1);
+      expect(mocks.api.mock.calls[0]?.[2]).toEqual({ scope: "research", messages: [{ role: "user", content: claim }] });
+      expect(brain.useBrain().turns.map((t) => t.role)).toEqual(["user", "assistant"]);
+      brain.backToMyChat();
+      expect(brain.useBrain()).toMatchObject({
+        draft: "PRIVATE_DRAFT",
+        busy: false,
+        turns: [],
+        attachments: [{ name: "private.txt", status: "ready", text: "PRIVATE_FILE" }],
+      });
+    },
+  );
 
   it("does not send photos when switching to research while the personal question is prepared, and keeps them in my chat", async () => {
     const pending = deferred<unknown[]>();
@@ -210,7 +235,11 @@ describe("research preparation and response races", () => {
     expect(mocks.api).toHaveBeenCalledTimes(1);
     expect(mocks.api.mock.calls[0]?.[2]).toEqual({ scope: "research", messages: [{ role: "user", content: claim }] });
     brain.backToMyChat();
-    expect(brain.useBrain()).toMatchObject({ draft: "PRIVATE_PHOTO_QUESTION", turns: [], attachments: [{ name: "private.jpg", file: photo, images: [{ data: "PRIVATE_PHOTO" }], status: "ready" }] });
+    expect(brain.useBrain()).toMatchObject({
+      draft: "PRIVATE_PHOTO_QUESTION",
+      turns: [],
+      attachments: [{ name: "private.jpg", file: photo, images: [{ data: "PRIVATE_PHOTO" }], status: "ready" }],
+    });
   });
 
   it("aborts an old personal response and ignores its late completion while research is active", async () => {
@@ -262,7 +291,7 @@ describe("research preparation and response races", () => {
     pending.resolve(reply("Old answer"));
     await sending;
     expect(brain.useBrain()).toMatchObject({ scope: "research", busy: false, turns: [], draft: "" });
-    expect((mocks.api.mock.calls[0]?.[3] as AbortSignal).aborted).toBe(true);
+    expect((mocks.api.mock.calls[0]![3] as AbortSignal).aborted).toBe(true);
   });
 });
 
@@ -387,18 +416,36 @@ describe("personal Brain profile updates", () => {
   it("saves explicit profile facts even when a successful answer contains no save tool call", async () => {
     mocks.fillProfile.mockResolvedValue({
       profile: { heightCm: 184, sex: "m", diet: "omnivore" },
-      added: [{ field: "heightCm", value: 184 }, { field: "sex", value: "m" }, { field: "diet", value: "omnivore" }],
-      rejected: [], measurementsAdded: [], sameProfile: true,
+      added: [
+        { field: "heightCm", value: 184 },
+        { field: "sex", value: "m" },
+        { field: "diet", value: "omnivore" },
+      ],
+      rejected: [],
+      measurementsAdded: [],
+      sameProfile: true,
     });
     await brain.send("Model", "I'm 36, 84kg, 184cm tall, man. I usually eat everything. What should I consider if I start lifting?");
     expect(brain.useBrain().turns.map((turn) => turn.role)).toEqual(["user", "assistant", "profile"]);
-    expect(brain.useBrain().turns.at(-1)).toMatchObject({ changes: [
-      { field: "heightCm", value: 184 }, { field: "sex", value: "m" }, { field: "diet", value: "omnivore" },
-    ] });
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({
+      changes: [
+        { field: "heightCm", value: 184 },
+        { field: "sex", value: "m" },
+        { field: "diet", value: "omnivore" },
+      ],
+    });
   });
 
   it("shows a persisted measurement receipt even when there are no new profile fields or save tools", async () => {
-    const measurement = { id: "body-fat", biomarkerId: "body_fat", value: 27, originalValue: 27, originalUnit: "%", date: "2026-10-30", source: "manual" as const };
+    const measurement = {
+      id: "body-fat",
+      biomarkerId: "body_fat",
+      value: 27,
+      originalValue: 27,
+      originalUnit: "%",
+      date: "2026-10-30",
+      source: "manual" as const,
+    };
     mocks.fillProfile.mockResolvedValue({ profile: {}, added: [], rejected: [], measurementsAdded: [measurement], sameProfile: true });
     await brain.send("Model", "im 27% body fat");
     expect(brain.useBrain().turns.map((turn) => turn.role)).toEqual(["user", "assistant", "profile"]);
@@ -407,7 +454,17 @@ describe("personal Brain profile updates", () => {
 });
 
 it("does not make a habit draft from an external tool even with an empty server id", () => {
-  const step = { tool: "propose_habit", input: "{}", server: "", validated: true, success: true, output: { intent: "recommend", shownToPerson: { label: "Walk outdoors", category: "lifestyle", start: "2026-10-30", reason: "An example.", markerIds: [] } } };
+  const step = {
+    tool: "propose_habit",
+    input: "{}",
+    server: "",
+    validated: true,
+    success: true,
+    output: {
+      intent: "recommend",
+      shownToPerson: { label: "Walk outdoors", category: "lifestyle", start: "2026-10-30", reason: "An example.", markerIds: [] },
+    },
+  };
   expect(brain.habitTurns([{ ...step, server: undefined }], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toHaveLength(1);
   expect(brain.habitTurns([step], [], "2026-10-30", { requestText: "Recommend a habit", safety: [] })).toEqual([]);
 });
@@ -435,7 +492,7 @@ describe("the streamed answer", () => {
     expect(turns[1]).toMatchObject({ content: "Your ferritin is fine.", studyIds: ["PMID:123"] });
     // Only real turns go back to the model next time.
     await brain.send("Personal model", "And now?");
-    const history = (mocks.api.mock.calls.at(-1)?.[2] as { messages: { role: string }[] }).messages.map((m) => m.role);
+    const history = (mocks.api.mock.calls.at(-1)![2] as { messages: { role: string }[] }).messages.map((m) => m.role);
     expect(history).toEqual(["user", "assistant", "user"]);
   });
 
@@ -471,22 +528,47 @@ describe("the streamed answer", () => {
 });
 
 describe("results Brain read from photos", () => {
-  const proposal = (results: unknown[], date?: string) => ({ tool: "propose_results", input: "{}", validated: true, success: true, output: { shownToPerson: { ...(date ? { date } : {}), results } } });
+  const proposal = (results: unknown[], date?: string) => ({
+    tool: "propose_results",
+    input: "{}",
+    validated: true,
+    success: true,
+    output: { shownToPerson: { ...(date ? { date } : {}), results } },
+  });
 
   it("turns a successful propose_results call into a review card, keeping the photo for the profile folder", async () => {
     const photo = new File(["photo"], "report.jpg", { type: "image/jpeg" });
     await brain.addFiles([photo]);
-    mocks.api.mockResolvedValue({ ...reply("I read one result."), steps: [proposal([{ marker: "ferritin", printed: "Ferritin 45 ug/L 15-150", value: "45", unit: "ug/L", rangeLow: "15", rangeHigh: "150" }], "2026-10-20")] });
+    mocks.api.mockResolvedValue({
+      ...reply("I read one result."),
+      steps: [
+        proposal([{ marker: "ferritin", printed: "Ferritin 45 ug/L 15-150", value: "45", unit: "ug/L", rangeLow: "15", rangeHigh: "150" }], "2026-10-20"),
+      ],
+    });
     await brain.send("Personal model", "What does it say?");
     const card = brain.useBrain().turns.find((t) => t.role === "review");
     expect(card).toMatchObject({
-      role: "review", fileName: "report.jpg", files: [photo], fromPicture: true, kind: "lab", state: "open",
+      role: "review",
+      fileName: "report.jpg",
+      files: [photo],
+      fromPicture: true,
+      kind: "lab",
+      state: "open",
       report: { date: "2026-10-20", rows: [{ biomarkerId: "ferritin", value: "45", unit: "µg/L", labLow: "15", labHigh: "150", problems: [] }] },
     });
   });
 
   it("puts the review card before Brain's answer, and suggests no habit next to a critical value read from the picture", async () => {
-    const habit = { tool: "propose_habit", validated: true, success: true, input: "{}", output: { intent: "recommend", shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] } } };
+    const habit = {
+      tool: "propose_habit",
+      validated: true,
+      success: true,
+      input: "{}",
+      output: {
+        intent: "recommend",
+        shownToPerson: { label: "Iron-rich breakfast", category: "diet", start: "2026-10-30", reason: "You asked to track this.", markerIds: ["ferritin"] },
+      },
+    };
     await brain.addFiles([new File(["photo"], "report.jpg", { type: "image/jpeg" })]);
     mocks.api.mockResolvedValue({ ...reply("Contact a doctor."), steps: [proposal([{ marker: "potassium", value: "7.2", unit: "mmol/L" }]), habit] });
     await brain.send("Personal model", "Read this and suggest a habit");
@@ -495,7 +577,12 @@ describe("results Brain read from photos", () => {
     await brain.addFiles([new File(["photo"], "report2.jpg", { type: "image/jpeg" })]);
     mocks.api.mockResolvedValue({ ...reply("One result."), steps: [proposal([{ marker: "potassium", value: "4.2", unit: "mmol/L" }]), habit] });
     await brain.send("Personal model", "Read this and suggest a habit");
-    expect(brain.useBrain().turns.slice(3).map((t) => t.role)).toEqual(["user", "review", "assistant", "habit"]);
+    expect(
+      brain
+        .useBrain()
+        .turns.slice(3)
+        .map((t) => t.role),
+    ).toEqual(["user", "review", "assistant", "habit"]);
   });
 
   it("sends the pictures again with a follow-up while their card is open, to the same model only", async () => {
@@ -518,7 +605,7 @@ describe("results Brain read from photos", () => {
     for (const t of turns) if (t.role === "review") brain.updateTurn(t.id, { state: "dismissed" });
     expect(brain.picturesToResend(brain.useBrain().turns, "Personal model")).toBeUndefined();
     await brain.send("Personal model", "Thanks");
-    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+    expect((mocks.api.mock.calls[2]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
   });
 
   it("keeps sending the pictures with each follow-up while their card is open, and stops after a question without them", async () => {
@@ -528,13 +615,18 @@ describe("results Brain read from photos", () => {
     mocks.api.mockResolvedValue(reply("Sure."));
     await brain.send("Personal model", "You missed one");
     await brain.send("Personal model", "What is ferritin?");
-    expect((mocks.api.mock.calls[2]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeDefined();
+    expect((mocks.api.mock.calls[2]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeDefined();
     // The re-sent question also counts as the picture question, while the card stays open.
-    expect(brain.useBrain().turns.filter((t) => t.role === "user").map((t) => t.role === "user" && !!t.photosAgain)).toEqual([false, true, true]);
+    expect(
+      brain
+        .useBrain()
+        .turns.filter((t) => t.role === "user")
+        .map((t) => t.role === "user" && !!t.photosAgain),
+    ).toEqual([false, true, true]);
     // A question that went to another model breaks the chain, even if the card is still open.
     await brain.send("Other model", "And this?");
     await brain.send("Personal model", "Back again");
-    expect((mocks.api.mock.calls[4]?.[2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
+    expect((mocks.api.mock.calls[4]![2] as { messages: { images?: unknown[] }[] }).messages.at(-1)!.images).toBeUndefined();
   });
 
   it("doesn't save a reading typed with pictures as today's: it belongs on the card", async () => {
@@ -561,14 +653,35 @@ describe("results Brain read from photos", () => {
   });
 
   it("uses body wording for body measurements", () => {
-    const [card] = brain.resultTurns([proposal([{ marker: "weight", value: "70.4", unit: "kg" }, { marker: "body_fat", value: "21", unit: "%" }])], [], "2026-10-30");
+    const [card] = brain.resultTurns(
+      [
+        proposal([
+          { marker: "weight", value: "70.4", unit: "kg" },
+          { marker: "body_fat", value: "21", unit: "%" },
+        ]),
+      ],
+      [],
+      "2026-10-30",
+    );
     expect(card).toMatchObject({ role: "review", kind: "body", fileName: "your pictures", report: { date: "2026-10-30" } });
   });
 
   it("never builds cards from failed, unchecked or research-server calls, or from damaged output", () => {
     const ok = proposal([{ marker: "ferritin", value: "45", unit: "µg/L" }]);
     expect(brain.resultTurns([ok], [], "2026-10-30")).toHaveLength(1);
-    expect(brain.resultTurns([{ ...ok, success: false }, { ...ok, validated: false }, { ...ok, server: "lookalike" }, { ...ok, output: { shownToPerson: { results: [{ marker: "unknown", value: "1" }] } } }, { ...ok, tool: "propose_habit" }], [], "2026-10-30")).toEqual([]);
+    expect(
+      brain.resultTurns(
+        [
+          { ...ok, success: false },
+          { ...ok, validated: false },
+          { ...ok, server: "lookalike" },
+          { ...ok, output: { shownToPerson: { results: [{ marker: "unknown", value: "1" }] } } },
+          { ...ok, tool: "propose_habit" },
+        ],
+        [],
+        "2026-10-30",
+      ),
+    ).toEqual([]);
   });
 
   it("shows no result cards for a question sent without pictures", async () => {
@@ -580,14 +693,25 @@ describe("results Brain read from photos", () => {
   it("opens Brain from the Import page with the photo attached and the reading question waiting", async () => {
     const photo = new File(["photo"], "scan.jpg", { type: "image/jpeg" });
     await brain.readWithBrain(photo);
-    expect(brain.useBrain()).toMatchObject({ open: true, scope: "personal", pending: brain.READ_REPORT_QUESTION, attachments: [{ name: "scan.jpg", file: photo, status: "ready" }] });
+    expect(brain.useBrain()).toMatchObject({
+      open: true,
+      scope: "personal",
+      pending: brain.READ_REPORT_QUESTION,
+      attachments: [{ name: "scan.jpg", file: photo, status: "ready" }],
+    });
   });
 
   it("attaches a scanned PDF's pages the Import page already drew, without reading the PDF again", async () => {
     const pdf = new File(["%PDF"], "scan.pdf", { type: "application/pdf" });
-    const pages = [{ mediaType: "image/jpeg" as const, data: "UEFHRQ==" }, { mediaType: "image/jpeg" as const, data: "UEFHRTI=" }];
+    const pages = [
+      { mediaType: "image/jpeg" as const, data: "UEFHRQ==" },
+      { mediaType: "image/jpeg" as const, data: "UEFHRTI=" },
+    ];
     await brain.readWithBrain(pdf, pages);
-    expect(brain.useBrain()).toMatchObject({ pending: brain.READ_REPORT_QUESTION, attachments: [{ name: "scan.pdf", file: pdf, status: "ready", images: pages, pictureOf: "pdf" }] });
+    expect(brain.useBrain()).toMatchObject({
+      pending: brain.READ_REPORT_QUESTION,
+      attachments: [{ name: "scan.pdf", file: pdf, status: "ready", images: pages, pictureOf: "pdf" }],
+    });
     await brain.readWithBrain(pdf, pages);
     expect(brain.useBrain().attachments).toHaveLength(1);
   });

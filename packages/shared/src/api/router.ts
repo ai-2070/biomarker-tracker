@@ -4,7 +4,7 @@
 // which stay plain HTTP in apps/server/http.ts.
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { PROFILE_PART_NAMES, type ApiServices } from "./types";
+import { type ApiServices, PROFILE_PART_NAMES } from "./types";
 
 export interface ApiContext {
   services: ApiServices;
@@ -40,7 +40,9 @@ const procedure = t.procedure.use(async ({ next }) => {
 
 const id = z.string().regex(/^[a-z0-9][a-z0-9-]{0,59}$/);
 /** A profile's parts; the server validates each one (profiles.ts). */
-const profileInput = z.object(Object.fromEntries(PROFILE_PART_NAMES.map((part) => [part, z.unknown()]))).partial() as z.ZodType<Partial<Record<typeof PROFILE_PART_NAMES[number], unknown>>>;
+const profileInput = z.object(Object.fromEntries(PROFILE_PART_NAMES.map((part) => [part, z.unknown()]))).partial() as z.ZodType<
+  Partial<Record<(typeof PROFILE_PART_NAMES)[number], unknown>>
+>;
 const ok = { ok: true } as const;
 
 export const appRouter = t.router({
@@ -57,14 +59,16 @@ export const appRouter = t.router({
     /** Adds or removes the app's tools in Hermes' own MCP settings (only when the person presses the button). */
     connectHermes: procedure.input(z.object({ connect: z.boolean() })).mutation(({ ctx, input }) => ctx.services.settings.connectHermes(input.connect)),
     setProvider: procedure
-      .input(z.object({
-        id: z.string().max(40),
-        zdrConfirmed: z.boolean().optional(),
-        region: z.enum(["EU", "US"]).optional(),
-        baseURL: z.string().max(300).optional(),
-        profile: z.string().max(80).optional(),
-        key: z.string().max(1000).nullable().optional(),
-      }))
+      .input(
+        z.object({
+          id: z.string().max(40),
+          zdrConfirmed: z.boolean().optional(),
+          region: z.enum(["EU", "US"]).optional(),
+          baseURL: z.string().max(300).optional(),
+          profile: z.string().max(80).optional(),
+          key: z.string().max(1000).nullable().optional(),
+        }),
+      )
       .mutation(({ ctx, input: { id: provider, ...change } }) => ctx.services.settings.setProvider(provider, change)),
     setAssistant: procedure
       .input(z.object({ provider: z.string().max(20), model: z.string().max(120), effort: z.enum(["low", "medium", "high", "xhigh", "max"]).optional() }))
@@ -94,7 +98,9 @@ export const appRouter = t.router({
 
   mcp: t.router({
     list: procedure.query(({ ctx }) => ctx.services.mcp.list()),
-    addPreset: procedure.input(z.object({ presetId: z.string().max(60) })).mutation(({ ctx, input }) => ({ server: ctx.services.mcp.addPreset(input.presetId) })),
+    addPreset: procedure
+      .input(z.object({ presetId: z.string().max(60) }))
+      .mutation(({ ctx, input }) => ({ server: ctx.services.mcp.addPreset(input.presetId) })),
     addCustom: procedure
       .input(z.object({ name: z.string().max(60), command: z.string().max(300), args: z.array(z.string().max(1000)).max(30) }))
       .mutation(({ ctx, input }) => ({ server: ctx.services.mcp.addCustom(input) })),
