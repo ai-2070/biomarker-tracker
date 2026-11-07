@@ -6,6 +6,7 @@ import { usePlans } from "../hooks";
 import { href } from "../router";
 import { WhenFields, whenFields, whenOf, type WhenValue } from "./PlanWhen";
 import { Button, buttonStyles, cx, inputStyles, labelStyles } from "./ui";
+import { SimpleSelect } from "./UnitSelect";
 
 /**
  * "Add to a protocol" from a supplement's page: the item's name, the person's own amount (optional, never
@@ -59,17 +60,12 @@ export function AddToProtocol({ label, category = "supplement", extra, amountHin
                 if (!full) add();
               }}
             >
-              <label className="flex flex-col gap-1.5">
-                <span className={labelStyles}>Protocol</span>
-                <select value={target?.id ?? "new"} onChange={(e) => setPlanId(e.target.value)} className={inputStyles}>
-                  {plans.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.name}
-                    </option>
-                  ))}
-                  <option value="new">A new protocol</option>
-                </select>
-              </label>
+              <SimpleSelect
+                label="Protocol"
+                options={[...plans.map((p) => ({ value: p.id, label: p.name })), { value: "new", label: "A new protocol" }]}
+                value={target?.id ?? "new"}
+                onChange={setPlanId}
+              />
               <div className="grid gap-3 sm:grid-cols-[2fr_1fr]">
                 <label className="flex flex-col gap-1.5">
                   <span className={labelStyles}>Item</span>

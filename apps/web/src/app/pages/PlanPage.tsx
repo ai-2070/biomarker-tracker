@@ -21,6 +21,7 @@ import { NUTRIENTS, WHOLE_FOODS } from "../knowledge";
 import { href } from "../router";
 import { NotFound } from "./NotFound";
 import { wholeFoodFor } from "@bt/shared/core/wholeFoods";
+import { SimpleSelect } from "../components/UnitSelect";
 
 /** One protocol: its items as a day's schedule, warnings, and start / stop / share. */
 export function PlanPage({ id }: { id: string }) {
@@ -270,18 +271,17 @@ function ItemForm({ initial, onSave, onCancel, onRemove }: { initial?: PlanItem;
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-4 rounded-lg bg-sunken p-3">
       {meals.length > 0 && (
-        <label className="flex flex-col gap-1.5">
-          <span className={labelStyles}>One of your meals (optional)</span>
-          <select value={mealId} onChange={(e) => pickMeal(e.target.value)} className={cx(inputStyles, "sm:max-w-md")}>
-            <option value="">Not a meal</option>
-            {meals.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.name}
-              </option>
-            ))}
-          </select>
+        <div className="flex flex-col gap-1.5">
+          <SimpleSelect
+            label="One of your meals (optional)"
+            placeholder="Not a meal"
+            options={[{ value: "", label: "Not a meal" }, ...meals.map((m) => ({ value: m.id, label: m.name }))]}
+            value={mealId}
+            onChange={pickMeal}
+            className="sm:max-w-md"
+          />
           <span className={helpStyles}>Fills in the item from a meal you built in Meals.</span>
-        </label>
+        </div>
       )}
       <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
         <Field.Root invalid={!!error} className="flex flex-col gap-1.5">

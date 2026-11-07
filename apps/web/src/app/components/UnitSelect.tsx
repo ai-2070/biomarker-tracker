@@ -53,7 +53,7 @@ export function SimpleSelect({
   labelClassName?: string;
 }) {
   return (
-    <Select.Root items={options} value={value} onValueChange={(v) => v && onChange(v)} disabled={disabled}>
+    <Select.Root items={options} value={value} onValueChange={(v) => v !== null && onChange(v)} disabled={disabled}>
       <div className={cx("flex gap-1.5", compact ? "items-center" : "flex-col", className)}>
         <Select.Label className={labelClassName ?? (compact ? "text-sm text-ink-2" : labelStyles)}>{label}</Select.Label>
         <Select.Trigger
