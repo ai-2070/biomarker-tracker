@@ -1,0 +1,29 @@
+package.json
+  s_dfac4fc6fbc70c::t_fbda52cbb07758 32
+  s_dfac4fc6fbc70c::t_245b2172141422 17-18
+biome.json
+  s_dfac4fc6fbc70c::t_fbda52cbb07758 1-4,17,19,33-34
+  s_dfac4fc6fbc70c::t_1ae1edca4b2a6c 21-32
+  s_dfac4fc6fbc70c::t_ecf39ea5b2400c 8-9
+  s_dfac4fc6fbc70c::t_ba73e41255e27c 20
+  s_dfac4fc6fbc70c::t_edeb94fc0dd13a 18
+  s_dfac4fc6fbc70c::t_8612025ad62b1d 5-7,10-16
+bun.lock
+  s_dfac4fc6fbc70c::t_8ae42689f80d7d 8,126-147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a4850c02a4c827129b9223bb36ef21cd886bb405",
+  "prompts": {},
+  "sessions": {
+    "s_dfac4fc6fbc70c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "59b812aa-7454-41eb-b074-ab48034510c7",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
