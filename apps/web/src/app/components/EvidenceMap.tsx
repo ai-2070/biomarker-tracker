@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutcome, type MapKind } from "@bt/shared/core/evidenceMap";
 import { formatDate } from "../format";
+import { SegmentTabs } from "./SegmentTabs";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";
 import { PaperLink as PreviewPaperLink } from "./PaperLink";
@@ -72,22 +73,9 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         )}
       </ol>
 
-      <div role="tablist" aria-label={food ? "Claim" : "Outcome"} className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
-        {map.outcomes.map((x) => (
-          <button
-            key={x.id}
-            role="tab"
-            type="button"
-            aria-selected={x.id === o.id}
-            onClick={() => setOutcomeId(x.id)}
-            className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", x.id === o.id ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-          >
-            {x.label}
-          </button>
-        ))}
-      </div>
-
-      <EvidenceOutcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
+      <SegmentTabs label={food ? "Claim" : "Outcome"} tabs={map.outcomes.map((x) => ({ value: x.id, label: x.label }))} value={o.id} onChange={setOutcomeId} className="flex flex-col gap-6">
+        <EvidenceOutcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
+      </SegmentTabs>
 
       <details className="max-w-3xl">
         <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>

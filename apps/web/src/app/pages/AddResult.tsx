@@ -9,10 +9,11 @@ import { addMeasurement } from "../../db/db";
 import { BiomarkerPicker } from "../components/BiomarkerPicker";
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { CriticalBanner } from "../components/CriticalBanner";
+import { SegmentTabs } from "../components/SegmentTabs";
 import { BodyEntryForm } from "../components/dashboard/body";
 import { BodyIcon, DropIcon, FileIcon, PhoneSyncIcon } from "../components/icons";
 import { UnitSelect } from "../components/UnitSelect";
-import { Button, Card, FlagBadge, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, FlagBadge, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
 import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -151,34 +152,18 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
         ))}
       </ul>
 
-      <div className="mb-4 flex flex-col items-start gap-3">
-        <h2 className="font-serif text-2xl font-normal">Type it in</h2>
-        <div role="tablist" aria-label="What to add" className="flex flex-wrap gap-1 rounded-xl border border-line bg-sunken p-1">
-          {KINDS.map((k) => (
-            <button
-              key={k.id}
-              id={`add-tab-${k.id}`}
-              role="tab"
-              type="button"
-              aria-selected={kind === k.id}
-              aria-controls={`add-panel-${k.id}`}
-              onClick={() => setKind(k.id)}
-              className={cx(
-                "flex min-h-11 items-center gap-2 rounded-lg px-3 text-sm transition-colors duration-150 sm:min-h-9",
-                kind === k.id ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink",
-              )}
-            >
-              <k.icon width={16} height={16} />
-              {k.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
+      <h2 className="mb-3 font-serif text-2xl font-normal">Type it in</h2>
+      <SegmentTabs
+        label="What to add"
+        tabs={KINDS.map((k) => ({ value: k.id, label: <><k.icon width={16} height={16} />{k.label}</> }))}
+        value={kind}
+        onChange={setKind}
+        listClassName="mb-4"
+      >
       {kind === "body" ? (
         <BodyPanel />
       ) : (
-      <div id="add-panel-blood" role="tabpanel" aria-labelledby="add-tab-blood">
+      <div>
       <p className="mb-4 max-w-3xl text-ink-2">Copy one value from your lab report. You can add several results from the same report one after another.</p>
 
       {/* minmax(0, 1fr) lets long marker names truncate instead of widening the page. */}
@@ -353,6 +338,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
       </div>
       </div>
       )}
+      </SegmentTabs>
     </>
   );
 }
@@ -362,7 +348,7 @@ function BodyPanel() {
   const [saved, setSaved] = useState(0);
   const [round, setRound] = useState(0);
   return (
-    <div id="add-panel-body" role="tabpanel" aria-labelledby="add-tab-body" className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_20rem]">
       <Card>
         <p className="mb-4 text-ink-2">Weight, waist, blood pressure, heart rate, sleep, blood glucose and more, for one day.</p>
         <BodyEntryForm

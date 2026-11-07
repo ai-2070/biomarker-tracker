@@ -10,7 +10,8 @@ import { FITNESS_MAP } from "../../knowledge";
 import { href } from "../../router";
 import { GradeBadge, StudyLink } from "../evidence";
 import { NormChart, NormTable } from "../NormChart";
-import { Card, Notice, cx } from "../ui";
+import { SegmentTabs } from "../SegmentTabs";
+import { Card, Notice } from "../ui";
 import { Figure } from "./widgets";
 
 /**
@@ -287,27 +288,9 @@ function NormSets({ test, sex, points, age }: { test: FitnessTestDef; sex: "m" |
   const [i, setI] = useState(() => Math.max(0, age === undefined ? 0 : sets.findIndex((s) => normRow(s, sex, age) !== undefined)));
   const set: NormSet | undefined = sets[Math.min(i, sets.length - 1)];
   if (!set) return <p className="text-sm text-ink-2">No norm tables for your sex.</p>;
-  return (
-    <section className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-serif text-xl font-normal">Norms by age</h3>
-        {sets.length > 1 && (
-          <div role="tablist" aria-label="Norm table" className="flex flex-wrap gap-1 rounded-xl border border-line bg-sunken p-1">
-            {sets.map((s, j) => (
-              <button
-                key={s.label}
-                role="tab"
-                type="button"
-                aria-selected={s === set}
-                onClick={() => setI(j)}
-                className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", s === set ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+  const heading = <h3 className="font-serif text-xl font-normal">Norms by age</h3>;
+  const body = (
+    <>
       <NormChart set={set} sex={sex} points={points} unit={test.unit} higherIsBetter={test.higherIsBetter} />
       <details>
         <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">The table, and where it comes from</summary>
@@ -322,6 +305,28 @@ function NormSets({ test, sex, points, age }: { test: FitnessTestDef; sex: "m" |
           {set.note && <p>{set.note}</p>}
         </div>
       </details>
+    </>
+  );
+  return (
+    <section className="flex flex-col gap-3">
+      {sets.length > 1 ? (
+        <SegmentTabs
+          label="Norm table"
+          header={heading}
+          tabs={sets.map((s, j) => ({ value: String(j), label: s.label }))}
+          value={String(sets.indexOf(set))}
+          onChange={(j) => setI(Number(j))}
+          className="flex flex-col gap-3"
+          panelClassName="flex flex-col gap-3"
+        >
+          {body}
+        </SegmentTabs>
+      ) : (
+        <>
+          {heading}
+          {body}
+        </>
+      )}
     </section>
   );
 }

@@ -39,6 +39,7 @@ import { newId, savePlan } from "../../db/db";
 import { DarkMatterNote } from "../components/DarkMatter";
 import { StudyLink } from "../components/evidence";
 import { SafetyNotices } from "../components/SafetyNotices";
+import { SegmentTabs } from "../components/SegmentTabs";
 import { Button, Card, FlagBadge, Notice, PageTitle, cx, inputStyles, labelStyles } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement } from "../format";
 import { EXAMPLE_MEALS, useFoodDb } from "../foodDb";
@@ -187,26 +188,17 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
       {db && <LoadProtocol items={items} meals={meals} db={db} save={save} />}
 
       <div className="flex flex-col gap-3 border-t border-line pt-3">
-        <div role="tablist" aria-label="Add" className="flex flex-wrap gap-1 self-start rounded-xl border border-line bg-sunken p-1">
-          {(
-            [
-              ["meal", "Meals"],
-              ["food", "Foods"],
-              ["supplement", "Supplements"],
-            ] as const
-          ).map(([v, label]) => (
-            <button
-              key={v}
-              role="tab"
-              type="button"
-              aria-selected={mode === v}
-              onClick={() => setMode(v)}
-              className={cx("min-h-9 rounded-lg px-3 text-sm transition-colors duration-150", mode === v ? "bg-surface font-medium text-ink shadow-sm" : "text-ink-2 hover:text-ink")}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <SegmentTabs
+          label="Add"
+          tabs={[
+            { value: "meal", label: "Meals" },
+            { value: "food", label: "Foods" },
+            { value: "supplement", label: "Supplements" },
+          ]}
+          value={mode}
+          onChange={setMode}
+          className="flex flex-col gap-3"
+        >
         {mode === "meal" ? (
           meals.length === 0 ? (
             <p className="text-sm text-ink-2">
@@ -275,6 +267,7 @@ function ListEditor({ items, db, meals, save }: { items: IntakeItem[]; db?: Food
             />
           </div>
         )}
+        </SegmentTabs>
       </div>
       {items.length > 0 && db && <ToProtocol items={items} meals={meals} db={db} />}
     </Card>
