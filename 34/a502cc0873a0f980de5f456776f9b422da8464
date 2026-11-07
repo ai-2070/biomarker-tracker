@@ -1,0 +1,123 @@
+apps/web/src/app/pages/PhenoAgePage.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 119,136
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 20
+apps/web/src/app/components/dashboard/AgesChart.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 16
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 407,433
+apps/web/src/app/components/disclosure.tsx
+  s_efcb4d83406bf9::t_9e803300b5de45 64-65
+  s_efcb4d83406bf9::t_91d7266c72309c 113
+  s_efcb4d83406bf9::t_2fc8fe3ce6fd08 62-63
+  s_efcb4d83406bf9::t_79bbd0b2c57d56 1,10-14,21-23,29-31,40-41,46,48,55-61,66-112,114-127,140,142,146,150
+  s_efcb4d83406bf9::t_24107e757951fc 15,25
+  s_efcb4d83406bf9::t_3de30e848fdba9 24,26-28
+apps/web/src/app/components/glance.tsx
+  s_efcb4d83406bf9::t_2af2894ec9507f 51
+  s_efcb4d83406bf9::t_3de30e848fdba9 3,52-56
+apps/web/src/app/components/LeversPanel.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 110,123
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 12
+apps/web/src/app/pages/HabitsPage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 25
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 177
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 187
+tests/app/disclosure.test.tsx
+  s_efcb4d83406bf9::t_6cbd4435dea6eb 23
+  s_efcb4d83406bf9::t_24107e757951fc 1-8,11,14-15,17-20,22,24-26,28-55
+  s_efcb4d83406bf9::t_d6fdb8b880037e 12-13,21,27
+  s_efcb4d83406bf9::t_338316b70ad231 9-10,16
+apps/web/src/app/components/dashboard/CountryComparison.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 30,34
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 5
+apps/web/src/app/components/EvidenceMap.tsx
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 267
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 8
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 81,100,260,264,282,361,382
+apps/web/src/app/components/findings.tsx
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 71
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 5
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 89,91,113,128,134
+apps/web/src/app/pages/AddResult.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 21
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 228,282
+apps/web/src/app/components/SleepTimingPanel.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 14
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 120,122,130,157,187,202,275,291,299,316
+apps/web/src/app/components/LabReview.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 18
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 316,324
+apps/web/src/app/components/SavedResults.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 15
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 174,183
+apps/web/src/app/components/SupplementGuide.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 9
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 57,71,88,97,100,104
+apps/web/src/app/components/DoctorReportExport.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 14
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 114
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 136
+apps/web/src/app/components/dashboard/bestBefore.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 178,209,211,236,240,251
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 14
+apps/web/src/app/components/DarkMatter.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 6
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 83,94
+apps/web/src/app/pages/ExperimentsPage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 25
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 250,258
+apps/web/src/app/components/dashboard/CountryPopulationReference.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 112,120
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 14
+apps/web/src/app/brain/turns/LiveTurn.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 90
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 4
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 77
+apps/web/src/app/components/ResearchPanel.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 158,160
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 10
+apps/web/src/app/pages/DeviceImportPage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 30
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 356,358,361,367
+apps/web/src/app/pages/IntakePage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 50
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 427,435
+apps/web/src/app/pages/NutrientPage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 26
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 555,563
+apps/web/src/app/components/dashboard/fitness.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 212,225,295,306
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 16
+apps/web/src/app/components/FoodComparison.tsx
+  s_efcb4d83406bf9::t_13f572be4d1f58 44-45
+  s_efcb4d83406bf9::t_2fc8fe3ce6fd08 6,36,95,98-100,111,141,161
+apps/web/src/app/components/dashboard/body.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 24
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 653,675-676,700
+apps/web/src/app/pages/TestSummaryPage.tsx
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 212
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 208
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 13
+apps/web/src/app/pages/WholeFoodsPage.tsx
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 30
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 419,421,438
+apps/web/src/app/components/ClaimEvidencePanel.tsx
+  s_efcb4d83406bf9::t_0a6cc96ed9a6c3 210
+  s_efcb4d83406bf9::t_0a0fb1f8bb543e 12
+  s_efcb4d83406bf9::t_7b12a7dfb9a709 148,150,171,177,189,193,214-215,217,220,233,251
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "34a502cc0873a0f980de5f456776f9b422da8464",
+  "prompts": {},
+  "sessions": {
+    "s_efcb4d83406bf9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3f102310-e1c6-4d81-a2d1-95559e29e0f3",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
