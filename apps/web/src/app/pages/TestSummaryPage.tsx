@@ -10,6 +10,7 @@ import { displayUnitFor, formatDate, showMeasurement, showRange, showValue, valu
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, CATEGORY_ORDER, NUTRIENTS, fullName } from "../knowledge";
 import { href, navigate } from "../router";
+import { More } from "../components/disclosure";
 
 const CATEGORY_TITLE: Record<string, string> = { Urine: "Urine tests", Aging: "Aging (DunedinPACE)" };
 
@@ -204,12 +205,11 @@ function ResultCard({ r, unit }: { r: SummaryResult; unit: string }) {
       </p>
       {r.meaning && <p>{r.meaning}</p>}
       {r.commonCauses.length > 0 && (
-        <details className="text-sm">
-          <summary className="cursor-pointer text-ink-2">Common reasons for a {r.flag.endsWith("high") ? "high" : "low"} result</summary>
+        <More summary={<>Common reasons for a {r.flag.endsWith("high") ? "high" : "low"} result</>} className="text-sm">
           <ul className="mt-1 flex list-disc flex-col gap-0.5 pl-5">
             {r.commonCauses.map((c) => <li key={c}>{c}</li>)}
           </ul>
-        </details>
+        </More>
       )}
       {(r.previous || change) && (
         <p className="text-sm text-ink-2">

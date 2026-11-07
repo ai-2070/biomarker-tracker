@@ -18,6 +18,7 @@ import { formatDate, showMeasurement, valueUnit } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
+import { More } from "../components/disclosure";
 
 type Fasted = "yes" | "no" | "unknown";
 
@@ -224,13 +225,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
               </Field.Error>
             </Field.Root>
 
-            <details className="group rounded-lg border border-line">
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 font-medium select-none">
-                More details (optional)
-                <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-                  ▾
-                </span>
-              </summary>
+            <More summary="More details (optional)" boxed>
               <div className="flex flex-col gap-5 border-t border-line p-3">
                 <div className="flex flex-col gap-1.5">
                   <span className={labelStyles}>Lab's reference range</span>
@@ -284,7 +279,7 @@ export function AddResult({ initialMarker, initialKind }: { initialMarker?: stri
                   />
                 </Field.Root>
               </div>
-            </details>
+            </More>
 
             {warnings.length > 0 && (
               <Notice tone="warn" title="Please check the unit" role="alert">

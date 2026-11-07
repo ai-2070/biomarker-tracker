@@ -1,6 +1,7 @@
 import { BrainIcon } from "../../components/icons";
 import { CitedAnswer } from "../../components/CitedAnswer";
 import type { Step, Turn } from "../store";
+import { More } from "../../components/disclosure";
 
 export const TOOL_TEXT: Record<string, string> = {
   get_results: "Looked at your results",
@@ -73,10 +74,7 @@ export function LiveTurn({ turn, allowed }: { turn: Extract<Turn, { role: "live"
 export function StepList({ steps, failed }: { steps: Step[]; failed: { name: string; error: string }[] }) {
   if (steps.length === 0 && failed.length === 0) return null;
   return (
-    <details className="text-sm text-ink-2">
-      <summary className="min-h-9 cursor-pointer py-1.5 font-mono text-[11px] tracking-[0.12em] uppercase">
-        {steps.length} {steps.length === 1 ? "step" : "steps"}
-      </summary>
+    <More summary={<>{steps.length} {steps.length === 1 ? "step" : "steps"}</>} tone="label" className="text-sm text-ink-2">
       <ul className="flex flex-col gap-1 border-l-2 border-line pb-1 pl-3">
         {steps.map((s, i) => (
           <li key={i}>
@@ -89,6 +87,6 @@ export function StepList({ steps, failed }: { steps: Step[]; failed: { name: str
           </li>
         ))}
       </ul>
-    </details>
+    </More>
   );
 }

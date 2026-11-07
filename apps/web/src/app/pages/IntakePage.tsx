@@ -47,6 +47,7 @@ import { setIntakeList, useAllMeasurements, useDisplayUnits, useIntakeList, useM
 import { BIOMARKER_MAP, FOODS, NUTRIENTS } from "../knowledge";
 import { href } from "../router";
 import { FoodResults } from "../components/FoodResults";
+import { More } from "../components/disclosure";
 
 /**
  * Daily intake: the meals and foods eaten on a day, added up, and compared with EU (EFSA) reference
@@ -423,10 +424,7 @@ function LoadProtocol({ items, meals, db, save }: { items: IntakeItem[]; meals: 
             </div>
           )}
           {loaded.skipped.length > 0 && (
-            <details>
-              <summary className="min-h-9 cursor-pointer py-1 text-ink-2">
-                {loaded.skipped.length} not counted, and why
-              </summary>
+            <More summary={<>{loaded.skipped.length} not counted, and why</>}>
               <ul className="mt-1 flex flex-col gap-1 text-ink-2">
                 {loaded.skipped.map((s, i) => (
                   <li key={`${s.label}-${i}`}>
@@ -434,7 +432,7 @@ function LoadProtocol({ items, meals, db, save }: { items: IntakeItem[]; meals: 
                   </li>
                 ))}
               </ul>
-            </details>
+            </More>
           )}
         </div>
       )}

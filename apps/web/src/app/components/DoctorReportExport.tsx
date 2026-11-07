@@ -11,6 +11,7 @@ import { BIOMARKER_MAP, CATEGORY_ORDER, NUTRIENTS, fullName } from "../knowledge
 import { formatDate } from "../format";
 import { DoctorReportDocument, DOCTOR_REPORT_PRINT_CSS } from "./DoctorReportDocument";
 import { Button, Card, CheckIcon, Notice, inputStyles, labelStyles } from "./ui";
+import { More } from "./disclosure";
 
 /** A reviewable, local handout. PDF creation uses the browser's own print destination. */
 export function DoctorReportExport({ measurements, profile }: { measurements: Measurement[]; profile: Profile }) {
@@ -110,8 +111,7 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
           <ReportCheck checked={includeQuestions} onChange={(value) => change(() => setIncludeQuestions(value))}>Include questions to discuss, from the latest blood test in this period</ReportCheck>
           <p className="ml-9 max-w-3xl text-sm text-ink-2">The summary shows the latest result. Black-and-white charts include every selected blood and body reading within these dates, without a list of all values. Choose fewer markers or a shorter period to keep the report focused.</p>
         </div>
-        <details className="border-y border-line py-1">
-          <summary className="flex min-h-11 cursor-pointer items-center font-medium">Choose measurements ({chosen.length} of {choices.length} selected)</summary>
+        <More summary={<>Choose measurements ({chosen.length} of {choices.length} selected)</>} tone="plain" className="border-y border-line py-1">
           <div className="flex flex-col gap-3 pb-3">
             <div className="flex flex-wrap gap-2">
               <Button variant="secondary" onClick={() => change(() => setSelection(undefined))}>Select all measurements</Button>
@@ -133,7 +133,7 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
               </fieldset>
             ))}
           </div>
-        </details>
+        </More>
         <p className="max-w-3xl text-sm text-ink-2">This contains health information. Review the preview before sharing. Notes are left out unless you select them.</p>
         {error && <Notice tone="danger" title="Report not ready" role="alert">{error}</Notice>}
         <div><Button id={createButtonId} onClick={generate} disabled={protocols === undefined}>Create doctor report</Button></div>

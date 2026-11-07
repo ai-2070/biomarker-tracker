@@ -27,6 +27,7 @@ import names from "../../../../../knowledge/names.json";
 import { searchKnowledgeNames } from "@bt/shared/core/knowledgeNames";
 import { KnowledgeName } from "../components/KnowledgeName";
 import { PaperLink } from "../components/PaperLink";
+import { More } from "../components/disclosure";
 
 const GROUP_LABEL: Record<FoodGroup, string> = {
   fruit: "Fruit",
@@ -415,15 +416,9 @@ function History({ f }: { f: WholeFoodDef }) {
       )}
 
       {stories.length > 0 && (
-        <details className="group rounded-lg border border-line">
-          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 font-medium select-none">
-            <span>
+        <More summary={<><span>
               Stories and symbols <span className="font-normal text-ink-2">({stories.length}: myths, religion and customs, not about health)</span>
-            </span>
-            <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-              ▾
-            </span>
-          </summary>
+            </span></>} boxed>
           <ul className="flex flex-col gap-4 border-t border-line p-3">
             {stories.map((l) => (
               <li key={`${l.who}|${l.belief}`} className="flex flex-col gap-1 border-l-2 border-line-strong pl-3">
@@ -440,7 +435,7 @@ function History({ f }: { f: WholeFoodDef }) {
               </li>
             ))}
           </ul>
-        </details>
+        </More>
       )}
     </Card>
   );

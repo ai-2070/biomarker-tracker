@@ -17,6 +17,7 @@ import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
 import { ClockEvidence } from "../components/ClockEvidence";
 import { PaperLink } from "../components/PaperLink";
+import { More } from "../components/disclosure";
 
 const LEVINE_URL = "https://pubmed.ncbi.nlm.nih.gov/29676998/";
 
@@ -115,13 +116,7 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
         for a few weeks. Watch the trend over years rather than a single number.
       </p>
 
-      <details className="group rounded-lg border border-line">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 font-medium select-none">
-          Values used
-          <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-            ▾
-          </span>
-        </summary>
+      <More summary="Values used" boxed>
         <ul className="divide-y divide-line border-t border-line">
           {PHENOAGE_MARKERS.map((id) => {
             const def = BIOMARKER_MAP.get(id)!;
@@ -138,7 +133,7 @@ function Result({ draw }: { draw: PhenoAgeDraw }) {
             );
           })}
         </ul>
-      </details>
+      </More>
     </Card>
   );
 }

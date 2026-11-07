@@ -11,6 +11,7 @@ import { InlineCountry } from "../InlineCountry";
 import { CountryComparison } from "./CountryComparison";
 import { useWidth } from "../timeControls";
 import { Card } from "../ui";
+import { More } from "../disclosure";
 
 const years = (value: number) => value.toFixed(1);
 
@@ -108,8 +109,7 @@ function SurvivalChart({ points }: { points: PopulationSurvivalPoint[] }) {
         )}
       </div>
       <p className="text-sm text-ink-2">Solid: life-table ages through 95. Dashed: 95+ approximation. The 50-out-of-100 guide marks half the population, not a personal percentile.</p>
-      <details className="border-t border-line">
-        <summary className="min-h-11 cursor-pointer py-3 font-medium">Show survival as a table</summary>
+      <More summary="Show survival as a table" tone="plain" className="border-t border-line">
         <div className="max-h-80 overflow-auto">
           <table className="w-full text-left text-sm tabular-nums">
             <caption className="pb-3 text-left text-ink-2">Out of 100 people alive at your current age ({years(current.age)}). Values after 95 use the tail approximation.</caption>
@@ -117,7 +117,7 @@ function SurvivalChart({ points }: { points: PopulationSurvivalPoint[] }) {
             <tbody>{points.map((point, index) => <tr key={point.age} className="border-b border-line"><th scope="row" className="py-2 pr-3 font-normal">{years(point.age)}{index === 0 ? " · Your age" : ""}{point.tailApproximation ? " (approx.)" : ""}</th><td className="py-2">{point.alivePercent.toFixed(1)}</td></tr>)}</tbody>
           </table>
         </div>
-      </details>
+      </More>
     </figure>
   );
 }

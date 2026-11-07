@@ -6,6 +6,7 @@ import { askResearchBrain } from "../brain/store";
 import { StudyLink } from "./evidence";
 import { ResearchPanel } from "./ResearchPanel";
 import { Button, Card } from "./ui";
+import { More } from "./disclosure";
 
 /** A concise claim guide; evidence is retrieved on demand, never implied by a static grade. */
 export function SupplementGuide({ n, guide, critical, reference }: { n: NutrientDef; guide: NonNullable<NutrientDef["simpleGuide"]>; critical: boolean; reference: ReactNode }) {
@@ -53,8 +54,7 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
         <h2 className="font-serif text-2xl font-normal">Dosage &amp; safety</h2>
         {guide.dosage.map((text) => <p key={text}>{text}</p>)}
         {reference}
-        <details id="low-high">
-          <summary className="min-h-11 cursor-pointer py-2 font-semibold">Requirement &amp; excess</summary>
+        <More summary={<>Requirement &amp; excess</>} id="low-high" tone="plain">
           <div className="mt-2 grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-2">
               <h3 className="font-semibold">Too little</h3>
@@ -68,7 +68,7 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
               {n.high.signs.length > 0 && <ul className="flex list-disc flex-col gap-1 pl-5 text-ink-2">{n.high.signs.map((text) => <li key={text}>{text}</li>)}</ul>}
             </div>
           </div>
-        </details>
+        </More>
         {n.interactions.length > 0 && (
           <dl className="flex flex-col gap-3">
             {n.interactions.map((interaction) => (
@@ -85,8 +85,7 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
           </ul>
         )}
         {n.forms.length > 0 && (
-          <details id="forms">
-            <summary className="min-h-11 cursor-pointer py-2 font-semibold">Supplement forms &amp; label checks</summary>
+          <More summary={<>Supplement forms &amp; label checks</>} id="forms" tone="plain">
             <dl className="mt-2 flex flex-col gap-3">
               {n.forms.map((form) => (
                 <div key={form.name}>
@@ -95,15 +94,14 @@ export function SupplementGuide({ n, guide, critical, reference }: { n: Nutrient
                 </div>
               ))}
             </dl>
-          </details>
+          </More>
         )}
 
-        <details id="sources">
-          <summary className="min-h-11 cursor-pointer py-2 font-semibold">Ingredient &amp; safety sources</summary>
+        <More summary={<>Ingredient &amp; safety sources</>} id="sources" tone="plain">
           <ul className="mt-2 flex flex-col gap-2 text-sm text-ink-2">
             {n.sources.map((source) => <li key={source.pmid ?? source.doi}><StudyLink s={source} /></li>)}
           </ul>
-        </details>
+        </More>
       </Card>
 
       <Card id="research" className="flex scroll-mt-24 flex-col gap-3">

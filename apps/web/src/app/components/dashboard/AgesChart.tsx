@@ -13,6 +13,7 @@ import { ProtocolLanes } from "../ProtocolLanes";
 import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
 import { Card, cx } from "../ui";
 import { InlineBirthMonth } from "../InlineBirthMonth";
+import { More } from "../disclosure";
 
 /**
  * The three age estimates over time on one chart, with calendar age as a dashed line. Each series
@@ -403,13 +404,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
         with healthy Norwegian adults). An average of them wouldn't mean anything, so each is shown on its own.
       </p>
 
-      <details className="group rounded-lg border border-line">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3 font-medium select-none">
-          Show as a table
-          <span aria-hidden="true" className="text-ink-2 transition-transform group-open:rotate-180">
-            ▾
-          </span>
-        </summary>
+      <More summary="Show as a table" boxed>
         <div className="overflow-x-auto border-t border-line">
           <table className="w-full text-left text-sm tabular-nums">
             <thead className="text-ink-2">
@@ -435,7 +430,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
             </tbody>
           </table>
         </div>
-      </details>
+      </More>
     </Card>
   );
 }

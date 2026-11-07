@@ -11,6 +11,7 @@ import { PaperLink } from "./PaperLink";
 import { CHART_PRESETS, Overview, SelectionBar, TimeControls, fromDay, useTimeView, useWidth } from "./timeControls";
 import { SimpleSelect } from "./UnitSelect";
 import { Card, LinkButton } from "./ui";
+import { More } from "./disclosure";
 
 const LEFT = 54;
 const RIGHT = 16;
@@ -116,10 +117,9 @@ function SleepPlots({ measurements, nights, today }: { measurements: readonly Me
         </dl>
         {regularity.pairs > 0 && <RegularityPlot nights={shown} width={width} from={t.v.from} to={t.v.to} />}
       </section>
-      <details className="border-t border-line pt-1">
-        <summary className="min-h-11 cursor-pointer py-3 font-medium">Compare with resting heart rate or HRV</summary>
+      <More summary="Compare with resting heart rate or HRV" tone="plain" className="border-t border-line pt-1">
         <SleepCardiacComparison nights={shown} measurements={measurements} />
-      </details>
+      </More>
       {(summary.durationOnlyNights > 0 || summary.invalidNights > 0) && <p className="text-sm text-ink-2">In this period, {summary.durationOnlyNights} nights have duration only and {summary.invalidNights} have unusable timings. Re-import the original files to add missing timings where available.</p>}
     </div>
   );
@@ -127,8 +127,7 @@ function SleepPlots({ measurements, nights, today }: { measurements: readonly Me
 
 function TimingTable({ nights }: { nights: readonly SleepNight[] }) {
   return (
-    <details>
-      <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium">Show sleep timings as a table</summary>
+    <More summary="Show sleep timings as a table" tone="small">
       <div className="max-h-96 overflow-auto rounded-lg border border-line" tabIndex={0} role="region" aria-label="Sleep timing table">
         <table className="w-full text-left text-sm">
           <thead className="sticky top-0 bg-surface">
@@ -155,7 +154,7 @@ function TimingTable({ nights }: { nights: readonly SleepNight[] }) {
           </tbody>
         </table>
       </div>
-    </details>
+    </More>
   );
 }
 function RegularityPlot({ nights, width, from, to }: { nights: readonly SleepNight[]; width: number; from: number; to: number }) {
@@ -185,8 +184,7 @@ function RegularityPlot({ nights, width, from, to }: { nights: readonly SleepNig
           {timeTicks({ from, to }).map((tick) => <text key={tick.day} x={x(tick.day)} y={H - 8} textAnchor="middle" className="fill-ink-2 font-mono text-[10px]">{dayLabel(tick.day)}</text>)}
         </svg>
       )}
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm">Show timing shifts as a table</summary>
+      <More summary="Show timing shifts as a table">
         <div className="max-h-72 overflow-auto" tabIndex={0} role="region" aria-label="Timing shift table">
           <table className="w-full text-left text-sm">
             <thead><tr><th className="p-2">Waking date</th><th className="p-2">Start shift (min)</th><th className="p-2">End shift (min)</th></tr></thead>
@@ -201,7 +199,7 @@ function RegularityPlot({ nights, width, from, to }: { nights: readonly SleepNig
             </tbody>
           </table>
         </div>
-      </details>
+      </More>
     </figure>
   );
 }
@@ -274,8 +272,7 @@ function SleepCardiacComparison({ nights, measurements }: { nights: readonly Sle
       {selected && <p className="text-sm" aria-live="polite">{formatDate(selected.date)} · {xLabel(selected.x)} · {selected.y} {unit}</p>}
       <p className="max-w-3xl text-sm text-ink-2">Midpoint is halfway between the displayed local start and end, not elapsed-time halfway when clocks change. A same-date resting reading may not cover this exact sleep window. Alcohol, illness, training, medicines, sleep duration and device changes can all affect the comparison. A pattern is not proof of cause; there is no fitted trend, predicted benefit or ideal bedtime.</p>
       {points.length > 0 && (
-        <details>
-          <summary className="min-h-11 cursor-pointer py-2 text-sm">Show matched dates as a table</summary>
+        <More summary="Show matched dates as a table">
           <div className="max-h-80 overflow-auto" tabIndex={0} role="region" aria-label="Matched sleep and resting measurement table">
             <table className="w-full text-left text-sm">
               <thead><tr><th className="p-2">Waking date</th><th className="p-2">Timing</th><th className="p-2">{unit}</th><th className="p-2">Measurement source</th></tr></thead>
@@ -291,7 +288,7 @@ function SleepCardiacComparison({ nights, measurements }: { nights: readonly Sle
               </tbody>
             </table>
           </div>
-        </details>
+        </More>
       )}
     </div>
   );
@@ -299,8 +296,7 @@ function SleepCardiacComparison({ nights, measurements }: { nights: readonly Sle
 
 function SleepTimingEvidence() {
   return (
-    <details className="border-t border-line pt-1">
-      <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium">Why compare sleep timing, heart rate and HRV?</summary>
+    <More summary="Why compare sleep timing, heart rate and HRV?" tone="small" className="border-t border-line pt-1">
       <div className="flex max-w-3xl flex-col gap-3 text-sm text-ink-2">
         <p>A small laboratory study found that heart rate and heart rate variability depend on sleep stage and the body clock. An observational Fitbit study linked deviations from usual bedtimes with higher resting heart rate. Neither establishes that changing your bedtime will improve your own readings.</p>
         <p>The comparison above is descriptive. Its regularity measure is the app's average clock-time change between adjacent nights, not a validated Sleep Regularity Index. Keep the same device and measurement method when comparing nights.</p>
@@ -317,6 +313,6 @@ function SleepTimingEvidence() {
           </li>
         </ul>
       </div>
-    </details>
+    </More>
   );
 }
