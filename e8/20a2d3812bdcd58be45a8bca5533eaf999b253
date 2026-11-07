@@ -1,0 +1,33 @@
+apps/web/src/app/brain/Brain.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 2,6-10,12-19
+apps/web/src/app/brain/turns/ProtocolTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-103
+apps/web/src/app/brain/turns/MealTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-105
+apps/web/src/app/brain/turns/LiveTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-94
+apps/web/src/app/brain/Composer.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-189
+apps/web/src/app/brain/turns/HabitTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-114
+apps/web/src/app/brain/turns/ReviewTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-118
+apps/web/src/app/brain/turns/ProfileTurn.tsx
+  s_efcb4d83406bf9::t_5e8cb5de43fbf7 1-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e820a2d3812bdcd58be45a8bca5533eaf999b253",
+  "prompts": {},
+  "sessions": {
+    "s_efcb4d83406bf9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3f102310-e1c6-4d81-a2d1-95559e29e0f3",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "LZL0 <12474488+LZL0@users.noreply.github.com>"
+    }
+  }
+}
