@@ -1,5 +1,5 @@
 import { Select } from "@base-ui/react/select";
-import { CheckIcon, ChevronDownIcon, cx, labelStyles } from "./ui";
+import { CheckIcon, ChevronDownIcon, cx, labelStyles, eyebrowSmallStyles } from "./ui";
 
 export interface Option {
   value: string;
@@ -53,7 +53,7 @@ export function SimpleSelect({
   labelClassName?: string;
 }) {
   return (
-    <Select.Root items={options} value={value} onValueChange={(v) => v && onChange(v)} disabled={disabled}>
+    <Select.Root items={options} value={value} onValueChange={(v) => v !== null && onChange(v)} disabled={disabled}>
       <div className={cx("flex gap-1.5", compact ? "items-center" : "flex-col", className)}>
         <Select.Label className={labelClassName ?? (compact ? "text-sm text-ink-2" : labelStyles)}>{label}</Select.Label>
         <Select.Trigger
@@ -75,7 +75,7 @@ export function SimpleSelect({
               {groupOptions(options).map((g, gi) =>
                 g.group ? (
                   <Select.Group key={g.group} className={gi > 0 ? "mt-1 border-t border-line pt-1" : undefined}>
-                    <Select.GroupLabel className="px-3 pt-2 pb-1 font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">{g.group}</Select.GroupLabel>
+                    <Select.GroupLabel className={cx("px-3 pt-2 pb-1", eyebrowSmallStyles)}>{g.group}</Select.GroupLabel>
                     {g.options.map(item)}
                   </Select.Group>
                 ) : (

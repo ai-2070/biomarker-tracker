@@ -3,7 +3,7 @@ import { Field } from "@base-ui/react/field";
 import { planFromFile, type Plan } from "@bt/shared/core/plans";
 import { newId, savePlan } from "../../db/db";
 import { PlusIcon } from "../components/icons";
-import { Button, Card, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, Notice, PageTitle, errorStyles, helpStyles, inputStyles, labelStyles, linkCardStyles, cx } from "../components/ui";
 import { formatDate } from "../format";
 import { usePlans } from "../hooks";
 import { href } from "../router";
@@ -96,7 +96,7 @@ function PlanCard({ p }: { p: Plan }) {
   return (
     <a
       href={href({ name: "plan", id: p.id })}
-      className="flex h-full flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+      className={cx("flex h-full flex-col gap-2", linkCardStyles)}
     >
       <div className="flex items-start justify-between gap-2">
         <h2 className="font-serif text-2xl font-normal">{p.name}</h2>

@@ -9,7 +9,7 @@ import { openBrain, useBrain } from "../brain/store";
 import { AgeIcon, BodyIcon, BookIcon, BowlIcon, BrainIcon, ClipboardIcon, CloseIcon, DashboardIcon, DropIcon, GitHubIcon, IntakeIcon, MenuIcon, PhoneSyncIcon, PillIcon, PlusIcon, SettingsIcon, LeafIcon, StarIcon, SunIcon } from "./icons";
 import { REPO_URL } from "./settings/AboutSettings";
 import { ProfileMenu } from "./ProfileMenu";
-import { buttonStyles, cx } from "./ui";
+import { buttonStyles, cx, eyebrowSmallStyles } from "./ui";
 
 interface NavItem {
   label: string;
@@ -84,7 +84,7 @@ function NavGroups({ route, onNavigate }: { route: Route; onNavigate?: () => voi
     <nav aria-label="Main" className="flex flex-col gap-4">
       {GROUPS.map((g, i) => (
         <div key={g.label ?? i} className="flex flex-col gap-0.5">
-          {g.label && <p className="px-3 pb-1 font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase">{g.label}</p>}
+          {g.label && <p className={cx("px-3 pb-1", eyebrowSmallStyles)}>{g.label}</p>}
           {g.items.map((item) => (
             <SidebarLink key={item.label} item={item} route={route} onNavigate={onNavigate} />
           ))}

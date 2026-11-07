@@ -5,7 +5,7 @@ import { setOnboarded, setProfile } from "../../db/db";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { LoadProfile } from "../components/LoadProfile";
 import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
-import { Button, Card, Notice, cx, helpStyles } from "../components/ui";
+import { Button, Card, Notice, cx, helpStyles, eyebrowStyles } from "../components/ui";
 import { createProfile, hasBrowserData } from "../profiles";
 import { href } from "../router";
 
@@ -213,7 +213,7 @@ function StepCard({ title, sub, children }: { title: string; sub?: string; child
 function Progress({ steps, index }: { steps: Step[]; index: number }) {
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
+      <p className={eyebrowStyles}>
         Step {index + 1} of {steps.length}
       </p>
       <div className="flex gap-1.5" aria-hidden="true">

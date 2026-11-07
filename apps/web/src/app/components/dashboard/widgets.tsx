@@ -9,13 +9,15 @@ import { useDisplayUnits, useWatchMeasurements } from "../../hooks";
 import { BIOMARKER_MAP, WATCH_DEFS, fullName, nameInSentence, shortName, watchDef } from "../../knowledge";
 import { href } from "../../router";
 import { ArrowRightIcon } from "../icons";
-import { cx, FlagBadge } from "../ui";
+import { cx, FlagBadge, cardStyles as cardBase, eyebrowSmallStyles, linkCardStyles } from "../ui";
 import { Sparkline } from "./Sparkline";
 
 // Building blocks shared by the dashboards (main, blood tests, body).
 
-export const cardStyles = "rounded-xl border border-line bg-surface p-4 sm:p-5";
-export const labelStyles = "font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase";
+/** Card's look with its padding, for dashboard panels that aren't a <section>. */
+export const cardStyles = cx(cardBase, "p-4 sm:p-5");
+/** The small uppercase label over a dashboard figure. */
+export const labelStyles = eyebrowSmallStyles;
 
 export function firstName(p: Profile): string | undefined {
   const n = p.name?.replace(/\([^)]*\)/g, "").trim().split(/\s+/)[0];
@@ -170,7 +172,7 @@ export function MarkerTile({ m }: { m: DashboardMarker }) {
   return (
     <a
       href={href({ name: "marker", id: m.def.id })}
-      className="flex h-full flex-col gap-2 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+      className={cx("flex h-full flex-col gap-2", linkCardStyles)}
     >
       <div className="flex items-start justify-between gap-2">
         <span className="min-w-0 leading-snug font-medium" title={fullName(m.def)}>
@@ -233,7 +235,7 @@ export function MarkerGrid({
           </a>
         )}
       </div>
-      <ul className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface sm:hidden">
+      <ul className={cx("divide-y divide-line overflow-hidden sm:hidden", cardBase)}>
         {shown.map((m) => <li key={m.def.id}><MarkerRow m={m} /></li>)}
       </ul>
       <ul className="stagger hidden gap-3 sm:grid sm:grid-cols-2 xl:grid-cols-3">

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { EvidenceGrade } from "@bt/shared/core/types";
+import { reveal } from "./disclosure";
 import { GradeDots } from "./evidence";
 
 /**
@@ -47,11 +48,12 @@ export function jump(e: React.MouseEvent, id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   // The hash belongs to the router, so reveal collapsed research before scrolling by hand.
-  for (let parent = el.parentElement; parent; parent = parent.parentElement) {
-    if (parent instanceof HTMLDetailsElement) parent.open = true;
-  }
-  el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-  el.focus({ preventScroll: true });
+  reveal(el);
+  // A fold opened just now lays out on the next frame.
+  requestAnimationFrame(() => {
+    el.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    el.focus({ preventScroll: true });
+  });
 }
 
 /** A stable id for a card, from its text. */

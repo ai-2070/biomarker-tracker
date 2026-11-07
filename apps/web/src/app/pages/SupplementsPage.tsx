@@ -7,7 +7,7 @@ import { computeTrend, flagLatest, groupByBiomarker } from "@bt/shared/core/tren
 import type { Measurement, Profile, SafetyId } from "@bt/shared/core/types";
 import { GradeBadge } from "../components/evidence";
 import { SearchIcon } from "../components/icons";
-import { Button, Card, FlagBadge, PageTitle, cx, inputStyles } from "../components/ui";
+import { Button, Card, FlagBadge, PageTitle, cx, inputStyles, eyebrowStyles, linkCardStyles } from "../components/ui";
 import { displayUnitFor, showMeasurement } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENTS, nameInSentence } from "../knowledge";
@@ -171,11 +171,11 @@ function NutrientCard({ n, match, byMarker, safety, profile }: { n: NutrientDef;
   return (
     <a
       href={href({ name: "nutrient", id: n.id })}
-      className="flex h-full flex-col gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+      className={cx("flex h-full flex-col gap-3", linkCardStyles)}
     >
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
+          <p className={eyebrowStyles}>{n.kind === "supplement" ? "Other supplement" : n.kind}</p>
           <h2 className="font-serif text-2xl font-normal">{n.name}</h2>
         </div>
         {warn.length > 0 && <span className="rounded-full bg-warn-soft px-2.5 py-0.5 text-sm font-medium text-warn">Check interactions</span>}

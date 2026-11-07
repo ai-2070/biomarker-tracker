@@ -22,6 +22,7 @@ import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge"
 import { href, navigate } from "../router";
 import { NotFound } from "./NotFound";
 import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import { More } from "../components/disclosure";
 
 const PHASE_LABEL: Record<ExperimentPhase, string> = {
   "needs-baseline": "Needs a 'before' test",
@@ -246,8 +247,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
       )}
       <p className="text-ink-2">{explain[r.verdict]}</p>
       {r.before.length + r.after.length > 0 && (
-        <details>
-          <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Results used</summary>
+        <More summary="Results used">
           <ul className="text-sm text-ink-2">
             {[...r.before.map((m) => ["Before", m] as const), ...r.after.map((m) => ["After", m] as const)].map(([when, m]) => (
               <li key={m.id}>
@@ -255,7 +255,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
               </li>
             ))}
           </ul>
-        </details>
+        </More>
       )}
       {r.verdict === "no-baseline" || r.verdict === "waiting" ? (
         <div>
