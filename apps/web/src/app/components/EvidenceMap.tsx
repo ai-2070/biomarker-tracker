@@ -5,6 +5,7 @@ import { SegmentTabs } from "./SegmentTabs";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";
 import { PaperLink as PreviewPaperLink } from "./PaperLink";
+import { More } from "./disclosure";
 
 /**
  * How the evidence behind a nutrient's findings was found: every PubMed record searched, the counts left
@@ -77,8 +78,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
         <EvidenceOutcome o={o} name={map.name} food={food} kind={kind} citedTitles={citedTitles} />
       </SegmentTabs>
 
-      <details className="max-w-3xl">
-        <summary className="min-h-11 cursor-pointer py-2 font-medium">The rules, and what they can't do yet</summary>
+      <More summary="The rules, and what they can't do yet" tone="plain" className="max-w-3xl">
         <ol className="flex list-decimal flex-col gap-1.5 pl-5 text-ink-2">
           {map.rules.map((r) => (
             <li key={r}>{r}</li>
@@ -97,7 +97,7 @@ export function EvidenceMap({ mapId, citedTitles, outcome }: { mapId: string; ci
           <li>Overlap is not shown: citing a trial in a bibliography does not mean a review included or pooled it.</li>
         </ul>
         <p className="mt-3 text-sm text-ink-2">The searches, rules and the code that applies them are in the app's repository, so anyone can run them again and check.</p>
-      </details>
+      </More>
     </div>
   );
 }
@@ -257,16 +257,14 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
         {" "}Not yet checked by a clinician.
       </p>
       {s.provenance === "current" && s.decisions && s.decisions.length > 0 && (
-        <details>
-          <summary className="min-h-11 cursor-pointer py-2 text-sm font-medium">Each screening decision and its provenance</summary>
+        <More summary="Each screening decision and its provenance" tone="small">
           <ul className="flex flex-col gap-2 text-sm">
             {s.decisions.map((d) => <li key={d.pmid}>PMID {d.pmid}: {d.fits} — {d.reason} · {d.by} ({d.at})</li>)}
           </ul>
-        </details>
+        </More>
       )}
       {s.left.length > 0 && (
-        <details>
-          <summary className="min-h-11 cursor-pointer py-2 text-sm font-medium">Reviews left out, and why ({s.left.length})</summary>
+        <More summary={<>Reviews left out, and why ({s.left.length})</>} tone="small">
           <ul className="flex flex-col gap-2.5">
             {s.left.map((r) => (
               <li key={r.pmid} className="text-sm">
@@ -281,7 +279,7 @@ function Screening({ s, kind }: { s: NonNullable<EvidenceMapOutcome["screening"]
               </li>
             ))}
           </ul>
-        </details>
+        </More>
       )}
     </section>
   );
@@ -360,8 +358,7 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
           <span className="size-3 rounded-full border-2 border-ink" aria-hidden="true" /> Trials of 1,000+ people (bigger circle, more people)
         </span>
       </p>
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Show as a table</summary>
+      <More summary="Show as a table">
         <div className="max-h-64 overflow-y-auto">
           <table className="text-sm tabular-nums">
             <thead className="text-ink-2">
@@ -382,7 +379,7 @@ function Timeline({ o }: { o: EvidenceMapOutcome }) {
             </tbody>
           </table>
         </div>
-      </details>
+      </More>
     </figure>
   );
 }

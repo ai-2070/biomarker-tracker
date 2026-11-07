@@ -2,6 +2,7 @@ import { sortFindings, type FindingEffect, type NutrientFinding } from "@bt/shar
 import { GradeBadge, GradeDots, StudyLink } from "./evidence";
 import { anchorId, jump } from "./glance";
 import { Card, cx } from "./ui";
+import { More } from "./disclosure";
 
 export const EFFECT: Record<FindingEffect, { label: string; mark: string; className: string }> = {
   helps: { label: "Benefit reported", mark: "+", className: "bg-ok-soft text-ok" },
@@ -67,8 +68,7 @@ export function Findings({ title, intro, findings, prefix }: { title: string; in
         </section>
       )}
       {otherCount > 0 && (
-        <details className="border-t border-line pt-2">
-          <summary className="min-h-11 cursor-pointer py-3 font-medium">Other uses studied ({otherCount})</summary>
+        <More summary={<>Other uses studied ({otherCount})</>} tone="plain" className="border-t border-line pt-2">
           <div className="flex flex-col gap-5 pb-2">
             <p className="text-sm text-ink-2">These findings concern specific outcomes and groups of people, not an overall verdict on this food, supplement or habit.</p>
             {mixed.length > 0 && (
@@ -86,10 +86,9 @@ export function Findings({ title, intro, findings, prefix }: { title: string; in
               </section>
             )}
           </div>
-        </details>
+        </More>
       )}
-      <details id={`${prefix}-research`} className="border-t border-line pt-2">
-        <summary className="min-h-11 cursor-pointer py-3 font-medium">Research details &amp; sources ({findings.length} {findings.length === 1 ? "finding" : "findings"})</summary>
+      <More summary={<>Research details &amp; sources ({findings.length} {findings.length === 1 ? "finding" : "findings"})</>} id={`${prefix}-research`} tone="plain" className="border-t border-line pt-2">
         <ul className="flex flex-col gap-3 pt-2">
           {sorted.map((f) => {
             const e = EFFECT[f.effect];
@@ -111,8 +110,7 @@ export function Findings({ title, intro, findings, prefix }: { title: string; in
                     {f.population}
                   </p>
                   <p>{f.bottomLine ?? f.summary}</p>
-                  <details>
-                    <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">{f.bottomLine ? "Full summary, evidence strength & sources" : "Evidence strength & sources"}</summary>
+                  <More summary={f.bottomLine ? "Full summary, evidence strength & sources" : "Evidence strength & sources"}>
                     {f.bottomLine && <p className="mb-3">{f.summary}</p>}
                     <p className="mb-1 text-sm font-medium">Why this grade</p>
                     <ul className="list-disc pl-5 text-sm text-ink-2">
@@ -127,13 +125,13 @@ export function Findings({ title, intro, findings, prefix }: { title: string; in
                         </li>
                       ))}
                     </ul>
-                  </details>
+                  </More>
                 </article>
               </li>
             );
           })}
         </ul>
-      </details>
+      </More>
     </Card>
   );
 }

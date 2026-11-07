@@ -3,6 +3,7 @@ import type { ComparisonClaim, ComparisonTopic, Verdict } from "@bt/shared/core/
 import { FOOD_COMPARISON } from "../knowledge";
 import { EvidenceMap, hasEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, StudyLink } from "./evidence";
+import { More } from "./disclosure";
 import { Glance } from "./glance";
 import { SegmentTabs } from "./SegmentTabs";
 import { Card, cx } from "./ui";
@@ -32,7 +33,7 @@ export function FoodComparison() {
   // The evidence map below the claims: open, and on which claim.
   const [mapOpen, setMapOpen] = useState(false);
   const [mapClaim, setMapClaim] = useState<string>();
-  const mapRef = useRef<HTMLDetailsElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
   if (FOOD_COMPARISON.length === 0) return null;
   const current = FOOD_COMPARISON.find((t) => t.topic === topic) ?? FOOD_COMPARISON[0]!;
   const mapId = `food-${current.topic}`;
@@ -40,7 +41,8 @@ export function FoodComparison() {
   const showMap = (claimId: string) => {
     setMapClaim(claimId);
     setMapOpen(true);
-    requestAnimationFrame(() => mapRef.current?.scrollIntoView({ block: "start" }));
+    // After the fold's opening animation (200 ms), so the page is long enough to bring it to the top.
+    window.setTimeout(() => mapRef.current?.scrollIntoView({ block: "start" }), 250);
   };
   return (
     <Card className="flex flex-col gap-4">
@@ -90,13 +92,14 @@ export function FoodComparison() {
       </div>
       </SegmentTabs>
       {hasMap && (
-        <details
+        <More
           ref={mapRef}
           open={mapOpen}
-          onToggle={(e) => setMapOpen(e.currentTarget.open)}
+          onOpenChange={setMapOpen}
+          tone="heading"
+          summary="How the evidence for these claims was found"
           className="scroll-mt-6 border-t border-line pt-2"
         >
-          <summary className="min-h-11 cursor-pointer py-2 font-serif text-xl">How the evidence for these claims was found</summary>
           {mapOpen && (
             <EvidenceMap
               key={`${mapId}-${mapClaim ?? ""}`}
@@ -105,7 +108,7 @@ export function FoodComparison() {
               citedTitles={Object.fromEntries(current.claims.flatMap((c) => c.studies).flatMap((s) => (s.pmid ? [[s.pmid, s.title]] : [])))}
             />
           )}
-        </details>
+        </More>
       )}
       <p className="text-sm text-ink-2">
         Verdicts and grades are a first draft, checked against the cited studies but not reviewed by a clinician. Absorption and lab studies can
@@ -135,8 +138,7 @@ function Claim({ c, onShowMap }: { c: ComparisonClaim; onShowMap?: () => void })
         ) : null}
       </div>
       <p>{c.bottomLine ?? c.summary}</p>
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">{c.bottomLine ? "Read the full summary, why this grade, and sources" : "Why this grade, and sources"}</summary>
+      <More summary={c.bottomLine ? "Read the full summary, why this grade, and sources" : "Why this grade, and sources"}>
         {c.bottomLine && <p className="mb-3">{c.summary}</p>}
         <p className="mb-1 text-sm font-medium">Why this grade</p>
         <ul className="list-disc pl-5 text-sm text-ink-2">
@@ -156,7 +158,7 @@ function Claim({ c, onShowMap }: { c: ComparisonClaim; onShowMap?: () => void })
             How the evidence for this claim was found
           </button>
         )}
-      </details>
+      </More>
     </article>
   );
 }

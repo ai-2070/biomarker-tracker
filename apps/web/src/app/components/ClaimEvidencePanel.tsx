@@ -9,6 +9,7 @@ import { CitedAnswer } from "./CitedAnswer";
 import { GRADE, GradeBadge } from "./evidence";
 import { SimpleSelect } from "./UnitSelect";
 import { Button, Card, inputStyles } from "./ui";
+import { More } from "./disclosure";
 
 const keyFor = (request: ClaimRequest) => JSON.stringify([request.nutrientId, request.claim, request.topic]);
 const categoryLabel: Record<ClaimCategory, string> = { health: "Health", longevity: "Longevity", appearance: "Appearance" };
@@ -144,10 +145,9 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
           </section>
         );
       })}
-      <details className="mt-6 text-sm text-ink-2">
-        <summary className="min-h-11 cursor-pointer py-3">About deeper checks</summary>
+      <More summary="About deeper checks" className="mt-6 text-sm text-ink-2">
         <p>Quick and deep checks use the provider, model and reasoning effort selected in Settings. Deeper checks retrieve more papers, read longer abstracts, allow more follow-up searches and model turns, and have a longer time limit. They may take longer and cost more.</p>
-      </details>
+      </More>
       <form className="mt-8 border-t border-line pt-6" onSubmit={(event) => {
         event.preventDefault();
         const value = publicClaimTopic(topic);
@@ -168,14 +168,13 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
         </div>
         {topicError && <p id={`${inputId}-error`} role="alert" className="mt-2 text-sm text-danger">{topicError}</p>}
       </form>
-      <details className="mt-3 text-sm text-ink-2">
-        <summary className="min-h-11 cursor-pointer py-3">About these checks &amp; newer-record signals</summary>
+      <More summary={<>About these checks &amp; newer-record signals</>} className="mt-3 text-sm text-ink-2">
         <div className="flex flex-col gap-2 pb-1">
           <p>AI assessments are saved with the date, model, searches and screening decisions. They are not clinician-reviewed. Search failure and incomplete screening are inconclusive. “No evidence found” requires a complete, error-free search ladder and screening; it is not proof of no effect.</p>
           <p>For saved checks, PubMed is checked at most once a day for matching newer review or trial records. Counts are discovery signals, not verified human evidence or changed verdicts. Recheck explicitly to ask Brain again.</p>
           <p>The search starts on the next UTC day after the assessment. It misses additions on the assessment day, records not yet indexed, and studies without matching words or design labels. Only the supplement and public topic are sent; your profile, chat and files are not.</p>
         </div>
-      </details>
+      </More>
     </Card>
   );
 }
@@ -187,12 +186,11 @@ function SavedCheck({ check, update, discovering }: { check: ClaimCheck; update?
       {awaitingWindow ? <p className="mt-1">New-record checks start after the assessment day (UTC).</p> : update?.result ? (
         <p className="mt-1"><a href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(update.result.query)}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{update.result.count === 0 ? "No matching newer records" : `${update.result.count} matching newer ${update.result.count === 1 ? "record" : "records"}`}</a> · checked {formatDate(update.result.checkedAt.slice(0, 10))}{update.result.count > 0 && ". Recheck to reassess the evidence."}</p>
       ) : discovering ? <p className="mt-1" role="status">Looking for matching newer records…</p> : update && <p className="mt-1">New-record signal unknown · {update.error ? "lookup unavailable" : "last lookup did not finish"} ({formatDate(update.attemptedAt.slice(0, 10))}). Your evidence check is unchanged.</p>}
-      <details className="mt-1">
-        <summary className="min-h-11 cursor-pointer py-3 font-medium text-ink">Read evidence &amp; sources</summary>
+      <More summary={<>Read evidence &amp; sources</>} tone="plain" className="mt-1">
         <div className="pb-2 text-ink">
           <CitedAnswer text={`${check.summary}\n\n**Limits**\n${check.limitations}${check.citations.length ? `\n\n**Retrieved source links**\n${check.citations.map((id) => `[${id}]`).join(" ")}` : "\n\nNo citable sources were returned."}`} allowed={new Set(check.citations)} />
         </div>
-      </details>
+      </More>
       {check.research && <ResearchAudit research={check.research} />}
       <CheckProvenance check={check} />
     </div>
@@ -209,21 +207,17 @@ function CheckRecency({ check, previous }: { check: ClaimCheck; previous?: Claim
 }
 
 function CheckHistory({ history }: { history: ClaimCheck[] }) {
-  return <details className="mt-3 text-sm">
-    <summary className="min-h-11 cursor-pointer py-3 font-medium text-ink">Check history ({history.length})</summary>
+  return <More summary={<>Check history ({history.length})</>} tone="plain" className="mt-3 text-sm">
     <p className="mb-2 text-xs text-ink-2">Earlier assessments are kept in full. Grade changes may reflect new evidence, search coverage or model assessment.</p>
     <ol className="divide-y divide-line">
       {history.map((entry) => <li key={claimRunKey(entry)}>
-        <details className="py-2">
-          <summary className="min-h-11 cursor-pointer py-2 text-ink">
-            <span className="font-medium"><time dateTime={entry.checkedAt}>{formatDate(entry.checkedAt.slice(0, 10))}</time> · {budgetName(entry)} · {gradeName(entry)}</span>
-            <span className="mt-1 block text-xs text-ink-2">{entry.research ? `${entry.research.retrieved} retrieved · ${entry.research.screened} screened · ${entry.research.included} included` : "Counts unavailable (legacy check)"}</span>
-          </summary>
+        <More summary={<><span className="font-medium"><time dateTime={entry.checkedAt}>{formatDate(entry.checkedAt.slice(0, 10))}</time> · {budgetName(entry)} · {gradeName(entry)}</span>
+            <span className="mt-1 block text-xs text-ink-2">{entry.research ? `${entry.research.retrieved} retrieved · ${entry.research.screened} screened · ${entry.research.included} included` : "Counts unavailable (legacy check)"}</span></>} className="py-2">
           <SavedCheck check={entry} discovering={false} />
-        </details>
+        </More>
       </li>)}
     </ol>
-  </details>;
+  </More>;
 }
 
 function CheckProvenance({ check }: { check: ClaimCheck }) {
@@ -236,8 +230,7 @@ function CheckProvenance({ check }: { check: ClaimCheck }) {
 }
 
 function ResearchAudit({ research }: { research: ClaimResearch }) {
-  return <details className="mt-1 text-sm text-ink-2">
-    <summary className="min-h-11 cursor-pointer py-3 font-medium text-ink">Searches &amp; screening ({research.depth} check)</summary>
+  return <More summary={<>Searches &amp; screening ({research.depth} check)</>} tone="plain" className="mt-1 text-sm text-ink-2">
     <ol className="flex list-decimal flex-col gap-3 pl-5">
       {research.queries.map((query, i) => <li key={i}>
         <p className="font-medium text-ink">{query.rung} · {query.resultCount === null ? "count unavailable" : `${query.resultCount} results`} · relevance</p>
@@ -255,5 +248,5 @@ function ResearchAudit({ research }: { research: ClaimResearch }) {
         </li>;
       })}
     </ul>}
-  </details>;
+  </More>;
 }

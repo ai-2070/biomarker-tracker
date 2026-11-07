@@ -21,6 +21,7 @@ import { Button, FlagBadge, buttonStyles, cx, errorStyles, inputStyles, labelSty
 import { Sparkline } from "./Sparkline";
 import { Figure, cardStyles, labelStyles as figureLabel } from "./widgets";
 import { InlineBirthMonth } from "../InlineBirthMonth";
+import { More } from "../disclosure";
 
 
 const big = "font-serif text-4xl leading-none tabular-nums sm:text-5xl";
@@ -649,8 +650,7 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
         </div>
         <p className="text-sm text-ink-2">Sit quietly for 5 minutes first. Many monitors also show your pulse: that's your resting heart rate.</p>
       </fieldset>
-      <details className="group rounded-xl border border-line p-3 open:pb-4">
-        <summary className="min-h-10 cursor-pointer content-center font-medium">Heart rate, HRV, blood oxygen, sleep and activity (usually from a watch or ring)</summary>
+      <More summary="Heart rate, HRV, blood oxygen, sleep and activity (usually from a watch or ring)" boxed panelClassName="border-t border-line p-3">
         <div className="mt-3 grid gap-4 sm:grid-cols-3">
           {field("heart_rate", { suffix: "bpm" })}
           {field("exercise_hr", { suffix: "bpm" })}
@@ -672,9 +672,8 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
         </div>
         <p className="mt-3 text-sm text-ink-2">For a whole day that's over. Active minutes are brisk walking or harder; light activity doesn't count.</p>
         <p className="mt-3 text-sm text-ink-2">HRV here is RMSSD, as most rings and Android watches show it. Apple Watch shows SDNN, a different measure.</p>
-      </details>
-      <details className="group rounded-xl border border-line p-3 open:pb-4">
-        <summary className="min-h-10 cursor-pointer content-center font-medium">Strength, balance and walking tests</summary>
+      </More>
+      <More summary="Strength, balance and walking tests" boxed panelClassName="border-t border-line p-3">
         <p className="mt-2 text-sm text-ink-2">
           Do each test the way its page describes, so your result can be compared with people of your age. Stop if anything hurts, and have
           someone nearby for the balance tests.
@@ -698,7 +697,7 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
           ))}
           . Walking speed: 4 metres divided by the seconds it took.
         </p>
-      </details>
+      </More>
       <fieldset className="flex flex-col gap-3">
         <legend className={cx(formLabel, "mb-1")}>Blood glucose (home meter)</legend>
         <div className="grid gap-4 sm:grid-cols-3">

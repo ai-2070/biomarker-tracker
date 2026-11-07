@@ -13,6 +13,7 @@ import { NormChart, NormTable } from "../NormChart";
 import { SegmentTabs } from "../SegmentTabs";
 import { Card, Notice } from "../ui";
 import { Figure } from "./widgets";
+import { More } from "../disclosure";
 
 /**
  * Fitness tests (push-ups, grip, chair rises, one-leg stand, walking speed, sit-and-rise): the latest
@@ -208,8 +209,7 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
                 <p className="max-w-3xl">{e.claim}</p>
                 <GradeBadge grade={e.grade} short />
               </div>
-              <details>
-                <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Why this grade, and sources</summary>
+              <More summary="Why this grade, and sources">
                 <ul className="list-disc pl-5 text-sm text-ink-2">
                   {e.whyThisGrade.map((w) => (
                     <li key={w}>{w}</li>
@@ -222,7 +222,7 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
                     </li>
                   ))}
                 </ul>
-              </details>
+              </More>
             </li>
           ))}
         </ul>
@@ -292,8 +292,7 @@ function NormSets({ test, sex, points, age }: { test: FitnessTestDef; sex: "m" |
   const body = (
     <>
       <NormChart set={set} sex={sex} points={points} unit={test.unit} higherIsBetter={test.higherIsBetter} />
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">The table, and where it comes from</summary>
+      <More summary="The table, and where it comes from">
         <NormTable set={set} sex={sex} {...(age !== undefined ? { age } : {})} unit={test.unit} />
         <div className="mt-3 flex max-w-3xl flex-col gap-1 text-sm text-ink-2">
           <p>
@@ -304,7 +303,7 @@ function NormSets({ test, sex, points, age }: { test: FitnessTestDef; sex: "m" |
           <p>Numbers read from: {set.verifiedFrom}</p>
           {set.note && <p>{set.note}</p>}
         </div>
-      </details>
+      </More>
     </>
   );
   return (

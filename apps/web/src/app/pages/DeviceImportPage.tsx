@@ -27,6 +27,7 @@ import { formatDate, showValue } from "../format";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName } from "../knowledge";
 import { href } from "../router";
+import { More } from "../components/disclosure";
 
 /** One importable series: a column (joined across daily files of one kind) or an Apple Health type. */
 interface Row {
@@ -352,22 +353,18 @@ export function DeviceImportPage() {
             </Card>
           )}
           {read.empty.length > 0 && (
-            <details className="text-sm text-ink-2">
-              <summary className="min-h-11 cursor-pointer py-2">
-                {read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (settings, goals and the like)
-              </summary>
+            <More summary={<>{read.empty.length} {read.empty.length === 1 ? "file had" : "files had"} nothing to import (settings, goals and the like)</>} className="text-sm text-ink-2">
               <p className="break-words">{[...new Set(read.empty)].slice(0, 60).join(", ")}{read.empty.length > 60 ? "…" : ""}</p>
-            </details>
+            </More>
           )}
           {read.ignored.some((i) => i.columns.length) && (
-            <details className="text-sm text-ink-2">
-              <summary className="min-h-11 cursor-pointer py-2">Other columns in the files (not body measurements)</summary>
+            <More summary="Other columns in the files (not body measurements)" className="text-sm text-ink-2">
               {read.ignored.map((i) => (
                 <p key={i.file} className="break-words">
                   {i.file}: {i.columns.join(", ")}
                 </p>
               ))}
-            </details>
+            </More>
           )}
           {importActions}
         </div>

@@ -22,6 +22,7 @@ import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, WATCH_DEFS, shortName, watch
 import { href } from "../router";
 import { MarkerChoice, PhaseBadge } from "./ExperimentsPage";
 import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import { More } from "../components/disclosure";
 
 const RETEST_OPTIONS = [
   { value: "28", label: "4 weeks" },
@@ -173,10 +174,7 @@ function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plan
 
       {h.entry?.plan && (
         <div className="flex flex-col gap-2 border-t border-line pt-3">
-          <details>
-            <summary className="min-h-11 cursor-pointer content-center text-sm font-medium">
-              Included items ({h.entry.plan.items.length})
-            </summary>
+          <More summary={<>Included items ({h.entry.plan.items.length})</>} tone="small">
             <p className="mb-2 text-sm text-ink-2">As recorded when this protocol started; later protocol edits don't change these items.</p>
             <ul className="flex flex-col divide-y divide-line">
               {h.entry.plan.items.map((item) => (
@@ -186,7 +184,7 @@ function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plan
                 </li>
               ))}
             </ul>
-          </details>
+          </More>
           {sourcePlan && <a href={href({ name: "plan", id: sourcePlan.id })} className="min-h-11 self-start content-center text-sm text-ink underline underline-offset-2">Open source protocol</a>}
           <p className="text-sm text-ink-2">Watched markers compare the whole routine, not which item caused a change.</p>
         </div>

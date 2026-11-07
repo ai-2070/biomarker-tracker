@@ -23,6 +23,7 @@ import { NotFound } from "./NotFound";
 import { ClockNote } from "../components/ClockEvidence";
 import { SupplementGuide } from "../components/SupplementGuide";
 import { PaperLink } from "../components/PaperLink";
+import { More } from "../components/disclosure";
 
 
 const INTAKE_TYPE = {
@@ -551,8 +552,7 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
         <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : r.noUpperLimit}</p>
         {(!bare || r.upperLimit) && <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>}
       </div>
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Sources</summary>
+      <More summary="Sources">
         <ul className="flex flex-col gap-1 text-sm text-ink-2">
           {r.sources.map((s) => (
             <li key={s.pmid ?? s.doi}>
@@ -560,7 +560,7 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
             </li>
           ))}
         </ul>
-      </details>
+      </More>
     </Box>
   );
 }

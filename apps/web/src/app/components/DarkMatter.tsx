@@ -3,6 +3,7 @@ import type { Citation } from "@bt/shared/core/types";
 import { STUDY_LABEL, StudyLink } from "./evidence";
 import { Card } from "./ui";
 import { PaperLink } from "./PaperLink";
+import { More } from "./disclosure";
 
 /**
  * Nutritional dark matter: what no food table can tell you. Shown in full on the Meals page and as a
@@ -79,8 +80,7 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
         </section>
       </div>
 
-      <details>
-        <summary className="min-h-11 cursor-pointer py-2 text-sm text-ink-2">Sources</summary>
+      <More summary="Sources">
         <ol className="flex list-decimal flex-col gap-1 pl-5 text-sm text-ink-2">
           {(["barabasi", "foodmine", "carotenoids", "atbc", "caret"] as const).map((k) => (
             <li key={k}>
@@ -91,7 +91,7 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
             McCance and Widdowson's Composition of Foods Integrated Dataset (CoFID) 2021, UK Government, Open Government Licence v3.0.
           </li>
         </ol>
-      </details>
+      </More>
     </Card>
   );
 }
