@@ -53,7 +53,15 @@ describe("security checks", () => {
 
   it("refuses a change without the header over HTTP", async () => {
     expect((await rawCall(port, "settings.setAssistant", { mutation: true, input: { provider: "ollama", model: "x" }, headers: {} })).status).toBe(403);
-    expect((await rawCall(port, "settings.setAssistant", { mutation: true, input: { provider: "ollama", model: "x" }, headers: { "x-bt": "1", "sec-fetch-site": "cross-site" } })).status).toBe(403);
+    expect(
+      (
+        await rawCall(port, "settings.setAssistant", {
+          mutation: true,
+          input: { provider: "ollama", model: "x" },
+          headers: { "x-bt": "1", "sec-fetch-site": "cross-site" },
+        })
+      ).status,
+    ).toBe(403);
   });
 
   it("never runs a change as a GET request", async () => {
@@ -118,7 +126,10 @@ describe("AI model settings", () => {
     const st = await api.status.query();
     expect(st.ready).toEqual({ ok: false, reason: expect.stringMatching(/zero data retention/) });
     // The assistant refuses too, without calling anything.
-    const a = (await (await call("POST", "/api/assistant", { messages: [{ role: "user", content: "hi" }], snapshot: {} })).json()) as { ok: boolean; error: string };
+    const a = (await (await call("POST", "/api/assistant", { messages: [{ role: "user", content: "hi" }], snapshot: {} })).json()) as {
+      ok: boolean;
+      error: string;
+    };
     expect(a).toEqual({ ok: false, error: expect.stringMatching(/zero data retention/) });
   });
 
@@ -150,7 +161,9 @@ describe("partial profile saves over HTTP", () => {
     const row = { id: "m1", biomarkerId: "ferritin", date: "2026-01-01", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" };
     expect(await api.profiles.saveParts.mutate({ id, parts: { measurements: [row] } })).toEqual({ ok: true, written: ["measurements"] });
     expect((await api.profiles.data.query({ id })).measurements).toHaveLength(1);
-    expect((await rawCall(port, "profiles.saveParts", { mutation: true, input: { id, parts: { measurements: [] } }, headers: { "x-bt": "" } })).status).toBe(403);
+    expect((await rawCall(port, "profiles.saveParts", { mutation: true, input: { id, parts: { measurements: [] } }, headers: { "x-bt": "" } })).status).toBe(
+      403,
+    );
     expect((await rawCall(port, "profiles.saveParts", { mutation: true, input: { id, parts: [] } })).status).toBe(400);
     expect(await statusOf(api.profiles.saveParts.mutate({ id, parts: { secrets: [] } }))).toBe(400);
   });

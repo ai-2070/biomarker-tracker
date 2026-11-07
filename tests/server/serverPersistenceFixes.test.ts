@@ -1,9 +1,9 @@
 import "fake-indexeddb/auto";
+import type { ChildProcess } from "node:child_process";
+import { spawn } from "node:child_process";
 import { EventEmitter } from "node:events";
 import fs from "node:fs";
 import path from "node:path";
-import { spawn } from "node:child_process";
-import type { ChildProcess } from "node:child_process";
 import { afterAll, afterEach, describe, expect, it, vi } from "vitest";
 import * as profiles from "../../apps/server/profiles";
 import { dataPath, readJSON, updateSecrets, writeJSON } from "../../apps/server/store";
@@ -14,7 +14,15 @@ import { fakeServer } from "../app/fakeServer";
 
 vi.mock("node:child_process", () => ({ spawn: vi.fn() }));
 
-const measurement = (id: string, value: number) => ({ id, biomarkerId: "ferritin", date: "2026-01-01", value, originalValue: value, originalUnit: "µg/L", source: "manual" as const });
+const measurement = (id: string, value: number) => ({
+  id,
+  biomarkerId: "ferritin",
+  date: "2026-01-01",
+  value,
+  originalValue: value,
+  originalUnit: "µg/L",
+  source: "manual" as const,
+});
 const habit = (label: string) => ({ id: "habit", label, category: "lifestyle" as const, start: "2026-01-01" });
 const pdf = Buffer.from("%PDF-1.4 synthetic attachment\n");
 const snapshotFiles = ["results.json", "log.json", "experiments.json", "protocols.json", "meals.json", "settings.json", "profile.json"];
@@ -156,7 +164,7 @@ describe("server persistence review regressions", () => {
     });
     try {
       Object.defineProperty(process, "platform", { ...platform, value: "linux" });
-      const action = () => phase === "save" ? profiles.saveProfileData(saved.id, b) : profiles.getProfileData(saved.id);
+      const action = () => (phase === "save" ? profiles.saveProfileData(saved.id, b) : profiles.getProfileData(saved.id));
       if (failSync) {
         expect(action).toThrow("journal directory sync failed");
         events.push("rejected");
@@ -165,7 +173,11 @@ describe("server persistence review regressions", () => {
         events.push("acknowledged");
       }
       expect(events.slice(events.lastIndexOf("journal-unlink"))).toEqual([
-        "journal-unlink", "directory-open", "directory-fsync", "directory-close", failSync ? "rejected" : "acknowledged",
+        "journal-unlink",
+        "directory-open",
+        "directory-fsync",
+        "directory-close",
+        failSync ? "rejected" : "acknowledged",
       ]);
       expect(events.filter((event) => event === "directory-fsync").length).toBeGreaterThan(1);
     } finally {
@@ -185,22 +197,36 @@ describe("server persistence review regressions", () => {
     profiles.addFile(source.id, "second.pdf", pdf);
     const backup = profiles.backupZip(source.id).data;
     const entries = readZip(backup);
-    const before = profiles.listProfiles().map((p) => p.id).sort();
+    const before = profiles
+      .listProfiles()
+      .map((p) => p.id)
+      .sort();
     for (const invalid of [Buffer.from("{"), Buffer.from("{}"), Buffer.from("[null]")]) {
-      const damaged = entries.map((entry) => entry.name.endsWith("/files.json") ? { ...entry, data: invalid } : entry);
+      const damaged = entries.map((entry) => (entry.name.endsWith("/files.json") ? { ...entry, data: invalid } : entry));
       expect(() => profiles.restoreZip(writeZip(damaged))).toThrow(/files.json.*damaged/);
-      expect(profiles.listProfiles().map((p) => p.id).sort()).toEqual(before);
+      expect(
+        profiles
+          .listProfiles()
+          .map((p) => p.id)
+          .sort(),
+      ).toEqual(before);
     }
     const write = fs.writeFileSync;
     let attachmentWrites = 0;
     const fault = vi.spyOn(fs, "writeFileSync").mockImplementation(((file: fs.PathOrFileDescriptor, ...args: unknown[]) => {
-      if (typeof file === "string" && file.endsWith(".pdf") && ++attachmentWrites === 2) throw Object.assign(new Error("attachment disk full"), { code: "ENOSPC" });
+      if (typeof file === "string" && file.endsWith(".pdf") && ++attachmentWrites === 2)
+        throw Object.assign(new Error("attachment disk full"), { code: "ENOSPC" });
       return Reflect.apply(write, fs, [file, ...args]);
     }) as typeof fs.writeFileSync);
     expect(() => profiles.restoreZip(backup)).toThrow("attachment disk full");
     expect(attachmentWrites).toBe(2);
     fault.mockRestore();
-    expect(profiles.listProfiles().map((p) => p.id).sort()).toEqual(before);
+    expect(
+      profiles
+        .listProfiles()
+        .map((p) => p.id)
+        .sort(),
+    ).toEqual(before);
     expect(fs.readdirSync(profiles.PROFILES()).some((name) => name.startsWith(".restore-"))).toBe(false);
     const restored = profiles.restoreZip(backup);
     expect(profiles.listFiles(restored.id)).toHaveLength(2);
@@ -218,8 +244,18 @@ describe("server persistence review regressions", () => {
         { id: "meal-b", name: "More porridge", items: [{ foodId: "11-788", grams: 75 }], createdAt: "2026-10-29T00:00:00.000Z" },
       ],
       plans: [
-        { id: "plan-a", name: "Morning", createdAt: "2026-10-29T00:00:00.000Z", items: [{ id: "item-a", label: "Walk", amount: "", category: "lifestyle", when: "morning" }] },
-        { id: "plan-b", name: "Evening", createdAt: "2026-10-29T00:00:00.000Z", items: [{ id: "item-b", label: "Read", amount: "", category: "lifestyle", when: "evening" }] },
+        {
+          id: "plan-a",
+          name: "Morning",
+          createdAt: "2026-10-29T00:00:00.000Z",
+          items: [{ id: "item-a", label: "Walk", amount: "", category: "lifestyle", when: "morning" }],
+        },
+        {
+          id: "plan-b",
+          name: "Evening",
+          createdAt: "2026-10-29T00:00:00.000Z",
+          items: [{ id: "item-b", label: "Read", amount: "", category: "lifestyle", when: "evening" }],
+        },
       ],
     };
     const source = profiles.createProfile(input);
@@ -228,10 +264,18 @@ describe("server persistence review regressions", () => {
     expect(profiles.getProfileData(valid.id)[key]).toEqual(input[key]);
     const entries = readZip(archive);
     const duplicates = [input[key][0]!, { ...input[key][1]!, id: input[key][0]!.id }];
-    const damaged = entries.map((entry) => entry.name.endsWith(`/${filename}`) ? { ...entry, data: Buffer.from(JSON.stringify(duplicates)) } : entry);
-    const before = profiles.listProfiles().map((profile) => profile.id).sort();
+    const damaged = entries.map((entry) => (entry.name.endsWith(`/${filename}`) ? { ...entry, data: Buffer.from(JSON.stringify(duplicates)) } : entry));
+    const before = profiles
+      .listProfiles()
+      .map((profile) => profile.id)
+      .sort();
     expect(() => profiles.restoreZip(writeZip(damaged))).toThrow(/duplicate IDs/);
-    expect(profiles.listProfiles().map((profile) => profile.id).sort()).toEqual(before);
+    expect(
+      profiles
+        .listProfiles()
+        .map((profile) => profile.id)
+        .sort(),
+    ).toEqual(before);
     expect(fs.readdirSync(profiles.PROFILES()).some((name) => name.startsWith(".restore-"))).toBe(false);
     expect(() => profiles.saveProfileData(source.id, { ...input, [key]: duplicates })).toThrow(/duplicate IDs/);
     expect(profiles.getProfileData(source.id)[key]).toEqual(input[key]);
@@ -277,7 +321,11 @@ describe("server persistence review regressions", () => {
     const saved = profiles.createProfile({ person: { name: "Large profile" } });
     const sparseFile = path.join(saved.folder, "files", "large.pdf");
     const fd = fs.openSync(sparseFile, "w");
-    try { fs.ftruncateSync(fd, MAX_ZIP_EXPANDED_BYTES + 1); } finally { fs.closeSync(fd); }
+    try {
+      fs.ftruncateSync(fd, MAX_ZIP_EXPANDED_BYTES + 1);
+    } finally {
+      fs.closeSync(fd);
+    }
     const read = fs.readFileSync;
     let oversizedReads = 0;
     vi.spyOn(fs, "readFileSync").mockImplementation(((file: fs.PathOrFileDescriptor, ...args: unknown[]) => {
@@ -297,8 +345,12 @@ describe("server persistence review regressions", () => {
       if (String(file).includes("secrets.json") && String(file).endsWith(".tmp")) calls.push({ file: String(file), flags, mode });
       return open(file, flags, mode);
     }) as typeof fs.openSync);
-    updateSecrets((secrets) => { secrets.keys.openai = "synthetic-test-key"; });
-    updateSecrets((secrets) => { secrets.keys.openai = "replacement-test-key"; });
+    updateSecrets((secrets) => {
+      secrets.keys.openai = "synthetic-test-key";
+    });
+    updateSecrets((secrets) => {
+      secrets.keys.openai = "replacement-test-key";
+    });
     expect(calls).toHaveLength(2);
     expect(calls.every((call) => call.flags === "wx" && call.mode === 0o600)).toBe(true);
     expect(new Set(calls.map((call) => call.file)).size).toBe(2);
@@ -334,7 +386,9 @@ describe("backup zips", () => {
     const names = () => readZip(profiles.backupZip(source.id).data).map((entry) => entry.name);
     const listed = names();
     const original = fs.readdirSync;
-    const spy = vi.spyOn(fs, "readdirSync").mockImplementation(((...args: Parameters<typeof original>) => [...(original(...args) as unknown[])].reverse()) as typeof original);
+    const spy = vi
+      .spyOn(fs, "readdirSync")
+      .mockImplementation(((...args: Parameters<typeof original>) => [...(original(...args) as unknown[])].reverse()) as typeof original);
     try {
       expect(names()).toEqual(listed);
     } finally {
@@ -348,7 +402,11 @@ describe("partial profile saves", () => {
   const fileOf = (id: string, name: string) => path.join(profiles.PROFILES(), id, name);
 
   it("rewrites only the changed files, merged with what is on disk", () => {
-    const p = profiles.createProfile({ person: { name: "Partial" }, measurements: [row], protocols: [{ id: "h1", label: "Walk", category: "lifestyle", start: "2026-01-01" }] });
+    const p = profiles.createProfile({
+      person: { name: "Partial" },
+      measurements: [row],
+      protocols: [{ id: "h1", label: "Walk", category: "lifestyle", start: "2026-01-01" }],
+    });
     const log = fileOf(p.id, "log.json");
     const before = fs.readFileSync(log, "utf8");
     const stamp = new Date("2020-01-01T00:00:00Z");

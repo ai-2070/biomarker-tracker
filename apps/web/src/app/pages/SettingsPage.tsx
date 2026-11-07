@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { Tabs } from "@base-ui/react/tabs";
+import type { ReactNode } from "react";
 import { useServerStatus } from "../api";
 import { AboutSettings } from "../components/settings/AboutSettings";
 import { AppearanceSettings } from "../components/settings/AppearanceSettings";
@@ -15,7 +15,14 @@ const TABS: { value: SettingsTab; label: ReactNode }[] = [
   { value: "data", label: "Your data" },
   { value: "models", label: "AI models" },
   { value: "skills", label: "Skills" },
-  { value: "mcp", label: <>MCP<span className="hidden sm:inline">&nbsp;servers</span></> },
+  {
+    value: "mcp",
+    label: (
+      <>
+        MCP<span className="hidden sm:inline">&nbsp;servers</span>
+      </>
+    ),
+  },
   { value: "appearance", label: "Appearance" },
   { value: "about", label: "About" },
 ];
@@ -36,8 +43,8 @@ function NeedsServer({ children }: { children: ReactNode }) {
   if (status === null)
     return (
       <Notice tone="warn" title="The assistant's server isn't running">
-        AI settings are kept by the app's small local server. Start the app with <span className="font-mono text-sm">bun run start</span> and open the
-        address it shows. Tracking, charts and biological age work without it.
+        AI settings are kept by the app's small local server. Start the app with <span className="font-mono text-sm">bun run start</span> and open the address
+        it shows. Tracking, charts and biological age work without it.
       </Notice>
     );
   return <>{children}</>;
@@ -45,7 +52,8 @@ function NeedsServer({ children }: { children: ReactNode }) {
 
 export function SettingsPage({ tab = "data" }: { tab?: SettingsTab }) {
   const { mode } = useProfiles();
-  const sub = tab === "data" && mode === "folders" ? "This profile's details, files and backups. Everything is kept in its folder on this computer." : SUBTITLE[tab];
+  const sub =
+    tab === "data" && mode === "folders" ? "This profile's details, files and backups. Everything is kept in its folder on this computer." : SUBTITLE[tab];
   return (
     <>
       <PageTitle sub={sub}>Settings</PageTitle>

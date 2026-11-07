@@ -1,9 +1,20 @@
-import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { Popover } from "@base-ui/react/popover";
-import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, modelEfforts, providerInfo, type Effort, type ModelChoice, type ProviderConfig, type ProviderInfo } from "@bt/shared/core/aiProviders";
+import {
+  canUse,
+  EFFORT_LABEL,
+  type Effort,
+  GROUP_LABEL,
+  type ModelChoice,
+  modelEfforts,
+  PROVIDERS,
+  type ProviderConfig,
+  type ProviderInfo,
+  providerInfo,
+} from "@bt/shared/core/aiProviders";
+import { type ReactNode, useCallback, useEffect, useState } from "react";
 import { localServer } from "../api";
-import { OnOff } from "../components/settings/SkillsSettings";
 import { ToolsIcon } from "../components/icons";
+import { OnOff } from "../components/settings/SkillsSettings";
 import { CheckIcon, ChevronDownIcon, cx, eyebrowSmallStyles } from "../components/ui";
 import { href, type SettingsTab } from "../router";
 import { closeBrain } from "./store";
@@ -28,7 +39,8 @@ export function useBrainSettings(active: boolean): { settings: BrainSettings | n
   useEffect(() => {
     if (!request.active) return;
     let alive = true;
-    localServer.settings.get.query()
+    localServer.settings.get
+      .query()
       .then((s) => {
         if (!alive) return;
         lastSettings = s;
@@ -40,7 +52,9 @@ export function useBrainSettings(active: boolean): { settings: BrainSettings | n
         setSettings(null);
         setLoaded(request);
       });
-    return () => { alive = false; };
+    return () => {
+      alive = false;
+    };
   }, [request]);
   return { settings, fresh: active && request.active === active && loaded === request, reload: useCallback(() => setRequest({ active: true }), []) };
 }
@@ -133,22 +147,35 @@ export function ModelMenu({ settings, onChange }: { settings: BrainSettings; onC
                   {p.retention === "depends" && <span className="text-[11px]">depends on your login</span>}
                 </p>
               );
-              const models = p.models.length > 0 ? p.models : [{ id: current.provider === p.id ? current.model : "", label: current.provider === p.id && current.model ? current.model : "Its default model" }];
-              return [header, ...models.map((m) => {
-                const on = current.provider === p.id && current.model === m.id;
-                return (
-                  <button
-                    key={`${p.id}/${m.id}`}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => void choose({ provider: p.id, model: m.id, ...(p.id === current.provider && current.effort ? { effort: current.effort } : {}) })}
-                    className={cx("flex min-h-10 items-center gap-2 rounded-lg px-2.5 text-left text-sm hover:bg-sunken", on && "font-medium")}
-                  >
-                    <span className="flex size-4 shrink-0 items-center justify-center text-accent">{on && <CheckIcon />}</span>
-                    <span className="min-w-0 flex-1 truncate">{m.label}</span>
-                  </button>
-                );
-              })];
+              const models =
+                p.models.length > 0
+                  ? p.models
+                  : [
+                      {
+                        id: current.provider === p.id ? current.model : "",
+                        label: current.provider === p.id && current.model ? current.model : "Its default model",
+                      },
+                    ];
+              return [
+                header,
+                ...models.map((m) => {
+                  const on = current.provider === p.id && current.model === m.id;
+                  return (
+                    <button
+                      key={`${p.id}/${m.id}`}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() =>
+                        void choose({ provider: p.id, model: m.id, ...(p.id === current.provider && current.effort ? { effort: current.effort } : {}) })
+                      }
+                      className={cx("flex min-h-10 items-center gap-2 rounded-lg px-2.5 text-left text-sm hover:bg-sunken", on && "font-medium")}
+                    >
+                      <span className="flex size-4 shrink-0 items-center justify-center text-accent">{on && <CheckIcon />}</span>
+                      <span className="min-w-0 flex-1 truncate">{m.label}</span>
+                    </button>
+                  );
+                }),
+              ];
             })}
           </div>
         );
@@ -183,7 +210,11 @@ export function ModelMenu({ settings, onChange }: { settings: BrainSettings; onC
         </p>
       )}
       <div className="mt-1 border-t border-line pt-1">
-        <button type="button" onClick={() => goToSettings("models")} className="flex min-h-10 w-full items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken">
+        <button
+          type="button"
+          onClick={() => goToSettings("models")}
+          className="flex min-h-10 w-full items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken"
+        >
           Set up more models (API keys, OpenRouter, local)…
         </button>
       </div>
@@ -214,8 +245,14 @@ export function ToolsMenu({ active }: { active: boolean }) {
   useEffect(() => {
     if (!active) return;
     let alive = true;
-    localServer.skills.list.query().then((r) => alive && setSkills(r.skills), () => alive && setSkills([]));
-    localServer.mcp.list.query().then((r) => alive && setServers(r.servers), () => alive && setServers([]));
+    localServer.skills.list.query().then(
+      (r) => alive && setSkills(r.skills),
+      () => alive && setSkills([]),
+    );
+    localServer.mcp.list.query().then(
+      (r) => alive && setServers(r.servers),
+      () => alive && setServers([]),
+    );
     return () => {
       alive = false;
     };
@@ -259,16 +296,26 @@ export function ToolsMenu({ active }: { active: boolean }) {
         <div key={s.id} className="flex items-center gap-3 rounded-lg px-2.5 py-1.5">
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm">{s.name}</p>
-            <p className={cx("text-xs", s.error ? "text-warn" : "text-ink-2")}>{!s.enabled ? "Off" : s.error ? "Couldn't start" : s.running ? "Ready" : "Starts when needed"}</p>
+            <p className={cx("text-xs", s.error ? "text-warn" : "text-ink-2")}>
+              {!s.enabled ? "Off" : s.error ? "Couldn't start" : s.running ? "Ready" : "Starts when needed"}
+            </p>
           </div>
           <OnOff checked={s.enabled} onChange={(v) => void toggle("server", s.id, v)} label={`Search ${s.name}`} />
         </div>
       ))}
       <div className="mt-1 flex flex-col border-t border-line pt-1">
-        <button type="button" onClick={() => goToSettings("skills")} className="flex min-h-10 items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken">
+        <button
+          type="button"
+          onClick={() => goToSettings("skills")}
+          className="flex min-h-10 items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken"
+        >
           Add or write skills…
         </button>
-        <button type="button" onClick={() => goToSettings("mcp")} className="flex min-h-10 items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken">
+        <button
+          type="button"
+          onClick={() => goToSettings("mcp")}
+          className="flex min-h-10 items-center rounded-lg px-2.5 text-left text-sm text-accent hover:bg-sunken"
+        >
           Add research sources…
         </button>
       </div>

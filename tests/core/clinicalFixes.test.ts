@@ -1,16 +1,26 @@
-import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { analyzeMarker, personalBand, t95 } from "@bt/shared/core/experiments";
 import { phenoAgePace } from "@bt/shared/core/agePace";
 import { bodySummary } from "@bt/shared/core/bodySummary";
-import { ageMatch, describePlace, fitnessSummary, placeInRow, placeResult, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
+import { dayNumber } from "@bt/shared/core/dates";
+import { analyzeMarker, personalBand, t95 } from "@bt/shared/core/experiments";
+import { ageMatch, describePlace, type FitnessTestDef, fitnessSummary, placeInRow, placeResult } from "@bt/shared/core/fitnessTests";
 import { framinghamRisk, heartAgeData } from "@bt/shared/core/heartAge";
 import { personalRange } from "@bt/shared/core/personalRange";
 import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
-import { dayNumber } from "@bt/shared/core/dates";
 import { timeTicks } from "@bt/shared/core/timeWindow";
-import { computeTrend, flagLatest, flagMeasurement, flagValue, isAlreadySaved, latestByBiomarker, recentAverage, recentTotal, sortByDate } from "@bt/shared/core/trends";
+import {
+  computeTrend,
+  flagLatest,
+  flagMeasurement,
+  flagValue,
+  isAlreadySaved,
+  latestByBiomarker,
+  recentAverage,
+  recentTotal,
+  sortByDate,
+} from "@bt/shared/core/trends";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { def, measurement } from "../helpers";
 
 const m = (biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}) => measurement({ biomarkerId, date, value, ...extra });
@@ -18,10 +28,20 @@ const balance = JSON.parse(readFileSync(new URL("../../knowledge/fitness/one_leg
 const date = (day: number) => new Date(Date.UTC(2026, 8, day)).toISOString().slice(0, 10);
 const profile: Profile = { sex: "f", birthMonth: "1976-10", heightCm: 170, smoking: "never" };
 const heartReadings = [m("weight", "2026-10-29", 70), m("bp_systolic", "2026-10-29", 125), m("bp_diastolic", "2026-10-29", 80)];
-const experiment: Experiment = { id: "clinical", change: "Own recorded change", category: "lifestyle", markerIds: ["crp_hs", "pushups"], start: "2026-09-01", retestAfterDays: 28 };
+const experiment: Experiment = {
+  id: "clinical",
+  change: "Own recorded change",
+  category: "lifestyle",
+  markerIds: ["crp_hs", "pushups"],
+  start: "2026-09-01",
+  retestAfterDays: 28,
+};
 
 describe("clinical review: critical and qualified results", () => {
-  it.each([["bp_systolic", 180], ["bp_diastolic", 120]] as const)("includes the documented %s emergency boundary only", (id, threshold) => {
+  it.each([
+    ["bp_systolic", 180],
+    ["bp_diastolic", 120],
+  ] as const)("includes the documented %s emergency boundary only", (id, threshold) => {
     const d = def(id);
     expect(flagMeasurement(d, m(id, date(1), threshold - 0.01))).toBe("high");
     expect(flagMeasurement(d, m(id, date(1), threshold))).toBe("critical-high");
@@ -39,8 +59,12 @@ describe("clinical review: critical and qualified results", () => {
   });
 
   it.each([
-    ["<", 15, "low"], ["<", 16, "unknown"], ["<", 30, "unknown"],
-    [">", 30, "high"], [">", 29, "unknown"], [">", 15, "unknown"],
+    ["<", 15, "low"],
+    ["<", 16, "unknown"],
+    ["<", 30, "unknown"],
+    [">", 30, "high"],
+    [">", 29, "unknown"],
+    [">", 15, "unknown"],
   ] as const)("classifies %s%s using interval certainty", (qualifier, value, expected) => {
     expect(flagValue(value, { low: 15, high: 30 }, undefined, qualifier)).toBe(expected);
   });
@@ -70,7 +94,10 @@ describe("clinical review: saved order and daily coverage", () => {
   it("selects the newest saved same-date observation regardless of UUID or input order", () => {
     const old = m("potassium", date(1), 4, { id: "ffffffff-ffff-4fff-8fff-ffffffffffff", savedOrder: 10 });
     const critical = m("potassium", date(1), 7, { id: "00000000-0000-4000-8000-000000000000", savedOrder: 11 });
-    for (const rows of [[old, critical], [critical, old]]) {
+    for (const rows of [
+      [old, critical],
+      [critical, old],
+    ]) {
       expect(sortByDate(rows).map((r) => r.value)).toEqual([4, 7]);
       expect(computeTrend(rows)?.latest).toBe(critical);
       expect(latestByBiomarker(rows).get("potassium")).toBe(critical);
@@ -85,7 +112,10 @@ describe("clinical review: saved order and daily coverage", () => {
     const values = { albumin: 44, creatinine: 80, glucose: 5, crp_hs: 1, lymphocyte_pct: 30, mcv: 90, rdw: 13, alp: 70, wbc: 5 };
     const originals = Object.entries(values).map(([id, value]) => m(id, date(1), value, { id: `ffff-${id}`, savedOrder: 10 }));
     const correction = m("crp_hs", date(1), 2, { id: "0000-correction", savedOrder: 11 });
-    for (const rows of [[correction, ...originals], [...originals, correction]]) {
+    for (const rows of [
+      [correction, ...originals],
+      [...originals, correction],
+    ]) {
       const draw = summarizePhenoAge(rows, "1976-10").draws[0]!;
       expect(draw.used.crp_hs).toBe(correction);
       expect(draw.status).toBe("ok");
@@ -107,7 +137,12 @@ describe("clinical review: saved order and daily coverage", () => {
     const threeNights = [...oneNight, m(sleep.id, date(2), 7), m(sleep.id, date(3), 7)];
     expect(recentAverage(threeNights)).toMatchObject({ value: 7, count: 3 });
     expect(flagLatest(sleep, threeNights)).toBe("normal");
-    expect(flagLatest(sleep, [1, 2, 3].map((d) => m(sleep.id, date(d), 5)))).toBe("low");
+    expect(
+      flagLatest(
+        sleep,
+        [1, 2, 3].map((d) => m(sleep.id, date(d), 5)),
+      ),
+    ).toBe("low");
   });
 
   it("gives each date equal weight while preserving additive step totals", () => {
@@ -135,8 +170,20 @@ describe("clinical review: saved order and daily coverage", () => {
 
 describe("clinical review: bounded cardiovascular inputs and axes", () => {
   it("ends both reported blood-pressure averages at the selected paired reading", () => {
-    const rows = [m("bp_systolic", "2026-09-10", 260), m("bp_diastolic", "2026-09-10", 160), m("bp_systolic", "2026-09-11", 120), m("bp_diastolic", "2026-09-11", 80), m("bp_systolic", "2026-10-10", 120), m("bp_diastolic", "2026-10-10", 80), m("bp_systolic", "2026-10-20", 180)];
-    expect(bodySummary({}, rows, [], "2026-10-29").bloodPressure).toEqual({ latest: "120/80 mmHg", date: "2026-10-10", last30DaysAverage: "120/80 mmHg (2 readings)" });
+    const rows = [
+      m("bp_systolic", "2026-09-10", 260),
+      m("bp_diastolic", "2026-09-10", 160),
+      m("bp_systolic", "2026-09-11", 120),
+      m("bp_diastolic", "2026-09-11", 80),
+      m("bp_systolic", "2026-10-10", 120),
+      m("bp_diastolic", "2026-10-10", 80),
+      m("bp_systolic", "2026-10-20", 180),
+    ];
+    expect(bodySummary({}, rows, [], "2026-10-29").bloodPressure).toEqual({
+      latest: "120/80 mmHg",
+      date: "2026-10-10",
+      last30DaysAverage: "120/80 mmHg (2 readings)",
+    });
     const laterDiastolic = rows.filter((r) => r.date !== "2026-10-20").concat(m("bp_diastolic", "2026-10-20", 120));
     expect(bodySummary({}, laterDiastolic, [], "2026-10-29").bloodPressure?.last30DaysAverage).toBe("120/80 mmHg (2 readings)");
   });
@@ -149,7 +196,12 @@ describe("clinical review: bounded cardiovascular inputs and axes", () => {
     expect(heartAgeData({ ...profile, birthMonth: "1951-06" }, heartReadings, [], "2026-10-29").outOfRange).toBe("old");
   });
 
-  it.each(["No diabetes. No hypertension treatment.", "Without diabetes; not on blood pressure medication.", "Diabetes: no. Hypertension untreated.", "Diabetes ruled out. No antihypertensive."])("does not turn negated history into affirmative risk factors: %s", (conditions) => {
+  it.each([
+    "No diabetes. No hypertension treatment.",
+    "Without diabetes; not on blood pressure medication.",
+    "Diabetes: no. Hypertension untreated.",
+    "Diabetes ruled out. No antihypertensive.",
+  ])("does not turn negated history into affirmative risk factors: %s", (conditions) => {
     const base = heartAgeData(profile, heartReadings, [], "2026-10-29");
     const negative = heartAgeData({ ...profile, conditions }, heartReadings, [], "2026-10-29");
     expect(negative.missing).toEqual([]);
@@ -162,8 +214,14 @@ describe("clinical review: bounded cardiovascular inputs and axes", () => {
     expect(positive.input).toMatchObject({ diabetes: true, treatedBp: true });
     const mixed = heartAgeData({ ...profile, conditions: "No diabetes. Hypertension treated." }, heartReadings, [], "2026-10-29");
     expect(mixed.input).toMatchObject({ diabetes: false, treatedBp: true });
-    const meds: ProtocolEntry[] = [{ id: "bp", label: "Amlodipine", category: "medication", start: "2026-01-01" }, { id: "diabetes", label: "Metformin", category: "medication", start: "2026-01-01" }];
-    expect(heartAgeData({ ...profile, conditions: "No diabetes. No hypertension treatment." }, heartReadings, meds, "2026-10-29").input).toMatchObject({ diabetes: true, treatedBp: true });
+    const meds: ProtocolEntry[] = [
+      { id: "bp", label: "Amlodipine", category: "medication", start: "2026-01-01" },
+      { id: "diabetes", label: "Metformin", category: "medication", start: "2026-01-01" },
+    ];
+    expect(heartAgeData({ ...profile, conditions: "No diabetes. No hypertension treatment." }, heartReadings, meds, "2026-10-29").input).toMatchObject({
+      diabetes: true,
+      treatedBp: true,
+    });
     const ambiguous = heartAgeData({ ...profile, conditions: "Possible diabetes?" }, heartReadings, [], "2026-10-29");
     expect(ambiguous.input).toBeUndefined();
     expect(ambiguous.missing).toContain("confirmation of diabetes");
@@ -194,7 +252,13 @@ describe("clinical review: exact experiment outputs and finite pace intervals", 
     }
   });
 
-  it.each([[0, 5], [0, 0], [5, 0], [-1, 5], [Infinity, 5]])("retains %s to %s source readings without invalid log-domain outputs", (beforeValue, afterValue) => {
+  it.each([
+    [0, 5],
+    [0, 0],
+    [5, 0],
+    [-1, 5],
+    [Infinity, 5],
+  ])("retains %s to %s source readings without invalid log-domain outputs", (beforeValue, afterValue) => {
     const before = m("pushups", "2026-08-20", beforeValue);
     const after = m("pushups", "2026-10-01", afterValue);
     const result = analyzeMarker(experiment, def("pushups"), [before, after]);
@@ -216,10 +280,17 @@ describe("clinical review: exact experiment outputs and finite pace intervals", 
     expect(personalBand([1, 2, Infinity], [1, 2, 3])).toBeUndefined();
   });
 
-  it.each([[1, 12.706], [2, 4.303], [3, 3.182]])("uses a finite two-sided 95%% t critical at df %s", (df, expected) => {
+  it.each([
+    [1, 12.706],
+    [2, 4.303],
+    [3, 3.182],
+  ])("uses a finite two-sided 95%% t critical at df %s", (df, expected) => {
     expect(t95(df)).toBe(expected);
     const count = df + 2;
-    const points = Array.from({ length: count }, (_, i) => ({ date: new Date(Date.UTC(2024, 0, 1) + i * 365.25 * 86_400_000 / (count - 1)).toISOString().slice(0, 10), years: 40 }));
+    const points = Array.from({ length: count }, (_, i) => ({
+      date: new Date(Date.UTC(2024, 0, 1) + (i * 365.25 * 86_400_000) / (count - 1)).toISOString().slice(0, 10),
+      years: 40,
+    }));
     const exact = phenoAgePace(points)!;
     expect(exact.pace).toBe(0);
     expect(exact.low).toBe(0);
@@ -238,7 +309,9 @@ describe("clinical review: fitness protocol and norm uncertainty", () => {
     expect(place).toMatchObject({ kind: "percentile", capped: true });
     expect(describePlace(place)).toBe("Reached the test limit; the table cannot rank results at the limit");
     expect(placeResult(balance, value, { age: 53, sex: "f" }).find((p) => p.set === british)?.place).toEqual(place);
-    expect(fitnessSummary([balance], [m(balance.id, date(1), value)], { sex: "f", ageAt: () => 53 })[0]!.comparedWith.find((r) => r.norms === british.label)?.place).toBe(describePlace(place));
+    expect(
+      fitnessSummary([balance], [m(balance.id, date(1), value)], { sex: "f", ageAt: () => 53 })[0]!.comparedWith.find((r) => r.norms === british.label)?.place,
+    ).toBe(describePlace(place));
     expect(describePlace(placeInRow(british, british.rows[0]!, 29)!)).toBe("Between the 25th and 50th percentile");
   });
 

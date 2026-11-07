@@ -5,7 +5,8 @@ import { switchProfile, useProfiles, useSaveStatus } from "../profiles";
 import { href } from "../router";
 import { CheckIcon, ChevronDownIcon, cx, eyebrowSmallStyles } from "./ui";
 
-const itemStyles = "flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-ink outline-none select-none transition-colors duration-100 data-highlighted:bg-sunken";
+const itemStyles =
+  "flex min-h-11 cursor-default items-center gap-3 rounded-lg px-3 text-ink outline-none select-none transition-colors duration-100 data-highlighted:bg-sunken";
 
 /** The open profile, and a menu to switch, add or manage profiles. */
 export function ProfileMenu({ variant = "compact" }: { variant?: "compact" | "sidebar" }) {
@@ -28,7 +29,9 @@ export function ProfileMenu({ variant = "compact" }: { variant?: "compact" | "si
         {variant === "sidebar" ? (
           <span className="min-w-0 flex-1">
             <span className="block truncate text-sm font-medium">{name}</span>
-            <span className="block truncate text-xs text-ink-2">{profiles.length > 1 ? `${profiles.length} profiles · switch` : "Switch or add a profile"}</span>
+            <span className="block truncate text-xs text-ink-2">
+              {profiles.length > 1 ? `${profiles.length} profiles · switch` : "Switch or add a profile"}
+            </span>
           </span>
         ) : (
           <span className="hidden max-w-32 truncate text-sm font-medium sm:inline">{name}</span>
@@ -60,7 +63,11 @@ export function ProfileMenu({ variant = "compact" }: { variant?: "compact" | "si
               Manage profiles
             </Menu.LinkItem>
             <p className={cx("px-3 pt-1 pb-1.5 text-xs", save === "error" ? "text-danger" : "text-ink-2")}>
-              {save === "error" ? "Couldn't save to the folder. Is the app's server running? Changes are kept here and saved when it's back." : save === "saving" ? "Saving…" : "All changes saved to the profile folder."}
+              {save === "error"
+                ? "Couldn't save to the folder. Is the app's server running? Changes are kept here and saved when it's back."
+                : save === "saving"
+                  ? "Saving…"
+                  : "All changes saved to the profile folder."}
             </p>
           </Menu.Popup>
         </Menu.Positioner>

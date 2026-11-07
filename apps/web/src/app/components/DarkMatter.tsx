@@ -1,9 +1,9 @@
 import { coverage, type FoodDb } from "@bt/shared/core/meals";
 import type { Citation } from "@bt/shared/core/types";
-import { STUDY_LABEL, StudyLink } from "./evidence";
-import { Card, eyebrowStyles } from "./ui";
-import { PaperLink } from "./PaperLink";
 import { More } from "./disclosure";
+import { STUDY_LABEL, StudyLink } from "./evidence";
+import { PaperLink } from "./PaperLink";
+import { Card, eyebrowStyles } from "./ui";
 
 /**
  * Nutritional dark matter: what no food table can tell you. Shown in full on the Meals page and as a
@@ -13,16 +13,40 @@ import { More } from "./disclosure";
 
 const SOURCES: Record<string, Citation> = {
   barabasi: { doi: "10.1038/s43016-019-0005-1", title: "The unmapped chemical complexity of our diet", year: 2019, studyType: "review" },
-  foodmine: { pmid: "33004889", doi: "10.1038/s41598-020-73105-0", title: "Exploring food contents in scientific literature with FoodMine", year: 2020, studyType: "review" },
-  atbc: { pmid: "8127329", title: "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers", year: 1994, studyType: "rct", n: 29133 },
-  caret: { pmid: "8602180", title: "Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease", year: 1996, studyType: "rct", n: 18314 },
+  foodmine: {
+    pmid: "33004889",
+    doi: "10.1038/s41598-020-73105-0",
+    title: "Exploring food contents in scientific literature with FoodMine",
+    year: 2020,
+    studyType: "review",
+  },
+  atbc: {
+    pmid: "8127329",
+    title: "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+    year: 1994,
+    studyType: "rct",
+    n: 29133,
+  },
+  caret: {
+    pmid: "8602180",
+    title: "Effects of a combination of beta carotene and vitamin A on lung cancer and cardiovascular disease",
+    year: 1996,
+    studyType: "rct",
+    n: 18314,
+  },
   carotenoids: { pmid: "18689373", title: "Carotenoids and the risk of developing lung cancer: a systematic review", year: 2008, studyType: "meta-analysis" },
 };
 
 function Ref({ id, n }: { id: keyof typeof SOURCES; n: number }) {
   const s = SOURCES[id]!;
   return (
-    <PaperLink href={s.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.pmid}/` : `https://doi.org/${s.doi}`} source={{ title: s.title, year: s.year, kind: STUDY_LABEL[s.studyType], n: s.n }} target="_blank" rel="noopener noreferrer" className="align-super text-xs text-ink-2 no-underline hover:text-ink">
+    <PaperLink
+      href={s.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${s.pmid}/` : `https://doi.org/${s.doi}`}
+      source={{ title: s.title, year: s.year, kind: STUDY_LABEL[s.studyType], n: s.n }}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="align-super text-xs text-ink-2 no-underline hover:text-ink"
+    >
       [{n}]
     </PaperLink>
   );
@@ -44,8 +68,8 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
         <section>
           <h3 className="font-medium">Food tables measure a short list</h3>
           <p className="mt-1 text-ink-2">
-            The numbers here come from the UK food composition table (CoFID 2021){total ? `: ${total.toLocaleString("en-GB")} foods` : ""}, about 30
-            nutrients each. Even those aren't always measured
+            The numbers here come from the UK food composition table (CoFID 2021){total ? `: ${total.toLocaleString("en-GB")} foods` : ""}, about 30 nutrients
+            each. Even those aren't always measured
             {c && total
               ? `: vitamin K in ${pct("vitaminK1")}% of the foods, omega-3 EPA and DHA in ${pct("epaDha")}%, fibre in ${pct("fibre")}%, iodine in ${pct("iodine")}%`
               : ""}
@@ -56,18 +80,19 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
           <h3 className="font-medium">Food contains far more</h3>
           <p className="mt-1 text-ink-2">
             Researchers estimate that food contains more than 26,000 distinct chemicals, while standard food databases track about 150 nutrients
-            <Ref id="barabasi" n={1} />. When a study searched the research literature for just two foods, garlic and cocoa, it found a lot of
-            information about their chemicals that no database includes, much of it relevant to health
+            <Ref id="barabasi" n={1} />. When a study searched the research literature for just two foods, garlic and cocoa, it found a lot of information about
+            their chemicals that no database includes, much of it relevant to health
             <Ref id="foodmine" n={2} />. This is sometimes called nutritional dark matter.
           </p>
         </section>
         <section>
           <h3 className="font-medium">A food isn't its nutrient list</h3>
           <p className="mt-1 text-ink-2">
-            Diets rich in carotenoid foods were linked to slightly less lung cancer<Ref id="carotenoids" n={3} />, but beta-carotene pills raised
-            lung cancer in smokers in two large trials<Ref id="atbc" n={4} />
-            <Ref id="caret" n={5} />. A food and an isolated nutrient are different things, so the app grades their evidence separately and never
-            carries one over to the other.
+            Diets rich in carotenoid foods were linked to slightly less lung cancer
+            <Ref id="carotenoids" n={3} />, but beta-carotene pills raised lung cancer in smokers in two large trials
+            <Ref id="atbc" n={4} />
+            <Ref id="caret" n={5} />. A food and an isolated nutrient are different things, so the app grades their evidence separately and never carries one
+            over to the other.
           </p>
         </section>
         <section>
@@ -75,7 +100,10 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
           <ul className="mt-1 flex list-disc flex-col gap-1 pl-5 text-ink-2">
             <li>Shows only measured amounts, and how many foods each total covers.</li>
             <li>Never calls a meal complete, balanced or best for you, and sets no targets.</li>
-            <li>Lets you measure instead of predict: add a meal to a protocol, start it, and compare your results before and after. Your body responds to every compound, named or not.</li>
+            <li>
+              Lets you measure instead of predict: add a meal to a protocol, start it, and compare your results before and after. Your body responds to every
+              compound, named or not.
+            </li>
           </ul>
         </section>
       </div>
@@ -87,9 +115,7 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
               <StudyLink s={SOURCES[k]!} />
             </li>
           ))}
-          <li>
-            McCance and Widdowson's Composition of Foods Integrated Dataset (CoFID) 2021, UK Government, Open Government Licence v3.0.
-          </li>
+          <li>McCance and Widdowson's Composition of Foods Integrated Dataset (CoFID) 2021, UK Government, Open Government Licence v3.0.</li>
         </ol>
       </More>
     </Card>
@@ -100,8 +126,8 @@ export function DarkMatterExplainer({ db }: { db: FoodDb | undefined }) {
 export function DarkMatterNote() {
   return (
     <p className="text-sm text-ink-2">
-      These totals cover only the nutrients the food table measured (about 30 here, of more than 26,000 chemicals estimated in food). They
-      say nothing about the rest, and nothing about how your body handles this meal: your own results before and after a change do.
+      These totals cover only the nutrients the food table measured (about 30 here, of more than 26,000 chemicals estimated in food). They say nothing about the
+      rest, and nothing about how your body handles this meal: your own results before and after a change do.
     </p>
   );
 }

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { personalRange } from "@bt/shared/core/personalRange";
+import { describe, expect, it } from "vitest";
 import { measurement } from "../helpers";
 
 const day = (i: number) => new Date(Date.UTC(2026, 7, 1) + i * 86_400_000).toISOString().slice(0, 10);

@@ -1,9 +1,12 @@
-import { describe, expect, it } from "vitest";
 import { isSleepSession, sleepLocalTime, validSleepSessions } from "@bt/shared/core/sleepSessions";
 import type { SleepSession } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const session: SleepSession = {
-  start: "2026-10-24T23:15:00", end: "2026-10-25T07:30:00", kind: "asleep", source: "Test watch",
+  start: "2026-10-24T23:15:00",
+  end: "2026-10-25T07:30:00",
+  kind: "asleep",
+  source: "Test watch",
 };
 
 describe("source-local sleep timestamps", () => {
@@ -24,11 +27,25 @@ describe("source-local sleep timestamps", () => {
   });
 
   it.each([
-    "", "2026-10-25", "2026-10-25 07:30:00", "2026-10-25T07:30", "2026-1-25T07:30:00",
-    "2026-10-25T7:30:00", "2026-10-25T24:00:00", "2026-10-25T07:60:00", "2026-10-25T07:30:60",
-    "2023-02-29T07:30:00", "2026-04-31T07:30:00", "2026-00-25T07:30:00", "2026-10-00T07:30:00",
-    "2026-10-25T07:30:00.1", "2026-10-25T07:30:00.1234", "2026-10-25T07:30:00Z",
-    "2026-10-25T07:30:00+02:00", " 2026-10-25T07:30:00", "2026-10-25T07:30:00\n",
+    "",
+    "2026-10-25",
+    "2026-10-25 07:30:00",
+    "2026-10-25T07:30",
+    "2026-1-25T07:30:00",
+    "2026-10-25T7:30:00",
+    "2026-10-25T24:00:00",
+    "2026-10-25T07:60:00",
+    "2026-10-25T07:30:60",
+    "2023-02-29T07:30:00",
+    "2026-04-31T07:30:00",
+    "2026-00-25T07:30:00",
+    "2026-10-00T07:30:00",
+    "2026-10-25T07:30:00.1",
+    "2026-10-25T07:30:00.1234",
+    "2026-10-25T07:30:00Z",
+    "2026-10-25T07:30:00+02:00",
+    " 2026-10-25T07:30:00",
+    "2026-10-25T07:30:00\n",
   ])("rejects non-local or malformed timestamp %j", (value) => {
     expect(sleepLocalTime(value)).toBeUndefined();
   });
@@ -55,10 +72,20 @@ describe("sleep session validation", () => {
 
   it("rejects malformed shapes, field types and coerced boundary kinds", () => {
     const bad: unknown[] = [
-      undefined, null, [], "sleep", {}, { ...session, start: 1 }, { ...session, end: null },
-      { ...session, kind: undefined }, { ...session, kind: "bedtime" }, { ...session, kind: ["asleep"] },
-      { ...session, source: 1 }, { ...session, source: "x".repeat(201) },
-      { ...session, start: "2026-10-24T23:15:00Z" }, { ...session, end: "2026-02-30T07:30:00" },
+      undefined,
+      null,
+      [],
+      "sleep",
+      {},
+      { ...session, start: 1 },
+      { ...session, end: null },
+      { ...session, kind: undefined },
+      { ...session, kind: "bedtime" },
+      { ...session, kind: ["asleep"] },
+      { ...session, source: 1 },
+      { ...session, source: "x".repeat(201) },
+      { ...session, start: "2026-10-24T23:15:00Z" },
+      { ...session, end: "2026-02-30T07:30:00" },
     ];
     for (const value of bad) expect(isSleepSession(value), JSON.stringify(value)).toBe(false);
   });

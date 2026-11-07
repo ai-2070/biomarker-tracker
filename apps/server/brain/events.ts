@@ -26,6 +26,10 @@ export function toolFinished(id: string, name: string, input: unknown, output: u
   if (failed) return { kind: "tool_result", id, ok: false, studyIds: [] };
   validateToolResult(step, output);
   const ok = step.success !== false;
-  const critical = ok && name === "propose_results" && Array.isArray((output as { critical?: unknown } | null)?.critical) && ((output as { critical: unknown[] }).critical.length > 0);
+  const critical =
+    ok &&
+    name === "propose_results" &&
+    Array.isArray((output as { critical?: unknown } | null)?.critical) &&
+    (output as { critical: unknown[] }).critical.length > 0;
   return { kind: "tool_result", id, ok, studyIds: studyIdsFromTool(name, output), ...(critical ? { critical: true } : {}) };
 }

@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
-import { completeProfileDetails, profileDetailsIn, type ProfileDetailField } from "@bt/shared/core/profileCompletion";
+import { completeProfileDetails, type ProfileDetailField, profileDetailsIn } from "@bt/shared/core/profileCompletion";
 import type { Profile } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const today = "2026-10-30";
 const read = (field: ProfileDetailField, quote: string, text = quote, profile: Profile = {}) =>
@@ -38,10 +38,17 @@ describe("profile facts explicitly stated to Brain", () => {
   it("keeps existing fields and private data, filling only a blank field", () => {
     const current: Profile = { name: "Private Name", notes: "Private notes", heightCm: 168, allergies: "   ", example: true };
     const text = "I'm 180 cm. I'm allergic to peanuts";
-    const r = completeProfileDetails(current, { details: [
-      { field: "heightCm", quote: "I'm 180 cm" },
-      { field: "allergies", quote: "I'm allergic to peanuts" },
-    ] }, text, today);
+    const r = completeProfileDetails(
+      current,
+      {
+        details: [
+          { field: "heightCm", quote: "I'm 180 cm" },
+          { field: "allergies", quote: "I'm allergic to peanuts" },
+        ],
+      },
+      text,
+      today,
+    );
     expect(r.profile).toEqual({ ...current, allergies: "peanuts" });
     expect(r.added).toEqual([{ field: "allergies", value: "peanuts" }]);
     expect(current.allergies).toBe("   ");
@@ -49,8 +56,8 @@ describe("profile facts explicitly stated to Brain", () => {
 
   it.each([
     ["If I am 180 cm, what would my BMI be?", "I am 180 cm"],
-    ["My brother says \"I'm 180 cm\"", "I'm 180 cm"],
-    ["Example: \"I'm 180 cm\"", "I'm 180 cm"],
+    ['My brother says "I\'m 180 cm"', "I'm 180 cm"],
+    ['Example: "I\'m 180 cm"', "I'm 180 cm"],
     ["```\nI'm 180 cm\n```", "I'm 180 cm"],
     ["> I'm 180 cm", "I'm 180 cm"],
     ["I'm not 180 cm", "I'm not 180 cm"],
@@ -63,9 +70,12 @@ describe("profile facts explicitly stated to Brain", () => {
     expect(read("heightCm", quote, text).added).toEqual([]);
   });
 
-  it.each(["My height is 180", "My height is 900 cm", "I'm 5 feet 12 inches", "I'm 1.8 m and 180 cm", "I'm 5 feet 11", "I'm 5'11", "I'm 1 m 80"])("does not guess ambiguous or impossible height: %s", (quote) => {
-    expect(read("heightCm", quote).added).toEqual([]);
-  });
+  it.each(["My height is 180", "My height is 900 cm", "I'm 5 feet 12 inches", "I'm 1.8 m and 180 cm", "I'm 5 feet 11", "I'm 5'11", "I'm 1 m 80"])(
+    "does not guess ambiguous or impossible height: %s",
+    (quote) => {
+      expect(read("heightCm", quote).added).toEqual([]);
+    },
+  );
 
   it("does not treat a truncated word or unit as the person's statement", () => {
     expect(read("heightCm", "I'm 180 cm", "I'm 180 cm2").added).toEqual([]);
@@ -83,17 +93,51 @@ describe("profile facts explicitly stated to Brain", () => {
 
   it("rejects conflicting field quotes and deduplicates equivalent ones", () => {
     const text = "I'm 180 cm. My height is 175 cm";
-    expect(completeProfileDetails({}, { details: [
-      { field: "heightCm", quote: "I'm 180 cm" },
-      { field: "heightCm", quote: "My height is 175 cm" },
-    ] }, text, today).added).toEqual([]);
+    expect(
+      completeProfileDetails(
+        {},
+        {
+          details: [
+            { field: "heightCm", quote: "I'm 180 cm" },
+            { field: "heightCm", quote: "My height is 175 cm" },
+          ],
+        },
+        text,
+        today,
+      ).added,
+    ).toEqual([]);
     const quote = "I'm 180 cm";
-    expect(completeProfileDetails({}, { details: [{ field: "heightCm", quote }, { field: "heightCm", quote }] }, quote, today).added)
-      .toEqual([{ field: "heightCm", value: 180 }]);
+    expect(
+      completeProfileDetails(
+        {},
+        {
+          details: [
+            { field: "heightCm", quote },
+            { field: "heightCm", quote },
+          ],
+        },
+        quote,
+        today,
+      ).added,
+    ).toEqual([{ field: "heightCm", value: 180 }]);
   });
 
   it("rejects private, arbitrary or malformed fields while allowing a stated fact followed by a question", () => {
-    expect(completeProfileDetails({}, { details: [{ field: "name", quote: "My name is Anna" }, { field: "notes", quote: "My private notes" }, { field: "weight", quote: "I weigh 70 kg" }, null] }, "My name is Anna. My private notes. I weigh 70 kg", today).added).toEqual([]);
+    expect(
+      completeProfileDetails(
+        {},
+        {
+          details: [
+            { field: "name", quote: "My name is Anna" },
+            { field: "notes", quote: "My private notes" },
+            { field: "weight", quote: "I weigh 70 kg" },
+            null,
+          ],
+        },
+        "My name is Anna. My private notes. I weigh 70 kg",
+        today,
+      ).added,
+    ).toEqual([]);
     expect(read("heightCm", "I'm 180 cm", "I'm 180 cm, can you explain BMI?").profile.heightCm).toBe(180);
     expect(completeProfileDetails({}, { details: Array(21).fill({ field: "heightCm", quote: "I'm 180 cm" }) }, "I'm 180 cm", today).added).toEqual([]);
   });
@@ -103,7 +147,8 @@ describe("automatic facts in ordinary personal messages", () => {
   const capture = (text: string, current: Profile = {}) => completeProfileDetails(current, profileDetailsIn(text, today), text, today);
 
   it("captures profile fields from a multi-fact gym question, without inventing a birth date or health conditions", () => {
-    const text = "I'm 31, 102kg, 192cm tall, man, I take 1 hour walks every day, I do work from home, 27% body fat, I only take magnesum and sometimes creatine. I usually eat eveything, I have a sweet tooth. What should I take if I restart weight lifting casually in the gym, and to focus better at work.";
+    const text =
+      "I'm 31, 102kg, 192cm tall, man, I take 1 hour walks every day, I do work from home, 27% body fat, I only take magnesum and sometimes creatine. I usually eat eveything, I have a sweet tooth. What should I take if I restart weight lifting casually in the gym, and to focus better at work.";
     expect(capture(text).profile).toEqual({ heightCm: 192, sex: "m", diet: "omnivore" });
   });
 

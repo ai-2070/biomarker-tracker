@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { buildTestSummary, rangeText, SUMMARY_LIMITS } from "@bt/shared/core/testSummary";
 import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 import { loadDefs, measurement } from "../helpers";
 
 const defs = loadDefs();
@@ -14,7 +14,15 @@ const m = (biomarkerId: string, date: string, value: number, extra: Partial<Meas
 const lab = (low?: number, high?: number) => ({ labRange: { ...(low !== undefined ? { low } : {}), ...(high !== undefined ? { high } : {}) } });
 
 const summary = (measurements: Measurement[], extra: { protocols?: ProtocolEntry[]; date?: string } = {}) =>
-  buildTestSummary({ measurements, defs, profile: { sex: "f" }, protocols: extra.protocols ?? [], nutrients, categoryOrder: ["Blood count", "Kidney", "Electrolytes"], ...(extra.date ? { date: extra.date } : {}) })!;
+  buildTestSummary({
+    measurements,
+    defs,
+    profile: { sex: "f" },
+    protocols: extra.protocols ?? [],
+    nutrients,
+    categoryOrder: ["Blood count", "Kidney", "Electrolytes"],
+    ...(extra.date ? { date: extra.date } : {}),
+  })!;
 
 describe("buildTestSummary", () => {
   const history = [
@@ -87,7 +95,9 @@ describe("buildTestSummary", () => {
     expect(s.questions).toEqual([
       "My haemoglobin has been low on 2 tests in a row, since 2026-03-01. What could explain it, and does it need follow-up?",
       expect.stringMatching(/^My .*creatinine has been high on 2 tests in a row/),
-      expect.stringMatching(/^My .* was 23 mL\/min\/1\.73m², below the range \(above 90 mL\/min\/1\.73m²\)\. What could explain it, and should it be re-tested\?$/),
+      expect.stringMatching(
+        /^My .* was 23 mL\/min\/1\.73m², below the range \(above 90 mL\/min\/1\.73m²\)\. What could explain it, and should it be re-tested\?$/,
+      ),
       "Which of these results matter most for me, and when should I have the next test?",
     ]);
   });
@@ -106,7 +116,10 @@ describe("buildTestSummary", () => {
 
   it("finds a supplement inside a started protocol", () => {
     const routine: ProtocolEntry = {
-      id: "p2", label: "Morning routine", category: "supplement", start: "2026-01-01",
+      id: "p2",
+      label: "Morning routine",
+      category: "supplement",
+      start: "2026-01-01",
       plan: { id: "plan", items: [{ id: "i", label: "Biotin", category: "supplement", when: "morning" }] },
     };
     const s = summary([m("tsh", "2026-02-01", 0.1, lab(0.27, 4.2))], { protocols: [routine] });
@@ -120,7 +133,9 @@ describe("buildTestSummary", () => {
       m("crp_hs", "2026-02-01", 0.3, { qualifier: "<", source: "photo" }),
     ]);
     const kinds = Object.fromEntries(s.cautions.map((c) => [c.kind, c]));
-    expect(kinds.fasting!.text).toBe("Glucose and triglycerides are usually judged on a fasting sample, and this test isn't marked as fasting, so the fasting range may not apply.");
+    expect(kinds.fasting!.text).toBe(
+      "Glucose and triglycerides are usually judged on a fasting sample, and this test isn't marked as fasting, so the fasting range may not apply.",
+    );
     expect(kinds.photo!.markers).toEqual(["crp_hs"]);
     expect(kinds["typical-range"]!.markers).toEqual(expect.arrayContaining(["glucose", "triglycerides"]));
     expect(kinds.bounded!.markers).toEqual(["crp_hs"]);

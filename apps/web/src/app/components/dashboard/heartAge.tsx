@@ -1,12 +1,12 @@
 import { todayIso } from "@bt/shared/core/dates";
-import { AGE_RANGE, framinghamRisk, heartAge, heartAgeData, type HeartAgeData } from "@bt/shared/core/heartAge";
+import { AGE_RANGE, framinghamRisk, type HeartAgeData, heartAge, heartAgeData } from "@bt/shared/core/heartAge";
 import type { Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { formatDate, formatYears } from "../../format";
 import { href } from "../../router";
-import { Card, LinkButton, Notice } from "../ui";
-import { Figure } from "./widgets";
 import { InlineBirthMonth } from "../InlineBirthMonth";
 import { PaperLink } from "../PaperLink";
+import { Card, LinkButton, Notice } from "../ui";
+import { Figure } from "./widgets";
 
 const PAPER_URL = "https://pubmed.ncbi.nlm.nih.gov/18212285/";
 
@@ -29,7 +29,13 @@ export function HeartAgeFigure({ ms, profile, protocols, className }: { ms: Meas
       label="Heart age"
       href={profile.birthMonth ? href({ name: "phenoage" }) : undefined}
       className={className}
-      foot={h !== undefined ? `${difference(h, d.input!.age)}. From blood pressure, BMI and smoking (Framingham); an estimate.` : d.outOfRange ? `Only for ages ${AGE_RANGE.min}–${AGE_RANGE.max}.` : `Needs ${d.missing.join(", ")}.`}
+      foot={
+        h !== undefined
+          ? `${difference(h, d.input!.age)}. From blood pressure, BMI and smoking (Framingham); an estimate.`
+          : d.outOfRange
+            ? `Only for ages ${AGE_RANGE.min}–${AGE_RANGE.max}.`
+            : `Needs ${d.missing.join(", ")}.`
+      }
     >
       {h !== undefined ? (
         <p className="flex items-baseline gap-1.5">
@@ -57,18 +63,24 @@ export function HeartAgeSection({ ms, profile, protocols }: { ms: Measurement[];
       <div className="flex flex-col gap-2 text-sm text-ink-2">
         <p>
           <span className="font-medium text-ink">What it is: </span>
-          the age of someone with normal risk factors (blood pressure 125, BMI 22.5, not smoking, no diabetes) who has the same predicted
-          risk of a heart attack, stroke or similar in the next 10 years. It uses the Framingham Heart Study's office-based equation (
-          <PaperLink href={PAPER_URL} source={{ authors: "D'Agostino et al.", journal: "Circulation", year: 2008 }} target="_blank" rel="noopener noreferrer" className="text-accent underline-offset-2 hover:underline">
+          the age of someone with normal risk factors (blood pressure 125, BMI 22.5, not smoking, no diabetes) who has the same predicted risk of a heart
+          attack, stroke or similar in the next 10 years. It uses the Framingham Heart Study's office-based equation (
+          <PaperLink
+            href={PAPER_URL}
+            source={{ authors: "D'Agostino et al.", journal: "Circulation", year: 2008 }}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline-offset-2 hover:underline"
+          >
             D'Agostino et al., Circulation 2008
           </PaperLink>
           ), with BMI in place of cholesterol.
         </p>
         <p>
           <span className="font-medium text-ink">Limits: </span>
-          an estimate, not a verdict. It was developed in a mostly white US population aged {AGE_RANGE.min}–{AGE_RANGE.max} without heart
-          disease, and can be off for others. It doesn't apply if you already have heart disease. It was built on blood pressure measured
-          in a clinic; home readings are usually a little lower, so it may come out slightly young.
+          an estimate, not a verdict. It was developed in a mostly white US population aged {AGE_RANGE.min}–{AGE_RANGE.max} without heart disease, and can be
+          off for others. It doesn't apply if you already have heart disease. It was built on blood pressure measured in a clinic; home readings are usually a
+          little lower, so it may come out slightly young.
         </p>
       </div>
     </Card>
@@ -103,7 +115,10 @@ function HeartAgeBody({ d, profile }: { d: HeartAgeData; profile: Profile }) {
   const h = heartAge(i);
   const risk = framinghamRisk(i);
   const rows: [string, string][] = [
-    ["Systolic blood pressure", `${Math.round(i.systolic)} mmHg${d.from.systolicReadings > 1 ? `, average of ${d.from.systolicReadings} readings in the 30 days to ${formatDate(d.from.systolicDate!)}` : `, ${formatDate(d.from.systolicDate!)}`}`],
+    [
+      "Systolic blood pressure",
+      `${Math.round(i.systolic)} mmHg${d.from.systolicReadings > 1 ? `, average of ${d.from.systolicReadings} readings in the 30 days to ${formatDate(d.from.systolicDate!)}` : `, ${formatDate(d.from.systolicDate!)}`}`,
+    ],
     ["BMI", `${i.bmi.toFixed(1)}, from your weight on ${formatDate(d.from.bmiDate!)}`],
     ["Smoking", i.smoker ? "Yes" : "No"],
     ["Blood pressure medicine", i.treatedBp ? `Yes (${SOURCE[d.from.treatedBp]})` : `No (${SOURCE.no})`],
@@ -119,8 +134,9 @@ function HeartAgeBody({ d, profile }: { d: HeartAgeData; profile: Profile }) {
         <p className="text-ink">{difference(h, i.age)}</p>
       </div>
       <p className="text-ink-2">
-        Predicted 10-year risk of a heart attack, stroke or similar: about <span className="font-medium text-ink">{(risk * 100).toFixed(risk < 0.1 ? 1 : 0)} %</span>. That is, about{" "}
-        {Math.max(1, Math.round(risk * 100))} in 100 people with these numbers had one within 10 years in the study.
+        Predicted 10-year risk of a heart attack, stroke or similar: about{" "}
+        <span className="font-medium text-ink">{(risk * 100).toFixed(risk < 0.1 ? 1 : 0)} %</span>. That is, about {Math.max(1, Math.round(risk * 100))} in 100
+        people with these numbers had one within 10 years in the study.
       </p>
       {risk >= 0.2 && (
         <Notice tone="warn" title="Worth discussing with your doctor">

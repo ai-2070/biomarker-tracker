@@ -82,7 +82,33 @@ function seeded(seed: number): () => number {
 const round = (v: number, step: number) => Math.round(v / step) * step;
 const decimals = (step: number) => (step >= 1 ? 0 : String(step).split(".")[1]!.length);
 
-export const DEMO_BODY_IDS: readonly string[] = ["weight", "waist", "body_fat", "bp_systolic", "bp_diastolic", "resting_hr", "heart_rate", "exercise_hr", "hrv", "hrv_resting", "spo2", "glucose_home", "sleep_duration", "sleep_deep", "sleep_rem", "vo2max", "steps", "active_minutes", "pushups", "grip_strength", "sit_to_stand_5x", "chair_stand_30s", "one_leg_stand", "gait_speed", "sitting_rising"];
+export const DEMO_BODY_IDS: readonly string[] = [
+  "weight",
+  "waist",
+  "body_fat",
+  "bp_systolic",
+  "bp_diastolic",
+  "resting_hr",
+  "heart_rate",
+  "exercise_hr",
+  "hrv",
+  "hrv_resting",
+  "spo2",
+  "glucose_home",
+  "sleep_duration",
+  "sleep_deep",
+  "sleep_rem",
+  "vo2max",
+  "steps",
+  "active_minutes",
+  "pushups",
+  "grip_strength",
+  "sit_to_stand_5x",
+  "chair_stand_30s",
+  "one_leg_stand",
+  "gait_speed",
+  "sitting_rising",
+];
 const BODY_IDS = new Set(DEMO_BODY_IDS);
 /** Days of nightly watch data (sleep, HRV) before today. */
 const NIGHTLY_DAYS = 70;
@@ -96,19 +122,35 @@ export function demoBodyMeasurements(today: string): Measurement[] {
 }
 
 const EXAMPLE_NIGHTLY_FIELDS: Record<string, true | undefined> = {
-  sleep_duration: true, hrv: true, hrv_resting: true, steps: true, active_minutes: true,
+  sleep_duration: true,
+  hrv: true,
+  hrv_resting: true,
+  steps: true,
+  active_minutes: true,
 };
 
 /** Upgrade only untouched, recognizable fictional watch readings from an older example. */
 export function exampleSleepUpdates(profile: Profile, measurements: readonly Measurement[]): Measurement[] {
   if (profile.example !== true) return [];
-  const originalWatch = measurements.filter((m) => /^example-\d+$/.test(m.id) && EXAMPLE_NIGHTLY_FIELDS[m.biomarkerId] &&
-    m.source === "device" && isIsoDate(m.date) && m.originalUnit === DEMO_UNITS[m.biomarkerId] && m.originalValue === m.value &&
-    m.qualifier === undefined && m.note === undefined && m.lab === undefined && m.labRange === undefined && m.fasted === undefined);
-  const watch = originalWatch.filter((m) => m.biomarkerId === "sleep_duration" &&
-    (m.sleepSessions === undefined || m.sleepSessions.every((session) => session.source === "Example watch")));
+  const originalWatch = measurements.filter(
+    (m) =>
+      /^example-\d+$/.test(m.id) &&
+      EXAMPLE_NIGHTLY_FIELDS[m.biomarkerId] &&
+      m.source === "device" &&
+      isIsoDate(m.date) &&
+      m.originalUnit === DEMO_UNITS[m.biomarkerId] &&
+      m.originalValue === m.value &&
+      m.qualifier === undefined &&
+      m.note === undefined &&
+      m.lab === undefined &&
+      m.labRange === undefined &&
+      m.fasted === undefined,
+  );
+  const watch = originalWatch.filter(
+    (m) => m.biomarkerId === "sleep_duration" && (m.sleepSessions === undefined || m.sleepSessions.every((session) => session.source === "Example watch")),
+  );
   if (!watch.length) return [];
-  const last = originalWatch.reduce((latest, m) => m.date > latest ? m.date : latest, watch[0]!.date);
+  const last = originalWatch.reduce((latest, m) => (m.date > latest ? m.date : latest), watch[0]!.date);
   const original = demoProfile(addDays(last, 1)).measurements;
   const expected = new Map(original.filter((m) => m.biomarkerId === "sleep_duration" && m.source === "device").map((m) => [m.date, m]));
   const dates = new Set<string>();
@@ -150,7 +192,17 @@ export function demoProfile(today: string): DemoData {
   let n = 0;
   const add = (date: string, biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
     n += 1;
-    measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "manual", lab: "Example Lab", ...extra });
+    measurements.push({
+      id: `example-${String(n).padStart(3, "0")}`,
+      biomarkerId,
+      date,
+      value,
+      originalValue: value,
+      originalUnit: DEMO_UNITS[biomarkerId]!,
+      source: "manual",
+      lab: "Example Lab",
+      ...extra,
+    });
   };
 
   // The stories, one value per test.
@@ -221,7 +273,16 @@ export function demoProfile(today: string): DemoData {
     const t = k / 23;
     const body = (biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
       n += 1;
-      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "manual", ...extra });
+      measurements.push({
+        id: `example-${String(n).padStart(3, "0")}`,
+        biomarkerId,
+        date,
+        value,
+        originalValue: value,
+        originalUnit: DEMO_UNITS[biomarkerId]!,
+        source: "manual",
+        ...extra,
+      });
     };
     body("weight", wobble(68.8 - t * 1.2, 0.008, 0.1));
     body("body_fat", wobble(31 - t * 1.5, 0.02, 0.1));
@@ -270,19 +331,30 @@ export function demoProfile(today: string): DemoData {
     const date = addDays(today, -d);
     const night = (biomarkerId: string, value: number, extra: Partial<Measurement> = {}) => {
       n += 1;
-      measurements.push({ id: `example-${String(n).padStart(3, "0")}`, biomarkerId, date, value, originalValue: value, originalUnit: DEMO_UNITS[biomarkerId]!, source: "device", ...extra });
+      measurements.push({
+        id: `example-${String(n).padStart(3, "0")}`,
+        biomarkerId,
+        date,
+        value,
+        originalValue: value,
+        originalUnit: DEMO_UNITS[biomarkerId]!,
+        source: "device",
+        ...extra,
+      });
     };
     const sleepHours = wobble(7.3, 0.08, 0.05);
     // Invented watch windows for this newly generated example only; preserve the existing hours
     // and random sequence. Real duration-only readings never get reconstructed this way.
-    const wake = Date.parse(`${date}T07:00:00Z`) + (((NIGHTLY_DAYS - d) * 13) % 61 - 30) * 60_000;
+    const wake = Date.parse(`${date}T07:00:00Z`) + ((((NIGHTLY_DAYS - d) * 13) % 61) - 30) * 60_000;
     night("sleep_duration", sleepHours, {
-      sleepSessions: [{
-        start: new Date(wake - Math.round(sleepHours * 3_600_000)).toISOString().slice(0, 19),
-        end: new Date(wake).toISOString().slice(0, 19),
-        kind: "asleep",
-        source: "Example watch",
-      }],
+      sleepSessions: [
+        {
+          start: new Date(wake - Math.round(sleepHours * 3_600_000)).toISOString().slice(0, 19),
+          end: new Date(wake).toISOString().slice(0, 19),
+          kind: "asleep",
+          source: "Example watch",
+        },
+      ],
     });
     night("hrv", Math.round(wobble(39, 0.25, 1)));
     night("hrv_resting", Math.round(wobble(48, 0.2, 1)));
@@ -296,19 +368,42 @@ export function demoProfile(today: string): DemoData {
   for (let i = 0; i < NIGHTLY_DAYS; i++) {
     const date = addDays(today, -NIGHTLY_DAYS + i);
     if (restingDates.has(date)) continue;
-    const value = 60 + (i * 7) % 9;
-    measurements.push({ id: `example-sleep-rhr-${date}`, biomarkerId: "resting_hr", date, value, originalValue: value,
-      originalUnit: "bpm", source: "device", note: "Fictional example watch · resting heart rate" });
+    const value = 60 + ((i * 7) % 9);
+    measurements.push({
+      id: `example-sleep-rhr-${date}`,
+      biomarkerId: "resting_hr",
+      date,
+      value,
+      originalValue: value,
+      originalUnit: "bpm",
+      source: "device",
+      note: "Fictional example watch · resting heart rate",
+    });
   }
 
   const protocols: ProtocolEntry[] = [
-    { id: "example-log-iron", label: "Iron bisglycinate 25 mg every other day", category: "supplement", start: addDays(draws[3]!, 9), end: addDays(draws[5]!, 20) },
+    {
+      id: "example-log-iron",
+      label: "Iron bisglycinate 25 mg every other day",
+      category: "supplement",
+      start: addDays(draws[3]!, 9),
+      end: addDays(draws[5]!, 20),
+    },
     { id: "example-log-d3", label: "Vitamin D3 1000 IU daily", category: "supplement", start: d3Start },
     { id: "example-log-walk", label: "Walking 30 minutes a day", category: "lifestyle", start: walkStart },
     { id: "example-log-fibre", label: "Oats and beans every day (more fibre)", category: "diet", start: expStart, end: addDays(expStart, 100) },
   ];
   const experiments: Experiment[] = [
-    { id: "example-exp-fibre", change: "Oats and beans every day (more fibre)", category: "diet", markerIds: ["ldl", "total_cholesterol"], start: expStart, retestAfterDays: 84, end: addDays(expStart, 100), protocolId: "example-log-fibre" },
+    {
+      id: "example-exp-fibre",
+      change: "Oats and beans every day (more fibre)",
+      category: "diet",
+      markerIds: ["ldl", "total_cholesterol"],
+      start: expStart,
+      retestAfterDays: 84,
+      end: addDays(expStart, 100),
+      protocolId: "example-log-fibre",
+    },
   ];
 
   measurements.sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
@@ -329,20 +424,42 @@ export function demoProfile(today: string): DemoData {
     {
       id: "example-plan-standard",
       name: "Standard Routine",
-      description: "A bigger supplement routine, written down as it's followed: no amounts yet, some items only if a test shows a deficiency. Not a recommendation: see what research says about each one, and the warnings above the schedule.",
+      description:
+        "A bigger supplement routine, written down as it's followed: no amounts yet, some items only if a test shows a deficiency. Not a recommendation: see what research says about each one, and the warnings above the schedule.",
       items: [
         { id: "example-std-nr-nmn", label: "NR/NMN", category: "supplement", when: "morning" },
         { id: "example-std-creatine", label: "Creatine", category: "supplement", when: "morning" },
         { id: "example-std-probiotic", label: "Probiotic", category: "supplement", when: "morning" },
         { id: "example-std-omega3", label: "Omega-3", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
         { id: "example-std-vit-e", label: "Vitamin E", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
-        { id: "example-std-calcium", label: "Calcium", category: "supplement", when: "midday", withFood: true, note: "Only if deficient. Or with extra virgin olive oil" },
+        {
+          id: "example-std-calcium",
+          label: "Calcium",
+          category: "supplement",
+          when: "midday",
+          withFood: true,
+          note: "Only if deficient. Or with extra virgin olive oil",
+        },
         { id: "example-std-d3", label: "Vitamin D3", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
         { id: "example-std-k2", label: "Vitamin K2", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
         { id: "example-std-coq10", label: "CoQ10", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
         { id: "example-std-astaxanthin", label: "Astaxanthin", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
-        { id: "example-std-garlic", label: "Fermented Garlic Extract", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
-        { id: "example-std-sulforaphane", label: "Sulforaphane", category: "supplement", when: "midday", withFood: true, note: "Or with extra virgin olive oil" },
+        {
+          id: "example-std-garlic",
+          label: "Fermented Garlic Extract",
+          category: "supplement",
+          when: "midday",
+          withFood: true,
+          note: "Or with extra virgin olive oil",
+        },
+        {
+          id: "example-std-sulforaphane",
+          label: "Sulforaphane",
+          category: "supplement",
+          when: "midday",
+          withFood: true,
+          note: "Or with extra virgin olive oil",
+        },
         { id: "example-std-collagen", label: "Collagen Peptide", category: "supplement", when: "evening" },
         { id: "example-std-vit-c", label: "Vitamin C", category: "supplement", when: "evening" },
         { id: "example-std-hyaluronic", label: "Hyaluronic Acid", category: "supplement", when: "evening" },

@@ -1,19 +1,23 @@
-import { useState } from "react";
-
-import { SUPPLEMENT_NUTRIENTS, intakeToPlanItems, protocolToIntake, MAX_INTAKE_ITEMS, MAX_SUPPLEMENT_AMOUNT, type NeedsAmount, type IntakeItem } from "@bt/shared/core/intake";
+import {
+  type IntakeItem,
+  intakeToPlanItems,
+  MAX_INTAKE_ITEMS,
+  MAX_SUPPLEMENT_AMOUNT,
+  type NeedsAmount,
+  protocolToIntake,
+  SUPPLEMENT_NUTRIENTS,
+} from "@bt/shared/core/intake";
 import { type FoodDb, type Meal } from "@bt/shared/core/meals";
 import { MAX_ITEMS } from "@bt/shared/core/plans";
-
 import { formatValue } from "@bt/shared/core/units";
+import { useState } from "react";
 import { newId, savePlan } from "../../../db/db";
-
-import { Button, inputStyles, labelStyles } from "../ui";
 import { usePlans } from "../../hooks";
 import { NUTRIENTS } from "../../knowledge";
 import { href } from "../../router";
-
 import { More } from "../disclosure";
 import { SimpleSelect } from "../UnitSelect";
+import { Button, inputStyles, labelStyles } from "../ui";
 
 /**
  * A protocol loaded into the list: its meals, table foods and supplements written in their unit. Supplements
@@ -50,7 +54,9 @@ export function LoadProtocol({ items, meals, db, save }: { items: IntakeItem[]; 
       {loaded && (
         <div role="status" className="flex flex-col gap-3 rounded-lg bg-sunken p-3 text-sm">
           <p>
-            {loaded.added === 0 ? `Nothing from ${loaded.name} could be counted yet.` : `Added ${loaded.added} ${loaded.added === 1 ? "item" : "items"} from ${loaded.name}.`}
+            {loaded.added === 0
+              ? `Nothing from ${loaded.name} could be counted yet.`
+              : `Added ${loaded.added} ${loaded.added === 1 ? "item" : "items"} from ${loaded.name}.`}
           </p>
           {loaded.needsAmount.length > 0 && (
             <div className="flex flex-col gap-2">
@@ -180,7 +186,9 @@ export function ToProtocol({ items, meals, db }: { items: IntakeItem[]; meals: M
               if (!target) return;
               const room = Math.max(0, MAX_ITEMS - target.items.length);
               const add = make();
-              void savePlan({ ...target, items: [...target.items, ...add.slice(0, room)] }).then(() => setDone({ id: target.id, name: target.name, skipped: Math.max(0, add.length - room) }));
+              void savePlan({ ...target, items: [...target.items, ...add.slice(0, room)] }).then(() =>
+                setDone({ id: target.id, name: target.name, skipped: Math.max(0, add.length - room) }),
+              );
             }}
           >
             Add to protocol

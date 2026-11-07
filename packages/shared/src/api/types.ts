@@ -1,12 +1,13 @@
 // What the page and the local server exchange over tRPC (router.ts). The server implements ApiServices;
 // the page only ever imports types from here, never server code.
+
+import type { Effort, ModelChoice, ProviderConfig, ProviderId, ProviderInfo, Region, UseCheck } from "../core/aiProviders";
 import type { ClaimCheck } from "../core/claimEvidence";
 import type { McpPreset } from "../core/mcpPresets";
 import type { Meal } from "../core/meals";
 import type { Plan } from "../core/plans";
 import type { Skill } from "../core/skills";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "../core/types";
-import type { Effort, ModelChoice, ProviderConfig, ProviderId, ProviderInfo, Region, UseCheck } from "../core/aiProviders";
 
 export type Done = { ok: true };
 export type Outcome = { ok: true } | { ok: false; error: string };
@@ -142,7 +143,7 @@ export interface ProfileSummary {
 }
 
 export const PROFILE_PART_NAMES = ["person", "measurements", "protocols", "experiments", "plans", "meals", "settings"] as const;
-export type ProfilePart = typeof PROFILE_PART_NAMES[number];
+export type ProfilePart = (typeof PROFILE_PART_NAMES)[number];
 
 /** Data sent to create or save a profile; the server validates every part. */
 export type ProfileInput = Partial<Record<ProfilePart, unknown>>;

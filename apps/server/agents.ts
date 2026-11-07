@@ -6,15 +6,16 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { type Effort, type ProviderId, providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 import type { ToolSet } from "ai";
-import { providerInfo, takesPictures, type Effort, type ProviderId } from "@bt/shared/core/aiProviders";
-import { BRIDGE_NAME, bridgeUrl, closeRun, openRun, stableToken, type BridgeRun } from "./bridge";
-import { which } from "./which";
+import { BRIDGE_NAME, type BridgeRun, bridgeUrl, closeRun, openRun, stableToken } from "./bridge";
 import { killTree, spawnTree } from "./processTree";
+import { which } from "./which";
 
 export { which } from "./which";
-import type { ToolStep } from "./steps";
+
 import type { OnEvent } from "./brain/events";
+import type { ToolStep } from "./steps";
 
 export type AgentId = Extract<ProviderId, "claude-code" | "codex" | "hermes" | "openclaw">;
 export const isAgent = (id: string): id is AgentId => providerInfo(id)?.kind === "agent";
@@ -39,7 +40,11 @@ interface Done {
  * own process group, so stopping it also stops anything it started; whatever it leaves running when it exits
  * on its own is stopped too (a leftover helper would otherwise hold the output pipe open).
  */
-export function runProgram(cmd: string, args: string[], opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number; onLine?: (line: string) => void; graceMs?: number }): Promise<Done> {
+export function runProgram(
+  cmd: string,
+  args: string[],
+  opts: { cwd: string; env?: NodeJS.ProcessEnv; input?: string; signal?: AbortSignal; timeoutMs?: number; onLine?: (line: string) => void; graceMs?: number },
+): Promise<Done> {
   const exe = which(cmd);
   if (!exe) return Promise.resolve({ code: -1, stdout: "", stderr: `The \`${cmd}\` command wasn't found.` });
   if (opts.signal?.aborted) return Promise.resolve({ code: null, stdout: "", stderr: "Stopped." });
@@ -119,10 +124,12 @@ export interface AgentImage {
   data: string;
 }
 
-
 /** Claude Code's stream-json input: one user message with the question and the photos. */
 export function claudeMessage(question: string, images: AgentImage[]): string {
-  const content = [{ type: "text", text: question }, ...images.map((i) => ({ type: "image", source: { type: "base64", media_type: i.mediaType, data: i.data } }))];
+  const content = [
+    { type: "text", text: question },
+    ...images.map((i) => ({ type: "image", source: { type: "base64", media_type: i.mediaType, data: i.data } })),
+  ];
   return `${JSON.stringify({ type: "user", message: { role: "user", content } })}\n`;
 }
 
@@ -150,9 +157,24 @@ export const NO_TOOLS_NOTE = [
 
 // ---- Claude Code ------------------------------------------------------------------------------
 
-export function claudeArgs(o: { model?: string; effort?: Effort; systemFile: string; mcpFile?: string; /** The question as a JSON message (with photos) instead of plain text. */ jsonInput?: boolean }): string[] {
+export function claudeArgs(o: {
+  model?: string;
+  effort?: Effort;
+  systemFile: string;
+  mcpFile?: string /** The question as a JSON message (with photos) instead of plain text. */;
+  jsonInput?: boolean;
+}): string[] {
   // --include-partial-messages: the answer's text arrives as it is written (streamed to the page).
-  const args = ["-p", "--output-format", "stream-json", "--verbose", "--include-partial-messages", "--system-prompt-file", o.systemFile, "--no-session-persistence"];
+  const args = [
+    "-p",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-partial-messages",
+    "--system-prompt-file",
+    o.systemFile,
+    "--no-session-persistence",
+  ];
   if (o.jsonInput) args.push("--input-format", "stream-json");
   if (o.mcpFile) args.push("--mcp-config", o.mcpFile, "--strict-mcp-config", "--allowedTools", "mcp__bt");
   if (o.model) args.push("--model", o.model);
@@ -168,8 +190,11 @@ export function parseClaude(out: string, stderr: string): Parsed {
   if (!result) return { ok: false, error: `Claude Code stopped without an answer. ${lastLines(stderr || out)}`.trim() };
   const text = typeof result.result === "string" ? result.result : "";
   if (result.is_error || result.subtype !== "success") return { ok: false, error: `Claude Code: ${text || String(result.subtype ?? "error")}`.slice(0, 600) };
-  const usageModels = result.modelUsage && typeof result.modelUsage === "object" ? Object.keys(result.modelUsage).filter((name) => name.length > 0 && name.length <= 200) : [];
-  const message = lines.findLast((line) => line.type === "assistant" && typeof line.message === "object" && line.message !== null)?.message as { model?: unknown; stop_reason?: unknown } | undefined;
+  const usageModels =
+    result.modelUsage && typeof result.modelUsage === "object" ? Object.keys(result.modelUsage).filter((name) => name.length > 0 && name.length <= 200) : [];
+  const message = lines.findLast((line) => line.type === "assistant" && typeof line.message === "object" && line.message !== null)?.message as
+    | { model?: unknown; stop_reason?: unknown }
+    | undefined;
   const model = usageModels.length ? usageModels.join(", ") : typeof message?.model === "string" ? message.model : undefined;
   return { ok: true, text, ...(model ? { model } : {}), ...(message?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
 }
@@ -200,7 +225,8 @@ export function claudeLines(emit: OnEvent): (line: string) => void {
     } else if (ev.type === "assistant") {
       const message = ev.message as { id?: string; content?: { type?: string; text?: unknown }[] } | undefined;
       if (!message || (typeof message.id === "string" && streamed.has(message.id))) return;
-      for (const block of message.content ?? []) if (block.type === "text" && typeof block.text === "string" && block.text) emit({ kind: "text", text: block.text });
+      for (const block of message.content ?? [])
+        if (block.type === "text" && typeof block.text === "string" && block.text) emit({ kind: "text", text: block.text });
     }
   };
 }
@@ -229,10 +255,18 @@ export function hermesLines(emit: OnEvent): (line: string) => void {
 // ---- Codex ------------------------------------------------------------------------------------
 
 /** Codex reads -c values as TOML and falls back to a plain string, so no quotes are needed. */
-export function codexArgs(o: { model?: string; effort?: Effort; dir: string; bridge?: boolean; /** Photo files in `dir`. */ images?: string[] }): string[] {
+export function codexArgs(o: { model?: string; effort?: Effort; dir: string; bridge?: boolean /** Photo files in `dir`. */; images?: string[] }): string[] {
   // Photos come first: -i takes several values, so the next option ends the list.
   const args = ["exec", ...(o.images ?? []).flatMap((f) => ["-i", f]), "--json", "--skip-git-repo-check", "--sandbox", "read-only", "-C", o.dir];
-  if (o.bridge) args.push("-c", `mcp_servers.bt.url=${bridgeUrl()}`, "-c", "mcp_servers.bt.bearer_token_env_var=BT_BRIDGE_TOKEN", "-c", "mcp_servers.bt.tool_timeout_sec=300");
+  if (o.bridge)
+    args.push(
+      "-c",
+      `mcp_servers.bt.url=${bridgeUrl()}`,
+      "-c",
+      "mcp_servers.bt.bearer_token_env_var=BT_BRIDGE_TOKEN",
+      "-c",
+      "mcp_servers.bt.tool_timeout_sec=300",
+    );
   if (o.model) args.push("-m", o.model);
   if (o.effort) args.push("-c", `model_reasoning_effort=${o.effort}`);
   args.push("-");
@@ -267,10 +301,21 @@ export function hermesArgs(o: { model?: string; effort?: Effort; profile?: strin
 export function parseHermes(out: string, stderr: string): Parsed {
   const lines = jsonLines(out);
   const result = lines.findLast((l) => l.type === "result");
-  const text = typeof result?.text === "string" ? result.text : lines.filter((l) => l.type === "text" && typeof l.text === "string").map((l) => l.text as string).join("");
+  const text =
+    typeof result?.text === "string"
+      ? result.text
+      : lines
+          .filter((l) => l.type === "text" && typeof l.text === "string")
+          .map((l) => l.text as string)
+          .join("");
   if (result?.exit_code && result.exit_code !== 0) return { ok: false, error: `Hermes: ${text || `failed (exit ${String(result.exit_code)})`}`.slice(0, 600) };
   if (!text) return { ok: false, error: `Hermes stopped without an answer. ${lastLines(stderr || out)}`.trim() };
-  return { ok: true, text, ...(typeof result?.model === "string" && result.model.trim() ? { model: result.model.trim() } : {}), ...(result?.finish_reason === "length" || result?.stop_reason === "max_tokens" ? { truncated: true } : {}) };
+  return {
+    ok: true,
+    text,
+    ...(typeof result?.model === "string" && result.model.trim() ? { model: result.model.trim() } : {}),
+    ...(result?.finish_reason === "length" || result?.stop_reason === "max_tokens" ? { truncated: true } : {}),
+  };
 }
 
 let hermesCache: { at: number; connected: boolean } | null = null;
@@ -291,7 +336,11 @@ export async function setHermesConnection(on: boolean): Promise<{ ok: boolean; e
   await runProgram("hermes", ["mcp", "remove", BRIDGE_NAME], { cwd: os.homedir(), timeoutMs: 60_000 });
   if (on) {
     // Hermes asks two questions: "requires authentication?" (no: the token is in the address) and "enable all tools?" (yes).
-    const r = await runProgram("hermes", ["mcp", "add", BRIDGE_NAME, "--url", `${bridgeUrl()}?token=${stableToken()}`], { cwd: os.homedir(), input: "n\n\n", timeoutMs: 120_000 });
+    const r = await runProgram("hermes", ["mcp", "add", BRIDGE_NAME, "--url", `${bridgeUrl()}?token=${stableToken()}`], {
+      cwd: os.homedir(),
+      input: "n\n\n",
+      timeoutMs: 120_000,
+    });
     if (r.code !== 0) return { ok: false, error: lastLines(r.stderr || r.stdout, 400) || "Hermes couldn't add the server." };
   }
   const now = await hermesConnected(true);
@@ -336,11 +385,21 @@ export function parseOpenClaw(out: string, stderr: string): Parsed & { gatewayDo
   if (!reply) return { ok: false, error: `OpenClaw stopped without an answer. ${lastLines(stderr || out)}`.trim() };
   const errText = typeof reply.error === "string" ? reply.error : (reply.error?.message ?? "");
   if (reply.ok === false) {
-    return { ok: false, error: `OpenClaw: ${errText || "failed."}`.slice(0, 600), gatewayDown: /gateway not reachable|ECONNREFUSED|gateway.{0,40}(closed|not running|unavailable)/i.test(errText) };
+    return {
+      ok: false,
+      error: `OpenClaw: ${errText || "failed."}`.slice(0, 600),
+      gatewayDown: /gateway not reachable|ECONNREFUSED|gateway.{0,40}(closed|not running|unavailable)/i.test(errText),
+    };
   }
   const body = reply.result && (reply.result.payloads || reply.result.meta) ? reply.result : reply;
   const meta = body.meta ?? {};
-  const text = (body.payloads ?? []).map((p) => p?.text ?? "").filter(Boolean).join("\n\n") || meta.finalAssistantVisibleText || "";
+  const text =
+    (body.payloads ?? [])
+      .map((p) => p?.text ?? "")
+      .filter(Boolean)
+      .join("\n\n") ||
+    meta.finalAssistantVisibleText ||
+    "";
   if (!text) return { ok: false, error: `OpenClaw: ${meta.error?.message || "no answer."}` };
   return { ok: true, text, ...(meta.toolSummary?.tools?.length ? { tools: meta.toolSummary.tools } : {}) };
 }
@@ -370,7 +429,9 @@ export interface AgentRequest {
   onEvent?: OnEvent;
 }
 
-export type AgentReply = { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean; model?: string; truncated?: boolean } | { ok: false; error: string };
+export type AgentReply =
+  | { ok: true; text: string; steps: ToolStep[]; studyIds: string[]; usedTools: boolean; model?: string; truncated?: boolean }
+  | { ok: false; error: string };
 
 export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   const { provider } = req;
@@ -379,13 +440,18 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
   if (!agentInstalled(provider)) return { ok: false, error: `${info.label} isn't installed on this computer (the \`${info.command}\` command wasn't found).` };
   const images = req.images ?? [];
   if (images.length && !takesPictures(provider)) {
-    return { ok: false, error: `${info.label} can't be given photos by this app. To send photos or scanned pages, choose Claude Code, Codex, or a model with an API key or on this computer in Settings → AI models.` };
+    return {
+      ok: false,
+      error: `${info.label} can't be given photos by this app. To send photos or scanned pages, choose Claude Code, Codex, or a model with an API key or on this computer in Settings → AI models.`,
+    };
   }
   const bridged = provider === "claude-code" || provider === "codex" || (provider === "hermes" && (await hermesConnected()));
   if (req.signal?.aborted) return { ok: false, error: "Stopped." };
   // Stable rules and the tools note first, then this request's part and data (prompt cache: the program's
   // provider reads the unchanged start from its cache).
-  const system = [req.system + (bridged ? BRIDGE_NOTE : NO_TOOLS_NOTE), req.context, bridged ? "" : `The user's data:\n${req.dataPack()}`].filter(Boolean).join("\n\n");
+  const system = [req.system + (bridged ? BRIDGE_NOTE : NO_TOOLS_NOTE), req.context, bridged ? "" : `The user's data:\n${req.dataPack()}`]
+    .filter(Boolean)
+    .join("\n\n");
   const question = conversationText(req.messages);
   const model = req.model.trim() || undefined;
   const effort = req.effort;
@@ -414,10 +480,18 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
       let mcpFile: string | undefined;
       if (run) {
         mcpFile = path.join(dir, "mcp.json");
-        fs.writeFileSync(mcpFile, JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }));
+        fs.writeFileSync(
+          mcpFile,
+          JSON.stringify({ mcpServers: { bt: { type: "http", url: bridgeUrl(), headers: { Authorization: `Bearer ${run.token}` } } } }),
+        );
       }
       const args = claudeArgs({ model, effort, systemFile, mcpFile, jsonInput: images.length > 0 });
-      const r = await runProgram("claude", args, { cwd: dir, input: images.length ? claudeMessage(question, images) : question, signal: req.signal, onLine: claudeLines(emit) });
+      const r = await runProgram("claude", args, {
+        cwd: dir,
+        input: images.length ? claudeMessage(question, images) : question,
+        signal: req.signal,
+        onLine: claudeLines(emit),
+      });
       parsed = parseClaude(r.stdout, r.stderr);
     } else if (provider === "codex") {
       // Photos as files in the run's own folder, deleted with it.
@@ -426,11 +500,23 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
         fs.writeFileSync(file, Buffer.from(img.data, "base64"));
         return file;
       });
-      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run, images: files }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, env: run ? { BT_BRIDGE_TOKEN: run.token } : {}, onLine: codexLines(emit) });
+      const r = await runProgram("codex", codexArgs({ model, effort, dir, bridge: !!run, images: files }), {
+        cwd: dir,
+        input: `${system}\n\n---\n\n${question}`,
+        signal: req.signal,
+        env: run ? { BT_BRIDGE_TOKEN: run.token } : {},
+        onLine: codexLines(emit),
+      });
       parsed = parseCodex(r.stdout, r.stderr);
-      if (parsed.ok && r.code !== 0) parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
+      if (parsed.ok && r.code !== 0)
+        parsed = { ok: false, error: `Codex stopped before completing (exit ${r.code ?? "unknown"}). ${lastLines(r.stderr)}`.slice(0, 600) };
     } else if (provider === "hermes") {
-      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), { cwd: dir, input: `${system}\n\n---\n\n${question}`, signal: req.signal, onLine: hermesLines(emit) });
+      const r = await runProgram("hermes", hermesArgs({ model, effort, profile }), {
+        cwd: dir,
+        input: `${system}\n\n---\n\n${question}`,
+        signal: req.signal,
+        onLine: hermesLines(emit),
+      });
       parsed = parseHermes(r.stdout, r.stderr);
     } else {
       const messageFile = path.join(dir, "message.md");
@@ -448,7 +534,15 @@ export async function runAgent(req: AgentRequest): Promise<AgentReply> {
     if (req.signal?.aborted) return { ok: false, error: "Stopped." };
     if (!parsed.ok) return parsed;
     const steps = run ? run.steps : (parsed.tools ?? []).map((t) => ({ tool: t, server: info.label, input: "" }));
-    return { ok: true, text: parsed.text, steps, studyIds: run ? [...run.ids] : [], usedTools: bridged, ...(parsed.model ? { model: parsed.model } : {}), ...(parsed.truncated ? { truncated: true } : {}) };
+    return {
+      ok: true,
+      text: parsed.text,
+      steps,
+      studyIds: run ? [...run.ids] : [],
+      usedTools: bridged,
+      ...(parsed.model ? { model: parsed.model } : {}),
+      ...(parsed.truncated ? { truncated: true } : {}),
+    };
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : "The agent could not answer." };
   } finally {
@@ -491,7 +585,12 @@ export async function openclawAgents(): Promise<{ id: string; label: string }[]>
   const r = await runProgram("openclaw", ["agents", "list", "--json"], { cwd: os.homedir(), timeoutMs: 60_000 });
   try {
     const rows = JSON.parse(r.stdout.slice(r.stdout.indexOf("["))) as { id?: unknown; model?: unknown; isDefault?: unknown }[];
-    return rows.filter((x) => typeof x.id === "string").map((x) => ({ id: String(x.id), label: `${String(x.id)}${typeof x.model === "string" && x.model ? ` (${x.model})` : ""}${x.isDefault === true ? " · default" : ""}` }));
+    return rows
+      .filter((x) => typeof x.id === "string")
+      .map((x) => ({
+        id: String(x.id),
+        label: `${String(x.id)}${typeof x.model === "string" && x.model ? ` (${x.model})` : ""}${x.isDefault === true ? " · default" : ""}`,
+      }));
   } catch {
     return [];
   }

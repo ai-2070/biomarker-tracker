@@ -1,10 +1,10 @@
-import { useId, useMemo, useRef, useState } from "react";
 import type { Dashboard, DrawSummary } from "@bt/shared/core/dashboard";
 import { dayNumber } from "@bt/shared/core/dates";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/protocols";
 import { timeTicks } from "@bt/shared/core/timeWindow";
 import type { ProtocolEntry } from "@bt/shared/core/types";
+import { useId, useMemo, useRef, useState } from "react";
 import { formatDate, formatYears } from "../../format";
 import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
@@ -84,19 +84,26 @@ export function Timeline({
   // Body points stay separate from the blood plot, but share its navigable domain.
   const bodyDays = body.map((draw) => dayNumber(draw.date));
   const d0 = bodyDays.reduce((first, day) => Math.min(first, day), dayNumber(span.from));
-  const d1 = Math.max(bodyDays.reduce((last, day) => Math.max(last, day), dayNumber(span.to)), d0 + 30);
+  const d1 = Math.max(
+    bodyDays.reduce((last, day) => Math.max(last, day), dayNumber(span.to)),
+    d0 + 30,
+  );
   const lead = (d1 - d0) * 0.02;
   const full = useMemo(() => ({ from: d0 - lead, to: d1 + lead }), [d0, d1, lead]);
   const right = Math.max(width, 1) - PAD_R;
   const plotW = Math.max(right - PAD_L, 1);
   // Moving or zooming closes any open test details (their positions moved).
-  const t = useTimeView(full, { left: PAD_L, width: plotW }, {
-    ref,
-    onChange: () => {
-      setHover(null);
-      setPinned(null);
+  const t = useTimeView(
+    full,
+    { left: PAD_L, width: plotW },
+    {
+      ref,
+      onChange: () => {
+        setHover(null);
+        setPinned(null);
+      },
     },
-  });
+  );
   const v = t.v;
   const xDay = (day: number) => PAD_L + ((day - v.from) / (v.to - v.from)) * plotW;
   const x = (date: string) => xDay(dayNumber(date));
@@ -172,7 +179,13 @@ export function Timeline({
   const ticks = timeTicks(v);
   const tickLabel = (k: { date: string; kind: "year" | "month" | "day" }) => {
     const dt = new Date(`${k.date}T12:00:00`);
-    return k.kind === "year" ? String(dt.getFullYear()) : k.kind === "day" ? dayFmt.format(dt) : v.to - v.from > 400 ? monthYearFmt.format(dt) : monthFmt.format(dt);
+    return k.kind === "year"
+      ? String(dt.getFullYear())
+      : k.kind === "day"
+        ? dayFmt.format(dt)
+        : v.to - v.from > 400
+          ? monthYearFmt.format(dt)
+          : monthFmt.format(dt);
   };
 
   const c = active === null ? undefined : clusters[active];
@@ -189,7 +202,10 @@ export function Timeline({
         {...t.bind}
         role="group"
         aria-label="Timeline. Arrow keys move through time, plus and minus zoom, 0 shows everything."
-        className={cx("relative w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent", zoomed ? "cursor-grab active:cursor-grabbing" : "")}
+        className={cx(
+          "relative w-full rounded-md select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent",
+          zoomed ? "cursor-grab active:cursor-grabbing" : "",
+        )}
         style={{ ...t.bind.style, height }}
         onMouseLeave={() => setHover(null)}
       >
@@ -202,7 +218,14 @@ export function Timeline({
             </defs>
             {ticks.map((t) => (
               <g key={t.date}>
-                <line x1={xDay(t.day)} x2={xDay(t.day)} y1={0} y2={axisTop} className={t.kind === "year" ? "stroke-line-strong" : "stroke-line"} strokeWidth={1} />
+                <line
+                  x1={xDay(t.day)}
+                  x2={xDay(t.day)}
+                  y1={0}
+                  y2={axisTop}
+                  className={t.kind === "year" ? "stroke-line-strong" : "stroke-line"}
+                  strokeWidth={1}
+                />
                 <text x={xDay(t.day) + 4} y={axisTop + 17} className={cx("font-mono text-[11px]", t.kind === "year" ? "fill-ink" : "fill-ink-2")}>
                   {tickLabel(t)}
                 </text>
@@ -220,8 +243,24 @@ export function Timeline({
               {hasAge && (
                 <g>
                   <polygon points={gap} className="fill-chart-band/10" />
-                  <line x1={x(calStart)} y1={y(ageAtDate(calStart))} x2={x(today)} y2={y(ageAtDate(today))} className="stroke-ink-2" strokeWidth={1.5} strokeDasharray="5 5" />
-                  <polyline points={d.bioAge.map((p) => `${x(p.date)},${y(p.phenoAge)}`).join(" ")} fill="none" className="timeline-draw stroke-chart-line" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" pathLength={1} />
+                  <line
+                    x1={x(calStart)}
+                    y1={y(ageAtDate(calStart))}
+                    x2={x(today)}
+                    y2={y(ageAtDate(today))}
+                    className="stroke-ink-2"
+                    strokeWidth={1.5}
+                    strokeDasharray="5 5"
+                  />
+                  <polyline
+                    points={d.bioAge.map((p) => `${x(p.date)},${y(p.phenoAge)}`).join(" ")}
+                    fill="none"
+                    className="timeline-draw stroke-chart-line"
+                    strokeWidth={2.25}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    pathLength={1}
+                  />
                   {d.bioAge.map((p) => (
                     <circle
                       key={p.date}
@@ -248,7 +287,10 @@ export function Timeline({
                       cy={testsTop + TEST_H / 2}
                       r={r}
                       strokeWidth={2}
-                      className={cx("transition-[r] duration-150", crit ? "fill-danger stroke-surface" : out ? "fill-warn stroke-surface" : "fill-surface stroke-ink-2")}
+                      className={cx(
+                        "transition-[r] duration-150",
+                        crit ? "fill-danger stroke-surface" : out ? "fill-warn stroke-surface" : "fill-surface stroke-ink-2",
+                      )}
                     />
                     {k.draws.length > 1 && (
                       <text x={k.x} y={testsTop + 9} textAnchor="middle" className="fill-ink-2 font-mono text-[10px]">
@@ -260,7 +302,9 @@ export function Timeline({
               })}
 
               {/* Body measurement days: amber or red when something was out of range */}
-              {body.length > 0 && <line x1={PAD_L} x2={right} y1={bodyTop + BODY_H / 2} y2={bodyTop + BODY_H / 2} className="stroke-line" strokeWidth={1} strokeDasharray="1 3" />}
+              {body.length > 0 && (
+                <line x1={PAD_L} x2={right} y1={bodyTop + BODY_H / 2} y2={bodyTop + BODY_H / 2} className="stroke-line" strokeWidth={1} strokeDasharray="1 3" />
+              )}
               {body
                 .filter((t) => inView(t.date))
                 .map((t) => {
@@ -286,7 +330,15 @@ export function Timeline({
                 return (
                   <g key={p.id}>
                     <title>{`${p.label}: ${formatDate(p.start)} – ${p.end ? formatDate(p.end) : "ongoing"}`}</title>
-                    <rect x={x0} y={top + 3} width={x1 - x0} height={LANE_H - 7} rx={(LANE_H - 7) / 2} className={p.end ? "fill-sunken stroke-line-strong" : "fill-accent-soft stroke-accent/40"} strokeWidth={1} />
+                    <rect
+                      x={x0}
+                      y={top + 3}
+                      width={x1 - x0}
+                      height={LANE_H - 7}
+                      rx={(LANE_H - 7) / 2}
+                      className={p.end ? "fill-sunken stroke-line-strong" : "fill-accent-soft stroke-accent/40"}
+                      strokeWidth={1}
+                    />
                   </g>
                 );
               })}
@@ -294,7 +346,12 @@ export function Timeline({
             {/* Log labels sit outside the clip so a bar's name can extend beside it */}
             {placed.map(({ p, row, label }) =>
               label.text ? (
-                <text key={p.id} x={label.at} y={lanesTop + row * LANE_H + LANE_H / 2 + 4} className={cx("pointer-events-none text-[11.5px]", label.inside ? "fill-ink" : "fill-ink-2")}>
+                <text
+                  key={p.id}
+                  x={label.at}
+                  y={lanesTop + row * LANE_H + LANE_H / 2 + 4}
+                  className={cx("pointer-events-none text-[11.5px]", label.inside ? "fill-ink" : "fill-ink-2")}
+                >
                   {label.text}
                 </text>
               ) : null,
@@ -341,13 +398,23 @@ export function Timeline({
               {c.draws.reduce((n, t) => n + t.results, 0)} results
               {cAge.length ? ` · biological age ${cAge.map((p) => formatYears(p.phenoAge) + (p.approximate ? " (approx.)" : "")).join(", ")}` : ""}
             </p>
-            {cOut.length > 0 ? <p className={cx("mt-1", cCrit ? "text-danger" : "text-warn")}>Out of range: {cOut.join(", ")}</p> : <p className="mt-1 text-ink-2">Everything in range</p>}
+            {cOut.length > 0 ? (
+              <p className={cx("mt-1", cCrit ? "text-danger" : "text-warn")}>Out of range: {cOut.join(", ")}</p>
+            ) : (
+              <p className="mt-1 text-ink-2">Everything in range</p>
+            )}
             <span className="mt-2 flex flex-wrap gap-x-4">
               {/* The timeline's tests are blood tests only (body days are a separate row). */}
-              <a href={href({ name: "test-summary", date: c.draws.at(-1)!.date })} className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline">
+              <a
+                href={href({ name: "test-summary", date: c.draws.at(-1)!.date })}
+                className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline"
+              >
                 Summary of this test
               </a>
-              <a href={href({ name: "overview" })} className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline">
+              <a
+                href={href({ name: "overview" })}
+                className="inline-flex min-h-9 items-center text-sm font-medium text-accent underline-offset-2 hover:underline"
+              >
                 View blood tests
               </a>
             </span>

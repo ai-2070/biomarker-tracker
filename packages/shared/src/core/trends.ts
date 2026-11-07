@@ -1,4 +1,4 @@
-import { DAILY_TOTAL_FIELDS, type BodyField } from "./body";
+import { type BodyField, DAILY_TOTAL_FIELDS } from "./body";
 import { dayNumber, isIsoDate, todayIso } from "./dates";
 import { ageAt, isBirthMonth } from "./phenoageDraws";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
@@ -218,17 +218,23 @@ export function computeTrend(measurements: readonly Measurement[]): Trend | unde
   if (previous) {
     trend.previous = previous;
     trend.change = latest.value - previous.value;
-    trend.percentChange =
-      previous.value === 0 ? undefined : ((latest.value - previous.value) / previous.value) * 100;
+    trend.percentChange = previous.value === 0 ? undefined : ((latest.value - previous.value) / previous.value) * 100;
     trend.daysSincePrevious = dayNumber(latest.date) - dayNumber(previous.date);
   }
   return trend;
 }
 
 /** Same canonical observation, including the distinction between an exact value and a bound. */
-export function isAlreadySaved(existing: readonly Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">[], m: Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">): boolean {
+export function isAlreadySaved(
+  existing: readonly Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">[],
+  m: Pick<Measurement, "biomarkerId" | "date" | "value" | "qualifier">,
+): boolean {
   return existing.some(
-    (e) => e.biomarkerId === m.biomarkerId && e.date === m.date && e.qualifier === m.qualifier && Math.abs(e.value - m.value) <= 1e-9 * Math.max(1, Math.abs(m.value)),
+    (e) =>
+      e.biomarkerId === m.biomarkerId &&
+      e.date === m.date &&
+      e.qualifier === m.qualifier &&
+      Math.abs(e.value - m.value) <= 1e-9 * Math.max(1, Math.abs(m.value)),
   );
 }
 

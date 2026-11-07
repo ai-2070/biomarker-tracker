@@ -1,15 +1,34 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import { SAFETY_LIMITS } from "@bt/shared/core/foods";
-import { FOOD_NAMES, FOOD_NAME_NOTES, adultReference, foodNameNote, closestFoods, foodById, mealNote, mealSafetyBlock, mealTotals, saltFromSodium, searchFoods, shareOfReference, validateExampleMeals, validateMeal, type ExampleMeal, type FoodDb } from "@bt/shared/core/meals";
+import {
+  adultReference,
+  closestFoods,
+  type ExampleMeal,
+  FOOD_NAME_NOTES,
+  FOOD_NAMES,
+  type FoodDb,
+  foodById,
+  foodNameNote,
+  mealNote,
+  mealSafetyBlock,
+  mealTotals,
+  saltFromSodium,
+  searchFoods,
+  shareOfReference,
+  validateExampleMeals,
+  validateMeal,
+} from "@bt/shared/core/meals";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
 import type { FoodTable } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");
 const db = JSON.parse(readFileSync(join(K, "foods", "cofid-all.json"), "utf8")) as FoodDb;
 const curated = JSON.parse(readFileSync(join(K, "foods", "cofid-foods.json"), "utf8")) as FoodTable;
-const nutrients = new Map(readdirSync(join(K, "nutrients")).map((f) => [f.replace(".json", ""), JSON.parse(readFileSync(join(K, "nutrients", f), "utf8")) as NutrientDef]));
+const nutrients = new Map(
+  readdirSync(join(K, "nutrients")).map((f) => [f.replace(".json", ""), JSON.parse(readFileSync(join(K, "nutrients", f), "utf8")) as NutrientDef]),
+);
 
 describe("the full food table", () => {
   it("has every CoFID food, with units for every nutrient and values per food", () => {
@@ -21,7 +40,8 @@ describe("the full food table", () => {
   it("agrees with the curated table, which was extracted from the same spreadsheet", () => {
     for (const food of curated.foods) {
       const full = foodById(db, food.id)!;
-      for (const [k, v] of Object.entries(food.per100g)) if (k in full.per100g && full.per100g[k] !== null) expect(full.per100g[k], `${food.id} ${k}`).toBeCloseTo(v, 2);
+      for (const [k, v] of Object.entries(food.per100g))
+        if (k in full.per100g && full.per100g[k] !== null) expect(full.per100g[k], `${food.id} ${k}`).toBeCloseTo(v, 2);
     }
   });
 });
@@ -119,7 +139,14 @@ describe("daily reference next to a supplement", () => {
   });
 
   it("describes a meal as a protocol item by its foods and grams", () => {
-    expect(mealNote({ items: [{ foodId: "a", grams: 120.4 }, { foodId: "b", grams: 80 }] })).toBe("Meal: 2 foods, 200 g");
+    expect(
+      mealNote({
+        items: [
+          { foodId: "a", grams: 120.4 },
+          { foodId: "b", grams: 80 },
+        ],
+      }),
+    ).toBe("Meal: 2 foods, 200 g");
     expect(mealNote({ items: [{ foodId: "a", grams: 50 }] })).toBe("Meal: 1 food, 50 g");
   });
 });
@@ -156,4 +183,3 @@ describe("finding foods by other names", () => {
     expect(closestFoods(db, "with and of")).toEqual([]);
   });
 });
-

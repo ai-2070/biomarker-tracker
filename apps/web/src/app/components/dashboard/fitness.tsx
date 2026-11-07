@@ -1,19 +1,32 @@
-import { useEffect, useRef, useState } from "react";
 import { FITNESS_FIELDS } from "@bt/shared/core/body";
-import { ageMatch, cutoffsMet, describePlace, isDeviceWalkingAverage, normRow, placeAmongYoungest, placeResult, rowWho, type AgeMatch, type FitnessTestDef, type NormResult, type NormSet } from "@bt/shared/core/fitnessTests";
+import {
+  type AgeMatch,
+  ageMatch,
+  cutoffsMet,
+  describePlace,
+  type FitnessTestDef,
+  isDeviceWalkingAverage,
+  type NormResult,
+  type NormSet,
+  normRow,
+  placeAmongYoungest,
+  placeResult,
+  rowWho,
+} from "@bt/shared/core/fitnessTests";
 import { ageAt } from "@bt/shared/core/phenoageDraws";
 import { sortByDate } from "@bt/shared/core/trends";
 import type { Measurement, Profile } from "@bt/shared/core/types";
 import { formatValue } from "@bt/shared/core/units";
+import { useEffect, useRef, useState } from "react";
 import { formatDate } from "../../format";
 import { FITNESS_MAP } from "../../knowledge";
 import { href } from "../../router";
+import { More } from "../disclosure";
 import { GradeBadge, StudyLink } from "../evidence";
 import { NormChart, NormTable } from "../NormChart";
 import { SegmentTabs } from "../SegmentTabs";
 import { Card, Notice } from "../ui";
 import { Figure } from "./widgets";
-import { More } from "../disclosure";
 
 /**
  * Fitness tests (push-ups, grip, chair rises, one-leg stand, walking speed, sit-and-rise): the latest
@@ -37,7 +50,8 @@ function personAt(profile: Profile, date: string) {
 export function describeAgeMatch(m: AgeMatch, sex: "m" | "f"): string {
   const who = sex === "m" ? "men" : "women";
   if (m.kind === "best") return `as good as ${who} at their best age (around ${m.age})`;
-  if (m.kind === "youngest") return `as good as typical ${who} ${m.ageTo !== undefined ? `aged ${m.ageFrom}–${m.ageTo}` : `aged ${m.ageFrom}`}, the youngest in the table, or better`;
+  if (m.kind === "youngest")
+    return `as good as typical ${who} ${m.ageTo !== undefined ? `aged ${m.ageFrom}–${m.ageTo}` : `aged ${m.ageFrom}`}, the youngest in the table, or better`;
   if (m.kind === "oldest") return `typical of ${who} ${m.age} and over, or below`;
   return `typical of ${who} about ${m.age}`;
 }
@@ -73,15 +87,20 @@ export function FitnessFigure({ ms, id, profile, className }: { ms: Measurement[
     ? "Not done yet. How to do it →"
     : deviceAverage
       ? `${formatDate(last.date)} · Device daily step average, not a timed gait test`
-    : typical
-      ? `${capital(describeAgeMatch(typical.m, profile.sex!))} · ${formatDate(last.date)}`
-      : first
-      ? `${formatDate(last.date)} · compared with ${first.set.label}`
-      : !profile.sex || !profile.birthMonth
-        ? `${formatDate(last.date)} · add your sex and birth month to compare`
-        : `${formatDate(last.date)} · no norms for your age`;
+      : typical
+        ? `${capital(describeAgeMatch(typical.m, profile.sex!))} · ${formatDate(last.date)}`
+        : first
+          ? `${formatDate(last.date)} · compared with ${first.set.label}`
+          : !profile.sex || !profile.birthMonth
+            ? `${formatDate(last.date)} · add your sex and birth month to compare`
+            : `${formatDate(last.date)} · no norms for your age`;
   return (
-    <Figure label={deviceAverage ? "Walking speed (daily average)" : test.name} href={href({ name: "marker", id, section: "for-your-age" })} className={className} foot={foot}>
+    <Figure
+      label={deviceAverage ? "Walking speed (daily average)" : test.name}
+      href={href({ name: "marker", id, section: "for-your-age" })}
+      className={className}
+      foot={foot}
+    >
       {last ? (
         <p className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2">
           <span className="font-serif text-4xl leading-none tabular-nums sm:text-5xl">{formatValue(last.value)}</span>
@@ -96,7 +115,9 @@ export function FitnessFigure({ ms, id, profile, className }: { ms: Measurement[
 }
 
 function PlaceChip({ result, test }: { result: NormResult; test: FitnessTestDef }) {
-  return <span className="inline-flex rounded-full bg-sunken px-2.5 py-0.5 text-sm font-medium text-ink">{describePlace(result.place, test.higherIsBetter)}</span>;
+  return (
+    <span className="inline-flex rounded-full bg-sunken px-2.5 py-0.5 text-sm font-medium text-ink">{describePlace(result.place, test.higherIsBetter)}</span>
+  );
 }
 
 /** On a test's page: where you stand for your age, the norms drawn with your results, how to do it, the evidence. */
@@ -119,7 +140,9 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
   const places = last ? placeFor(test, last, profile) : [];
   const met = last && !deviceAverage ? cutoffsMet(test, last.value, person) : [];
   const sex = profile.sex;
-  const points = profile.birthMonth ? series.filter((m) => !isDeviceWalkingAverage(m)).map((m) => ({ date: m.date, age: ageAt(profile.birthMonth!, m.date), value: m.value })) : [];
+  const points = profile.birthMonth
+    ? series.filter((m) => !isDeviceWalkingAverage(m)).map((m) => ({ date: m.date, age: ageAt(profile.birthMonth!, m.date), value: m.value }))
+    : [];
   return (
     <Card ref={ref} tabIndex={-1} aria-label={`${test.name} for your age`} className="flex scroll-mt-6 flex-col gap-6 outline-none">
       <div className="max-w-3xl">
@@ -129,7 +152,10 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
 
       {last ? (
         deviceAverage ? (
-          <p className="text-ink-2">This is a device's daily step-speed average, not the short timed walking test described below. Test percentiles, age equivalents and clinical cut-offs do not apply to this average. Your daily readings are shown in the trend chart above.</p>
+          <p className="text-ink-2">
+            This is a device's daily step-speed average, not the short timed walking test described below. Test percentiles, age equivalents and clinical
+            cut-offs do not apply to this average. Your daily readings are shown in the trend chart above.
+          </p>
         ) : places.length > 0 ? (
           <ul className="flex flex-col gap-2">
             {places.map((r) => (
@@ -145,8 +171,8 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
           <p className="text-ink-2">
             {!profile.sex || !profile.birthMonth ? (
               <>
-                Add your sex and month of birth in <a href={href({ name: "data", tab: "data" })}>Settings → Your data</a> to compare your result
-                with people of your age.
+                Add your sex and month of birth in <a href={href({ name: "data", tab: "data" })}>Settings → Your data</a> to compare your result with people of
+                your age.
               </>
             ) : (
               "None of the norm tables here cover your age and sex."
@@ -163,8 +189,8 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
 
       {met.map((c) => (
         <Notice key={c.label} tone="warn" title={c.label}>
-          A threshold doctors use, not a diagnosis on its own. It's worth mentioning to your doctor, especially if it's new or getting worse.
-          Source: <StudyLink s={c.source} />
+          A threshold doctors use, not a diagnosis on its own. It's worth mentioning to your doctor, especially if it's new or getting worse. Source:{" "}
+          <StudyLink s={c.source} />
         </Notice>
       ))}
 
@@ -227,14 +253,13 @@ export function FitnessPanel({ id, ms, profile, scrollTo = false }: { id: string
           ))}
         </ul>
         <p className="mt-3 text-sm text-ink-2">
-          Population studies show links, not causes, and describe groups rather than you. Grades are a first draft, checked against the cited
-          studies but not yet reviewed by a clinician.
+          Population studies show links, not causes, and describe groups rather than you. Grades are a first draft, checked against the cited studies but not
+          yet reviewed by a clinician.
         </p>
       </section>
     </Card>
   );
 }
-
 
 /** Bryan Johnson-style comparisons, kept honest: the age whose typical result matches yours, and your place among the youngest people in each table. */
 function YoungerComparison({ test, value, sex, own }: { test: FitnessTestDef; value: number; sex: "m" | "f"; own: NormResult[] }) {
@@ -265,9 +290,9 @@ function YoungerComparison({ test, value, sex, own }: { test: FitnessTestDef; va
         ))}
       </ul>
       <p className="max-w-3xl text-sm text-ink-2">
-        Typical means the middle result (median, or average) of each age group in the table, with the ages in between joined by straight
-        lines. These tables measured different people at different ages, not the same people growing older, and most stop at the 90th or 95th
-        percentile, so nothing finer than that can be said. A comparison, not a body age.
+        Typical means the middle result (median, or average) of each age group in the table, with the ages in between joined by straight lines. These tables
+        measured different people at different ages, not the same people growing older, and most stop at the 90th or 95th percentile, so nothing finer than that
+        can be said. A comparison, not a body age.
       </p>
     </section>
   );
@@ -337,8 +362,8 @@ export function FitnessForYourAge({ ms, profile }: { ms: Measurement[]; profile:
       <div className="max-w-3xl">
         <h2 className="font-serif text-2xl font-normal">Tests for your age</h2>
         <p className="mt-1 text-ink-2">
-          Simple tests of strength, balance and walking that change with age. Each is compared with published norms for people of your age
-          and sex. Not a biological age: they say where you stand, not how old your body is.
+          Simple tests of strength, balance and walking that change with age. Each is compared with published norms for people of your age and sex. Not a
+          biological age: they say where you stand, not how old your body is.
         </p>
       </div>
       <ul className="flex flex-col divide-y divide-line">
@@ -362,10 +387,20 @@ export function FitnessForYourAge({ ms, profile }: { ms: Measurement[]; profile:
                   {last ? `${formatValue(last.value)}${unitWord(test) ? ` ${unitWord(test)}` : ""}` : <span className="text-ink-2">Not done</span>}
                 </span>
                 <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
-                  {deviceAverage ? "Daily step average, not a timed test" : place ? `${describePlace(place.place, test.higherIsBetter)} for your age` : last ? "No norms for your age" : "How to do it →"}
+                  {deviceAverage
+                    ? "Daily step average, not a timed test"
+                    : place
+                      ? `${describePlace(place.place, test.higherIsBetter)} for your age`
+                      : last
+                        ? "No norms for your age"
+                        : "How to do it →"}
                 </span>
                 <span className="col-span-2 text-sm text-ink-2 sm:col-span-1">
-                  {typical ? capital(describeAgeMatch(typical.m, profile.sex!)) : young ? `${describePlace(young.place, test.higherIsBetter)} among ${rowWho(young.row)}` : ""}
+                  {typical
+                    ? capital(describeAgeMatch(typical.m, profile.sex!))
+                    : young
+                      ? `${describePlace(young.place, test.higherIsBetter)} among ${rowWho(young.row)}`
+                      : ""}
                 </span>
               </a>
             </li>

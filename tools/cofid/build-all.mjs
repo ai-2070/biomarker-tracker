@@ -1,8 +1,9 @@
 // Extract every CoFID 2021 food with the nutrients the meal builder shows, into knowledge/foods/cofid-all.json.
 // Values copied as published: "Tr" (trace) -> 0; "N" (not measured) or empty -> null (left out, never guessed).
 // Usage: node build-all.mjs <cofid xlsx> <output json>
-import XLSX from "xlsx";
+
 import { writeFileSync } from "node:fs";
+import XLSX from "xlsx";
 
 const [xlsxPath, outPath] = process.argv.slice(2);
 const wb = XLSX.readFile(xlsxPath);
@@ -40,7 +41,7 @@ const NUTRIENTS = [
   ["folate", "1.5 Vitamins", "FOLT", "µg", "Folate"],
   ["vitaminC", "1.5 Vitamins", "VITC", "mg", "Vitamin C"],
 ];
-const UNIT_IN_NAME = { kcal: "(kcal)", g: "(g)", mg: "(mg)", "µg": "(µg)" };
+const UNIT_IN_NAME = { kcal: "(kcal)", g: "(g)", mg: "(mg)", µg: "(µg)" };
 
 function parse(v) {
   if (v === null || v === undefined || v === "" || v === "-" || v === "N") return null;
@@ -102,7 +103,8 @@ const out = {
     publisher: "Public Health England / UK Government",
     url: "https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid",
     licence: "Open Government Licence v3.0",
-    notes: "Every food in CoFID 2021, values per 100 g edible portion. 'Tr' (trace) stored as 0. Values not measured ('N') or not listed are null: left out, never guessed. EPA + DHA only when both were measured. CoFID uses code 13-669 twice; the second food is 13-669-2.",
+    notes:
+      "Every food in CoFID 2021, values per 100 g edible portion. 'Tr' (trace) stored as 0. Values not measured ('N') or not listed are null: left out, never guessed. EPA + DHA only when both were measured. CoFID uses code 13-669 twice; the second food is 13-669-2.",
   },
   nutrients: Object.fromEntries([...NUTRIENTS.map(([k, , , unit, label]) => [k, { label, unit }]), ["epaDha", { label: "Omega-3 EPA + DHA", unit: "g" }]]),
   keys,

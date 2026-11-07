@@ -1,15 +1,15 @@
-import { useMemo } from "react";
 import { buildDashboard, type Dashboard } from "@bt/shared/core/dashboard";
 import { todayIso } from "@bt/shared/core/dates";
 import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { isCritical } from "@bt/shared/core/trends";
 import type { Profile } from "@bt/shared/core/types";
+import { useMemo } from "react";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { BloodPressureFigure, WeightFigure } from "../components/dashboard/body";
 import { BodySummaryList, SummaryValue, summaryRow } from "../components/dashboard/bodySummary";
 import { Sparkline } from "../components/dashboard/Sparkline";
 import { Timeline } from "../components/dashboard/Timeline";
-import { AskPanel, BioAgeFigure, HabitsPanel, ToWatchFigure, cardStyles, labelStyles } from "../components/dashboard/widgets";
+import { AskPanel, BioAgeFigure, cardStyles, HabitsPanel, labelStyles, ToWatchFigure } from "../components/dashboard/widgets";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -21,7 +21,10 @@ import { useProfiles } from "../profiles";
 import { href } from "../router";
 
 function firstName(p: Profile): string | undefined {
-  const n = p.name?.replace(/\([^)]*\)/g, "").trim().split(/\s+/)[0];
+  const n = p.name
+    ?.replace(/\([^)]*\)/g, "")
+    .trim()
+    .split(/\s+/)[0];
   return n || undefined;
 }
 
@@ -54,7 +57,9 @@ export function HomePage() {
       <header>
         <h1 className="font-serif text-4xl font-normal tracking-tight text-balance sm:text-5xl">{name ? `${name}'s health` : "Your health"}</h1>
         <p className="mt-1 text-ink-2">
-          {[blood.lastTest && `Latest blood test ${formatDate(blood.lastTest)}`, body.lastTest && `body measured ${formatDate(body.lastTest)}`].filter(Boolean).join(" · ")}
+          {[blood.lastTest && `Latest blood test ${formatDate(blood.lastTest)}`, body.lastTest && `body measured ${formatDate(body.lastTest)}`]
+            .filter(Boolean)
+            .join(" · ")}
         </p>
       </header>
 
@@ -63,7 +68,11 @@ export function HomePage() {
         <ToWatchFigure
           d={both}
           className="max-lg:col-span-2"
-          to={blood.toWatch.length > 0 || body.toWatch.length === 0 ? href({ name: "overview", ...(blood.toWatch.length ? { show: "out" as const } : {}) }) : href({ name: "body" })}
+          to={
+            blood.toWatch.length > 0 || body.toWatch.length === 0
+              ? href({ name: "overview", ...(blood.toWatch.length ? { show: "out" as const } : {}) })
+              : href({ name: "body" })
+          }
         />
         <BloodPressureFigure ms={bodyMs} profile={profile} />
         <WeightFigure ms={bodyMs} />
@@ -75,7 +84,9 @@ export function HomePage() {
             <h2 id="timeline-title" className="font-serif text-2xl font-normal">
               Timeline
             </h2>
-            <p className="text-sm text-ink-2">Blood tests, body measurements and habits. Drag to move through time; point at or tap a blood test to see what was off.</p>
+            <p className="text-sm text-ink-2">
+              Blood tests, body measurements and habits. Drag to move through time; point at or tap a blood test to see what was off.
+            </p>
           </div>
           <Timeline d={{ ...blood, span: both.span }} protocols={protocols} birthMonth={profile.birthMonth} today={today} body={body.draws} />
         </section>
@@ -136,7 +147,14 @@ function BloodSummary({ d }: { d: Dashboard }) {
         </p>
         <div className="mt-3 flex gap-[2px]" aria-hidden="true">
           {judged.map((m) => (
-            <span key={m.def.id} title={m.def.name} className={cx("h-3 max-w-2 min-w-[3px] flex-1 rounded-full", isCritical(m.flag) ? "bg-danger" : m.flag === "normal" ? "bg-line-strong" : "bg-warn")} />
+            <span
+              key={m.def.id}
+              title={m.def.name}
+              className={cx(
+                "h-3 max-w-2 min-w-[3px] flex-1 rounded-full",
+                isCritical(m.flag) ? "bg-danger" : m.flag === "normal" ? "bg-line-strong" : "bg-warn",
+              )}
+            />
           ))}
         </div>
       </div>
@@ -211,7 +229,9 @@ function Welcome({ name }: { name?: string }) {
     <div className="flex flex-col gap-6">
       <header>
         <h1 className="font-serif text-4xl font-normal tracking-tight sm:text-5xl">{name ? `${name}'s health` : "Your health"}</h1>
-        <p className="mt-1 text-ink-2">Add a blood test or a body measurement and this fills in: biological age, what's in range, blood pressure, and a timeline over the years.</p>
+        <p className="mt-1 text-ink-2">
+          Add a blood test or a body measurement and this fills in: biological age, what's in range, blood pressure, and a timeline over the years.
+        </p>
       </header>
       <div className="stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <a href={href({ name: "import" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
@@ -229,7 +249,11 @@ function Welcome({ name }: { name?: string }) {
         <div className={cx(cardStyles, "flex flex-col gap-2")}>
           <span className="font-medium">Just looking?</span>
           <span className="text-sm text-ink-2">Open a profile with years of made-up results.</span>
-          {mode === "folders" ? <ExampleProfileButton mode="folders" label="Open an example" /> : <span className="text-sm text-ink-2">Needs the app's local server.</span>}
+          {mode === "folders" ? (
+            <ExampleProfileButton mode="folders" label="Open an example" />
+          ) : (
+            <span className="text-sm text-ink-2">Needs the app's local server.</span>
+          )}
         </div>
       </div>
     </div>

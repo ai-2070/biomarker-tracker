@@ -69,7 +69,8 @@ export function parseHash(hash: string): Route {
     return date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? { name: "test-summary", date } : { name: "test-summary" };
   }
   if (parts[0] === "body" && parts[1] === "import" && parts.length === 2) return { name: "device-import" };
-  if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2)) return params.has("add") ? { name: "add", kind: "body" } : { name: "body" };
+  if ((parts[0] === "body" && parts.length === 1) || (parts[0] === "soon" && parts[1] === "body" && parts.length === 2))
+    return params.has("add") ? { name: "add", kind: "body" } : { name: "body" };
   if (parts[0] === "add" && parts.length === 1) {
     const marker = params.get("marker");
     if (params.get("type") === "body") return { name: "add", kind: "body" };

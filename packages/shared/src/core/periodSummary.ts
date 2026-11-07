@@ -12,9 +12,9 @@
 import { phenoAgePace } from "./agePace";
 import { addDays, daysBetween } from "./dates";
 import { personalBand, rcvBand } from "./experiments";
-import { flagMeasurement, isOutOfRange, sortByDate, type Flag } from "./trends";
-import { formatValue } from "./units";
+import { type Flag, flagMeasurement, isOutOfRange, sortByDate } from "./trends";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
+import { formatValue } from "./units";
 
 export type Period = { kind: "rolling"; end: string } | { kind: "year"; year: number; today: string };
 
@@ -79,7 +79,12 @@ export function periodBounds(p: Period): { from: string; to: string; previous: {
 const geoMean = (xs: readonly number[]) => Math.exp(xs.reduce((s, x) => s + Math.log(x), 0) / xs.length);
 const usable = (ms: readonly Measurement[]) => ms.filter((m) => !m.qualifier && m.value > 0);
 
-function versusBefore(def: BiomarkerDef, now: readonly Measurement[], previous: readonly Measurement[], earlier: readonly Measurement[]): PeriodMarker["versusBefore"] {
+function versusBefore(
+  def: BiomarkerDef,
+  now: readonly Measurement[],
+  previous: readonly Measurement[],
+  earlier: readonly Measurement[],
+): PeriodMarker["versusBefore"] {
   const a = usable(now).map((m) => m.value);
   const prev = usable(previous);
   const ref = prev.length ? prev : usable(earlier).slice(-1);
@@ -128,10 +133,12 @@ export function buildPeriodSummary(input: {
   const { defs, profile } = input;
   const fmtDate = input.formatDate ?? ((d: string) => d);
   const { from, to, previous } = periodBounds(input.period);
-  const blood = sortByDate(input.measurements.filter((m) => {
-    const def = defs.get(m.biomarkerId);
-    return def && def.category !== "Body" && m.date <= to;
-  }));
+  const blood = sortByDate(
+    input.measurements.filter((m) => {
+      const def = defs.get(m.biomarkerId);
+      return def && def.category !== "Body" && m.date <= to;
+    }),
+  );
   const inRange = (a: string, b: string) => (m: Measurement) => m.date >= a && m.date <= b;
   const dates = (a: string, b: string) => [...new Set(blood.filter(inRange(a, b)).map((m) => m.date))].sort();
 
@@ -146,7 +153,14 @@ export function buildPeriodSummary(input: {
     const before = ms.filter((m) => m.date < from);
     if (!now.length) {
       const last = before.at(-1)!;
-      notMeasured.push({ id, name: def.name, category: def.category, last, lastFlag: flagMeasurement(def, last, profile), monthsOld: Math.floor(daysBetween(last.date, to) / 30.44) });
+      notMeasured.push({
+        id,
+        name: def.name,
+        category: def.category,
+        last,
+        lastFlag: flagMeasurement(def, last, profile),
+        monthsOld: Math.floor(daysBetween(last.date, to) / 30.44),
+      });
       continue;
     }
     const last = now.at(-1)!;
@@ -180,26 +194,43 @@ export function buildPeriodSummary(input: {
     previousTests: dates(previous.from, previous.to),
     groups,
     notMeasured,
-    questions: questionsFor(groups.flatMap((g) => g.markers), notMeasured, defs, fmtDate),
+    questions: questionsFor(
+      groups.flatMap((g) => g.markers),
+      notMeasured,
+      defs,
+      fmtDate,
+    ),
     limits: [...PERIOD_LIMITS],
   };
 }
 
-function questionsFor(measured: readonly PeriodMarker[], notMeasured: PeriodSummary["notMeasured"], defs: ReadonlyMap<string, BiomarkerDef>, fmtDate: (iso: string) => string): string[] {
+function questionsFor(
+  measured: readonly PeriodMarker[],
+  notMeasured: PeriodSummary["notMeasured"],
+  defs: ReadonlyMap<string, BiomarkerDef>,
+  fmtDate: (iso: string) => string,
+): string[] {
   const qs: string[] = [];
   for (const m of measured) {
     const name = inSentence(m.name);
     if (m.outside > 0 && m.outside === m.results.length && m.results.length >= 2) {
-      qs.push(`My ${name} was outside its range on ${m.results.length === 2 ? "both" : `all ${m.results.length}`} tests in this period. What could explain it, and does it need follow-up?`);
+      qs.push(
+        `My ${name} was outside its range on ${m.results.length === 2 ? "both" : `all ${m.results.length}`} tests in this period. What could explain it, and does it need follow-up?`,
+      );
     } else if (m.trend && m.trend.verdict !== "unclear") {
       qs.push(`My ${name} has been ${m.trend.verdict} over ${m.trend.tests} tests since ${fmtDate(m.trend.from)}. Is that worth following up?`);
     } else if (isOutOfRange(m.lastFlag)) {
       const unit = defs.get(m.id)!.canonicalUnit;
-      qs.push(`My latest ${name} was ${m.last.qualifier ?? ""}${formatValue(m.last.value)}${unit === "ratio" ? "" : ` ${unit}`}, outside its range. Should it be re-tested?`);
+      qs.push(
+        `My latest ${name} was ${m.last.qualifier ?? ""}${formatValue(m.last.value)}${unit === "ratio" ? "" : ` ${unit}`}, outside its range. Should it be re-tested?`,
+      );
     }
   }
   for (const n of notMeasured) {
-    if (isOutOfRange(n.lastFlag)) qs.push(`My ${inSentence(n.name)} was outside its range when last tested, on ${fmtDate(n.last.date)}, and hasn't been tested since. Should it be re-tested?`);
+    if (isOutOfRange(n.lastFlag))
+      qs.push(
+        `My ${inSentence(n.name)} was outside its range when last tested, on ${fmtDate(n.last.date)}, and hasn't been tested since. Should it be re-tested?`,
+      );
   }
   qs.push("How often should my blood tests be repeated, and which ones?");
   return qs;

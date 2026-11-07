@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
-import { PERCENTILES, normRow, rowSpan, type NormRow, type NormSet } from "@bt/shared/core/fitnessTests";
+import { type NormRow, type NormSet, normRow, PERCENTILES, rowSpan } from "@bt/shared/core/fitnessTests";
 import type { Sex } from "@bt/shared/core/types";
 import { formatValue } from "@bt/shared/core/units";
+import { useRef, useState } from "react";
 import { formatDate } from "../format";
 import { useWidth } from "./timeControls";
 import { cx } from "./ui";
@@ -61,7 +61,12 @@ export function NormChart({ set, sex, points, unit, higherIsBetter }: { set: Nor
     <figure className="flex flex-col gap-2">
       <div ref={box} className="relative w-full">
         {width > 0 && (
-          <svg width={w} height={H} role="img" aria-label={`${set.kind === "bands" ? "Bands" : set.kind === "percentiles" ? "Percentiles" : "Average and spread"} by age, with your results`}>
+          <svg
+            width={w}
+            height={H}
+            role="img"
+            aria-label={`${set.kind === "bands" ? "Bands" : set.kind === "percentiles" ? "Percentiles" : "Average and spread"} by age, with your results`}
+          >
             {ticks.map((t) => (
               <g key={t}>
                 <line x1={PAD.left} x2={w - PAD.right} y1={y(t)} y2={y(t)} stroke="var(--color-line)" strokeDasharray="2 4" />
@@ -166,7 +171,15 @@ export function NormChart({ set, sex, points, unit, higherIsBetter }: { set: Nor
               />
             )}
             {points.map((p, i) => (
-              <circle key={p.date} cx={x(p.age)} cy={y(p.value)} r={i === points.length - 1 ? 6 : 4.5} fill="var(--color-ink)" stroke="var(--color-surface)" strokeWidth={2}>
+              <circle
+                key={p.date}
+                cx={x(p.age)}
+                cy={y(p.value)}
+                r={i === points.length - 1 ? 6 : 4.5}
+                fill="var(--color-ink)"
+                stroke="var(--color-surface)"
+                strokeWidth={2}
+              >
                 <title>
                   {formatDate(p.date)}: {formatValue(p.value)} {unit} at {Math.floor(p.age)}
                 </title>
@@ -176,7 +189,9 @@ export function NormChart({ set, sex, points, unit, higherIsBetter }: { set: Nor
         )}
       </div>
       <figcaption className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-2">
-        <span>Age (years) across, {unit} up{higherIsBetter ? "" : " (lower is better)"}.</span>
+        <span>
+          Age (years) across, {unit} up{higherIsBetter ? "" : " (lower is better)"}.
+        </span>
         {set.kind === "bands" &&
           labels.map((l, i) => (
             <span key={l} className="flex items-center gap-1.5">
@@ -202,8 +217,7 @@ export function NormTable({ set, sex, age, unit }: { set: NormSet; sex: Sex; age
   const mine = age !== undefined ? normRow(set, sex, age) : undefined;
   const labels = set.labels ?? rows[0]?.bands?.map((b) => b.label) ?? [];
   const ps = PERCENTILES.filter((p) => rows.some((r) => r[p] !== undefined));
-  const head =
-    set.kind === "bands" ? [...labels].reverse() : set.kind === "percentiles" ? ps.map((p) => `${p.slice(1)}th`) : ["Average", "SD"];
+  const head = set.kind === "bands" ? [...labels].reverse() : set.kind === "percentiles" ? ps.map((p) => `${p.slice(1)}th`) : ["Average", "SD"];
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-left text-sm tabular-nums">

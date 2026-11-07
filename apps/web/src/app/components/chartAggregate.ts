@@ -1,5 +1,5 @@
 import type { ChartPoint } from "@bt/shared/core/chartSeries";
-import { flagMeasurement, flagValue, isCritical, resolveRange, type Flag } from "@bt/shared/core/trends";
+import { type Flag, flagMeasurement, flagValue, isCritical, resolveRange } from "@bt/shared/core/trends";
 import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
 
 /** Classify a bucket only with compatible ranges and context from its own readings. */
@@ -8,7 +8,7 @@ export function aggregateFlag(def: BiomarkerDef, point: ChartPoint, readings: re
   if (!members.length || def.personalRange) return "unknown";
   if (total && new Set(members.map((m) => m.date)).size < 7) return "unknown";
   const first = members[0]!;
-  const qualifiers = new Set(members.flatMap((m) => m.qualifier ? [m.qualifier] : []));
+  const qualifiers = new Set(members.flatMap((m) => (m.qualifier ? [m.qualifier] : [])));
   if (qualifiers.size > 1) return "unknown";
   const qualifier = qualifiers.values().next().value;
   const aggregate = { ...first, date: point.date, value: point.value, qualifier };

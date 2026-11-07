@@ -1,18 +1,18 @@
-import { describe, expect, it } from "vitest";
 import {
   activeOn,
-  habitTypesIn,
-  ofTypes,
   durationDays,
+  habitTypesIn,
   isActiveOn,
   laneFor,
   MAX_LABEL,
+  ofTypes,
   safetyLabels,
   safetyNotes,
   sortProtocols,
   validateProtocol,
 } from "@bt/shared/core/protocols";
 import type { ProtocolEntry } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const today = "2025-06-01";
 
@@ -138,7 +138,10 @@ describe("safetyNotes", () => {
   });
   it("keeps warnings inside an ongoing protocol snapshot and excludes the whole snapshot when ended", () => {
     const routine: ProtocolEntry = {
-      id: "routine", label: "My routine", category: "lifestyle", start: "2025-01-01",
+      id: "routine",
+      label: "My routine",
+      category: "lifestyle",
+      start: "2025-01-01",
       plan: {
         id: "source",
         items: [
@@ -173,7 +176,10 @@ describe("habit types on charts", () => {
   });
   it("filters a mixed protocol by its actual items without duplicating it or inventing a lifestyle item", () => {
     const routine: ProtocolEntry = {
-      id: "routine", label: "My routine", category: "lifestyle", start: "2025-01-01",
+      id: "routine",
+      label: "My routine",
+      category: "lifestyle",
+      start: "2025-01-01",
       plan: {
         id: "source",
         items: [

@@ -4,14 +4,7 @@
  * marker name and an optional topic the user typed. Never health data.
  */
 
-export type PaperKind =
-  | "guideline"
-  | "meta-analysis"
-  | "systematic review"
-  | "randomised trial"
-  | "review"
-  | "observational"
-  | "other";
+export type PaperKind = "guideline" | "meta-analysis" | "systematic review" | "randomised trial" | "review" | "observational" | "other";
 
 export interface Paper {
   /** Citation key the AI must use, e.g. "PMID:12345678". */
@@ -142,8 +135,10 @@ export function parseEuropePmc(json: unknown): { papers: Paper[]; total: number 
     const doi = str(r.doi);
     const title = str(r.title);
     if (!title || (!pmid && !pmcid)) continue;
-    const pubTypes = isObj(r.pubTypeList) && Array.isArray(r.pubTypeList.pubType) ? r.pubTypeList.pubType.filter((x): x is string => typeof x === "string") : [];
-    const journal = isObj(r.journalInfo) && isObj(r.journalInfo.journal) ? str(r.journalInfo.journal.medlineAbbreviation) ?? str(r.journalInfo.journal.title) : undefined;
+    const pubTypes =
+      isObj(r.pubTypeList) && Array.isArray(r.pubTypeList.pubType) ? r.pubTypeList.pubType.filter((x): x is string => typeof x === "string") : [];
+    const journal =
+      isObj(r.journalInfo) && isObj(r.journalInfo.journal) ? (str(r.journalInfo.journal.medlineAbbreviation) ?? str(r.journalInfo.journal.title)) : undefined;
     const year = Number(r.pubYear);
     const abstract = str(r.abstractText);
     const paper: Paper = {
@@ -202,7 +197,12 @@ export function parsePubmedSummary(json: unknown): Paper[] {
     const doi = idOf("doi");
     const year = Number(String(r.pubdate ?? "").slice(0, 4));
     const pubTypes = Array.isArray(r.pubtype) ? r.pubtype.filter((x): x is string => typeof x === "string") : [];
-    const authors = Array.isArray(r.authors) ? r.authors.filter(isObj).map((a) => str(a.name)).filter(Boolean) : [];
+    const authors = Array.isArray(r.authors)
+      ? r.authors
+          .filter(isObj)
+          .map((a) => str(a.name))
+          .filter(Boolean)
+      : [];
     const paper: Paper = {
       id: `PMID:${uid}`,
       pmid: uid,
@@ -268,7 +268,9 @@ export async function searchPapers(
   } catch (e) {
     if (signal?.aborted) throw e;
     const term = encodeURIComponent(pubmedTerm(terms, filter, topic));
-    const search = parsePubmedSearch(await getJson(fetchFn, `${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&sort=relevance&retmax=${pageSize}&term=${term}`, signal));
+    const search = parsePubmedSearch(
+      await getJson(fetchFn, `${EUTILS}/esearch.fcgi?db=pubmed&retmode=json&sort=relevance&retmax=${pageSize}&term=${term}`, signal),
+    );
     if (search.ids.length === 0) return { papers: [], total: 0, source: "pubmed" };
     const summary = await getJson(fetchFn, `${EUTILS}/esummary.fcgi?db=pubmed&retmode=json&id=${search.ids.join(",")}`, signal);
     return { papers: parsePubmedSummary(summary), total: search.total, source: "pubmed" };

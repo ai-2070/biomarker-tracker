@@ -1,7 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it, vi, type Mock } from "vitest";
 import type { ToolSet } from "ai";
-import type { McpServerConfig } from "../../apps/server/store";
+import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 import { z } from "zod";
+import type { McpServerConfig } from "../../apps/server/store";
 
 const mocks = vi.hoisted(() => ({
   create: vi.fn(),
@@ -14,7 +14,9 @@ vi.mock("@modelcontextprotocol/sdk/client/stdio.js", () => ({
   getDefaultEnvironment: () => ({}),
   StdioClientTransport: class {
     close = vi.fn(async () => undefined);
-    constructor() { mocks.transports.push(this); }
+    constructor() {
+      mocks.transports.push(this);
+    }
   },
 }));
 vi.mock("../../apps/server/store", () => ({
@@ -23,12 +25,15 @@ vi.mock("../../apps/server/store", () => ({
   updateSettings: (fn: (settings: typeof mocks.settings) => void) => fn(mocks.settings),
   updateSecrets: (fn: (secrets: typeof mocks.secrets) => void) => fn(mocks.secrets),
 }));
+
 import { assistantTools, removeServer, stopAll, testServer } from "../../apps/server/mcp";
 
 // Deferred gates establish ordering; no sleeps, real packages, subprocesses or network calls.
 function deferred<T>() {
   let resolve!: (value: T | PromiseLike<T>) => void;
-  const promise = new Promise<T>((done) => { resolve = done; });
+  const promise = new Promise<T>((done) => {
+    resolve = done;
+  });
   return { promise, resolve };
 }
 const cfg = (id: string): McpServerConfig => ({ id, name: id, command: "mock-mcp", args: [], env: {}, enabled: true });
@@ -39,7 +44,9 @@ beforeEach(() => {
   mocks.create.mockReset();
   mocks.transports.length = 0;
 });
-afterEach(async () => { await stopAll(); });
+afterEach(async () => {
+  await stopAll();
+});
 
 describe("MCP process ownership", () => {
   it("assistant-mcp-discovery-failure closes the initialized client and transport before a clean retry", async () => {
@@ -77,7 +84,13 @@ describe("MCP process ownership", () => {
     const discoveryStarted = deferred<void>();
     const discovered = deferred<ToolSet>();
     const closed = deferred<void>();
-    const client = { tools: vi.fn(() => { discoveryStarted.resolve(); return discovered.promise; }), close: vi.fn(async () => undefined) };
+    const client = {
+      tools: vi.fn(() => {
+        discoveryStarted.resolve();
+        return discovered.promise;
+      }),
+      close: vi.fn(async () => undefined),
+    };
     mocks.create.mockResolvedValue(client);
     const question = assistantTools();
     await discoveryStarted.promise;

@@ -16,7 +16,12 @@ import { MockModel } from "./mockModel";
 import { rawCall, trpcClient } from "./trpc";
 
 const usage = { inputTokens: { total: 1, noCache: 1, cacheRead: undefined, cacheWrite: undefined }, outputTokens: { total: 1, text: 1, reasoning: undefined } };
-const snapshot: HealthSnapshot = { measurements: [{ id: "f1", biomarkerId: "ferritin", date: "2024-05-12", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" }], protocols: [], experiments: [], profile: {} };
+const snapshot: HealthSnapshot = {
+  measurements: [{ id: "f1", biomarkerId: "ferritin", date: "2024-05-12", value: 40, originalValue: 40, originalUnit: "µg/L", source: "manual" }],
+  protocols: [],
+  experiments: [],
+  profile: {},
+};
 
 describe("eve events", () => {
   it("streams deltas, keeps the reply parts, and ends on the turn's outcome", () => {
@@ -29,8 +34,13 @@ describe("eve events", () => {
       { type: "content.delta", data: { partId: "p1", delta: "Fine." } },
       { type: "content.completed", data: { kind: "text", phase: "reply", partId: "p1", value: "Fine." } },
       { type: "turn.settled", data: { outcome: "completed", reply: ["p1"] } },
-    ]) readEveEvent(e, state, (x) => events.push(x));
-    expect(events).toEqual([{ kind: "status", text: "Thinking…" }, { kind: "text", text: "Let me look. " }, { kind: "text", text: "Fine." }]);
+    ])
+      readEveEvent(e, state, (x) => events.push(x));
+    expect(events).toEqual([
+      { kind: "status", text: "Thinking…" },
+      { kind: "text", text: "Let me look. " },
+      { kind: "text", text: "Fine." },
+    ]);
     expect(state).toMatchObject({ outcome: "completed", replyIds: ["p1"] });
     expect([...state.reply.entries()]).toEqual([["p1", "Fine."]]);
     const refused = { reply: new Map<string, string>() } as Parameters<typeof readEveEvent>[1];
@@ -41,20 +51,35 @@ describe("eve events", () => {
 
 describe("the model bridge", () => {
   it("carries call options and stream parts as JSON, bytes and dates included", () => {
-    const options = { prompt: [{ role: "user", content: [{ type: "file", mediaType: "image/png", data: new Uint8Array([1, 2, 3]) }] }], abortSignal: new AbortController().signal } as unknown as LanguageModelV4CallOptions;
+    const options = {
+      prompt: [{ role: "user", content: [{ type: "file", mediaType: "image/png", data: new Uint8Array([1, 2, 3]) }] }],
+      abortSignal: new AbortController().signal,
+    } as unknown as LanguageModelV4CallOptions;
     const back = decodeOptions(encodeOptions(options));
     expect(back).not.toHaveProperty("abortSignal");
     expect((back.prompt[0]!.content as unknown as { data: Uint8Array }[])[0]!.data).toEqual(new Uint8Array([1, 2, 3]));
-    expect(decodePart({ type: "response-metadata", id: "r", timestamp: "2026-11-04T10:00:00.000Z" })).toMatchObject({ timestamp: new Date("2026-11-04T10:00:00.000Z") });
+    expect(decodePart({ type: "response-metadata", id: "r", timestamp: "2026-11-04T10:00:00.000Z" })).toMatchObject({
+      timestamp: new Date("2026-11-04T10:00:00.000Z"),
+    });
     const error = decodePart({ type: "error", error: { message: "bad key", statusCode: 401 } }) as { error: Error & { statusCode?: number } };
     expect(error.error).toBeInstanceOf(Error);
     expect(error.error.statusCode).toBe(401);
   });
 
   it("adds the same cache points as the built-in loop to eve's prompt", () => {
-    const options = { prompt: [{ role: "system", content: "eve's own" }, { role: "system", content: "RULES" }, { role: "user", content: [{ type: "text", text: "hi" }] }] } as unknown as LanguageModelV4CallOptions;
+    const options = {
+      prompt: [
+        { role: "system", content: "eve's own" },
+        { role: "system", content: "RULES" },
+        { role: "user", content: [{ type: "text", text: "hi" }] },
+      ],
+    } as unknown as LanguageModelV4CallOptions;
     const anthropic = withCache("anthropic", options, "RULES", "k", {});
-    expect(anthropic.prompt.map((m) => m.providerOptions)).toEqual([undefined, { anthropic: { cacheControl: { type: "ephemeral" } } }, { anthropic: { cacheControl: { type: "ephemeral" } } }]);
+    expect(anthropic.prompt.map((m) => m.providerOptions)).toEqual([
+      undefined,
+      { anthropic: { cacheControl: { type: "ephemeral" } } },
+      { anthropic: { cacheControl: { type: "ephemeral" } } },
+    ]);
     expect(withCache("openai", options, "RULES", "k", { openai: { store: false } }).providerOptions).toEqual({ openai: { store: false, promptCacheKey: "k" } });
     expect(withCache("ollama", options, "RULES", "k", {}).prompt).toEqual(options.prompt);
     expect(contextWindow("anthropic")).toBe(200_000);
@@ -73,9 +98,22 @@ describe("the eve bridge refuses everyone else", () => {
   afterAll(() => server.close());
 
   it("without the runtime's token, or for a question that has ended", async () => {
-    const { model } = { model: new MockModel({ doGenerate: async () => ({ content: [], finishReason: { unified: "stop", raw: undefined }, usage, warnings: [] }) }) };
-    const run = openEveRun({ tools: {}, parts: { stable: "RULES", request: "" }, history: [], ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "m" } }, key: "k" });
-    const post = (token: string, body: unknown) => fetch(`http://127.0.0.1:${port}/eve-bridge/configuration`, { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${token}` }, body: JSON.stringify(body) });
+    const { model } = {
+      model: new MockModel({ doGenerate: async () => ({ content: [], finishReason: { unified: "stop", raw: undefined }, usage, warnings: [] }) }),
+    };
+    const run = openEveRun({
+      tools: {},
+      parts: { stable: "RULES", request: "" },
+      history: [],
+      ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "m" } },
+      key: "k",
+    });
+    const post = (token: string, body: unknown) =>
+      fetch(`http://127.0.0.1:${port}/eve-bridge/configuration`, {
+        method: "POST",
+        headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
+        body: JSON.stringify(body),
+      });
     expect((await post("0".repeat(64), { run: run.id })).status).toBe(403);
     expect((await post("", { run: run.id })).status).toBe(403);
     closeEveRun(run);
@@ -104,13 +142,27 @@ describe.skipIf(!eveBuilt() || process.platform === "win32")("a question answere
       doGenerate: async (options) => {
         prompts.push(options.prompt);
         return n++ === 0
-          ? { content: [{ type: "tool-call" as const, toolCallId: "c1", toolName: "get_results", input: "{}" }], finishReason: { unified: "tool-calls" as const, raw: undefined }, usage, warnings: [] }
-          : { content: [{ type: "text" as const, text: "Your ferritin is 40 µg/L, in range." }], finishReason: { unified: "stop" as const, raw: undefined }, usage, warnings: [] };
+          ? {
+              content: [{ type: "tool-call" as const, toolCallId: "c1", toolName: "get_results", input: "{}" }],
+              finishReason: { unified: "tool-calls" as const, raw: undefined },
+              usage,
+              warnings: [],
+            }
+          : {
+              content: [{ type: "text" as const, text: "Your ferritin is 40 µg/L, in range." }],
+              finishReason: { unified: "stop" as const, raw: undefined },
+              usage,
+              warnings: [],
+            };
       },
     });
     const events: BrainEvent[] = [];
     const r = await ask(
-      [{ role: "user", content: "Hi" }, { role: "assistant", content: "Hello." }, { role: "user", content: "How is my ferritin?" }],
+      [
+        { role: "user", content: "Hi" },
+        { role: "assistant", content: "Hello." },
+        { role: "user", content: "How is my ferritin?" },
+      ],
       snapshot,
       { ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } }, engine: "eve", onEvent: (e) => events.push(e) },
     );
@@ -118,7 +170,12 @@ describe.skipIf(!eveBuilt() || process.platform === "win32")("a question answere
     if (!r.ok) return;
     expect(r.steps.map((s) => s.tool)).toEqual(["get_results"]);
     expect(events.some((e) => e.kind === "tool" && e.tool === "get_results")).toBe(true);
-    expect(events.filter((e) => e.kind === "text").map((e) => (e as { text: string }).text).join("")).toContain("in range.");
+    expect(
+      events
+        .filter((e) => e.kind === "text")
+        .map((e) => (e as { text: string }).text)
+        .join(""),
+    ).toContain("in range.");
     // The rules came from the main server, the earlier turns as history, the question last.
     const first = JSON.stringify(prompts[0]);
     expect(first).toContain("You are Brain");
@@ -135,7 +192,11 @@ describe.skipIf(!eveBuilt() || process.platform === "win32")("a question answere
         return await new Promise(() => {});
       },
     });
-    const r = await ask([{ role: "user", content: "Wait" }], snapshot, { ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } }, engine: "eve", signal: controller.signal });
+    const r = await ask([{ role: "user", content: "Wait" }], snapshot, {
+      ready: { model, providerOptions: {}, choice: { provider: "ollama", model: "mock" } },
+      engine: "eve",
+      signal: controller.signal,
+    });
     expect(r).toEqual({ ok: false, error: "Stopped." });
     // The runtime itself keeps running for the next question.
     expect((await fetch(`${(await eveHost()).url}/eve/v1/health`)).ok).toBe(true);

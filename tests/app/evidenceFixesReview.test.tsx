@@ -1,38 +1,45 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { anyDesignKind, type EvidenceMapFile, type EvidenceMapOutcome, validateEvidenceMap } from "@bt/shared/core/evidenceMap";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
-import { anyDesignKind, validateEvidenceMap, type EvidenceMapFile, type EvidenceMapOutcome } from "@bt/shared/core/evidenceMap";
 import { TOPICS } from "../../tools/evidence/topics";
 import participantCorrections from "../fixtures/evidenceFixesTrialCounts.json";
+
 vi.mock("../../apps/web/src/app/components/timeControls", () => ({ useWidth: () => 0 }));
+
 import { EvidenceOutcome } from "../../apps/web/src/app/components/EvidenceMap";
 
 const root = join(import.meta.dirname, "../../knowledge/evidence-maps");
 const readMap = (id: string) => JSON.parse(readFileSync(join(root, `${id}.json`), "utf8")) as EvidenceMapFile;
-const render = (o: EvidenceMapOutcome, kind: EvidenceMapFile["kind"] = "supplement", name = "biotin") => renderToStaticMarkup(createElement(EvidenceOutcome, { o, kind: kind ?? "supplement", food: anyDesignKind(kind), name, citedTitles: {} }));
+const render = (o: EvidenceMapOutcome, kind: EvidenceMapFile["kind"] = "supplement", name = "biotin") =>
+  renderToStaticMarkup(createElement(EvidenceOutcome, { o, kind: kind ?? "supplement", food: anyDesignKind(kind), name, citedTitles: {} }));
 
 describe("evidence review: published provenance and design wording", () => {
   it("removes false large-trial selections and keeps corrected counts and page comparisons consistent", () => {
     const corrections = new Map(participantCorrections.map((r) => [r.pmid, r.participants]));
-    for (const t of TOPICS) for (const o of readMap(t.id).outcomes) {
-      expect(o.counts.largeTrials, `${t.id}/${o.id}`).toBe(o.largeTrials.length);
-      for (const row of [...o.newerLargeTrials, ...o.largeTrials, ...o.page.chosenNotCited]) {
-        const corrected = row.pmid ? corrections.get(row.pmid) : undefined;
-        if (corrected !== undefined) {
-          expect(corrected, `${t.id}/${o.id}/${row.pmid}`).toBeGreaterThanOrEqual(1000);
-          expect(row.n).toBe(corrected);
+    for (const t of TOPICS)
+      for (const o of readMap(t.id).outcomes) {
+        expect(o.counts.largeTrials, `${t.id}/${o.id}`).toBe(o.largeTrials.length);
+        for (const row of [...o.newerLargeTrials, ...o.largeTrials, ...o.page.chosenNotCited]) {
+          const corrected = row.pmid ? corrections.get(row.pmid) : undefined;
+          if (corrected !== undefined) {
+            expect(corrected, `${t.id}/${o.id}/${row.pmid}`).toBeGreaterThanOrEqual(1000);
+            expect(row.n).toBe(corrected);
+          }
+        }
+        for (const pmid of o.page.alsoChosen) {
+          const corrected = corrections.get(pmid);
+          if (corrected !== undefined) expect(corrected).toBeGreaterThanOrEqual(1000);
         }
       }
-      for (const pmid of o.page.alsoChosen) {
-        const corrected = corrections.get(pmid);
-        if (corrected !== undefined) expect(corrected).toBeGreaterThanOrEqual(1000);
-      }
-    }
-    for (const [topic, pmid] of [["biotin", "27589059"], ["creatine", "42455839"]]) {
+    for (const [topic, pmid] of [
+      ["biotin", "27589059"],
+      ["creatine", "42455839"],
+    ]) {
       const map = readMap(topic!);
-      const o = map.outcomes.find((o) => topic === "biotin" ? o.id === "multiple-sclerosis" : o.id === "performance-young")!;
+      const o = map.outcomes.find((o) => (topic === "biotin" ? o.id === "multiple-sclerosis" : o.id === "performance-young"))!;
       expect(o.counts.largeTrials).toBe(0);
       expect(o.newerLargeTrials).toEqual([]);
       expect(o.largeTrials).toEqual([]);
@@ -54,14 +61,28 @@ describe("evidence review: published provenance and design wording", () => {
   });
   it("distinguishes pending screening from no answering evidence", () => {
     const prior = readMap("biotin").outcomes[0]!;
-    const o: EvidenceMapOutcome = { ...prior, anyDesign: true, chosenReviews: [], screening: { question: prior.screening!.question, provenance: "current", by: "Not yet screened with current inputs", at: "2026-10-30", decisions: [], counts: { yes: 0, partly: 0, no: 0, unscreened: 2 }, left: [] } };
+    const o: EvidenceMapOutcome = {
+      ...prior,
+      anyDesign: true,
+      chosenReviews: [],
+      screening: {
+        question: prior.screening!.question,
+        provenance: "current",
+        by: "Not yet screened with current inputs",
+        at: "2026-10-30",
+        decisions: [],
+        counts: { yes: 0, partly: 0, no: 0, unscreened: 2 },
+        left: [],
+      },
+    };
     const html = render(o);
     expect(html).toContain("2 eligible reviews still need screening with current inputs");
     expect(html).not.toContain("No review of trials answers this question");
     expect(html).not.toContain("were about a nearby question");
   });
   it.each(["lifestyle-walking", "wholefood-kiwi", "food-matrix"])("keeps %s historical selections usable with truthful any-design provenance", (id) => {
-    const map = readMap(id), o = map.outcomes.find((o) => o.chosenReviews.length > 0)!;
+    const map = readMap(id),
+      o = map.outcomes.find((o) => o.chosenReviews.length > 0)!;
     expect(o).toBeDefined();
     const html = render(o, map.kind, map.name);
     expect(html).toContain("Historical review selections");
@@ -70,7 +91,22 @@ describe("evidence review: published provenance and design wording", () => {
   });
   it("keeps individual model names visible for mixed current decisions", () => {
     const prior = readMap("biotin").outcomes[0]!;
-    const o: EvidenceMapOutcome = { ...prior, chosenReviews: [], screening: { question: prior.screening!.question, provenance: "current", by: "Opus; Sonnet", at: "2026-10-30", decisions: [{ pmid: "100", fits: "no", reason: "Different outcome.", input: "recorded fixture input", by: "Opus", at: "2026-10-29" }, { pmid: "200", fits: "partly", reason: "Different population.", input: "recorded fixture input", by: "Sonnet", at: "2026-10-30" }], counts: { yes: 0, partly: 1, no: 1, unscreened: 0 }, left: [] } };
+    const o: EvidenceMapOutcome = {
+      ...prior,
+      chosenReviews: [],
+      screening: {
+        question: prior.screening!.question,
+        provenance: "current",
+        by: "Opus; Sonnet",
+        at: "2026-10-30",
+        decisions: [
+          { pmid: "100", fits: "no", reason: "Different outcome.", input: "recorded fixture input", by: "Opus", at: "2026-10-29" },
+          { pmid: "200", fits: "partly", reason: "Different population.", input: "recorded fixture input", by: "Sonnet", at: "2026-10-30" },
+        ],
+        counts: { yes: 0, partly: 1, no: 1, unscreened: 0 },
+        left: [],
+      },
+    };
     const html = render(o);
     expect(html).toContain("PMID 100: no");
     expect(html).toContain("Opus (2026-10-29)");
@@ -99,7 +135,8 @@ describe("evidence review: published provenance and design wording", () => {
       const historical = JSON.parse(readFileSync(join(root, "screening", `${t.id}.json`), "utf8"));
       expect(historical.provenance).toBe("legacy-inputs-unverified");
       // No invented current-input fingerprints are added to the retained historical decisions.
-      for (const outcome of Object.values(historical.outcomes) as { decisions: { input?: string }[] }[]) for (const decision of outcome.decisions) expect(decision.input).toBeUndefined();
+      for (const outcome of Object.values(historical.outcomes) as { decisions: { input?: string }[] }[])
+        for (const decision of outcome.decisions) expect(decision.input).toBeUndefined();
     }
   });
 });

@@ -1,21 +1,21 @@
-import { useId, useState } from "react";
 import { Checkbox } from "@base-ui/react/checkbox";
 import { Field } from "@base-ui/react/field";
 import { todayIso } from "@bt/shared/core/dates";
 import type { ParsedReport } from "@bt/shared/core/importers/labText";
 import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { isAlreadySaved } from "@bt/shared/core/trends";
-import { listUnits } from "@bt/shared/core/units";
 import type { Measurement } from "@bt/shared/core/types";
+import { listUnits } from "@bt/shared/core/units";
+import { useId, useState } from "react";
 import { addMeasurements } from "../../db/db";
-import { BiomarkerPicker } from "./BiomarkerPicker";
-import { ChoiceGroup } from "./ChoiceGroup";
-import { UnitSelect } from "./UnitSelect";
-import { Button, Card, CheckIcon, LinkButton, Notice, cx, errorStyles, inputStyles, labelStyles } from "./ui";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
 import { href } from "../router";
+import { BiomarkerPicker } from "./BiomarkerPicker";
+import { ChoiceGroup } from "./ChoiceGroup";
 import { More } from "./disclosure";
+import { UnitSelect } from "./UnitSelect";
+import { Button, Card, CheckIcon, cx, errorStyles, inputStyles, LinkButton, labelStyles, Notice } from "./ui";
 
 // The review step of a lab report import: used by the Import page and by Brain (PDF text, pasted text, and
 // results Brain read from photos or scanned pages).
@@ -91,7 +91,13 @@ export function Review({
       r,
       v: validateManualEntry(
         {
-          biomarkerId: r.biomarkerId ?? "", value: r.value, unit: r.unit, date, labLow: r.labLow, labHigh: r.labHigh, lab,
+          biomarkerId: r.biomarkerId ?? "",
+          value: r.value,
+          unit: r.unit,
+          date,
+          labLow: r.labLow,
+          labHigh: r.labHigh,
+          lab,
           fasted: kind === "lab" && fasted !== "unknown" ? fasted === "yes" : undefined,
           note: kind === "lab" ? note : undefined,
         },
@@ -155,8 +161,8 @@ export function Review({
           </Notice>
         )}
         <p className="text-ink-2">
-          Found <span className="font-medium text-ink">{rows.length}</span> {kind === "body" ? "body measurements" : "results"} in {fileName}. Compare each one with your{" "}
-          {kind === "body" ? "picture" : "report"}, fix anything that's wrong, and untick rows you don't want.
+          Found <span className="font-medium text-ink">{rows.length}</span> {kind === "body" ? "body measurements" : "results"} in {fileName}. Compare each one
+          with your {kind === "body" ? "picture" : "report"}, fix anything that's wrong, and untick rows you don't want.
         </p>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field.Root invalid={!!dateError} className="flex flex-col gap-1.5">
@@ -189,11 +195,21 @@ export function Review({
               help="No food for at least 8 hours before the test. This applies to all results saved from this report."
               value={fasted}
               onChange={setFasted}
-              options={[{ value: "yes", label: "Yes" }, { value: "no", label: "No" }, { value: "unknown", label: "Not sure" }]}
+              options={[
+                { value: "yes", label: "Yes" },
+                { value: "no", label: "No" },
+                { value: "unknown", label: "Not sure" },
+              ]}
             />
             <Field.Root className="flex flex-col gap-1.5">
               <Field.Label className={labelStyles}>Note (optional)</Field.Label>
-              <Field.Control render={<textarea rows={2} />} value={note} onValueChange={setNote} placeholder="e.g. had a cold that week" className={`${inputStyles} py-2`} />
+              <Field.Control
+                render={<textarea rows={2} />}
+                value={note}
+                onValueChange={setNote}
+                placeholder="e.g. had a cold that week"
+                className={`${inputStyles} py-2`}
+              />
               <p className="text-sm text-ink-2">Added to every result saved from this report.</p>
             </Field.Root>
           </>
@@ -216,7 +232,13 @@ export function Review({
         </Card>
       )}
 
-      <div className={cx("flex flex-wrap items-center gap-3", !inChat && "sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] -mx-4 border-t border-line bg-page/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border lg:bottom-0")}>
+      <div
+        className={cx(
+          "flex flex-wrap items-center gap-3",
+          !inChat &&
+            "sticky bottom-[calc(3.5rem+env(safe-area-inset-bottom))] -mx-4 border-t border-line bg-page/95 px-4 py-3 backdrop-blur sm:mx-0 sm:rounded-xl sm:border lg:bottom-0",
+        )}
+      >
         <Button onClick={() => void save()} disabled={saving || included.length === 0}>
           Save {included.length} {included.length === 1 ? "result" : "results"}
         </Button>
@@ -274,7 +296,14 @@ function RowEditor({ row, kind, onChange }: { row: Row; kind: "lab" | "body"; on
               <Field.Label className="text-sm text-ink-2">Result</Field.Label>
               <Field.Control value={row.value} onValueChange={(value) => onChange({ value })} inputMode="decimal" className={inputStyles} />
             </Field.Root>
-            <UnitSelect labelClassName="text-sm text-ink-2" label="Unit" units={def ? listUnits(def) : []} value={row.unit} onChange={(unit) => onChange({ unit, problems: [] })} disabled={!def} />
+            <UnitSelect
+              labelClassName="text-sm text-ink-2"
+              label="Unit"
+              units={def ? listUnits(def) : []}
+              value={row.unit}
+              onChange={(unit) => onChange({ unit, problems: [] })}
+              disabled={!def}
+            />
             {kind === "lab" && (
               <>
                 <Field.Root className="flex flex-col gap-1">
@@ -313,7 +342,13 @@ function RowEditor({ row, kind, onChange }: { row: Row; kind: "lab" | "body"; on
 
 function Unmatched({ lines }: { lines: string[] }) {
   return (
-    <More summary={<>{lines.length} {lines.length === 1 ? "line looks" : "lines look"} like results for markers this app doesn't track yet</>}>
+    <More
+      summary={
+        <>
+          {lines.length} {lines.length === 1 ? "line looks" : "lines look"} like results for markers this app doesn't track yet
+        </>
+      }
+    >
       <ul className="mt-2 flex flex-col gap-1 font-mono text-xs text-ink-2">
         {lines.map((l, i) => (
           <li key={i} className="break-words">
@@ -324,4 +359,3 @@ function Unmatched({ lines }: { lines: string[] }) {
     </More>
   );
 }
-

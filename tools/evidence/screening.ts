@@ -1,7 +1,25 @@
-import { currentDecisions, parseScreening, screeningInput, screeningPrompt, type Classified, type Decision, type Question, type ScreeningMode } from "@bt/shared/core/evidenceMap";
+import {
+  type Classified,
+  currentDecisions,
+  type Decision,
+  parseScreening,
+  type Question,
+  type ScreeningMode,
+  screeningInput,
+  screeningPrompt,
+} from "@bt/shared/core/evidenceMap";
 
 /** Screen only missing/current-input decisions. Process and persistence boundaries are injectable for offline fixtures. */
-export async function screenOutcome({ question, reviews, mode, previous, by, ask, onBatch, today = () => new Date().toISOString().slice(0, 10) }: {
+export async function screenOutcome({
+  question,
+  reviews,
+  mode,
+  previous,
+  by,
+  ask,
+  onBatch,
+  today = () => new Date().toISOString().slice(0, 10),
+}: {
   question: Question;
   reviews: readonly Classified[];
   mode: ScreeningMode;
@@ -19,7 +37,10 @@ export async function screenOutcome({ question, reviews, mode, previous, by, ask
     for (let attempt = 0; attempt < 2; attempt++) {
       const pending = batch.filter((r) => !done.has(r.pmid!));
       if (pending.length === 0) break;
-      const got = parseScreening(await ask(screeningPrompt(question, pending, mode)), pending.map((r) => r.pmid!));
+      const got = parseScreening(
+        await ask(screeningPrompt(question, pending, mode)),
+        pending.map((r) => r.pmid!),
+      );
       for (const d of got) {
         const r = pending.find((r) => r.pmid === d.pmid)!;
         done.set(d.pmid, { ...d, input: screeningInput(question, r, mode), by, at: today() });

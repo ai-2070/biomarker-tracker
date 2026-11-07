@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
 import type { ComparisonClaim, ComparisonTopic, Verdict } from "@bt/shared/core/foodComparison";
+import { useRef, useState } from "react";
 import { FOOD_COMPARISON } from "../knowledge";
+import { More } from "./disclosure";
 import { EvidenceMap, hasEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, StudyLink } from "./evidence";
-import { More } from "./disclosure";
 import { Glance } from "./glance";
 import { SegmentTabs } from "./SegmentTabs";
 import { Button, Card, cx, eyebrowStyles } from "./ui";
@@ -50,8 +50,8 @@ export function FoodComparison() {
         <p className={eyebrowStyles}>Whole foods</p>
         <h2 className="font-serif text-2xl font-normal">Animal foods, fruit and plants: what research says</h2>
         <p className="mt-1 max-w-3xl text-ink-2">
-          Claims people make about animal and plant foods, one by one, with what the studies show, how strong that evidence is, and the other
-          side where there is one. No diet is recommended here.
+          Claims people make about animal and plant foods, one by one, with what the studies show, how strong that evidence is, and the other side where there
+          is one. No diet is recommended here.
         </p>
       </div>
 
@@ -65,31 +65,35 @@ export function FoodComparison() {
         }}
         className="flex flex-col gap-4"
       >
-      {/* Wide screens: the claim cards at a readable width, the at-a-glance table beside them. */}
-      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-x-8">
-        <div className="lg:col-span-2">
-          <h3 className="font-serif text-xl font-normal">{current.title}</h3>
-          <p className="max-w-3xl text-ink-2">{current.intro}</p>
+        {/* Wide screens: the claim cards at a readable width, the at-a-glance table beside them. */}
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:gap-x-8">
+          <div className="lg:col-span-2">
+            <h3 className="font-serif text-xl font-normal">{current.title}</h3>
+            <p className="max-w-3xl text-ink-2">{current.intro}</p>
+          </div>
+          <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-2 lg:self-start">
+            <Glance
+              caption={current.title}
+              rows={current.claims.map((c) => ({
+                id: `claim-${c.id}`,
+                label: c.claim,
+                result: (
+                  <span className={cx("rounded-full px-2 py-0.5 text-xs font-medium", VERDICT[c.verdict].className)}>
+                    {c.verdict[0]!.toUpperCase() + c.verdict.slice(1)}
+                  </span>
+                ),
+                grade: c.grade,
+              }))}
+            />
+          </div>
+          <ul className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">
+            {current.claims.map((c) => (
+              <li key={c.id}>
+                <Claim c={c} onShowMap={hasMap ? () => showMap(c.id) : undefined} />
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="lg:sticky lg:top-6 lg:col-start-2 lg:row-start-2 lg:self-start">
-        <Glance
-          caption={current.title}
-          rows={current.claims.map((c) => ({
-            id: `claim-${c.id}`,
-            label: c.claim,
-            result: <span className={cx("rounded-full px-2 py-0.5 text-xs font-medium", VERDICT[c.verdict].className)}>{c.verdict[0]!.toUpperCase() + c.verdict.slice(1)}</span>,
-            grade: c.grade,
-          }))}
-        />
-        </div>
-        <ul className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">
-          {current.claims.map((c) => (
-            <li key={c.id}>
-              <Claim c={c} onShowMap={hasMap ? () => showMap(c.id) : undefined} />
-            </li>
-          ))}
-        </ul>
-      </div>
       </SegmentTabs>
       {hasMap && (
         <More
@@ -111,8 +115,8 @@ export function FoodComparison() {
         </More>
       )}
       <p className="text-sm text-ink-2">
-        Verdicts and grades are a first draft, checked against the cited studies but not reviewed by a clinician. Absorption and lab studies can
-        be precise about absorption and still say little about long-term health.
+        Verdicts and grades are a first draft, checked against the cited studies but not reviewed by a clinician. Absorption and lab studies can be precise
+        about absorption and still say little about long-term health.
       </p>
     </Card>
   );

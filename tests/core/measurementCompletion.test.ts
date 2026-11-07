@@ -1,12 +1,12 @@
-import { describe, expect, it } from "vitest";
 import { measurementsIn } from "@bt/shared/core/measurementCompletion";
 import type { BiomarkerDef } from "@bt/shared/core/types";
-import weight from "../../knowledge/biomarkers/weight.json";
+import { describe, expect, it } from "vitest";
 import bodyFat from "../../knowledge/biomarkers/body_fat.json";
+import diastolic from "../../knowledge/biomarkers/bp_diastolic.json";
+import systolic from "../../knowledge/biomarkers/bp_systolic.json";
 import pace from "../../knowledge/biomarkers/dunedinpace.json";
 import ldl from "../../knowledge/biomarkers/ldl.json";
-import systolic from "../../knowledge/biomarkers/bp_systolic.json";
-import diastolic from "../../knowledge/biomarkers/bp_diastolic.json";
+import weight from "../../knowledge/biomarkers/weight.json";
 
 const defs = new Map<string, BiomarkerDef>([weight, bodyFat, pace, ldl, systolic, diastolic].map((def) => [def.id, def as BiomarkerDef]));
 const today = "2026-10-30";
@@ -14,7 +14,8 @@ const read = (text: string) => measurementsIn(text, today, defs);
 
 describe("current measurements stated in personal chat", () => {
   it("extracts weight and body fat from a mixed personal introduction", () => {
-    const text = "I'm 31, 102kg, 192cm tall, man, I take 1 hour walks every day, I do work from home, 27% body fat, I only take magnesum and sometimes creatine. I usually eat eveything, I have a sweet tooth. What should I take if I restart weight lifting casually in the gym, and to focus better at work.";
+    const text =
+      "I'm 31, 102kg, 192cm tall, man, I take 1 hour walks every day, I do work from home, 27% body fat, I only take magnesum and sometimes creatine. I usually eat eveything, I have a sweet tooth. What should I take if I restart weight lifting casually in the gym, and to focus better at work.";
     expect(read(text).map(({ biomarkerId, value, date, source }) => ({ biomarkerId, value, date, source }))).toEqual([
       { biomarkerId: "weight", value: 102, date: today, source: "manual" },
       { biomarkerId: "body_fat", value: 27, date: today, source: "manual" },
@@ -71,7 +72,8 @@ describe("current measurements stated in personal chat", () => {
     const bottom = `My ${diastolic.name} is 80 mmHg`;
     expect(read(top)).toEqual([]);
     expect(read(`${top}. ${bottom}`).map(({ biomarkerId, value }) => ({ biomarkerId, value }))).toEqual([
-      { biomarkerId: "bp_systolic", value: 120 }, { biomarkerId: "bp_diastolic", value: 80 },
+      { biomarkerId: "bp_systolic", value: 120 },
+      { biomarkerId: "bp_diastolic", value: 80 },
     ]);
     expect(read(`My ${systolic.name} is 80 mmHg. My ${diastolic.name} is 120 mmHg`)).toEqual([]);
   });

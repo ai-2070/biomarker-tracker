@@ -1,4 +1,4 @@
-import { paperById, studyQuery, type FetchFn, type Paper } from "@bt/shared/research/papers";
+import { type FetchFn, type Paper, paperById, studyQuery } from "@bt/shared/research/papers";
 
 /** Recognise paper links only; never turn an arbitrary link or search into a request. */
 export function paperPreviewId(href: string): string | undefined {
@@ -71,16 +71,18 @@ export function createPaperPreviewLoader(fetchFn: FetchFn): (id: string) => Prom
     const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
     const entry: PreviewEntry = {
       pending: true,
-      promise: paperById(id, fetchFn, controller.signal).then(
-        (paper) => {
-          entry.pending = false;
-          return paper;
-        },
-        (error: unknown) => {
-          if (cache.get(query) === entry) cache.delete(query);
-          throw error;
-        },
-      ).finally(() => clearTimeout(timeout)),
+      promise: paperById(id, fetchFn, controller.signal)
+        .then(
+          (paper) => {
+            entry.pending = false;
+            return paper;
+          },
+          (error: unknown) => {
+            if (cache.get(query) === entry) cache.delete(query);
+            throw error;
+          },
+        )
+        .finally(() => clearTimeout(timeout)),
     };
     cache.set(query, entry);
     return entry.promise;

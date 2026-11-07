@@ -1,11 +1,28 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
-import { EXAMPLE_DAY, energyVsResting, intakeToPlanItems, parseLabelAmount, protocolToIntake, expandItems, foodIdeas, gapAdvice, intakeTotals, macroRows, mealsRichIn, nutrientRows, upperLimitRoom, validateIntakeItems, type IntakeItem, type PortionFood } from "@bt/shared/core/intake";
+import {
+  EXAMPLE_DAY,
+  energyVsResting,
+  expandItems,
+  foodIdeas,
+  gapAdvice,
+  type IntakeItem,
+  intakeToPlanItems,
+  intakeTotals,
+  macroRows,
+  mealsRichIn,
+  nutrientRows,
+  type PortionFood,
+  parseLabelAmount,
+  protocolToIntake,
+  upperLimitRoom,
+  validateIntakeItems,
+} from "@bt/shared/core/intake";
 import type { FoodDb, Meal } from "@bt/shared/core/meals";
-import { itemErrors } from "@bt/shared/core/plans";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
+import { itemErrors } from "@bt/shared/core/plans";
 import type { FoodTable } from "@bt/shared/core/types";
+import { describe, expect, it } from "vitest";
 
 const K = join(import.meta.dirname, "..", "..", "knowledge");
 const db = JSON.parse(readFileSync(join(K, "foods", "cofid-all.json"), "utf8")) as FoodDb;
@@ -17,12 +34,25 @@ const portions: PortionFood[] = curated.foods.map((f) => ({ id: f.id, name: f.na
 const oats = "11-788";
 const milk = "12-313";
 const kiwi = "14-371";
-const breakfast: Meal = { id: "m1", name: "Porridge", items: [{ foodId: oats, grams: 40 }, { foodId: milk, grams: 200 }], createdAt: "2026-10-01T00:00:00.000Z" };
+const breakfast: Meal = {
+  id: "m1",
+  name: "Porridge",
+  items: [
+    { foodId: oats, grams: 40 },
+    { foodId: milk, grams: 200 },
+  ],
+  createdAt: "2026-10-01T00:00:00.000Z",
+};
 const day = (_date: string, items: IntakeItem[]): IntakeItem[] => items;
 
 describe("daily intake", () => {
   it("validates the list", () => {
-    expect(validateIntakeItems([{ id: "a", kind: "meal", mealId: "m1", portions: 1 }, { id: "b", kind: "food", foodId: kiwi, grams: 75 }])).toEqual([]);
+    expect(
+      validateIntakeItems([
+        { id: "a", kind: "meal", mealId: "m1", portions: 1 },
+        { id: "b", kind: "food", foodId: kiwi, grams: 75 },
+      ]),
+    ).toEqual([]);
     expect(validateIntakeItems({})).not.toEqual([]);
     expect(validateIntakeItems([{ id: "a", kind: "meal", mealId: "m1", portions: 0 }])).toContain("portions must be between 0.25 and 10");
     expect(validateIntakeItems([{ id: "a", kind: "food", foodId: kiwi, grams: 0 }]).join()).toMatch(/grams/);
@@ -30,13 +60,31 @@ describe("daily intake", () => {
   });
 
   it("turns meals into foods and grams, scaled by portions, and counts deleted meals", () => {
-    const d = day("2026-10-29", [{ id: "a", kind: "meal", mealId: "m1", portions: 1.5 }, { id: "b", kind: "meal", mealId: "gone", portions: 1 }, { id: "c", kind: "food", foodId: kiwi, grams: 75 }]);
-    expect(expandItems(d, [breakfast])).toEqual({ items: [{ foodId: oats, grams: 60 }, { foodId: milk, grams: 300 }, { foodId: kiwi, grams: 75 }], missingMeals: 1 });
+    const d = day("2026-10-29", [
+      { id: "a", kind: "meal", mealId: "m1", portions: 1.5 },
+      { id: "b", kind: "meal", mealId: "gone", portions: 1 },
+      { id: "c", kind: "food", foodId: kiwi, grams: 75 },
+    ]);
+    expect(expandItems(d, [breakfast])).toEqual({
+      items: [
+        { foodId: oats, grams: 60 },
+        { foodId: milk, grams: 300 },
+        { foodId: kiwi, grams: 75 },
+      ],
+      missingMeals: 1,
+    });
   });
 
   it("adds up the list", () => {
     const one = intakeTotals([{ id: "a", kind: "food", foodId: kiwi, grams: 150 }], [], db);
-    const two = intakeTotals([{ id: "a", kind: "food", foodId: kiwi, grams: 150 }, { id: "b", kind: "food", foodId: kiwi, grams: 150 }], [], db);
+    const two = intakeTotals(
+      [
+        { id: "a", kind: "food", foodId: kiwi, grams: 150 },
+        { id: "b", kind: "food", foodId: kiwi, grams: 150 },
+      ],
+      [],
+      db,
+    );
     expect(one.totals.vitaminC!.amount).toBeGreaterThan(50);
     expect(two.totals.vitaminC!.amount).toBeCloseTo(one.totals.vitaminC!.amount * 2, 6);
   });
@@ -51,7 +99,15 @@ describe("daily intake", () => {
   });
 
   it("checks macronutrients against EFSA's values: protein by weight, fat and carbohydrate as shares of energy", () => {
-    const totals = { energyKcal: { amount: 2000, measuredIn: 3, of: 3 }, protein: { amount: 50, measuredIn: 3, of: 3 }, fat: { amount: 100, measuredIn: 3, of: 3 }, carbohydrate: { amount: 240, measuredIn: 3, of: 3 }, fibre: { amount: 30, measuredIn: 3, of: 3 }, sodium: { amount: 2500, measuredIn: 3, of: 3 }, sugars: { amount: 40, measuredIn: 3, of: 3 } };
+    const totals = {
+      energyKcal: { amount: 2000, measuredIn: 3, of: 3 },
+      protein: { amount: 50, measuredIn: 3, of: 3 },
+      fat: { amount: 100, measuredIn: 3, of: 3 },
+      carbohydrate: { amount: 240, measuredIn: 3, of: 3 },
+      fibre: { amount: 30, measuredIn: 3, of: 3 },
+      sodium: { amount: 2500, measuredIn: 3, of: 3 },
+      sugars: { amount: 40, measuredIn: 3, of: 3 },
+    };
     const rows = new Map(macroRows(totals, 70).map((r) => [r.key, r]));
     expect(rows.get("protein")).toMatchObject({ status: "below" }); // 0.83 × 70 = 58.1 g
     expect(rows.get("protein")!.missing).toBeCloseTo(8.1, 6);
@@ -67,7 +123,14 @@ describe("daily intake", () => {
   });
 
   it("compares vitamins and minerals with the reference for the person, and upper limits only where they cover food", () => {
-    const totals = intakeTotals([{ id: "a", kind: "meal", mealId: "m1", portions: 1 }, { id: "b", kind: "food", foodId: kiwi, grams: 75 }], [breakfast], db).totals;
+    const totals = intakeTotals(
+      [
+        { id: "a", kind: "meal", mealId: "m1", portions: 1 },
+        { id: "b", kind: "food", foodId: kiwi, grams: 75 },
+      ],
+      [breakfast],
+      db,
+    ).totals;
     const rows = new Map(nutrientRows(totals, db, nutrients, { sex: "f", age: 40 }).map((r) => [r.nutrient.id, r]));
     expect(rows.get("vitamin_c")!.reference).toMatchObject({ amount: 95 });
     expect(rows.get("calcium")!.status).toBe("below");
@@ -125,7 +188,11 @@ describe("daily intake", () => {
     const room = upperLimitRoom(rows);
     expect(room.retinol!.room).toBe(3000);
     // Liver is the richest food in vitamin A, B12 and folate, but 100 g has far more retinol than 3000 µg.
-    for (const [key, id] of [["vitaminA", "vitamin_a"], ["vitaminB12", "vitamin_b12"], ["folate", "folate"]] as const) {
+    for (const [key, id] of [
+      ["vitaminA", "vitamin_a"],
+      ["vitaminB12", "vitamin_b12"],
+      ["folate", "folate"],
+    ] as const) {
       const a = gapAdvice(key, rows.find((r) => r.nutrient.id === id)!, portions, db, [], room);
       expect(a.kind === "foods" && a.foods.some((f) => /liver/i.test(f.name)), key).toBe(false);
       expect(a.kind === "foods" && a.hidden.some((h) => /liver/i.test(h.name) && /upper limit for vitamin a/i.test(h.reason)), key).toBe(true);
@@ -135,7 +202,11 @@ describe("daily intake", () => {
   it("has an ordinary example day of real foods", () => {
     const items: IntakeItem[] = EXAMPLE_DAY.map(([foodId, grams], i) => ({ id: String(i), kind: "food", foodId, grams }));
     expect(validateIntakeItems(items)).toEqual([]);
-    for (const [id] of EXAMPLE_DAY) expect(db.foods.some((f) => f[0] === id), id).toBe(true);
+    for (const [id] of EXAMPLE_DAY)
+      expect(
+        db.foods.some((f) => f[0] === id),
+        id,
+      ).toBe(true);
     // Within what most adults use for the example person (resting about 1,320 kcal).
     const kcal = intakeTotals(items, [], db).totals.energyKcal!.amount;
     expect(energyVsResting(kcal, 1320)?.band).toBe("within");
@@ -165,7 +236,14 @@ describe("daily intake", () => {
   });
 
   it("checks supplement-only upper limits against the supplements: magnesium and folic acid", () => {
-    const r = intakeTotals([{ id: "s", kind: "supplement", nutrient: "magnesium", amount: 400 }, { id: "f", kind: "supplement", nutrient: "folate", amount: 400 }], [], db);
+    const r = intakeTotals(
+      [
+        { id: "s", kind: "supplement", nutrient: "magnesium", amount: 400 },
+        { id: "f", kind: "supplement", nutrient: "folate", amount: 400 },
+      ],
+      [],
+      db,
+    );
     const rows = new Map(nutrientRows(r.totals, db, nutrients, { sex: "f", age: 40 }, r.supplements).map((x) => [x.nutrient.id, x]));
     expect(rows.get("magnesium")!.upperLimit).toMatchObject({ amount: 250, compared: 400, from: "supplements" });
     expect(rows.get("magnesium")!.status).toBe("above-upper-limit");
@@ -218,11 +296,26 @@ describe("daily intake", () => {
   describe("loading a protocol", () => {
     let n = 0;
     const id = () => `i${++n}`;
-    const item = (label: string, category: "supplement" | "diet" | "medication" | "lifestyle", amount?: string, extra = {}) => ({ id: label, label, category, when: "morning" as const, ...(amount ? { amount } : {}), ...extra });
+    const item = (label: string, category: "supplement" | "diet" | "medication" | "lifestyle", amount?: string, extra = {}) => ({
+      id: label,
+      label,
+      category,
+      when: "morning" as const,
+      ...(amount ? { amount } : {}),
+      ...extra,
+    });
 
     it("brings in meals, table foods and supplements written in their unit", () => {
       const r = protocolToIntake(
-        { id: "p", items: [item("Porridge", "diet", "2 portions", { mealId: "m1" }), item("Kiwi fruit, flesh and seeds", "diet", "75 g"), item("Vitamin D3", "supplement", "25 µg"), item("Magnesium", "supplement", "1,000 mg")] },
+        {
+          id: "p",
+          items: [
+            item("Porridge", "diet", "2 portions", { mealId: "m1" }),
+            item("Kiwi fruit, flesh and seeds", "diet", "75 g"),
+            item("Vitamin D3", "supplement", "25 µg"),
+            item("Magnesium", "supplement", "1,000 mg"),
+          ],
+        },
         [breakfast],
         { ...db, foods: db.foods.map((f) => (f[0] === kiwi ? ([f[0], "Kiwi fruit, flesh and seeds", ...f.slice(2)] as typeof f) : f)) },
         nutrients,
@@ -237,7 +330,13 @@ describe("daily intake", () => {
     });
 
     it("asks for an amount instead of converting or guessing one", () => {
-      const r = protocolToIntake({ id: "p", items: [item("Vitamin D3", "supplement", "2000 IU"), item("Zinc", "supplement"), item("Fish oil", "supplement", "2 capsules")] }, [], db, nutrients, id);
+      const r = protocolToIntake(
+        { id: "p", items: [item("Vitamin D3", "supplement", "2000 IU"), item("Zinc", "supplement"), item("Fish oil", "supplement", "2 capsules")] },
+        [],
+        db,
+        nutrients,
+        id,
+      );
       expect(r.items).toEqual([]);
       expect(r.needsAmount).toEqual([
         { planId: "p", itemId: "Vitamin D3", label: "Vitamin D3", key: "vitaminD", unit: "µg", written: "2000 IU" },
@@ -248,7 +347,17 @@ describe("daily intake", () => {
 
     it("leaves out what isn't food or a counted nutrient, with the reason", () => {
       const r = protocolToIntake(
-        { id: "p", items: [item("Creatine", "supplement", "5 g"), item("Multivitamin", "supplement"), item("Metformin", "medication"), item("Sauna", "lifestyle"), item("Gone meal", "diet", undefined, { mealId: "x" }), item("Less sugar", "diet")] },
+        {
+          id: "p",
+          items: [
+            item("Creatine", "supplement", "5 g"),
+            item("Multivitamin", "supplement"),
+            item("Metformin", "medication"),
+            item("Sauna", "lifestyle"),
+            item("Gone meal", "diet", undefined, { mealId: "x" }),
+            item("Less sugar", "diet"),
+          ],
+        },
         [breakfast],
         db,
         nutrients,

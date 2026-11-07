@@ -1,8 +1,8 @@
-import { useId, useState } from "react";
 import { itemsByTime, pairWarnings } from "@bt/shared/core/plans";
+import { useId, useState } from "react";
 import { savePlan } from "../../../db/db";
 import { TIME_LABEL, whenExtras } from "../../components/PlanWhen";
-import { Button, CheckIcon, inputStyles, eyebrowSmallStyles, cardStyles, cx } from "../../components/ui";
+import { Button, CheckIcon, cardStyles, cx, eyebrowSmallStyles, inputStyles } from "../../components/ui";
 import { NUTRIENTS } from "../../knowledge";
 import { href } from "../../router";
 import { setHabitState, type Turn } from "../store";
@@ -50,11 +50,14 @@ export function ProtocolTurn({ turn }: { turn: Extract<Turn, { role: "protocol" 
     <div className={cx("flex flex-col gap-3 p-3", cardStyles)}>
       <div>
         <p className="text-sm font-medium">
-          {turn.intent === "recommend" ? "Suggested protocol" : "Protocol from your text"} · {turn.plan.items.length} {turn.plan.items.length === 1 ? "item" : "items"}
+          {turn.intent === "recommend" ? "Suggested protocol" : "Protocol from your text"} · {turn.plan.items.length}{" "}
+          {turn.plan.items.length === 1 ? "item" : "items"}
         </p>
-        <p className="mt-1 text-sm text-ink-2">{turn.intent === "recommend"
-          ? "Review this draft. It has no medicines or suggested doses. Creating it does not start it as a habit; you can edit it on the Protocols page."
-          : "Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards."}</p>
+        <p className="mt-1 text-sm text-ink-2">
+          {turn.intent === "recommend"
+            ? "Review this draft. It has no medicines or suggested doses. Creating it does not start it as a habit; you can edit it on the Protocols page."
+            : "Check that every item, time and amount matches what you wrote. You can change anything on the Protocols page afterwards."}
+        </p>
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor={nameId} className="text-sm font-medium">

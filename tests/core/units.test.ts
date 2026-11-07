@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import {
   deltaFromCanonical,
   formatValue,
@@ -11,6 +10,7 @@ import {
   toCanonical,
   UnitError,
 } from "@bt/shared/core/units";
+import { describe, expect, it } from "vitest";
 import { def } from "../helpers";
 
 describe("normalizeUnit", () => {

@@ -31,7 +31,9 @@ export function bodyFatGuide(age: number | undefined, sex: Profile["sex"]): Body
   const row = bodyFatDef.defaultRanges.find((r) => r.sex === sex && age >= r.ageFrom && age < r.ageTo);
   if (!row) return undefined;
   const veryHigh = UPPER[sex][row.ageFrom];
-  return veryHigh === undefined ? undefined : { sex, ageFrom: row.ageFrom, ageTo: row.ageTo, ageThrough: row.ageTo - 1, low: row.low, high: row.high, veryHigh };
+  return veryHigh === undefined
+    ? undefined
+    : { sex, ageFrom: row.ageFrom, ageTo: row.ageTo, ageThrough: row.ageTo - 1, low: row.low, high: row.high, veryHigh };
 }
 
 function isPercentage(value: number): boolean {
@@ -97,7 +99,10 @@ export function bodyFatComparison(ms: readonly Measurement[], profile: Profile, 
   const guide = bodyFatGuide(age, profile.sex);
   const value = latest && !latest.qualifier && isPercentage(latest.value) ? latest.value : undefined;
   return {
-    latest, age, guide, value,
+    latest,
+    age,
+    guide,
+    value,
     band: guide && value !== undefined ? bodyFatBand(value, guide) : undefined,
     // Adult reference only; no personal fitness label when age is unknown or under 20.
     fitness: age !== undefined && age >= 20 && value !== undefined ? fitnessFatBand(value, profile.sex) : undefined,

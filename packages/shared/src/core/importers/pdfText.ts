@@ -19,7 +19,10 @@ export function piecesToLines(pieces: readonly TextPiece[]): string[] {
   const items = pieces.filter((p) => p.str.trim() !== "");
   if (items.length === 0) return [];
 
-  const heights = items.map((p) => p.height).filter((h) => h > 0).sort((a, b) => a - b);
+  const heights = items
+    .map((p) => p.height)
+    .filter((h) => h > 0)
+    .sort((a, b) => a - b);
   const typical = heights[Math.floor(heights.length / 2)] ?? 10;
   const tolerance = typical * 0.5;
 

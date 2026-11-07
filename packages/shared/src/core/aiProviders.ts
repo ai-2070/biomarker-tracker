@@ -325,10 +325,20 @@ export const isLocalUrl = (u: URL): boolean => u.hostname === "localhost" || u.h
 
 // Matches the installed Mistral SDK's modelsWithoutReasoningEffort capability gate.
 const MISTRAL_WITHOUT_EFFORT: Readonly<Record<string, true | undefined>> = {
-  "codestral-2508": true, "codestral-latest": true, "ministral-14b-2512": true, "ministral-14b-latest": true,
-  "ministral-3b-2512": true, "ministral-3b-latest": true, "ministral-8b-2512": true, "ministral-8b-latest": true,
-  "mistral-code-fim-latest": true, "mistral-code-latest": true, "mistral-large-latest": true, "mistral-large-2512": true,
-  "voxtral-small-2507": true, "voxtral-small-latest": true,
+  "codestral-2508": true,
+  "codestral-latest": true,
+  "ministral-14b-2512": true,
+  "ministral-14b-latest": true,
+  "ministral-3b-2512": true,
+  "ministral-3b-latest": true,
+  "ministral-8b-2512": true,
+  "ministral-8b-latest": true,
+  "mistral-code-fim-latest": true,
+  "mistral-code-latest": true,
+  "mistral-large-latest": true,
+  "mistral-large-2512": true,
+  "voxtral-small-2507": true,
+  "voxtral-small-latest": true,
 };
 
 /** Only offer effort when the selected model's transport supports it. */
@@ -343,12 +353,14 @@ export function canUse(choice: ModelChoice | undefined, config: ProviderConfig |
   const info = providerInfo(choice.provider);
   if (!info) return { ok: false, reason: "Unknown provider." };
   if (!choice.model.trim() && !info.modelOptional) return { ok: false, reason: "Choose a model." };
-  if (choice.effort && !modelEfforts(choice.provider, choice.model).includes(choice.effort)) return { ok: false, reason: `${info.label} doesn't support the effort level "${choice.effort}" for this model.` };
+  if (choice.effort && !modelEfforts(choice.provider, choice.model).includes(choice.effort))
+    return { ok: false, reason: `${info.label} doesn't support the effort level "${choice.effort}" for this model.` };
   const c = config ?? {};
 
   // Agents: installed-or-not is checked by the server; their profile name goes on a command line.
   if (info.kind === "agent") {
-    if (c.profile && !/^[\w.:-]{1,80}$/.test(c.profile)) return { ok: false, reason: `The ${info.profileLabel ?? "profile"} name can only use letters, numbers, dots, dashes and colons.` };
+    if (c.profile && !/^[\w.:-]{1,80}$/.test(c.profile))
+      return { ok: false, reason: `The ${info.profileLabel ?? "profile"} name can only use letters, numbers, dots, dashes and colons.` };
     if (choice.model && !/^[\w./:@-]{1,120}$/.test(choice.model)) return { ok: false, reason: "The model name has characters that aren't allowed." };
     return { ok: true };
   }

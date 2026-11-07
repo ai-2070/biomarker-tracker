@@ -1,10 +1,45 @@
+import {
+  chooseFrom,
+  classify,
+  currentDecisions,
+  type Decision,
+  designOf,
+  type EvidenceRecord,
+  largeTrialsSince,
+  plainText,
+  type Question,
+  type ScreeningMode,
+  sampleSize,
+  screeningInput,
+  screeningPrompt,
+  splitByScreening,
+} from "@bt/shared/core/evidenceMap";
 import { describe, expect, it, vi } from "vitest";
-import { chooseFrom, classify, currentDecisions, designOf, largeTrialsSince, plainText, sampleSize, screeningInput, screeningPrompt, splitByScreening, type Decision, type EvidenceRecord, type Question, type ScreeningMode } from "@bt/shared/core/evidenceMap";
 import { screenOutcome } from "../../tools/evidence/screening";
 
 const question: Question = { population: "Adults", intervention: "Vitamin D", comparison: "Placebo", outcome: "Fractures" };
-const review = (patch: Partial<EvidenceRecord> = {}) => classify({ pmid: "100", title: "Vitamin D fractures: systematic review", abstract: "A review of randomized supplementation trials.", year: 2026, pubTypes: ["Systematic Review"], mesh: ["Humans"], citedBy: 0, ...patch }, [{ id: "fractures", title: /fractures/i }]);
-const approved = (r = review(), mode: ScreeningMode = "supplement", by = "Claude Code (opus)"): Decision => ({ pmid: r.pmid!, fits: "yes", reason: "Matches the question.", input: screeningInput(question, r, mode), by, at: "2026-10-29" });
+const review = (patch: Partial<EvidenceRecord> = {}) =>
+  classify(
+    {
+      pmid: "100",
+      title: "Vitamin D fractures: systematic review",
+      abstract: "A review of randomized supplementation trials.",
+      year: 2026,
+      pubTypes: ["Systematic Review"],
+      mesh: ["Humans"],
+      citedBy: 0,
+      ...patch,
+    },
+    [{ id: "fractures", title: /fractures/i }],
+  );
+const approved = (r = review(), mode: ScreeningMode = "supplement", by = "Claude Code (opus)"): Decision => ({
+  pmid: r.pmid!,
+  fits: "yes",
+  reason: "Matches the question.",
+  input: screeningInput(question, r, mode),
+  by,
+  at: "2026-10-29",
+});
 
 describe("evidence review: extraction and classification", () => {
   it("preserves encoded and literal inequalities, facts between them, and encoded formatting", () => {
@@ -21,7 +56,11 @@ describe("evidence review: extraction and classification", () => {
     expect(chooseFrom([systematic, meta], 1).map((r) => r.pmid)).toEqual(["meta"]);
   });
   it("does not promote dose numbers to participant counts or large trials", () => {
-    const r = review({ title: "Vitamin D fractures", pubTypes: ["Randomized Controlled Trial"], abstract: "In this randomized trial (n = 60), we assessed vitamin D 2000 IU in adults with fractures." });
+    const r = review({
+      title: "Vitamin D fractures",
+      pubTypes: ["Randomized Controlled Trial"],
+      abstract: "In this randomized trial (n = 60), we assessed vitamin D 2000 IU in adults with fractures.",
+    });
     expect(r.n).toBe(60);
     expect(largeTrialsSince([r], "fractures", 2020)).toEqual([]);
     expect(sampleSize("Vitamin D 2000 IU in adults with fractures.")).toBeUndefined();
@@ -30,7 +69,9 @@ describe("evidence review: extraction and classification", () => {
     expect(largeTrialsSince([large], "fractures", 2020).map((r) => r.pmid)).toEqual(["large"]);
   });
   it("prefers actual randomisation to screened pools, arm counts, intervention identifiers and dates", () => {
-    const abstract = plainText("<h4>Methods</h4>Twenty-seven participants were randomized to active treatment (n = 13) or placebo (n = 14).<h4>Results</h4>Recruitment identified 1378 potentially eligible individuals.");
+    const abstract = plainText(
+      "<h4>Methods</h4>Twenty-seven participants were randomized to active treatment (n = 13) or placebo (n = 14).<h4>Results</h4>Recruitment identified 1378 potentially eligible individuals.",
+    );
     expect(sampleSize(abstract)).toBe(27);
     expect(sampleSize("Patients (n = 154) received MD1003. MD1003 patients were followed.")).toBe(154);
     expect(sampleSize("Of 3722 women screened, 555 were randomly assigned to three arms.")).toBe(555);
@@ -47,7 +88,12 @@ describe("evidence review: current-input decisions and individual provenance", (
     const r = review();
     const decision = approved(r);
     expect(currentDecisions(question, [r], "supplement", [decision])).toEqual([decision]);
-    for (const changed of [review({ title: r.title + " updated" }), review({ abstract: "New abstract." }), { ...r, design: "meta-analysis" as const }, { ...r, year: 2025 }]) {
+    for (const changed of [
+      review({ title: r.title + " updated" }),
+      review({ abstract: "New abstract." }),
+      { ...r, design: "meta-analysis" as const },
+      { ...r, year: 2025 },
+    ]) {
       expect(currentDecisions(question, [changed], "supplement", [decision])).toEqual([]);
     }
     expect(currentDecisions({ ...question, outcome: "Death" }, [r], "supplement", [decision])).toEqual([]);
@@ -67,21 +113,48 @@ describe("evidence review: current-input decisions and individual provenance", (
       expect(prompt).toContain("Now available:");
       expect(prompt).not.toContain("PMID 200");
       expect(prompt).toContain("PMID 300");
-      return JSON.stringify([{ pmid: "100", fits: "yes", reason: "Now matches." }, { pmid: "300", fits: "partly", reason: "Different population." }]);
+      return JSON.stringify([
+        { pmid: "100", fits: "yes", reason: "Now matches." },
+        { pmid: "300", fits: "partly", reason: "Different population." },
+      ]);
     });
     const saved: Decision[][] = [];
-    const result = await screenOutcome({ question, reviews: [refreshed, unchanged, other], mode: "supplement", previous: [stale, retained, legacy], by: "Claude Code (sonnet)", ask, onBatch: (d) => saved.push(d), today: () => "2026-10-30" });
+    const result = await screenOutcome({
+      question,
+      reviews: [refreshed, unchanged, other],
+      mode: "supplement",
+      previous: [stale, retained, legacy],
+      by: "Claude Code (sonnet)",
+      ask,
+      onBatch: (d) => saved.push(d),
+      today: () => "2026-10-30",
+    });
     expect(ask).toHaveBeenCalledTimes(1);
     expect(result.find((d) => d.pmid === "200")).toEqual(retained);
-    expect(result.find((d) => d.pmid === "100")).toMatchObject({ fits: "yes", by: "Claude Code (sonnet)", at: "2026-10-30", input: screeningInput(question, refreshed, "supplement") });
+    expect(result.find((d) => d.pmid === "100")).toMatchObject({
+      fits: "yes",
+      by: "Claude Code (sonnet)",
+      at: "2026-10-30",
+      input: screeningInput(question, refreshed, "supplement"),
+    });
     expect(result.find((d) => d.pmid === "300")).toMatchObject({ fits: "partly", by: "Claude Code (sonnet)" });
     expect(saved).toEqual([result]);
   });
   it("keeps short replies partial and retries only missing reviews, never manufacturing approvals", async () => {
-    const first = review(), missing = review({ pmid: "200" });
+    const first = review(),
+      missing = review({ pmid: "200" });
     const ask = vi.fn().mockResolvedValueOnce('[{"pmid":"100","fits":"yes","reason":"Matches."}]').mockResolvedValueOnce("malformed reply");
     const onBatch = vi.fn();
-    const result = await screenOutcome({ question, reviews: [first, missing], mode: "supplement", previous: [], by: "Fixture model", ask, onBatch, today: () => "2026-10-30" });
+    const result = await screenOutcome({
+      question,
+      reviews: [first, missing],
+      mode: "supplement",
+      previous: [],
+      by: "Fixture model",
+      ask,
+      onBatch,
+      today: () => "2026-10-30",
+    });
     expect(ask).toHaveBeenCalledTimes(2);
     expect(ask.mock.calls[1]![0]).not.toContain("PMID 100");
     expect(ask.mock.calls[1]![0]).toContain("PMID 200");
@@ -92,7 +165,19 @@ describe("evidence review: current-input decisions and individual provenance", (
   });
   it("keeps model errors distinct from completed empty screening", async () => {
     const onBatch = vi.fn();
-    await expect(screenOutcome({ question, reviews: [review()], mode: "supplement", previous: [], by: "Fixture model", ask: async () => { throw new Error("Fixture process failed"); }, onBatch })).rejects.toThrow("Fixture process failed");
+    await expect(
+      screenOutcome({
+        question,
+        reviews: [review()],
+        mode: "supplement",
+        previous: [],
+        by: "Fixture model",
+        ask: async () => {
+          throw new Error("Fixture process failed");
+        },
+        onBatch,
+      }),
+    ).rejects.toThrow("Fixture process failed");
     expect(onBatch).not.toHaveBeenCalled();
   });
   it.each(["food", "lifestyle", "wholefood", "any-design"] as const)("keeps %s eligibility and prompt mode separate from trial-only screening", (mode) => {

@@ -41,7 +41,8 @@ export function writeZip(entries: ZipEntry[]): Buffer {
   let archiveSize = 22;
   for (const e of entries) {
     expanded += e.data.length;
-    if (expanded > MAX_ZIP_EXPANDED_BYTES) throw new Error("The profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
+    if (expanded > MAX_ZIP_EXPANDED_BYTES)
+      throw new Error("The profile exceeds the 500 MB expanded backup limit. Keep some attachments separately before backing up.");
     if (Buffer.byteLength(e.name, "utf8") > 65535) throw new Error("A zip file name is too long.");
   }
   const parts: Buffer[] = [];
@@ -96,7 +97,14 @@ export function writeZip(entries: ZipEntry[]): Buffer {
 
 /** A name that stays inside the folder it is unpacked into. */
 export function safeEntryName(name: string): boolean {
-  return !!name && !name.startsWith("/") && !name.includes("\\") && !name.split("/").some((p) => p === ".." || p === ".") && !/^[a-z]:/i.test(name) && !name.includes("\0");
+  return (
+    !!name &&
+    !name.startsWith("/") &&
+    !name.includes("\\") &&
+    !name.split("/").some((p) => p === ".." || p === ".") &&
+    !/^[a-z]:/i.test(name) &&
+    !name.includes("\0")
+  );
 }
 
 /** Reads a zip. Throws on anything damaged, unsupported or unsafe. Folder entries are skipped. */

@@ -2,11 +2,12 @@
 // first question that uses it, on 127.0.0.1 and a free port, with a new token each start; its run store is
 // data/eve (cwd). It is an owned process tree (processTree.ts): stopped with the server, and it also stops
 // when its stdin closes (launch.mjs), so it never outlives the server. Started again on demand if it exits.
+
+import type { ChildProcess } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import net from "node:net";
 import path from "node:path";
-import type { ChildProcess } from "node:child_process";
 import { killTree, spawnTree } from "../processTree";
 import { DATA, ROOT } from "../store";
 import { which } from "../which";

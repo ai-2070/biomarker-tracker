@@ -1,8 +1,8 @@
 import "fake-indexeddb/auto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { demoProfile } from "@bt/shared/core/demo";
 import { buildSleepTiming, pairSleepCardiac } from "@bt/shared/core/sleepTiming";
 import type { Measurement } from "@bt/shared/core/types";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { ensureExampleSleepData, saveDeviceMeasurements, TrackerDB } from "../../apps/web/src/db/db";
 
 let database: TrackerDB;
@@ -10,12 +10,15 @@ beforeEach(async () => {
   database = new TrackerDB(`example-sleep-${crypto.randomUUID()}`);
   await database.open();
 });
-afterEach(async () => { await database.delete(); });
+afterEach(async () => {
+  await database.delete();
+});
 
 const today = "2026-10-31";
 function legacyExample() {
   const example = demoProfile(today);
-  const measurements = example.measurements.filter((m) => !m.id.startsWith("example-sleep-rhr-"))
+  const measurements = example.measurements
+    .filter((m) => !m.id.startsWith("example-sleep-rhr-"))
     .map(({ sleepSessions: _timing, ...m }, index) => ({ ...m, savedOrder: index + 1 }));
   return { profile: example.person, measurements };
 }
@@ -42,10 +45,8 @@ describe("existing fictional example sleep data", () => {
     const timing = buildSleepTiming(saved, { today });
     expect(timing.nights).toHaveLength(70);
     expect(timing.regularity.pairs).toBe(69);
-    expect(pairSleepCardiac(timing.nights, saved, "resting_hr", "midpoint").points.map((p) => p.date))
-      .toEqual(timing.nights.map((night) => night.date));
-    expect(pairSleepCardiac(timing.nights, saved, "hrv_resting", "midpoint").points.map((p) => p.date))
-      .toEqual(timing.nights.map((night) => night.date));
+    expect(pairSleepCardiac(timing.nights, saved, "resting_hr", "midpoint").points.map((p) => p.date)).toEqual(timing.nights.map((night) => night.date));
+    expect(pairSleepCardiac(timing.nights, saved, "hrv_resting", "midpoint").points.map((p) => p.date)).toEqual(timing.nights.map((night) => night.date));
     const resting = saved.filter((m) => m.biomarkerId === "resting_hr");
     expect(new Set(resting.map((m) => m.date)).size).toBe(resting.length);
     const beforeRepeat = await database.measurements.toArray();

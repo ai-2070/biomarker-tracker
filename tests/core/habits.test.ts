@@ -1,8 +1,17 @@
+import {
+  chanceNote,
+  defaultRetestDays,
+  HABIT_HINTS,
+  habitsOf,
+  pickedAfterResults,
+  suggestMarkers,
+  summarizeWatch,
+  syncWatch,
+  watchFor,
+} from "@bt/shared/core/habits";
+import type { Experiment, Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
-import { HABIT_HINTS, chanceNote, defaultRetestDays, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch, syncWatch, watchFor } from "@bt/shared/core/habits";
-import type { Measurement } from "@bt/shared/core/types";
-import type { Experiment, ProtocolEntry } from "@bt/shared/core/types";
 
 const d3: ProtocolEntry = { id: "p1", label: "Vitamin D3 1000 IU daily", category: "supplement", start: "2026-01-10" };
 const oats: ProtocolEntry = { id: "p2", label: "Oats every day", category: "diet", start: "2025-06-01", end: "2025-09-01" };
@@ -32,7 +41,15 @@ describe("habit marker suggestions", () => {
         ],
       },
     };
-    expect(suggestMarkers(routine, (id) => id === "ldl")).toEqual(["ldl", "vitamin_d", "ferritin", "hemoglobin", "iron", "transferrin_saturation", "total_cholesterol"]);
+    expect(suggestMarkers(routine, (id) => id === "ldl")).toEqual([
+      "ldl",
+      "vitamin_d",
+      "ferritin",
+      "hemoglobin",
+      "iron",
+      "transferrin_saturation",
+      "total_cholesterol",
+    ]);
     expect(suggestMarkers(d3)).toEqual(suggestMarkers(d3.label));
   });
 });
@@ -40,7 +57,16 @@ describe("habit marker suggestions", () => {
 describe("watching a habit", () => {
   it("follows the log entry's name and dates", () => {
     const w = watchFor(oats, ["ldl", "ldl"], 56, "2026-10-28");
-    expect(w).toEqual({ change: "Oats every day", category: "diet", markerIds: ["ldl"], start: "2025-06-01", retestAfterDays: 56, end: "2025-09-01", protocolId: "p2", chosenOn: "2026-10-28" });
+    expect(w).toEqual({
+      change: "Oats every day",
+      category: "diet",
+      markerIds: ["ldl"],
+      start: "2025-06-01",
+      retestAfterDays: 56,
+      end: "2025-09-01",
+      protocolId: "p2",
+      chosenOn: "2026-10-28",
+    });
     const e: Experiment = { id: "e1", ...w };
     const synced = syncWatch(e, { ...oats, label: "Oats daily", end: undefined });
     expect(synced.change).toBe("Oats daily");
@@ -54,7 +80,15 @@ describe("watching a habit", () => {
   });
   it("lists entries with their watch, and keeps watches whose entry was deleted", () => {
     const e1: Experiment = { id: "e1", ...watchFor(oats, ["ldl"], 56, "2025-06-01") };
-    const orphan: Experiment = { id: "e2", change: "Kiwis", category: "diet", markerIds: ["ferritin"], start: "2024-01-01", retestAfterDays: 56, protocolId: "gone" };
+    const orphan: Experiment = {
+      id: "e2",
+      change: "Kiwis",
+      category: "diet",
+      markerIds: ["ferritin"],
+      start: "2024-01-01",
+      retestAfterDays: 56,
+      protocolId: "gone",
+    };
     const hs = habitsOf([d3, oats], [e1, orphan]);
     expect(hs.map((h) => h.id)).toEqual(["p1", "e2", "p2"]);
     expect(hs.find((h) => h.id === "p2")?.watch?.id).toBe("e1");
@@ -64,7 +98,15 @@ describe("watching a habit", () => {
 });
 
 describe("what changed", () => {
-  const m = (id: string, date: string, value: number): Measurement => ({ id: `${id}-${date}`, biomarkerId: "ldl", date, value, originalValue: value, originalUnit: "mmol/L", source: "manual" });
+  const m = (id: string, date: string, value: number): Measurement => ({
+    id: `${id}-${date}`,
+    biomarkerId: "ldl",
+    date,
+    value,
+    originalValue: value,
+    originalUnit: "mmol/L",
+    source: "manual",
+  });
   const watch: Experiment = { id: "e1", change: "Oats", category: "diet", markerIds: ["ldl", "vitamin_d"], start: "2025-06-01", retestAfterDays: 56 };
   it("puts a change beyond normal variation first", () => {
     const s = summarizeWatch(watch, BIOMARKER_MAP, [m("a", "2025-05-01", 3.8), m("b", "2025-09-01", 2.9)], "2025-10-01");

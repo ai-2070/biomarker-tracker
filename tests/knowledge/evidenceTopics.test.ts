@@ -1,10 +1,10 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
 import type { ComparisonTopicFile } from "@bt/shared/core/foodComparison";
 import type { LifestyleDef } from "@bt/shared/core/lifestyle";
-import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
+import type { WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import { describe, expect, it } from "vitest";
 import { TOPICS } from "../../tools/evidence/topics";
 
 const ROOT = join(import.meta.dirname, "..", "..");
@@ -37,7 +37,8 @@ describe("evidence map search definitions", () => {
     expect(new Set(t.outcomes.map((o) => o.id)).size).toBe(t.outcomes.length);
     for (const o of t.outcomes) {
       if (o.finding) expect(findings, `${t.id}/${o.id}`).toContain(o.finding);
-      for (const part of ["population", "intervention", "comparison", "outcome"] as const) expect(o.question[part].length, `${t.id}/${o.id} ${part}`).toBeGreaterThan(3);
+      for (const part of ["population", "intervention", "comparison", "outcome"] as const)
+        expect(o.question[part].length, `${t.id}/${o.id} ${part}`).toBeGreaterThan(3);
       // A food claim or lifestyle finding is found by its own search; a supplement outcome by words in the title.
       if (t.kind === "food" || t.kind === "lifestyle" || t.kind === "wholefood") expect(o.query, `${t.id}/${o.id}`).toBeTruthy();
       else expect(o.title, `${t.id}/${o.id}`).toBeTruthy();
@@ -47,6 +48,7 @@ describe("evidence map search definitions", () => {
 
   it("covers every food comparison claim and lifestyle finding, and has one definition per nutrient or topic", () => {
     expect(new Set(TOPICS.map((t) => t.id)).size).toBe(TOPICS.length);
-    for (const t of TOPICS.filter((x) => x.kind === "food" || x.kind === "lifestyle" || x.kind === "wholefood")) expect(t.outcomes.map((o) => o.finding).sort()).toEqual(targets(t).sort());
+    for (const t of TOPICS.filter((x) => x.kind === "food" || x.kind === "lifestyle" || x.kind === "wholefood"))
+      expect(t.outcomes.map((o) => o.finding).sort()).toEqual(targets(t).sort());
   });
 });

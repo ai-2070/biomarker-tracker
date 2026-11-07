@@ -1,5 +1,5 @@
-import { visualErrors, type LifestyleVisual } from "./lifestyle";
-import { PRESCRIBING, citationErrors, findingErrors, type NutrientFinding } from "./nutrients";
+import { type LifestyleVisual, visualErrors } from "./lifestyle";
+import { citationErrors, findingErrors, type NutrientFinding, PRESCRIBING } from "./nutrients";
 import type { Citation, SafetyId } from "./types";
 
 /**
@@ -10,8 +10,31 @@ import type { Citation, SafetyId } from "./types";
  * is cited, and nothing is a personal amount or instruction.
  */
 
-export type FoodGroup = "fruit" | "vegetables" | "oils and fats" | "herbs and spices" | "nuts and seeds" | "fish" | "eggs and dairy" | "legumes" | "grains" | "drinks" | "sweets";
-export const FOOD_GROUPS: readonly FoodGroup[] = ["fruit", "vegetables", "oils and fats", "herbs and spices", "nuts and seeds", "fish", "eggs and dairy", "legumes", "grains", "drinks", "sweets"];
+export type FoodGroup =
+  | "fruit"
+  | "vegetables"
+  | "oils and fats"
+  | "herbs and spices"
+  | "nuts and seeds"
+  | "fish"
+  | "eggs and dairy"
+  | "legumes"
+  | "grains"
+  | "drinks"
+  | "sweets";
+export const FOOD_GROUPS: readonly FoodGroup[] = [
+  "fruit",
+  "vegetables",
+  "oils and fats",
+  "herbs and spices",
+  "nuts and seeds",
+  "fish",
+  "eggs and dairy",
+  "legumes",
+  "grains",
+  "drinks",
+  "sweets",
+];
 
 export interface WholeFoodDef {
   id: string;
@@ -123,13 +146,15 @@ export function validateWholeFoodDef(v: unknown): string[] {
         const at = `lore ${i + 1}`;
         if (!isObj(l) || !isStr(l.who) || !isStr(l.belief)) return void errs.push(`${at} needs who and belief`);
         if (l.note !== undefined && !isStr(l.note)) errs.push(`${at} note must be text`);
-        if (l.modern !== undefined && !MODERN_VERDICTS.includes(l.modern as ModernVerdict)) errs.push(`${at} modern must be one of ${MODERN_VERDICTS.join(", ")}`);
+        if (l.modern !== undefined && !MODERN_VERDICTS.includes(l.modern as ModernVerdict))
+          errs.push(`${at} modern must be one of ${MODERN_VERDICTS.join(", ")}`);
         if (l.finding !== undefined && !outcomes.has(String(l.finding))) errs.push(`${at} finding must be the outcome of a finding on this page`);
         if ((l.modern === "agrees" || l.modern === "disagrees") && l.finding === undefined) errs.push(`${at}: "${l.modern}" needs the finding it rests on`);
         if (!Array.isArray(l.sources) || l.sources.length === 0) errs.push(`${at} needs at least one source`);
         else
           for (const s of l.sources as unknown[]) {
-            if (!isObj(s) || !isStr(s.title) || (s.kind !== "ancient text" && s.kind !== "scholarship")) errs.push(`${at}: every source needs a title and a kind (ancient text or scholarship)`);
+            if (!isObj(s) || !isStr(s.title) || (s.kind !== "ancient text" && s.kind !== "scholarship"))
+              errs.push(`${at}: every source needs a title and a kind (ancient text or scholarship)`);
             else if (!isStr(s.url) && !isStr(s.doi) && !isStr(s.pmid)) errs.push(`${at}: every source needs a link, a DOI or a PMID`);
             else if (isStr(s.url) && !/^https:\/\//.test(s.url)) errs.push(`${at}: links must be https`);
           }
@@ -150,14 +175,20 @@ export function validateWholeFoodDef(v: unknown): string[] {
       });
     }
   }
-  if (!Array.isArray(v.tableFoods) || !v.tableFoods.every((t) => isObj(t) && isStr(t.id) && isStr(t.label) && typeof t.grams === "number" && t.grams > 0 && t.grams <= 1000))
+  if (
+    !Array.isArray(v.tableFoods) ||
+    !v.tableFoods.every((t) => isObj(t) && isStr(t.id) && isStr(t.label) && typeof t.grams === "number" && t.grams > 0 && t.grams <= 1000)
+  )
     errs.push("tableFoods need a CoFID id, a label and grams");
   if (!strList(v.markers)) errs.push("markers must be a list of marker ids");
   errs.push(...findingErrors(v.findings, "finding"));
   if (Array.isArray(v.findings) && v.findings.length === 0) errs.push("findings needs at least one finding");
   if (!Array.isArray(v.visuals) || v.visuals.length === 0) errs.push("visuals needs at least one visual");
   else (v.visuals as unknown[]).forEach((x, i) => errs.push(...visualErrors(x, `visual ${i + 1}`)));
-  if (!Array.isArray(v.whoShouldBeCareful) || !v.whoShouldBeCareful.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId)))))
+  if (
+    !Array.isArray(v.whoShouldBeCareful) ||
+    !v.whoShouldBeCareful.every((x) => isObj(x) && isStr(x.with) && isStr(x.note) && (x.safetyId === undefined || SAFETY_IDS.has(String(x.safetyId))))
+  )
     errs.push("whoShouldBeCareful needs with and note (and a known safetyId, if any)");
   if (!strList(v.cautions)) errs.push("cautions must be a list of strings");
   if (!strList(v.unknowns, 1)) errs.push("unknowns needs at least one point: say what isn't known");
@@ -189,7 +220,13 @@ export const wholeFoodPrescribes = (f: WholeFoodDef): string[] => wholeFoodText(
  * "EVOO 2 tbsp" → olive oil; "Blueberries"). Every word of the food's name must appear in the item.
  */
 export function wholeFoodFor(label: string, foods: readonly WholeFoodDef[]): WholeFoodDef | undefined {
-  const words = (s: string) => ` ${s.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/[^\p{L}\p{N}]+/gu, " ").trim()} `;
+  const words = (s: string) =>
+    ` ${s
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{M}/gu, "")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim()} `;
   const item = words(label);
   // "Egg-free diet", "No honey", "Sugar-free": about leaving the food out, not eating it.
   if (/ (free|no|without|avoid|avoiding|less|cut|skip) /.test(item)) return undefined;

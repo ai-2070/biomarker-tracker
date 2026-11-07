@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from "react";
 import type { Profile } from "@bt/shared/core/types";
+import { type FormEvent, useState } from "react";
 import { saveBirthMonth } from "../../db/db";
 import { useProfiles } from "../profiles";
 import { BirthMonthField } from "./BirthMonthField";
@@ -31,10 +31,21 @@ export function InlineBirthMonth({ profile, forLabel }: { profile: Profile; forL
   return (
     <form aria-label={`Birth details for ${forLabel}`} onSubmit={(event) => void save(event)} className="mt-3 flex max-w-sm flex-col items-start gap-3">
       <div className="w-full">
-        <BirthMonthField compact onChange={setDraft} onValidityChange={setValid} help="Only the month and year are kept. Save once for all age estimates in your profile." />
+        <BirthMonthField
+          compact
+          onChange={setDraft}
+          onValidityChange={setValid}
+          help="Only the month and year are kept. Save once for all age estimates in your profile."
+        />
       </div>
-      <Button type="submit" disabled={!valid || saving}>{saving ? "Saving…" : "Save"}</Button>
-      {error && <p className={errorStyles} role="alert">{error}</p>}
+      <Button type="submit" disabled={!valid || saving}>
+        {saving ? "Saving…" : "Save"}
+      </Button>
+      {error && (
+        <p className={errorStyles} role="alert">
+          {error}
+        </p>
+      )}
     </form>
   );
 }

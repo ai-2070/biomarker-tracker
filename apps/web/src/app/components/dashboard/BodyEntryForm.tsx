@@ -1,22 +1,17 @@
-import { useState, type FormEvent } from "react";
-
 import { Field } from "@base-ui/react/field";
-import { BODY_FIELDS, FITNESS_FIELDS, validateBodyEntry, type BodyEntryErrors, type BodyField, type GlucoseContext } from "@bt/shared/core/body";
-
-import { ChoiceGroup } from "../ChoiceGroup";
+import { BODY_FIELDS, type BodyEntryErrors, type BodyField, FITNESS_FIELDS, type GlucoseContext, validateBodyEntry } from "@bt/shared/core/body";
 import { todayIso } from "@bt/shared/core/dates";
-
 import { listUnits } from "@bt/shared/core/units";
+import { type FormEvent, useState } from "react";
 import { addMeasurements } from "../../../db/db";
 import { displayUnitFor } from "../../format";
 import { useDisplayUnits } from "../../hooks";
 import { BIOMARKER_MAP } from "../../knowledge";
 import { href } from "../../router";
-import { UnitSelect } from "../UnitSelect";
-
-import { Button, cx, errorStyles, inputStyles, labelStyles as formLabel } from "../ui";
-
+import { ChoiceGroup } from "../ChoiceGroup";
 import { More } from "../disclosure";
+import { UnitSelect } from "../UnitSelect";
+import { Button, cx, errorStyles, labelStyles as formLabel, inputStyles } from "../ui";
 
 const FIELD_LABEL: Record<BodyField, string> = {
   weight: "Weight",
@@ -62,7 +57,11 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
   async function submit(e: FormEvent) {
     e.preventDefault();
     const r = validateBodyEntry(
-      { date, values: Object.fromEntries(BODY_FIELDS.map((f) => [f, { value: values[f] ?? "", unit: units[f] }])), ...(glucoseContext ? { glucoseContext } : {}) },
+      {
+        date,
+        values: Object.fromEntries(BODY_FIELDS.map((f) => [f, { value: values[f] ?? "", unit: units[f] }])),
+        ...(glucoseContext ? { glucoseContext } : {}),
+      },
       BIOMARKER_MAP,
       today,
     );
@@ -97,7 +96,14 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
           </Field.Root>
           {opts.unitPick ? (
             <div className="shrink-0">
-              <UnitSelect compact labelClassName="sr-only" label={`${FIELD_LABEL[f]} unit`} units={listUnits(def)} value={units[f]} onChange={(u) => setUnits((s) => ({ ...s, [f]: u }))} />
+              <UnitSelect
+                compact
+                labelClassName="sr-only"
+                label={`${FIELD_LABEL[f]} unit`}
+                units={listUnits(def)}
+                value={units[f]}
+                onChange={(u) => setUnits((s) => ({ ...s, [f]: u }))}
+              />
             </div>
           ) : (
             <span className="min-h-11 shrink-0 content-center text-ink-2">{opts.suffix ?? def.canonicalUnit}</span>
@@ -162,8 +168,8 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
       </More>
       <More summary="Strength, balance and walking tests" boxed panelClassName="border-t border-line p-3">
         <p className="mt-2 text-sm text-ink-2">
-          Do each test the way its page describes, so your result can be compared with people of your age. Stop if anything hurts, and have
-          someone nearby for the balance tests.
+          Do each test the way its page describes, so your result can be compared with people of your age. Stop if anything hurts, and have someone nearby for
+          the balance tests.
         </p>
         <div className="mt-3 grid gap-4 sm:grid-cols-3">
           {field("pushups", { suffix: "push-ups" })}
@@ -210,7 +216,9 @@ export function BodyEntryForm({ onDone, cancel = true }: { onDone: (saved: numbe
             )}
           </div>
         </div>
-        <p className="text-sm text-ink-2">Fasting means nothing to eat for 8 hours, usually first thing in the morning. "After a meal" is about 2 hours after you started eating.</p>
+        <p className="text-sm text-ink-2">
+          Fasting means nothing to eat for 8 hours, usually first thing in the morning. "After a meal" is about 2 hours after you started eating.
+        </p>
       </fieldset>
 
       {errors.form && (

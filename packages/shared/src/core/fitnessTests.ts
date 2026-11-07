@@ -112,7 +112,7 @@ export function rowSpan(rows: readonly NormRow[], r: NormRow): [number, number] 
   const i = points.indexOf(r.ageFrom);
   const before = i > 0 ? (r.ageFrom - points[i - 1]!) / 2 : undefined;
   const after = i < points.length - 1 ? (points[i + 1]! - r.ageFrom) / 2 : undefined;
-  const half = (before ?? after ?? 0.5);
+  const half = before ?? after ?? 0.5;
   return [r.ageFrom - (before ?? after ?? half), r.ageFrom + (after ?? before ?? half)];
 }
 
@@ -150,7 +150,9 @@ export function ageMatch(set: NormSet, sex: Sex, value: number, higherIsBetter: 
   });
   if (better(result, rows[best]!.typical)) {
     const r = rows[best]!.r;
-    return best === 0 ? { kind: "youngest", ageFrom: r.ageFrom, ...(r.ageTo !== undefined && r.ageTo !== r.ageFrom ? { ageTo: r.ageTo } : {}) } : { kind: "best", age: Math.round(mid(r)) };
+    return best === 0
+      ? { kind: "youngest", ageFrom: r.ageFrom, ...(r.ageTo !== undefined && r.ageTo !== r.ageFrom ? { ageTo: r.ageTo } : {}) }
+      : { kind: "best", age: Math.round(mid(r)) };
   }
   for (let i = best; i < rows.length - 1; i++) {
     const a = rows[i]!;
@@ -219,7 +221,12 @@ export function placeInRow(set: NormSet, row: NormRow, result: number): NormPlac
       if (value >= p.v) above = p.n;
       else if (below === undefined) below = p.n;
     }
-    return { kind: "percentile", ...(above !== undefined ? { above } : {}), ...(below !== undefined ? { below } : {}), ...(row.p50 !== undefined ? { median: row.p50 } : {}) };
+    return {
+      kind: "percentile",
+      ...(above !== undefined ? { above } : {}),
+      ...(below !== undefined ? { below } : {}),
+      ...(row.p50 !== undefined ? { median: row.p50 } : {}),
+    };
   }
   if (set.kind === "mean_sd" && row.mean !== undefined && row.sd !== undefined && row.sd > 0) {
     return { kind: "mean_sd", mean: row.mean, sd: row.sd, z: (value - row.mean) / row.sd };
@@ -268,7 +275,11 @@ export function isDeviceWalkingAverage(m: { biomarkerId: string; source?: Measur
  * Every fitness test's latest result compared with the norms, for Brain: the same comparisons the
  * page shows, so the model reports them instead of working anything out.
  */
-export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: readonly { biomarkerId: string; date: string; value: number; source?: Measurement["source"] }[], person: { sex?: Sex; ageAt?: (date: string) => number }) {
+export function fitnessSummary(
+  tests: readonly FitnessTestDef[],
+  measurements: readonly { biomarkerId: string; date: string; value: number; source?: Measurement["source"] }[],
+  person: { sex?: Sex; ageAt?: (date: string) => number },
+) {
   return tests.flatMap((t) => {
     const last = sortByDate(measurements.filter((m) => m.biomarkerId === t.id)).at(-1);
     if (!last) return [];
@@ -286,7 +297,11 @@ export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: r
         comparedWith: places.map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
         ...(person.sex && !deviceAverage
           ? {
-              comparedWithYoungest: placeAmongYoungest(t, last.value, person.sex).map((r) => ({ norms: r.set.label, group: rowWho(r.row), place: describePlace(r.place, t.higherIsBetter) })),
+              comparedWithYoungest: placeAmongYoungest(t, last.value, person.sex).map((r) => ({
+                norms: r.set.label,
+                group: rowWho(r.row),
+                place: describePlace(r.place, t.higherIsBetter),
+              })),
               typicalOfAge: t.norms.flatMap((set) => {
                 const m = ageMatch(set, person.sex!, last.value, t.higherIsBetter);
                 return m ? [{ norms: set.label, ...m }] : [];
@@ -295,7 +310,9 @@ export function fitnessSummary(tests: readonly FitnessTestDef[], measurements: r
           : {}),
         ...(deviceAverage
           ? { note: "Daily step-speed average, not a timed gait test. Test norms, age equivalents and clinical cut-offs do not apply." }
-          : places.length === 0 ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." } : {}),
+          : places.length === 0
+            ? { note: who.sex && who.age !== undefined ? "No norms cover this age and sex." : "Sex and birth month are needed to compare." }
+            : {}),
         ...(met.length ? { thresholdsMet: met.map((c) => c.label) } : {}),
       },
     ];
@@ -368,9 +385,13 @@ export function validateFitnessTest(v: unknown): string[] {
       if (!["bands", "percentiles", "mean_sd"].includes(n.kind as string)) e.push(`${w}: unknown kind`);
       if (!Array.isArray(n.rows) || n.rows.length === 0) return void e.push(`${w}: no rows`);
       for (const r of n.rows as unknown[]) {
-        if (!isObj(r)) { e.push(`${w}: a row is not an object`); continue; }
+        if (!isObj(r)) {
+          e.push(`${w}: a row is not an object`);
+          continue;
+        }
         if (!["m", "f", "any"].includes(r.sex as string)) e.push(`${w}: a row has no sex`);
-        if (typeof r.ageFrom !== "number" || (r.ageTo !== undefined && (typeof r.ageTo !== "number" || r.ageTo < r.ageFrom))) e.push(`${w}: a row's ages are wrong`);
+        if (typeof r.ageFrom !== "number" || (r.ageTo !== undefined && (typeof r.ageTo !== "number" || r.ageTo < r.ageFrom)))
+          e.push(`${w}: a row's ages are wrong`);
         if (n.kind === "percentiles") {
           const ps = PERCENTILES.filter((p) => r[p] !== undefined).map((p) => r[p] as number);
           if (ps.length < 2) e.push(`${w}: a row needs at least two percentiles`);
@@ -393,7 +414,8 @@ export function validateFitnessTest(v: unknown): string[] {
     else
       v.cutoffs.forEach((c, i) => {
         if (!isObj(c) || typeof c.label !== "string") return void e.push(`cut-off ${i + 1}: needs a label`);
-        if ([c.below, c.atOrBelow, c.above].filter((x) => typeof x === "number").length !== 1) e.push(`cut-off ${i + 1}: needs exactly one of below, atOrBelow, above`);
+        if ([c.below, c.atOrBelow, c.above].filter((x) => typeof x === "number").length !== 1)
+          e.push(`cut-off ${i + 1}: needs exactly one of below, atOrBelow, above`);
         e.push(...citationErrors(c.source, `cut-off ${i + 1}`));
       });
   }

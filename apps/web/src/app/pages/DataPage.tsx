@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { useLiveQuery } from "dexie-react-hooks";
-import { parseBackup, type Backup } from "@bt/shared/core/backup";
+import { type Backup, parseBackup } from "@bt/shared/core/backup";
 import { todayIso } from "@bt/shared/core/dates";
 import type { Profile } from "@bt/shared/core/types";
-import { deleteEverything, exportAll, getProfile, importBackup, setProfile, type ImportMode } from "../../db/db";
+import { useLiveQuery } from "dexie-react-hooks";
+import { useEffect, useRef, useState } from "react";
+import { deleteEverything, exportAll, getProfile, type ImportMode, importBackup, setProfile } from "../../db/db";
 import { localServer } from "../api";
 import { ConfirmDialog } from "../components/ConfirmDialog";
-import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
 import { DoctorReportExport } from "../components/DoctorReportExport";
-import { Button, Card, LinkButton, Notice, buttonStyles, cx, errorStyles } from "../components/ui";
+import { ProfileBasics, ProfileDetails } from "../components/ProfileForm";
+import { Button, buttonStyles, Card, cx, errorStyles, LinkButton, Notice } from "../components/ui";
 import { useAllMeasurements } from "../hooks";
-import { fileUrl, uploadFile, useProfiles, type StoredFile } from "../profiles";
+import { fileUrl, type StoredFile, uploadFile, useProfiles } from "../profiles";
 import { href } from "../router";
 
 /** "Your data" tab of the settings page. */
@@ -132,7 +132,9 @@ function FilesCard({ profileId }: { profileId: string }) {
   return (
     <Card className="flex flex-col gap-3">
       <h2 className="font-serif text-2xl font-normal">Files</h2>
-      <p className="text-ink-2">Lab reports you import are kept here, next to the results read from them. You can add other documents too (PDF, images, text).</p>
+      <p className="text-ink-2">
+        Lab reports you import are kept here, next to the results read from them. You can add other documents too (PDF, images, text).
+      </p>
       {files === null ? (
         <p className="text-ink-2">Loading…</p>
       ) : files.length === 0 ? (
@@ -145,7 +147,12 @@ function FilesCard({ profileId }: { profileId: string }) {
             .map((f) => (
               <li key={f.name} className="flex flex-col gap-1 p-3 sm:flex-row sm:items-center sm:gap-3">
                 <div className="min-w-0 flex-1">
-                  <a href={fileUrl(profileId, f.name)} target="_blank" rel="noopener noreferrer" className="font-medium break-all text-accent underline-offset-2 hover:underline">
+                  <a
+                    href={fileUrl(profileId, f.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium break-all text-accent underline-offset-2 hover:underline"
+                  >
                     {f.originalName}
                   </a>
                   <p className="text-sm text-ink-2">
@@ -180,9 +187,18 @@ function FilesCard({ profileId }: { profileId: string }) {
         </Notice>
       )}
       <div>
-        <label className={cx(buttonStyles.secondary, "cursor-pointer focus-within:outline-2 focus-within:outline-accent", busy && "pointer-events-none opacity-50")}>
+        <label
+          className={cx(buttonStyles.secondary, "cursor-pointer focus-within:outline-2 focus-within:outline-accent", busy && "pointer-events-none opacity-50")}
+        >
           {busy ? "Saving…" : "Add a file"}
-          <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.csv" className="sr-only" disabled={busy} onChange={(e) => void add(e.target.files)} />
+          <input
+            type="file"
+            multiple
+            accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.csv"
+            className="sr-only"
+            disabled={busy}
+            onChange={(e) => void add(e.target.files)}
+          />
         </label>
       </div>
     </Card>
@@ -208,9 +224,7 @@ function BackupCard({ count }: { count: number }) {
         It contains health data, so treat it like a medical document.
       </p>
       <div>
-        <Button onClick={() => void download()}>
-          Download file
-        </Button>
+        <Button onClick={() => void download()}>Download file</Button>
       </div>
     </Card>
   );
@@ -309,14 +323,13 @@ function StorageCard() {
       <h2 className="font-serif text-2xl font-normal">Keep data safe in this browser</h2>
       {persisted ? (
         <p className="text-ink-2">
-          <span aria-hidden="true">✓ </span>Your browser has agreed not to clear this data automatically. Clearing your browsing data by hand
-          will still delete it, so keep a backup.
+          <span aria-hidden="true">✓ </span>Your browser has agreed not to clear this data automatically. Clearing your browsing data by hand will still delete
+          it, so keep a backup.
         </p>
       ) : (
         <>
           <p className="text-ink-2">
-            Browsers can delete stored data when space runs low. Ask your browser to keep it. Some browsers decide on their own and may not
-            show a prompt.
+            Browsers can delete stored data when space runs low. Ask your browser to keep it. Some browsers decide on their own and may not show a prompt.
           </p>
           <div>
             <Button

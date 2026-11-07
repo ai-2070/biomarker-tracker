@@ -1,19 +1,19 @@
+import { type Grouping, groupingsFor, groupReadings, pointsForWindow, statsBetween } from "@bt/shared/core/chartSeries";
+import { dayNumber } from "@bt/shared/core/dates";
+import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/protocols";
+import { niceTicks } from "@bt/shared/core/scale";
+import { timeTicks } from "@bt/shared/core/timeWindow";
+import { type Flag, flagMeasurement, isOutOfRange, paddedDomain, type ResolvedRange, sortByDate } from "@bt/shared/core/trends";
+import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
+import { formatValue, fromCanonical, toCanonical } from "@bt/shared/core/units";
 import { useMemo, useRef, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceArea, Tooltip, XAxis, YAxis } from "recharts";
-import { groupReadings, groupingsFor, pointsForWindow, statsBetween, type Grouping } from "@bt/shared/core/chartSeries";
-import { dayNumber } from "@bt/shared/core/dates";
-import { timeTicks } from "@bt/shared/core/timeWindow";
-import { flagMeasurement, isOutOfRange, paddedDomain, sortByDate, type Flag, type ResolvedRange } from "@bt/shared/core/trends";
-import { niceTicks } from "@bt/shared/core/scale";
-import { formatValue, fromCanonical, toCanonical } from "@bt/shared/core/units";
-import type { BiomarkerDef, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
-import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
-import { CHART_PRESETS, Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth, type SharedTimeView } from "./timeControls";
-import { cx } from "./ui";
 import { FLAG_LABEL, formatDate, showChange, showMeasurement, showRange, showValue, valueUnit } from "../format";
-import { habitTypesIn, ofTypes, type ProtocolCategory } from "@bt/shared/core/protocols";
-import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
 import { aggregateFlag } from "./chartAggregate";
+import { HabitTypes, Toggle, useChartPrefs } from "./chartHabits";
+import { CHART_LAYOUT, ProtocolLanes } from "./ProtocolLanes";
+import { CHART_PRESETS, Overview, SelectionBar, type SharedTimeView, segBtn, segGroup, TimeControls, useTimeView, useWidth } from "./timeControls";
+import { cx } from "./ui";
 
 interface Point {
   t: number;
@@ -39,7 +39,11 @@ const isoOfDay = (day: number) => new Date(Math.round(day) * DAY_MS).toISOString
 const reducedMotion = () => typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /** Short labels on phones, full ones from the small breakpoint up. */
-const GROUP_LABEL: Record<Grouping, [string, string]> = { each: ["Readings", "Each reading"], week: ["Weekly", "Weekly average"], month: ["Monthly", "Monthly average"] };
+const GROUP_LABEL: Record<Grouping, [string, string]> = {
+  each: ["Readings", "Each reading"],
+  week: ["Weekly", "Weekly average"],
+  month: ["Monthly", "Monthly average"],
+};
 
 interface ChartPrefs {
   group: Grouping;
@@ -103,11 +107,31 @@ export function TrendChart({
     group === "each"
       ? sorted.map((m) => {
           const flag = flagMeasurement(def, m, profile);
-          return { t: dayNumber(m.date) * DAY_MS, y: conv(m.value), date: m.date, label: showMeasurement(def, m, unit), flag, out: isOutOfRange(flag), count: 1, from: m.date, to: m.date };
+          return {
+            t: dayNumber(m.date) * DAY_MS,
+            y: conv(m.value),
+            date: m.date,
+            label: showMeasurement(def, m, unit),
+            flag,
+            out: isOutOfRange(flag),
+            count: 1,
+            from: m.date,
+            to: m.date,
+          };
         })
       : groupReadings(readings, group, totals ? "total" : "average").map((p) => {
           const flag = aggregateFlag(def, p, sorted, profile, totals);
-          return { t: dayNumber(p.date) * DAY_MS, y: conv(p.value), date: p.date, label: showValue(def, p.value, unit), flag, out: isOutOfRange(flag), count: p.count, from: p.from, to: p.to };
+          return {
+            t: dayNumber(p.date) * DAY_MS,
+            y: conv(p.value),
+            date: p.date,
+            label: showValue(def, p.value, unit),
+            flag,
+            out: isOutOfRange(flag),
+            count: p.count,
+            from: p.from,
+            to: p.to,
+          };
         });
 
   // The whole time span, with a little room at the ends; at least two weeks.
@@ -126,7 +150,11 @@ export function TrendChart({
   const yAxisWidth = suffix ? CHART_LAYOUT.yAxisWidth : 88;
   const plotLeft = yAxisWidth + CHART_LAYOUT.padX;
   const plotWidth = Math.max(width - plotLeft - CHART_LAYOUT.marginRight - CHART_LAYOUT.padX, 1);
-  const t = useTimeView(full, { left: plotLeft, width: plotWidth }, { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true), shared: linkedTime });
+  const t = useTimeView(
+    full,
+    { left: plotLeft, width: plotWidth },
+    { ref: box, minSpan: 14, drag: "select", onChange: () => setMoved(true), shared: linkedTime },
+  );
   const v = t.v;
   const fromIso = isoOfDay(v.from);
   const toIso = isoOfDay(v.to);
@@ -136,7 +164,10 @@ export function TrendChart({
   const low = range?.low !== undefined ? conv(range.low) : undefined;
   const high = range?.high !== undefined ? conv(range.high) : undefined;
   // The scale fits what is on screen; with the band shown (and not "fit to my values") it includes the range.
-  const scaleValues = [...(inView.length ? inView : drawn).map((p) => p.y), ...(band && !prefs.fit ? [low, high].filter((x): x is number => x !== undefined) : [])];
+  const scaleValues = [
+    ...(inView.length ? inView : drawn).map((p) => p.y),
+    ...(band && !prefs.fit ? [low, high].filter((x): x is number => x !== undefined) : []),
+  ];
   const [padMin, padMax] = paddedDomain(scaleValues);
   const yTicks = niceTicks(padMin, padMax);
   const yMin = yTicks[0]!;
@@ -157,7 +188,8 @@ export function TrendChart({
   const sel = t.selection;
   const selStats = sel ? statsBetween(readings, isoOfDay(sel.from), isoOfDay(sel.to)) : undefined;
   const shaded = habit && prefs.habits ? shownHabits.find((p) => p.id === habit) : undefined;
-  const showOutKey = hasRange && band && !range!.comparisonOnly && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
+  const showOutKey =
+    hasRange && band && !range!.comparisonOnly && range!.source !== "personal" && (group !== "each" || !def.judgeAverageOfDays || !!def.criticalRange);
   const summary = `Chart of ${def.name} in ${suffix || "hours and minutes"}, ${inView.length} ${group === "each" ? "results" : `${group === "week" ? "weekly" : "monthly"} ${totals ? "totals" : "averages"}`} from ${formatDate(fromIso)} to ${formatDate(toIso)}${rangeText ? `. ${range?.comparisonOnly ? "Published comparison interval" : range?.source === "personal" ? "Your usual range" : "Latest reference range"} ${rangeText}` : ""}.`;
   const withUnit = (x: number) => `${showValue(def, x, unit)} ${suffix}`.trim();
 
@@ -214,7 +246,13 @@ export function TrendChart({
         style={{ ...t.bind.style, height }}
       >
         {width > 0 && (
-          <LineChart accessibilityLayer={false} width={width} height={height} data={drawn} margin={{ top: 12, right: CHART_LAYOUT.marginRight, bottom: 4, left: 0 }}>
+          <LineChart
+            accessibilityLayer={false}
+            width={width}
+            height={height}
+            data={drawn}
+            margin={{ top: 12, right: CHART_LAYOUT.marginRight, bottom: 4, left: 0 }}
+          >
             <CartesianGrid vertical={false} stroke="var(--color-line)" />
             {band && (
               <ReferenceArea
@@ -267,7 +305,7 @@ export function TrendChart({
             <YAxis
               domain={[yMin, yMax]}
               allowDataOverflow
-              tickFormatter={(x: number) => suffix ? formatValue(x) : showValue(def, toCanonical(def, x, unit), unit)}
+              tickFormatter={(x: number) => (suffix ? formatValue(x) : showValue(def, toCanonical(def, x, unit), unit))}
               width={yAxisWidth}
               axisLine={false}
               tickLine={false}
@@ -286,7 +324,11 @@ export function TrendChart({
                     <div className="font-semibold">
                       {p.label} {suffix}
                     </div>
-                    {p.count > 1 && <div className="text-ink-2">{totals ? "Total" : "Average"} of {p.count} readings</div>}
+                    {p.count > 1 && (
+                      <div className="text-ink-2">
+                        {totals ? "Total" : "Average"} of {p.count} readings
+                      </div>
+                    )}
                     {p.flag !== "unknown" && <div className="text-ink-2">{FLAG_LABEL[p.flag]}</div>}
                   </div>
                 );
@@ -345,7 +387,8 @@ export function TrendChart({
             {stats.count > 1 && (
               <>
                 {" "}
-                · average {withUnit(stats.average)} · lowest {withUnit(stats.low.value)} ({formatDate(stats.low.date)}) · highest {withUnit(stats.high.value)} ({formatDate(stats.high.date)})
+                · average {withUnit(stats.average)} · lowest {withUnit(stats.low.value)} ({formatDate(stats.low.date)}) · highest {withUnit(stats.high.value)} (
+                {formatDate(stats.high.date)})
               </>
             )}
           </p>
@@ -357,8 +400,8 @@ export function TrendChart({
               {range?.comparisonOnly
                 ? "Population comparison (not clinical limits)"
                 : range?.source === "personal"
-                ? "Your usual range (from your own readings)"
-                : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : totals ? "advice for a week's total" : "typical adult"})`}
+                  ? "Your usual range (from your own readings)"
+                  : `Reference range (${range?.source === "lab" ? "from your lab" : def.judgeAverageOfDays ? `checked against the ${def.judgeAverageOfDays}-day average` : totals ? "advice for a week's total" : "typical adult"})`}
             </span>
           )}
           {showOutKey && (
@@ -375,8 +418,20 @@ export function TrendChart({
           )}
         </div>
       </figcaption>
-      {prefs.habits && habitTypes.length > 1 && <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />}
-      {prefs.habits && <ProtocolLanes protocols={shownHabits} from={fromIso} to={toIso} today={today} selected={habit} onSelect={setHabit} inset={{ left: plotLeft, right: CHART_LAYOUT.marginRight + CHART_LAYOUT.padX }} />}
+      {prefs.habits && habitTypes.length > 1 && (
+        <HabitTypes present={habitTypes} shown={prefs.habitTypes} onChange={(types) => setPrefs({ habitTypes: types })} />
+      )}
+      {prefs.habits && (
+        <ProtocolLanes
+          protocols={shownHabits}
+          from={fromIso}
+          to={toIso}
+          today={today}
+          selected={habit}
+          onSelect={setHabit}
+          inset={{ left: plotLeft, right: CHART_LAYOUT.marginRight + CHART_LAYOUT.padX }}
+        />
+      )}
     </figure>
   );
 }

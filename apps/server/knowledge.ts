@@ -2,16 +2,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import { validateEvidenceClaim } from "@bt/shared/core/evidence";
+import { type FitnessTestDef, validateFitnessTest } from "@bt/shared/core/fitnessTests";
 import { validateBiomarkerDef } from "@bt/shared/core/knowledge";
-import { validateFitnessTest, type FitnessTestDef } from "@bt/shared/core/fitnessTests";
-import { validateNutrientDef, type NutrientDef } from "@bt/shared/core/nutrients";
-import { validateLifestyleDef, type LifestyleDef } from "@bt/shared/core/lifestyle";
-import { validateWholeFoodDef, wholeFoodFor, type WholeFoodDef } from "@bt/shared/core/wholeFoods";
+import { type LifestyleDef, validateLifestyleDef } from "@bt/shared/core/lifestyle";
+import { type LifeTableFile, validateLifeTables } from "@bt/shared/core/lifeTable";
 import type { FoodDb } from "@bt/shared/core/meals";
+import { type MortalityModelFile, validateMortalityModels } from "@bt/shared/core/mortalityModel";
+import { type NutrientDef, validateNutrientDef } from "@bt/shared/core/nutrients";
 import type { BiomarkerDef, EvidenceClaim, FoodTable } from "@bt/shared/core/types";
+import { validateWholeFoodDef, type WholeFoodDef, wholeFoodFor } from "@bt/shared/core/wholeFoods";
 import { ROOT } from "./store";
-import { validateLifeTables, type LifeTableFile } from "@bt/shared/core/lifeTable";
-import { validateMortalityModels, type MortalityModelFile } from "@bt/shared/core/mortalityModel";
 
 let tables: LifeTableFile | null | undefined;
 /** Official country life tables, read once; invalid or missing files fail closed. */
@@ -19,7 +19,7 @@ export function lifeTables(): LifeTableFile | undefined {
   if (tables === undefined) {
     try {
       const value: unknown = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "lifetables", "countries.json"), "utf8"));
-      tables = validateLifeTables(value).length === 0 ? value as LifeTableFile : null;
+      tables = validateLifeTables(value).length === 0 ? (value as LifeTableFile) : null;
     } catch {
       tables = null;
     }
@@ -32,14 +32,13 @@ export function mortalityModels(): MortalityModelFile | undefined {
   if (mortality === undefined) {
     try {
       const value: unknown = JSON.parse(fs.readFileSync(path.join(ROOT, "knowledge", "models", "mortality.json"), "utf8"));
-      mortality = validateMortalityModels(value).length === 0 ? value as MortalityModelFile : null;
+      mortality = validateMortalityModels(value).length === 0 ? (value as MortalityModelFile) : null;
     } catch {
       mortality = null;
     }
   }
   return mortality ?? undefined;
 }
-
 
 function readAll(dir: string): unknown[] {
   return fs
@@ -48,7 +47,17 @@ function readAll(dir: string): unknown[] {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as unknown);
 }
 
-let cache: { defs: Map<string, BiomarkerDef>; evidence: EvidenceClaim[]; foods: FoodTable; nutrients: NutrientDef[]; fitness: FitnessTestDef[]; lifestyle: LifestyleDef[]; wholeFoods: WholeFoodDef[] } | undefined;
+let cache:
+  | {
+      defs: Map<string, BiomarkerDef>;
+      evidence: EvidenceClaim[];
+      foods: FoodTable;
+      nutrients: NutrientDef[];
+      fitness: FitnessTestDef[];
+      lifestyle: LifestyleDef[];
+      wholeFoods: WholeFoodDef[];
+    }
+  | undefined;
 
 export function knowledge() {
   if (!cache) {
@@ -79,24 +88,40 @@ export function foods(): FoodDb {
 
 /** Find a vitamin or mineral by id, name or other name (case-insensitive; "vitamin d", "cobalamin"). */
 export function findNutrient(query: string): NutrientDef | undefined {
-  const q = query.trim().toLowerCase().replace(/[\s-]+/g, "_");
+  const q = query
+    .trim()
+    .toLowerCase()
+    .replace(/[\s-]+/g, "_");
   const words = query.trim().toLowerCase();
   return knowledge().nutrients.find((n) => n.id === q || n.name.toLowerCase() === words || n.otherNames.some((o) => o.toLowerCase().startsWith(words)));
 }
 
 /** Find a lifestyle topic by id, name or other name ("sauna", "daily steps", "cold shower"). */
 export function findLifestyle(query: string): LifestyleDef | undefined {
-  const q = query.trim().toLowerCase().replace(/[\s-]+/g, "_");
+  const q = query
+    .trim()
+    .toLowerCase()
+    .replace(/[\s-]+/g, "_");
   const words = query.trim().toLowerCase();
   return knowledge().lifestyle.find(
-    (l) => l.id === q || l.name.toLowerCase() === words || l.name.toLowerCase().startsWith(words) || l.otherNames.some((o) => o.toLowerCase().startsWith(words)),
+    (l) =>
+      l.id === q || l.name.toLowerCase() === words || l.name.toLowerCase().startsWith(words) || l.otherNames.some((o) => o.toLowerCase().startsWith(words)),
   );
 }
 
 /** Find a whole food by id, name or other name ("evoo", "olive oil", "pomegranate juice"). */
 export function findWholeFood(query: string): WholeFoodDef | undefined {
   const all = knowledge().wholeFoods;
-  return all.find((f) => f.id === query.trim().toLowerCase().replace(/[\s-]+/g, "_")) ?? wholeFoodFor(query, all);
+  return (
+    all.find(
+      (f) =>
+        f.id ===
+        query
+          .trim()
+          .toLowerCase()
+          .replace(/[\s-]+/g, "_"),
+    ) ?? wholeFoodFor(query, all)
+  );
 }
 
 /** Find a marker by id, name, abbreviation or any alias (case-insensitive). */

@@ -1,5 +1,5 @@
+import { canUse, DEFAULT_CHOICE, EFFORT_LABEL, PROVIDERS, providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CHOICE, EFFORT_LABEL, canUse, PROVIDERS, providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
 
 describe("provider registry", () => {
   it("lists only EU, US or local API providers; agents are labelled as depending on their own setup", () => {
@@ -98,7 +98,12 @@ describe("provider order, models, effort and install", () => {
   });
 
   it("installs every program from its maker's own site, over https", () => {
-    const sites: Record<string, string> = { "claude-code": "claude.ai", codex: "chatgpt.com", hermes: "hermes-agent.nousresearch.com", openclaw: "openclaw.ai" };
+    const sites: Record<string, string> = {
+      "claude-code": "claude.ai",
+      codex: "chatgpt.com",
+      hermes: "hermes-agent.nousresearch.com",
+      openclaw: "openclaw.ai",
+    };
     for (const p of PROVIDERS.filter((x) => x.kind === "agent")) {
       for (const cmd of [p.install!.windows, p.install!.unix]) {
         const urls = cmd.match(/https?:\/\/[^\s)]+/g) ?? [];

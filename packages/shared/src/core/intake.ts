@@ -1,5 +1,17 @@
 import { SAFETY_LIMITS } from "./foods";
-import { MAX_GRAMS, NUTRIENT_OF_KEY, adultReference, dailyReference, mealSafetyBlock, mealTotals, shareOfReference, type FoodDb, type Meal, type MealItem, type Total } from "./meals";
+import {
+  adultReference,
+  dailyReference,
+  type FoodDb,
+  MAX_GRAMS,
+  type Meal,
+  type MealItem,
+  mealSafetyBlock,
+  mealTotals,
+  NUTRIENT_OF_KEY,
+  shareOfReference,
+  type Total,
+} from "./meals";
 import { interactionsFor, type NutrientDef } from "./nutrients";
 import { nutrientFor, type PlanItem } from "./plans";
 import { MAX_LABEL } from "./protocols";
@@ -153,7 +165,8 @@ export function energyVsResting(kcal: number, restingKcal: number): { ratio: num
   if (!(restingKcal > 0) || !(kcal >= 0)) return undefined;
   const ratio = kcal / restingKcal;
   const r = Math.round(ratio * 100) / 100;
-  const band: EnergyBand = r < 1 ? "below-resting" : r < ACTIVITY_LEVELS.lowActive ? "below-low-active" : r <= ACTIVITY_LEVELS.veryActive ? "within" : "above-very-active";
+  const band: EnergyBand =
+    r < 1 ? "below-resting" : r < ACTIVITY_LEVELS.lowActive ? "below-low-active" : r <= ACTIVITY_LEVELS.veryActive ? "within" : "above-very-active";
   return { ratio, band };
 }
 
@@ -193,21 +206,33 @@ export function macroRows(totals: Record<string, Total>, weightKg?: number, age?
   return MACRO_KEYS.map((key) => {
     const t = totals[key] ?? { amount: 0, measuredIn: 0, of: 0 };
     const base = { key, amount: t.amount, measuredIn: t.measuredIn, of: t.of };
-    const pct = KCAL_PER_G[key] !== undefined && kcal > 0 ? (t.amount * KCAL_PER_G[key]!) / kcal * 100 : undefined;
+    const pct = KCAL_PER_G[key] !== undefined && kcal > 0 ? ((t.amount * KCAL_PER_G[key]!) / kcal) * 100 : undefined;
     const withPct = pct !== undefined ? { ...base, energyPct: pct } : base;
-    if (age !== undefined && (!Number.isFinite(age) || age < 18)) return { ...base, reference: "Adult reference not applicable", status: "no-reference" as const };
-    if (t.measuredIn > 0 && (t.measuredIn < t.of || (pct !== undefined && totals.energyKcal && totals.energyKcal.measuredIn < totals.energyKcal.of))) return { ...base, reference: REFERENCE_TEXT[key](weightKg), status: "partial" as const };
+    if (age !== undefined && (!Number.isFinite(age) || age < 18))
+      return { ...base, reference: "Adult reference not applicable", status: "no-reference" as const };
+    if (t.measuredIn > 0 && (t.measuredIn < t.of || (pct !== undefined && totals.energyKcal && totals.energyKcal.measuredIn < totals.energyKcal.of)))
+      return { ...base, reference: REFERENCE_TEXT[key](weightKg), status: "partial" as const };
     if (t.measuredIn === 0) return { ...withPct, reference: REFERENCE_TEXT[key](weightKg), status: "not-measured" as const };
     switch (key) {
       case "protein": {
         if (!(weightKg && weightKg > 0)) return { ...withPct, reference: REFERENCE_TEXT.protein(), status: "needs-weight" as const };
         const ref = 0.83 * weightKg;
-        return { ...withPct, reference: REFERENCE_TEXT.protein(weightKg), status: t.amount < ref ? ("below" as const) : ("within" as const), ...(t.amount < ref ? { missing: ref - t.amount } : {}) };
+        return {
+          ...withPct,
+          reference: REFERENCE_TEXT.protein(weightKg),
+          status: t.amount < ref ? ("below" as const) : ("within" as const),
+          ...(t.amount < ref ? { missing: ref - t.amount } : {}),
+        };
       }
       case "fibre":
       case "epaDha": {
         const ref = key === "fibre" ? 25 : 0.25;
-        return { ...withPct, reference: REFERENCE_TEXT[key](), status: t.amount < ref ? ("below" as const) : ("within" as const), ...(t.amount < ref ? { missing: ref - t.amount } : {}) };
+        return {
+          ...withPct,
+          reference: REFERENCE_TEXT[key](),
+          status: t.amount < ref ? ("below" as const) : ("within" as const),
+          ...(t.amount < ref ? { missing: ref - t.amount } : {}),
+        };
       }
       case "fat":
       case "carbohydrate": {
@@ -224,7 +249,10 @@ export function macroRows(totals: Record<string, Total>, weightKg?: number, age?
 }
 
 const REFERENCE_TEXT: Record<MacroKey, (weightKg?: number) => string> = {
-  protein: (w) => (w ? `${Math.round(0.83 * w)} g a day (0.83 g per kg of your ${Math.round(w)} kg; population reference intake)` : "0.83 g per kg of body weight a day (population reference intake)"),
+  protein: (w) =>
+    w
+      ? `${Math.round(0.83 * w)} g a day (0.83 g per kg of your ${Math.round(w)} kg; population reference intake)`
+      : "0.83 g per kg of body weight a day (population reference intake)",
   carbohydrate: () => "45–60 % of energy (reference intake range)",
   sugars: () => "As low as possible within a nutritionally adequate diet (no safe level could be set)",
   fibre: () => "25 g a day (adequate intake)",
@@ -297,8 +325,29 @@ export function nutrientRows(
           ? { amount: ul.amount, unit: ul.unit, compared: supplements[suppKey] ?? 0, from: "supplements" as const }
           : undefined;
     const status: NutrientRow["status"] =
-      t.measuredIn === 0 ? "not-measured" : upperLimit && upperLimit.compared > upperLimit.amount ? "above-upper-limit" : t.measuredIn < t.of ? "partial" : share === undefined ? "no-reference" : share < 100 ? "below" : "met";
-    rows.push({ key, nutrient: n, amount: t.amount, unit, measuredIn: t.measuredIn, of: t.of, ...(ref ? { reference: ref } : {}), ...(share !== undefined ? { share } : {}), ...(upperLimit ? { upperLimit } : {}), status });
+      t.measuredIn === 0
+        ? "not-measured"
+        : upperLimit && upperLimit.compared > upperLimit.amount
+          ? "above-upper-limit"
+          : t.measuredIn < t.of
+            ? "partial"
+            : share === undefined
+              ? "no-reference"
+              : share < 100
+                ? "below"
+                : "met";
+    rows.push({
+      key,
+      nutrient: n,
+      amount: t.amount,
+      unit,
+      measuredIn: t.measuredIn,
+      of: t.of,
+      ...(ref ? { reference: ref } : {}),
+      ...(share !== undefined ? { share } : {}),
+      ...(upperLimit ? { upperLimit } : {}),
+      status,
+    });
   }
   return rows;
 }
@@ -333,7 +382,15 @@ export type GapAdvice =
  * disease, retinol in pregnancy) are left out with the reason; nutrients the person's medicines or
  * conditions interact with get no food ideas, only "talk to your doctor".
  */
-export function gapAdvice(key: string, row: Pick<NutrientRow, "nutrient" | "amount" | "reference">, candidates: readonly PortionFood[], db: FoodDb, safety: readonly SafetyId[], room: UpperLimitRoom = {}, limit = 3): GapAdvice {
+export function gapAdvice(
+  key: string,
+  row: Pick<NutrientRow, "nutrient" | "amount" | "reference">,
+  candidates: readonly PortionFood[],
+  db: FoodDb,
+  safety: readonly SafetyId[],
+  room: UpperLimitRoom = {},
+  limit = 3,
+): GapAdvice {
   const because = interactionsFor(row.nutrient, safety);
   if (because.length) return { kind: "talk-to-doctor", because: because.map((b) => ({ with: b.with, note: b.note })) };
   return { kind: "foods", ...foodIdeas(key, row.amount, row.reference?.amount, candidates, db, safety, room, limit) };
@@ -398,7 +455,14 @@ export function foodIdeas(
 }
 
 /** Meals (the person's own or examples) with the most of a nutrient per portion, without safety blocks. */
-export function mealsRichIn<M extends { id: string; name: string; items: readonly MealItem[] }>(key: string, meals: readonly M[], db: FoodDb, safety: readonly SafetyId[], limit = 2, room: UpperLimitRoom = {}): { meal: M; amount: number }[] {
+export function mealsRichIn<M extends { id: string; name: string; items: readonly MealItem[] }>(
+  key: string,
+  meals: readonly M[],
+  db: FoodDb,
+  safety: readonly SafetyId[],
+  limit = 2,
+  room: UpperLimitRoom = {},
+): { meal: M; amount: number }[] {
   const limits = safety.flatMap((s) => (SAFETY_LIMITS[s] ? [SAFETY_LIMITS[s]!] : []));
   return meals
     .filter((m) => !mealSafetyBlock(m.items, db, limits))
@@ -424,14 +488,31 @@ export function intakeToPlanItems(list: readonly IntakeItem[], meals: readonly M
     if (it.kind === "meal") {
       const meal = meals.find((m) => m.id === it.mealId);
       if (!meal) return [];
-      return [{ id: newId(), label: clip(meal.name, MAX_LABEL), amount: `${amountText(it.portions)} ${it.portions === 1 ? "portion" : "portions"}`, category: "diet", when: "any time", mealId: meal.id }];
+      return [
+        {
+          id: newId(),
+          label: clip(meal.name, MAX_LABEL),
+          amount: `${amountText(it.portions)} ${it.portions === 1 ? "portion" : "portions"}`,
+          category: "diet",
+          when: "any time",
+          mealId: meal.id,
+        },
+      ];
     }
     if (it.kind === "food") {
       const name = db.foods.find((f) => f[0] === it.foodId)?.[1] ?? it.foodId;
       return [{ id: newId(), label: clip(name, MAX_LABEL), amount: `${amountText(it.grams)} g`, category: "diet", when: "any time" }];
     }
     const n = SUPPLEMENT_NUTRIENTS.find((x) => x.key === it.nutrient);
-    return [{ id: newId(), label: clip(it.name?.trim() || (n?.label ?? it.nutrient), MAX_LABEL), amount: `${amountText(it.amount)} ${n?.unit ?? ""}`.trim(), category: "supplement", when: "any time" }];
+    return [
+      {
+        id: newId(),
+        label: clip(it.name?.trim() || (n?.label ?? it.nutrient), MAX_LABEL),
+        amount: `${amountText(it.amount)} ${n?.unit ?? ""}`.trim(),
+        category: "supplement",
+        when: "any time",
+      },
+    ];
   });
 }
 
@@ -453,7 +534,11 @@ export function parseLabelAmount(text: string | undefined, unit: "mg" | "µg"): 
 
 /** The analyzer's supplement key for a nutrient entry (vitamin_d → vitaminD; omega_3 → epaDha). */
 export const SUPPLEMENT_KEY_OF_NUTRIENT: Readonly<Record<string, string>> = {
-  ...Object.fromEntries(Object.entries(NUTRIENT_OF_KEY).filter(([k]) => SUPPLEMENT_KEYS.has(k)).map(([k, id]) => [id, k])),
+  ...Object.fromEntries(
+    Object.entries(NUTRIENT_OF_KEY)
+      .filter(([k]) => SUPPLEMENT_KEYS.has(k))
+      .map(([k, id]) => [id, k]),
+  ),
   omega_3: "epaDha",
 };
 
@@ -527,7 +612,15 @@ export function protocolToIntake(
     if (def) {
       const amount = parseLabelAmount(it.amount, def.unit);
       if (amount !== undefined) items.push({ id: newId(), kind: "supplement", nutrient: def.key, amount, name: clip(it.label, 80) });
-      else needsAmount.push({ planId: plan.id, itemId: it.id, label: it.label, key: def.key, unit: def.unit, ...(it.amount?.trim() ? { written: it.amount.trim() } : {}) });
+      else
+        needsAmount.push({
+          planId: plan.id,
+          itemId: it.id,
+          label: it.label,
+          key: def.key,
+          unit: def.unit,
+          ...(it.amount?.trim() ? { written: it.amount.trim() } : {}),
+        });
       continue;
     }
     skipped.push({

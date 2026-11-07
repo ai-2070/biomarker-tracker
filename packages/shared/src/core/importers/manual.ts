@@ -1,7 +1,7 @@
 import { isIsoDate } from "../dates";
-import { matchUnit, toCanonical } from "../units";
 import { resolveRange } from "../trends";
 import type { BiomarkerDef, Measurement } from "../types";
+import { matchUnit, toCanonical } from "../units";
 
 export interface ParsedNumber {
   value: number;
@@ -22,9 +22,7 @@ export function parseLabNumber(raw: string): ParsedNumber | undefined {
   }
   // "1.234,5" -> thousands dot + decimal comma; "1,234.5" -> the reverse.
   if (s.includes(",") && s.includes(".")) {
-    s = s.lastIndexOf(",") > s.lastIndexOf(".")
-      ? s.replace(/\./g, "").replace(",", ".")
-      : s.replace(/,/g, "");
+    s = s.lastIndexOf(",") > s.lastIndexOf(".") ? s.replace(/\./g, "").replace(",", ".") : s.replace(/,/g, "");
   } else if (s.includes(",")) {
     if ((s.match(/,/g) ?? []).length > 1) return undefined;
     s = s.replace(",", ".");
@@ -138,9 +136,7 @@ export function plausibilityWarnings(def: BiomarkerDef, canonicalValue: number, 
   const tooHigh = range.high !== undefined && canonicalValue > range.high * 10;
   const tooLow = range.low !== undefined && range.low > 0 && canonicalValue < range.low / 10;
   if (tooHigh || tooLow) {
-    return [
-      `This value is very far from the usual range for ${def.name}. Please check that the unit (${unit}) matches your lab report.`,
-    ];
+    return [`This value is very far from the usual range for ${def.name}. Please check that the unit (${unit}) matches your lab report.`];
   }
   return [];
 }

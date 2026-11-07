@@ -1,10 +1,10 @@
 // Exercise the actual compiled sidecar, outside the repo and without touching user data.
 import assert from "node:assert/strict";
+import { execFileSync, spawn } from "node:child_process";
+import { once } from "node:events";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { execFileSync, spawn } from "node:child_process";
-import { once } from "node:events";
 import { demoProfile } from "@bt/shared/core/demo";
 
 const root = path.resolve(import.meta.dirname, "../../..");
@@ -23,7 +23,9 @@ const child = spawn(binary, ["--port", "0"], {
 });
 const exited = once(child, "exit");
 let errors = "";
-child.stderr.on("data", (chunk: Buffer) => { errors += chunk.toString(); });
+child.stderr.on("data", (chunk: Buffer) => {
+  errors += chunk.toString();
+});
 const deadline = setTimeout(() => child.kill(), 30_000);
 try {
   const origin = await new Promise<string>((resolve, reject) => {
@@ -69,7 +71,12 @@ try {
   assert.ok(fs.existsSync(path.join(data, "profiles", profile.id, "profile.json")));
   const backup = await request(`/api/profiles/${profile.id}/backup`);
   assert.equal(backup.status, 200);
-  assert.equal(Buffer.from(await backup.arrayBuffer()).subarray(0, 2).toString(), "PK");
+  assert.equal(
+    Buffer.from(await backup.arrayBuffer())
+      .subarray(0, 2)
+      .toString(),
+    "PK",
+  );
   // Closing stdin simulates the native shell closing or crashing.
   child.stdin.end();
   const [code] = await exited;

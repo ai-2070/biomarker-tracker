@@ -1,7 +1,23 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  ageAtMoment,
+  ageWhenLeft,
+  bestBefore,
+  bestBeforeMoments,
+  bestBeforeWithShift,
+  birthMoment,
+  type LifeTable,
+  type LifeTableFile,
+  lifeTablePeriod,
+  momentAtAge,
+  populationSurvival,
+  remainingYears,
+  survivors,
+  tableFor,
+  validateLifeTables,
+} from "@bt/shared/core/lifeTable";
 import { describe, expect, it } from "vitest";
-import { ageAtMoment, ageWhenLeft, bestBefore, bestBeforeMoments, bestBeforeWithShift, birthMoment, lifeTablePeriod, momentAtAge, populationSurvival, remainingYears, survivors, tableFor, validateLifeTables, type LifeTable, type LifeTableFile } from "@bt/shared/core/lifeTable";
 
 /** A made-up table: nobody dies before 60, then survivors fall by 2,000 a year to 95, e95 = 3 years. */
 const lx = Array.from({ length: 96 }, (_, a) => (a <= 60 ? 100_000 : 100_000 - (a - 60) * 2_000));
@@ -44,17 +60,17 @@ describe("life tables", () => {
   it("conditions the chart on being alive now, rather than counting earlier deaths", () => {
     const curve = populationSurvival(t, 80);
     expect(curve[0]).toEqual({ age: 80, alivePercent: 100, tailApproximation: false });
-    expect(curve.find((p) => p.age === 85)?.alivePercent).toBeCloseTo(100 * 50_000 / 60_000, 8);
+    expect(curve.find((p) => p.age === 85)?.alivePercent).toBeCloseTo((100 * 50_000) / 60_000, 8);
     expect(curve.find((p) => p.age === 95)?.alivePercent).toBe(50);
     expect(populationSurvival(t, 60).find((p) => p.age === 85)?.alivePercent).toBe(50);
   });
   it("keeps fractional current age and marks the exponential tail without a discontinuity", () => {
     const curve = populationSurvival(t, 80.5);
     expect(curve[0]).toMatchObject({ age: 80.5, alivePercent: 100 });
-    expect(curve.find((p) => p.age === 81)?.alivePercent).toBeCloseTo(100 * 58_000 / 59_000, 8);
+    expect(curve.find((p) => p.age === 81)?.alivePercent).toBeCloseTo((100 * 58_000) / 59_000, 8);
     expect(curve.find((p) => p.age === 95)?.tailApproximation).toBe(false);
     expect(curve.find((p) => p.age === 96)).toMatchObject({ tailApproximation: true });
-    expect(curve.find((p) => p.age === 96)?.alivePercent).toBeCloseTo(100 * 30_000 * Math.exp(-1 / 3) / 59_000, 8);
+    expect(curve.find((p) => p.age === 96)?.alivePercent).toBeCloseTo((100 * 30_000 * Math.exp(-1 / 3)) / 59_000, 8);
     expect(curve.at(-1)!.alivePercent).toBeLessThanOrEqual(1);
     expect(curve.every((p, i) => p.alivePercent >= 0 && p.alivePercent <= 100 && (i === 0 || p.alivePercent <= curve[i - 1]!.alivePercent))).toBe(true);
     expect(populationSurvival(t, 95.5).every((p) => p.tailApproximation)).toBe(true);
@@ -90,11 +106,17 @@ describe("the shipped official population tables", () => {
     ["US", "f", 81.44568634033203, 20.830663681030273],
     ["US", "m", 76.52825164794922, 18.358739852905273],
     ["US", "t", 78.97103118896484, 19.661439895629883],
-    ["GB", "f", 83.02, 21.16], ["GB", "m", 79.12, 18.73],
-    ["CA", "f", 84.29, 22.45], ["CA", "m", 80.03, 19.75], ["CA", "t", 82.16, 21.15],
-    ["AU", "f", 85.1047, 22.71761], ["AU", "m", 81.06156, 20.1023],
-    ["NZ", "f", 83.45, 21.55], ["NZ", "m", 80.12, 19.43],
-    ["JP", "f", 87.33, 24.52], ["JP", "m", 81.35, 19.68],
+    ["GB", "f", 83.02, 21.16],
+    ["GB", "m", 79.12, 18.73],
+    ["CA", "f", 84.29, 22.45],
+    ["CA", "m", 80.03, 19.75],
+    ["CA", "t", 82.16, 21.15],
+    ["AU", "f", 85.1047, 22.71761],
+    ["AU", "m", 81.06156, 20.1023],
+    ["NZ", "f", 83.45, 21.55],
+    ["NZ", "m", 80.12, 19.43],
+    ["JP", "f", 87.33, 24.52],
+    ["JP", "m", 81.35, 19.68],
   ] as const)("reconstructs %s/%s published remaining means at birth and 65", (code, sex, e0, e65) => {
     // Native ex values from the official workbooks/CSVs; integrating the app's
     // linear lx and source e95 is approximate, not an invented replacement table.
@@ -113,11 +135,31 @@ describe("the shipped official population tables", () => {
       return validateLifeTables(copy);
     };
     expect(validateLifeTables({ countries: {} })).toEqual(["no countries"]);
-    expect(malformed((copy) => { copy.countries.US!.source.period = { from: 2025, to: 2024 }; })).not.toEqual([]);
-    expect(malformed((copy) => { delete copy.countries.US!.tables.m; })).not.toEqual([]);
-    expect(malformed((copy) => { copy.countries.US!.tables.f!.lx[20] = NaN; })).not.toEqual([]);
-    expect(malformed((copy) => { copy.countries.US!.tables.f!.lx[20] = 100_001; })).not.toEqual([]);
-    expect(malformed((copy) => { copy.countries.US!.tables.f!.e95 = Infinity; })).not.toEqual([]);
+    expect(
+      malformed((copy) => {
+        copy.countries.US!.source.period = { from: 2025, to: 2024 };
+      }),
+    ).not.toEqual([]);
+    expect(
+      malformed((copy) => {
+        delete copy.countries.US!.tables.m;
+      }),
+    ).not.toEqual([]);
+    expect(
+      malformed((copy) => {
+        copy.countries.US!.tables.f!.lx[20] = NaN;
+      }),
+    ).not.toEqual([]);
+    expect(
+      malformed((copy) => {
+        copy.countries.US!.tables.f!.lx[20] = 100_001;
+      }),
+    ).not.toEqual([]);
+    expect(
+      malformed((copy) => {
+        copy.countries.US!.tables.f!.e95 = Infinity;
+      }),
+    ).not.toEqual([]);
   });
 });
 
