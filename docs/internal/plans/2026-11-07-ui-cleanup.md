@@ -107,12 +107,16 @@ After phases 2–4 these files are already shorter. Split by what's on the scree
 
 | Phase | Commit | Notes |
 | --- | --- | --- |
-| 0 Plan | | This file. |
-| 1 Brain split | | |
-| 2 Tabs | | |
-| 3 Folds | | |
-| 4 Selects | | |
-| 5 Shared styles | | |
-| 6 Buttons | | |
-| 7 Large pages | | |
-| 8 Docs | | |
+| 0 Plan | Plan: UI clean-up (Brain split, Base UI tabs, folds and selects, shared styles) | This file. |
+| 1 Brain split | Split Brain.tsx: chat cards and composer in their own files | 1,177 → 428 lines; `SavedResults` → `SavedReview`; stream reader still a lazy chunk. |
+| 2 Tabs | Tabs on Base UI: one SegmentTabs for the six hand-built tab rows | Keys, focus, panels and indicator checked in Chromium on all six. Panels don't fade on switch (keying them would remount forms). Tabs 44 px on phones. |
+| 3 Folds | Folds on Base UI: the 50 <details> become More, Fold and Row | One commit (converted with a script, checked by hand), not three. None kept as `<details>`. The food comparison's map scrolls after its 200 ms opening animation. |
+| 4 Selects | Dropdowns on SimpleSelect: the last 8 native selects | `SimpleSelect` now passes "" through ("Not a meal"). |
+| 5 Shared styles | Shared styles: one definition each for labels, cards, link cards and dialogs | Also `linkCardStyles` and `dialogStyles`, and the dashboards' own copies. Screenshots pixel-identical. |
+| 6 Buttons | Buttons: a text-link variant for small actions next to content | Only 4 of 49 changed; the rest are special on purpose. |
+| 7 Large pages | Split the large pages: intake analyzer, body figures, habits | IntakePage 825 → 71, body.tsx 746 → 468, HabitsPage 658 → 328. |
+| 8 Docs | CLAUDE.md and this ledger | |
+
+How it was checked: `bun run typecheck`, `bun run test` and `bun run build` after every phase, plus a headless Chromium (Playwright's cached build, run from outside the repo) against `vite` with the example profile: keyboard and focus on every tab row, folds (mouse, keys, jump into a closed fold, content that loads after opening), every dropdown at 1280 and 360 px, and full-page screenshots of 14 pages in light and dark compared pixel by pixel for phases 5 and 7.
+
+Not checked: Brain's chat cards and the "N steps" fold with a real model (no local server running), Safari and Firefox (`hidden="until-found"` falls back to plain hidden where it isn't supported, so find-in-page won't open folds there; native `<details>` didn't either in older versions).
