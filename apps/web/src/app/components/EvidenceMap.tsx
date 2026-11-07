@@ -3,7 +3,7 @@ import { anyDesignKind, type Chosen, type EvidenceMapFile, type EvidenceMapOutco
 import { formatDate } from "../format";
 import { SegmentTabs } from "./SegmentTabs";
 import { useWidth } from "./timeControls";
-import { cx } from "./ui";
+import { Button, cx } from "./ui";
 import { PaperLink as PreviewPaperLink } from "./PaperLink";
 import { More } from "./disclosure";
 
@@ -218,9 +218,9 @@ function NewerTrials({ trials }: { trials: EvidenceMapOutcome["newerLargeTrials"
         ))}
       </ul>
       {trials.length > shown.length && (
-        <button type="button" onClick={() => setAll(true)} className="self-start text-sm text-accent">
+        <Button variant="link" onClick={() => setAll(true)} className="self-start">
           Show all {trials.length} trials
-        </button>
+        </Button>
       )}
     </>
   );

@@ -15,6 +15,8 @@ export const buttonStyles = {
   secondary: cx(buttonBase, "border border-line-strong bg-surface text-ink hover:bg-sunken"),
   danger: cx(buttonBase, "bg-danger-strong text-white hover:brightness-110"),
   quiet: cx(buttonBase, "px-3 text-ink-2 hover:bg-sunken hover:text-ink"),
+  /** Text only, like a link: small actions next to content ("Show all", "Back to my chat"). */
+  link: "inline-flex min-h-11 items-center text-left text-sm font-medium text-accent underline-offset-4 hover:underline disabled:cursor-not-allowed disabled:opacity-50",
 };
 
 type Variant = keyof typeof buttonStyles;
