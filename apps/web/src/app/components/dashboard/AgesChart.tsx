@@ -11,7 +11,7 @@ import { formatDate, formatYears } from "../../format";
 import { HabitTypes, Toggle, useChartPrefs } from "../chartHabits";
 import { ProtocolLanes } from "../ProtocolLanes";
 import { Overview, SelectionBar, TimeControls, segBtn, segGroup, useTimeView, useWidth } from "../timeControls";
-import { Card, cx } from "../ui";
+import { Card, cx, eyebrowStyles } from "../ui";
 import { InlineBirthMonth } from "../InlineBirthMonth";
 import { More } from "../disclosure";
 
@@ -199,7 +199,7 @@ function AgesPlot({ history, birthMonth, protocols }: { history: AgeHistory; bir
       <div className="grid gap-3 sm:grid-cols-3">
         {latest.map(({ s, p }) => (
           <div key={s.id} className="flex flex-col gap-0.5">
-            <p className="flex items-center gap-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
+            <p className={cx("flex items-center gap-2", eyebrowStyles)}>
               <svg width="12" height="12" aria-hidden="true">
                 <Marker shape={s.shape} x={6} y={6} color={s.color} size={4} />
               </svg>

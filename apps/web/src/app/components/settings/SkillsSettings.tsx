@@ -4,7 +4,7 @@ import { Switch } from "@base-ui/react/switch";
 import { localServer } from "../../api";
 import type { SkillListing } from "@bt/shared/api/types";
 import { ConfirmDialog } from "../ConfirmDialog";
-import { Button, Card, Notice, helpStyles, inputStyles, labelStyles } from "../ui";
+import { Button, Card, Notice, helpStyles, inputStyles, labelStyles, cardStyles, cx } from "../ui";
 
 type SkillRow = SkillListing;
 
@@ -77,7 +77,7 @@ export function SkillsSettings() {
       </Notice>
       <ul className="stagger flex flex-col gap-2">
         {skills.map((s) => (
-          <li key={s.id} className="rounded-xl border border-line bg-surface p-4">
+          <li key={s.id} className={cx("p-4", cardStyles)}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="font-medium">

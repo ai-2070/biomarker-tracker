@@ -17,7 +17,7 @@ import { BIOMARKER_MAP, shortName } from "../../knowledge";
 import { href } from "../../router";
 import { UnitSelect } from "../UnitSelect";
 import { StudyLink } from "../evidence";
-import { Button, FlagBadge, buttonStyles, cx, errorStyles, inputStyles, labelStyles as formLabel } from "../ui";
+import { Button, FlagBadge, buttonStyles, cx, errorStyles, inputStyles, labelStyles as formLabel, dialogStyles } from "../ui";
 import { Sparkline } from "./Sparkline";
 import { Figure, cardStyles, labelStyles as figureLabel } from "./widgets";
 import { InlineBirthMonth } from "../InlineBirthMonth";
@@ -96,7 +96,7 @@ function ExplainFigure({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] w-[34rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+        <Dialog.Popup className={cx(dialogStyles, "w-[34rem]")}>
           <div>
             <Dialog.Title className="font-serif text-2xl font-normal">{title}</Dialog.Title>
             <Dialog.Description className="mt-1 text-ink-2">{description}</Dialog.Description>
@@ -227,7 +227,7 @@ export function BmrFigure({ ms, profile, className }: { ms: Measurement[]; profi
       )}
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-40 bg-black/30 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0" />
-        <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[85dvh] w-[34rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-y-auto rounded-xl border border-line bg-surface p-5 text-ink shadow-xl transition-[scale,opacity] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0">
+        <Dialog.Popup className={cx(dialogStyles, "w-[34rem]")}>
           <div>
             <Dialog.Title className="font-serif text-2xl font-normal">Resting metabolic rate</Dialog.Title>
             <Dialog.Description className="mt-1 text-ink-2">

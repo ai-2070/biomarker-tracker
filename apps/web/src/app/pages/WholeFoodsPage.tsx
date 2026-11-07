@@ -16,7 +16,7 @@ import { SearchIcon } from "../components/icons";
 import { LifestyleFigure } from "../components/LifestyleVisuals";
 import { ResearchPanel } from "../components/ResearchPanel";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, LinkButton, PageTitle, cx, inputStyles } from "../components/ui";
+import { Button, Card, LinkButton, PageTitle, cx, inputStyles, eyebrowStyles, linkCardStyles } from "../components/ui";
 import { useFoodDb } from "../foodDb";
 import { useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, NUTRIENT_MAP, WHOLE_FOODS, WHOLE_FOOD_MAP, fullName } from "../knowledge";
@@ -101,10 +101,10 @@ export function WholeFoodsPage() {
               <li key={f.id}>
                 <a
                   href={href({ name: "wholefood", id: f.id })}
-                  className="flex h-full flex-col gap-3 rounded-xl border border-line bg-surface p-4 text-ink no-underline transition-[border-color,box-shadow,translate] duration-200 ease-out hover:-translate-y-px hover:border-line-strong hover:shadow-sm"
+                  className={cx("flex h-full flex-col gap-3", linkCardStyles)}
                 >
                   <div>
-                    <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{GROUP_LABEL[f.group]}</p>
+                    <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
                     <h2 className="font-serif text-2xl font-normal">{f.name}</h2>
                   </div>
                   <p className="text-ink-2">{f.summary}</p>
@@ -151,7 +151,7 @@ export function WholeFoodPage({ id }: { id: string }) {
       </a>
       <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">{GROUP_LABEL[f.group]}</p>
+          <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
           <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{f.name}</h1>
           {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.slice(0, 3).join(", ")}</p>}
         </div>

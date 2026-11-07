@@ -6,7 +6,7 @@ import { defaultRetestDays } from "@bt/shared/core/habits";
 import { safetyNotes, validateProtocol } from "@bt/shared/core/protocols";
 import { createHabit } from "../../../db/db";
 import { SafetyNotices } from "../../components/SafetyNotices";
-import { Button, CheckIcon, cx, inputStyles } from "../../components/ui";
+import { Button, CheckIcon, cx, inputStyles, eyebrowSmallStyles, cardStyles } from "../../components/ui";
 import { BIOMARKER_MAP, fullName } from "../../knowledge";
 import { href } from "../../router";
 import { setHabitState, type Turn } from "../store";
@@ -57,9 +57,9 @@ export function HabitTurn({ turn }: { turn: Extract<Turn, { role: "habit" }> }) 
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-3">
+    <div className={cx("flex flex-col gap-3 p-3", cardStyles)}>
       <div>
-        <p className="font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase">Suggested habit · {CATEGORY_WORD[p.category]}</p>
+        <p className={eyebrowSmallStyles}>Suggested habit · {CATEGORY_WORD[p.category]}</p>
         <p className="mt-1 text-sm text-ink-2">{p.reason}</p>
       </div>
       <div className="flex flex-col gap-1">

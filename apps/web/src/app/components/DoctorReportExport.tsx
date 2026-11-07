@@ -10,7 +10,7 @@ import { useDisplayUnits, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, CATEGORY_ORDER, NUTRIENTS, fullName } from "../knowledge";
 import { formatDate } from "../format";
 import { DoctorReportDocument, DOCTOR_REPORT_PRINT_CSS } from "./DoctorReportDocument";
-import { Button, Card, CheckIcon, Notice, inputStyles, labelStyles } from "./ui";
+import { Button, Card, CheckIcon, Notice, inputStyles, labelStyles, cardStyles, cx } from "./ui";
 import { More } from "./disclosure";
 
 /** A reviewable, local handout. PDF creation uses the browser's own print destination. */
@@ -148,7 +148,7 @@ export function DoctorReportExport({ measurements, profile }: { measurements: Me
             </div>
           </div>
           <p className="text-sm text-ink-2">In the print window, choose <strong>Save as PDF</strong> as the destination. Only the report is printed, not Settings or the app navigation.</p>
-          <div className="min-w-0 overflow-x-auto rounded-xl border border-line bg-surface p-4 sm:p-6">
+          <div className={cx("min-w-0 overflow-x-auto p-4 sm:p-6", cardStyles)}>
             <DoctorReportDocument report={report} units={units} />
           </div>
         </section>

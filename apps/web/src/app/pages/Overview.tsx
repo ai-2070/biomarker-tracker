@@ -5,7 +5,7 @@ import { Toggle } from "@base-ui/react/toggle";
 import { computeTrend, flagLatest, groupByBiomarker, isCritical, isOutOfRange, type Flag } from "@bt/shared/core/trends";
 import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
-import { Button, FlagBadge, LinkButton, PageTitle, cx, inputStyles, labelStyles } from "../components/ui";
+import { Button, FlagBadge, LinkButton, PageTitle, cx, inputStyles, labelStyles, eyebrowStyles } from "../components/ui";
 import { displayUnitFor, formatDate, formatYears, showChange, showMeasurement, valueUnit } from "../format";
 import { useAllMeasurements, useDisplayUnits, useProfile, useProtocols } from "../hooks";
 import { SafetyNotices } from "../components/SafetyNotices";
@@ -166,7 +166,7 @@ export function Overview({ show }: { show?: ResultsFilter }) {
         {CATEGORY_ORDER.filter((c) => byCategory.has(c)).map((category) => {
           const categoryId = `blood-category-${CATEGORY_ORDER.indexOf(category)}`;
           return <section key={category} aria-labelledby={categoryId}>
-            <h2 id={categoryId} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
+            <h2 id={categoryId} className={cx("mb-2", eyebrowStyles)}>
               {category}
             </h2>
             <ul className="stagger grid grid-cols-1 gap-2 sm:grid-cols-2">

@@ -4,7 +4,7 @@ import { EFFORT_LABEL, GROUP_LABEL, PROVIDERS, canUse, modelEfforts, providerInf
 import { localServer } from "../api";
 import { OnOff } from "../components/settings/SkillsSettings";
 import { ToolsIcon } from "../components/icons";
-import { CheckIcon, ChevronDownIcon, cx } from "../components/ui";
+import { CheckIcon, ChevronDownIcon, cx, eyebrowSmallStyles } from "../components/ui";
 import { href, type SettingsTab } from "../router";
 import { closeBrain } from "./store";
 
@@ -72,7 +72,7 @@ const popupStyles =
   "z-[60] flex max-h-[min(520px,var(--available-height))] w-80 max-w-[calc(100vw-1.5rem)] origin-[var(--transform-origin)] flex-col overflow-y-auto rounded-xl border border-line bg-surface p-1.5 text-ink shadow-lg outline-none transition-[scale,opacity] duration-150 ease-out data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0";
 const chipStyles =
   "flex min-h-9 max-w-full min-w-0 items-center gap-1.5 rounded-lg px-2 text-[13px] text-ink-2 transition-colors duration-150 hover:bg-sunken hover:text-ink data-popup-open:bg-sunken data-popup-open:text-ink";
-const sectionLabel = "px-2.5 pt-2 pb-1 font-mono text-[11px] font-medium tracking-[0.12em] text-ink-2 uppercase";
+const sectionLabel = cx("px-2.5 pt-2 pb-1", eyebrowSmallStyles);
 
 function MenuShell({ trigger, label, children }: { trigger: ReactNode; label: string; children: ReactNode }) {
   return (

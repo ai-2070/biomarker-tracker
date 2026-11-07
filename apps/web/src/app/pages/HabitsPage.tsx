@@ -15,7 +15,7 @@ import { PlusIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
 import { SegmentTabs } from "../components/SegmentTabs";
-import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles } from "../components/ui";
+import { Button, Card, CheckIcon, Notice, PageTitle, cx, errorStyles, helpStyles, inputStyles, labelStyles, eyebrowStyles, eyebrowSmallStyles, cardStyles } from "../components/ui";
 import { CATEGORY_LABEL, formatDate, formatChange, formatDuration, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useExperiments, useWatchMeasurements, useMeals, usePlans, useProfile, useProtocols } from "../hooks";
 import { BIOMARKERS, BIOMARKER_MAP, CATEGORY_ORDER, WATCH_DEFS, shortName, watchDef } from "../knowledge";
@@ -95,7 +95,7 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
 
         {groups.map((g) => (
           <section key={g.title} aria-labelledby={`habits-${g.title}`}>
-            <h2 id={`habits-${g.title}`} className="mb-2 font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">
+            <h2 id={`habits-${g.title}`} className={cx("mb-2", eyebrowStyles)}>
               {g.title}
             </h2>
             <ul className="stagger flex flex-col gap-3">
@@ -134,7 +134,7 @@ function HabitCard({ habit: h, plans, all, tested, today }: { habit: Habit; plan
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-4">
+    <div className={cx("flex flex-col gap-3 p-4", cardStyles)}>
       <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
           {h.watch ? (
@@ -217,7 +217,7 @@ function WhatChanged({ watch, all, today, onChange }: { watch: Experiment; all: 
   return (
     <div className="flex flex-col gap-2 border-t border-line pt-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <p className="font-mono text-[11px] font-medium tracking-[0.14em] text-ink-2 uppercase">What changed</p>
+        <p className={eyebrowSmallStyles}>What changed</p>
         <div className="flex items-center gap-2">
           {s.phase !== "complete" && <PhaseBadge phase={s.phase} />}
           <a href={href({ name: "experiment", id: watch.id })} className="min-h-9 content-center text-sm font-medium text-accent no-underline hover:underline">

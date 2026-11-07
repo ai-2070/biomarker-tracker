@@ -6,7 +6,7 @@ import { GradeBadge, StudyLink } from "./evidence";
 import { More } from "./disclosure";
 import { Glance } from "./glance";
 import { SegmentTabs } from "./SegmentTabs";
-import { Card, cx } from "./ui";
+import { Card, cx, eyebrowStyles } from "./ui";
 
 const HEADING: Record<ComparisonTopic, string> = {
   matrix: "The animal matrix",
@@ -47,7 +47,7 @@ export function FoodComparison() {
   return (
     <Card className="flex flex-col gap-4">
       <div>
-        <p className="font-mono text-xs font-medium tracking-[0.14em] text-ink-2 uppercase">Whole foods</p>
+        <p className={eyebrowStyles}>Whole foods</p>
         <h2 className="font-serif text-2xl font-normal">Animal foods, fruit and plants: what research says</h2>
         <p className="mt-1 max-w-3xl text-ink-2">
           Claims people make about animal and plant foods, one by one, with what the studies show, how strong that evidence is, and the other
