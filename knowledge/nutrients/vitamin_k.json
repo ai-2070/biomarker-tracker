@@ -69,9 +69,24 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Adults (men and women)", "amount": 70, "unit": "µg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 70, "unit": "µg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 70, "unit": "µg", "type": "AI" }
+      {
+        "group": "Adults (men and women)",
+        "amount": 70,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 70,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 70,
+        "unit": "µg",
+        "type": "AI"
+      }
     ],
     "noUpperLimit": "No upper limit has been set. The EU's former Scientific Committee on Food (2003) found no harm in human studies of up to 10 mg of K1 a day for a month, and none in animal studies, but judged the evidence too limited to set a limit; EFSA's 2017 opinion did not revisit it. EFSA's intake value (1 µg per kg of body weight a day) covers vitamin K1 only, because too little is known about K2. None of this applies to people on warfarin-type blood thinners, for whom any change in vitamin K intake matters.",
     "sources": [
@@ -90,195 +105,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Blood markers of vitamin K status (inactive osteocalcin and matrix Gla protein)",
-      "population": "Adults in trials of bone and blood vessel health",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Many randomised trials agree that supplements lower the inactive proteins",
-        "Results vary in size between trials",
-        "These are lab markers, not health outcomes"
-      ],
-      "summary": "Vitamin K supplements reliably lower the share of inactive vitamin K-dependent proteins in the blood (by about 45% for dp-ucMGP in one meta-analysis). This shows the vitamin is being used, but changing a marker is not the same as a health benefit: the trials below show what happened to bones and blood vessels.",
-      "bottomLine": "In adult trials, vitamin K supplements reliably lowered the share of inactive vitamin K-dependent proteins in the blood, by about 45% for one marker in a meta-analysis. This shows the vitamin is used, but a marker change is not a health benefit.",
-      "label": "Blood markers of vitamin K status",
-      "line": "Inactive vitamin K proteins fell, by about 45% for one marker; not a health benefit itself",
-      "studies": [
-        {
-          "pmid": "30514729",
-          "doi": "10.1136/heartjnl-2018-313955",
-          "title": "Vitamin K status, supplementation and vascular disease: a systematic review and meta-analysis",
-          "year": 2019,
-          "studyType": "meta-analysis",
-          "n": 2162
-        },
-        {
-          "pmid": "18922041",
-          "doi": "10.1371/journal.pmed.0050196",
-          "title": "Vitamin K supplementation in postmenopausal women with osteopenia (ECKO trial): a randomized controlled trial",
-          "year": 2008,
-          "studyType": "rct",
-          "n": 440
-        }
-      ]
-    },
-    {
-      "outcome": "Bone fractures",
-      "population": "Women after menopause and people with osteoporosis, many in Japan",
-      "effect": "mixed",
-      "grade": "low",
-      "whyThisGrade": [
-        "Early Japanese trials of MK-4 showed large effects, but the integrity of some earlier evidence has been questioned",
-        "In the trials at low risk of bias the effect was smaller and could be chance",
-        "The largest trial (over 4000 women, MK-4 with calcium) found no fewer vertebral fractures",
-        "Very high, medicine-level amounts in many trials"
-      ],
-      "summary": "An early meta-analysis of seven Japanese MK-4 trials, at medicine-level amounts, found far fewer fractures. A 2019 update found about 28% lower odds of clinical fractures, but this shrank and became uncertain when only low-risk-of-bias trials were counted, and there was no effect on vertebral fractures. The largest single trial found no effect on vertebral fractures. The evidence is not enough to confirm a benefit.",
-      "bottomLine": "In mostly Japanese trials in women after menopause and people with osteoporosis, vitamin K seemed to cut fractures, but the effect shrank and became uncertain in the best-quality trials. The evidence is not enough to confirm a benefit.",
-      "label": "Bone fractures",
-      "line": "Fewer fractures in mostly Japanese trials, uncertain in the best-quality ones",
-      "studies": [
-        {
-          "pmid": "31076817",
-          "doi": "10.1007/s00198-019-04949-0",
-          "title": "Effect of vitamin K on bone mineral density and fractures in adults: an updated systematic review and meta-analysis of randomised controlled trials",
-          "year": 2019,
-          "studyType": "meta-analysis"
-        },
-        {
-          "pmid": "16801507",
-          "doi": "10.1001/archinte.166.12.1256",
-          "title": "Vitamin K and the prevention of fractures: systematic review and meta-analysis of randomized controlled trials",
-          "year": 2006,
-          "studyType": "meta-analysis"
-        },
-        {
-          "pmid": "19082528",
-          "doi": "10.1007/s00774-008-0008-8",
-          "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
-          "year": 2009,
-          "studyType": "rct",
-          "n": 4378
-        }
-      ]
-    },
-    {
-      "outcome": "Bone mineral density",
-      "population": "Women after menopause, some with low bone density",
-      "effect": "no clear effect",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Many randomised trials, but results are inconsistent",
-        "Small gains seen in some trials disappeared when trials at high risk of bias were removed",
-        "A well-run 2 to 4 year trial of K1 found no difference"
-      ],
-      "summary": "In the 2019 meta-analysis, vitamin K did not clearly change bone density in women after menopause. The ECKO trial (5 mg K1 a day for 2 to 4 years) found no effect on bone density. One 3-year trial of MK-7 (180 µg a day) reported slower bone loss at some sites, but this has not been confirmed across trials.",
-      "bottomLine": "In women after menopause, vitamin K did not clearly change bone density, in a 2019 meta-analysis and in a 2 to 4 year trial. One 3-year trial reported slower bone loss at some sites, but this has not been confirmed.",
-      "label": "Bone density",
-      "line": "No clear change in women after menopause",
-      "studies": [
-        {
-          "pmid": "31076817",
-          "doi": "10.1007/s00198-019-04949-0",
-          "title": "Effect of vitamin K on bone mineral density and fractures in adults: an updated systematic review and meta-analysis of randomised controlled trials",
-          "year": 2019,
-          "studyType": "meta-analysis"
-        },
-        {
-          "pmid": "18922041",
-          "doi": "10.1371/journal.pmed.0050196",
-          "title": "Vitamin K supplementation in postmenopausal women with osteopenia (ECKO trial): a randomized controlled trial",
-          "year": 2008,
-          "studyType": "rct",
-          "n": 440
-        },
-        {
-          "pmid": "23525894",
-          "doi": "10.1007/s00198-013-2325-6",
-          "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
-          "year": 2013,
-          "studyType": "rct",
-          "n": 244
-        }
-      ]
-    },
-    {
-      "outcome": "Calcification and stiffness of arteries and heart valves",
-      "population": "Adults with or at risk of vascular calcification, including people with kidney disease",
-      "effect": "mixed",
-      "grade": "low",
-      "whyThisGrade": [
-        "Small and varied trials with results that differ",
-        "Two meta-analyses found slightly slower calcification; two well-run trials found none",
-        "Calcification scores are stand-in measures; no trial has shown fewer heart attacks or strokes"
-      ],
-      "summary": "Meta-analyses found vitamin K slightly slowed the build-up of calcium in arteries, with no clear effect on artery stiffness. But a trial of MK-7 (720 µg a day) with vitamin D for 2 years in men with heart valve calcification found no slowing, and a trial in people with chronic kidney disease (400 µg K2 a day for a year) found no change in artery stiffness. Whether vitamin K protects the heart is unknown.",
-      "bottomLine": "In adults with or at risk of calcium build-up in blood vessels, including people with kidney disease, meta-analyses found vitamin K slightly slowed it. But two trials found no benefit, so whether vitamin K protects the heart is unknown.",
-      "label": "Calcium build-up in arteries",
-      "line": "Slightly slower build-up in meta-analyses, but two trials found no benefit",
-      "studies": [
-        {
-          "pmid": "30514729",
-          "doi": "10.1136/heartjnl-2018-313955",
-          "title": "Vitamin K status, supplementation and vascular disease: a systematic review and meta-analysis",
-          "year": 2019,
-          "studyType": "meta-analysis",
-          "n": 2162
-        },
-        {
-          "pmid": "37252246",
-          "doi": "10.3389/fnut.2023.1115069",
-          "title": "Vitamin K supplementation and vascular calcification: a systematic review and meta-analysis of randomized controlled trials",
-          "year": 2023,
-          "studyType": "meta-analysis",
-          "n": 1533
-        },
-        {
-          "pmid": "35465686",
-          "doi": "10.1161/circulationaha.121.057008",
-          "title": "Vitamin K2 and D in Patients With Aortic Valve Calcification: A Randomized Double-Blinded Clinical Trial",
-          "year": 2022,
-          "studyType": "rct",
-          "n": 365
-        },
-        {
-          "pmid": "32817311",
-          "doi": "10.1681/asn.2020020225",
-          "title": "Vitamin K Supplementation to Improve Vascular Stiffness in CKD: The K4Kidneys Randomized Controlled Trial",
-          "year": 2020,
-          "studyType": "rct",
-          "n": 159
-        }
-      ]
-    },
-    {
-      "outcome": "Stability of warfarin treatment in people whose INR swings a lot",
-      "population": "People on warfarin with unexplained unstable control, under an anticoagulation clinic",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "One small randomised, double-blind trial (70 people)",
-        "Short follow-up (6 months)",
-        "Done with close INR monitoring and warfarin adjustments by the clinic"
-      ],
-      "summary": "In people with unstable warfarin control, a small steady daily amount of vitamin K (150 µg) kept the INR in the target range more of the time than placebo, probably by evening out day-to-day swings in vitamin K from food. This was done under close supervision; changing vitamin K intake while on warfarin is a decision for the anticoagulation clinic, never a do-it-yourself step.",
-      "bottomLine": "In people on warfarin with unstable control, a small steady daily amount of vitamin K kept the clotting test result (INR) in the target range more of the time than placebo. This was done under close clinic supervision, never as a do-it-yourself step.",
-      "label": "Warfarin control (under a clinic)",
-      "line": "INR in range more of the time in a small trial, under close clinic care",
-      "studies": [
-        {
-          "pmid": "17110451",
-          "doi": "10.1182/blood-2006-09-049262",
-          "title": "Vitamin K supplementation can improve stability of anticoagulation for patients with unexplained variability in response to warfarin",
-          "year": 2007,
-          "studyType": "rct",
-          "n": 70
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Warfarin and other vitamin K antagonists (acenocoumarol, phenprocoumon)",
@@ -339,6 +166,188 @@
       "title": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review",
       "year": 2016,
       "studyType": "review"
+    },
+    {
+      "pmid": "30514729",
+      "doi": "10.1136/heartjnl-2018-313955",
+      "title": "Vitamin K status, supplementation and vascular disease: a systematic review and meta-analysis",
+      "year": 2019,
+      "studyType": "meta-analysis",
+      "n": 2162
+    },
+    {
+      "pmid": "18922041",
+      "doi": "10.1371/journal.pmed.0050196",
+      "title": "Vitamin K supplementation in postmenopausal women with osteopenia (ECKO trial): a randomized controlled trial",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 440
+    },
+    {
+      "pmid": "31076817",
+      "doi": "10.1007/s00198-019-04949-0",
+      "title": "Effect of vitamin K on bone mineral density and fractures in adults: an updated systematic review and meta-analysis of randomised controlled trials",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "16801507",
+      "doi": "10.1001/archinte.166.12.1256",
+      "title": "Vitamin K and the prevention of fractures: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2006,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "19082528",
+      "doi": "10.1007/s00774-008-0008-8",
+      "title": "Randomized controlled study on the prevention of osteoporotic fractures (OF study): a phase IV clinical study of 15-mg menatetrenone capsules",
+      "year": 2009,
+      "studyType": "rct",
+      "n": 4378
+    },
+    {
+      "pmid": "23525894",
+      "doi": "10.1007/s00198-013-2325-6",
+      "title": "Three-year low-dose menaquinone-7 supplementation helps decrease bone loss in healthy postmenopausal women",
+      "year": 2013,
+      "studyType": "rct",
+      "n": 244
+    },
+    {
+      "pmid": "37252246",
+      "doi": "10.3389/fnut.2023.1115069",
+      "title": "Vitamin K supplementation and vascular calcification: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 1533
+    },
+    {
+      "pmid": "35465686",
+      "doi": "10.1161/circulationaha.121.057008",
+      "title": "Vitamin K2 and D in Patients With Aortic Valve Calcification: A Randomized Double-Blinded Clinical Trial",
+      "year": 2022,
+      "studyType": "rct",
+      "n": 365
+    },
+    {
+      "pmid": "32817311",
+      "doi": "10.1681/asn.2020020225",
+      "title": "Vitamin K Supplementation to Improve Vascular Stiffness in CKD: The K4Kidneys Randomized Controlled Trial",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 159
+    },
+    {
+      "pmid": "17110451",
+      "doi": "10.1182/blood-2006-09-049262",
+      "title": "Vitamin K supplementation can improve stability of anticoagulation for patients with unexplained variability in response to warfarin",
+      "year": 2007,
+      "studyType": "rct",
+      "n": 70
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May strengthen bones and prevent fractures",
+    "May keep arteries free of calcium build-up",
+    "May keep teeth and jaw strong (with D3 and calcium)",
+    "May support normal blood clotting"
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May strengthen bones and prevent fractures": "bone fractures and bone density",
+      "May keep arteries free of calcium build-up": "arterial calcification",
+      "May keep teeth and jaw strong (with D3 and calcium)": "teeth and jaw bone",
+      "May support normal blood clotting": "blood clotting"
+    },
+    "claimCategories": {
+      "May strengthen bones and prevent fractures": "longevity",
+      "May keep arteries free of calcium build-up": "longevity",
+      "May keep teeth and jaw strong (with D3 and calcium)": "health",
+      "May support normal blood clotting": "health"
+    },
+    "claimLabels": {
+      "May strengthen bones and prevent fractures": "Bones and fractures",
+      "May keep arteries free of calcium build-up": "Arteries",
+      "May keep teeth and jaw strong (with D3 and calcium)": "Teeth and jaw",
+      "May support normal blood clotting": "Blood clotting"
+    },
+    "origin": [
+      "Vitamin K is a group of fat-soluble vitamins. K1 (phylloquinone) comes from green leafy vegetables and some vegetable oils. K2 (menaquinones such as MK-4 and MK-7) is made by bacteria and found in fermented foods such as natto, and in small amounts in animal foods.",
+      "Supplement K1 and K2 are manufactured; MK-7 is usually made by fermentation. K1 and K2 are not interchangeable, so results for one do not carry over to the other."
+    ],
+    "dosage": [
+      "EFSA's adequate intake for adults is 70 µg a day, mostly as K1. No upper limit has been set. These are population values, not personal targets.",
+      "Amounts commonly used in supplements are about 1,500 µg of K1, 5 mg of K2 as MK-4 or 600 µg of K2 as MK-7 a day. This is not a reference intake or a personal recommendation.",
+      "Check the form (K1, MK-4 or MK-7) and the amount on the label. If you take warfarin or a similar medicine, a change in vitamin K intake matters, so talk to your doctor or pharmacist before changing anything."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake for adults",
+          "mg": 0.07
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (K1, 1,500 µg)",
+          "mg": 1.5
+        }
+      ],
+      "foods": [
+        {
+          "name": "Curly kale, raw",
+          "mgPer100g": [
+            0.623,
+            0.623
+          ]
+        },
+        {
+          "name": "Spinach, raw or boiled",
+          "mgPer100g": [
+            0.394,
+            0.575
+          ]
+        },
+        {
+          "name": "Cabbage, green, raw or boiled",
+          "mgPer100g": [
+            0.201,
+            0.242
+          ]
+        },
+        {
+          "name": "Broccoli, raw or boiled",
+          "mgPer100g": [
+            0.135,
+            0.185
+          ]
+        },
+        {
+          "name": "Soya oil",
+          "mgPer100g": [
+            0.131,
+            0.131
+          ]
+        },
+        {
+          "name": "Rapeseed oil",
+          "mgPer100g": [
+            0.1125,
+            0.1125
+          ]
+        }
+      ],
+      "verdict": "Yes for K1: a small portion of leafy greens covers the adequate intake (about 10–20 g of raw kale or spinach). The 1,500 µg amount of K1 is also possible from food, about 250–400 g of kale or spinach a day, but it is a lot. K2 is a different form, and the table has no figures for it, so no K2 amounts are given. A steady intake of greens matters for people on warfarin.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw or boiled food named. Other foods, brands and fortified products differ. K2 (MK-4, MK-7) in natto, cheese and meat is not in the table.",
+      "sources": [
+        {
+          "pmid": "32625486",
+          "doi": "10.2903/j.efsa.2017.4780",
+          "title": "Dietary reference values for vitamin K",
+          "year": 2017,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

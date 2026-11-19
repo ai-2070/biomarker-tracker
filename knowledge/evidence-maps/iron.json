@@ -92,7 +92,6 @@
    "id": "anaemia-women",
    "label": "Anaemia in women",
    "anyDesign": false,
-   "finding": "Anaemia, haemoglobin and iron stores",
    "counts": {
     "reviews": 358,
     "trialReviews": 87,
@@ -2140,7 +2139,6 @@
    "id": "pregnancy",
    "label": "Pregnancy",
    "anyDesign": false,
-   "finding": "Anaemia and iron deficiency in pregnancy, and outcomes for the baby",
    "counts": {
     "reviews": 228,
     "trialReviews": 91,
@@ -3952,7 +3950,6 @@
    "id": "fatigue",
    "label": "Tiredness",
    "anyDesign": false,
-   "finding": "Tiredness (fatigue) in people with low iron but no anaemia",
    "counts": {
     "reviews": 31,
     "trialReviews": 10,
@@ -4317,7 +4314,6 @@
    "id": "side-effects",
    "label": "Stomach and gut side effects",
    "anyDesign": false,
-   "finding": "Stomach and gut side effects",
    "counts": {
     "reviews": 76,
     "trialReviews": 30,
@@ -4890,7 +4886,6 @@
    "id": "every-other-day",
    "label": "Every other day vs daily",
    "anyDesign": false,
-   "finding": "Iron every other day compared with every day",
    "counts": {
     "reviews": 32,
     "trialReviews": 24,
@@ -5410,7 +5405,6 @@
    "id": "bisglycinate",
    "label": "Ferrous bisglycinate",
    "anyDesign": false,
-   "finding": "Ferrous bisglycinate compared with other iron forms",
    "counts": {
     "reviews": 7,
     "trialReviews": 4,

@@ -91,7 +91,6 @@
    "id": "fractures-falls",
    "label": "Fractures and falls",
    "anyDesign": false,
-   "finding": "Bone fractures and falls (vitamin D on its own)",
    "counts": {
     "reviews": 192,
     "trialReviews": 63,
@@ -1090,7 +1089,6 @@
    "id": "mortality",
    "label": "Death from any cause",
    "anyDesign": false,
-   "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 128,
     "trialReviews": 40,
@@ -1649,7 +1647,6 @@
    "id": "cancer",
    "label": "Cancer",
    "anyDesign": false,
-   "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 362,
     "trialReviews": 64,
@@ -2542,7 +2539,6 @@
    "id": "cardiovascular",
    "label": "Heart and blood vessel disease",
    "anyDesign": false,
-   "finding": "Cancer, heart disease and death from any cause",
    "counts": {
     "reviews": 124,
     "trialReviews": 39,
@@ -3149,7 +3145,6 @@
    "id": "respiratory",
    "label": "Respiratory infections",
    "anyDesign": false,
-   "finding": "Respiratory infections (colds, flu, chest infections)",
    "counts": {
     "reviews": 169,
     "trialReviews": 35,
@@ -3600,7 +3595,6 @@
    "id": "large-doses",
    "label": "Very large doses",
    "anyDesign": false,
-   "finding": "Falls and fractures with a very large amount once a year",
    "counts": {
     "reviews": 205,
     "trialReviews": 70,
@@ -4943,7 +4937,6 @@
    "id": "diabetes",
    "label": "Type 2 diabetes",
    "anyDesign": false,
-   "finding": "Type 2 diabetes in people with prediabetes",
    "counts": {
     "reviews": 227,
     "trialReviews": 62,

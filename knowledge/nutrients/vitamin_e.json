@@ -74,10 +74,30 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Men", "amount": 13, "unit": "mg", "type": "AI" },
-      { "group": "Women", "amount": 11, "unit": "mg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 11, "unit": "mg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 11, "unit": "mg", "type": "AI" }
+      {
+        "group": "Men",
+        "amount": 13,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Women",
+        "amount": 11,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 11,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 11,
+        "unit": "mg",
+        "type": "AI"
+      }
     ],
     "upperLimit": {
       "amount": 300,
@@ -101,244 +121,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Prostate cancer",
-      "population": "Healthy men aged 50 or 55 and over in the US, Canada and Puerto Rico (SELECT)",
-      "effect": "harms",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "One very large, well-run randomised trial",
-        "The increase only became statistically clear with longer follow-up",
-        "An earlier trial in smokers at a lower dose (ATBC) found fewer prostate cancers, so the results aren't consistent"
-      ],
-      "summary": "In SELECT, 35,533 men were given 400 IU a day of synthetic vitamin E, selenium, both, or placebo. With extended follow-up, the vitamin E group had 17% more prostate cancer than placebo, about 1.6 extra cases for every 1,000 men each year. Men given vitamin E with selenium had no clear increase. In ATBC (50 mg a day in male smokers) fewer prostate cancers were diagnosed, a result SELECT was partly designed to test and didn't confirm.",
-      "bottomLine": "In SELECT, 35,533 healthy men given 400 IU a day of synthetic vitamin E had 17% more prostate cancer than with placebo, about 1.6 extra cases per 1,000 men a year. Men given it with selenium had no clear increase.",
-      "label": "Prostate cancer",
-      "line": "17% more prostate cancer in healthy men in a large trial (SELECT)",
-      "studies": [
-        {
-          "pmid": "21990298",
-          "doi": "10.1001/jama.2011.1437",
-          "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-          "year": 2011,
-          "studyType": "rct",
-          "n": 34887
-        },
-        {
-          "pmid": "19066370",
-          "doi": "10.1001/jama.2008.864",
-          "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
-          "year": 2009,
-          "studyType": "rct",
-          "n": 35533
-        },
-        {
-          "pmid": "8127329",
-          "doi": "10.1056/nejm199404143301501",
-          "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
-          "year": 1994,
-          "studyType": "rct",
-          "n": 29133
-        }
-      ]
-    },
-    {
-      "outcome": "Heart attacks, strokes and deaths from heart and blood vessel disease",
-      "population": "Middle-aged and older adults: healthy men and women, and people with vascular disease or diabetes",
-      "effect": "no clear effect",
-      "grade": "high",
-      "whyThisGrade": [
-        "Several large, long, placebo-controlled trials agree",
-        "Pooled in an independent review for the US Preventive Services Task Force (USPSTF)"
-      ],
-      "summary": "In the Physicians' Health Study II (14,641 men, 8 years), vitamin E didn't change major heart and stroke events. In the Women's Health Study (39,876 women, 10 years) there was no overall benefit; there were fewer cardiovascular deaths, a secondary result. In HOPE-TOO (people with vascular disease or diabetes, 7 years) there was no benefit and more heart failure. The USPSTF review found no effect on cardiovascular events, and the USPSTF advises against vitamin E supplements for preventing heart disease or cancer.",
-      "bottomLine": "In large trials of healthy adults and of people with vascular disease or diabetes, vitamin E did not lower heart attacks or strokes overall. One trial saw more heart failure; another saw fewer heart and blood vessel deaths, but only as a secondary result.",
-      "label": "Heart attacks and strokes",
-      "line": "No fewer heart attacks or strokes overall in large trials",
-      "studies": [
-        {
-          "pmid": "18997197",
-          "doi": "10.1001/jama.2008.600",
-          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-          "year": 2008,
-          "studyType": "rct",
-          "n": 14641
-        },
-        {
-          "pmid": "15998891",
-          "doi": "10.1001/jama.294.1.56",
-          "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
-          "year": 2005,
-          "studyType": "rct",
-          "n": 39876
-        },
-        {
-          "pmid": "15769967",
-          "doi": "10.1001/jama.293.11.1338",
-          "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
-          "year": 2005,
-          "studyType": "rct",
-          "n": 9541
-        },
-        {
-          "pmid": "35727271",
-          "doi": "10.1001/jama.2022.8970",
-          "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement",
-          "year": 2022,
-          "studyType": "guideline"
-        },
-        {
-          "pmid": "35727272",
-          "doi": "10.1001/jama.2021.15650",
-          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
-          "year": 2022,
-          "studyType": "meta-analysis",
-          "n": 739803
-        }
-      ]
-    },
-    {
-      "outcome": "Stroke, by type",
-      "population": "Adults in nine randomised trials of vitamin E, followed for at least a year",
-      "effect": "mixed",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Meta-analysis of randomised trials with little difference between them",
-        "Few bleeding strokes, and the increase only just reached statistical significance",
-        "Stroke type wasn't the main outcome in most trials"
-      ],
-      "summary": "Vitamin E didn't change the total number of strokes. But bleeding strokes (haemorrhagic) were 22% more common, about one extra for every 1,250 people taking it, while strokes from a blocked artery (ischaemic) were 10% less common, about one fewer for every 476. Bleeding strokes are usually more severe. Two large trials, PHS II and ATBC, each also saw more bleeding strokes with vitamin E.",
-      "bottomLine": "In nine trials, vitamin E did not change the total number of strokes, but bleeding strokes were 22% more common and strokes from a blocked artery 10% less common. Bleeding strokes are usually the more severe kind.",
-      "label": "Stroke, by type",
-      "line": "More bleeding strokes (22%) but fewer from blocked arteries (10%); total unchanged",
-      "studies": [
-        {
-          "pmid": "21051774",
-          "doi": "10.1136/bmj.c5702",
-          "title": "Effects of vitamin E on stroke subtypes: meta-analysis of randomised controlled trials",
-          "year": 2010,
-          "studyType": "meta-analysis",
-          "n": 118765
-        },
-        {
-          "pmid": "18997197",
-          "doi": "10.1001/jama.2008.600",
-          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-          "year": 2008,
-          "studyType": "rct",
-          "n": 14641
-        }
-      ]
-    },
-    {
-      "outcome": "Death from any cause",
-      "population": "Adults, healthy or with chronic diseases, in randomised trials of vitamin E alone or with other nutrients",
-      "effect": "harms",
-      "grade": "low",
-      "whyThisGrade": [
-        "Small effect whose size depends on which trials are included",
-        "High-dose trials were often small and done in people with chronic diseases",
-        "The independent USPSTF review found no clear difference"
-      ],
-      "summary": "No analysis found that vitamin E helped people live longer. A Cochrane review found about 3% more deaths with vitamin E in trials at low risk of bias, at the edge of statistical significance. An earlier meta-analysis found more deaths in trials using 400 IU a day or more (about 39 extra deaths per 10,000 people) and none with lower doses. The USPSTF review, limited to healthy adults, found no clear difference. A small harm at high doses is possible but not certain.",
-      "bottomLine": "In trials of adults, healthy or ill, vitamin E did not help people live longer. Two analyses found slightly more deaths, one of them only at 400 IU a day or more, so a small harm at high doses is possible but not certain.",
-      "label": "Death from any cause",
-      "line": "No longer life; a small harm at high doses is possible but not certain",
-      "studies": [
-        {
-          "pmid": "22419320",
-          "doi": "10.1002/14651858.cd007176.pub2",
-          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
-          "year": 2012,
-          "studyType": "meta-analysis",
-          "n": 296707
-        },
-        {
-          "pmid": "15537682",
-          "doi": "10.7326/0003-4819-142-1-200501040-00110",
-          "title": "Meta-analysis: high-dosage vitamin E supplementation may increase all-cause mortality",
-          "year": 2005,
-          "studyType": "meta-analysis",
-          "n": 135967
-        },
-        {
-          "pmid": "35727272",
-          "doi": "10.1001/jama.2021.15650",
-          "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
-          "year": 2022,
-          "studyType": "meta-analysis",
-          "n": 739803
-        }
-      ]
-    },
-    {
-      "outcome": "Worsening of age-related macular degeneration (AMD, an eye disease that damages central vision)",
-      "population": "People aged about 55–80 who already have intermediate AMD",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Cochrane rates the evidence moderate certainty",
-        "Most of it comes from one large trial (AREDS)",
-        "It tests a combination (vitamins C and E, beta-carotene and zinc), so vitamin E's own share is unknown"
-      ],
-      "summary": "In AREDS (3,640 people, about 6 years), a combination containing vitamin E slowed progression to late AMD, mainly in people with intermediate AMD; for people with early AMD the absolute benefit was very small. A single trial of vitamin E alone was too small to show anything (very low certainty). Because beta-carotene in the formula raised lung cancer in former smokers, AREDS2 replaced it with lutein and zeaxanthin. This is a treatment for a diagnosed eye condition, chosen with an eye doctor, not a general prevention.",
-      "bottomLine": "In AREDS (3,640 people with age-related macular degeneration, about 6 years), a combination containing vitamin E slowed progression to the late stage, mainly in people with intermediate disease. It is a treatment for a diagnosed eye condition, not general prevention.",
-      "label": "Macular degeneration (AMD)",
-      "line": "A combination with vitamin E slowed worsening, mainly in intermediate disease",
-      "studies": [
-        {
-          "pmid": "37702300",
-          "doi": "10.1002/14651858.cd000254.pub5",
-          "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
-          "year": 2023,
-          "studyType": "meta-analysis",
-          "n": 11952
-        },
-        {
-          "pmid": "11594942",
-          "doi": "10.1001/archopht.119.10.1417",
-          "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
-          "year": 2001,
-          "studyType": "rct",
-          "n": 3640
-        },
-        {
-          "pmid": "23644932",
-          "doi": "10.1001/jama.2013.4997",
-          "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
-          "year": 2013,
-          "studyType": "rct",
-          "n": 4203
-        }
-      ]
-    },
-    {
-      "outcome": "Liver inflammation in fatty liver disease (NASH, non-alcoholic steatohepatitis)",
-      "population": "Adults without diabetes whose NASH was confirmed by liver biopsy",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "One randomised trial of 247 people",
-        "The outcome was a change in liver biopsy scores over 96 weeks, not liver failure or survival",
-        "Only people without diabetes were studied"
-      ],
-      "summary": "In the PIVENS trial, 800 IU a day of vitamin E for 96 weeks improved liver biopsy findings more often than placebo (43% compared with 19%), and liver enzymes fell. It isn't known whether this prevents cirrhosis or lengthens life, and the long-term risks found in other vitamin E trials still apply. This is a treatment for a diagnosed liver disease under a doctor's care.",
-      "bottomLine": "In a trial of adults without diabetes whose fatty liver inflammation was confirmed by biopsy, 800 IU a day of vitamin E for 96 weeks improved liver findings more often than placebo (43% against 19%). Whether it prevents cirrhosis or lengthens life is unknown.",
-      "label": "Fatty liver inflammation (NASH)",
-      "line": "Liver biopsy findings improved more often than placebo (43% against 19%) in one trial",
-      "studies": [
-        {
-          "pmid": "20427778",
-          "doi": "10.1056/nejmoa0907929",
-          "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
-          "year": 2010,
-          "studyType": "rct",
-          "n": 247
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Blood thinners (warfarin, apixaban, rivaroxaban and others)",
@@ -395,6 +178,234 @@
       "title": "Scientific opinion on the tolerable upper intake level for vitamin E",
       "year": 2024,
       "studyType": "guideline"
+    },
+    {
+      "pmid": "21990298",
+      "doi": "10.1001/jama.2011.1437",
+      "title": "Vitamin E and the risk of prostate cancer: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2011,
+      "studyType": "rct",
+      "n": 34887
+    },
+    {
+      "pmid": "19066370",
+      "doi": "10.1001/jama.2008.864",
+      "title": "Effect of selenium and vitamin E on risk of prostate cancer and other cancers: the Selenium and Vitamin E Cancer Prevention Trial (SELECT)",
+      "year": 2009,
+      "studyType": "rct",
+      "n": 35533
+    },
+    {
+      "pmid": "8127329",
+      "doi": "10.1056/nejm199404143301501",
+      "title": "The effect of vitamin E and beta carotene on the incidence of lung cancer and other cancers in male smokers",
+      "year": 1994,
+      "studyType": "rct",
+      "n": 29133
+    },
+    {
+      "pmid": "18997197",
+      "doi": "10.1001/jama.2008.600",
+      "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 14641
+    },
+    {
+      "pmid": "15998891",
+      "doi": "10.1001/jama.294.1.56",
+      "title": "Vitamin E in the primary prevention of cardiovascular disease and cancer: the Women's Health Study: a randomized controlled trial",
+      "year": 2005,
+      "studyType": "rct",
+      "n": 39876
+    },
+    {
+      "pmid": "15769967",
+      "doi": "10.1001/jama.293.11.1338",
+      "title": "Effects of long-term vitamin E supplementation on cardiovascular events and cancer: a randomized controlled trial",
+      "year": 2005,
+      "studyType": "rct",
+      "n": 9541
+    },
+    {
+      "pmid": "35727272",
+      "doi": "10.1001/jama.2021.15650",
+      "title": "Vitamin and Mineral Supplements for the Primary Prevention of Cardiovascular Disease and Cancer: Updated Evidence Report and Systematic Review for the US Preventive Services Task Force",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 739803
+    },
+    {
+      "pmid": "21051774",
+      "doi": "10.1136/bmj.c5702",
+      "title": "Effects of vitamin E on stroke subtypes: meta-analysis of randomised controlled trials",
+      "year": 2010,
+      "studyType": "meta-analysis",
+      "n": 118765
+    },
+    {
+      "pmid": "22419320",
+      "doi": "10.1002/14651858.cd007176.pub2",
+      "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
+      "year": 2012,
+      "studyType": "meta-analysis",
+      "n": 296707
+    },
+    {
+      "pmid": "15537682",
+      "doi": "10.7326/0003-4819-142-1-200501040-00110",
+      "title": "Meta-analysis: high-dosage vitamin E supplementation may increase all-cause mortality",
+      "year": 2005,
+      "studyType": "meta-analysis",
+      "n": 135967
+    },
+    {
+      "pmid": "37702300",
+      "doi": "10.1002/14651858.cd000254.pub5",
+      "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 11952
+    },
+    {
+      "pmid": "11594942",
+      "doi": "10.1001/archopht.119.10.1417",
+      "title": "A randomized, placebo-controlled, clinical trial of high-dose supplementation with vitamins C and E, beta carotene, and zinc for age-related macular degeneration and vision loss: AREDS report no. 8",
+      "year": 2001,
+      "studyType": "rct",
+      "n": 3640
+    },
+    {
+      "pmid": "23644932",
+      "doi": "10.1001/jama.2013.4997",
+      "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial",
+      "year": 2013,
+      "studyType": "rct",
+      "n": 4203
+    },
+    {
+      "pmid": "20427778",
+      "doi": "10.1056/nejmoa0907929",
+      "title": "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 247
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May protect skin from UV damage",
+    "May keep skin moisturised",
+    "May fade sun spots",
+    "May lower heart disease risk",
+    "May slow age-related eye disease",
+    "May ease fatty liver inflammation"
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May protect skin from UV damage": "skin UV damage",
+      "May keep skin moisturised": "skin moisture",
+      "May fade sun spots": "sun spots",
+      "May lower heart disease risk": "heart attack and stroke",
+      "May slow age-related eye disease": "age-related macular degeneration",
+      "May ease fatty liver inflammation": "fatty liver disease"
+    },
+    "claimCategories": {
+      "May protect skin from UV damage": "appearance",
+      "May keep skin moisturised": "appearance",
+      "May fade sun spots": "appearance",
+      "May lower heart disease risk": "health",
+      "May slow age-related eye disease": "health",
+      "May ease fatty liver inflammation": "health"
+    },
+    "claimLabels": {
+      "May protect skin from UV damage": "UV protection",
+      "May keep skin moisturised": "Skin moisture",
+      "May fade sun spots": "Sun spots",
+      "May lower heart disease risk": "Heart disease",
+      "May slow age-related eye disease": "Eyes (AMD)",
+      "May ease fatty liver inflammation": "Fatty liver"
+    },
+    "origin": [
+      "Vitamin E is a group of fat-soluble compounds (tocopherols and tocotrienols) that protect the fats in cell membranes from damage. It comes mainly from vegetable oils, nuts and seeds.",
+      "Natural vitamin E (RRR-alpha-tocopherol) is extracted from vegetable oils; synthetic all-rac-alpha-tocopherol is manufactured and is less active per milligram. Mixed tocopherol and tocotrienol products are a different mix again."
+    ],
+    "dosage": [
+      "EFSA's adequate intake is 13 mg a day for men and 11 mg for women. The upper limit for alpha-tocopherol from food and supplements is 300 mg a day. These are population values, not personal targets.",
+      "Amounts commonly used in supplements are about 15 to 50 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check the form and whether the label gives mg or IU, and avoid adding several products together. High amounts can matter with blood thinners (see below)."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, men",
+          "mg": 13
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (15 mg)",
+          "mg": 15
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (50 mg, the top of the usual range)",
+          "mg": 50
+        }
+      ],
+      "foods": [
+        {
+          "name": "Sunflower oil",
+          "mgPer100g": [
+            49.22,
+            49.22
+          ]
+        },
+        {
+          "name": "Sunflower seeds",
+          "mgPer100g": [
+            37.77,
+            39.11
+          ]
+        },
+        {
+          "name": "Almonds",
+          "mgPer100g": [
+            25.63,
+            25.63
+          ]
+        },
+        {
+          "name": "Hazelnuts",
+          "mgPer100g": [
+            24.98,
+            24.98
+          ]
+        },
+        {
+          "name": "Rapeseed oil",
+          "mgPer100g": [
+            22.21,
+            22.21
+          ]
+        },
+        {
+          "name": "Wheatgerm",
+          "mgPer100g": [
+            16.2,
+            16.2
+          ]
+        }
+      ],
+      "verdict": "Yes. A handful of nuts or seeds or a little vegetable oil covers the adequate intake (about 50 g of almonds or 35 g of sunflower seeds). The 50 mg amount takes more: about 130 g of sunflower seeds, 200 g of almonds or 100 g of sunflower oil. Vitamin E from food comes with other compounds, and the amounts used in trials and supplements are often much larger, so food and supplements are different interventions.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw or boiled food named. Other foods, brands and fortified products differ. Vitamin E is shown as the table lists it; it does not split tocopherols from tocotrienols.",
+      "sources": [
+        {
+          "pmid": "42109809",
+          "doi": "10.2903/j.efsa.2015.4149",
+          "title": "Scientific Opinion on Dietary Reference Values for vitamin E as α-tocopherol",
+          "year": 2015,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

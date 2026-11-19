@@ -1,0 +1,179 @@
+{
+  "id": "benfotiamine",
+  "name": "Benfotiamine",
+  "kind": "supplement",
+  "otherNames": [
+    "S-benzoylthiamine O-monophosphate",
+    "Vitamin B1 derivative",
+    "Allithiamine (related, not identical)"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Benfotiamine is a fat-soluble, lab-made form of vitamin B1 (thiamin). It is sold as a supplement and has been studied mainly in diabetes-related nerve problems.",
+  "commonUses": [
+    "May protect collagen in skin and other tissues from glycation, a sugar-related stiffening.",
+    "May reduce the formation of advanced glycation end-products (AGEs), harmful compounds made when sugar binds to proteins.",
+    "May improve skin firmness and elasticity.",
+    "May support nerve health.",
+    "May lower inflammation caused by high-glucose or high-protein diets."
+  ],
+  "roles": [
+    "Once absorbed it supplies thiamin, which the body needs for energy metabolism. Whether extra thiamin from benfotiamine slows glycation or ageing is not established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Not found in food (thiamin, vitamin B1, is found in whole grains, pork and pulses)"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Benfotiamine",
+      "note": "Fat-soluble thiamin derivative; the form used in the trials."
+    },
+    {
+      "name": "Allithiamine and related thiamin disulfides",
+      "note": "Fat-soluble thiamin forms related to those in garlic; much less studied in people."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for benfotiamine. EFSA's 2026 novel-food opinion could not conclude that up to 300 mg a day is safe. No upper level was found for thiamin itself in the searches made for this guide.",
+    "sources": [
+      {
+        "pmid": "42856988",
+        "doi": "10.2903/j.efsa.2026.10301",
+        "title": "Safety of benfotiamine as a Novel food pursuant to Regulation (EU) 2015/2283 and the bioavailability of benfotiamine as a source of thiamin in the context of Directive 2002/46/EC on food supplements.",
+        "year": 2026,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "42006014",
+        "doi": "10.2903/j.efsa.2016.4653",
+        "title": "Dietary reference values for thiamin.",
+        "year": 2016,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Most human trials are in people with diabetes, using higher doses than many labels; results may not apply to healthy people.",
+    "In 2026 EFSA could not establish the safety of benfotiamine as a novel food, so it should not be assumed to have EU approval for that use.",
+    "Numbness, tingling or nerve pain need a doctor's assessment; a supplement is not a treatment for diabetes complications.",
+    "People who take regular medicines or are pregnant should check with a pharmacist or doctor first; no specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "42856988",
+      "doi": "10.2903/j.efsa.2026.10301",
+      "title": "Safety of benfotiamine as a Novel food pursuant to Regulation (EU) 2015/2283 and the bioavailability of benfotiamine as a source of thiamin in the context of Directive 2002/46/EC on food supplements.",
+      "year": 2026,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "42006014",
+      "doi": "10.2903/j.efsa.2016.4653",
+      "title": "Dietary reference values for thiamin.",
+      "year": 2016,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "18473286",
+      "doi": "10.1055/s-2008-1065351",
+      "title": "Benfotiamine in diabetic polyneuropathy (BENDIP): results of a randomised, double blind, placebo-controlled clinical study.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "22792314",
+      "doi": "10.1371/journal.pone.0040427",
+      "title": "Effect of benfotiamine on advanced glycation endproducts and markers of endothelial dysfunction and inflammation in diabetic nephropathy.",
+      "year": 2012,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "23964994",
+      "doi": "10.1089/dia.2013.0103",
+      "title": "Variability of skin autofluorescence measurement over 6 and 12 weeks and the influence of benfotiamine treatment.",
+      "year": 2013,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "16936154",
+      "doi": "10.2337/dc06-0531",
+      "title": "Benfotiamine prevents macro- and microvascular endothelial dysfunction and oxidative stress following a meal rich in advanced glycation end products in individuals with type 2 diabetes.",
+      "year": 2006,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May protect collagen in skin and other tissues from glycation, a sugar-related stiffening.": "collagen glycation",
+      "May reduce the formation of advanced glycation end-products (AGEs), harmful compounds made when sugar binds to proteins.": "AGE formation",
+      "May improve skin firmness and elasticity.": "skin firmness and elasticity",
+      "May support nerve health.": "nerve health",
+      "May lower inflammation caused by high-glucose or high-protein diets.": "diet-related inflammation"
+    },
+    "claimCategories": {
+      "May protect collagen in skin and other tissues from glycation, a sugar-related stiffening.": "appearance",
+      "May reduce the formation of advanced glycation end-products (AGEs), harmful compounds made when sugar binds to proteins.": "longevity",
+      "May improve skin firmness and elasticity.": "appearance",
+      "May support nerve health.": "health",
+      "May lower inflammation caused by high-glucose or high-protein diets.": "health"
+    },
+    "claimLabels": {
+      "May protect collagen in skin and other tissues from glycation, a sugar-related stiffening.": "Collagen protection",
+      "May reduce the formation of advanced glycation end-products (AGEs), harmful compounds made when sugar binds to proteins.": "Fewer AGEs",
+      "May improve skin firmness and elasticity.": "Skin firmness",
+      "May support nerve health.": "Nerves",
+      "May lower inflammation caused by high-glucose or high-protein diets.": "Less inflammation"
+    },
+    "origin": [
+      "Benfotiamine is a lab-made, fat-soluble form of thiamin (vitamin B1). It does not occur in food. A related compound, allithiamine, is found in garlic and onion, but it is a different substance. After it is swallowed the body turns benfotiamine into thiamin and thiamin diphosphate, the active form.",
+      "It has been used mostly in studies of people with diabetes and nerve damage (neuropathy). Plain thiamin comes from whole grains, pork, legumes and seeds, and is added to many cereals."
+    ],
+    "dosage": [
+      "There is no reference intake for benfotiamine. For thiamin itself, EFSA's 2016 opinion set a population reference intake of 0.1 mg per megajoule (0.4 mg per 1,000 kcal) for adults. In 2026 the European Food Safety Authority (EFSA) assessed benfotiamine as a novel food for supplements for adults at up to 300 mg a day and could not conclude it is safe, citing unclear identity (including possible nanoparticles), manufacturing consistency, and limited data on metabolic fate and long-term effects. It judged that thiamin from benfotiamine may be better absorbed than from water-soluble forms, but did not quantify how much.",
+      "An amount commonly used in studies and supplements is about 150 to 300 mg a day (diabetic nerve trials used 300 to 600 mg a day, and some studies up to 900 mg). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check whether the form is benfotiamine or plain thiamin and how many milligrams it gives. Many products also contain other B vitamins. Because of the 2026 EFSA opinion, benfotiamine's status as a supplement ingredient in the EU may change; check the product's legal basis."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (150 mg)",
+          "mg": 150
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (300 mg)",
+          "mg": 300
+        }
+      ],
+      "foods": [],
+      "verdict": "Not applicable. Benfotiamine is a lab-made form of vitamin B1 and is not found in food, so there is no food amount to compare.",
+      "notChecked": "Thiamin (vitamin B1) occurs in food, but benfotiamine itself does not.",
+      "sources": [
+        {
+          "pmid": "42856988",
+          "doi": "10.2903/j.efsa.2026.10301",
+          "title": "Safety of benfotiamine as a Novel food pursuant to Regulation (EU) 2015/2283 and the bioavailability of benfotiamine as a source of thiamin in the context of Directive 2002/46/EC on food supplements.",
+          "year": 2026,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
+}

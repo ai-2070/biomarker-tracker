@@ -36,7 +36,6 @@
    "id": "heart-failure",
    "label": "Heart failure",
    "anyDesign": false,
-   "finding": "Heart failure: deaths and hospital stays",
    "counts": {
     "reviews": 16,
     "trialReviews": 10,
@@ -324,7 +323,6 @@
    "id": "migraine",
    "label": "Migraine",
    "anyDesign": false,
-   "finding": "Migraine attacks",
    "counts": {
     "reviews": 6,
     "trialReviews": 5,
@@ -455,7 +453,6 @@
    "id": "statin-muscle",
    "label": "Statin muscle aches",
    "anyDesign": false,
-   "finding": "Muscle aches from statins",
    "counts": {
     "reviews": 14,
     "trialReviews": 13,
@@ -693,7 +690,6 @@
    "id": "blood-pressure",
    "label": "Blood pressure",
    "anyDesign": false,
-   "finding": "Blood pressure",
    "counts": {
     "reviews": 8,
     "trialReviews": 8,
@@ -904,7 +900,6 @@
    "id": "metabolic",
    "label": "Blood sugar and fats",
    "anyDesign": false,
-   "finding": "Blood sugar and blood fats (HbA1c, cholesterol, triglycerides)",
    "counts": {
     "reviews": 34,
     "trialReviews": 29,
@@ -1266,7 +1261,6 @@
    "id": "fatigue",
    "label": "Tiredness",
    "anyDesign": false,
-   "finding": "Tiredness (fatigue)",
    "counts": {
     "reviews": 6,
     "trialReviews": 2,
@@ -1408,7 +1402,6 @@
    "id": "exercise",
    "label": "Exercise",
    "anyDesign": false,
-   "finding": "Exercise performance",
    "counts": {
     "reviews": 12,
     "trialReviews": 6,

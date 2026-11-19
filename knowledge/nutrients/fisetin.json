@@ -1,0 +1,182 @@
+{
+  "id": "fisetin",
+  "name": "Fisetin",
+  "kind": "supplement",
+  "otherNames": [
+    "3,3,4,7-tetrahydroxyflavone",
+    "Fisetin flavonol"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Fisetin is a yellow plant pigment (a flavonol) found in small amounts in strawberries, apples and other fruit and vegetables. It is sold as a supplement, mostly because cell and mouse studies suggest it may clear ageing (senescent) cells.",
+  "commonUses": [
+    "May help the body clear \"zombie\" (senescent) cells that stop dividing but stay in tissues.",
+    "May support the body's cell-repair and longevity pathways as people age.",
+    "May support physical function and resilience in older age.",
+    "May ease long-lasting low-grade inflammation linked to ageing."
+  ],
+  "roles": [
+    "In plants it is a pigment and protective compound. In the body it acts as an antioxidant in lab studies; whether it has a needed role in people is not established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Strawberries",
+      "Apples",
+      "Persimmons",
+      "Grapes",
+      "Onions",
+      "Cucumbers"
+    ],
+    "note": "Amounts are small and vary with the fruit and how it is grown."
+  },
+  "forms": [
+    {
+      "name": "Fisetin powder or capsules (90 percent purity or higher)",
+      "note": "Poorly soluble in water and poorly absorbed; purity does not change that."
+    },
+    {
+      "name": "Liposomal fisetin",
+      "note": "Wrapped in fat bubbles to raise absorption; little human absorption data seen."
+    },
+    {
+      "name": "Plant extracts",
+      "note": "Fisetin content varies; check the label for fisetin itself."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for fisetin was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Human evidence on fisetin is very limited: the only published human trial found was a small stroke trial with fisetin given alongside a clot-dissolving drug in hospital, and trials as a senolytic are still running or unpublished. Most claims come from cell and mouse studies.",
+    "Fisetin is not a treatment for any condition. Stomach discomfort was reported in a trial in cancer patients, and long-term safety at high or repeated doses in healthy people has not been established.",
+    "People who are pregnant, breastfeeding, have cancer or take regular medicines, especially blood thinners or cancer treatment, should check with a doctor or pharmacist before taking a supplement. No specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "30279143",
+      "doi": "10.1016/j.ebiom.2018.09.015",
+      "title": "Fisetin is a senotherapeutic that extends health and lifespan.",
+      "year": 2018,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "37259344",
+      "doi": "10.3390/ph16020196",
+      "title": "Fisetin in Cancer: Attributes, Developmental Aspects, and Nanotherapeutics.",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38393697",
+      "doi": "10.18632/aging.205581",
+      "title": "Exploring the effects of Dasatinib, Quercetin, and Fisetin on DNA methylation clocks: a longitudinal study on senolytic interventions.",
+      "year": 2024,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "31434498",
+      "doi": "10.1177/1076029619871359",
+      "title": "Fisetin Prolongs Therapy Window of Brain Ischemic Stroke Using Tissue Plasminogen Activator: A Double-Blind Randomized Placebo-Controlled Clinical Trial.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "23121441",
+      "doi": "10.1089/ars.2012.4901",
+      "title": "Fisetin: a dietary antioxidant for health promotion.",
+      "year": 2013,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help the body clear \"zombie\" (senescent) cells that stop dividing but stay in tissues.": "senescent cell clearance (senolytic activity)",
+      "May support the body's cell-repair and longevity pathways as people age.": "cellular repair and ageing pathways",
+      "May support physical function and resilience in older age.": "physical function and frailty in ageing",
+      "May ease long-lasting low-grade inflammation linked to ageing.": "chronic low-grade inflammation"
+    },
+    "claimCategories": {
+      "May help the body clear \"zombie\" (senescent) cells that stop dividing but stay in tissues.": "longevity",
+      "May support the body's cell-repair and longevity pathways as people age.": "longevity",
+      "May support physical function and resilience in older age.": "longevity",
+      "May ease long-lasting low-grade inflammation linked to ageing.": "health"
+    },
+    "claimLabels": {
+      "May help the body clear \"zombie\" (senescent) cells that stop dividing but stay in tissues.": "Zombie cells",
+      "May support the body's cell-repair and longevity pathways as people age.": "Cell repair",
+      "May support physical function and resilience in older age.": "Staying strong",
+      "May ease long-lasting low-grade inflammation linked to ageing.": "Inflammation"
+    },
+    "origin": [
+      "Fisetin is a yellow plant pigment from the flavonol family, a group of flavonoids that also includes quercetin. It is found in small amounts in strawberries, apples, persimmons, grapes, onions and cucumbers. Plants make it; humans cannot, so it comes from food. Average intake from food has been estimated at about 0.4 mg a day in Japan, far below supplement amounts.",
+      "Most supplements are made from plant extracts or by synthesis. Fisetin dissolves poorly in water and is absorbed poorly, so some products use a purity grade (for example 90 percent or more) or a carrier such as liposomes (tiny fat bubbles) to raise absorption. Interest in fisetin as a \"senolytic\" comes mainly from cell and mouse studies: a 2018 mouse study reported that it reduced senescent cells and extended lifespan and healthspan, even when started in old age."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for fisetin. No EFSA or other official opinion on fisetin was found in the searches made for this guide.",
+      "Amounts commonly used in supplements are about 100 mg a day, and 500 to 1,000 mg a day on short courses of a few days repeated at intervals. This is not a reference intake or a personal recommendation. No published human results on clearing senescent (ageing) cells were found.",
+      "Check how much is fisetin itself, the stated purity and the form (plain powder or liposomal). Absorption differs between forms, and few products have human absorption data."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in supplements (daily, 100 mg)",
+          "mg": 100
+        }
+      ],
+      "foods": [
+        {
+          "name": "Strawberry",
+          "mgPer100g": [
+            16,
+            16
+          ],
+          "note": "Reported per gram of freeze-dried fruit, so fresh fruit has less."
+        },
+        {
+          "name": "Apple",
+          "mgPer100g": [
+            2.69,
+            2.69
+          ],
+          "note": "Probably dry weight, so fresh fruit has less."
+        },
+        {
+          "name": "Persimmon",
+          "mgPer100g": [
+            1.05,
+            1.05
+          ],
+          "note": "Probably dry weight, so fresh fruit has less."
+        }
+      ],
+      "verdict": "No. Foods hold far less fisetin than supplements. Strawberries, the richest food reported, would need at least about 600 g to reach 100 mg, and the figures are probably for dried fruit, so fresh fruit needs much more. A typical diet has been estimated to supply about 0.4 mg a day (Japan).",
+      "notChecked": "Fisetin is not measured in the UK food table used by this app. Values come from a published review of an earlier food analysis, reported per gram of freeze-dried plant. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "37259344",
+          "doi": "10.3390/ph16020196",
+          "title": "Fisetin in Cancer: Attributes, Developmental Aspects, and Nanotherapeutics.",
+          "year": 2023,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

@@ -3,22 +3,122 @@
   "name": "L-citrulline",
   "kind": "supplement",
   "researchStatus": "not-reviewed",
-  "otherNames": ["L-Citrulline", "Citrulline", "Citrulline malate"],
-  "summary": "L-citrulline is an amino acid made by the body and involved in handling nitrogen. Supplements contain L-citrulline alone or citrulline malate, which also contains malate; their labelled amounts are not interchangeable.",
-  "commonUses": ["Used in pre-workout products marketed for exercise performance.", "Used in products marketed for a muscle 'pump' during exercise."],
-  "roles": ["Citrulline participates in the urea cycle, which helps the body process waste nitrogen.", "The body can convert citrulline to arginine, an amino acid used to make nitric oxide."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "L-citrulline", "note": "The single amino acid, without added malate."},
-    {"name": "Citrulline malate", "note": "Combines citrulline with malate. Total mixture weight is not the weight of L-citrulline; ratios and actual composition can differ between products."}
+  "otherNames": [
+    "L-Citrulline",
+    "Citrulline",
+    "Citrulline malate"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "summary": "L-citrulline is an amino acid made by the body and involved in handling nitrogen. Supplements contain L-citrulline alone or citrulline malate, which also contains malate; their labelled amounts are not interchangeable.",
+  "commonUses": [
+    "May improve exercise performance",
+    "May increase blood flow and the muscle 'pump'",
+    "May reduce muscle soreness",
+    "May lower blood pressure"
+  ],
+  "roles": [
+    "Citrulline participates in the urea cycle, which helps the body process waste nitrogen.",
+    "The body can convert citrulline to arginine, an amino acid used to make nitric oxide."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": [],
+    "note": "Citrulline is not an essential nutrient: the body makes it. No deficiency condition or required intake has been established."
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Watermelon, the best-known food source"
+    ],
+    "note": "Eating watermelon is different from taking isolated L-citrulline or citrulline malate."
+  },
+  "forms": [
+    {
+      "name": "L-citrulline",
+      "note": "The single amino acid, without added malate."
+    },
+    {
+      "name": "Citrulline malate",
+      "note": "Combines citrulline with malate. Total mixture weight is not the weight of L-citrulline; ratios and actual composition can differ between products."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for L-citrulline was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
   "interactions": [],
-  "cautions": ["Long-term safety information for citrulline malate is limited; short studies do not establish safety for ongoing use.", "Some tested citrulline malate products did not match their stated ingredient ratios. A ratio on the label is not proof of the actual citrulline content.", "Safety observations for L-citrulline alone cannot automatically be applied to a citrulline malate or multi-ingredient pre-workout product."],
+  "cautions": [
+    "Long-term safety information for citrulline malate is limited; short studies do not establish safety for ongoing use.",
+    "Some tested citrulline malate products did not match their stated ingredient ratios. A ratio on the label is not proof of the actual citrulline content.",
+    "Safety observations for L-citrulline alone cannot automatically be applied to a citrulline malate or multi-ingredient pre-workout product."
+  ],
   "evidenceClaims": [],
-  "sources": [{"pmid": "34417881", "doi": "10.1007/s00421-021-04774-6", "title": "A critical review of citrulline malate supplementation and exercise performance", "year": 2021, "studyType": "review"}]
+  "sources": [
+    {
+      "pmid": "34417881",
+      "doi": "10.1007/s00421-021-04774-6",
+      "title": "A critical review of citrulline malate supplementation and exercise performance",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41156475",
+      "doi": "10.3390/nu17203221",
+      "title": "Watermelon Nutritional Composition with a Focus on L-Citrulline and Its Cardioprotective Health Effects-A Narrative Review.",
+      "year": 2025,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May improve exercise performance": "exercise performance",
+      "May increase blood flow and the muscle 'pump'": "muscle blood flow",
+      "May reduce muscle soreness": "muscle soreness",
+      "May lower blood pressure": "blood pressure"
+    },
+    "claimCategories": {
+      "May improve exercise performance": "health",
+      "May increase blood flow and the muscle 'pump'": "health",
+      "May reduce muscle soreness": "health",
+      "May lower blood pressure": "health"
+    },
+    "claimLabels": {
+      "May improve exercise performance": "Exercise performance",
+      "May increase blood flow and the muscle 'pump'": "Blood flow and pump",
+      "May reduce muscle soreness": "Soreness",
+      "May lower blood pressure": "Blood pressure"
+    },
+    "origin": [
+      "L-citrulline is an amino acid the body makes, and that is found in high concentrations in watermelon. The body converts part of it to arginine, which is used to make nitric oxide, a molecule that relaxes blood vessels.",
+      "Supplement citrulline is made in a factory, either as L-citrulline alone or as citrulline malate (citrulline bound to malate). The two have different citrulline content per gram."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit. Amounts in studies differ between L-citrulline and citrulline malate and cannot be compared by weight.",
+      "Check whether the label gives grams of L-citrulline or of citrulline malate, since the malate adds weight, and check the ratio the product claims. Some tested products did not match their label."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not checked. Watermelon is the best-known food source, but this guide has no checked citrulline figures per food, so it cannot say how much watermelon or juice would match an amount used in studies.",
+      "notChecked": "No per-food citrulline figures were checked for this guide, so none are listed.",
+      "sources": [
+        {
+          "pmid": "41156475",
+          "doi": "10.3390/nu17203221",
+          "title": "Watermelon Nutritional Composition with a Focus on L-Citrulline and Its Cardioprotective Health Effects-A Narrative Review.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

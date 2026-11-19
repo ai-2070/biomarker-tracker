@@ -1,0 +1,194 @@
+{
+  "id": "silica",
+  "name": "Silica",
+  "kind": "supplement",
+  "otherNames": [
+    "Silica",
+    "silicon",
+    "orthosilicic acid",
+    "choline-stabilised orthosilicic acid",
+    "BioSil"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Silicon is a trace element found in connective tissue, bone and skin. In water and food it mostly occurs as orthosilicic acid, a small soluble form the gut absorbs. It is not the same as silicon dioxide (a sand-like solid) or silicone (a synthetic polymer).",
+  "commonUses": [
+    "May strengthen collagen cross-links to support skin firmness and prevent sagging and thinning.",
+    "May help keep hair thick and strong.",
+    "May make nails stronger and less brittle.",
+    "May support bone and connective tissue, keeping facial structure firm over time."
+  ],
+  "roles": [
+    "The body contains silicon in connective tissue, bone and skin.",
+    "Its exact role in people is not established, and no deficiency condition is recognised."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Whole grains and oat products",
+      "Beer",
+      "Bananas and green beans",
+      "Some mineral waters"
+    ],
+    "note": "Typical diets supply roughly 20 to 50 mg of silicon a day."
+  },
+  "forms": [
+    {
+      "name": "Choline-stabilised orthosilicic acid",
+      "note": "Orthosilicic acid is unstable, so it is held in solution with choline. This is the form in the small hair, skin and nail trials."
+    },
+    {
+      "name": "Orthosilicic acid-vanillin complex",
+      "note": "Another stabilised form, assessed by EFSA in 2018."
+    },
+    {
+      "name": "Horsetail or bamboo extract",
+      "note": "Plant extracts. The amount of absorbable silicon varies widely, and horsetail may contain other active compounds."
+    },
+    {
+      "name": "Silicon dioxide (silica)",
+      "note": "A solid that is poorly absorbed. About 47% of its weight is silicon, so label amounts are not comparable with orthosilicic acid."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "EFSA (2004) and the US Institute of Medicine found no suitable data to set a tolerable upper intake level for silicon. The UK Expert Group on Vitamins and Minerals set a safe upper level of 700 mg of silicon a day for supplements in 2003; both statements are as reported in EFSA's 2018 opinion. This is a safe level for supplements in the UK, not an EU limit.",
+    "sources": [
+      {
+        "pmid": "32625656",
+        "doi": "10.2903/j.efsa.2018.5086",
+        "title": "Safety of orthosilicic acid-vanillin complex (OSA-VC) as a novel food ingredient to be used in food supplements as a source of silicon and bioavailability of silicon from the source.",
+        "year": 2018,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Choline-stabilised and vanillin-complex forms have been tested in small trials (about 50 people each) without serious side effects reported there, but long-term supplement safety data are limited.",
+    "Silicon is cleared by the kidneys, so people with kidney disease should check with a clinician before supplementing.",
+    "Silica or silicon dioxide, silicone and orthosilicic acid are different things; bamboo or horsetail products vary widely in how much absorbable silicon they provide, and horsetail may contain other active compounds.",
+    "The hair, skin and nail trials used a single form and were small; people with sudden hair loss or nail changes should see a clinician, since these can signal other conditions."
+  ],
+  "sources": [
+    {
+      "pmid": "32625656",
+      "doi": "10.2903/j.efsa.2018.5086",
+      "title": "Safety of orthosilicic acid-vanillin complex (OSA-VC) as a novel food ingredient to be used in food supplements as a source of silicon and bioavailability of silicon from the source.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "16205932",
+      "doi": "10.1007/s00403-005-0584-6",
+      "title": "Effect of oral intake of choline-stabilized orthosilicic acid on skin, nails and hair in women with photodamaged skin.",
+      "year": 2005,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "17960402",
+      "doi": "10.1007/s00403-007-0796-z",
+      "title": "Effect of oral intake of choline-stabilized orthosilicic acid on hair tensile strength and morphology in women with fine hair.",
+      "year": 2007,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "18547426",
+      "doi": "10.1186/1471-2474-9-85",
+      "title": "Choline-stabilized orthosilicic acid supplementation as an adjunct to calcium/vitamin D3 stimulates markers of bone formation in osteopenic females: a randomized, placebo-controlled trial.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "38337624",
+      "doi": "10.3390/nu16030339",
+      "title": "Silicon Supplementation for Bone Health: An Umbrella Review Attempting to Translate from Animals to Humans.",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11976163",
+      "doi": "10.1093/ajcn/75.5.887",
+      "title": "Dietary silicon intake and absorption.",
+      "year": 2002,
+      "studyType": "observational"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May strengthen collagen cross-links to support skin firmness and prevent sagging and thinning.": "collagen and skin firmness",
+      "May help keep hair thick and strong.": "hair thickness and strength",
+      "May make nails stronger and less brittle.": "nail strength",
+      "May support bone and connective tissue, keeping facial structure firm over time.": "bone and connective tissue"
+    },
+    "claimCategories": {
+      "May strengthen collagen cross-links to support skin firmness and prevent sagging and thinning.": "appearance",
+      "May help keep hair thick and strong.": "appearance",
+      "May make nails stronger and less brittle.": "appearance",
+      "May support bone and connective tissue, keeping facial structure firm over time.": "health"
+    },
+    "claimLabels": {
+      "May strengthen collagen cross-links to support skin firmness and prevent sagging and thinning.": "Skin firmness",
+      "May help keep hair thick and strong.": "Hair",
+      "May make nails stronger and less brittle.": "Nails",
+      "May support bone and connective tissue, keeping facial structure firm over time.": "Bone and tissue"
+    },
+    "origin": [
+      "Silicon is a trace element found in the body in connective tissue, bone and skin. In water and food it mostly occurs as orthosilicic acid, Si(OH)4, a small soluble form that the gut absorbs. It is not the same as silicon dioxide (silica, the sand-like solid) or silicone (a synthetic polymer), which are poorly absorbed or unrelated.",
+      "Orthosilicic acid is unstable and clumps together on its own, so supplements stabilise it, for example with choline (choline-stabilised orthosilicic acid, as in BioSil) or with vanillin (orthosilicic acid-vanillin complex), or use horsetail or bamboo extracts. Common dietary sources are whole grains and cereals (especially oats), beer, bananas, green beans and some mineral waters. Typical diets supply roughly 20 to 50 mg of silicon a day."
+    ],
+    "dosage": [
+      "There is no recommended intake for silicon. EFSA and the US Institute of Medicine found no suitable data to set a tolerable upper intake level. EFSA's 2018 opinion records a typical dietary intake of 20 to 50 mg of silicon a day, and that an orthosilicic acid-vanillin supplement giving about 10 to 18 mg of silicon a day raised no safety concern for adults. The UK Expert Group on Vitamins and Minerals set a safe upper level of 700 mg of silicon a day for supplements (2003). These are population values, not personal targets.",
+      "Amounts commonly used in studies and supplements are about 5 to 10 mg of silicon a day; the hair, skin and nail trials used 10 mg a day as choline-stabilised orthosilicic acid. This is not a reference intake or a personal recommendation.",
+      "Check the unit on the label. Elemental silicon, silicon dioxide (about 47% silicon) and orthosilicic acid (about 29% silicon) give very different numbers for the same product, so look for the amount stated 'as silicon'."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Typical dietary intake (low), as silicon",
+          "mg": 20
+        },
+        {
+          "label": "Typical dietary intake (high), as silicon",
+          "mg": 50
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high), as silicon",
+          "mg": 10
+        }
+      ],
+      "foods": [],
+      "verdict": "Partly. Typical diets already supply about 20 to 50 mg of silicon a day, more than the 5 to 10 mg used in supplements. But the supplement forms are chosen because they are absorbed, and this guide has no checked figures for how much of the silicon in foods the body takes up, so it cannot say that food gives the same effect.",
+      "notChecked": "The food table used by this app does not measure silicon, so no per-food amounts are listed. Cereals and oat products, beer, bananas and green beans are reported as richer sources.",
+      "sources": [
+        {
+          "pmid": "32625656",
+          "doi": "10.2903/j.efsa.2018.5086",
+          "title": "Safety of orthosilicic acid-vanillin complex (OSA-VC) as a novel food ingredient to be used in food supplements as a source of silicon and bioavailability of silicon from the source.",
+          "year": 2018,
+          "studyType": "guideline"
+        },
+        {
+          "pmid": "16277785",
+          "doi": "10.1079/bjn20051542",
+          "title": "A provisional database for the silicon content of foods in the United Kingdom.",
+          "year": 2005,
+          "studyType": "observational"
+        }
+      ]
+    }
+  }
+}

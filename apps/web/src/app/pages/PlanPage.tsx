@@ -192,7 +192,7 @@ function ItemRow({ item, onEdit }: { item: PlanItem; onEdit: () => void }) {
   const food = n || item.category === "medication" ? undefined : wholeFoodFor(item.label, WHOLE_FOODS);
   // The day's EU reference values for this nutrient, next to the person's own amount.
   const ref =
-    n && n.researchStatus !== "not-reviewed"
+    n && (n.researchStatus !== "not-reviewed" || n.reference.intake.length > 0)
       ? dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined })
       : undefined;
   const intake = ref?.intake

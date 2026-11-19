@@ -313,13 +313,16 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
   const units = useDisplayUnits();
   const basic = n.researchStatus === "not-reviewed";
   const byMarker = groupByBiomarker(all);
-  const ref = basic ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
+  const ref = basic && n.reference.intake.length === 0 ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
   const links = (
     n.simpleGuide
       ? [
           ["origin", "What it is"],
           ["uses", "Potential benefits & common claims"],
-          ["dosage-safety", "Dosage & safety"],
+          ["dosage", "Dosage"],
+          (n.foodSources.examples.length > 0 || Boolean(n.simpleGuide.foodAmounts)) && ["food", "Food sources"],
+          ["safety", "Safety"],
+          hasEvidenceMap(n.id) && ["evidence-map", "How the evidence was found"],
           ["research", "Research"],
         ]
       : [
@@ -547,6 +550,7 @@ function Foods({ n, safety }: { n: NutrientDef; safety: SafetyId[] }) {
 
 function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
   const r = n.reference;
+  const unassessed = !r.upperLimit && (r.noUpperLimit ?? "").startsWith("This basic guide");
   const types = [...new Set(r.intake.map((x) => x.type))];
   const Box = bare ? "div" : Card;
   return (
@@ -594,11 +598,15 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
             <span className="tabular-nums">
               {formatValue(r.upperLimit.amount)} {r.upperLimit.unit} a day
             </span>
+          ) : unassessed ? (
+            "not assessed in this guide"
+          ) : r.sources.length === 0 ? (
+            "none found"
           ) : (
             "none set"
           )}
         </p>
-        <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : r.noUpperLimit}</p>
+        <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : unassessed ? "This guide has not looked up whether a safety agency has set an upper limit, so this is not evidence that none exists. Check the label and ask a pharmacist or doctor." : r.noUpperLimit}</p>
         {(!bare || r.upperLimit) && (
           <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>
         )}
