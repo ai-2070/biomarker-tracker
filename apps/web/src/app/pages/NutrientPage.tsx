@@ -313,7 +313,10 @@ function Aside({ n, all, hasInteractions }: { n: NutrientDef; all: Parameters<ty
   const units = useDisplayUnits();
   const basic = n.researchStatus === "not-reviewed";
   const byMarker = groupByBiomarker(all);
-  const ref = basic && n.reference.intake.length === 0 ? undefined : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
+  const ref =
+    basic && n.reference.intake.length === 0
+      ? undefined
+      : dailyReference(n, { sex: profile.sex, age: profile.birthMonth ? ageAt(profile.birthMonth, todayIso()) : undefined });
   const links = (
     n.simpleGuide
       ? [
@@ -606,7 +609,13 @@ function Reference({ n, bare = false }: { n: NutrientDef; bare?: boolean }) {
             "none set"
           )}
         </p>
-        <p className="mt-1 text-ink-2">{r.upperLimit ? r.upperLimit.note : unassessed ? "This guide has not looked up whether a safety agency has set an upper limit, so this is not evidence that none exists. Check the label and ask a pharmacist or doctor." : r.noUpperLimit}</p>
+        <p className="mt-1 text-ink-2">
+          {r.upperLimit
+            ? r.upperLimit.note
+            : unassessed
+              ? "This guide has not looked up whether a safety agency has set an upper limit, so this is not evidence that none exists. Check the label and ask a pharmacist or doctor."
+              : r.noUpperLimit}
+        </p>
         {(!bare || r.upperLimit) && (
           <p className="mt-1 text-sm text-ink-2">The highest daily intake over a long time that is unlikely to cause harm in healthy adults.</p>
         )}

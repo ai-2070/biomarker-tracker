@@ -224,11 +224,19 @@ export function validateNutrientDef(v: unknown): string[] {
         errs.push("simpleGuide claimTopics must name each common claim exactly once");
       const fa = v.simpleGuide.foodAmounts;
       if (fa !== undefined) {
-        const okRange = (r: unknown) => Array.isArray(r) && r.length === 2 && r.every((x) => typeof x === "number" && x > 0) && (r[0] as number) <= (r[1] as number);
-        if (!isObj(fa) || !Array.isArray(fa.targets) || !fa.targets.every((t) => isObj(t) && isStr(t.label) && typeof t.mg === "number" && t.mg > 0) ||
-          !Array.isArray(fa.foods) || !fa.foods.every((f) => isObj(f) && isStr(f.name) && okRange(f.mgPer100g)) ||
+        const okRange = (r: unknown) =>
+          Array.isArray(r) && r.length === 2 && r.every((x) => typeof x === "number" && x > 0) && (r[0] as number) <= (r[1] as number);
+        if (
+          !isObj(fa) ||
+          !Array.isArray(fa.targets) ||
+          !fa.targets.every((t) => isObj(t) && isStr(t.label) && typeof t.mg === "number" && t.mg > 0) ||
+          !Array.isArray(fa.foods) ||
+          !fa.foods.every((f) => isObj(f) && isStr(f.name) && okRange(f.mgPer100g)) ||
           (fa.foods.length > 0 && fa.targets.length === 0) ||
-          !isStr(fa.verdict) || !Array.isArray(fa.sources) || fa.sources.length === 0)
+          !isStr(fa.verdict) ||
+          !Array.isArray(fa.sources) ||
+          fa.sources.length === 0
+        )
           errs.push("simpleGuide foodAmounts needs a verdict, sources, and (when it lists foods) targets and a [low, high] mg per 100 g for each food");
         else errs.push(...citationErrors(fa.sources as Citation[], "foodAmounts sources"));
       }
