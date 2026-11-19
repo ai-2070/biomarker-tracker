@@ -84,10 +84,30 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Men", "amount": 350, "unit": "mg", "type": "AI" },
-      { "group": "Women", "amount": 300, "unit": "mg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 300, "unit": "mg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 300, "unit": "mg", "type": "AI" }
+      {
+        "group": "Men",
+        "amount": 350,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Women",
+        "amount": 300,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 300,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 300,
+        "unit": "mg",
+        "type": "AI"
+      }
     ],
     "upperLimit": {
       "amount": 250,
@@ -110,179 +130,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Blood pressure",
-      "population": "Adults with and without high blood pressure, in trials lasting about 1 to 6 months",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Many small trials with results that differ from each other",
-        "The average effect is small (about 2 mmHg)",
-        "An earlier Cochrane review judged most trials to be of poor quality and the effect possibly due to bias"
-      ],
-      "summary": "A 2016 meta-analysis of 34 double-blind trials (2,028 people; median 368 mg a day for about 3 months, as research) found blood pressure about 2 mmHg lower for the top number and 1.8 mmHg lower for the bottom number than with placebo. A 2006 Cochrane review of 12 trials in people with high blood pressure found a small fall in the bottom number only and called the evidence weak. The effect is small compared with blood pressure medicines, and no trial showed fewer heart attacks or strokes.",
-      "bottomLine": "Across 34 trials (2,028 adults with and without high blood pressure), magnesium lowered blood pressure by about 2 mmHg for the top number and 1.8 mmHg for the bottom number compared with placebo. That is small next to blood pressure medicines, and no trial showed fewer heart attacks or strokes.",
-      "label": "Blood pressure",
-      "line": "About 2 mmHg lower top number in trials; small next to blood pressure medicines",
-      "studies": [
-        {
-          "pmid": "27402922",
-          "doi": "10.1161/hypertensionaha.116.07664",
-          "title": "Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of Randomized Double-Blind Placebo-Controlled Trials",
-          "year": 2016,
-          "studyType": "meta-analysis",
-          "n": 2028
-        },
-        {
-          "pmid": "16856052",
-          "doi": "10.1002/14651858.cd004640.pub2",
-          "title": "Magnesium supplementation for the management of essential hypertension in adults",
-          "year": 2006,
-          "studyType": "meta-analysis",
-          "n": 545
-        }
-      ]
-    },
-    {
-      "outcome": "Night-time leg cramps",
-      "population": "Mostly older adults with cramps that have no known cause",
-      "effect": "no clear effect",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Several placebo-controlled trials with consistent results",
-        "Small total number of people",
-        "For cramps in pregnancy the trials conflict and most were at high risk of bias"
-      ],
-      "summary": "A 2020 Cochrane review found that magnesium is unlikely to give a meaningful reduction in cramps for older adults with cramps of no known cause: the number of cramps per week was about the same as with placebo. For leg cramps in pregnancy, trial results conflict. Stomach and bowel side effects, such as diarrhoea, were more common with magnesium.",
-      "bottomLine": "In older adults with cramps of no known cause, magnesium did about as well as placebo: the number of cramps per week stayed about the same. For cramps in pregnancy, trial results conflict. Side effects such as diarrhoea were more common with magnesium.",
-      "label": "Night-time leg cramps",
-      "line": "In older adults, about as many cramps a week as with placebo",
-      "studies": [
-        {
-          "pmid": "32956536",
-          "doi": "10.1002/14651858.cd009402.pub3",
-          "title": "Magnesium for skeletal muscle cramps",
-          "year": 2020,
-          "studyType": "meta-analysis",
-          "n": 735
-        }
-      ]
-    },
-    {
-      "outcome": "Sleep in older adults with insomnia",
-      "population": "Older adults with trouble sleeping",
-      "effect": "mixed",
-      "grade": "very low",
-      "whyThisGrade": [
-        "Only 3 small trials (151 people)",
-        "Trials at moderate to high risk of bias",
-        "The review authors rated the evidence low to very low"
-      ],
-      "summary": "A 2021 meta-analysis of 3 small trials found people fell asleep about 17 minutes sooner with magnesium than with placebo, but total sleep time did not clearly change. The authors judged the evidence too weak for firm conclusions. Claims that magnesium improves sleep in general go beyond what trials have shown.",
-      "bottomLine": "In 3 small trials of older adults with trouble sleeping, people fell asleep about 17 minutes sooner with magnesium than with placebo, but total sleep time did not clearly change. The authors judged the evidence too weak for firm conclusions.",
-      "label": "Sleep in older adults",
-      "line": "Fell asleep about 17 minutes sooner in 3 small trials; total sleep didn't clearly change",
-      "studies": [
-        {
-          "pmid": "33865376",
-          "doi": "10.1186/s12906-021-03297-z",
-          "title": "Oral magnesium supplementation for insomnia in older adults: a Systematic Review & Meta-Analysis",
-          "year": 2021,
-          "studyType": "meta-analysis",
-          "n": 151
-        },
-        {
-          "pmid": "23853635",
-          "title": "The effect of magnesium supplementation on primary insomnia in elderly: A double-blind placebo-controlled clinical trial",
-          "year": 2012,
-          "studyType": "rct",
-          "n": 46
-        }
-      ]
-    },
-    {
-      "outcome": "Migraine attacks (prevention)",
-      "population": "Adults with migraine",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "About 10 small trials of oral magnesium",
-        "Some trials did not randomise properly",
-        "A US neurology guideline rated magnesium 'probably effective', not 'effective'"
-      ],
-      "summary": "A 2016 meta-analysis found that oral magnesium reduced how often migraines came and how strong they were (10 trials, 789 people). A 2012 American Academy of Neurology and American Headache Society guideline rated magnesium as probably effective for preventing migraine. The trials were small and of mixed quality, so the size of the benefit is uncertain.",
-      "bottomLine": "In 10 trials (789 people) of adults with migraine, oral magnesium made migraines less frequent and less strong, and a US guideline rated it probably effective. The trials were small and of mixed quality, so the size of the benefit is uncertain.",
-      "label": "Migraine prevention",
-      "line": "Fewer and milder migraines in small trials of mixed quality",
-      "studies": [
-        {
-          "pmid": "26752497",
-          "doi": "10.36076/ppj/2016.19.e97",
-          "title": "Effects of Intravenous and Oral Magnesium on Reducing Migraine: A Meta-analysis of Randomized Controlled Trials",
-          "year": 2016,
-          "studyType": "meta-analysis",
-          "n": 789
-        },
-        {
-          "pmid": "22529203",
-          "doi": "10.1212/wnl.0b013e3182535d0c",
-          "title": "Evidence-based guideline update: NSAIDs and other complementary treatments for episodic migraine prevention in adults: report of the Quality Standards Subcommittee of the American Academy of Neurology and the American Headache Society",
-          "year": 2012,
-          "studyType": "guideline"
-        }
-      ]
-    },
-    {
-      "outcome": "Blood sugar",
-      "population": "People with type 2 diabetes or at high risk of it",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "18 small double-blind trials",
-        "Results differ a lot between trials",
-        "Measured blood sugar, not diabetes complications"
-      ],
-      "summary": "A 2016 meta-analysis found slightly lower fasting blood sugar with magnesium than with placebo in people with diabetes, and better blood sugar after a glucose drink in people at high risk. The effects were small and varied between trials, and they show changes in blood tests, not fewer diabetes complications.",
-      "bottomLine": "In people with diabetes, fasting blood sugar was slightly lower with magnesium than with placebo, and in people at high risk, blood sugar after a glucose drink was better. The effects were small and varied, and are blood test changes, not fewer complications.",
-      "label": "Blood sugar",
-      "line": "Slightly lower fasting blood sugar in diabetes; small, varied blood test changes",
-      "studies": [
-        {
-          "pmid": "27530471",
-          "doi": "10.1038/ejcn.2016.154",
-          "title": "Effect of magnesium supplementation on glucose metabolism in people with or at risk of diabetes: a systematic review and meta-analysis of double-blind randomized controlled trials",
-          "year": 2016,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Pregnancy outcomes (pre-eclampsia, baby's growth, stillbirth)",
-      "population": "Pregnant women",
-      "effect": "no clear effect",
-      "grade": "low",
-      "whyThisGrade": [
-        "10 trials, but many at risk of bias",
-        "Different magnesium forms, amounts and starting times",
-        "The review found not enough high-quality evidence"
-      ],
-      "summary": "A 2014 Cochrane review of 10 trials (9,090 women) found not enough high-quality evidence that magnesium supplements in pregnancy improve outcomes for mother or baby. This is about oral supplements; magnesium given in hospital by drip for severe pre-eclampsia is a separate medical treatment.",
-      "bottomLine": "A review of 10 trials (9,090 pregnant women) found not enough high-quality evidence that magnesium supplements by mouth improve outcomes for mother or baby. Magnesium given in hospital by drip for severe pre-eclampsia is a separate medical treatment.",
-      "label": "Pregnancy outcomes",
-      "line": "Not enough good evidence that magnesium by mouth helps mother or baby",
-      "studies": [
-        {
-          "pmid": "24696187",
-          "doi": "10.1002/14651858.cd000937.pub2",
-          "title": "Magnesium supplementation in pregnancy",
-          "year": 2014,
-          "studyType": "meta-analysis",
-          "n": 9090
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Kidney disease",
@@ -355,6 +203,194 @@
       "year": 2019,
       "studyType": "meta-analysis",
       "n": 129347
+    },
+    {
+      "pmid": "27402922",
+      "doi": "10.1161/hypertensionaha.116.07664",
+      "title": "Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of Randomized Double-Blind Placebo-Controlled Trials",
+      "year": 2016,
+      "studyType": "meta-analysis",
+      "n": 2028
+    },
+    {
+      "pmid": "16856052",
+      "doi": "10.1002/14651858.cd004640.pub2",
+      "title": "Magnesium supplementation for the management of essential hypertension in adults",
+      "year": 2006,
+      "studyType": "meta-analysis",
+      "n": 545
+    },
+    {
+      "pmid": "32956536",
+      "doi": "10.1002/14651858.cd009402.pub3",
+      "title": "Magnesium for skeletal muscle cramps",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 735
+    },
+    {
+      "pmid": "33865376",
+      "doi": "10.1186/s12906-021-03297-z",
+      "title": "Oral magnesium supplementation for insomnia in older adults: a Systematic Review & Meta-Analysis",
+      "year": 2021,
+      "studyType": "meta-analysis",
+      "n": 151
+    },
+    {
+      "pmid": "23853635",
+      "title": "The effect of magnesium supplementation on primary insomnia in elderly: A double-blind placebo-controlled clinical trial",
+      "year": 2012,
+      "studyType": "rct",
+      "n": 46
+    },
+    {
+      "pmid": "26752497",
+      "doi": "10.36076/ppj/2016.19.e97",
+      "title": "Effects of Intravenous and Oral Magnesium on Reducing Migraine: A Meta-analysis of Randomized Controlled Trials",
+      "year": 2016,
+      "studyType": "meta-analysis",
+      "n": 789
+    },
+    {
+      "pmid": "22529203",
+      "doi": "10.1212/wnl.0b013e3182535d0c",
+      "title": "Evidence-based guideline update: NSAIDs and other complementary treatments for episodic migraine prevention in adults: report of the Quality Standards Subcommittee of the American Academy of Neurology and the American Headache Society",
+      "year": 2012,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "27530471",
+      "doi": "10.1038/ejcn.2016.154",
+      "title": "Effect of magnesium supplementation on glucose metabolism in people with or at risk of diabetes: a systematic review and meta-analysis of double-blind randomized controlled trials",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "24696187",
+      "doi": "10.1002/14651858.cd000937.pub2",
+      "title": "Magnesium supplementation in pregnancy",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 9090
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May improve sleep",
+    "May ease stress and anxiety",
+    "May ease muscle cramps",
+    "May ease period (PMS) symptoms",
+    "May lower blood pressure",
+    "May prevent migraines"
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May improve sleep": "sleep",
+      "May ease stress and anxiety": "stress and anxiety",
+      "May ease muscle cramps": "muscle cramps",
+      "May ease period (PMS) symptoms": "premenstrual syndrome",
+      "May lower blood pressure": "blood pressure",
+      "May prevent migraines": "migraine"
+    },
+    "claimCategories": {
+      "May improve sleep": "health",
+      "May ease stress and anxiety": "health",
+      "May ease muscle cramps": "health",
+      "May ease period (PMS) symptoms": "health",
+      "May lower blood pressure": "health",
+      "May prevent migraines": "health"
+    },
+    "claimLabels": {
+      "May improve sleep": "Sleep",
+      "May ease stress and anxiety": "Stress and anxiety",
+      "May ease muscle cramps": "Muscle cramps",
+      "May ease period (PMS) symptoms": "Period symptoms",
+      "May lower blood pressure": "Blood pressure",
+      "May prevent migraines": "Migraine"
+    },
+    "origin": [
+      "Magnesium is a mineral found in plants and animals. Most of it in food comes from the green pigment of leaves, seeds, nuts and whole grains; refining grains removes much of it. It is also in hard tap water and mineral water.",
+      "Supplement magnesium is a manufactured salt or chelate, such as oxide, citrate or glycinate, so what is in the capsule differs from what is in food."
+    ],
+    "dosage": [
+      "EFSA's adequate intake is 350 mg a day for men and 300 mg for women, from food. These are population values, not personal targets. The 250 mg upper limit applies only to magnesium from supplements and added salts, not to magnesium in food.",
+      "An amount commonly used in studies and supplements is about 350 mg a day, similar to EFSA's adequate intake for men. This is not a reference intake or a personal recommendation.",
+      "Check the elemental magnesium in mg on the label (not just the weight of the compound), the form, and avoid adding several products together. The most common problem with supplements is diarrhoea."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, men",
+          "mg": 350
+        },
+        {
+          "label": "EFSA adequate intake, women",
+          "mg": 300
+        }
+      ],
+      "foods": [
+        {
+          "name": "Pumpkin seeds",
+          "mgPer100g": [
+            270,
+            270
+          ]
+        },
+        {
+          "name": "Almonds or cashews (kernels)",
+          "mgPer100g": [
+            250,
+            270
+          ]
+        },
+        {
+          "name": "Porridge oats, dry",
+          "mgPer100g": [
+            114,
+            114
+          ]
+        },
+        {
+          "name": "Plain chocolate",
+          "mgPer100g": [
+            89,
+            89
+          ]
+        },
+        {
+          "name": "Wholemeal bread",
+          "mgPer100g": [
+            66,
+            66
+          ]
+        },
+        {
+          "name": "Brown rice, boiled",
+          "mgPer100g": [
+            44,
+            49
+          ]
+        },
+        {
+          "name": "Spinach, boiled",
+          "mgPer100g": [
+            34,
+            34
+          ]
+        }
+      ],
+      "verdict": "Yes. A diet built on whole grains, nuts, seeds, pulses and vegetables can supply the adequate intake, and the table shows how much of single foods that is: about 130 g of pumpkin seeds covers 350 mg on its own, though nobody eats one food only. Diets that are mostly refined grains give much less. Magnesium from food and magnesium from a supplement are different interventions, and the trials in this guide used supplements.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw or boiled food named. Other foods, brands and fortified products differ.",
+      "sources": [
+        {
+          "pmid": "42109801",
+          "doi": "10.2903/j.efsa.2015.4186",
+          "title": "Scientific Opinion on Dietary Reference Values for magnesium",
+          "year": 2015,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

@@ -1,0 +1,177 @@
+{
+  "id": "pqq",
+  "name": "PQQ",
+  "kind": "supplement",
+  "otherNames": [
+    "PQQ",
+    "Methoxatin",
+    "BioPQQ",
+    "PQQ disodium salt"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Pyrroloquinoline quinone (PQQ) is a small molecule made by bacteria that is found in tiny amounts in some foods and human tissues. It is sold as a supplement, usually as PQQ disodium salt.",
+  "commonUses": [
+    "May stimulate the growth of new mitochondria, the small structures that make energy in cells.",
+    "May improve cellular energy.",
+    "May support memory and focus.",
+    "May protect nerve cells from oxidative stress."
+  ],
+  "roles": [
+    "PQQ helps some bacterial enzymes work, but a clear role in human nutrition has not been established. Claims about energy and mitochondria come mainly from animal and cell studies."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Fermented soybeans (natto)",
+      "Green pepper",
+      "Parsley",
+      "Green tea",
+      "Beer",
+      "Vinegar"
+    ],
+    "note": "Amounts in food are tiny."
+  },
+  "forms": [
+    {
+      "name": "PQQ disodium salt (BioPQQ, mnemoPQQ)",
+      "note": "The form assessed by EFSA and used in the human trials; made by fermentation."
+    },
+    {
+      "name": "Dihydro-PQQ (PQQH2)",
+      "note": "A reduced form studied in a small 2024 trial; not covered by the EFSA opinion."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for PQQ. EFSA's novel-food opinion on PQQ disodium salt judged up to 20 mg a day safe for healthy adults other than pregnant and breastfeeding women. That is an assessment of one product, not an upper intake level.",
+    "sources": [
+      {
+        "pmid": "32625350",
+        "doi": "10.2903/j.efsa.2017.5058",
+        "title": "Safety of pyrroloquinoline quinone disodium salt as a novel food pursuant to Regulation (EC) No 258/97.",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Human evidence is limited to a few small, short trials, many likely linked to the makers; long-term effects in people are not known.",
+    "EFSA's safety opinion covers healthy adults only and excludes pregnant and breastfeeding women. Children and people with long-term conditions are not covered.",
+    "People who take regular medicines or have a health condition should check with a pharmacist or doctor before taking a supplement; no specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "32625350",
+      "doi": "10.2903/j.efsa.2017.5058",
+      "title": "Safety of pyrroloquinoline quinone disodium salt as a novel food pursuant to Regulation (EC) No 258/97.",
+      "year": 2017,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "34415830",
+      "doi": "10.1080/07315724.2021.1962770",
+      "title": "Effect of Dietary Pyrroloquinoline Quinone Disodium Salt on Cognitive Function in Healthy Volunteers: A Randomized, Double-Blind, Placebo-Controlled, Parallel-Group Study.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36807425",
+      "doi": "10.1039/d2fo01515c",
+      "title": "Pyrroloquinoline quinone disodium salt improves brain function in both younger and older adults.",
+      "year": 2023,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "31860387",
+      "doi": "10.1080/07315724.2019.1705203",
+      "title": "Effects of Pyrroloquinoline Quinone (PQQ) Supplementation on Aerobic Exercise Performance and Indices of Mitochondrial Biogenesis in Untrained Men.",
+      "year": 2020,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "30576372",
+      "doi": "10.1371/journal.pone.0209700",
+      "title": "Determination of pyrroloquinoline quinone by enzymatic and LC-MS/MS methods to clarify its levels in foods.",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "7733865",
+      "doi": "10.1042/bj3070331",
+      "title": "Levels of pyrroloquinoline quinone in various foods.",
+      "year": 1995,
+      "studyType": "observational"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May stimulate the growth of new mitochondria, the small structures that make energy in cells.": "mitochondria growth",
+      "May improve cellular energy.": "cellular energy",
+      "May support memory and focus.": "memory and attention",
+      "May protect nerve cells from oxidative stress.": "neuron protection and oxidative stress"
+    },
+    "claimCategories": {
+      "May stimulate the growth of new mitochondria, the small structures that make energy in cells.": "longevity",
+      "May improve cellular energy.": "health",
+      "May support memory and focus.": "health",
+      "May protect nerve cells from oxidative stress.": "longevity"
+    },
+    "claimLabels": {
+      "May stimulate the growth of new mitochondria, the small structures that make energy in cells.": "New mitochondria",
+      "May improve cellular energy.": "Cell energy",
+      "May support memory and focus.": "Memory and focus",
+      "May protect nerve cells from oxidative stress.": "Neuron protection"
+    },
+    "origin": [
+      "Pyrroloquinoline quinone (PQQ) is a small molecule made by bacteria. It acts as a helper (cofactor) for some bacterial enzymes. It is found in very small amounts in foods such as fermented soybeans (natto), green pepper, parsley, tea and beer, and in human tissues. Whether people need it from the diet is not established, so it is not classed as a vitamin.",
+      "Supplements use PQQ disodium salt made by bacterial fermentation, for example BioPQQ (made with Hyphomicrobium denitrificans) or mnemoPQQ. Foods contain it in billionths of a gram per gram, which is thousands of times less than a supplement gives."
+    ],
+    "dosage": [
+      "There is no reference intake for PQQ. In its opinion on PQQ disodium salt (BioPQQ) as a novel food (listed in Europe PMC as 2017), the European Food Safety Authority (EFSA) assessed use in food supplements for healthy adults, except pregnant and lactating women, at up to 20 mg a day (0.29 mg per kg of body weight for a 70 kg person). It judged this safe under those conditions. This rested on a 90-day rat study with a no-observed-adverse-effect level of 100 mg per kg a day, giving a margin of exposure of 344. EFSA noted that 20 mg is at least 250 times the estimated intake from food. This is a safety finding for that product, not a tolerable upper intake level.",
+      "An amount commonly used in studies and supplements is about 10 to 20 mg a day (trials used 20 to 21.5 mg a day for 6 to 12 weeks). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check that the PQQ is the disodium salt and whether the stated number is PQQ itself or the total product weight. Human safety data come from short trials, and the EFSA opinion excludes pregnancy and breastfeeding."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (10 mg)",
+          "mg": 10
+        }
+      ],
+      "foods": [],
+      "verdict": "No. Foods hold only nanograms (billionths of a gram) of PQQ per gram, so food cannot supply amounts like 10 to 20 mg.",
+      "notChecked": "PQQ is not measured in the UK food table used by this app. Published analyses report it only in nanograms per gram, and older and newer methods gave very different numbers, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "30576372",
+          "doi": "10.1371/journal.pone.0209700",
+          "title": "Determination of pyrroloquinoline quinone by enzymatic and LC-MS/MS methods to clarify its levels in foods.",
+          "year": 2018,
+          "studyType": "observational"
+        },
+        {
+          "pmid": "7733865",
+          "doi": "10.1042/bj3070331",
+          "title": "Levels of pyrroloquinoline quinone in various foods.",
+          "year": 1995,
+          "studyType": "observational"
+        }
+      ]
+    }
+  }
+}

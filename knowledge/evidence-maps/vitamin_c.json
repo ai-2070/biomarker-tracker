@@ -46,7 +46,6 @@
    "id": "colds-catching",
    "label": "Catching colds",
    "anyDesign": false,
-   "finding": "Catching colds",
    "counts": {
     "reviews": 24,
     "trialReviews": 14,
@@ -388,7 +387,6 @@
    "id": "colds-stress",
    "label": "Colds under physical stress",
    "anyDesign": false,
-   "finding": "Catching colds during heavy physical stress",
    "counts": {
     "reviews": 37,
     "trialReviews": 21,
@@ -852,7 +850,6 @@
    "id": "colds-duration",
    "label": "How long colds last",
    "anyDesign": false,
-   "finding": "How long and how bad colds are",
    "counts": {
     "reviews": 24,
     "trialReviews": 14,
@@ -1212,7 +1209,6 @@
    "id": "chronic-disease",
    "label": "Heart disease, cancer and death",
    "anyDesign": false,
-   "finding": "Heart disease, cancer and death",
    "counts": {
     "reviews": 148,
     "trialReviews": 33,
@@ -1960,7 +1956,6 @@
    "id": "with-iron",
    "label": "With iron tablets",
    "anyDesign": false,
-   "finding": "Iron levels when vitamin C tablets are added to iron tablets",
    "counts": {
     "reviews": 22,
     "trialReviews": 5,
@@ -2291,7 +2286,6 @@
    "id": "kidney-stones",
    "label": "Kidney stones",
    "anyDesign": false,
-   "finding": "Kidney stones",
    "counts": {
     "reviews": 4,
     "trialReviews": 1,

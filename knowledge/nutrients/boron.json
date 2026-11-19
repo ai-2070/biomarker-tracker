@@ -1,0 +1,174 @@
+{
+  "id": "boron",
+  "name": "Boron",
+  "kind": "supplement",
+  "otherNames": [
+    "Boric acid",
+    "Borax"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Boron is a trace mineral found in fruit, vegetables, nuts and water. It is sold as a supplement, often for hormone and bone claims.",
+  "commonUses": [
+    "May lower sex hormone-binding globulin (SHBG), a protein that holds on to sex hormones.",
+    "May raise free testosterone, the part of testosterone that is not bound to proteins.",
+    "May help the body use DHEA, a hormone made by the adrenal glands.",
+    "May improve bone density and joint health."
+  ],
+  "roles": [
+    "Boron appears to affect how the body handles some minerals and hormones, but no clear essential role in people is proven. Evidence for the common claims is thin."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Prunes",
+      "Raisins",
+      "Dried apricots",
+      "Avocado",
+      "Almonds and other nuts",
+      "Legumes",
+      "Figs",
+      "Grapes"
+    ],
+    "note": "Amounts vary with soil and region."
+  },
+  "forms": [
+    {
+      "name": "Boric acid or sodium tetraborate",
+      "note": "Used in several trials; only part of the weight is boron."
+    },
+    {
+      "name": "Calcium fructoborate",
+      "note": "A plant-sugar complex assessed by EFSA in 2021 as a novel food."
+    },
+    {
+      "name": "Boron citrate or glycinate",
+      "note": "Common in supplements; few human studies."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "upperLimit": {
+      "amount": 10,
+      "unit": "mg",
+      "note": "For adults, from all sources. Set by EFSA in 2004 from animal studies of development, with lower values for children; restated in EFSA's 2012 opinion on boron compounds in food contact materials. No newer EFSA assessment was found."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2004.80",
+        "title": "Opinion of the Scientific Panel on Dietetic Products, Nutrition and Allergies on a request from the Commission related to the Tolerable Upper Intake Level of Boron (Sodium Borate and Boric Acid)",
+        "year": 2004,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Boron has a narrow gap between common supplement amounts and the upper limits; high doses of boric acid or borax can cause nausea, vomiting and diarrhoea, and animal studies show harm to fertility and development.",
+    "Pregnant or breastfeeding women should not take boron supplements without medical advice.",
+    "People with kidney disease clear boron less well and should check with a doctor first.",
+    "Human trials on hormones and bones are very small and short. Low testosterone, osteoporosis and joint pain need a doctor's assessment, not a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "21129941",
+      "doi": "10.1016/j.jtemb.2010.10.001",
+      "title": "Comparative effects of daily and weekly boron supplementation on plasma steroid hormones and proinflammatory cytokines.",
+      "year": 2011,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "8508192",
+      "doi": "10.1123/ijsn.3.2.140",
+      "title": "The effect of boron supplementation on lean body mass, plasma testosterone levels, and strength in male bodybuilders.",
+      "year": 1993,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "3678698",
+      "doi": "10.1096/fasebj.1.5.3678698",
+      "title": "Effect of dietary boron on mineral, estrogen, and testosterone metabolism in postmenopausal women.",
+      "year": 1987,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "8329361",
+      "doi": "10.1079/bjn19930087",
+      "title": "The influence of a low-boron diet and boron supplementation on bone, major mineral and sex steroid metabolism in postmenopausal women.",
+      "year": 1993,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "11269606",
+      "doi": "10.1016/s0002-8223(01)00078-5",
+      "title": "Dietary reference intakes: vitamin A, vitamin K, arsenic, boron, chromium, copper, iodine, iron, manganese, molybdenum, nickel, silicon, vanadium, and zinc.",
+      "year": 2001,
+      "studyType": "guideline"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May lower sex hormone-binding globulin (SHBG), a protein that holds on to sex hormones.": "SHBG",
+      "May raise free testosterone, the part of testosterone that is not bound to proteins.": "free testosterone",
+      "May help the body use DHEA, a hormone made by the adrenal glands.": "DHEA",
+      "May improve bone density and joint health.": "bone density and joints"
+    },
+    "claimCategories": {
+      "May lower sex hormone-binding globulin (SHBG), a protein that holds on to sex hormones.": "health",
+      "May raise free testosterone, the part of testosterone that is not bound to proteins.": "health",
+      "May help the body use DHEA, a hormone made by the adrenal glands.": "health",
+      "May improve bone density and joint health.": "health"
+    },
+    "claimLabels": {
+      "May lower sex hormone-binding globulin (SHBG), a protein that holds on to sex hormones.": "Lower SHBG",
+      "May raise free testosterone, the part of testosterone that is not bound to proteins.": "Free testosterone",
+      "May help the body use DHEA, a hormone made by the adrenal glands.": "DHEA use",
+      "May improve bone density and joint health.": "Bones and joints"
+    },
+    "origin": [
+      "Boron is a trace mineral found in plants and, in small amounts, in the human body. People take it in mainly from fruit, vegetables, nuts, legumes and drinking water, mostly as boric acid. It is not proven to be essential for people.",
+      "Supplements use boron as sodium tetraborate, boric acid, calcium fructoborate, or boron citrate or glycinate. Typical diets supply around 1 to 3 mg a day. Dried fruits, avocado, nuts and legumes are among the richer sources."
+    ],
+    "dosage": [
+      "There is no reference intake for boron. EFSA set a tolerable upper intake level of 10 mg of boron a day for adults in 2004, based on animal studies of development, and lower values for children. It is a safety limit, not a target.",
+      "An amount commonly used in supplements is about 4 to 6 mg a day; small human studies used 2.5 to 10 mg a day for one day to seven weeks. This is not a reference intake or a personal recommendation.",
+      "Check whether the label number is elemental boron or the weight of the compound (boric acid is only about 17% boron), and do not combine several boron products. No research was found behind cycling schedules such as two weeks on and one week off."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in supplements (low, 4 mg)",
+          "mg": 4
+        },
+        {
+          "label": "Amount commonly used in supplements (high, 6 mg)",
+          "mg": 6
+        }
+      ],
+      "foods": [],
+      "verdict": "Partly. Boron is found in fruit (such as figs, grapes, dates and plums), nuts, legumes and water, and an everyday diet supplies some of it. This guide has no checked per-food figures, so it cannot say how much food matches 4 to 6 mg.",
+      "notChecked": "Boron is not measured in the UK food table used by this app. The one food analysis found reported values in ppm without saying whether they were fresh or dried weight, and amounts vary with soil and region, so none are listed.",
+      "sources": [
+        {
+          "doi": "10.2903/j.efsa.2004.80",
+          "title": "Opinion of the Scientific Panel on Dietetic Products, Nutrition and Allergies on a request from the Commission related to the Tolerable Upper Intake Level of Boron (Sodium Borate and Boric Acid)",
+          "year": 2004,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
+}

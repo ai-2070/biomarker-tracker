@@ -17,7 +17,9 @@
     "Part of how the immune system works"
   ],
   "status": {
-    "biomarkerIds": ["vitamin_d"],
+    "biomarkerIds": [
+      "vitamin_d"
+    ],
     "note": "Vitamin D status is measured with a blood test for 25-hydroxyvitamin D (25-OH vitamin D), which reflects vitamin D from sun, food and supplements together. Experts disagree about the right level: the US Institute of Medicine considered 50 nmol/L (20 ng/mL) enough for bone health in most people, and EFSA (the European Food Safety Authority) used the same 50 nmol/L to set its intake values. Results can differ between labs and test methods. An Endocrine Society guideline (2024) found no trial evidence for testing healthy people routinely, and no clear target level for preventing disease."
   },
   "low": {
@@ -83,9 +85,24 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Adults (men and women)", "amount": 15, "unit": "µg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 15, "unit": "µg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 15, "unit": "µg", "type": "AI" }
+      {
+        "group": "Adults (men and women)",
+        "amount": 15,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 15,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 15,
+        "unit": "µg",
+        "type": "AI"
+      }
     ],
     "upperLimit": {
       "amount": 100,
@@ -114,214 +131,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Blood level of 25-OH vitamin D",
-      "population": "Adults in many randomised trials, with and without low levels at the start",
-      "effect": "helps",
-      "grade": "high",
-      "whyThisGrade": [
-        "Many randomised trials with consistent results",
-        "Clear link between the amount taken and the rise in the blood level",
-        "Measured directly in the trials"
-      ],
-      "summary": "Vitamin D supplements reliably raise the blood level. In the D-Health trial of older Australians, the average level was 115 nmol/L with vitamin D and 77 nmol/L with placebo. D3 raised it more than D2, mainly when given in large, infrequent amounts. Raising a blood level is not the same as a health benefit: the findings below show what happened to health outcomes.",
-      "bottomLine": "Across many trials in adults, vitamin D supplements reliably raised the blood level (in D-Health, 115 nmol/L against 77 nmol/L with placebo). A higher blood level is not the same as a health benefit.",
-      "label": "Blood vitamin D level",
-      "line": "Reliably raised the blood level; that alone isn't a health benefit",
-      "studies": [
-        {
-          "pmid": "22552031",
-          "doi": "10.3945/ajcn.111.031070",
-          "title": "Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis",
-          "year": 2012,
-          "studyType": "meta-analysis"
-        },
-        {
-          "pmid": "35026158",
-          "doi": "10.1016/s2213-8587(21)00345-4",
-          "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
-          "year": 2022,
-          "studyType": "rct",
-          "n": 21315
-        }
-      ]
-    },
-    {
-      "outcome": "Bone fractures and falls (vitamin D on its own)",
-      "population": "Mostly older adults living at home, most not deficient",
-      "effect": "no clear effect",
-      "grade": "high",
-      "whyThisGrade": [
-        "Many randomised trials and several large meta-analyses agree",
-        "Very large trials (VITAL, over 25,000 people) found no effect",
-        "Higher and lower amounts gave similar results",
-        "Few trials included only people with very low levels, so they are under-represented"
-      ],
-      "summary": "On its own, vitamin D did not prevent fractures or falls, or meaningfully change bone density, in people who were not selected for deficiency. Trials in VITAL used 2000 IU a day for about 5 years. Given together with calcium, the Cochrane review found a small drop in hip fractures, mainly in people living in care homes (about 9 fewer per 1000 people a year there, about 1 fewer per 1000 among people living at home); see the calcium page. People with very low levels or with osteoporosis were not the focus of these trials.",
-      "bottomLine": "In older adults living at home, mostly not deficient, vitamin D on its own did not prevent fractures or falls. With calcium there was a small drop in hip fractures, mainly in care homes. People with very low levels were not the focus.",
-      "label": "Bone fractures and falls",
-      "line": "No fewer fractures or falls in older adults who mostly weren't deficient",
-      "studies": [
-        {
-          "pmid": "30293909",
-          "doi": "10.1016/s2213-8587(18)30265-1",
-          "title": "Effects of vitamin D supplementation on musculoskeletal health: a systematic review, meta-analysis, and trial sequential analysis",
-          "year": 2018,
-          "studyType": "meta-analysis",
-          "n": 53537
-        },
-        {
-          "pmid": "35939577",
-          "doi": "10.1056/nejmoa2202106",
-          "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
-          "year": 2022,
-          "studyType": "rct",
-          "n": 25871
-        },
-        {
-          "pmid": "24729336",
-          "doi": "10.1002/14651858.cd000227.pub4",
-          "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men",
-          "year": 2014,
-          "studyType": "meta-analysis",
-          "n": 91791
-        },
-        {
-          "pmid": "33170239",
-          "doi": "10.1001/jama.2020.16909",
-          "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
-          "year": 2020,
-          "studyType": "rct",
-          "n": 2157
-        }
-      ]
-    },
-    {
-      "outcome": "Cancer, heart disease and death from any cause",
-      "population": "Generally healthy adults over 50 or 60, most not deficient",
-      "effect": "no clear effect",
-      "grade": "high",
-      "whyThisGrade": [
-        "Two very large, long, placebo-controlled trials (VITAL and D-Health) agree",
-        "Meta-analyses of over 50 trials agree for all-cause death",
-        "The signal for fewer cancer deaths is less certain: it came mainly from daily dosing and was not seen in D-Health"
-      ],
-      "summary": "Vitamin D did not lower the number of people who got cancer, heart attacks or strokes, or who died, in VITAL (2000 IU a day, about 5 years), D-Health (60,000 IU once a month, 5 years) or DO-HEALTH. Meta-analyses found about 13 to 16% fewer deaths from cancer, mostly in trials with daily dosing, but D-Health's monthly dosing leaned the other way. Whether vitamin D lowers cancer deaths is still uncertain.",
-      "bottomLine": "In large trials of healthy adults over 50 or 60, mostly not deficient, vitamin D did not lower cancer, heart attacks, strokes or deaths. Meta-analyses found fewer cancer deaths with daily dosing, but this is still uncertain.",
-      "label": "Cancer, heart disease and death",
-      "line": "No fewer cancers, heart attacks, strokes or deaths in large trials",
-      "studies": [
-        {
-          "pmid": "30415629",
-          "doi": "10.1056/nejmoa1809944",
-          "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
-          "year": 2019,
-          "studyType": "rct",
-          "n": 25871
-        },
-        {
-          "pmid": "35026158",
-          "doi": "10.1016/s2213-8587(21)00345-4",
-          "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
-          "year": 2022,
-          "studyType": "rct",
-          "n": 21315
-        },
-        {
-          "pmid": "31405892",
-          "doi": "10.1136/bmj.l4673",
-          "title": "Association between vitamin D supplementation and mortality: systematic review and meta-analysis",
-          "year": 2019,
-          "studyType": "meta-analysis",
-          "n": 75454
-        },
-        {
-          "pmid": "30796437",
-          "doi": "10.1093/annonc/mdz059",
-          "title": "Vitamin D supplementation and total cancer incidence and mortality: a meta-analysis of randomized controlled trials",
-          "year": 2019,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Respiratory infections (colds, flu, chest infections)",
-      "population": "Children and adults in 43 trials, from age 0 to 95",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Overall effect is small (61.3% versus 62.3% had at least one infection)",
-        "Results differ a lot between trials",
-        "The benefit was seen mainly with daily amounts (400 to 1000 IU) and in children, which were subgroup findings",
-        "Most trials had a low risk of bias"
-      ],
-      "summary": "Across many trials, slightly fewer people taking vitamin D had a respiratory infection. The difference was small and mostly came from trials with small daily amounts and from trials in children. It is not known whether this applies to COVID-19.",
-      "bottomLine": "In 43 trials of children and adults, slightly fewer people taking vitamin D had a respiratory infection. The difference was small and came mostly from trials in children and with small daily amounts. Whether it applies to COVID-19 is unknown.",
-      "label": "Respiratory infections",
-      "line": "Slightly fewer infections, mostly in trials in children and with small daily amounts",
-      "studies": [
-        {
-          "pmid": "33798465",
-          "doi": "10.1016/s2213-8587(21)00051-6",
-          "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
-          "year": 2021,
-          "studyType": "meta-analysis",
-          "n": 75541
-        }
-      ]
-    },
-    {
-      "outcome": "Type 2 diabetes in people with prediabetes",
-      "population": "Adults with prediabetes (blood sugar higher than normal but below the diabetes range)",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Three randomised trials designed for this question, at low risk of bias, pooled with individual participant data",
-        "Only applies to people with prediabetes, not the general population",
-        "Trials used amounts above the usual intake values (4000 IU a day, 20,000 IU a week, or a prescription analogue)",
-        "The larger benefit at higher blood levels compares groups that were not randomised"
-      ],
-      "summary": "In people with prediabetes, vitamin D lowered the risk of developing type 2 diabetes by about 15% over 3 years (about 3 fewer cases per 100 people). The trials were not powered to detect rare harms such as kidney stones or high calcium. This does not apply to people with normal blood sugar.",
-      "bottomLine": "In adults with prediabetes, vitamin D lowered the risk of type 2 diabetes by about 15% over 3 years, about 3 fewer cases per 100 people. It does not apply to normal blood sugar, and the trials could not reliably detect rare harms.",
-      "label": "Type 2 diabetes in prediabetes",
-      "line": "About 15% lower risk over 3 years, about 3 fewer cases per 100 people",
-      "studies": [
-        {
-          "pmid": "36745886",
-          "doi": "10.7326/m22-3018",
-          "title": "Vitamin D and Risk for Type 2 Diabetes in People With Prediabetes : A Systematic Review and Meta-analysis of Individual Participant Data From 3 Randomized Clinical Trials",
-          "year": 2023,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Falls and fractures with a very large amount once a year",
-      "population": "Women aged 70 and over living at home, at high risk of fracture",
-      "effect": "harms",
-      "grade": "low",
-      "whyThisGrade": [
-        "One randomised, placebo-controlled trial",
-        "Confidence intervals were close to no effect",
-        "The excess of falls was largest in the 3 months after each dose, which fits a real effect"
-      ],
-      "summary": "In a trial of 500,000 IU given once a year, women in the vitamin D group had about 15% more falls and 26% more fractures than with placebo. This is why large occasional amounts are viewed with caution. It does not show the same for daily intake.",
-      "bottomLine": "In women aged 70 and over at high risk of fracture, 500,000 IU given once a year led to about 15% more falls and 26% more fractures than placebo. The trial does not show the same for daily intake.",
-      "label": "Falls (very large yearly doses)",
-      "line": "About 15% more falls and 26% more fractures in older women given one large yearly dose",
-      "studies": [
-        {
-          "pmid": "20460620",
-          "doi": "10.1001/jama.2010.594",
-          "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
-          "year": 2010,
-          "studyType": "rct",
-          "n": 2256
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Kidney disease",
@@ -360,7 +170,7 @@
     "A result above 125 nmol/L, or symptoms such as strong thirst, nausea or confusion while using supplements, is worth discussing with a doctor.",
     "Active vitamin D (calcitriol, alfacalcidol) is a prescription medicine and is not interchangeable with ordinary vitamin D."
   ],
-  "evidenceClaims": ["vitamin-d-supplements", "vitamin-d-foods"],
+  "evidenceClaims": [],
   "sources": [
     {
       "pmid": "21118827",
@@ -375,6 +185,196 @@
       "title": "Vitamin D for the Prevention of Disease: An Endocrine Society Clinical Practice Guideline",
       "year": 2024,
       "studyType": "guideline"
+    },
+    {
+      "pmid": "22552031",
+      "doi": "10.3945/ajcn.111.031070",
+      "title": "Comparison of vitamin D2 and vitamin D3 supplementation in raising serum 25-hydroxyvitamin D status: a systematic review and meta-analysis",
+      "year": 2012,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35026158",
+      "doi": "10.1016/s2213-8587(21)00345-4",
+      "title": "The D-Health Trial: a randomised controlled trial of the effect of vitamin D on mortality",
+      "year": 2022,
+      "studyType": "rct",
+      "n": 21315
+    },
+    {
+      "pmid": "30293909",
+      "doi": "10.1016/s2213-8587(18)30265-1",
+      "title": "Effects of vitamin D supplementation on musculoskeletal health: a systematic review, meta-analysis, and trial sequential analysis",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 53537
+    },
+    {
+      "pmid": "35939577",
+      "doi": "10.1056/nejmoa2202106",
+      "title": "Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults",
+      "year": 2022,
+      "studyType": "rct",
+      "n": 25871
+    },
+    {
+      "pmid": "24729336",
+      "doi": "10.1002/14651858.cd000227.pub4",
+      "title": "Vitamin D and vitamin D analogues for preventing fractures in post-menopausal women and older men",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 91791
+    },
+    {
+      "pmid": "33170239",
+      "doi": "10.1001/jama.2020.16909",
+      "title": "Effect of Vitamin D Supplementation, Omega-3 Fatty Acid Supplementation, or a Strength-Training Exercise Program on Clinical Outcomes in Older Adults: The DO-HEALTH Randomized Clinical Trial",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 2157
+    },
+    {
+      "pmid": "30415629",
+      "doi": "10.1056/nejmoa1809944",
+      "title": "Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease",
+      "year": 2019,
+      "studyType": "rct",
+      "n": 25871
+    },
+    {
+      "pmid": "31405892",
+      "doi": "10.1136/bmj.l4673",
+      "title": "Association between vitamin D supplementation and mortality: systematic review and meta-analysis",
+      "year": 2019,
+      "studyType": "meta-analysis",
+      "n": 75454
+    },
+    {
+      "pmid": "30796437",
+      "doi": "10.1093/annonc/mdz059",
+      "title": "Vitamin D supplementation and total cancer incidence and mortality: a meta-analysis of randomized controlled trials",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33798465",
+      "doi": "10.1016/s2213-8587(21)00051-6",
+      "title": "Vitamin D supplementation to prevent acute respiratory infections: a systematic review and meta-analysis of aggregate data from randomised controlled trials",
+      "year": 2021,
+      "studyType": "meta-analysis",
+      "n": 75541
+    },
+    {
+      "pmid": "36745886",
+      "doi": "10.7326/m22-3018",
+      "title": "Vitamin D and Risk for Type 2 Diabetes in People With Prediabetes : A Systematic Review and Meta-analysis of Individual Participant Data From 3 Randomized Clinical Trials",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "20460620",
+      "doi": "10.1001/jama.2010.594",
+      "title": "Annual high-dose oral vitamin D and falls and fractures in older women: a randomized controlled trial",
+      "year": 2010,
+      "studyType": "rct",
+      "n": 2256
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May strengthen bones and prevent fractures",
+    "May protect against colds and respiratory infections",
+    "May improve mood and depression",
+    "May raise testosterone and balance hormones",
+    "May lower the risk of type 2 diabetes",
+    "May help you live longer"
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May strengthen bones and prevent fractures": "bone fractures and falls",
+      "May protect against colds and respiratory infections": "respiratory infections",
+      "May improve mood and depression": "depression",
+      "May raise testosterone and balance hormones": "testosterone",
+      "May lower the risk of type 2 diabetes": "type 2 diabetes",
+      "May help you live longer": "cancer, heart disease and death"
+    },
+    "claimCategories": {
+      "May strengthen bones and prevent fractures": "longevity",
+      "May protect against colds and respiratory infections": "health",
+      "May improve mood and depression": "health",
+      "May raise testosterone and balance hormones": "health",
+      "May lower the risk of type 2 diabetes": "health",
+      "May help you live longer": "longevity"
+    },
+    "claimLabels": {
+      "May strengthen bones and prevent fractures": "Bones and fractures",
+      "May protect against colds and respiratory infections": "Colds and infections",
+      "May improve mood and depression": "Mood",
+      "May raise testosterone and balance hormones": "Hormones",
+      "May lower the risk of type 2 diabetes": "Type 2 diabetes",
+      "May help you live longer": "Longer life"
+    },
+    "origin": [
+      "Vitamin D is made in the skin when sunlight (UVB) reaches it, and a smaller part comes from food. Vitamin D3 (cholecalciferol) is the animal form, found in oily fish, egg yolk and liver; vitamin D2 (ergocalciferol) comes from fungi and yeast.",
+      "Supplement vitamin D3 is manufactured, often from lanolin (sheep's wool), and D2 from yeast. The usual blood test, 25-OH vitamin D, shows your status from all sources."
+    ],
+    "dosage": [
+      "EFSA's adequate intake for adults is 15 µg (600 IU) a day, assuming little sunlight. The upper limit is 100 µg (4,000 IU) a day from food, fortified foods and supplements together. These are population values, not personal targets. 1 µg is 40 IU.",
+      "An amount commonly used in studies and supplements is about 2,000 IU (50 µg) a day. This is not a reference intake or a personal recommendation.",
+      "Check the amount on the label in µg or IU, whether it is D3 or D2, and count other products such as multivitamins and calcium with vitamin D. A blood test is the way to see your own status."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake for adults (600 IU)",
+          "mg": 0.015
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (2,000 IU)",
+          "mg": 0.05
+        }
+      ],
+      "foods": [
+        {
+          "name": "Herring, grilled or raw",
+          "mgPer100g": [
+            0.0161,
+            0.019
+          ]
+        },
+        {
+          "name": "Mackerel, grilled or raw",
+          "mgPer100g": [
+            0.008,
+            0.0085
+          ]
+        },
+        {
+          "name": "Sardines, grilled or raw",
+          "mgPer100g": [
+            0.004,
+            0.0051
+          ]
+        },
+        {
+          "name": "Eggs, whole, boiled",
+          "mgPer100g": [
+            0.0032,
+            0.0032
+          ]
+        }
+      ],
+      "verdict": "Partly. The reference intake is possible from food: about 80–90 g of herring covers 15 µg. But it takes oily fish nearly every day, and eggs alone would need about 5 eggs a day. The 2,000 IU amount needs roughly 0.3 kg of herring or 0.6 kg of mackerel every day, which few people eat. Sunlight on skin is the other main source, and it is weak at northern latitudes in winter.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw or boiled food named. Other foods, brands and fortified products differ. Fortified foods and UV-treated mushrooms are not in the table.",
+      "sources": [
+        {
+          "doi": "10.2903/j.efsa.2016.4547",
+          "title": "Dietary reference values for vitamin D",
+          "year": 2016,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

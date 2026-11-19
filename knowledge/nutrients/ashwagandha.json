@@ -2,29 +2,160 @@
   "id": "ashwagandha",
   "name": "Ashwagandha",
   "kind": "supplement",
-  "otherNames": ["Ashwagandha", "Withania somnifera", "Indian ginseng"],
+  "otherNames": [
+    "Ashwagandha",
+    "Withania somnifera",
+    "Indian ginseng"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Ashwagandha is the shrub Withania somnifera, used in Ayurvedic traditions and sold in herbal supplements. Products may contain root, leaf, or extracts of both, which are not interchangeable preparations.",
-  "commonUses": ["Used in products marketed for stress and relaxation", "Used in products marketed for sleep"],
-  "roles": ["The plant contains withanolides, a group of biologically active compounds.", "It is an herbal ingredient, not an essential vitamin or mineral."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Root preparations", "note": "Root powder and root extracts have different compositions. The ingredient and preparation should be identified on the label."},
-    {"name": "Leaf or root-and-leaf extracts", "note": "These differ from root-only products. A finding about one preparation cannot be assumed to apply to another."}
+  "commonUses": [
+    "May lower stress and cortisol",
+    "May improve sleep",
+    "May reduce anxiety",
+    "May raise testosterone in men"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "The plant contains withanolides, a group of biologically active compounds.",
+    "It is an herbal ingredient, not an essential vitamin or mineral."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Root preparations",
+      "note": "Root powder and root extracts have different compositions. The ingredient and preparation should be identified on the label."
+    },
+    {
+      "name": "Leaf or root-and-leaf extracts",
+      "note": "These differ from root-only products. A finding about one preparation cannot be assumed to apply to another."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level was found. Germany's Federal Institute for Risk Assessment (BfR, 2024) said it has not been possible to derive a health-based guidance value for a safe intake level, and advised children, pregnant and breastfeeding women and people with liver disease not to use ashwagandha. Health Canada's monograph gives a licensing dose range for dried root, which is not a safety limit.",
+    "sources": []
+  },
   "findings": [],
   "interactions": [
-    {"with": "Pregnancy and breastfeeding", "note": "NCCIH advises against use during pregnancy and breastfeeding. Discuss any exposure with a clinician.", "safetyId": "pregnancy"},
-    {"with": "Thyroid disorders or thyroid hormone medicines", "note": "NCCIH does not recommend it for people with thyroid disorders and lists possible interactions with thyroid hormone medicines. Discuss it with the treating clinician."},
-    {"with": "Diabetes medicines", "note": "NCCIH lists a possible interaction with medicines for diabetes. Discuss the combination with the treating clinician.", "safetyId": "diabetes"},
-    {"with": "Sedatives, anticonvulsants or immunosuppressants", "note": "NCCIH lists possible interactions with these medicines. A pharmacist or clinician can check the particular combination."}
+    {
+      "with": "Pregnancy and breastfeeding",
+      "note": "NCCIH advises against use during pregnancy and breastfeeding. Discuss any exposure with a clinician.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Thyroid disorders or thyroid hormone medicines",
+      "note": "NCCIH does not recommend it for people with thyroid disorders and lists possible interactions with thyroid hormone medicines. Discuss it with the treating clinician."
+    },
+    {
+      "with": "Diabetes medicines",
+      "note": "NCCIH lists a possible interaction with medicines for diabetes. Discuss the combination with the treating clinician.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Sedatives, anticonvulsants or immunosuppressants",
+      "note": "NCCIH lists possible interactions with these medicines. A pharmacist or clinician can check the particular combination."
+    }
   ],
-  "cautions": ["Rare but serious liver injury has been linked to ashwagandha supplements. Discuss liver concerns or suspected adverse effects promptly with a clinician.", "It is not recommended for people with thyroid or autoimmune disorders, or around surgery. Thyroid effects are a safety concern, not a reason to use it for a thyroid condition.", "Drowsiness, stomach upset, diarrhea and vomiting can occur. Long-term safety remains uncertain.", "NCCIH advises against use in pregnancy, breastfeeding and hormone-sensitive prostate cancer; these are important exceptions to general wellness marketing."],
+  "cautions": [
+    "Rare but serious liver injury has been linked to ashwagandha supplements. Discuss liver concerns or suspected adverse effects promptly with a clinician.",
+    "It is not recommended for people with thyroid or autoimmune disorders, or around surgery. Thyroid effects are a safety concern, not a reason to use it for a thyroid condition.",
+    "Drowsiness, stomach upset, diarrhea and vomiting can occur. Long-term safety remains uncertain.",
+    "NCCIH advises against use in pregnancy, breastfeeding and hormone-sensitive prostate cancer; these are important exceptions to general wellness marketing."
+  ],
   "evidenceClaims": [],
-  "sources": [],
-  "basicSources": [{"title": "Ashwagandha: Usefulness and Safety — NCCIH", "year": 2023, "url": "https://www.nccih.nih.gov/health/ashwagandha"}]
+  "sources": [
+    {
+      "pmid": "31991029",
+      "doi": "10.1111/liv.14393",
+      "title": "Ashwagandha-induced liver injury: A case series from Iceland and the US Drug-Induced Liver Injury Network.",
+      "year": 2020,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "34559859",
+      "doi": "10.1371/journal.pone.0257843",
+      "title": "Effect of Ashwagandha (Withania somnifera) extract on sleep: A systematic review and meta-analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40746175",
+      "doi": "10.1177/02601060251363647",
+      "title": "Dual impact of Ashwagandha: Significant cortisol reduction but no effects on perceived stress - A systematic review and meta-analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "39348746",
+      "doi": "10.1016/j.explore.2024.103062",
+      "title": "Effects of Ashwagandha (Withania Somnifera) on stress and anxiety: A systematic review and meta-analysis.",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    }
+  ],
+  "basicSources": [
+    {
+      "title": "Ashwagandha: Usefulness and Safety — NCCIH",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/ashwagandha"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May lower stress and cortisol": "stress and cortisol",
+      "May improve sleep": "sleep",
+      "May reduce anxiety": "anxiety",
+      "May raise testosterone in men": "testosterone in men"
+    },
+    "claimCategories": {
+      "May lower stress and cortisol": "health",
+      "May improve sleep": "health",
+      "May reduce anxiety": "health",
+      "May raise testosterone in men": "health"
+    },
+    "claimLabels": {
+      "May lower stress and cortisol": "Stress and cortisol",
+      "May improve sleep": "Sleep",
+      "May reduce anxiety": "Anxiety",
+      "May raise testosterone in men": "Testosterone"
+    },
+    "origin": [
+      "Ashwagandha is a shrub (Withania somnifera) grown in India and nearby regions. Its root, and sometimes its leaf, has been used in Ayurvedic medicine for centuries.",
+      "Supplements are powders or extracts of the root, leaf or both. The compounds usually named on labels are withanolides, and the amount varies a lot between extracts."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Amounts in studies differ between root powder, root extracts and leaf extracts, so a number from one study cannot be moved to another product.",
+      "Amounts commonly used in studies and supplements are about 300 to 600 mg a day of root extract, often in cycles of weeks on and off. This is not a reference intake or a personal recommendation.",
+      "Check which part of the plant and which extract the label names, and how much withanolide it states. Safety information points to serious liver injury in rare cases, and to thyroid, diabetes and sedative medicines as things to discuss with a clinician first."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not applicable. Ashwagandha is a herb, not a nutrient found in everyday foods, so there is no food amount to compare. It is normally taken as a concentrated root or leaf extract.",
+      "sources": [
+        {
+          "pmid": "40746175",
+          "doi": "10.1177/02601060251363647",
+          "title": "Dual impact of Ashwagandha: Significant cortisol reduction but no effects on perceived stress - A systematic review and meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
 }

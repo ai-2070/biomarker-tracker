@@ -134,178 +134,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Catching colds",
-      "population": "Children and adults in the general community, taking vitamin C every day",
-      "effect": "no clear effect",
-      "grade": "high",
-      "whyThisGrade": [
-        "Many randomised, mostly double-blind, placebo-controlled trials (about 10,700 people in the community trials)",
-        "Consistent results with a narrow range of uncertainty"
-      ],
-      "summary": "Taking vitamin C every day (trials used at least 200 mg a day) did not make colds less likely in ordinary people: the risk was about the same as with placebo (3 % lower at most).",
-      "bottomLine": "In children and adults in the general community, vitamin C every day did not make colds less likely. The risk of catching one was about the same as with placebo (3 % lower at most).",
-      "label": "Catching colds",
-      "line": "No fewer colds in the general community",
-      "studies": [
-        {
-          "pmid": "23440782",
-          "doi": "10.1002/14651858.cd000980.pub4",
-          "title": "Vitamin C for preventing and treating the common cold",
-          "year": 2013,
-          "studyType": "meta-analysis",
-          "n": 11306
-        }
-      ]
-    },
-    {
-      "outcome": "Catching colds during heavy physical stress",
-      "population": "Marathon runners, skiers and soldiers on exercises in the subarctic",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Only 5 trials with about 600 people",
-        "Large and consistent effect, but in very specific situations",
-        "Mostly older trials"
-      ],
-      "summary": "In people under short periods of extreme physical stress, regular vitamin C halved the risk of catching a cold. This doesn't carry over to everyday life or to ordinary exercise, and the trials are few and small.",
-      "bottomLine": "In marathon runners, skiers and soldiers on subarctic exercises, regular vitamin C halved the risk of catching a cold. The trials are few and small, and the result doesn't carry over to everyday life or ordinary exercise.",
-      "label": "Colds under heavy physical stress",
-      "line": "Half as many colds in marathon runners, skiers and soldiers; few, small trials",
-      "studies": [
-        {
-          "pmid": "23440782",
-          "doi": "10.1002/14651858.cd000980.pub4",
-          "title": "Vitamin C for preventing and treating the common cold",
-          "year": 2013,
-          "studyType": "meta-analysis",
-          "n": 11306
-        }
-      ]
-    },
-    {
-      "outcome": "How long and how bad colds are",
-      "population": "Children and adults; regular daily vitamin C compared with vitamin C started only when a cold begins",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Many placebo-controlled trials (about 9,700 colds) found a consistent but small effect with regular use",
-        "Only 7 trials tested vitamin C started at the first symptoms, and they found no consistent effect"
-      ],
-      "summary": "In people already taking vitamin C every day, colds were a little shorter (by 8 % in adults, about half a day in a week-long cold, and 14 % in children) and a little milder; a 2023 analysis found the effect was mainly on more severe symptoms. Starting vitamin C once a cold had begun did not consistently shorten it. This is a modest effect on a mild illness.",
-      "bottomLine": "In people already on daily vitamin C, colds were a little shorter (8 % in adults, about half a day in a week-long cold; 14 % in children) and a little milder. Vitamin C first given once a cold had begun did not consistently shorten it.",
-      "label": "How long colds last",
-      "line": "Colds a little shorter and milder with daily use (8 % in adults); not when started late",
-      "studies": [
-        {
-          "pmid": "23440782",
-          "doi": "10.1002/14651858.cd000980.pub4",
-          "title": "Vitamin C for preventing and treating the common cold",
-          "year": 2013,
-          "studyType": "meta-analysis",
-          "n": 11306
-        },
-        {
-          "pmid": "38082300",
-          "doi": "10.1186/s12889-023-17229-8",
-          "title": "Vitamin C reduces the severity of common colds: a meta-analysis",
-          "year": 2023,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Heart disease, cancer and death",
-      "population": "Mostly well-nourished middle-aged and older adults, with or without existing disease",
-      "effect": "no clear effect",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "One large, long trial (14,641 US male doctors, 8 years) of vitamin C alone",
-        "A Cochrane review of 29 trials of vitamin C found no effect on death",
-        "Mostly people who weren't low in vitamin C, and many trials combined it with other antioxidants"
-      ],
-      "summary": "In the Physicians' Health Study II, 500 mg of vitamin C a day for about 8 years did not change heart attacks, strokes, deaths from heart disease, prostate cancer or cancer overall. Across 29 trials, vitamin C did not change the risk of death. Observational studies linking fruit-and-vegetable-rich diets with better health can't be explained by vitamin C supplements, which are a different intervention.",
-      "bottomLine": "In mostly well-nourished middle-aged and older adults, vitamin C supplements did not change heart attacks, strokes or cancer in an 8-year trial, or the risk of death across 29 trials. Diets rich in fruit and vegetables are a different thing from these pills.",
-      "label": "Heart disease, cancer and death",
-      "line": "No change in heart attacks, strokes, cancer or deaths in well-nourished adults",
-      "studies": [
-        {
-          "pmid": "18997197",
-          "doi": "10.1001/jama.2008.600",
-          "title": "Vitamins E and C in the prevention of cardiovascular disease in men: the Physicians' Health Study II randomized controlled trial",
-          "year": 2008,
-          "studyType": "rct",
-          "n": 14641
-        },
-        {
-          "pmid": "19066368",
-          "doi": "10.1001/jama.2008.862",
-          "title": "Vitamins E and C in the prevention of prostate and total cancer in men: the Physicians' Health Study II randomized controlled trial",
-          "year": 2009,
-          "studyType": "rct",
-          "n": 14641
-        },
-        {
-          "pmid": "22419320",
-          "doi": "10.1002/14651858.cd007176.pub2",
-          "title": "Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases",
-          "year": 2012,
-          "studyType": "meta-analysis",
-          "n": 296707
-        }
-      ]
-    },
-    {
-      "outcome": "Iron levels when vitamin C tablets are added to iron tablets",
-      "population": "Adults with iron-deficiency anaemia taking iron tablets",
-      "effect": "no clear effect",
-      "grade": "low",
-      "whyThisGrade": [
-        "A single open-label trial (440 adults in China, almost all women)",
-        "Not repeated in other populations"
-      ],
-      "summary": "In people with iron-deficiency anaemia, iron tablets with vitamin C raised haemoglobin and ferritin about as much as iron tablets alone, with the same rate of side effects. Vitamin C does help the body absorb iron from plant foods eaten in the same meal (see the linked evidence), but adding vitamin C tablets to iron treatment hasn't been shown to make a real difference.",
-      "bottomLine": "In adults with iron-deficiency anaemia, iron tablets with vitamin C raised haemoglobin and iron stores (ferritin) about as much as iron tablets alone, with the same side effects. This is about tablets, not vitamin C eaten with plant foods in the same meal.",
-      "label": "Added to iron tablets",
-      "line": "Iron levels rose about as much as with iron tablets alone",
-      "studies": [
-        {
-          "pmid": "33136134",
-          "doi": "10.1001/jamanetworkopen.2020.23644",
-          "title": "The Efficacy and Safety of Vitamin C for Iron Supplementation in Adult Patients With Iron Deficiency Anemia: A Randomized Clinical Trial",
-          "year": 2020,
-          "studyType": "rct",
-          "n": 440
-        }
-      ]
-    },
-    {
-      "outcome": "Kidney stones",
-      "population": "US nurses and health professionals followed for about 11 years (156,735 women and 40,536 men)",
-      "effect": "harms",
-      "grade": "very low",
-      "whyThisGrade": [
-        "Observational studies only: supplement users may differ in other ways",
-        "Seen in men but not in women",
-        "Intake was estimated from questionnaires; stone type wasn't known for all"
-      ],
-      "summary": "Men with high vitamin C intake, including from supplements, had a higher risk of kidney stones; women did not. This fits with vitamin C being partly broken down to oxalate, but no trial has tested it. It is mainly a consideration for people who have had kidney stones or have kidney disease, to discuss with their doctor.",
-      "bottomLine": "Over about 11 years, US men with high vitamin C intake, including from supplements, had more kidney stones; women did not. It comes from observational studies of nurses and health professionals, and no trial has tested it.",
-      "label": "Kidney stones",
-      "line": "More kidney stones in men with high intake in observational studies; not in women",
-      "studies": [
-        {
-          "pmid": "26463139",
-          "doi": "10.1053/j.ajkd.2015.09.005",
-          "title": "Total, Dietary, and Supplemental Vitamin C Intake and Risk of Incident Kidney Stones",
-          "year": 2016,
-          "studyType": "observational",
-          "n": 197271
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Iron (food and supplements)",
@@ -343,31 +172,163 @@
     "High doses mostly pass out in urine and can upset the stomach.",
     "People with kidney stones, kidney disease or haemochromatosis are best guided by their doctor about vitamin C supplements."
   ],
-  "evidenceClaims": [
-    "vitamin-c-with-meals-iron"
-  ],
+  "evidenceClaims": [],
   "sources": [
     {
-      "pmid": "24169506",
-      "doi": "10.3390/nu5114284",
-      "title": "Synthetic or food-derived vitamin C--are they equally bioavailable?",
-      "year": 2013,
+      "pmid": "36139737",
+      "doi": "10.3390/antiox11091663",
+      "title": "Ascorbic Acid (Vitamin C) as a Cosmeceutical to Increase Dermal Collagen for Skin Antiaging Purposes: Emerging Combination Therapies.",
+      "year": 2022,
       "studyType": "review"
     },
     {
-      "pmid": "29099763",
-      "doi": "10.3390/nu9111211",
-      "title": "Vitamin C and Immune Function",
+      "pmid": "30386805",
+      "doi": "10.1177/2325967118804544",
+      "title": "Efficacy of Vitamin C Supplementation on Collagen Synthesis and Oxidative Stress After Musculoskeletal Injuries: A Systematic Review.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "11862365",
+      "doi": "10.1007/s00213-001-0929-6",
+      "title": "A randomized controlled trial of high dose ascorbic acid for reduction of blood pressure, cortisol, and subjective responses to psychological stress.",
+      "year": 2002,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "28178022",
+      "doi": "10.11124/jbisrir-2016-002965",
+      "title": "The impact of essential fatty acid, B vitamins, vitamin C, magnesium and zinc supplementation on stress levels in women: a systematic review.",
       "year": 2017,
-      "studyType": "review"
+      "studyType": "meta-analysis"
     },
     {
       "pmid": "23440782",
       "doi": "10.1002/14651858.cd000980.pub4",
-      "title": "Vitamin C for preventing and treating the common cold",
+      "title": "Vitamin C for preventing and treating the common cold.",
       "year": 2013,
-      "studyType": "meta-analysis",
-      "n": 11306
+      "studyType": "meta-analysis"
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May support the body's own collagen production, the protein that holds skin, gums and wounds together.",
+    "May help skin look and feel younger by supporting collagen in the skin.",
+    "May act as an antioxidant that protects cells from damage by reactive oxygen molecules.",
+    "May lower the stress hormone cortisol after stressful events."
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support the body's own collagen production, the protein that holds skin, gums and wounds together.": "collagen production",
+      "May help skin look and feel younger by supporting collagen in the skin.": "skin ageing",
+      "May act as an antioxidant that protects cells from damage by reactive oxygen molecules.": "antioxidant protection",
+      "May lower the stress hormone cortisol after stressful events.": "stress hormone (cortisol)"
+    },
+    "claimCategories": {
+      "May support the body's own collagen production, the protein that holds skin, gums and wounds together.": "appearance",
+      "May help skin look and feel younger by supporting collagen in the skin.": "appearance",
+      "May act as an antioxidant that protects cells from damage by reactive oxygen molecules.": "health",
+      "May lower the stress hormone cortisol after stressful events.": "health"
+    },
+    "claimLabels": {
+      "May support the body's own collagen production, the protein that holds skin, gums and wounds together.": "Collagen",
+      "May help skin look and feel younger by supporting collagen in the skin.": "Skin ageing",
+      "May act as an antioxidant that protects cells from damage by reactive oxygen molecules.": "Antioxidant",
+      "May lower the stress hormone cortisol after stressful events.": "Cortisol"
+    },
+    "origin": [
+      "Vitamin C (ascorbic acid) is a water-soluble vitamin that people cannot make themselves, so it has to come from food such as fruit and vegetables. Supplement vitamin C is usually made industrially, often by fermenting glucose from plants such as corn, and is chemically identical to the vitamin C in food."
+    ],
+    "dosage": [
+      "The European Food Safety Authority (EFSA) sets a population reference intake (PRI) of 110 mg a day for men, 95 mg for women, 105 mg in pregnancy and 155 mg when breastfeeding. EFSA found too little data to set a tolerable upper intake level (the most that is likely safe every day). It noted that up to about 1 g a day from supplements was not linked to stomach or gut problems, while 3 to 4 g a day can cause them. These are population values, not personal targets.",
+      "An amount commonly used in studies and supplements is about 500 mg a day. This is not a reference intake or a personal recommendation.",
+      "When checking a label, look at the form (ascorbic acid or a mineral ascorbate), how much is in one serving, and whether sodium or calcium is added, for example in fizzy tablets. Absorption levels off at higher doses, so a bigger dose is not taken up in proportion. People with kidney stones, kidney disease or iron overload should check with their doctor."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA reference intake, women",
+          "mg": 95
+        },
+        {
+          "label": "EFSA reference intake, men",
+          "mg": 110
+        },
+        {
+          "label": "Amount commonly used in supplements",
+          "mg": 500
+        }
+      ],
+      "foods": [
+        {
+          "name": "Red pepper, raw",
+          "mgPer100g": [
+            126,
+            126
+          ]
+        },
+        {
+          "name": "Blackcurrants, raw",
+          "mgPer100g": [
+            200,
+            200
+          ]
+        },
+        {
+          "name": "Guava, raw (flesh only)",
+          "mgPer100g": [
+            230,
+            230
+          ]
+        },
+        {
+          "name": "Parsley, fresh",
+          "mgPer100g": [
+            190,
+            190
+          ]
+        },
+        {
+          "name": "Brussels sprouts, raw",
+          "mgPer100g": [
+            115,
+            115
+          ]
+        },
+        {
+          "name": "Broccoli, green, raw",
+          "mgPer100g": [
+            79,
+            79
+          ]
+        },
+        {
+          "name": "Kiwi fruit, raw (flesh only)",
+          "mgPer100g": [
+            71,
+            71
+          ]
+        },
+        {
+          "name": "Strawberries, raw",
+          "mgPer100g": [
+            57,
+            57
+          ]
+        }
+      ],
+      "verdict": "Yes. Fruit and vegetables easily reach the reference intake: about 80 g of raw red pepper or 130 g of kiwi fruit gives 95 mg. The 500 mg amount is also possible but takes a lot of one food, about 400 g of raw red pepper or 250 g of blackcurrants, or a spread of several foods. These are amounts eaten, and cooking and storage lower them.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw food named. Cooked, stored or processed foods contain less.",
+      "sources": [
+        {
+          "pmid": "36139737",
+          "doi": "10.3390/antiox11091663",
+          "title": "Ascorbic Acid (Vitamin C) as a Cosmeceutical to Increase Dermal Collagen for Skin Antiaging Purposes: Emerging Combination Therapies.",
+          "year": 2022,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

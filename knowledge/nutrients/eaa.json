@@ -3,22 +3,132 @@
   "name": "Essential amino acids (EAA)",
   "kind": "supplement",
   "researchStatus": "not-reviewed",
-  "otherNames": ["EAA", "EAAs", "Essential amino acid blend", "Essential amino acids"],
-  "summary": "EAA supplements are mixtures of essential amino acids, the protein building blocks that must come from the diet. An EAA blend is not the same as a branched-chain amino acid (BCAA) product.",
-  "commonUses": ["Used as a source of free amino acids in drinks and powders.", "Used in products marketed for exercise recovery and muscle maintenance."],
-  "roles": ["Essential amino acids supply building blocks for proteins throughout the body.", "BCAAs are leucine, isoleucine and valine: only part of the full essential amino acid group."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Full EAA blend", "note": "Contains the essential amino acids as free amino acids. The amount and balance of each ingredient vary by product."},
-    {"name": "BCAA blend", "note": "Contains only the branched-chain subset, not the full EAA group. BCAA and EAA are not interchangeable names."}
+  "otherNames": [
+    "EAA",
+    "EAAs",
+    "Essential amino acid blend",
+    "Essential amino acids"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "summary": "EAA supplements are mixtures of essential amino acids, the protein building blocks that must come from the diet. An EAA blend is not the same as a branched-chain amino acid (BCAA) product.",
+  "commonUses": [
+    "May preserve muscle",
+    "May speed recovery after training",
+    "May stimulate muscle protein building"
+  ],
+  "roles": [
+    "Essential amino acids supply building blocks for proteins throughout the body.",
+    "BCAAs are leucine, isoleucine and valine: only part of the full essential amino acid group."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Meat, fish, eggs and dairy",
+      "Soy, quinoa and combinations of pulses and grains"
+    ],
+    "note": "Eating protein foods is not the same intervention as taking a free amino acid blend."
+  },
+  "forms": [
+    {
+      "name": "Full EAA blend",
+      "note": "Contains the essential amino acids as free amino acids. The amount and balance of each ingredient vary by product."
+    },
+    {
+      "name": "BCAA blend",
+      "note": "Contains only the branched-chain subset, not the full EAA group. BCAA and EAA are not interchangeable names."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level was found for essential amino acid blends as a whole. For the three branched-chain amino acids on their own, Germany's Federal Institute for Risk Assessment (BfR, 2019) derived guidance values for extra intake from supplements in adults: leucine 4.0 g, isoleucine 2.2 g, valine 2.0 g and 8.2 g in total a day. These do not cover children, pregnancy, breastfeeding, reduced kidney function or a low-protein diet.",
+    "sources": [
+      {
+        "doi": "10.17590/20200929-110412",
+        "title": "Food supplements: High intake of isolated branched-chain amino acids can lead to health impairments (BfR Opinion No. 052/2019)",
+        "year": 2019,
+        "studyType": "guideline"
+      }
+    ]
+  },
   "findings": [],
-  "interactions": [{"with": "Kidney disease", "note": "Kidney disease can change how protein and amino acid intake is managed. Discuss an EAA product with your clinician rather than assuming it fits your nutrition plan.", "safetyId": "kidney"}],
-  "cautions": ["Inherited amino acid disorders can make particular ingredients unsafe. A general EAA blend is not a substitute for a specialist formula for phenylketonuria or maple syrup urine disease.", "EAA blends differ in their amino acid balance; safety information for one mixture does not establish a safe upper amount for every mixture.", "Free amino acids do not provide all the nutrients in food and are not a complete meal replacement."],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Kidney disease can change how protein and amino acid intake is managed. Discuss an EAA product with your clinician rather than assuming it fits your nutrition plan.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Inherited amino acid disorders can make particular ingredients unsafe. A general EAA blend is not a substitute for a specialist formula for phenylketonuria or maple syrup urine disease.",
+    "EAA blends differ in their amino acid balance; safety information for one mixture does not establish a safe upper amount for every mixture.",
+    "Free amino acids do not provide all the nutrients in food and are not a complete meal replacement."
+  ],
   "evidenceClaims": [],
-  "sources": [{"pmid": "37800468", "doi": "10.1080/15502783.2023.2263409", "title": "International society of sports nutrition position stand: essential amino acid supplementation on skeletal muscle and Performance", "year": 2023, "studyType": "review"}]
+  "sources": [
+    {
+      "pmid": "29750251",
+      "doi": "10.1093/gerona/gly109",
+      "title": "Effect of Aerobic Exercise Training and Essential Amino Acid Supplementation for 24 Weeks on Physical Function, Body Composition, and Muscle Metabolism in Healthy, Independent Older Adults: A Randomized Clinical Trial.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "19420276",
+      "doi": "10.1210/jc.2009-0458",
+      "title": "Potential application of essential amino Acid supplementation to treat sarcopenia in elderly people.",
+      "year": 2009,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May preserve muscle": "muscle preservation",
+      "May speed recovery after training": "recovery after exercise",
+      "May stimulate muscle protein building": "muscle protein synthesis"
+    },
+    "claimCategories": {
+      "May preserve muscle": "health",
+      "May speed recovery after training": "health",
+      "May stimulate muscle protein building": "health"
+    },
+    "claimLabels": {
+      "May preserve muscle": "Muscle preservation",
+      "May speed recovery after training": "Recovery",
+      "May stimulate muscle protein building": "Protein building"
+    },
+    "origin": [
+      "Essential amino acids are the nine amino acids the body cannot make: histidine, isoleucine, leucine, lysine, methionine, phenylalanine, threonine, tryptophan and valine. They have to come from food.",
+      "EAA supplements are made from these in free form, as a powder. They are not the same as BCAA products, which contain only leucine, isoleucine and valine."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Studies use different blends, and a result for one mixture cannot be moved to another.",
+      "Check which amino acids and how much of each the label lists. People with inherited amino acid disorders or kidney disease should ask a clinician first."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Yes, in principle. Protein foods such as meat, fish, eggs and dairy supply all nine essential amino acids, which is why animal foods are called complete proteins. This guide has no checked per-food figures for each amino acid, so it lists no amounts. See the protein powder guide for how much protein these foods give.",
+      "notChecked": "The food table used by this app does not measure individual amino acids.",
+      "sources": [
+        {
+          "pmid": "19420276",
+          "doi": "10.1210/jc.2009-0458",
+          "title": "Potential application of essential amino Acid supplementation to treat sarcopenia in elderly people.",
+          "year": 2009,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

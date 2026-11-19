@@ -37,7 +37,6 @@
    "id": "strength-older",
    "label": "Strength, older adults",
    "anyDesign": false,
-   "finding": "Muscle strength and lean mass, with resistance training",
    "counts": {
     "reviews": 99,
     "trialReviews": 39,
@@ -548,7 +547,6 @@
    "id": "performance-young",
    "label": "Strength and sprints, under 50",
    "anyDesign": false,
-   "finding": "Strength and short, repeated bursts of hard exercise",
    "counts": {
     "reviews": 126,
     "trialReviews": 41,
@@ -1018,7 +1016,6 @@
    "id": "endurance",
    "label": "Endurance",
    "anyDesign": false,
-   "finding": "Endurance performance",
    "counts": {
     "reviews": 7,
     "trialReviews": 4,
@@ -1272,7 +1269,6 @@
    "id": "cognition",
    "label": "Memory and thinking",
    "anyDesign": false,
-   "finding": "Memory and thinking",
    "counts": {
     "reviews": 12,
     "trialReviews": 8,
@@ -1481,7 +1477,6 @@
    "id": "depression",
    "label": "Depression",
    "anyDesign": false,
-   "finding": "Symptoms of depression",
    "counts": {
     "reviews": 2,
     "trialReviews": 1,
@@ -1565,7 +1560,6 @@
    "id": "kidney",
    "label": "Kidney function",
    "anyDesign": false,
-   "finding": "Kidney function, and the blood creatinine test",
    "counts": {
     "reviews": 7,
     "trialReviews": 4,
@@ -1719,7 +1713,6 @@
    "id": "body-weight",
    "label": "Body weight and water",
    "anyDesign": false,
-   "finding": "Body weight, body water and body fat",
    "counts": {
     "reviews": 16,
     "trialReviews": 7,

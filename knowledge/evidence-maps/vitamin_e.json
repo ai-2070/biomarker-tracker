@@ -36,7 +36,6 @@
    "id": "prostate",
    "label": "Prostate cancer",
    "anyDesign": false,
-   "finding": "Prostate cancer",
    "counts": {
     "reviews": 14,
     "trialReviews": 1,
@@ -499,7 +498,6 @@
    "id": "cardiovascular",
    "label": "Heart attacks and strokes",
    "anyDesign": false,
-   "finding": "Heart attacks, strokes and deaths from heart and blood vessel disease",
    "counts": {
     "reviews": 55,
     "trialReviews": 25,
@@ -1155,7 +1153,6 @@
    "id": "stroke",
    "label": "Stroke by type",
    "anyDesign": false,
-   "finding": "Stroke, by type",
    "counts": {
     "reviews": 15,
     "trialReviews": 9,
@@ -1452,7 +1449,6 @@
    "id": "mortality",
    "label": "Death from any cause",
    "anyDesign": false,
-   "finding": "Death from any cause",
    "counts": {
     "reviews": 22,
     "trialReviews": 14,
@@ -1899,7 +1895,6 @@
    "id": "amd",
    "label": "Macular degeneration",
    "anyDesign": false,
-   "finding": "Worsening of age-related macular degeneration (AMD, an eye disease that damages central vision)",
    "counts": {
     "reviews": 17,
     "trialReviews": 11,
@@ -2167,7 +2162,6 @@
    "id": "nash",
    "label": "Fatty liver (NASH)",
    "anyDesign": false,
-   "finding": "Liver inflammation in fatty liver disease (NASH, non-alcoholic steatohepatitis)",
    "counts": {
     "reviews": 48,
     "trialReviews": 15,

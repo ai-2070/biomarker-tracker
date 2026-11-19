@@ -1,0 +1,218 @@
+{
+  "id": "lutein_zeaxanthin",
+  "name": "Lutein and zeaxanthin",
+  "kind": "supplement",
+  "otherNames": [
+    "Lutein",
+    "Zeaxanthin",
+    "lutein esters",
+    "meso-zeaxanthin",
+    "macular pigment",
+    "marigold extract"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Lutein and zeaxanthin are two closely related yellow-orange pigments from the carotenoid family, the same family as beta-carotene. Plants make them; people get them only from food. They collect in the macula, the small central area of the retina used for sharp vision.",
+  "commonUses": [
+    "May act as a blue-light filter that protects the eyes from \"digital aging\" caused by phones and computer screens.",
+    "May make the whites of the eyes look clearer by reducing inflammation on the eye surface.",
+    "May raise macular pigment, the yellow filter layer at the centre of the retina, and support healthy vision as you age.",
+    "May slow the progression of age-related macular degeneration (AMD), a common cause of sight loss in older people."
+  ],
+  "roles": [
+    "In the eye they form the macular pigment, a yellow layer at the centre of the retina.",
+    "The retina also holds a related pigment, meso-zeaxanthin, which the eye makes from lutein."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Kale, spinach and parsley",
+      "Sweetcorn and peas",
+      "Peppers",
+      "Egg yolk"
+    ],
+    "note": "Cooking and variety change the amounts."
+  },
+  "forms": [
+    {
+      "name": "Free lutein",
+      "note": "Lutein itself, usually from marigold petals."
+    },
+    {
+      "name": "Lutein esters",
+      "note": "Lutein attached to fatty acids, usual in marigold extracts. Check whether the label amount is lutein or extract weight."
+    },
+    {
+      "name": "Zeaxanthin and meso-zeaxanthin",
+      "note": "Added to some combined products. Amounts are not directly comparable between forms."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for lutein or zeaxanthin. EFSA's acceptable daily intake for lutein as a food colour (1 mg per kg of body weight a day) is a safety figure for an additive, not a limit for supplements.",
+    "sources": [
+      {
+        "pmid": "42005760",
+        "doi": "10.2903/j.efsa.2010.1678",
+        "title": "Scientific Opinion on the re-evaluation of lutein (E 161b) as a food additive.",
+        "year": 2010,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "42148411",
+        "doi": "10.2903/j.efsa.2011.2144",
+        "title": "Scientific Opinion on the re-evaluation of lutein preparations other than lutein with high concentrations of total saponified carotenoids at levels of at least 80.",
+        "year": 2011,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Beta-carotene (in smokers and former smokers)",
+      "note": "In the AREDS2 follow-up, beta-carotene nearly doubled lung cancer risk, while lutein and zeaxanthin did not raise it significantly; lutein and zeaxanthin were used as the replacement in the later eye supplements. Beta-carotene is the one to check for on a label."
+    }
+  ],
+  "cautions": [
+    "In trials of 10 mg lutein and 2 mg zeaxanthin a day, serious side effects were not reported; the most commonly mentioned effect at much higher intakes from food or supplements is a harmless yellowing of the skin (carotenodermia), which fades after stopping.",
+    "Lutein supplements do not replace eye examinations. Anyone with a diagnosed eye condition, sudden changes in vision, red or painful eyes, or ongoing eye redness should see an optometrist or doctor rather than rely on a supplement.",
+    "Supplements may use free lutein, lutein esters, marigold extract or mixed isomers (including meso-zeaxanthin); amounts are not directly comparable between them, so read what the number refers to.",
+    "People who are pregnant, breastfeeding, or taking fat-absorption-related medicines can ask a pharmacist or doctor if a product suits them; no hazard is established, but data in these groups is limited."
+  ],
+  "sources": [
+    {
+      "pmid": "23644932",
+      "doi": "10.1001/jama.2013.4997",
+      "title": "Lutein + zeaxanthin and omega-3 fatty acids for age-related macular degeneration: the Age-Related Eye Disease Study 2 (AREDS2) randomized clinical trial.",
+      "year": 2013,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "35653117",
+      "doi": "10.1001/jamaophthalmol.2022.1640",
+      "title": "Long-term Outcomes of Adding Lutein/Zeaxanthin and ω-3 Fatty Acids to the AREDS Supplements on Age-Related Macular Degeneration Progression: AREDS2 Report 28.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "34157098",
+      "doi": "10.1093/advances/nmab071",
+      "title": "The Effect of Lutein/Zeaxanthin Intake on Human Macular Pigment Optical Density: A Systematic Review and Meta-Analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28756618",
+      "doi": "10.1002/14651858.cd000254.pub4",
+      "title": "Antioxidant vitamin and mineral supplements for slowing the progression of age-related macular degeneration.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40134251",
+      "doi": "10.31083/ijvnr36626",
+      "title": "Role of Lutein Supplements in the Management of Dry Eye Syndrome: A Systematic Review.",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37593770",
+      "doi": "10.1002/14651858.cd013244.pub2",
+      "title": "Blue-light filtering spectacle lenses for visual performance, sleep, and macular health in adults.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May act as a blue-light filter that protects the eyes from \"digital aging\" caused by phones and computer screens.": "blue light and screen use",
+      "May make the whites of the eyes look clearer by reducing inflammation on the eye surface.": "eye whites and surface inflammation",
+      "May raise macular pigment, the yellow filter layer at the centre of the retina, and support healthy vision as you age.": "macular pigment and vision",
+      "May slow the progression of age-related macular degeneration (AMD), a common cause of sight loss in older people.": "age-related macular degeneration"
+    },
+    "claimCategories": {
+      "May act as a blue-light filter that protects the eyes from \"digital aging\" caused by phones and computer screens.": "health",
+      "May make the whites of the eyes look clearer by reducing inflammation on the eye surface.": "appearance",
+      "May raise macular pigment, the yellow filter layer at the centre of the retina, and support healthy vision as you age.": "health",
+      "May slow the progression of age-related macular degeneration (AMD), a common cause of sight loss in older people.": "longevity"
+    },
+    "claimLabels": {
+      "May act as a blue-light filter that protects the eyes from \"digital aging\" caused by phones and computer screens.": "Screen eyes",
+      "May make the whites of the eyes look clearer by reducing inflammation on the eye surface.": "Clearer eyes",
+      "May raise macular pigment, the yellow filter layer at the centre of the retina, and support healthy vision as you age.": "Macular pigment",
+      "May slow the progression of age-related macular degeneration (AMD), a common cause of sight loss in older people.": "AMD"
+    },
+    "origin": [
+      "Lutein and zeaxanthin are two closely related yellow-orange pigments from the carotenoid family (the same family as beta-carotene). They belong to the xanthophylls, carotenoids that contain oxygen. Plants make them; humans cannot, so they come only from food. They are found in leafy greens such as kale and spinach, in parsley, corn, peppers and egg yolk. Supplements are usually made from marigold flower petals (Tagetes erecta), which are extracted, purified and sold as free lutein or lutein esters, sometimes with zeaxanthin added from marigold or paprika extracts or made by chemical conversion.",
+      "In the body they collect in the macula, the small central area of the retina used for sharp, detailed vision, where they form the \"macular pigment\". The retina also contains a third, related pigment called meso-zeaxanthin, which is made in the eye from lutein."
+    ],
+    "dosage": [
+      "There is no reference intake for lutein or zeaxanthin. EFSA set an acceptable daily intake of 1 mg per kg of body weight a day for lutein used as a food colour; it also applies to lutein esters from marigold. That is a safety figure for an additive, not an upper limit for supplements and not a target. The large AREDS2 trial in older people with early macular degeneration tested 10 mg of lutein with 2 mg of zeaxanthin a day; that is a study amount, not a recommendation.",
+      "An amount commonly used in studies and supplements is about 10 mg of lutein and 2 mg of zeaxanthin a day. This is not a reference intake or a personal recommendation.",
+      "Check whether the label gives free lutein or lutein esters, and whether the amount is lutein itself or extract weight. Lutein dissolves in fat, so studies often assume it is taken with a meal that contains some fat. People who smoke or used to smoke should check that an eye-health product does not contain beta-carotene, which was linked to more lung cancer in smokers in trials."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (lutein, 10 mg)",
+          "mg": 10
+        }
+      ],
+      "foods": [
+        {
+          "name": "Spinach, raw",
+          "mgPer100g": [
+            5.9,
+            7.9
+          ]
+        },
+        {
+          "name": "Kale, raw",
+          "mgPer100g": [
+            4.8,
+            11.5
+          ]
+        },
+        {
+          "name": "Parsley, raw",
+          "mgPer100g": [
+            6.4,
+            10.7
+          ]
+        },
+        {
+          "name": "Egg yolk",
+          "mgPer100g": [
+            0.4,
+            1.3
+          ],
+          "note": "One yolk (about 18 g) held about 0.3 mg lutein and 0.2 mg zeaxanthin in a study cited by the review."
+        }
+      ],
+      "verdict": "Yes for the lutein, from leafy greens. Roughly 100 to 200 g of raw spinach, kale or parsley a day contains 10 mg of lutein; egg yolks give much less per gram, so they are not a practical way to reach that amount. Zeaxanthin (2 mg) was not checked separately. These are amounts eaten, and the studies behind the 10 mg figure used supplements, not food.",
+      "notChecked": "Lutein and zeaxanthin are not measured in the UK food table used by this app. Values are lutein per 100 g of raw food, converted from a published review, and vary with variety and season. Cooking changes them.",
+      "sources": [
+        {
+          "pmid": "23571649",
+          "doi": "10.3390/nu5041169",
+          "title": "Dietary sources of lutein and zeaxanthin carotenoids and their role in eye health.",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

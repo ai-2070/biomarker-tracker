@@ -2,23 +2,144 @@
   "id": "nr_nmn",
   "name": "NR and NMN",
   "kind": "supplement",
-  "otherNames": ["NR/NMN", "NR", "NMN", "nicotinamide riboside", "nicotinamide mononucleotide", "NAD precursors"],
+  "otherNames": [
+    "NR/NMN",
+    "NR",
+    "NMN",
+    "nicotinamide riboside",
+    "nicotinamide mononucleotide",
+    "NAD precursors"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN) are two different compounds involved in making NAD, a molecule cells use in metabolism. They are sold as supplements, often under the same marketing theme, but they are not interchangeable ingredients.",
-  "commonUses": ["Used in products marketed for healthy aging", "Used in products marketed for cellular energy"],
-  "roles": ["NAD carries electrons in reactions that help cells process energy and is also used by enzymes involved in cell signaling.", "Cells can convert NR into NMN, then NMN into NAD; sharing a pathway does not make the two supplements equivalent."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. A research measurement of NAD is not a validated test of whether someone needs NR or NMN."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Nicotinamide riboside (NR)", "note": "A nucleoside, often supplied as NR chloride. It is distinct from NMN and from nicotinamide, another NAD precursor."},
-    {"name": "Nicotinamide mononucleotide (NMN)", "note": "A nucleotide with a phosphate group. Findings about an NR product cannot be transferred to an NMN product, or the reverse."}
+  "commonUses": [
+    "May raise NAD+ levels",
+    "May support skin",
+    "May boost energy",
+    "May support metabolism"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "NAD carries electrons in reactions that help cells process energy and is also used by enzymes involved in cell signaling.",
+    "Cells can convert NR into NMN, then NMN into NAD; sharing a pathway does not make the two supplements equivalent."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test. A research measurement of NAD is not a validated test of whether someone needs NR or NMN."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Nicotinamide riboside (NR)",
+      "note": "A nucleoside, often supplied as NR chloride. It is distinct from NMN and from nicotinamide, another NAD precursor."
+    },
+    {
+      "name": "Nicotinamide mononucleotide (NMN)",
+      "note": "A nucleotide with a phosphate group. Findings about an NR product cannot be transferred to an NMN product, or the reverse."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "EFSA (2019) judged nicotinamide riboside chloride safe up to 300 mg a day for healthy adults, and up to 230 mg a day for pregnant and breastfeeding women. That is a novel-food safety assessment of NR chloride, not a tolerable upper intake level; the opinion cites an upper limit of 900 mg a day for nicotinamide. No EFSA opinion on NMN was read for this guide, so no amount is given for it.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2019.5775",
+        "title": "Safety of nicotinamide riboside chloride as a novel food pursuant to Regulation (EU) 2015/2283 and bioavailability of nicotinamide from this source, in the context of Directive 2002/46/EC",
+        "year": 2019,
+        "studyType": "guideline"
+      }
+    ]
+  },
   "findings": [],
   "interactions": [],
-  "cautions": ["The body using NAD does not establish that taking either precursor slows aging or improves health; this guide has not reviewed those claims.", "Short-term tolerability findings do not establish safety over years. This guide does not establish long-term safety for either compound.", "This combined page is for identifying ingredients, not combining their study results. Product form and the compound actually tested matter."],
+  "cautions": [
+    "The body using NAD does not establish that taking either precursor slows aging or improves health; this guide has not reviewed those claims.",
+    "Short-term tolerability findings do not establish safety over years. This guide does not establish long-term safety for either compound.",
+    "This combined page is for identifying ingredients, not combining their study results. Product form and the compound actually tested matter."
+  ],
   "evidenceClaims": [],
-  "sources": [{"pmid": "32486488", "doi": "10.3390/nu12061616", "title": "Nicotinamide Riboside-The Current State of Research and Therapeutic Uses.", "year": 2020, "studyType": "review"}]
+  "sources": [
+    {
+      "pmid": "34517020",
+      "doi": "10.1016/j.mad.2021.111567",
+      "title": "Preclinical and clinical evidence of NAD+ precursors in health, disease, and ageing.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26791540",
+      "doi": "10.1177/0960327115626254",
+      "title": "Safety assessment of nicotinamide riboside, a form of vitamin B3.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "31278280",
+      "doi": "10.1038/s41598-019-46120-z",
+      "title": "Safety and Metabolism of Long-term Administration of NIAGEN (Nicotinamide Riboside Chloride) in a Randomized, Double-Blind, Placebo-controlled Clinical Trial of Healthy Overweight Adults.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36482258",
+      "doi": "10.1007/s11357-022-00705-1",
+      "title": "The efficacy and safety of β-nicotinamide mononucleotide (NMN) supplementation in healthy middle-aged adults: a randomized, multicenter, double-blind, placebo-controlled, parallel-group, dose-dependent clinical trial.",
+      "year": 2023,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May raise NAD+ levels": "NAD+ levels",
+      "May support skin": "skin",
+      "May boost energy": "energy",
+      "May support metabolism": "metabolism"
+    },
+    "claimCategories": {
+      "May raise NAD+ levels": "longevity",
+      "May support skin": "appearance",
+      "May boost energy": "health",
+      "May support metabolism": "health"
+    },
+    "claimLabels": {
+      "May raise NAD+ levels": "NAD+ levels",
+      "May support skin": "Skin",
+      "May boost energy": "Energy",
+      "May support metabolism": "Metabolism"
+    },
+    "origin": [
+      "NAD is a molecule found in every cell. Nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN) are related to vitamin B3 and are building blocks that cells can turn into NAD.",
+      "Both are made in a factory for supplements. They occur naturally in foods only in tiny amounts, and NAD itself is reported to fall with age; whether topping it up helps health is what the studies test."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Studies have used different amounts of NR and NMN, and they cannot be compared by weight.",
+      "Amounts commonly used in studies and supplements are about 300 to 450 mg a day of NR or about 500 mg of NMN. This is not a reference intake or a personal recommendation.",
+      "Check whether the label names NR (often NR chloride) or NMN, and how much of the compound is in a serving. Short human trials have mostly looked at tolerability and blood NAD levels, not long-term safety."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not checked. Both compounds occur in foods such as milk, but only in small amounts, and this guide has no checked per-food figures, so it cannot say how much food would match the 300–500 mg commonly used in supplements.",
+      "notChecked": "The food table used by this app does not measure NR or NMN, so no amounts are listed.",
+      "sources": [
+        {
+          "pmid": "34517020",
+          "doi": "10.1016/j.mad.2021.111567",
+          "title": "Preclinical and clinical evidence of NAD+ precursors in health, disease, and ageing.",
+          "year": 2021,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }
