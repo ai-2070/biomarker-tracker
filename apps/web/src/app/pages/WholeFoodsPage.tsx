@@ -13,6 +13,7 @@ import { ClockNote } from "../components/ClockEvidence";
 import { More } from "../components/disclosure";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { StudyLink } from "../components/evidence";
+import { FoodArt } from "../components/FoodArt";
 import { Findings } from "../components/findings";
 import { anchorId, jump } from "../components/glance";
 import { SearchIcon } from "../components/icons";
@@ -103,11 +104,12 @@ export function WholeFoodsPage() {
             .sort((a, b) => FOOD_GROUPS.indexOf(a.group) - FOOD_GROUPS.indexOf(b.group) || a.name.localeCompare(b.name))
             .map((f) => (
               <li key={f.id}>
-                <a href={href({ name: "wholefood", id: f.id })} className={cx("flex h-full flex-col gap-3", linkCardStyles)}>
-                  <div>
+                <a href={href({ name: "wholefood", id: f.id })} className={cx("relative flex h-full flex-col gap-3", linkCardStyles)}>
+                  <div className="pr-20">
                     <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
                     <h2 className="font-serif text-2xl font-normal">{f.name}</h2>
                   </div>
+                  <FoodArt name={f.id} />
                   <p className="text-ink-2">{f.summary}</p>
                 </a>
               </li>
@@ -149,20 +151,25 @@ export function WholeFoodPage({ id }: { id: string }) {
 
   return (
     <>
-      <a href={href({ name: "wholefoods" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
-        <span aria-hidden="true">←</span> Foods
-      </a>
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
-          <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{f.name}</h1>
-          {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.slice(0, 3).join(", ")}</p>}
+      <div className="relative">
+        <div className="pointer-events-none absolute inset-x-0 top-0 max-w-3xl">
+          <FoodArt name={f.id} large />
         </div>
-        <div className="flex flex-wrap gap-2">
-          <LinkButton variant="secondary" href={href({ name: "habits", add: f.name, type: "diet", ...(watch ? { marker: watch } : {}) })}>
-            Start as a habit
-          </LinkButton>
-          <AddToProtocol label={f.name} category="diet" amountHint="e.g. 2 tablespoons" />
+        <a href={href({ name: "wholefoods" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
+          <span aria-hidden="true">←</span> Foods
+        </a>
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div className="sm:pr-32">
+            <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
+            <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{f.name}</h1>
+            {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.slice(0, 3).join(", ")}</p>}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <LinkButton variant="secondary" href={href({ name: "habits", add: f.name, type: "diet", ...(watch ? { marker: watch } : {}) })}>
+              Start as a habit
+            </LinkButton>
+            <AddToProtocol label={f.name} category="diet" amountHint="e.g. 2 tablespoons" />
+          </div>
         </div>
       </div>
 
