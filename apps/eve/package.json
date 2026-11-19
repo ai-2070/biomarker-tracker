@@ -8,7 +8,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "eve": "1.0.0-rc.2"
+    "eve": "1.1.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
