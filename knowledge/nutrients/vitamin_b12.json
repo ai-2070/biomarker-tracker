@@ -17,7 +17,11 @@
     "Working with folate to recycle homocysteine, an amino acid in the blood"
   ],
   "status": {
-    "biomarkerIds": ["b12", "mcv", "hemoglobin"],
+    "biomarkerIds": [
+      "b12",
+      "mcv",
+      "hemoglobin"
+    ],
     "note": "The usual first test is serum vitamin B12. It is an imperfect test: a low result does not always mean a real shortage, and some people with a real shortage have a normal result. When the result is borderline or doesn't fit the symptoms, doctors can add methylmalonic acid (MMA, which rises when the body lacks B12) or holotranscobalamin (holoTC, sometimes called 'active B12', the part of B12 that cells can take up). Homocysteine also rises, but it is less specific. Large red blood cells (a high MCV, mean corpuscular volume) and anaemia can be signs of low B12, but they often appear late, and taking folic acid can hide them."
   },
   "low": {
@@ -81,9 +85,24 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Adults", "amount": 4, "unit": "µg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 4.5, "unit": "µg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 5, "unit": "µg", "type": "AI" }
+      {
+        "group": "Adults",
+        "amount": 4,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 4.5,
+        "unit": "µg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 5,
+        "unit": "µg",
+        "type": "AI"
+      }
     ],
     "noUpperLimit": "EFSA has set no tolerable upper intake level for vitamin B12. Its predecessor, the Scientific Committee on Food (2000), found no adverse effects from high intakes in healthy people that could be used to set one, and EFSA's 2015 review of B12 requirements did not change this. EFSA set an adequate intake (AI) rather than a population reference intake because the data were too limited to work out an average requirement.",
     "sources": [
@@ -96,140 +115,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Blood B12 levels: high-dose tablets compared with injections",
-      "population": "Adults with diagnosed B12 deficiency",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Only three small trials (153 people) in the Cochrane review, followed for 3 to 4 months",
-        "Trials measured blood levels, not symptoms or quality of life",
-        "Doses and schedules differed between trials"
-      ],
-      "summary": "A Cochrane review found that daily high-dose tablets (1000 to 2000 µg in the trials) raised blood B12 about as well as injections, and one trial found tablets raised it more. An earlier trial found blood counts and nerve symptoms improved equally in both groups. The evidence is small and short, and none of the trials reported how people felt, so it can't show whether tablets suit everyone, especially people with nerve damage or pernicious anaemia.",
-      "bottomLine": "In small, short trials in adults with diagnosed B12 deficiency, daily high-dose tablets raised blood B12 about as well as injections. None reported how people felt, so it's unclear whether tablets suit everyone, especially people with nerve damage or pernicious anaemia.",
-      "label": "Tablets compared with injections",
-      "line": "High-dose tablets raised B12 about as well as injections in small, short trials",
-      "studies": [
-        {
-          "pmid": "29543316",
-          "doi": "10.1002/14651858.cd004655.pub3",
-          "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
-          "year": 2018,
-          "studyType": "meta-analysis",
-          "n": 153
-        },
-        {
-          "pmid": "9694707",
-          "doi": "10.1182/blood.v92.4.1191",
-          "title": "Effective treatment of cobalamin deficiency with oral cobalamin",
-          "year": 1998,
-          "studyType": "rct",
-          "n": 38
-        }
-      ]
-    },
-    {
-      "outcome": "Correcting mild deficiency in older people: low compared with high doses",
-      "population": "Older people with mildly low B12 and raised methylmalonic acid",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "One trial of 120 people over 16 weeks",
-        "Measured a blood marker (methylmalonic acid), not symptoms"
-      ],
-      "summary": "In this dose-finding trial, small daily amounts close to normal dietary intake barely changed methylmalonic acid. Only much larger daily amounts (about 650 to 1000 µg in the trial) came close to the maximum effect. This helps explain why low-dose multivitamins often don't correct a shortage in older people. It shows changes in a blood marker, not that people felt or functioned better.",
-      "bottomLine": "In a trial in older people with mildly low B12, small daily amounts close to normal dietary intake barely changed methylmalonic acid, a blood marker. Only much larger amounts came close to the maximum effect. It measured the blood marker, not how people felt or functioned.",
-      "label": "Mild shortage in older people",
-      "line": "Small daily amounts barely changed a blood marker; much larger ones came close to full effect",
-      "studies": [
-        {
-          "pmid": "15911731",
-          "doi": "10.1001/archinte.165.10.1167",
-          "title": "Oral cyanocobalamin supplementation in older people with vitamin B12 deficiency: a dose-finding trial",
-          "year": 2005,
-          "studyType": "rct",
-          "n": 120
-        }
-      ]
-    },
-    {
-      "outcome": "Memory and thinking, low mood and tiredness",
-      "population": "Adults without a clear B12 deficiency or advanced nerve disease",
-      "effect": "no clear effect",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Meta-analysis of 16 randomised trials with 6276 people",
-        "Consistent results across trials",
-        "Too few trials on tiredness to analyse"
-      ],
-      "summary": "B12 is often taken for memory, mood or energy. In people who were not clearly deficient, B12 alone or with other B vitamins did not improve memory, thinking or depression scores. Only one trial looked at tiredness, so there is not enough evidence on that. People with a real deficiency are a different case: treating it can improve symptoms caused by the deficiency.",
-      "bottomLine": "In adults who were not clearly deficient, B12 alone or with other B vitamins did not improve memory, thinking or depression scores, and only one trial looked at tiredness. People with a real deficiency are a different case: treating it can improve its symptoms.",
-      "label": "Memory, mood and tiredness",
-      "line": "No clear benefit in people who weren't deficient; tiredness barely studied",
-      "studies": [
-        {
-          "pmid": "33809274",
-          "doi": "10.3390/nu13030923",
-          "title": "Effects of Vitamin B12 Supplementation on Cognitive Function, Depressive Symptoms, and Fatigue: A Systematic Review, Meta-Analysis, and Meta-Regression",
-          "year": 2021,
-          "studyType": "meta-analysis",
-          "n": 6276
-        }
-      ]
-    },
-    {
-      "outcome": "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
-      "population": "Adults with or without heart and blood vessel disease, in trials that lowered homocysteine",
-      "effect": "no clear effect",
-      "grade": "high",
-      "whyThisGrade": [
-        "Cochrane review of 15 randomised trials with 71,422 people; most at low risk of bias",
-        "Results for heart attacks and death were consistent across trials",
-        "B12 was almost always given with other B vitamins, so its own effect can't be separated"
-      ],
-      "summary": "High homocysteine in the blood goes with more heart disease, so large trials lowered it with B vitamins. Homocysteine fell, but heart attacks and deaths did not. Stroke was slightly less common (about 4.3% compared with 5.1%), mostly in trials where folic acid was the main ingredient (see folate). Lowering a blood level is not the same as a health benefit.",
-      "bottomLine": "Large trials of B12 with folic acid, often with B6, lowered the blood level homocysteine but not heart attacks or deaths. Stroke was slightly less common (about 4.3% compared with 5.1%), mostly in trials where folic acid was the main ingredient.",
-      "label": "Heart attacks, strokes and death",
-      "line": "Homocysteine fell but heart attacks and deaths didn't; strokes slightly fewer",
-      "studies": [
-        {
-          "pmid": "28816346",
-          "doi": "10.1002/14651858.cd006612.pub5",
-          "title": "Homocysteine-lowering interventions for preventing cardiovascular events",
-          "year": 2017,
-          "studyType": "meta-analysis",
-          "n": 71422
-        }
-      ]
-    },
-    {
-      "outcome": "Nerve damage from diabetes (diabetic neuropathy)",
-      "population": "People with type 2 diabetes on metformin for at least 4 years, with nerve damage and B12 in the lower part of the normal range",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "One placebo-controlled trial of 90 people over a year",
-        "Several of the measures were questionnaires and pain scores",
-        "Not yet repeated in a larger trial"
-      ],
-      "summary": "In this trial, methylcobalamin tablets raised B12 levels and improved nerve tests, pain and quality of life compared with placebo, while the placebo group got slightly worse. Some measures, such as heart rhythm reflex tests, did not improve. It is a single small trial in people already low-normal on long-term metformin, so it doesn't show that B12 helps nerve damage in people with normal B12.",
-      "bottomLine": "In one small trial of people with type 2 diabetes, long-term metformin and low-normal B12, methylcobalamin tablets improved nerve tests, pain and quality of life compared with placebo. It doesn't show that B12 helps nerve damage in people with normal B12.",
-      "label": "Diabetic nerve damage on metformin",
-      "line": "Better nerve tests, pain and quality of life in one small trial of people with low-normal B12",
-      "studies": [
-        {
-          "pmid": "33513879",
-          "doi": "10.3390/nu13020395",
-          "title": "Vitamin B12 Supplementation in Diabetic Neuropathy: A 1-Year, Randomized, Double-Blind, Placebo-Controlled Trial",
-          "year": 2021,
-          "studyType": "rct",
-          "n": 90
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Metformin (diabetes medicine)",
@@ -260,100 +146,171 @@
     "Nerve symptoms from low B12 can become permanent if treatment is delayed; they need a doctor, not self-treatment.",
     "A high B12 result without supplements or injections is worth discussing with a doctor."
   ],
-  "evidenceClaims": ["b12-foods"],
+  "evidenceClaims": [],
   "sources": [
     {
-      "pmid": "28660890",
-      "doi": "10.1038/nrdp.2017.40",
-      "title": "Vitamin B12 deficiency",
-      "year": 2017,
-      "studyType": "review"
+      "pmid": "29543316",
+      "doi": "10.1002/14651858.cd004655.pub3",
+      "title": "Oral vitamin B&lt;sub&gt;12&lt;/sub&gt; versus intramuscular vitamin B&lt;sub&gt;12&lt;/sub&gt; for vitamin B&lt;sub&gt;12&lt;/sub&gt; deficiency.",
+      "year": 2018,
+      "studyType": "meta-analysis"
     },
     {
-      "pmid": "23301732",
-      "doi": "10.1056/nejmcp1113996",
-      "title": "Clinical practice. Vitamin B12 deficiency",
-      "year": 2013,
-      "studyType": "review"
-    },
-    {
-      "pmid": "24942828",
-      "doi": "10.1111/bjh.12959",
-      "title": "Guidelines for the diagnosis and treatment of cobalamin and folate disorders",
-      "year": 2014,
-      "studyType": "guideline"
-    },
-    {
-      "pmid": "27446930",
-      "doi": "10.3389/fmolb.2016.00027",
-      "title": "Biomarkers and Algorithms for the Diagnosis of Vitamin B12 Deficiency",
-      "year": 2016,
-      "studyType": "review"
-    },
-    {
-      "pmid": "23356638",
-      "doi": "10.1111/nure.12001",
-      "title": "How prevalent is vitamin B(12) deficiency among vegetarians?",
-      "year": 2013,
-      "studyType": "review"
-    },
-    {
-      "pmid": "24803097",
-      "doi": "10.3390/nu6051861",
-      "title": "Vitamin B₁₂-containing plant food sources for vegetarians",
-      "year": 2014,
-      "studyType": "review"
-    },
-    {
-      "pmid": "34871525",
-      "doi": "10.1080/16078454.2021.2010877",
-      "title": "Sublingual methylcobalamin treatment is as effective as intramuscular and peroral cyanocobalamin in children age 0-3 years",
+      "pmid": "33809274",
+      "doi": "10.3390/nu13030923",
+      "title": "Effects of Vitamin B12 Supplementation on Cognitive Function, Depressive Symptoms, and Fatigue: A Systematic Review, Meta-Analysis, and Meta-Regression.",
       "year": 2021,
-      "studyType": "observational",
-      "n": 158
+      "studyType": "meta-analysis"
     },
     {
-      "pmid": "37371921",
-      "doi": "10.3390/antiox12061191",
-      "title": "Vitamin B12 Status in Recreational Users of Nitrous Oxide: A Systematic Review Focusing on the Prevalence of Laboratory Abnormalities",
-      "year": 2023,
-      "studyType": "review"
-    },
-    {
-      "pmid": "28223907",
-      "title": "Comparative Bioavailability and Utilization of Particular Forms of B12 Supplements With Potential to Mitigate B12-related Genetic Polymorphisms",
-      "year": 2017,
-      "studyType": "review"
-    },
-    {
-      "pmid": "20488910",
-      "doi": "10.1136/bmj.c2181",
-      "title": "Long term treatment with metformin in patients with type 2 diabetes and risk of vitamin B-12 deficiency: randomised placebo controlled trial",
-      "year": 2010,
-      "studyType": "rct",
-      "n": 390
-    },
-    {
-      "pmid": "26900641",
-      "doi": "10.1210/jc.2015-3754",
-      "title": "Long-term Metformin Use and Vitamin B12 Deficiency in the Diabetes Prevention Program Outcomes Study",
-      "year": 2016,
+      "pmid": "15911731",
+      "doi": "10.1001/archinte.165.10.1167",
+      "title": "Oral cyanocobalamin supplementation in older people with vitamin B12 deficiency: a dose-finding trial.",
+      "year": 2005,
       "studyType": "rct"
     },
     {
-      "pmid": "24327038",
-      "doi": "10.1001/jama.2013.280490",
-      "title": "Proton pump inhibitor and histamine 2 receptor antagonist use and vitamin B12 deficiency",
-      "year": 2013,
-      "studyType": "observational"
+      "pmid": "33513879",
+      "doi": "10.3390/nu13020395",
+      "title": "Vitamin B12 Supplementation in Diabetic Neuropathy: A 1-Year, Randomized, Double-Blind, Placebo-Controlled Trial.",
+      "year": 2021,
+      "studyType": "rct"
     },
     {
-      "pmid": "20424250",
-      "doi": "10.1001/jama.2010.490",
-      "title": "Effect of B-vitamin therapy on progression of diabetic nephropathy: a randomized controlled trial",
-      "year": 2010,
-      "studyType": "rct",
-      "n": 238
+      "pmid": "28816346",
+      "doi": "10.1002/14651858.cd006612.pub5",
+      "title": "Homocysteine-lowering interventions for preventing cardiovascular events.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "42109795",
+      "doi": "10.2903/j.efsa.2015.4150",
+      "title": "Scientific Opinion on Dietary Reference Values for cobalamin (vitamin B12).",
+      "year": 2015,
+      "studyType": "guideline"
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May help with energy and tiredness, because the vitamin is needed to make red blood cells and release energy from food.",
+    "May support memory and brain health, since nerve and brain cells need the vitamin to work.",
+    "May help mood, as the vitamin takes part in making brain messenger chemicals.",
+    "May support healthy red blood cells and help prevent anaemia (too few healthy red blood cells).",
+    "May help keep nerves healthy, including the coating around nerve fibres."
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help with energy and tiredness, because the vitamin is needed to make red blood cells and release energy from food.": "energy and tiredness",
+      "May support memory and brain health, since nerve and brain cells need the vitamin to work.": "memory and brain health",
+      "May help mood, as the vitamin takes part in making brain messenger chemicals.": "mood",
+      "May support healthy red blood cells and help prevent anaemia (too few healthy red blood cells).": "healthy red blood cells (anaemia)",
+      "May help keep nerves healthy, including the coating around nerve fibres.": "nerve health"
+    },
+    "claimCategories": {
+      "May help with energy and tiredness, because the vitamin is needed to make red blood cells and release energy from food.": "health",
+      "May support memory and brain health, since nerve and brain cells need the vitamin to work.": "longevity",
+      "May help mood, as the vitamin takes part in making brain messenger chemicals.": "health",
+      "May support healthy red blood cells and help prevent anaemia (too few healthy red blood cells).": "health",
+      "May help keep nerves healthy, including the coating around nerve fibres.": "health"
+    },
+    "claimLabels": {
+      "May help with energy and tiredness, because the vitamin is needed to make red blood cells and release energy from food.": "Energy",
+      "May support memory and brain health, since nerve and brain cells need the vitamin to work.": "Memory",
+      "May help mood, as the vitamin takes part in making brain messenger chemicals.": "Mood",
+      "May support healthy red blood cells and help prevent anaemia (too few healthy red blood cells).": "Red blood cells",
+      "May help keep nerves healthy, including the coating around nerve fibres.": "Nerves"
+    },
+    "origin": [
+      "Vitamin B12 (cobalamin) is a water-soluble vitamin that contains the mineral cobalt. It is made only by microbes, so it is found naturally in animal foods such as fish, meat, eggs and dairy. Plant foods have none unless they are fortified.",
+      "Supplement vitamin B12 is made industrially by fermenting bacteria in large tanks, then purified into tablets, drops, sprays or injections. The most common supplement form is cyanocobalamin; methylcobalamin and hydroxocobalamin are also sold."
+    ],
+    "dosage": [
+      "The European Food Safety Authority (EFSA) sets an adequate intake (AI) of 4 µg a day for adults, 4.5 µg in pregnancy and 5 µg when breastfeeding. An AI is used when data are too limited to work out an average need. EFSA has set no tolerable upper intake level (the most that is likely safe every day) for vitamin B12. These are population values, not personal targets.",
+      "An amount commonly used in studies and supplements is about 1,000 µg (1 mg) a day. Trials of tablets for low B12 used 1,000 to 2,000 µg a day, a dose-finding trial in older people found the largest effect at about 650 to 1,000 µg, and a trial in diabetic nerve damage used 1 mg of methylcobalamin. This is not a reference intake or a personal recommendation.",
+      "On a label, check the form (cyanocobalamin, methylcobalamin, hydroxocobalamin), whether the amount is in µg (micrograms) or mg (1 mg is 1,000 µg), and the amount per serving. Only about 1% of a large oral dose is absorbed without the stomach's intrinsic factor, so tablet amounts are much larger than food amounts. Metformin and long-term acid-reducing medicines are linked with lower B12 levels, and B12 taken before a blood test can hide a deficiency. Tiredness, tingling or memory problems have many causes, so a blood test and a doctor are the way to find out whether B12 is low."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, adults",
+          "mg": 0.004
+        },
+        {
+          "label": "Amount commonly used in studies and supplements",
+          "mg": 1.0
+        }
+      ],
+      "foods": [
+        {
+          "name": "Sardines, canned in olive oil, drained",
+          "mgPer100g": [
+            0.015,
+            0.015
+          ]
+        },
+        {
+          "name": "Mackerel, grilled",
+          "mgPer100g": [
+            0.0091,
+            0.0091
+          ]
+        },
+        {
+          "name": "Mussels, cooked",
+          "mgPer100g": [
+            0.0106,
+            0.0106
+          ]
+        },
+        {
+          "name": "Tuna, canned in brine",
+          "mgPer100g": [
+            0.0034,
+            0.0034
+          ]
+        },
+        {
+          "name": "Salmon, farmed, baked",
+          "mgPer100g": [
+            0.0025,
+            0.0025
+          ]
+        },
+        {
+          "name": "Beef, rump steak, grilled",
+          "mgPer100g": [
+            0.003,
+            0.003
+          ]
+        },
+        {
+          "name": "Egg, boiled",
+          "mgPer100g": [
+            0.002,
+            0.002
+          ]
+        },
+        {
+          "name": "Milk, semi-skimmed",
+          "mgPer100g": [
+            0.0009,
+            0.0009
+          ]
+        }
+      ],
+      "verdict": "Partly. The reference intake is easy to reach with fish, meat, eggs or dairy, so most people who eat animal foods meet it. The much larger amount used in studies and supplements cannot be reached from ordinary food, and plant foods supply none unless fortified. For example, for the EFSA adequate intake, adults, about 30 g of sardines, canned in olive oil, drained, or about 40 g of mussels, cooked; for the amount commonly used in studies and supplements, about 6670 g of sardines, canned in olive oil, drained, or about 9430 g of mussels, cooked.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the food named. Cooked, stored or processed foods and other brands differ. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "29543316",
+          "doi": "10.1002/14651858.cd004655.pub3",
+          "title": "Oral vitamin B&lt;sub&gt;12&lt;/sub&gt; versus intramuscular vitamin B&lt;sub&gt;12&lt;/sub&gt; for vitamin B&lt;sub&gt;12&lt;/sub&gt; deficiency.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
 }

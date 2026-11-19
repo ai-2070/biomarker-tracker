@@ -55,7 +55,6 @@
    "id": "nausea",
    "label": "Nausea in pregnancy",
    "anyDesign": false,
-   "finding": "Nausea and vomiting in early pregnancy",
    "counts": {
     "reviews": 25,
     "trialReviews": 1,
@@ -232,7 +231,6 @@
    "id": "pregnancy",
    "label": "Pregnancy outcomes",
    "anyDesign": false,
-   "finding": "Pregnancy outcomes such as pre-eclampsia, birth weight and Apgar scores",
    "counts": {
     "reviews": 32,
     "trialReviews": 4,
@@ -548,7 +546,6 @@
    "id": "pms",
    "label": "Premenstrual symptoms",
    "anyDesign": false,
-   "finding": "Premenstrual symptoms (PMS)",
    "counts": {
     "reviews": 5,
     "trialReviews": 2,
@@ -713,7 +710,6 @@
    "id": "cardiovascular",
    "label": "Heart, stroke and death",
    "anyDesign": false,
-   "finding": "Heart attacks, strokes and death",
    "counts": {
     "reviews": 19,
     "trialReviews": 11,
@@ -1168,7 +1164,6 @@
    "id": "cognition",
    "label": "Memory and mood",
    "anyDesign": false,
-   "finding": "Memory, thinking and mood in older people",
    "counts": {
     "reviews": 17,
     "trialReviews": 8,
@@ -1424,7 +1419,6 @@
    "id": "neuropathy",
    "label": "Nerve damage",
    "anyDesign": false,
-   "finding": "Nerve damage (peripheral neuropathy) from long-term high intakes",
    "counts": {
     "reviews": 8,
     "trialReviews": 2,

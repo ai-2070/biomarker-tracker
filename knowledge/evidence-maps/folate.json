@@ -89,7 +89,6 @@
    "id": "neural-tube",
    "label": "Neural tube defects",
    "anyDesign": false,
-   "finding": "Neural tube defects (such as spina bifida) in the baby",
    "counts": {
     "reviews": 102,
     "trialReviews": 18,
@@ -452,7 +451,6 @@
    "id": "cardiovascular",
    "label": "Heart attacks and death",
    "anyDesign": false,
-   "finding": "Heart attacks and death",
    "counts": {
     "reviews": 117,
     "trialReviews": 48,
@@ -1389,7 +1387,6 @@
    "id": "stroke",
    "label": "Stroke",
    "anyDesign": false,
-   "finding": "Stroke",
    "counts": {
     "reviews": 32,
     "trialReviews": 21,
@@ -1937,7 +1934,6 @@
    "id": "cognition",
    "label": "Memory and dementia",
    "anyDesign": false,
-   "finding": "Memory, thinking and dementia",
    "counts": {
     "reviews": 74,
     "trialReviews": 21,
@@ -2319,7 +2315,6 @@
    "id": "cancer",
    "label": "Cancer",
    "anyDesign": false,
-   "finding": "Cancer",
    "counts": {
     "reviews": 199,
     "trialReviews": 13,
@@ -2839,7 +2834,6 @@
    "id": "methotrexate",
    "label": "Methotrexate side effects",
    "anyDesign": false,
-   "finding": "Side effects of methotrexate",
    "counts": {
     "reviews": 37,
     "trialReviews": 6,
@@ -3225,7 +3219,6 @@
    "id": "diabetic-kidney",
    "label": "Diabetic kidney disease",
    "anyDesign": false,
-   "finding": "Kidney function and heart events in diabetic kidney disease",
    "counts": {
     "reviews": 49,
     "trialReviews": 15,

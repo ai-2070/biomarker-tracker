@@ -1,20 +1,5 @@
 {
-  "supplements": [
-    { "name": "Bacopa", "kind": "supplement" },
-    { "name": "Caffeine", "kind": "supplement" },
-    { "name": "Cocoa Flavanol", "kind": "supplement" },
-    { "name": "Copper", "kind": "mineral" },
-    { "name": "Curcumin", "kind": "supplement" },
-    { "name": "Ginkgo", "kind": "supplement" },
-    { "name": "L-theanine", "kind": "supplement" },
-    { "name": "Lion's mane", "kind": "supplement" },
-    { "name": "Lustriva", "kind": "supplement" },
-    { "name": "Maca", "kind": "supplement" },
-    { "name": "Melatonin", "kind": "supplement" },
-    { "name": "Phosphatidylserine", "kind": "supplement" },
-    { "name": "Rhodiola", "kind": "supplement" },
-    { "name": "Tongkat Ali", "kind": "supplement" }
-  ],
+  "supplements": [],
   "foods": [
     { "name": "Aged cheese" },
     { "name": "Apple" },

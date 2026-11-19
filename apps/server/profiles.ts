@@ -186,8 +186,10 @@ function validSettings(v: unknown): Record<string, unknown> {
   const out: Record<string, unknown> = {};
   for (const [k, val] of Object.entries(v)) if (/^[\w.-]{1,40}$/.test(k) && !["profile", "ai", "onboarded"].includes(k)) out[k] = val;
   // Search audits and immutable check history are larger than ordinary display preferences.
-  const { claimEvidence, ...preferences } = out;
+  const { claimEvidence, brainChats, ...preferences } = out;
   if (JSON.stringify(preferences).length > 200_000) throw new ProfileError(400, "Too many settings.");
+  if (brainChats !== undefined && JSON.stringify(brainChats).length > 4_000_000)
+    throw new ProfileError(400, "Brain conversations are too large to save in this profile.");
   if (claimEvidence !== undefined && JSON.stringify(claimEvidence).length > 8_000_000)
     throw new ProfileError(400, "Evidence history is too large to save in this profile.");
   return out;

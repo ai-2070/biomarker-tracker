@@ -1,0 +1,175 @@
+{
+  "id": "cocoa_flavanol",
+  "name": "Cocoa flavanol",
+  "kind": "supplement",
+  "otherNames": [
+    "Cocoa extract",
+    "Epicatechin",
+    "Catechins",
+    "Procyanidins",
+    "Cacao flavanols"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Cocoa flavanols are plant compounds in cocoa, taken as concentrated extracts or in cocoa and dark chocolate. Studies show a small blood pressure effect, but the biggest trial did not show fewer heart events or better memory.",
+  "commonUses": [
+    "May support blood vessel function and lower blood pressure a little.",
+    "May support memory and thinking in older adults.",
+    "May improve focus and mood.",
+    "May help skin cope with sun exposure."
+  ],
+  "roles": [
+    "Not an essential nutrient. They are studied for effects on blood vessel lining and blood pressure."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Cocoa powder",
+      "Dark chocolate",
+      "Cocoa liquor"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Cocoa flavanol extract",
+      "note": "Standardised to a stated flavanol amount; the form used in COSMOS and most trials."
+    },
+    {
+      "name": "Cocoa powder (non-alkalised)",
+      "note": "Contains flavanols; the amount varies with processing and brand."
+    },
+    {
+      "name": "Dark chocolate",
+      "note": "Flavanol content varies widely and falls with heavy processing; adds sugar and fat."
+    },
+    {
+      "name": "Alkalised (dutched) cocoa",
+      "note": "Darker and milder, but usually much lower in flavanols."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for cocoa flavanols was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Cocoa products can contain cadmium and lead; levels depend on origin and cocoa share, so large daily amounts of high-cocoa products or powders add up. Check a brand's lab testing where it is shown.",
+    "Cocoa naturally contains caffeine and theobromine, which can affect sleep, heart rate or anxiety in sensitive people. Chocolate adds sugar, fat and calories, which a flavanol extract avoids.",
+    "Trials of memory and attention are mixed: the largest long trial in older adults found no overall cognitive benefit, and results in small trials do not reach healthy younger people reliably. Ask a doctor or pharmacist if you take blood pressure medicines or have a heart condition."
+  ],
+  "sources": [
+    {
+      "pmid": "42679502",
+      "doi": "10.1016/j.jnha.2026.100966",
+      "title": "Impact of cocoa flavanols on blood pressure and vascular function: an updated systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "27683874",
+      "doi": "10.3945/jn.116.237644",
+      "title": "Cocoa Flavanol Intake and Biomarkers for Cardiometabolic Health: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35294962",
+      "doi": "10.1093/ajcn/nqac055",
+      "title": "Effect of cocoa flavanol supplementation for the prevention of cardiovascular disease events: the COcoa Supplement and Multivitamin Outcomes Study (COSMOS) randomized clinical trial.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "38070683",
+      "doi": "10.1016/j.ajcnut.2023.10.031",
+      "title": "Effect of cocoa extract supplementation on cognitive function: results from the clinic subcohort of the COSMOS trial.",
+      "year": 2024,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "25733639",
+      "doi": "10.3945/ajcn.114.092189",
+      "title": "Cocoa flavanol consumption improves cognitive function, blood pressure control, and metabolic profile in elderly subjects: the Cocoa, Cognition, and Aging (CoCoA) Study--a randomized controlled trial.",
+      "year": 2015,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "26581682",
+      "doi": "10.3945/jn.115.217711",
+      "title": "Cocoa Flavanol Supplementation Influences Skin Conditions of Photo-Aged Women: A 24-Week Double-Blind, Randomized, Controlled Trial.",
+      "year": 2016,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support blood vessel function and lower blood pressure a little.": "blood vessel function and blood pressure",
+      "May support memory and thinking in older adults.": "memory and cognition in older adults",
+      "May improve focus and mood.": "focus and mood",
+      "May help skin cope with sun exposure.": "skin and sun protection"
+    },
+    "claimCategories": {
+      "May support blood vessel function and lower blood pressure a little.": "health",
+      "May support memory and thinking in older adults.": "longevity",
+      "May improve focus and mood.": "health",
+      "May help skin cope with sun exposure.": "appearance"
+    },
+    "claimLabels": {
+      "May support blood vessel function and lower blood pressure a little.": "Blood vessels",
+      "May support memory and thinking in older adults.": "Memory",
+      "May improve focus and mood.": "Focus and mood",
+      "May help skin cope with sun exposure.": "Skin"
+    },
+    "origin": [
+      "Cocoa flavanols are plant compounds in the cocoa bean. The main ones are epicatechin and catechin and the chains they form, called procyanidins. They are also found in tea, apples and grapes. Cocoa powder and dark chocolate are the usual food sources, but cocoa is often roasted, fermented or treated with alkali (called 'dutching' or alkalising) to make it darker and milder, and these steps can remove much of the flavanol content.",
+      "Supplements and trial products use a cocoa extract made to hold a known amount of flavanols, for example 500 mg flavanols a day, with 80 mg of that as epicatechin, in the large COSMOS trial. Ordinary chocolate bars vary widely, so the amount is hard to know without a lab number on the label."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for cocoa flavanols was found. EFSA assessed a health claim linking cocoa flavanols to blood vessel elasticity in 2012. A 2026 meta-analysis of 25 randomised trials covered daily amounts from 10.6 to 1,680 mg of flavanols.",
+      "An amount commonly used in studies and supplements is about 500 to 900 mg of flavanols a day: 500 mg in COSMOS (about 21,000 older adults, a median of 3.6 years) and 520 to 993 mg in a 90-person trial in older adults. This is not a reference intake or a personal recommendation.",
+      "On a label, check whether the number is total flavanols or the broader 'total polyphenols' or 'cocoa content' percentage, which do not tell you the flavanol amount. Alkalised (dutched) cocoa loses much of its flavanol content, and many chocolate bars do not state flavanols at all. Cocoa products can also contain the metals cadmium and lead: a US survey found cadmium from 0.004 to 3.15 mg per kg, rising with the share of cocoa solids. Cocoa extracts also add the caffeine and theobromine that cocoa naturally contains, so a label should show those too."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "COSMOS trial amount a day (flavanols)",
+          "mg": 500
+        },
+        {
+          "label": "Intermediate-dose drink, CoCoA trial in older adults",
+          "mg": 520
+        },
+        {
+          "label": "High-dose drink, CoCoA trial in older adults",
+          "mg": 993
+        }
+      ],
+      "foods": [],
+      "verdict": "Partly. Cocoa powder and dark chocolate are the food sources, but flavanol content varies enormously between brands and processing, and many products do not state it. This guide has no checked per-product figures, so it cannot say how much food matches 500 mg of flavanols.",
+      "notChecked": "Flavanols are not measured in the UK food table used by this app. A 13-laboratory study found flavanols and procyanidins ranging from about 2 to 500 mg per g of defatted cocoa material, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "24000740",
+          "doi": "10.5740/jaoacint.13-109",
+          "title": "Flavanol and procyanidin content (by degree of polymerization 1-10) of chocolate, cocoa liquors, cocoa powders, and cocoa extracts: first action 2012.24.",
+          "year": 2013,
+          "studyType": "observational"
+        }
+      ]
+    }
+  }
+}

@@ -93,7 +93,9 @@ export function findNutrient(query: string): NutrientDef | undefined {
     .toLowerCase()
     .replace(/[\s-]+/g, "_");
   const words = query.trim().toLowerCase();
-  return knowledge().nutrients.find((n) => n.id === q || n.name.toLowerCase() === words || n.otherNames.some((o) => o.toLowerCase().startsWith(words)));
+  // An exact id or name wins over another entry's other name ("potassium" is potassium, not iodine's "potassium iodide").
+  const all = knowledge().nutrients;
+  return all.find((n) => n.id === q || n.name.toLowerCase() === words) ?? all.find((n) => n.otherNames.some((o) => o.toLowerCase().startsWith(words)));
 }
 
 /** Find a lifestyle topic by id, name or other name ("sauna", "daily steps", "cold shower"). */

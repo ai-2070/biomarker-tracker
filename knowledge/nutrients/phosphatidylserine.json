@@ -1,0 +1,181 @@
+{
+  "id": "phosphatidylserine",
+  "name": "Phosphatidylserine",
+  "kind": "supplement",
+  "otherNames": [
+    "PS",
+    "Soy lecithin phosphatidylserine",
+    "Serine phospholipid"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Phosphatidylserine is a fat-like molecule found in cell membranes, especially in the brain. Supplements from soy or sunflower are sold for memory, stress and exercise recovery.",
+  "commonUses": [
+    "May improve memory and thinking in older people with memory complaints.",
+    "May lower the cortisol (stress hormone) response to physical or mental stress.",
+    "May help recovery after hard exercise.",
+    "May improve attention and mood, including in children with ADHD (attention-deficit hyperactivity disorder)."
+  ],
+  "roles": [
+    "Phosphatidylserine is part of cell membranes and takes part in nerve signalling. The body makes it, so deficiency is not a known problem, and evidence that extra helps is thin and mixed."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Soy products",
+      "White beans",
+      "Fish",
+      "Organ meats",
+      "Egg yolk"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Soy-derived phosphatidylserine",
+      "note": "Used in the 2010 Japanese memory trial and most newer studies."
+    },
+    {
+      "name": "Sunflower-derived phosphatidylserine",
+      "note": "A soy-free option; fewer published trials."
+    },
+    {
+      "name": "PS with phosphatidic acid or omega-3",
+      "note": "Blends used in some trials; results cannot be credited to PS alone."
+    },
+    {
+      "name": "Bovine cortex PS",
+      "note": "The form in the oldest trials, no longer on the market."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No official numeric upper limit for phosphatidylserine was verified. Searches of Europe PMC for EFSA opinions on PS found nothing relevant, so no official limit is quoted here.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood thinners (anticoagulants, antiplatelet medicines)",
+      "note": "PS is sometimes said to affect clotting; no human interaction study was verified, so people on these medicines should ask their doctor first."
+    },
+    {
+      "with": "Medicines for Alzheimer's disease or dementia",
+      "note": "Not studied for interactions here. People on these medicines should tell their doctor before adding PS."
+    }
+  ],
+  "cautions": [
+    "Most trials were small and short (weeks to 6 months), and several were funded or supplied by supplement makers. Few large independent trials exist, so benefits are not established.",
+    "Soy-derived PS can contain traces of soy protein; people with soy allergy should check the source. Side effects reported in trials were mild, such as stomach upset, but long-term safety data are limited.",
+    "Not studied well in pregnancy or breastfeeding. Children should only take it under a doctor's advice; ADHD and memory problems need a doctor's assessment, not self-treatment.",
+    "Memory loss that is new or getting worse needs a medical check, not a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "21103034",
+      "doi": "10.3164/jcbn.10-62",
+      "title": "Soybean-derived phosphatidylserine improves memory function of the elderly Japanese subjects with memory complaints.",
+      "year": 2010,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "25414047",
+      "doi": "10.1007/s12325-014-0165-1",
+      "title": "Positive effects of soy lecithin-derived phosphatidylserine plus phosphatidic acid on memory, cognition, daily functioning, and mood in elderly patients with Alzheimer's disease and dementia.",
+      "year": 2014,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "2027477",
+      "doi": "10.1212/wnl.41.5.644",
+      "title": "Effects of phosphatidylserine in age-associated memory impairment.",
+      "year": 1991,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "23495677",
+      "doi": "10.1111/jhn.12090",
+      "title": "The effect of phosphatidylserine administration on memory and symptoms of attention-deficit hyperactivity disorder: a randomised, double-blind, placebo-controlled clinical trial.",
+      "year": 2014,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "18662395",
+      "doi": "10.1186/1550-2783-5-11",
+      "title": "The effects of phosphatidylserine on endocrine response to moderate intensity exercise.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "15512856",
+      "doi": "10.1080/10253890410001728379",
+      "title": "Effects of soy lecithin phosphatidic acid and phosphatidylserine complex (PAS) on the endocrine and psychological responses to mental stress.",
+      "year": 2004,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May improve memory and thinking in older people with memory complaints.": "memory and thinking",
+      "May lower the cortisol (stress hormone) response to physical or mental stress.": "stress and cortisol",
+      "May help recovery after hard exercise.": "exercise recovery",
+      "May improve attention and mood, including in children with ADHD (attention-deficit hyperactivity disorder).": "mood and attention"
+    },
+    "claimCategories": {
+      "May improve memory and thinking in older people with memory complaints.": "health",
+      "May lower the cortisol (stress hormone) response to physical or mental stress.": "health",
+      "May help recovery after hard exercise.": "health",
+      "May improve attention and mood, including in children with ADHD (attention-deficit hyperactivity disorder).": "health"
+    },
+    "claimLabels": {
+      "May improve memory and thinking in older people with memory complaints.": "Memory",
+      "May lower the cortisol (stress hormone) response to physical or mental stress.": "Stress response",
+      "May help recovery after hard exercise.": "Exercise recovery",
+      "May improve attention and mood, including in children with ADHD (attention-deficit hyperactivity disorder).": "Mood and attention"
+    },
+    "origin": [
+      "Phosphatidylserine (PS) is a fat-like molecule (a phospholipid) that is part of every cell membrane and is especially common in brain cells. The body makes it, and food supplies small amounts: meat, fish, and some soy and white beans.",
+      "Early supplements were made from cow brain (bovine cortex), which was dropped in the 1990s over concerns about mad cow disease (BSE). Today's products are made from soy lecithin or sunflower lecithin, where an enzyme swaps in the amino acid serine. The newer trials used these plant-derived forms. Some products combine PS with phosphatidic acid or omega-3 fats."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for phosphatidylserine was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+      "An amount commonly used in studies and supplements is about 100 to 300 mg a day. A 2010 Japanese trial used 100 mg or 300 mg a day for 6 months. Some stress and exercise trials used 400 to 800 mg a day of PS or PS with phosphatidic acid, and one exercise trial used 600 mg a day for 10 days. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check how much is PS itself and how much is the whole lecithin powder. A capsule of 500 mg of lecithin may contain only 100 mg of PS. Check whether the PS is soy- or sunflower-derived (relevant for soy allergy) and whether it is blended with phosphatidic acid or omega-3, because the trials used different blends."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 100
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 300
+        }
+      ],
+      "foods": [],
+      "verdict": "Not checked. Phosphatidylserine occurs in small amounts in foods and the body makes some itself, but this guide has no checked per-food figures to compare with 100 to 300 mg.",
+      "notChecked": "Phosphatidylserine is not measured in the UK food table used by this app, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "21103034",
+          "doi": "10.3164/jcbn.10-62",
+          "title": "Soybean-derived phosphatidylserine improves memory function of the elderly Japanese subjects with memory complaints.",
+          "year": 2010,
+          "studyType": "rct"
+        }
+      ]
+    }
+  }
+}
