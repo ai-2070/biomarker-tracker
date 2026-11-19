@@ -36,7 +36,6 @@
    "id": "ldl",
    "label": "LDL cholesterol",
    "anyDesign": false,
-   "finding": "LDL cholesterol",
    "counts": {
     "reviews": 10,
     "trialReviews": 8,
@@ -310,7 +309,6 @@
    "id": "glucose",
    "label": "Blood sugar",
    "anyDesign": false,
-   "finding": "Blood sugar (fasting glucose and HbA1c)",
    "counts": {
     "reviews": 9,
     "trialReviews": 3,
@@ -534,7 +532,6 @@
    "id": "constipation",
    "label": "Constipation",
    "anyDesign": false,
-   "finding": "Long-lasting constipation",
    "counts": {
     "reviews": 21,
     "trialReviews": 2,
@@ -726,7 +723,6 @@
    "id": "ibs",
    "label": "IBS",
    "anyDesign": false,
-   "finding": "Irritable bowel syndrome (IBS) symptoms",
    "counts": {
     "reviews": 6,
     "trialReviews": 4,
@@ -917,7 +913,6 @@
    "id": "weight",
    "label": "Body weight",
    "anyDesign": false,
-   "finding": "Body weight and waist size",
    "counts": {
     "reviews": 7,
     "trialReviews": 5,
@@ -1089,7 +1084,6 @@
    "id": "blood-pressure",
    "label": "Blood pressure",
    "anyDesign": false,
-   "finding": "Blood pressure",
    "counts": {
     "reviews": 3,
     "trialReviews": 2,

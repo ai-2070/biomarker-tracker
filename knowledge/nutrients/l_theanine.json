@@ -1,0 +1,180 @@
+{
+  "id": "l_theanine",
+  "name": "L-theanine",
+  "kind": "supplement",
+  "otherNames": [
+    "Theanine",
+    "gamma-glutamylethylamide",
+    "Suntheanine (brand)"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "L-theanine is an amino acid found mainly in tea. It is sold as a supplement for relaxation, sleep and focus.",
+  "commonUses": [
+    "May promote calm without drowsiness.",
+    "May reduce stress and anxiety in people under stress.",
+    "May improve sleep quality.",
+    "May improve focus and attention, alone or together with caffeine."
+  ],
+  "roles": [
+    "L-theanine is not an essential nutrient. It may act on brain messengers, but human evidence is small, often short and mixed."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Green tea",
+      "Black tea",
+      "Matcha",
+      "Oolong tea"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Plain L-theanine capsules or tablets",
+      "note": "Most trials of one ingredient used about 200 to 400 mg."
+    },
+    {
+      "name": "Theanine with caffeine",
+      "note": "Common in studies of focus; effects were measured mostly within about two hours."
+    },
+    {
+      "name": "Magnesium L-theanate or blends",
+      "note": "Mixed products; results cannot be credited to theanine alone."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for L-theanine was found in the searches of Europe PMC and the reviews read. Absence of a limit does not mean that large amounts have been shown to be safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood pressure medicines",
+      "note": "Small studies suggest theanine may blunt blood pressure rises under stress; combined effects with blood pressure medicines have not been properly studied."
+    },
+    {
+      "with": "Sedatives and sleep or anxiety medicines",
+      "note": "Theanine has been compared with a sedative in one anxiety study; combining them has not been well studied, so added drowsiness cannot be ruled out."
+    },
+    {
+      "with": "Caffeine",
+      "note": "In one trial theanine reduced caffeine's rise in blood pressure; mood and focus results for the pair are modest and mixed."
+    }
+  ],
+  "cautions": [
+    "Reported side effects in trials are mostly mild (headache or drowsiness in some people), but long-term safety data are limited.",
+    "Pregnancy, breastfeeding and children: not enough safety data were reviewed, so a doctor should be asked first.",
+    "People taking blood pressure, sedative or psychiatric medicines should ask a doctor or pharmacist before adding it.",
+    "Persistent anxiety or sleep problems need a doctor's assessment, not only a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "40056718",
+      "doi": "10.1016/j.smrv.2025.102076",
+      "title": "The effects of L-theanine consumption on sleep outcomes: A systematic review and meta-analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31758301",
+      "doi": "10.1007/s11130-019-00771-5",
+      "title": "The Effects of Green Tea Amino Acid L-Theanine Consumption on the Ability to Manage Stress and Anxiety Levels: a Systematic Review.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24946991",
+      "doi": "10.1111/nure.12120",
+      "title": "Acute effects of tea constituents L-theanine, caffeine, and epigallocatechin gallate on cognitive function and mood: a systematic review and meta-analysis.",
+      "year": 2014,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31623400",
+      "doi": "10.3390/nu11102362",
+      "title": "Effects of L-Theanine Administration on Stress-Related Symptoms and Cognitive Functions in Healthy Adults: A Randomized Controlled Trial.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "17891480",
+      "doi": "10.1007/s00213-007-0938-1",
+      "title": "Time for tea: mood, blood pressure and cognitive performance effects of caffeine and theanine administered alone and together.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "23107346",
+      "doi": "10.1186/1880-6805-31-28",
+      "title": "Effects of L-theanine or caffeine intake on changes in blood pressure under physical and psychological stresses.",
+      "year": 2012,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May promote calm without drowsiness.": "calm without drowsiness",
+      "May reduce stress and anxiety in people under stress.": "stress and anxiety",
+      "May improve sleep quality.": "sleep quality",
+      "May improve focus and attention, alone or together with caffeine.": "focus, alone or with caffeine"
+    },
+    "claimCategories": {
+      "May promote calm without drowsiness.": "health",
+      "May reduce stress and anxiety in people under stress.": "health",
+      "May improve sleep quality.": "health",
+      "May improve focus and attention, alone or together with caffeine.": "health"
+    },
+    "claimLabels": {
+      "May promote calm without drowsiness.": "Calm, not sleepy",
+      "May reduce stress and anxiety in people under stress.": "Stress and anxiety",
+      "May improve sleep quality.": "Sleep quality",
+      "May improve focus and attention, alone or together with caffeine.": "Focus"
+    },
+    "origin": [
+      "L-theanine is an amino acid (a building-block-like molecule) found almost only in tea leaves (Camellia sinensis) and in a few mushrooms. It is chemically close to glutamate, a brain messenger, and it can cross into the brain. Shade-grown teas such as matcha are often described as richer in it, but this was not checked in a source read for this entry.",
+      "Supplements usually contain L-theanine made by fermentation or chemical synthesis, sold as capsules, tablets or drinks, sometimes mixed with caffeine, magnesium or other ingredients. Trial results for mixtures cannot be credited to theanine alone."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for L-theanine was found from EFSA or other official sources in the searches made for this guide. Tea drinks contain only small amounts of theanine.",
+      "An amount commonly used in studies and supplements is about 100 to 400 mg a day (single doses of 200 to 250 mg and daily amounts of 200 to 400 mg appear in the trials reviewed). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check how much pure L-theanine one serving holds. Some products use branded forms or blends with caffeine, magnesium or herbs, so the amount per capsule may differ from the amount per daily serving."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 100
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 400
+        }
+      ],
+      "foods": [],
+      "verdict": "Partly. Theanine is found in tea leaves, mostly green tea, but amounts vary widely with the tea and how it is brewed, and this guide has no checked per-food figures, so it cannot say how many cups match 100 to 400 mg.",
+      "notChecked": "Theanine is not measured in the UK food table used by this app, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "40056718",
+          "doi": "10.1016/j.smrv.2025.102076",
+          "title": "The effects of L-theanine consumption on sleep outcomes: A systematic review and meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

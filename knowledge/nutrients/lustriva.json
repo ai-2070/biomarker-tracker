@@ -1,0 +1,149 @@
+{
+  "id": "lustriva",
+  "name": "Lustriva",
+  "kind": "supplement",
+  "otherNames": [
+    "Bonded arginine silicate inositol complex",
+    "Arginine silicate inositol",
+    "Magnesium biotinate"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Lustriva is a branded combination of a bonded silicon form (arginine silicate inositol) and a biotin form (magnesium biotinate) sold for hair, skin and nails. The published papers found for this guide are animal studies, so benefits in people are unproven here, and no independent human trial was found.",
+  "commonUses": [
+    "May make hair look thicker.",
+    "May reduce the look of facial wrinkles and fine lines.",
+    "May improve skin texture and smoothness.",
+    "May make nails stronger."
+  ],
+  "roles": [
+    "It is a cosmetic supplement ingredient, not an essential nutrient. Silicon and biotin have roles in connective tissue and metabolism, but no need for extra amounts is established in healthy people (see the silica and biotin guides)."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Not eaten as a food; a branded supplement ingredient"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Lustriva capsules",
+      "note": "Branded ingredient combining arginine silicate inositol and magnesium biotinate; the amounts in a product depend on the maker."
+    },
+    {
+      "name": "Separate silica or biotin products",
+      "note": "Different forms; results for Lustriva do not carry over to them or the reverse."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for Lustriva, arginine silicate inositol or magnesium biotinate was found. EFSA sets none for biotin or silicon; absence of a limit is not proof that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood tests (immunoassays), including thyroid tests and troponin heart tests",
+      "note": "Any product containing biotin can make some results falsely high or low. Tell the lab or your doctor if you use it, including in hair, skin and nail products. See the biotin guide for more."
+    }
+  ],
+  "cautions": [
+    "The published papers found for this guide are mostly rat studies, funded or co-authored by the company that makes the ingredient. A company-sponsored human trial is mentioned in marketing material, but its paper could not be found or opened, so this guide does not rely on it.",
+    "Any product containing biotin can distort blood tests, including thyroid and troponin. Tell your doctor and lab before testing.",
+    "Silicon is cleared by the kidneys, so people with kidney disease should check with a clinician first. Long-term human safety data for this combination were not found; a rat toxicology study of magnesium biotinate (PMID 34000342) was also company-linked.",
+    "Sudden hair loss or nail changes can signal medical conditions and are worth a doctor's check rather than a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "35226275",
+      "doi": "10.1007/s12011-022-03176-9",
+      "title": "Effects of a Combination of Arginine Silicate Inositol Complex and a Novel Form of Biotin on Hair and Nail Growth in a Rodent Model.",
+      "year": 2023,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "34220502",
+      "doi": "10.3389/fphar.2021.657207",
+      "title": "The Protective Effects of a Combination of an Arginine Silicate Complex and Magnesium Biotinate Against UV-Induced Skin Damage in Rats.",
+      "year": 2021,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "34000342",
+      "doi": "10.1016/j.fct.2021.112267",
+      "title": "Toxicologic evaluation of a novel, highly soluble biotin salt, magnesium biotinate.",
+      "year": 2021,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "34165439",
+      "doi": "10.1684/mrh.2021.0480",
+      "title": "Effects of magnesium biotinate supplementation on serum insulin, glucose and lipid parameters along with liver protein levels of lipid metabolism in rats.",
+      "year": 2021,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "39105860",
+      "doi": "10.1007/s10238-024-01434-9",
+      "title": "The impact of magnesium biotinate and arginine silicate complexes on metabolic dysfunctions, antioxidant activity, inflammation, and neuromodulation in high-fat diet-fed rats.",
+      "year": 2024,
+      "studyType": "animal"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May make hair look thicker.": "hair thickness",
+      "May reduce the look of facial wrinkles and fine lines.": "wrinkles and fine lines",
+      "May improve skin texture and smoothness.": "skin texture",
+      "May make nails stronger.": "nail strength"
+    },
+    "claimCategories": {
+      "May make hair look thicker.": "health",
+      "May reduce the look of facial wrinkles and fine lines.": "longevity",
+      "May improve skin texture and smoothness.": "health",
+      "May make nails stronger.": "health"
+    },
+    "claimLabels": {
+      "May make hair look thicker.": "Hair",
+      "May reduce the look of facial wrinkles and fine lines.": "Wrinkles",
+      "May improve skin texture and smoothness.": "Skin texture",
+      "May make nails stronger.": "Nails"
+    },
+    "origin": [
+      "Lustriva is a branded ingredient from the supplement ingredient company Nutrition21. It combines two parts: bonded arginine silicate inositol complex (ASI), which is a form of silicon held together with the amino acid arginine and inositol, and magnesium biotinate, a form of biotin (vitamin B7) bound to magnesium. The company says these forms dissolve and absorb better than ordinary silicon and D-biotin. That claim comes mainly from the company's own studies, many in rats, and was not checked independently.",
+      "Lustriva is sold as an ingredient to other brands, so the amount in a finished product depends on the maker. For silicon in general (orthosilicic acid forms, food sources and limits) see the app's silica guide, and for biotin see the biotin guide; this page does not repeat them."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level exists for Lustriva or for arginine silicate inositol. For its parts: EFSA has no tolerable upper level for silicon or for biotin (see the silica and biotin guides). These are not safe-amount limits, only a lack of data.",
+      "No amount of Lustriva with published human results could be confirmed for this guide. Labels state an ingredient weight, which is not the amount of silicon or biotin it supplies. This is not a reference intake or a personal recommendation.",
+      "Label amounts of elemental silicon and biotin per serving for Lustriva could not be confirmed from a manufacturer or study page, so none are given. When reading a product label, check how much biotin it supplies in micrograms or milligrams (1 mg is 1,000 µg; EFSA's adequate intake is 40 µg), and whether silicon is stated as silicon or as a compound. If the product contains biotin, high amounts can give wrong results on blood tests, including thyroid tests (TSH, free T4) and troponin (heart); tell your doctor and the lab, and ask whether to pause it before a test."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not applicable. Lustriva is a manufactured ingredient, not a food, so there is no food amount to compare. For dietary silicon and biotin see the silica and biotin guides.",
+      "notChecked": "Lustriva is not measured in the UK food table used by this app.",
+      "sources": [
+        {
+          "pmid": "35226275",
+          "doi": "10.1007/s12011-022-03176-9",
+          "title": "Effects of a Combination of Arginine Silicate Inositol Complex and a Novel Form of Biotin on Hair and Nail Growth in a Rodent Model.",
+          "year": 2023,
+          "studyType": "animal"
+        }
+      ]
+    }
+  }
+}

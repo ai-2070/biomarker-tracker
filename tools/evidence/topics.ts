@@ -280,7 +280,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "neural-tube",
         label: "Neural tube defects",
-        finding: "Neural tube defects (such as spina bifida) in the baby",
         title: words("neural tube", "spina bifida", "anencephal\\w*", "birth defects?", "congenital"),
         excludeTitle: not("antiepilep\\w*", "methotrexate"),
         question: q(
@@ -293,7 +292,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cardiovascular",
         label: "Heart attacks and death",
-        finding: "Heart attacks and death",
         title: words(CVD, DEATH),
         excludeTitle: not("dialysis", "chronic kidney", "kidney disease", "methotrexate", "chemotherapy", "cancer patients"),
         question: q(
@@ -305,7 +303,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "stroke",
         label: "Stroke",
-        finding: "Stroke",
         title: words("stroke", "cerebrovascular"),
         excludeTitle: not("dialysis", "chronic kidney", "kidney disease"),
         question: q("Adults (with or without high blood pressure or heart disease)", "Folic acid, alone or with vitamin B12 and B6", "Stroke"),
@@ -313,7 +310,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cognition",
         label: "Memory and dementia",
-        finding: "Memory, thinking and dementia",
         title: words(COGNITION),
         excludeTitle: not("schizophreni\\w*", "depress\\w*", "autism", "children", "infants?"),
         question: q("Older adults, with or without mild memory problems", "Folic acid, alone or with vitamin B12 and B6", "Memory, thinking or dementia"),
@@ -321,7 +317,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cancer",
         label: "Cancer",
-        finding: "Cancer",
         title: words(CANCER),
         excludeTitle: not("methotrexate", "chemotherapy", "FOLFOX", "FOLFIRI", "leucovorin", "pemetrexed", "antifolates?", "cancer patients"),
         question: q(GENERAL, "Folic acid supplements, alone or with other B vitamins", "New cancers"),
@@ -329,7 +324,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "methotrexate",
         label: "Methotrexate side effects",
-        finding: "Side effects of methotrexate",
         title: words("methotrexate"),
         excludeTitle: not("cancer\\w*", "leuka?emi\\w*", "ectopic"),
         question: q(
@@ -342,7 +336,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "diabetic-kidney",
         label: "Diabetic kidney disease",
-        finding: "Kidney function and heart events in diabetic kidney disease",
         title: words("diabet\\w*", "nephropath\\w*", "kidney", "renal"),
         excludeTitle: not("gestational", "pregnan\\w*"),
         question: q("People with diabetes and kidney disease", "Folic acid with vitamin B12 and B6 (B vitamins)", "Kidney function, heart events or death"),
@@ -361,7 +354,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "child-development-pregnancy",
         label: "Child development (pregnancy)",
-        finding: "Child development after iodine supplements in pregnancy",
         title: words("develop\\w*", "cognit\\w*", "neuro\\w*", "IQ", "intelligence", "offspring", "child\\w*", PREG),
         excludeTitle: not("radioactive", "radioiodine", "contrast", "povidone", "antisep\\w*", "thyroid cancer"),
         question: q(
@@ -373,7 +365,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "maternal-thyroid",
         label: "Mother's thyroid",
-        finding: "Mother's thyroid during and after pregnancy",
         title: words("thyroid\\w*", "TSH", "thyroglobulin", PREG),
         excludeTitle: not("radioactive", "radioiodine", "contrast", "povidone", "antisep\\w*", "thyroid cancer"),
         question: q(
@@ -385,7 +376,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "schoolchildren",
         label: "Schoolchildren's thinking",
-        finding: "Thinking skills in schoolchildren",
         title: words("cognit\\w*", "IQ", "intelligence", "mental", "school\\w*", "children"),
         excludeTitle: not("radioactive", "radioiodine", "contrast", "povidone", "antisep\\w*", "thyroid cancer", "pregnan\\w*"),
         question: q("Schoolchildren with mild to moderate iodine deficiency", "Iodine supplements", "Thinking skills (cognition, IQ)"),
@@ -393,7 +383,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "young-children",
         label: "Young children's development",
-        finding: "Mental development of young children in iodine-deficient areas",
         title: words("develop\\w*", "cognit\\w*", "mental", "IQ", "intelligence", "infants?", "children"),
         excludeTitle: not("radioactive", "radioiodine", "contrast", "povidone", "antisep\\w*", "thyroid cancer"),
         question: q(
@@ -596,7 +585,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "bp-high",
         label: "Blood pressure (high)",
-        finding: "Blood pressure in people with high blood pressure",
         title: words(BP),
         excludeTitle: not(
           ...CHANNELS,
@@ -621,7 +609,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "bp-normal",
         label: "Blood pressure (normal)",
-        finding: "Blood pressure in people with normal blood pressure",
         title: words(BP),
         excludeTitle: not(
           ...CHANNELS,
@@ -646,7 +633,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "bp-dose",
         label: "Blood pressure by amount",
-        finding: "Blood pressure at large supplement amounts",
         title: words(BP, "dose-response"),
         excludeTitle: not(
           ...CHANNELS,
@@ -666,7 +652,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "kidney-stones",
         label: "Kidney stones (citrate)",
-        finding: "New kidney stones (potassium citrate, under medical care)",
         title: words(STONES, "stones?", "citrate"),
         excludeTitle: not(...CHANNELS, "binders?", "dialysis"),
         question: q("Adults who have had calcium-containing kidney stones", "Potassium citrate (or other citrate)", "New kidney stones or stone growth"),
@@ -674,7 +659,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "bone",
         label: "Calcium loss and bone",
-        finding: "Calcium loss in urine and a marker of bone breakdown",
         title: words("bones?", "calcium", "calciuria", "osteopor\\w*", "resorption", "acid-base", "alkali\\w*"),
         excludeTitle: not(...CHANNELS, "binders?", "dialysis", "stones?"),
         question: q(
@@ -695,7 +679,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cancer",
         label: "Cancer",
-        finding: "Cancer (overall and by type)",
         title: words(CANCER),
         excludeTitle: not("chemotherapy", "radiotherapy", "cancer patients", "lymph(o)?edema"),
         question: q(GENERAL, "Selenium supplements (alone, or with results for selenium apart)", "New cancers (overall or by type)"),
@@ -703,7 +686,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "diabetes",
         label: "Type 2 diabetes",
-        finding: "Type 2 diabetes",
         title: words(GLUCOSE),
         excludeTitle: not("gestational", "pregnan\\w*", "polycystic"),
         question: q("Adults without diabetes at the start", "Selenium supplements", "New type 2 diabetes, or blood sugar"),
@@ -711,7 +693,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cardiovascular",
         label: "Heart disease and death",
-        finding: "Heart and blood vessel disease, and death from any cause",
         title: words(CVD, DEATH),
         excludeTitle: not("dialysis", "chronic kidney", "cancer patients", "heart failure"),
         question: q(
@@ -723,7 +704,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "graves-eyes",
         label: "Thyroid eye disease",
-        finding: "Mild thyroid eye disease (Graves' orbitopathy)",
         title: words("graves'?", "orbitopath\\w*", "ophthalmopath\\w*", "thyroid eye"),
         excludeTitle: not(),
         question: q(
@@ -735,7 +715,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "hashimoto",
         label: "Hashimoto's thyroiditis",
-        finding: "Hashimoto's thyroiditis (autoimmune underactive thyroid)",
         title: words("hashimoto'?s?", "autoimmune thyroid\\w*", "thyroiditis", "thyroid peroxidase", "TPO", "hypothyroid\\w*"),
         excludeTitle: not("pregnan\\w*", "postpartum"),
         question: q(
@@ -771,7 +750,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "lung-cancer",
         label: "Lung cancer",
-        finding: "Lung cancer (beta-carotene supplements)",
         title: words("lung"),
         excludeTitle: not("retino(ic|id)\\w*", "chemotherapy", "radiotherapy", "cancer patients"),
         question: q(
@@ -783,7 +761,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cancer",
         label: "Cancer overall",
-        finding: "Cancer overall and other cancer types (beta-carotene supplements)",
         title: words(CANCER),
         excludeTitle: not("retino(ic|id)\\w*", "chemotherapy", "radiotherapy", "cancer patients", "children", "infants?"),
         question: q(GENERAL, "Beta-carotene supplements (alone or with other vitamins)", "New cancers (overall or by type)"),
@@ -791,7 +768,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "mortality",
         label: "Death from any cause",
-        finding: "Death from any cause",
         title: words(DEATH),
         excludeTitle: not("retino(ic|id)\\w*", "children", "child", "infants?", "neonat\\w*", "newborns?", "preterm"),
         question: q(
@@ -803,7 +779,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "children",
         label: "Young children",
-        finding: "Death and illness in young children",
         title: words(DEATH, "morbidity", "diarrh\\w*", "measles", "illness", "infections?", "children", "child"),
         excludeTitle: not("retino(ic|id)\\w*", "neonat\\w*", "newborns?", "preterm", "adults?"),
         question: q(
@@ -815,7 +790,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "birth-defects",
         label: "Birth defects",
-        finding: "Birth defects (preformed vitamin A in early pregnancy)",
         title: words("birth defects?", "congenital", "malformation\\w*", "teratogen\\w*", PREG),
         excludeTitle: not("retino(ic|id)\\w*", "isotretinoin"),
         question: q("Pregnant women", "Preformed vitamin A (retinol) supplements in early pregnancy", "Birth defects in the baby"),
@@ -832,7 +806,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "oral-vs-injection",
         label: "Tablets vs injections",
-        finding: "Blood B12 levels: high-dose tablets compared with injections",
         title: words("oral", "intramuscular", "injections?", "route", "sublingual", "nasal"),
         excludeTitle: not(),
         question: q("Adults with B12 deficiency", "High-dose B12 by mouth", "Blood B12 levels, other deficiency markers or symptoms", "B12 injections"),
@@ -840,7 +813,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "older-doses",
         label: "Doses in older people",
-        finding: "Correcting mild deficiency in older people: low compared with high doses",
         title: words("dos\\w*", "older", "elderly", "aged"),
         excludeTitle: not(),
         question: q(
@@ -853,7 +825,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cognition-mood",
         label: "Memory, mood and tiredness",
-        finding: "Memory and thinking, low mood and tiredness",
         title: words(COGNITION, "depress\\w*", "mood", "fatigue", "tired\\w*"),
         excludeTitle: not("schizophreni\\w*", "autism", "infants?"),
         question: q("Adults without a clear B12 deficiency", "Vitamin B12 (alone or with other B vitamins)", "Memory and thinking, low mood, or tiredness"),
@@ -861,7 +832,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cardiovascular",
         label: "Heart, stroke and death",
-        finding: "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
         title: words(CVD, DEATH, "cerebrovascular"),
         excludeTitle: not("dialysis", "chronic kidney", "kidney disease"),
         question: q(
@@ -873,7 +843,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "neuropathy",
         label: "Diabetic nerve damage",
-        finding: "Nerve damage from diabetes (diabetic neuropathy)",
         title: words("neuropath\\w*", "nerves?", "metformin"),
         excludeTitle: not("chemotherapy"),
         question: q(
@@ -894,7 +863,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "nausea",
         label: "Nausea in pregnancy",
-        finding: "Nausea and vomiting in early pregnancy",
         title: words("nausea", "vomiting", "hyperemesis", "morning sickness"),
         excludeTitle: not("chemotherapy", "postoperative"),
         question: q("Pregnant women with nausea and vomiting", "Vitamin B6 (pyridoxine), alone or with doxylamine", "Nausea and vomiting"),
@@ -902,7 +870,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "pregnancy",
         label: "Pregnancy outcomes",
-        finding: "Pregnancy outcomes such as pre-eclampsia, birth weight and Apgar scores",
         title: words(PREG, "pre-?eclampsia", "birth", "Apgar", "labou?r"),
         excludeTitle: not("nausea", "vomiting", "hyperemesis"),
         question: q(
@@ -914,7 +881,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "pms",
         label: "Premenstrual symptoms",
-        finding: "Premenstrual symptoms (PMS)",
         title: words("premenstrual", "PMS", "PMDD", "menstrua\\w*"),
         excludeTitle: not(),
         question: q("Women with premenstrual syndrome", "Vitamin B6 (alone or with magnesium)", "Premenstrual symptoms"),
@@ -922,7 +888,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cardiovascular",
         label: "Heart, stroke and death",
-        finding: "Heart attacks, strokes and death",
         title: words(CVD, DEATH, "cerebrovascular"),
         excludeTitle: not("dialysis", "chronic kidney", "kidney disease"),
         question: q("Adults with or without heart disease", "Vitamin B6, alone or with folic acid and B12", "Heart attacks, strokes or death"),
@@ -930,7 +895,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "cognition",
         label: "Memory and mood",
-        finding: "Memory, thinking and mood in older people",
         title: words(COGNITION, "depress\\w*", "mood"),
         excludeTitle: not("schizophreni\\w*", "autism", "children", "infants?"),
         question: q("Older adults, with or without mild memory problems", "Vitamin B6, alone or with B12 and folic acid", "Memory, thinking or mood"),
@@ -938,7 +902,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "neuropathy",
         label: "Nerve damage",
-        finding: "Nerve damage (peripheral neuropathy) from long-term high intakes",
         title: words("neuropath\\w*", "nerves?", "toxicity", "sensory", "adverse"),
         excludeTitle: not("chemotherapy", "isoniazid", "diabet\\w*"),
         question: q(
@@ -1366,7 +1329,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "lab-interference",
         label: "Wrong lab results",
-        finding: "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests",
         title: words("interfer\\w*", "immunoassays?", "assays?", "thyroid", "troponin", "laborator\\w*", "test results?", "misdiagnos\\w*"),
         anyDesign: true,
         excludeTitle: not("biotinylat\\w*"),
@@ -1380,7 +1342,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "multiple-sclerosis",
         label: "Multiple sclerosis",
-        finding: "Disability and walking in progressive multiple sclerosis",
         title: words("multiple sclerosis", "MS"),
         excludeTitle: not(),
         question: q("Adults with progressive multiple sclerosis", "Very high-dose biotin", "Disability and walking"),
@@ -1388,7 +1349,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "hair",
         label: "Hair",
-        finding: "Hair growth and hair loss",
         title: words("hair", "alopecia"),
         anyDesign: true,
         excludeTitle: not(),
@@ -1397,7 +1357,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "nails",
         label: "Nails",
-        finding: "Brittle nails",
         title: words("nails?", "onycho\\w*"),
         anyDesign: true,
         excludeTitle: not(),
@@ -1406,7 +1365,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "diabetes",
         label: "Blood sugar and fats",
-        finding: "Blood sugar and blood fats",
         title: words(GLUCOSE, "lipids?", "cholesterol", "triglycerid\\w*"),
         excludeTitle: not("gestational"),
         question: q("Adults with type 2 diabetes", "Biotin supplements", "Blood sugar, HbA1c or blood fats"),
@@ -1414,7 +1372,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "pregnancy",
         label: "Status in pregnancy",
-        finding: "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy",
         title: words("pregnan\\w*", "3-hydroxyisovaleric", "status"),
         anyDesign: true,
         excludeTitle: not(),
@@ -1432,7 +1389,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "ldl",
         label: "LDL cholesterol",
-        finding: "LDL cholesterol",
         title: words("LDL", "cholesterol", "lipids?", "lipoprotein\\w*", "lipid profile"),
         excludeTitle: not("children", "pa?ediatric"),
         question: q("Adults with or without high cholesterol", "Psyllium (or a fibre supplement with results for psyllium apart)", "LDL cholesterol"),
@@ -1440,7 +1396,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "glucose",
         label: "Blood sugar",
-        finding: "Blood sugar (fasting glucose and HbA1c)",
         title: words(GLUCOSE, "glyc\\w*"),
         excludeTitle: not("gestational", "children"),
         question: q("Adults with type 2 diabetes, at risk of it, or with normal blood sugar", "Psyllium", "Fasting glucose or HbA1c"),
@@ -1448,7 +1403,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "constipation",
         label: "Constipation",
-        finding: "Long-lasting constipation",
         title: words("constipation", "bowel movements?", "stools?", "laxatives?"),
         excludeTitle: not("child\\w*", "pa?ediatric", "infants?", "opioid\\w*"),
         question: q(
@@ -1460,7 +1414,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "ibs",
         label: "IBS",
-        finding: "Irritable bowel syndrome (IBS) symptoms",
         title: words("irritable bowel", "IBS"),
         excludeTitle: not("child\\w*", "pa?ediatric"),
         question: q("Adults with irritable bowel syndrome", "Psyllium or other soluble fibre", "IBS symptoms"),
@@ -1468,7 +1421,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "weight",
         label: "Body weight",
-        finding: "Body weight and waist size",
         title: words("weight", "body mass", "BMI", "obes\\w*", "waist", "adipos\\w*"),
         excludeTitle: not("children", "pa?ediatric"),
         question: q("Adults", "Psyllium", "Body weight, body mass index or waist size"),
@@ -1476,7 +1428,6 @@ export const TOPICS: TopicDef[] = [
       {
         id: "blood-pressure",
         label: "Blood pressure",
-        finding: "Blood pressure",
         title: words(BP),
         excludeTitle: not("pregnan\\w*", "children"),
         question: q("Adults, with or without high blood pressure", "Psyllium or other fibre supplements (with results for psyllium apart)", "Blood pressure"),

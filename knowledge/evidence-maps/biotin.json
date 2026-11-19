@@ -38,7 +38,6 @@
    "id": "lab-interference",
    "label": "Wrong lab results",
    "anyDesign": true,
-   "finding": "Wrong results on blood tests that use biotin (immunoassays), including thyroid and heart tests",
    "counts": {
     "reviews": 2,
     "trialReviews": 1,
@@ -121,7 +120,6 @@
    "id": "multiple-sclerosis",
    "label": "Multiple sclerosis",
    "anyDesign": false,
-   "finding": "Disability and walking in progressive multiple sclerosis",
    "counts": {
     "reviews": 2,
     "trialReviews": 1,
@@ -198,7 +196,6 @@
    "id": "hair",
    "label": "Hair",
    "anyDesign": true,
-   "finding": "Hair growth and hair loss",
    "counts": {
     "reviews": 0,
     "trialReviews": 0,
@@ -226,7 +223,6 @@
    "id": "nails",
    "label": "Nails",
    "anyDesign": true,
-   "finding": "Brittle nails",
    "counts": {
     "reviews": 0,
     "trialReviews": 0,
@@ -252,7 +248,6 @@
    "id": "diabetes",
    "label": "Blood sugar and fats",
    "anyDesign": false,
-   "finding": "Blood sugar and blood fats",
    "counts": {
     "reviews": 3,
     "trialReviews": 2,
@@ -345,7 +340,6 @@
    "id": "pregnancy",
    "label": "Status in pregnancy",
    "anyDesign": true,
-   "finding": "A urine sign of low biotin status (3-hydroxyisovaleric acid, 3-HIA) in pregnancy",
    "counts": {
     "reviews": 0,
     "trialReviews": 0,

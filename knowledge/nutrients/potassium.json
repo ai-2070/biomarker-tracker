@@ -19,7 +19,11 @@
     "Acid–base balance"
   ],
   "status": {
-    "biomarkerIds": ["potassium", "egfr", "creatinine"],
+    "biomarkerIds": [
+      "potassium",
+      "egfr",
+      "creatinine"
+    ],
     "note": "A blood potassium test shows whether the level in the blood is safe, not how much potassium a person eats: healthy kidneys keep the blood level in range across a wide range of intakes. A low or high result usually comes from medicines, vomiting or diarrhoea, or kidney function rather than diet, and a falsely high result is common when the blood sample is damaged. Research estimates intake from potassium in 24-hour urine. eGFR (estimated glomerular filtration rate) and creatinine show how well the kidneys work, which decides whether extra potassium is safe."
   },
   "low": {
@@ -83,9 +87,24 @@
   ],
   "reference": {
     "intake": [
-      { "group": "Adults", "amount": 3500, "unit": "mg", "type": "AI" },
-      { "group": "Pregnancy", "amount": 3500, "unit": "mg", "type": "AI" },
-      { "group": "Breastfeeding", "amount": 4000, "unit": "mg", "type": "AI" }
+      {
+        "group": "Adults",
+        "amount": 3500,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 3500,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 4000,
+        "unit": "mg",
+        "type": "AI"
+      }
     ],
     "noUpperLimit": "EFSA (2005) found the data insufficient to set an upper limit for potassium, and none has been set since. Potassium from food (up to 5–6 g a day in adults) is considered low risk for generally healthy people, and about 3 g a day of extra potassium chloride for a long time caused no harm in healthy adults in studies. But supplements can cause stomach and gut problems, single very large amounts have harmed the heart, and people with reduced kidney function, diabetes, heart medicines that affect potassium, dehydration from hard exercise, or older age are more sensitive. In people with reduced kidney function, harm has been reported with about 1 g a day extra from supplements or low-sodium salts. No upper limit does not mean that any amount from supplements is safe.",
     "sources": [
@@ -109,194 +128,7 @@
       }
     ]
   },
-  "findings": [
-    {
-      "outcome": "Blood pressure in people with high blood pressure",
-      "population": "Adults with high blood pressure, in trials of potassium supplements lasting at least 4 weeks",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "Many placebo-controlled trials pointing the same way",
-        "Most trials were small and short",
-        "Results differ between trials, and an earlier Cochrane review of fewer trials found no clear effect"
-      ],
-      "summary": "A 2017 meta-analysis of 23 placebo-controlled trials (1,213 people) found blood pressure about 4 mmHg lower for the top number and 2.5 mmHg lower for the bottom number with potassium supplements. A 2006 Cochrane review of 6 trials found large but uncertain falls and called the evidence inconclusive. The trials measured blood pressure, not strokes or heart attacks, and excluded people for whom extra potassium is unsafe.",
-      "bottomLine": "In 23 placebo-controlled trials (1,213 people), potassium supplements lowered blood pressure by about 4 mmHg for the top number and 2.5 mmHg for the bottom number. The trials measured blood pressure, not strokes or heart attacks, and excluded people for whom extra potassium is unsafe.",
-      "label": "Blood pressure, if already high",
-      "line": "Top number about 4 mmHg lower, bottom 2.5 lower, in people with high blood pressure",
-      "studies": [
-        {
-          "pmid": "28419159",
-          "doi": "10.1371/journal.pone.0174967",
-          "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials",
-          "year": 2017,
-          "studyType": "meta-analysis",
-          "n": 1213
-        },
-        {
-          "pmid": "16856053",
-          "doi": "10.1002/14651858.cd004641.pub2",
-          "title": "Potassium supplementation for the management of primary hypertension in adults",
-          "year": 2006,
-          "studyType": "meta-analysis",
-          "n": 483
-        }
-      ]
-    },
-    {
-      "outcome": "Blood pressure in people with normal blood pressure",
-      "population": "Adults without high blood pressure",
-      "effect": "no clear effect",
-      "grade": "low",
-      "whyThisGrade": [
-        "Comes from a subgroup analysis by blood pressure, not from trials designed for this question",
-        "The trials were small (22 trials, 1,606 people in all)"
-      ],
-      "summary": "A 2013 meta-analysis for the World Health Organization found that more potassium lowered blood pressure in people with high blood pressure, but not clearly in people without it.",
-      "bottomLine": "In adults without high blood pressure, more potassium did not clearly lower blood pressure, while it did in people with high blood pressure (a 2013 analysis for the World Health Organization). This comes from splitting trials by blood pressure, not from trials designed for the question.",
-      "label": "Blood pressure, if normal",
-      "line": "No clear fall in people without high blood pressure",
-      "studies": [
-        {
-          "pmid": "23558164",
-          "doi": "10.1136/bmj.f1378",
-          "title": "Effect of increased potassium intake on cardiovascular risk factors and disease: systematic review and meta-analyses",
-          "year": 2013,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Blood pressure at large supplement amounts",
-      "population": "Adults in 32 trials of potassium supplements, mostly with high blood pressure",
-      "effect": "mixed",
-      "grade": "low",
-      "whyThisGrade": [
-        "Few trials tested large amounts",
-        "Based on modelling across trials, not on trials designed to compare amounts"
-      ],
-      "summary": "A 2020 dose-response meta-analysis found a U-shaped pattern: blood pressure fell with moderate extra potassium, the benefit faded at larger extra amounts, and blood pressure rose at the largest amounts in people already treated for high blood pressure. The authors advise caution because few trials tested large amounts, and conclude that excessive supplementation should be avoided, especially in some groups.",
-      "bottomLine": "Across 32 trials of potassium supplements, blood pressure fell with moderate extra potassium, the benefit faded at larger amounts, and it rose at the largest amounts in people already treated for high blood pressure. Few trials tested large amounts, so this pattern is uncertain.",
-      "label": "Blood pressure at large amounts",
-      "line": "Benefit faded at larger amounts and blood pressure rose at the largest; few trials",
-      "studies": [
-        {
-          "pmid": "32500831",
-          "doi": "10.1161/jaha.119.015719",
-          "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials",
-          "year": 2020,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "New kidney stones (potassium citrate, under medical care)",
-      "population": "Adults with calcium-containing kidney stones, mostly calcium oxalate",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "7 small trials (477 people)",
-        "Reporting of moderate to poor quality, with many dropouts in some trials",
-        "More people stopped because of side effects with citrate"
-      ],
-      "summary": "A 2015 Cochrane review found fewer new stones and less stone growth with citrate salts (mostly potassium citrate) than with placebo or no treatment. More people stopped treatment because of stomach side effects. This is a medical treatment for people with stones, not evidence for general use.",
-      "bottomLine": "In adults with calcium-containing kidney stones, citrate salts (mostly potassium citrate) led to fewer new stones and less stone growth than placebo or no treatment, but more people stopped because of stomach side effects. This is a medical treatment, not evidence for general use.",
-      "label": "Kidney stones (medical treatment)",
-      "line": "Fewer new stones with potassium citrate in people with stones; more stomach side effects",
-      "studies": [
-        {
-          "pmid": "26439475",
-          "doi": "10.1002/14651858.cd010057.pub2",
-          "title": "Citrate salts for preventing and treating calcium containing kidney stones in adults",
-          "year": 2015,
-          "studyType": "meta-analysis",
-          "n": 477
-        }
-      ]
-    },
-    {
-      "outcome": "Calcium loss in urine and a marker of bone breakdown",
-      "population": "Adults in 14 studies of potassium bicarbonate or potassium citrate",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Measured lab markers, not fractures",
-        "Only 14 studies, with different salts and designs"
-      ],
-      "summary": "A 2015 meta-analysis found that potassium bicarbonate and citrate lowered calcium loss in urine and a urine marker of bone breakdown (NTX). The authors call this a possible benefit for bone; whether it prevents fractures is not known from these studies.",
-      "bottomLine": "In 14 studies, potassium bicarbonate and citrate lowered calcium loss in urine and a urine marker of bone breakdown. The authors call this a possible benefit for bone, but these studies can't show whether it prevents fractures.",
-      "label": "Calcium loss and bone breakdown",
-      "line": "Less calcium lost in urine in small studies; effect on fractures unknown",
-      "studies": [
-        {
-          "pmid": "25572045",
-          "doi": "10.1007/s00198-014-3006-9",
-          "title": "The effect of supplementation with alkaline potassium salts on bone metabolism: a meta-analysis",
-          "year": 2015,
-          "studyType": "meta-analysis"
-        }
-      ]
-    }
-  ],
-  "foodFindings": [
-    {
-      "outcome": "Stroke, heart events and death when cooking salt is replaced by a potassium salt substitute",
-      "population": "Older adults in rural China with a past stroke or high blood pressure (SSaSS trial), and adults in 26 salt substitute trials",
-      "effect": "helps",
-      "grade": "moderate",
-      "whyThisGrade": [
-        "One very large randomised trial plus a Cochrane review rated most results moderate certainty",
-        "The benefit comes from less sodium and more potassium together; the two can't be separated",
-        "The trials excluded people for whom extra potassium is unsafe, so the results don't show safety for them"
-      ],
-      "summary": "In the SSaSS trial (20,995 people, about 5 years), villages using a salt substitute of 75 % sodium chloride and 25 % potassium chloride had fewer strokes, heart events and deaths than villages using regular salt. A 2022 Cochrane review found salt substitutes probably lower blood pressure, heart events and heart deaths slightly in adults, and probably raise blood potassium slightly. This is a change in salt, not a potassium supplement. People with kidney disease or on medicines that raise potassium were excluded.",
-      "bottomLine": "In a trial of 20,995 people in rural China over about 5 years, villages using a salt substitute with 25 % potassium chloride had fewer strokes, heart events and deaths than villages using regular salt. People with kidney disease or on medicines that raise potassium were excluded.",
-      "label": "Salt substitute: strokes, deaths",
-      "line": "Fewer strokes, heart events and deaths in a trial of 20,995 people in rural China",
-      "studies": [
-        {
-          "pmid": "34459569",
-          "doi": "10.1056/nejmoa2105675",
-          "title": "Effect of Salt Substitution on Cardiovascular Events and Death",
-          "year": 2021,
-          "studyType": "rct",
-          "n": 20995
-        },
-        {
-          "pmid": "35944931",
-          "doi": "10.1002/14651858.cd015207",
-          "title": "Replacing salt with low-sodium salt substitutes (LSSS) for cardiovascular health in adults, children and pregnant women",
-          "year": 2022,
-          "studyType": "meta-analysis"
-        }
-      ]
-    },
-    {
-      "outcome": "Stroke",
-      "population": "Adults in 11 cohort studies comparing people with higher and lower potassium intake from their usual diet",
-      "effect": "helps",
-      "grade": "low",
-      "whyThisGrade": [
-        "Observational studies, which can't prove cause",
-        "People who eat more potassium also eat more fruit and vegetables and differ in other ways",
-        "The authors rated this evidence moderate"
-      ],
-      "summary": "A 2013 meta-analysis for the World Health Organization found that people with higher potassium intake had about a 24 % lower risk of stroke. There was no clear link with heart disease overall. These studies show an association with potassium-rich diets, not the effect of supplements.",
-      "bottomLine": "In 11 studies of adults' usual diets, people who ate more potassium had about a 24 % lower risk of stroke, with no clear link to heart disease overall. This shows an association with potassium-rich diets, not the effect of supplements.",
-      "label": "Potassium-rich diets: stroke",
-      "line": "About 24 % lower stroke risk with higher intake; an association, not proof",
-      "studies": [
-        {
-          "pmid": "23558164",
-          "doi": "10.1136/bmj.f1378",
-          "title": "Effect of increased potassium intake on cardiovascular risk factors and disease: systematic review and meta-analyses",
-          "year": 2013,
-          "studyType": "meta-analysis",
-          "n": 127038
-        }
-      ]
-    }
-  ],
+  "findings": [],
   "interactions": [
     {
       "with": "Kidney disease",
@@ -330,9 +162,37 @@
   "evidenceClaims": [],
   "sources": [
     {
+      "pmid": "28419159",
+      "doi": "10.1371/journal.pone.0174967",
+      "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23558164",
+      "doi": "10.1136/bmj.f1378",
+      "title": "Effect of increased potassium intake on cardiovascular risk factors and disease: systematic review and meta-analyses.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32500831",
+      "doi": "10.1161/jaha.119.015719",
+      "title": "Potassium Intake and Blood Pressure: A Dose-Response Meta-Analysis of Randomized Controlled Trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25572045",
+      "doi": "10.1007/s00198-014-3006-9",
+      "title": "The effect of supplementation with alkaline potassium salts on bone metabolism: a meta-analysis.",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
       "pmid": "27756725",
       "doi": "10.1152/advan.00121.2016",
-      "title": "Physiology and pathophysiology of potassium homeostasis",
+      "title": "Physiology and pathophysiology of potassium homeostasis.",
       "year": 2016,
       "studyType": "review"
     },
@@ -342,5 +202,123 @@
       "year": 2012,
       "studyType": "guideline"
     }
-  ]
+  ],
+  "researchStatus": "not-reviewed",
+  "commonUses": [
+    "May help lower blood pressure, especially in people whose blood pressure is high.",
+    "May ease or prevent muscle cramps.",
+    "May support heart and stroke health.",
+    "May support bone health by reducing calcium lost in urine."
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help lower blood pressure, especially in people whose blood pressure is high.": "blood pressure",
+      "May ease or prevent muscle cramps.": "muscle cramps",
+      "May support heart and stroke health.": "heart and stroke health",
+      "May support bone health by reducing calcium lost in urine.": "bone health"
+    },
+    "claimCategories": {
+      "May help lower blood pressure, especially in people whose blood pressure is high.": "health",
+      "May ease or prevent muscle cramps.": "health",
+      "May support heart and stroke health.": "health",
+      "May support bone health by reducing calcium lost in urine.": "health"
+    },
+    "claimLabels": {
+      "May help lower blood pressure, especially in people whose blood pressure is high.": "Blood pressure",
+      "May ease or prevent muscle cramps.": "Cramps",
+      "May support heart and stroke health.": "Heart, stroke",
+      "May support bone health by reducing calcium lost in urine.": "Bones"
+    },
+    "origin": [
+      "Potassium is a mineral and an electrolyte, a substance that carries an electric charge in body fluids. It helps nerves send signals and muscles, including the heart, contract. The body cannot make it, so it comes from food such as potatoes, beans, fruit and vegetables.",
+      "Potassium supplements are made by purifying potassium salts from mineral deposits or by chemical production. The usual forms are potassium chloride, potassium citrate, potassium bicarbonate and potassium gluconate. Salt substitutes also contain potassium chloride."
+    ],
+    "dosage": [
+      "The European Food Safety Authority (EFSA) sets an adequate intake (AI) of 3,500 mg a day for adults and in pregnancy, and 4,000 mg when breastfeeding. EFSA found too little data to set a tolerable upper intake level (the most that is likely safe every day), and none has been set since. That does not mean any supplement amount is safe: stomach and gut problems, and harm to the heart from single very large amounts, have been reported. These are population values, not personal targets.",
+      "Amounts used in studies of potassium supplements vary a lot, and there is no single common amount. This is not a reference intake or a personal recommendation.",
+      "When checking a label, look at which form it is (potassium chloride, citrate, bicarbonate or gluconate) and how much potassium, not compound weight, is in one serving, because the two numbers differ. Slow-release tablets have irritated the gut lining in some cases. Salt substitutes (low-sodium salt) are an easily missed source. People with kidney disease, diabetes, or who take ACE inhibitors, angiotensin receptor blockers or potassium-sparing water pills should talk to their doctor before using potassium supplements or salt substitutes, because blood potassium can rise to dangerous levels."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, adults",
+          "mg": 3500
+        },
+        {
+          "label": "EFSA adequate intake, breastfeeding",
+          "mg": 4000
+        }
+      ],
+      "foods": [
+        {
+          "name": "Baked potato with skin",
+          "mgPer100g": [
+            600,
+            600
+          ]
+        },
+        {
+          "name": "Banana",
+          "mgPer100g": [
+            330,
+            330
+          ]
+        },
+        {
+          "name": "Butter beans, boiled",
+          "mgPer100g": [
+            447,
+            447
+          ]
+        },
+        {
+          "name": "Dried apricots",
+          "mgPer100g": [
+            1880,
+            1880
+          ]
+        },
+        {
+          "name": "Avocado (Hass)",
+          "mgPer100g": [
+            583,
+            583
+          ]
+        },
+        {
+          "name": "Baked sweet potato",
+          "mgPer100g": [
+            480,
+            480
+          ]
+        },
+        {
+          "name": "Salmon, baked",
+          "mgPer100g": [
+            412,
+            412
+          ]
+        },
+        {
+          "name": "Semi-skimmed milk",
+          "mgPer100g": [
+            156,
+            156
+          ]
+        }
+      ],
+      "verdict": "Yes. The adequate intake can be reached from ordinary food, mainly from potatoes, pulses, fruit, vegetables, fish and dairy, if the diet has plenty of these. A supplement is not needed to get there for most people. The larger amount used in studies is difficult to reach from food alone and is not meant as a goal. For example, for the EFSA adequate intake, adults, about 190 g of dried apricots, or about 580 g of baked potato with skin.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the food named. Cooked, stored or processed foods and other brands differ. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "28419159",
+          "doi": "10.1371/journal.pone.0174967",
+          "title": "Oral potassium supplementation for management of essential hypertension: A meta-analysis of randomized controlled trials.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
 }

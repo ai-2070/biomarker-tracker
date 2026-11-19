@@ -36,7 +36,6 @@
    "id": "cancer",
    "label": "Cancer",
    "anyDesign": false,
-   "finding": "Cancer (overall and by type)",
    "counts": {
     "reviews": 94,
     "trialReviews": 19,
@@ -725,7 +724,6 @@
    "id": "diabetes",
    "label": "Type 2 diabetes",
    "anyDesign": false,
-   "finding": "Type 2 diabetes",
    "counts": {
     "reviews": 42,
     "trialReviews": 17,
@@ -1095,7 +1093,6 @@
    "id": "cardiovascular",
    "label": "Heart disease and death",
    "anyDesign": false,
-   "finding": "Heart and blood vessel disease, and death from any cause",
    "counts": {
     "reviews": 43,
     "trialReviews": 15,
@@ -1572,7 +1569,6 @@
    "id": "graves-eyes",
    "label": "Thyroid eye disease",
    "anyDesign": false,
-   "finding": "Mild thyroid eye disease (Graves' orbitopathy)",
    "counts": {
     "reviews": 7,
     "trialReviews": 4,
@@ -1746,7 +1742,6 @@
    "id": "hashimoto",
    "label": "Hashimoto's thyroiditis",
    "anyDesign": false,
-   "finding": "Hashimoto's thyroiditis (autoimmune underactive thyroid)",
    "counts": {
     "reviews": 24,
     "trialReviews": 15,
