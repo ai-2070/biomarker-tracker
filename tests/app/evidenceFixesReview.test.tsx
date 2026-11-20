@@ -129,14 +129,21 @@ describe("evidence review: published provenance and design wording", () => {
         const def = t.outcomes.find((x) => x.id === o.id)!;
         expect(o.anyDesign, `${t.id}/${o.id}`).toBe(anyDesignKind(t.kind) || !!def.anyDesign);
         expect(o).not.toHaveProperty("overlap");
-        if (o.screening) expect(o.screening.provenance).toBe("legacy-inputs-unverified");
+        // Maps screened before inputs were fingerprinted stay labelled legacy; newer ones record their inputs.
+        if (o.screening) expect(["legacy-inputs-unverified", "current"]).toContain(o.screening.provenance);
         if (o.anyDesign) for (const c of o.chosenReviews) expect(c.why).not.toContain("of trials on this outcome");
       }
       const historical = JSON.parse(readFileSync(join(root, "screening", `${t.id}.json`), "utf8"));
-      expect(historical.provenance).toBe("legacy-inputs-unverified");
-      // No invented current-input fingerprints are added to the retained historical decisions.
-      for (const outcome of Object.values(historical.outcomes) as { decisions: { input?: string }[] }[])
-        for (const decision of outcome.decisions) expect(decision.input).toBeUndefined();
+      if (historical.provenance === "legacy-inputs-unverified") {
+        // No invented current-input fingerprints are added to the retained historical decisions.
+        for (const outcome of Object.values(historical.outcomes) as { decisions: { input?: string }[] }[])
+          for (const decision of outcome.decisions) expect(decision.input).toBeUndefined();
+      } else {
+        // Newer screenings record the exact inputs of every decision.
+        expect(historical.provenance, t.id).toBeUndefined();
+        for (const outcome of Object.values(historical.outcomes) as { decisions: { input?: string }[] }[])
+          for (const decision of outcome.decisions) expect(typeof decision.input, t.id).toBe("string");
+      }
     }
   });
 });

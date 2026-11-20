@@ -6,6 +6,7 @@
  */
 import type { MapKind, Question } from "@bt/shared/core/evidenceMap";
 import { FOOD_TOPICS } from "./foodTopics";
+import { MORE_LIFESTYLE_TOPICS } from "./lifestyleMore";
 import { LIFESTYLE_TOPICS } from "./lifestyleTopics";
 import { WHOLE_FOOD_TOPICS } from "./wholeFoodTopics";
 
@@ -1494,5 +1495,6 @@ export const TOPICS: TopicDef[] = [
   },
   ...FOOD_TOPICS,
   ...LIFESTYLE_TOPICS,
+  ...MORE_LIFESTYLE_TOPICS,
   ...WHOLE_FOOD_TOPICS,
 ];

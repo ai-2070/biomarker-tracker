@@ -25,6 +25,16 @@
     "heart_rate",
     "crp_hs"
   ],
+  "claims": [
+    {"claim": "Regular sauna use helps you live longer", "topic": "Sauna bathing and death from any cause", "label": "Sauna and a longer life", "category": "longevity"},
+    {"claim": "Sauna protects your heart", "topic": "Sauna bathing and heart disease", "label": "Sauna and your heart", "category": "health"},
+    {"claim": "Sauna lowers your blood pressure", "topic": "Sauna bathing and blood pressure", "label": "Sauna and blood pressure", "category": "health"},
+    {"claim": "Sauna helps prevent dementia", "topic": "Sauna bathing and dementia", "label": "Sauna and dementia", "category": "health"},
+    {"claim": "Sweating in a sauna detoxes your body", "topic": "Sauna sweating and removal of toxins", "label": "Sauna detox", "category": "health"},
+    {"claim": "Sauna burns fat and helps you lose weight", "topic": "Sauna bathing and weight loss", "label": "Sauna and weight loss", "category": "appearance"},
+    {"claim": "Sauna speeds up muscle recovery", "topic": "Sauna bathing and muscle recovery after exercise", "label": "Sauna and recovery", "category": "health"},
+    {"claim": "Sauna makes your skin look younger", "topic": "Sauna bathing and skin ageing", "label": "Sauna and skin", "category": "appearance"}
+  ],
   "findings": [
     {
       "outcome": "Sudden cardiac death, death from heart and blood vessel disease, and death from any cause",

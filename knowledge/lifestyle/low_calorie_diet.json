@@ -1,0 +1,543 @@
+{
+  "id": "low_calorie_diet",
+  "name": "Low-calorie diet",
+  "category": "diet",
+  "otherNames": [
+    "Calorie restriction",
+    "Caloric restriction",
+    "Energy restriction",
+    "Very low-calorie diet",
+    "VLCD",
+    "Total diet replacement",
+    "Hypocaloric diet"
+  ],
+  "summary": "Low-calorie diets lower body weight. In a two-year trial in healthy adults they also improved blood pressure, cholesterol and blood sugar markers, and in people with type 2 diabetes a formula-diet programme brought many into remission. They also cost muscle and bone, weight often returns, and whether they help people live longer is not known.",
+  "howItWorks": [
+    "When the body gets less energy than it uses, it draws on stored fat and also some muscle. Weight, blood pressure and blood sugar markers tend to fall as fat is lost.",
+    "In animals such as mice, calorie restriction has extended lifespan, which led researchers to test it in people. Whether this carries over to people is not known.",
+    "Very low-calorie diets (often formula meal replacements) cause fast weight loss in the first weeks and are used in medical programmes. They are different from the moderate calorie restriction used in ageing research.",
+    "The body responds to lasting weight loss by increasing hunger and slowing energy use, which is one reason weight is hard to keep off. This is a general finding and was not the focus of the trials below."
+  ],
+  "whatStudiesDid": "The CALERIE trial randomised 218 healthy, non-obese adults aged 21 to 50 to a prescribed 25% reduction in calories or to eating as usual for 2 years; people actually cut intake by about 12% (from about 2,467 to 2,170 kcal a day), with dietitian support. The DiRECT trial gave adults with type 2 diabetes (diagnosed within 6 years, not on insulin, body mass index 27 to 45) a formula diet of 825 to 853 kcal a day for 3 to 5 months, then stepped food reintroduction and support, under medical supervision, with diabetes and blood pressure medicines stopped. Reviews of very low-calorie and low-calorie diets looked at plans below 1,000 kcal a day lasting a median of 8 weeks. Animal studies followed rhesus monkeys fed about 30% less for over 20 years. These describe what the studies did; they are not targets.",
+  "markers": [
+    "weight",
+    "waist",
+    "body_fat",
+    "ldl",
+    "hdl",
+    "total_cholesterol",
+    "bp_systolic",
+    "bp_diastolic",
+    "crp_hs",
+    "hba1c",
+    "glucose",
+    "dunedinpace"
+  ],
+  "claims": [
+    {
+      "claim": "Eating less makes you live longer",
+      "topic": "Calorie restriction and lifespan in humans",
+      "label": "Fewer calories, longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Calorie restriction slows biological ageing",
+      "topic": "Calorie restriction and biological ageing",
+      "label": "Calorie restriction and ageing",
+      "category": "longevity"
+    },
+    {
+      "claim": "Cutting calories leads to lasting weight loss",
+      "topic": "Low-calorie diets and long-term weight maintenance",
+      "label": "Keeping the weight off",
+      "category": "appearance"
+    },
+    {
+      "claim": "A low-calorie diet can put type 2 diabetes into remission",
+      "topic": "Very low-calorie diets and type 2 diabetes remission",
+      "label": "Low-calorie and diabetes",
+      "category": "health"
+    },
+    {
+      "claim": "Low-calorie diets damage your metabolism for good",
+      "topic": "Calorie restriction and metabolic adaptation",
+      "label": "Metabolism damage",
+      "category": "health"
+    },
+    {
+      "claim": "Low-calorie diets cost you muscle",
+      "topic": "Calorie restriction and loss of muscle and bone",
+      "label": "Muscle and bone loss",
+      "category": "health"
+    },
+    {
+      "claim": "Calorie restriction improves heart health in healthy people",
+      "topic": "Calorie restriction and cardiometabolic risk factors",
+      "label": "Heart health markers",
+      "category": "health"
+    },
+    {
+      "claim": "Calorie restriction keeps your skin looking younger",
+      "topic": "Calorie restriction and skin ageing",
+      "label": "Calorie restriction and skin",
+      "category": "appearance"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Blood pressure, cholesterol and blood sugar markers in healthy adults",
+      "population": "Healthy adults aged 21 to 50 without obesity (body mass index 22.0 to 27.9) in the CALERIE trial",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "One trial, and these were exploratory outcomes",
+        "People knew which group they were in",
+        "Participants were healthy and mostly of normal weight, so many markers started within normal range",
+        "In favour: randomised, lasted 2 years and the changes held after allowing for weight lost"
+      ],
+      "summary": "In the CALERIE trial, 218 healthy non-obese adults were randomised (2 to 1) to a prescribed 25% calorie restriction (143 people) or an eat-as-usual diet (75 people) for 2 years. The restriction group actually cut intake by 11.9% (from 2,467 to 2,170 kcal a day), against 0.8% in the control group, and lost 7.5 kg on average (the control group gained 0.1 kg); 71% of the loss was fat mass. Compared with control, restriction lowered LDL cholesterol, the ratio of total to HDL cholesterol, systolic and diastolic blood pressure (all p of 0.0011 or less), C-reactive protein (p = 0.012), insulin resistance and a metabolic syndrome score (both p < 0.0001). The results held after controlling for how much weight people lost. The authors called these exploratory outcomes in healthy, non-obese people.",
+      "bottomLine": "In a 2-year randomised trial of 218 healthy adults who cut intake by about 12%, blood pressure, LDL cholesterol, CRP and insulin resistance improved compared with eating as usual. It is one trial of exploratory outcomes in healthy people.",
+      "label": "Heart and blood sugar markers",
+      "line": "Better blood pressure, LDL, CRP and insulin resistance in one 2-year trial",
+      "studies": [
+        {
+          "pmid": "31303390",
+          "doi": "10.1016/s2213-8587(19)30151-2",
+          "title": "2 years of calorie restriction and cardiometabolic risk (CALERIE): exploratory outcomes of a multicentre, phase 2, randomised controlled trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 218
+        }
+      ]
+    },
+    {
+      "outcome": "Weight loss and remission of type 2 diabetes with a very low-calorie formula diet",
+      "population": "Adults aged 20 to 65 with type 2 diabetes for under 6 years, body mass index 27 to 45, not on insulin (DiRECT trial in the UK)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trial with 306 people and 2 years of follow-up, with remission measured by a blood test",
+        "Open label: people and staff knew who got the programme",
+        "Applies to people with recent-onset diabetes who were not on insulin, with doctors stopping their medicines and monitoring them",
+        "Remission fell from 46% to 36% between year 1 and year 2"
+      ],
+      "summary": "In DiRECT, 49 UK primary care practices were randomised to a weight-management programme (formula diet of 825 to 853 kcal a day for 3 to 5 months, then stepped food reintroduction and support) or usual guideline care, with 149 people per group analysed. At 12 months, 46% (68 of 149) of the programme group were in diabetes remission (HbA1c below 6.5% after at least 2 months off diabetes medicines) compared with 4% (6 of 149) of the control group (odds ratio 19.7, 95% confidence interval 7.8 to 49.8). Mean weight fell 10.0 kg against 1.0 kg. Remission rose with weight lost: 86% (31 of 36) of those who lost 15 kg or more were in remission, and none of those who gained weight. Nine serious adverse events happened in 7 people (4%) in the programme group and 2 in the control group. At 24 months 36% (53 of 149) against 3% (5 of 149) were in remission (adjusted odds ratio 25.82, 8.25 to 80.84), with 5.4 kg more weight loss (95% confidence interval 4.0 to 6.9 kg).",
+      "bottomLine": "In the DiRECT trial, 46% of adults with recent type 2 diabetes who followed a supervised formula-diet programme were in remission after a year, against 4% on usual care; 36% still were at 2 years. Remission followed how much weight was lost.",
+      "label": "Weight and type 2 diabetes",
+      "line": "Remission in 46% vs 4% at 1 year, and 36% vs 3% at 2 years (DiRECT)",
+      "studies": [
+        {
+          "pmid": "29221645",
+          "doi": "10.1016/s0140-6736(17)33102-1",
+          "title": "Primary care-led weight management for remission of type 2 diabetes (DiRECT): an open-label, cluster-randomised trial.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 306
+        },
+        {
+          "pmid": "30852132",
+          "doi": "10.1016/s2213-8587(19)30068-3",
+          "title": "Durability of a primary care-led weight-management intervention for remission of type 2 diabetes: 2-year results of the DiRECT open-label, cluster-randomised trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 298
+        }
+      ]
+    },
+    {
+      "outcome": "Loss of muscle and bone",
+      "population": "Healthy non-obese adults aged 21 to 51 in CALERIE, adults with overweight in a 1-year trial, and adults in diets below 1,000 kcal a day",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trials measured body composition by DXA scans, not by questionnaire",
+        "Whether the bone loss raises the risk of fractures is not known",
+        "Fat-free mass loss was in proportion to the weight lost, so it is partly expected",
+        "Exercise added to the diet reduced the loss in some trials, but results vary"
+      ],
+      "summary": "In CALERIE, after 2 years the restriction group (11.9% less intake) had lost 7.6 kg of weight, of which fat mass was 5.4 kg and fat-free mass 2.0 kg, compared with changes of +0.4, +0.5 and 0.0 kg in the control group (all p < 0.001); the fat-free mass loss was in proportion to the weight lost. Bone density fell more with restriction than in controls at 24 months: lumbar spine -0.013 against +0.007 g/cm2, total hip -0.017 against +0.001 g/cm2 and femoral neck -0.015 against -0.005 g/cm2. The authors said bone loss at sites of osteoporotic fractures may limit prolonged restriction. In a 1-year trial of 48 adults aged about 57, restriction lowered hip bone density by 2.2% while exercise-induced weight loss did not. A 2025 meta-analysis of 5 trials (241 people) found that adding exercise to a very low-energy diet kept 0.83 kg more fat-free mass than the diet alone (95% confidence interval 0.17 to 1.49).",
+      "bottomLine": "Calorie restriction lowered bone density at the hip and spine in a 2-year trial, and about a quarter of the weight lost was lean tissue. Exercise alongside the diet kept some lean mass. Whether this raises fracture risk is not known.",
+      "label": "Muscle and bone",
+      "line": "Lower bone density and some lean mass lost along with fat",
+      "studies": [
+        {
+          "pmid": "26332798",
+          "doi": "10.1002/jbmr.2701",
+          "title": "Effect of Two-Year Caloric Restriction on Bone Metabolism and Bone Mineral Density in Non-Obese Younger Adults: A Randomized Clinical Trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 218
+        },
+        {
+          "pmid": "28228420",
+          "doi": "10.3945/ajcn.116.137232",
+          "title": "Body-composition changes in the Comprehensive Assessment of Long-term Effects of Reducing Intake of Energy (CALERIE)-2 study: a 2-y randomized controlled trial of calorie restriction in nonobese humans.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 218
+        },
+        {
+          "pmid": "17159017",
+          "doi": "10.1001/archinte.166.22.2502",
+          "title": "Bone mineral density response to caloric restriction-induced weight loss or exercise-induced weight loss: a randomized controlled trial.",
+          "year": 2006,
+          "studyType": "rct",
+          "n": 48
+        },
+        {
+          "pmid": "41093698",
+          "doi": "10.1016/j.orcp.2025.10.001",
+          "title": "The impact of exercise on fat free mass reduction during very low energy diet-induced weight loss in adults with overweight or obesity: A systematic review and meta-analysis.",
+          "year": 2025,
+          "studyType": "meta-analysis",
+          "n": 292
+        }
+      ]
+    },
+    {
+      "outcome": "Keeping the weight off afterwards",
+      "population": "Adults who first lost weight on a very low-calorie or low-calorie diet (under 1,000 kcal a day) in 20 trials, and adults in DiRECT over 2 years",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Trials tested different follow-up supports, with few trials of each kind",
+        "Follow-up differed between trials (a median of 3 to 26 months for the supports tested)",
+        "In DiRECT the weight difference with usual care shrank from year 1 to year 2",
+        "Studies measure weight on the scales; they do not show lasting health benefits"
+      ],
+      "summary": "A 2014 meta-analysis of 20 randomised trials (3,017 people) looked at what happens after a very low-calorie or low-calorie diet period (under 1,000 kcal a day). During the diet period (median 8 weeks), weight fell by 12.3 kg on average. Afterwards, compared with controls, meal replacements improved weight-loss maintenance by 3.9 kg (95% confidence interval 2.8 to 5.0), anti-obesity drugs by 3.5 kg (1.5 to 5.5) and high-protein diets by 1.5 kg (0.8 to 2.1), while exercise (0.8 kg, -1.2 to 2.8) and dietary supplements (0.0 kg, -1.4 to 1.4) made no significant difference. In DiRECT, the average weight difference between the programme and usual care was 8.8 kg at 12 months and 5.4 kg at 24 months, and only 24% of the programme group kept off at least 10 kg.",
+      "bottomLine": "After a very low-calorie diet, some weight usually comes back. Support such as meal replacements, high-protein diets or medicines helped people keep more off in trials, while exercise and supplements did not clearly help. In DiRECT the weight gap with usual care shrank from 8.8 kg to 5.4 kg between year 1 and year 2.",
+      "label": "Keeping weight off",
+      "line": "Weight often comes back; some support helped keep more off",
+      "studies": [
+        {
+          "pmid": "24172297",
+          "doi": "10.3945/ajcn.113.070052",
+          "title": "Effects of anti-obesity drugs, diet, and exercise on weight-loss maintenance after a very-low-calorie diet or low-calorie diet: a systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2014,
+          "studyType": "meta-analysis",
+          "n": 3017
+        },
+        {
+          "pmid": "30852132",
+          "doi": "10.1016/s2213-8587(19)30068-3",
+          "title": "Durability of a primary care-led weight-management intervention for remission of type 2 diabetes: 2-year results of the DiRECT open-label, cluster-randomised trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 298
+        }
+      ]
+    },
+    {
+      "outcome": "Pace of biological ageing (DNA methylation clocks)",
+      "population": "Healthy adults without obesity in the CALERIE trial, 220 people with blood samples",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "A post hoc analysis: not the trial's main question",
+        "Treatment effect sizes were small",
+        "Ageing clocks are stand-ins; lowering them has not been shown to add years",
+        "Different clocks gave different answers"
+      ],
+      "summary": "In a post hoc analysis of blood samples from CALERIE (220 adults without obesity randomised to 25% calorie restriction or eating as usual for 2 years), the intervention slowed the pace of ageing measured by the DunedinPACE DNA methylation test, but did not significantly change biological-age estimates from other methylation clocks, including PhenoAge and GrimAge. Effect sizes were small. The authors said a conclusive test needs trials with long-term follow-up for chronic disease and mortality.",
+      "bottomLine": "In one trial, 2 years of calorie restriction slowed the DunedinPACE pace-of-ageing test slightly but did not change other methylation clocks. The effects were small, and nobody has shown that changing these clocks adds years of life.",
+      "label": "Pace of ageing",
+      "line": "DunedinPACE slowed slightly, other clocks did not change (post hoc)",
+      "studies": [
+        {
+          "pmid": "37118425",
+          "doi": "10.1038/s43587-022-00357-y",
+          "title": "Effect of long-term caloric restriction on DNA methylation measures of biological aging in healthy adults from the CALERIE trial.",
+          "year": 2023,
+          "studyType": "rct",
+          "n": 220
+        }
+      ]
+    },
+    {
+      "outcome": "Living longer",
+      "population": "Rhesus monkeys fed about 30% fewer calories for over 20 years; no trial in people has followed deaths",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "These are monkey studies, not people",
+        "The two long monkey studies reached different results",
+        "No randomised trial in people has measured deaths or lifespan",
+        "CALERIE measured risk factors and clocks, not survival"
+      ],
+      "summary": "In a 20-year study at the Wisconsin primate centre, moderate calorie restriction lowered the number of ageing-related deaths in rhesus monkeys: at the time reported, 50% of control-fed animals survived against 80% of the restricted animals, and restriction delayed diabetes, cancer, cardiovascular disease and brain atrophy. A study at the US National Institute on Aging found no survival difference. A 2014 analysis argued that the NIA control animals were effectively eating less, because their body weights were lower than other control monkeys, and reported that restriction improved all-cause survival. No trial in people has tested whether calorie restriction affects how long people live.",
+      "bottomLine": "In rhesus monkeys, one long study found calorie restriction improved survival and another found no difference. In people, no trial has tested lifespan, so whether calorie restriction helps people live longer is unknown.",
+      "label": "Living longer",
+      "line": "Monkey studies disagree; no human trial of lifespan",
+      "studies": [
+        {
+          "pmid": "19590001",
+          "doi": "10.1126/science.1173635",
+          "title": "Caloric restriction delays disease onset and mortality in rhesus monkeys.",
+          "year": 2009,
+          "studyType": "animal"
+        },
+        {
+          "pmid": "24691430",
+          "doi": "10.1038/ncomms4557",
+          "title": "Caloric restriction reduces age-related and all-cause mortality in rhesus monkeys.",
+          "year": 2014,
+          "studyType": "animal"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "What changed after 2 years of calorie restriction (CALERIE)",
+      "caption": "Changes in kg over 24 months in 218 healthy non-obese adults, from CALERIE: 143 people cut intake by about 12% and 75 ate as usual. Weight and fat mass fell, and about a quarter of the weight lost was fat-free mass (muscle and other lean tissue). Values are group averages.",
+      "scale": "linear",
+      "unit": "kg",
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
+      "items": [
+        {
+          "label": "Weight, calorie restriction",
+          "value": -7.6
+        },
+        {
+          "label": "Weight, eating as usual",
+          "value": 0.4
+        },
+        {
+          "label": "Fat mass, calorie restriction",
+          "value": -5.4
+        },
+        {
+          "label": "Fat mass, eating as usual",
+          "value": 0.5
+        },
+        {
+          "label": "Fat-free mass, calorie restriction",
+          "value": -2.0
+        },
+        {
+          "label": "Fat-free mass, eating as usual",
+          "value": 0.0
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "28228420",
+          "doi": "10.3945/ajcn.116.137232",
+          "title": "Body-composition changes in the Comprehensive Assessment of Long-term Effects of Reducing Intake of Energy (CALERIE)-2 study: a 2-y randomized controlled trial of calorie restriction in nonobese humans.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 218
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Bone density after 2 years of calorie restriction",
+      "caption": "Change in bone mineral density (g/cm2) at 24 months in CALERIE, in the group cutting intake by about 12% (143 people) and in the group eating as usual (75 people). Lower numbers mean bone density fell. The authors noted bone loss at sites of osteoporotic fractures; whether it raised fracture risk was not measured.",
+      "scale": "linear",
+      "unit": "g/cm2",
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
+      "items": [
+        {
+          "label": "Lumbar spine, calorie restriction",
+          "value": -0.013
+        },
+        {
+          "label": "Lumbar spine, eating as usual",
+          "value": 0.007
+        },
+        {
+          "label": "Total hip, calorie restriction",
+          "value": -0.017
+        },
+        {
+          "label": "Total hip, eating as usual",
+          "value": 0.001
+        },
+        {
+          "label": "Femoral neck, calorie restriction",
+          "value": -0.015
+        },
+        {
+          "label": "Femoral neck, eating as usual",
+          "value": -0.005
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "26332798",
+          "doi": "10.1002/jbmr.2701",
+          "title": "Effect of Two-Year Caloric Restriction on Bone Metabolism and Bone Mineral Density in Non-Obese Younger Adults: A Randomized Clinical Trial.",
+          "year": 2016,
+          "studyType": "rct",
+          "n": 218
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Type 2 diabetes in remission after a formula-diet programme (DiRECT)",
+      "caption": "Share of people with type 2 diabetes in remission (HbA1c below 6.5% after at least 2 months off diabetes medicines): programme group against usual care, 149 people each. Percentages are rounded and the programme was medically supervised.",
+      "scale": "linear",
+      "unit": "% of people",
+      "items": [
+        {
+          "label": "12 months, programme (68 of 149)",
+          "value": 46
+        },
+        {
+          "label": "12 months, usual care (6 of 149)",
+          "value": 4
+        },
+        {
+          "label": "24 months, programme (53 of 149)",
+          "value": 36
+        },
+        {
+          "label": "24 months, usual care (5 of 149)",
+          "value": 3
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "29221645",
+          "doi": "10.1016/s0140-6736(17)33102-1",
+          "title": "Primary care-led weight management for remission of type 2 diabetes (DiRECT): an open-label, cluster-randomised trial.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 306
+        },
+        {
+          "pmid": "30852132",
+          "doi": "10.1016/s2213-8587(19)30068-3",
+          "title": "Durability of a primary care-led weight-management intervention for remission of type 2 diabetes: 2-year results of the DiRECT open-label, cluster-randomised trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 298
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "A past or current eating disorder",
+      "note": "Restricting food on purpose can trigger or worsen an eating disorder. A 1-year CALERIE pilot trial in 48 adults with overweight found no rise in eating disorder symptoms, but it does not tell us about people with a history of an eating disorder. Talk to a doctor first."
+    },
+    {
+      "with": "Diabetes treated with insulin or tablets that can cause low blood sugar",
+      "note": "Eating much less can cause low blood sugar and changes the dose of medicines needed. In DiRECT, diabetes and blood pressure medicines were stopped under medical supervision. Do not change medicines without a doctor.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Pregnancy, breastfeeding, or trying to conceive",
+      "note": "Calorie restriction was tested only in non-pregnant adults. Talk to a doctor or midwife.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Kidney disease",
+      "note": "Very low-calorie and formula diets change the amount of protein, fluid and minerals the kidneys handle. A kidney doctor should be involved.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Medicines for high blood pressure or other heart conditions",
+      "note": "Blood pressure can fall as weight falls, and doses may need to change. In DiRECT, doctors stopped the blood pressure medicines as part of the programme. A doctor should manage this."
+    },
+    {
+      "with": "Older adults, people who are underweight or frail, and children and teenagers",
+      "note": "Weight loss also costs muscle and bone, which matter more when these are already low or still developing. The trials above were in adults without these problems. Ask a doctor first."
+    }
+  ],
+  "cautions": [
+    "Very low-calorie diets are used in medical programmes with monitoring, and are not meant for long stretches without supervision.",
+    "Hunger, tiredness, feeling cold and low mood are commonly reported when eating much less; these are general experiences and not measured in the trials above.",
+    "In CALERIE people cut intake by about 12% against a planned 25%, so keeping to a plan for 2 years was hard even with dietitian support."
+  ],
+  "unknowns": [
+    "No trial has shown whether calorie restriction helps people live longer or lowers the risk of dying from disease; the evidence comes from risk factors, clocks and animals.",
+    "The long-term effect of the bone loss seen in CALERIE on fractures is not known.",
+    "Most trials were in people with overweight or in healthy younger adults. Effects in older adults and in people with a normal or low weight are less clear.",
+    "Pace-of-ageing results were small, post hoc and from one trial, and ageing clocks are not proven stand-ins for health.",
+    "It is not known why some people keep weight off after a very low-calorie diet and others regain it."
+  ],
+  "sources": [
+    {
+      "pmid": "31303390",
+      "doi": "10.1016/s2213-8587(19)30151-2",
+      "title": "2 years of calorie restriction and cardiometabolic risk (CALERIE): exploratory outcomes of a multicentre, phase 2, randomised controlled trial.",
+      "year": 2019,
+      "studyType": "rct",
+      "n": 218
+    },
+    {
+      "pmid": "29221645",
+      "doi": "10.1016/s0140-6736(17)33102-1",
+      "title": "Primary care-led weight management for remission of type 2 diabetes (DiRECT): an open-label, cluster-randomised trial.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 306
+    },
+    {
+      "pmid": "30852132",
+      "doi": "10.1016/s2213-8587(19)30068-3",
+      "title": "Durability of a primary care-led weight-management intervention for remission of type 2 diabetes: 2-year results of the DiRECT open-label, cluster-randomised trial.",
+      "year": 2019,
+      "studyType": "rct",
+      "n": 298
+    },
+    {
+      "pmid": "26332798",
+      "doi": "10.1002/jbmr.2701",
+      "title": "Effect of Two-Year Caloric Restriction on Bone Metabolism and Bone Mineral Density in Non-Obese Younger Adults: A Randomized Clinical Trial.",
+      "year": 2016,
+      "studyType": "rct",
+      "n": 218
+    },
+    {
+      "pmid": "28228420",
+      "doi": "10.3945/ajcn.116.137232",
+      "title": "Body-composition changes in the Comprehensive Assessment of Long-term Effects of Reducing Intake of Energy (CALERIE)-2 study: a 2-y randomized controlled trial of calorie restriction in nonobese humans.",
+      "year": 2017,
+      "studyType": "rct",
+      "n": 218
+    },
+    {
+      "pmid": "24172297",
+      "doi": "10.3945/ajcn.113.070052",
+      "title": "Effects of anti-obesity drugs, diet, and exercise on weight-loss maintenance after a very-low-calorie diet or low-calorie diet: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2014,
+      "studyType": "meta-analysis",
+      "n": 3017
+    },
+    {
+      "pmid": "37118425",
+      "doi": "10.1038/s43587-022-00357-y",
+      "title": "Effect of long-term caloric restriction on DNA methylation measures of biological aging in healthy adults from the CALERIE trial.",
+      "year": 2023,
+      "studyType": "rct",
+      "n": 220
+    },
+    {
+      "pmid": "19590001",
+      "doi": "10.1126/science.1173635",
+      "title": "Caloric restriction delays disease onset and mortality in rhesus monkeys.",
+      "year": 2009,
+      "studyType": "animal"
+    },
+    {
+      "pmid": "18248104",
+      "doi": "10.1037/0278-6133.27.1.s32",
+      "title": "Is caloric restriction associated with development of eating-disorder symptoms? Results from the CALERIE trial.",
+      "year": 2008,
+      "studyType": "rct",
+      "n": 48
+    }
+  ]
+}

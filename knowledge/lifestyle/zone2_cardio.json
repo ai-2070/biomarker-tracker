@@ -1,0 +1,438 @@
+{
+  "id": "zone2_cardio",
+  "name": "Zone 2 cardio",
+  "category": "movement",
+  "otherNames": [
+    "Zone 2 training",
+    "Zone 2",
+    "Easy aerobic training",
+    "Low-intensity steady-state cardio",
+    "LISS",
+    "Base training",
+    "Conversational pace"
+  ],
+  "summary": "Zone 2 is steady, easy-to-moderate exercise just below the intensity where breathing and blood lactate start to climb. Steady aerobic training in general raises fitness and lowers blood pressure and blood sugar, but no trial has shown that zone 2 itself is the best intensity for general health.",
+  "howItWorks": [
+    "Zone 2 has no single agreed definition. A panel of 14 sport scientists and coaches agreed it should preferably be just below the first lactate or ventilatory threshold, the point where lactate (a by-product of muscle work) or breathing first starts to rise.",
+    "People often use a heart rate range, a pace you could talk at or a lab test to find it. In 50 cyclists, different ways of marking zone 2 gave widely different results (coefficients of variation of 6% to 29%).",
+    "The idea is that easy exercise can be done for long periods and trains the muscles to use fat and oxygen well. This is a proposed explanation, mostly from athletes, and a 2025 review found it does not show zone 2 to be the best intensity for the general public.",
+    "Much of what is known about easy steady exercise comes from studies of endurance training in general, which is not always the same as zone 2."
+  ],
+  "whatStudiesDid": "No trial found here tested a zone 2 programme in the general public and compared it with other intensities for health outcomes. The evidence comes from studies of steady aerobic exercise (endurance training) of mixed intensity: 93 trials of 4 weeks or more in healthy adults (blood pressure), trials of at least 12 weeks in people with type 2 diabetes, and trials of 2 weeks or longer in adults aged 18 to 45 (fitness). Studies of fat-burning intensity (called FATmax) trained overweight adults at the point where their body burned the most fat. Studies of polarized training in athletes compared mostly easy training with a few very hard sessions against other mixes of easy and hard sessions, for 4 weeks or more.",
+  "markers": [
+    "vo2max",
+    "resting_hr",
+    "bp_systolic",
+    "bp_diastolic",
+    "hba1c",
+    "hdl",
+    "weight",
+    "active_minutes",
+    "exercise_hr",
+    "heart_rate"
+  ],
+  "claims": [
+    {
+      "claim": "Is the best intensity for burning fat",
+      "topic": "Zone 2 exercise and fat oxidation",
+      "label": "Zone 2 and fat burning",
+      "category": "appearance"
+    },
+    {
+      "claim": "Builds more mitochondria than harder exercise",
+      "topic": "Zone 2 training and mitochondrial function",
+      "label": "Zone 2 and mitochondria",
+      "category": "health"
+    },
+    {
+      "claim": "Improves metabolic flexibility, the ability to switch between fat and sugar",
+      "topic": "Zone 2 training and metabolic flexibility",
+      "label": "Metabolic flexibility",
+      "category": "health"
+    },
+    {
+      "claim": "Raises VO2max, the strongest predictor of how long you will live",
+      "topic": "Zone 2 training and VO2max",
+      "label": "Zone 2 and VO2max",
+      "category": "longevity"
+    },
+    {
+      "claim": "Helps you live longer",
+      "topic": "Low-intensity aerobic exercise and death from any cause",
+      "label": "Zone 2 and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Lowers resting heart rate",
+      "topic": "Aerobic exercise training and resting heart rate",
+      "label": "Resting heart rate",
+      "category": "health"
+    },
+    {
+      "claim": "Lowers blood pressure",
+      "topic": "Aerobic exercise training and blood pressure",
+      "label": "Zone 2 and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Improves blood sugar control and insulin sensitivity",
+      "topic": "Low-intensity aerobic exercise and insulin sensitivity",
+      "label": "Zone 2 and blood sugar",
+      "category": "health"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Mitochondrial capacity and fat burning, compared with other intensities",
+      "population": "General public and athletes (a review and expert commentary; trials in overweight adults trained at the intensity where fat burning peaks)",
+      "effect": "mixed",
+      "grade": "very low",
+      "whyThisGrade": [
+        "The popular claim mostly rests on observational data from elite endurance athletes",
+        "A 2025 review concluded that current evidence does not support zone 2 as the best intensity for mitochondria or fat burning, and that higher intensities matter for health, especially when training volume is low",
+        "Experts expect benefits from zone 2 but say they may not be unique to it",
+        "The fat-burning-intensity trials ran in overweight adults and defined the intensity differently"
+      ],
+      "summary": "A narrative review (2025) examined the evidence on zone 2 training and mitochondrial and fatty acid oxidative capacity. It found the popular claims largely stem from observational data in elite endurance athletes and concluded that current evidence does not support zone 2 as the optimal intensity for improving these, with higher intensities (above zone 2) important for cardiometabolic health, particularly at lower training volumes. A panel of 14 sport scientists and coaches expected a broad range of adaptations from zone 2, but said these might not be unique to zone 2 and could be induced at slightly higher and lower intensities. In 19 randomised trials of 644 people with overweight or obesity, training at the intensity where fat burning peaks (FATmax) reduced body fat by 2.32 percentage points and fasting glucose compared with controls; the authors rate certainty as very low to moderate.",
+      "bottomLine": "No study shows that zone 2 is the best intensity for building mitochondria or burning fat. A 2025 review argues harder exercise is at least as good, while experts expect easy training to help too. The claim is not settled.",
+      "label": "Mitochondria and fat burning",
+      "line": "Not shown to beat harder intensities; the popular claim is mostly unproven",
+      "studies": [
+        {
+          "pmid": "40560504",
+          "doi": "10.1007/s40279-025-02261-y",
+          "title": "Much Ado About Zone 2: A Narrative Review Assessing the Efficacy of Zone 2 Training for Improving Mitochondrial Capacity and Cardiorespiratory Fitness in the General Population.",
+          "year": 2025,
+          "studyType": "review"
+        },
+        {
+          "pmid": "40010355",
+          "doi": "10.1123/ijspp.2024-0303",
+          "title": "What Is \"Zone 2 Training\"?: Experts' Viewpoint on Definition, Training Methods, and Expected Adaptations.",
+          "year": 2025,
+          "studyType": "review"
+        },
+        {
+          "pmid": "41732883",
+          "doi": "10.1111/sms.70230",
+          "title": "Exercise Training at Maximal Fat Oxidation Intensity for Body Composition and Cardiometabolic Health in People With Overweight and Obesity: A Systematic Review With Meta-Analysis Focusing on Prescription Dosage and Potential Moderators.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 644
+        }
+      ]
+    },
+    {
+      "outcome": "Fitness (VO2max) from steady endurance training",
+      "population": "Healthy adults aged 18 to 45 (28 controlled trials, group-level evidence about endurance training, not zone 2 only)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Pooled controlled trials with VO2max measured directly",
+        "Group-level evidence: the endurance training was of mixed intensity and not always zone 2",
+        "Mostly young adults and a few weeks of training",
+        "In the same analysis hard interval training raised VO2max slightly more than steady endurance training"
+      ],
+      "summary": "A meta-analysis of 28 controlled trials in 723 healthy adults aged 18 to 45 found endurance training raised VO2max by 4.9 mL/kg/min (95% confidence limits plus or minus 1.4) compared with no exercise, a possibly large beneficial effect. Gains were larger for younger people and longer programmes. High-intensity interval training raised it by 5.5 (plus or minus 1.2), and compared directly with endurance training was possibly slightly better, by 1.2 mL/kg/min (plus or minus 0.9). These are results for endurance training in general, not for zone 2 specifically.",
+      "bottomLine": "Steady endurance training raised VO2max clearly in healthy adults compared with no exercise, but harder interval training raised it slightly more in the same analysis. These results are for endurance training in general, not zone 2 alone.",
+      "label": "Fitness (VO2max)",
+      "line": "Endurance training raises VO2max; hard intervals slightly more",
+      "studies": [
+        {
+          "pmid": "26243014",
+          "doi": "10.1007/s40279-015-0365-0",
+          "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 723
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure from steady aerobic training",
+      "population": "Healthy adults, including adults with normal, high-normal and high blood pressure (93 randomised trials; group-level evidence about endurance training)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of 93 randomised trials with 5,223 people",
+        "Endurance training of mixed intensity, not zone 2 alone",
+        "The fall was large in people with high blood pressure and small or unclear in people with normal blood pressure",
+        "Trials lasted 4 weeks or more; longer-term results are less clear"
+      ],
+      "summary": "In 93 randomised trials with 5,223 people (3,401 exercising and 1,822 controls), endurance training lowered systolic blood pressure by 3.5 mmHg (95% confidence limits -4.6 to -2.3) and diastolic by 2.5 mmHg (-3.2 to -1.7). In 26 groups with high blood pressure the fall was -8.3/-5.2 mmHg (systolic -10.7 to -6.0; diastolic -6.8 to -3.4), in 50 groups with prehypertension -2.1/-1.7 mmHg, and in 29 groups with normal blood pressure -0.75 mmHg (-2.2 to +0.69, which could be chance) and -1.1 mmHg.",
+      "bottomLine": "Across 93 randomised trials, steady endurance training lowered blood pressure, most clearly in people whose pressure was high at the start. In people with normal pressure the systolic change could be chance.",
+      "label": "Blood pressure",
+      "line": "Down by 3.5/2.5 mmHg overall, more if high at the start",
+      "studies": [
+        {
+          "pmid": "23525435",
+          "doi": "10.1161/jaha.112.004473",
+          "title": "Exercise training for blood pressure: a systematic review and meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 5223
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar (HbA1c) from structured aerobic exercise in type 2 diabetes",
+      "population": "Adults with type 2 diabetes (47 randomised trials of at least 12 weeks; group-level evidence about aerobic exercise)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of randomised trials",
+        "The results varied a lot between trials (I2 of 92.8%)",
+        "Aerobic exercise of mixed intensity, not zone 2 alone",
+        "Exercise of more than 150 minutes a week was linked to larger falls"
+      ],
+      "summary": "A meta-analysis of 47 randomised trials (8,538 patients, at least 12 weeks) found structured exercise training lowered HbA1c, a long-term blood sugar measure, by 0.67 percentage points (95% confidence interval 0.49 to 0.84) compared with control participants. For structured aerobic exercise alone (the aerobic groups) the fall was 0.73 (0.40 to 1.06), for resistance training 0.57 (0.01 to 1.14) and for both combined 0.51 (0.23 to 0.79). Structured exercise of more than 150 minutes a week was linked to a fall of 0.89, against 0.36 for 150 minutes or less. Advice to be more active alone was not linked to a change.",
+      "bottomLine": "In people with type 2 diabetes, structured aerobic exercise lowered HbA1c by about 0.7 percentage points in pooled trials, though results varied a lot. This is for aerobic exercise in general, not zone 2 alone.",
+      "label": "Blood sugar (type 2 diabetes)",
+      "line": "HbA1c down by about 0.7 points with structured aerobic exercise",
+      "studies": [
+        {
+          "pmid": "21540423",
+          "doi": "10.1001/jama.2011.576",
+          "title": "Physical activity advice only or structured exercise training and association with HbA1c levels in type 2 diabetes: a systematic review and meta-analysis.",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 8538
+        }
+      ]
+    },
+    {
+      "outcome": "Cardiorespiratory fitness and death from any cause",
+      "population": "Adults in cohort studies (37 studies, 2,258,029 people; fitness measured by tests, not by zone 2 training)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: fit people may differ from unfit people in other ways",
+        "The studies measured how fit people were, not what training they did, so this is not evidence about zone 2",
+        "A very large pooled sample and a consistent link in all groups",
+        "Fitness also reflects genes, not only training"
+      ],
+      "summary": "A meta-analysis of 37 cohort studies with 2,258,029 participants and 108,613 deaths found that people in the top third of cardiorespiratory fitness had a 45% lower risk of death from any cause than those in the bottom third (relative risk 0.55, 95% confidence interval 0.50 to 0.61, adjusted). For every 1-MET increase in fitness the relative risk was 0.89 (0.86 to 0.92). The link did not differ by publication year, age, sex, follow-up or how fitness was assessed. These are links; they do not show that training for fitness, or zone 2 in particular, lengthens life.",
+      "bottomLine": "People with higher cardiorespiratory fitness had much lower death rates in large cohort studies. This is a link about fitness, not about zone 2 training, and does not show that raising fitness by a given type of exercise adds years.",
+      "label": "Fitness and death overall",
+      "line": "Fitter people died less often in cohort studies (a link)",
+      "studies": [
+        {
+          "pmid": "35562197",
+          "doi": "10.1016/j.mayocp.2022.02.029",
+          "title": "Objectively Assessed Cardiorespiratory Fitness and All-Cause Mortality Risk: An Updated Meta-analysis of 37 Cohort Studies Involving 2,258,029 Participants.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 2258029
+        }
+      ]
+    },
+    {
+      "outcome": "Mostly easy training mixed with a few hard sessions (polarized training) in athletes",
+      "population": "Adults and young adults, mostly endurance athletes, in training studies of 4 weeks or more (17 studies, 437 people)",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "A meta-analysis of 17 studies, but only 437 people, mostly athletes",
+        "Polarized training mixes easy and very hard sessions, which is not the same as zone 2 alone",
+        "It was better for VO2peak but similar for time trials, time to exhaustion and thresholds",
+        "The authors rate the VO2peak evidence as high certainty but the benefit appeared mostly in shorter studies and highly trained athletes"
+      ],
+      "summary": "A meta-analysis of 17 studies (437 people) compared polarized training (mostly easy sessions plus some very hard ones) with other mixes. Polarized training was better for improving VO2peak (standardised mean difference 0.24, 95% confidence interval 0.01 to 0.48; 11 studies, 284 people), but only in interventions shorter than 12 weeks and in highly trained athletes. It was similar for time-trial performance (-0.01, -0.28 to 0.25), time to exhaustion (0.30, -0.20 to 0.79) and speed or power at the second threshold (0.04, -0.21 to 0.29).",
+      "bottomLine": "In athletes, doing mostly easy training with a few hard sessions improved VO2peak a little more than other mixes, but did not clearly change time-trial results. It is a mix of easy and hard training, so it does not test zone 2 alone.",
+      "label": "Easy training for athletes",
+      "line": "Slightly better VO2peak in athletes; same race-type results",
+      "studies": [
+        {
+          "pmid": "38717713",
+          "doi": "10.1007/s40279-024-02034-z",
+          "title": "Comparison of Polarized Versus Other Types of Endurance Training Intensity Distribution on Athletes' Endurance Performance: A Systematic Review with Meta-analysis.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 437
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Systolic blood pressure change after endurance training",
+      "scale": "linear",
+      "unit": "mmHg",
+      "caption": "Average change in systolic blood pressure (the top number) compared with controls, from a meta-analysis of randomised endurance training trials of 4 weeks or more, split by blood pressure at the start. Below 0 means pressure fell. A bar whose line crosses 0 could be chance. This is endurance training of mixed intensity, not zone 2 alone.",
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
+      "items": [
+        {
+          "label": "High blood pressure at the start",
+          "value": -8.3,
+          "low": -10.7,
+          "high": -6.0,
+          "note": "26 study groups (2013)"
+        },
+        {
+          "label": "Prehypertension at the start",
+          "value": -2.1,
+          "low": -3.3,
+          "high": -0.83,
+          "note": "50 study groups (2013)"
+        },
+        {
+          "label": "Normal blood pressure at the start",
+          "value": -0.75,
+          "low": -2.2,
+          "high": 0.69,
+          "note": "29 study groups (2013)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "23525435",
+          "doi": "10.1161/jaha.112.004473",
+          "title": "Exercise training for blood pressure: a systematic review and meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 5223
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Fitness and death from any cause",
+      "scale": "ratio",
+      "caption": "Pooled relative risks with 95% confidence intervals from 37 cohort studies of 2,258,029 people, adjusted for other factors. Below 1 means fewer deaths. These are links between how fit people were and how long they lived. They do not show that zone 2 training, or any other training, adds years.",
+      "reference": {
+        "value": 1,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "Top third of fitness, compared with the bottom third",
+          "value": 0.55,
+          "low": 0.5,
+          "high": 0.61,
+          "note": "37 cohort studies (2022)"
+        },
+        {
+          "label": "Each 1-MET higher fitness",
+          "value": 0.89,
+          "low": 0.86,
+          "high": 0.92,
+          "note": "37 cohort studies (2022)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "35562197",
+          "doi": "10.1016/j.mayocp.2022.02.029",
+          "title": "Objectively Assessed Cardiorespiratory Fitness and All-Cause Mortality Risk: An Updated Meta-analysis of 37 Cohort Studies Involving 2,258,029 Participants.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 2258029
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Heart disease or chest pain on effort",
+      "note": "Talk to your doctor before starting a new exercise programme if you have heart disease or symptoms such as chest pain or dizziness on effort."
+    },
+    {
+      "with": "Diabetes",
+      "note": "Exercise can change blood sugar. Talk to your doctor if you have diabetes, especially if you use insulin or medicines that lower blood sugar.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Pregnancy",
+      "note": "The studies found here did not look at pregnancy. Talk to your midwife or doctor.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "Heart rate zones are only an estimate: in 50 cyclists, different ways of finding zone 2 gave quite different intensities.",
+    "Most of the health evidence is for aerobic exercise in general, not zone 2.",
+    "Anything clearly out of range in your blood pressure, heart rate or blood sugar is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "No definition of zone 2 is agreed, and different ways of finding it give different intensities in the same person.",
+    "No trial found here compared zone 2 with other intensities for health outcomes in the general public, so it is not known whether it is the best intensity.",
+    "Claims about mitochondria and fat burning come mostly from elite endurance athletes, who also train a very large amount.",
+    "It is not known how much easy exercise is needed for a given benefit, or whether it helps more than harder exercise when time is short.",
+    "Whether raising fitness with easy training lengthens life has not been tested in a randomised trial; the link seen in cohort studies may partly reflect other differences between people."
+  ],
+  "sources": [
+    {
+      "pmid": "40010355",
+      "doi": "10.1123/ijspp.2024-0303",
+      "title": "What Is \"Zone 2 Training\"?: Experts' Viewpoint on Definition, Training Methods, and Expected Adaptations.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40560504",
+      "doi": "10.1007/s40279-025-02261-y",
+      "title": "Much Ado About Zone 2: A Narrative Review Assessing the Efficacy of Zone 2 Training for Improving Mitochondrial Capacity and Cardiorespiratory Fitness in the General Population.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40225831",
+      "doi": "10.1155/tsm2/2008291",
+      "title": "Zone 2 Intensity: A Critical Comparison of Individual Variability in Different Submaximal Exercise Intensity Boundaries.",
+      "year": 2025,
+      "studyType": "observational",
+      "n": 50
+    },
+    {
+      "pmid": "41732883",
+      "doi": "10.1111/sms.70230",
+      "title": "Exercise Training at Maximal Fat Oxidation Intensity for Body Composition and Cardiometabolic Health in People With Overweight and Obesity: A Systematic Review With Meta-Analysis Focusing on Prescription Dosage and Potential Moderators.",
+      "year": 2026,
+      "studyType": "meta-analysis",
+      "n": 644
+    },
+    {
+      "pmid": "26243014",
+      "doi": "10.1007/s40279-015-0365-0",
+      "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials.",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 723
+    },
+    {
+      "pmid": "23525435",
+      "doi": "10.1161/jaha.112.004473",
+      "title": "Exercise training for blood pressure: a systematic review and meta-analysis.",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 5223
+    },
+    {
+      "pmid": "21540423",
+      "doi": "10.1001/jama.2011.576",
+      "title": "Physical activity advice only or structured exercise training and association with HbA1c levels in type 2 diabetes: a systematic review and meta-analysis.",
+      "year": 2011,
+      "studyType": "meta-analysis",
+      "n": 8538
+    },
+    {
+      "pmid": "35562197",
+      "doi": "10.1016/j.mayocp.2022.02.029",
+      "title": "Objectively Assessed Cardiorespiratory Fitness and All-Cause Mortality Risk: An Updated Meta-analysis of 37 Cohort Studies Involving 2,258,029 Participants.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 2258029
+    },
+    {
+      "pmid": "38717713",
+      "doi": "10.1007/s40279-024-02034-z",
+      "title": "Comparison of Polarized Versus Other Types of Endurance Training Intensity Distribution on Athletes' Endurance Performance: A Systematic Review with Meta-analysis.",
+      "year": 2024,
+      "studyType": "meta-analysis",
+      "n": 437
+    }
+  ]
+}

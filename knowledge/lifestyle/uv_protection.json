@@ -1,0 +1,538 @@
+{
+  "id": "uv_protection",
+  "name": "UV protection",
+  "category": "light",
+  "otherNames": [
+    "Sun protection",
+    "Sunscreen",
+    "Sun avoidance",
+    "Sun-protective clothing",
+    "Shade",
+    "Photoprotection",
+    "Sun safety"
+  ],
+  "summary": "In randomised trials in Australia, daily sunscreen led to fewer sun spots (precancerous skin patches), slower skin ageing and fewer squamous cell skin cancers, but trials found no clear drop in basal cell cancer and the evidence on melanoma is uncertain. The trade-off is vitamin D: the newest trial found lower vitamin D levels with daily high-SPF sunscreen.",
+  "howItWorks": [
+    "Ultraviolet (UV) light from the sun damages skin cells. It is the main cause of sunburn and of most skin cancers, and it speeds up skin ageing.",
+    "Sunscreen contains filters that absorb or block UV light. Clothing, shade and staying out of strong midday sun reduce the amount of UV reaching the skin in the first place.",
+    "The same UVB light that burns skin also lets the skin make vitamin D. Under artificial UV, sunscreen cut vitamin D production a lot in experiments; in real life the effect is smaller and depends on how much and how often people use it.",
+    "Some sunscreen filters pass through the skin into the blood. What this means for health is not yet known."
+  ],
+  "whatStudiesDid": "The main trials come from Nambour, Australia. About 1,600 adults aged 25 to 75 were randomly assigned to daily broad-spectrum sunscreen (SPF 15 or higher, on the head, neck, arms and hands) or to using it as they chose, for 4.5 years, and were then followed for up to 10 more years. Another Australian trial gave 588 people over 40 daily SPF 17 sunscreen or a base cream for one summer. The 2025 vitamin D trial gave 639 adults SPF 50+ sunscreen to apply on days when the UV index was forecast to reach 3 or more, or discretionary use, for about a year. A large Swedish cohort asked 29,518 women about their sun habits and followed them for 20 years. In the absorption trials, healthy volunteers applied sunscreen to 75% of the body four times a day for 4 days in a clinical unit, which is more than most people use.",
+  "markers": [
+    "vitamin_d"
+  ],
+  "claims": [
+    {
+      "claim": "Sunscreen prevents skin cancer",
+      "topic": "Sunscreen and skin cancer",
+      "label": "Skin cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Sunscreen helps prevent melanoma",
+      "topic": "Sunscreen and melanoma",
+      "label": "Melanoma",
+      "category": "health"
+    },
+    {
+      "claim": "Sunscreen causes cancer because of its chemicals",
+      "topic": "Sunscreen ingredients and cancer risk",
+      "label": "Sunscreen and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Daily sunscreen slows skin ageing and wrinkles",
+      "topic": "Sunscreen and skin ageing",
+      "label": "Skin ageing",
+      "category": "appearance"
+    },
+    {
+      "claim": "Sunscreen gives you a vitamin D deficiency",
+      "topic": "Sunscreen and vitamin D",
+      "label": "Vitamin D",
+      "category": "health"
+    },
+    {
+      "claim": "Sunscreen chemicals get into your blood and are harmful",
+      "topic": "Sunscreen ingredients in the blood",
+      "label": "Chemicals in the blood",
+      "category": "health"
+    },
+    {
+      "claim": "Avoiding the sun completely is the healthiest choice",
+      "topic": "Sun avoidance and death from any cause",
+      "label": "Avoiding the sun",
+      "category": "longevity"
+    },
+    {
+      "claim": "A base tan protects you from sunburn and skin damage",
+      "topic": "Tanning and protection from sunburn",
+      "label": "Base tan",
+      "category": "appearance"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Skin cancer (squamous cell, basal cell and melanoma)",
+      "population": "Adults in a randomised trial in Nambour, Australia (1,621 people), and in a meta-analysis of 29 mostly observational studies (313,717 participants)",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial per outcome; the melanoma result is from 33 cases and its interval nearly reaches no effect",
+        "The meta-analysis is mostly case-control studies, which can be misled by who chooses to use sunscreen",
+        "Large differences between studies (heterogeneity 89%)",
+        "In favour: a randomised trial found fewer squamous cell tumours and fewer invasive melanomas with daily use"
+      ],
+      "summary": "In the Nambour trial (1,621 adults, 4.5 years of daily sunscreen versus discretionary use), there was no significant difference in the number of people with a first new skin cancer: basal cell carcinoma rate ratio 1.03 (95% confidence interval 0.73 to 1.46), squamous cell carcinoma 0.88 (0.50 to 1.56). Counted by number of tumours, squamous cell carcinoma was lower with daily sunscreen (1115 versus 1832 per 100,000; rate ratio 0.61, 0.46 to 0.81), and basal cell carcinoma was not. Ten years after the trial ended there were 11 new melanomas in the daily group and 22 in the discretionary group (hazard ratio 0.50, 0.24 to 1.02); for invasive melanoma it was 3 versus 11 (0.27, 0.08 to 0.97). A 2018 meta-analysis of 29 studies (25 case-control) found no significant link between sunscreen use and skin cancer overall (odds ratio 1.08, 0.91 to 1.28), melanoma (1.10, 0.92 to 1.33) or non-melanoma skin cancer (0.99, 0.62 to 1.57), and its authors said it did not confirm the expected protective effect.",
+      "bottomLine": "In one Australian trial, daily sunscreen cut squamous cell skin tumours by about 40% and, in a long follow-up, invasive melanoma, though the melanoma result rests on few cases. A meta-analysis of mostly observational studies found no clear link either way, so the evidence is mixed.",
+      "label": "Skin cancer",
+      "line": "Fewer squamous cell tumours in one trial; observational studies show no clear link",
+      "studies": [
+        {
+          "pmid": "10475183",
+          "doi": "10.1016/s0140-6736(98)12168-2",
+          "title": "Daily sunscreen application and betacarotene supplementation in prevention of basal-cell and squamous-cell carcinomas of the skin: a randomised controlled trial.",
+          "year": 1999,
+          "studyType": "rct",
+          "n": 1621
+        },
+        {
+          "pmid": "21135266",
+          "doi": "10.1200/jco.2010.28.7078",
+          "title": "Reduced melanoma after regular sunscreen use: randomized trial follow-up.",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 1621
+        },
+        {
+          "pmid": "29620003",
+          "doi": "10.1684/ejd.2018.3251",
+          "title": "Use of sunscreen and risk of melanoma and non-melanoma skin cancer: a systematic review and meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 313717
+        }
+      ]
+    },
+    {
+      "outcome": "Sun spots (solar keratoses, a precancerous skin change)",
+      "population": "588 adults aged 40 and over in Australia, assigned to daily SPF 17 sunscreen or a base cream for one summer",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "A randomised, controlled trial with a dose-response link (more sunscreen used, fewer new spots)",
+        "One trial, lasting a single summer",
+        "Solar keratoses are a warning sign of squamous cell skin cancer, not cancer itself"
+      ],
+      "summary": "In a randomised trial of 588 Australians aged 40 and over, people applied broad-spectrum sunscreen (SPF 17) or the same cream without the sunscreen to the head, neck, forearms and hands for one summer. The average number of solar keratoses rose by 1.0 per person in the base-cream group and fell by 0.6 in the sunscreen group (difference 1.53, 95% confidence interval 0.81 to 2.25). The sunscreen group had fewer new lesions (rate ratio 0.62, 0.54 to 0.71) and more lesions that went away (odds ratio 1.53, 1.29 to 1.80). The more sunscreen a person used, the fewer new spots and the more remissions. The authors said this possibly reduces skin cancer risk in the long term.",
+      "bottomLine": "In a trial of 588 Australians, daily sunscreen over one summer led to about 40% fewer new sun spots (solar keratoses) than a base cream, and more existing spots disappeared. These spots are a warning sign for skin cancer, not cancer itself.",
+      "label": "Sun spots",
+      "line": "About 40% fewer new sun spots over one summer in a trial of 588 people",
+      "studies": [
+        {
+          "pmid": "8377777",
+          "doi": "10.1056/nejm199310143291602",
+          "title": "Reduction of solar keratoses by regular sunscreen use.",
+          "year": 1993,
+          "studyType": "rct",
+          "n": 588
+        }
+      ]
+    },
+    {
+      "outcome": "Skin ageing (photoageing)",
+      "population": "903 adults younger than 55 in Nambour, Australia, assigned to daily or discretionary sunscreen for 4.5 years",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trial with assessors who did not know the group",
+        "One trial, in one sunny region of Australia",
+        "Some outcome data were missing and the trial had modest power to detect moderate effects, as the authors state"
+      ],
+      "summary": "In the Nambour trial, 903 adults younger than 55 were randomly assigned to daily broad-spectrum sunscreen or discretionary use. Skin ageing was measured by the change in skin surface pattern (microtopography) between 1992 and 1996, graded by assessors who did not know the group. The daily sunscreen group showed no detectable increase in skin ageing after 4.5 years. Skin ageing was 24% less in the daily sunscreen group than in the discretionary group (relative odds 0.76, 95% confidence interval 0.59 to 0.98). The authors noted missing data and modest power.",
+      "bottomLine": "In a 4.5-year trial of 903 adults in Australia, daily sunscreen use led to about 24% less skin ageing, measured from the skin surface pattern, than using sunscreen only when chosen. The result is borderline in statistical terms and comes from one trial.",
+      "label": "Skin ageing",
+      "line": "About 24% less skin ageing after 4.5 years of daily use in one trial",
+      "studies": [
+        {
+          "pmid": "23732711",
+          "doi": "10.7326/0003-4819-158-11-201306040-00002",
+          "title": "Sunscreen and prevention of skin aging: a randomized trial.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 903
+        }
+      ]
+    },
+    {
+      "outcome": "Vitamin D level in the blood",
+      "population": "Adults in sunscreen trials: 113 Australians over 40 (one summer, SPF 17), 639 Australian adults (about one year, SPF 50+), and experiments under artificial UV light",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Two randomised trials point in different directions, and the sunscreens and amounts differ (SPF 17 versus SPF 50+)",
+        "The 2025 trial was open-label: people knew which group they were in",
+        "The 2019 review found few trials and none with high-SPF sunscreen at the time",
+        "Most observational studies found no association or higher vitamin D with sunscreen, which may reflect more time outdoors"
+      ],
+      "summary": "A 1995 randomised, double-blind trial of 113 Australians over 40 found 25-hydroxyvitamin D, the blood marker of vitamin D, rose significantly by about the same amount over the summer with sunscreen (SPF 17) or placebo cream (12.8 and 11.8 as reported), and no one fell outside the reference range. A 2019 review of 4 experimental studies, 3 field trials and 69 observational studies found that sunscreen strongly reduced vitamin D production under artificial UV light, but that the randomised field trials found no effect (with sunscreen around SPF 16) and observational studies mostly found no link, concluding there was little evidence that sunscreen lowers 25-hydroxyvitamin D in real life. The 2025 Sun-D trial (639 adults, SPF 50+ applied when UV index was forecast 3 or more, for about 1 year) found a between-group difference of -5.2 nmol/L (95% confidence interval -7.2 to -3.2), and vitamin D deficiency (below 50 nmol/L) in 45.7% of the daily group versus 36.9% of the control group (prevalence ratio 1.33, 1.14 to 1.55). The authors said regular sunscreen users may need vitamin D supplementation.",
+      "bottomLine": "Older trials using SPF 16 to 17 sunscreen found no drop in vitamin D, but a 2025 trial of daily SPF 50+ use found levels about 5 nmol/L lower and more people with deficiency (45.7% versus 36.9%). Vitamin D is a real trade-off for people who use sunscreen every day.",
+      "label": "Vitamin D",
+      "line": "No drop with SPF 16 to 17; about 5 nmol/L lower with daily SPF 50+ in 2025",
+      "studies": [
+        {
+          "pmid": "40927943",
+          "doi": "10.1093/bjd/ljaf310",
+          "title": "Effect of daily sunscreen application on vitamin D: findings from the open-label randomized controlled Sun-D Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 639
+        },
+        {
+          "pmid": "7726582",
+          "doi": "10.1001/archderm.1995.01690160043006",
+          "title": "The effect of regular sunscreen use on vitamin D levels in an Australian population. Results of a randomized controlled trial.",
+          "year": 1995,
+          "studyType": "rct",
+          "n": 113
+        },
+        {
+          "pmid": "30945275",
+          "doi": "10.1111/bjd.17980",
+          "title": "The effect of sunscreen on vitamin D: a review.",
+          "year": 2019,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause and sun avoidance",
+      "population": "29,518 Swedish women aged 25 to 64 followed for 20 years (Melanoma in Southern Sweden cohort)",
+      "effect": "harms",
+      "grade": "very low",
+      "whyThisGrade": [
+        "One observational study in women, so other differences between sun avoiders and others may explain the link",
+        "Sun avoiders may differ from others in ways the study did not measure",
+        "The study was about avoiding sun, not about sunscreen use",
+        "No trial has tested it"
+      ],
+      "summary": "In the Melanoma in Southern Sweden cohort, 29,518 women aged 25 to 64 answered detailed questions about their sun habits and were followed for 20 years; 2,545 died. All-cause mortality was inversely related to sun exposure habits: the death rate among women who avoided sun exposure was about twice as high as among those with the highest sun exposure, which the authors estimated as excess mortality with a population attributable risk of 3%. The authors suggested that very restrictive sun advice in countries with low solar intensity might be harmful, and linked it to the vitamin D hypothesis, which was not tested in the study.",
+      "bottomLine": "In one Swedish study of 29,518 women, those who avoided the sun had about twice the death rate over 20 years of those who got the most sun. It is one observational study and does not show that sun avoidance is the cause, or that sunscreen use has the same effect.",
+      "label": "Sun avoidance and death",
+      "line": "About twice the death rate in sun avoiders in one Swedish cohort of women (a link)",
+      "studies": [
+        {
+          "pmid": "24697969",
+          "doi": "10.1111/joim.12251",
+          "title": "Avoidance of sun exposure is a risk factor for all-cause mortality: results from the Melanoma in Southern Sweden cohort.",
+          "year": 2014,
+          "studyType": "observational",
+          "n": 29518
+        }
+      ]
+    },
+    {
+      "outcome": "Sunscreen ingredients in the blood",
+      "population": "Healthy volunteers: 24 people in one trial and 48 in another, in clinical units, with sunscreen applied to 75% of the body four times a day for four days",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Randomised trials, but small and at a deliberately high amount of use",
+        "They measured blood levels, not health effects",
+        "The authors say the clinical meaning is not known and the findings do not indicate that people should avoid sunscreen"
+      ],
+      "summary": "In a US trial of 24 healthy volunteers, four sunscreens (spray, lotion and cream) applied at 2 mg per cm2 to 75% of the body 4 times a day for 4 days led to blood levels above the 0.5 ng/mL threshold set by the US Food and Drug Administration (FDA) for further safety study, for all four products after the first day. The highest levels were for oxybenzone (169.3 to 209.6 ng/mL in three of the products) and lower for avobenzone (1.8 to 4.3 ng/mL), octocrylene and ecamsule. A second trial of 48 volunteers found all 6 ingredients tested (avobenzone, oxybenzone, octocrylene, homosalate, octisalate and octinoxate) were absorbed and passed that threshold after a single application. The most common side effect was rash (14 participants in the second trial). Both papers say the findings do not indicate that individuals should refrain from the use of sunscreen and that further studies are needed on the clinical significance.",
+      "bottomLine": "In two small trials with heavy use, active ingredients of common sunscreens passed into the blood at levels above the FDA's threshold for further safety testing. Whether this causes any harm is not known, and the authors say the results do not mean people should stop using sunscreen.",
+      "label": "Chemicals in the blood",
+      "line": "Ingredients entered the blood in two small trials; health meaning not yet known",
+      "studies": [
+        {
+          "pmid": "31058986",
+          "doi": "10.1001/jama.2019.5586",
+          "title": "Effect of Sunscreen Application Under Maximal Use Conditions on Plasma Concentration of Sunscreen Active Ingredients: A Randomized Clinical Trial.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 24
+        },
+        {
+          "pmid": "31961417",
+          "doi": "10.1001/jama.2019.20747",
+          "title": "Effect of Sunscreen Application on Plasma Concentration of Sunscreen Active Ingredients: A Randomized Clinical Trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 48
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Skin cancer and sunscreen: a trial and a meta-analysis",
+      "caption": "Ratios with 95% confidence intervals for daily or frequent sunscreen use compared with discretionary use or no use (1 = no difference; below 1 = less cancer). The trial rows are rate ratios or hazard ratios from the Nambour trial; the meta-analysis rows are odds ratios from mostly case-control studies. Intervals that cross 1 could be chance.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "No daily sunscreen (comparison)"
+      },
+      "items": [
+        {
+          "label": "Basal cell carcinoma, first new cancer",
+          "value": 1.03,
+          "low": 0.73,
+          "high": 1.46,
+          "note": "Nambour trial, 4.5 years, rate ratio (1999)"
+        },
+        {
+          "label": "Squamous cell carcinoma, first new cancer",
+          "value": 0.88,
+          "low": 0.5,
+          "high": 1.56,
+          "note": "Nambour trial, rate ratio (1999)"
+        },
+        {
+          "label": "Squamous cell tumours (number of tumours)",
+          "value": 0.61,
+          "low": 0.46,
+          "high": 0.81,
+          "note": "Nambour trial, rate ratio (1999)"
+        },
+        {
+          "label": "Melanoma, 10 years after the trial",
+          "value": 0.5,
+          "low": 0.24,
+          "high": 1.02,
+          "note": "33 melanomas, hazard ratio (2011)"
+        },
+        {
+          "label": "Invasive melanoma, 10 years after the trial",
+          "value": 0.27,
+          "low": 0.08,
+          "high": 0.97,
+          "note": "14 invasive melanomas, hazard ratio (2011)"
+        },
+        {
+          "label": "Any skin cancer, 29 studies",
+          "value": 1.08,
+          "low": 0.91,
+          "high": 1.28,
+          "note": "Meta-analysis, 313,717 participants, odds ratio (2018)"
+        },
+        {
+          "label": "Melanoma, 25 studies",
+          "value": 1.1,
+          "low": 0.92,
+          "high": 1.33,
+          "note": "Meta-analysis, odds ratio (2018)"
+        },
+        {
+          "label": "Non-melanoma skin cancer, 5 studies",
+          "value": 0.99,
+          "low": 0.62,
+          "high": 1.57,
+          "note": "Meta-analysis, odds ratio (2018)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "10475183",
+          "doi": "10.1016/s0140-6736(98)12168-2",
+          "title": "Daily sunscreen application and betacarotene supplementation in prevention of basal-cell and squamous-cell carcinomas of the skin: a randomised controlled trial.",
+          "year": 1999,
+          "studyType": "rct",
+          "n": 1621
+        },
+        {
+          "pmid": "21135266",
+          "doi": "10.1200/jco.2010.28.7078",
+          "title": "Reduced melanoma after regular sunscreen use: randomized trial follow-up.",
+          "year": 2011,
+          "studyType": "rct",
+          "n": 1621
+        },
+        {
+          "pmid": "29620003",
+          "doi": "10.1684/ejd.2018.3251",
+          "title": "Use of sunscreen and risk of melanoma and non-melanoma skin cancer: a systematic review and meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 313717
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Sun spots, skin ageing and vitamin D in daily-sunscreen trials",
+      "caption": "Ratios with 95% confidence intervals for daily sunscreen compared with a base cream or discretionary use in three randomised trials (1 = no difference). Below 1 is less of the outcome for the first two rows (new sun spots, skin ageing); above 1 is more people with vitamin D deficiency. The trials used different sunscreens (SPF 17, broad-spectrum SPF 15 or higher, and SPF 50+) in different groups of Australian adults.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Base cream or discretionary use (comparison)"
+      },
+      "items": [
+        {
+          "label": "New sun spots (solar keratoses), rate ratio",
+          "value": 0.62,
+          "low": 0.54,
+          "high": 0.71,
+          "note": "588 adults over 40, one summer, SPF 17 (1993)"
+        },
+        {
+          "label": "Skin ageing, relative odds",
+          "value": 0.76,
+          "low": 0.59,
+          "high": 0.98,
+          "note": "903 adults under 55, 4.5 years (2013)"
+        },
+        {
+          "label": "Vitamin D deficiency, prevalence ratio",
+          "value": 1.33,
+          "low": 1.14,
+          "high": 1.55,
+          "note": "639 adults, about 1 year, SPF 50+ (2025)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "8377777",
+          "doi": "10.1056/nejm199310143291602",
+          "title": "Reduction of solar keratoses by regular sunscreen use.",
+          "year": 1993,
+          "studyType": "rct",
+          "n": 588
+        },
+        {
+          "pmid": "23732711",
+          "doi": "10.7326/0003-4819-158-11-201306040-00002",
+          "title": "Sunscreen and prevention of skin aging: a randomized trial.",
+          "year": 2013,
+          "studyType": "rct",
+          "n": 903
+        },
+        {
+          "pmid": "40927943",
+          "doi": "10.1093/bjd/ljaf310",
+          "title": "Effect of daily sunscreen application on vitamin D: findings from the open-label randomized controlled Sun-D Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 639
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "Vitamin D in two trials of daily sunscreen",
+      "caption": "Two randomised trials 30 years apart measured vitamin D (25-hydroxyvitamin D) in blood. They used different sunscreens and designs, so the numbers are not directly comparable. Both ran in Australia.",
+      "steps": [
+        {
+          "label": "1995 trial: summer, SPF 17",
+          "text": "113 people aged 40 and over used sunscreen or a placebo cream every day over one summer. The trial was double-blind."
+        },
+        {
+          "label": "1995 result: no difference",
+          "text": "25-hydroxyvitamin D rose significantly by about the same amount in both groups (12.8 with placebo, 11.8 with sunscreen). No one went outside the reference range."
+        },
+        {
+          "label": "2025 trial: about a year, SPF 50+",
+          "text": "639 adults applied SPF 50+ sunscreen on days when the UV index was forecast to reach 3 or more, or used it as they chose. The trial was open-label."
+        },
+        {
+          "label": "2025 result: lower vitamin D",
+          "text": "Average change from baseline was +1.6 nmol/L with routine use and +6.8 nmol/L with discretionary use, a difference of -5.2 nmol/L (95% confidence interval -7.2 to -3.2)."
+        },
+        {
+          "label": "2025 result: more deficiency",
+          "text": "Vitamin D deficiency (below 50 nmol/L) was found in 45.7% of the routine group and 36.9% of the discretionary group."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "7726582",
+          "doi": "10.1001/archderm.1995.01690160043006",
+          "title": "The effect of regular sunscreen use on vitamin D levels in an Australian population. Results of a randomized controlled trial.",
+          "year": 1995,
+          "studyType": "rct",
+          "n": 113
+        },
+        {
+          "pmid": "40927943",
+          "doi": "10.1093/bjd/ljaf310",
+          "title": "Effect of daily sunscreen application on vitamin D: findings from the open-label randomized controlled Sun-D Trial.",
+          "year": 2025,
+          "studyType": "rct",
+          "n": 639
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Low vitamin D or a risk of it (older age, dark skin, little time outdoors, winter at high latitude)",
+      "note": "The newest trial found lower vitamin D with daily high-SPF sunscreen, and its authors said regular users may need vitamin D supplementation. A blood test for vitamin D and a talk with a doctor can show where you stand."
+    },
+    {
+      "with": "A history of skin cancer, many moles, or a mole that is new or changing",
+      "note": "Skin cancer is best found early. A doctor or dermatologist can check skin and moles and say what protection fits your situation."
+    },
+    {
+      "with": "Skin that reacts to sunscreen",
+      "note": "Rash was the most common side effect in the absorption trials (1 participant per product in one, 14 participants in the other). A doctor or pharmacist can suggest what to try if a product irritates."
+    }
+  ],
+  "cautions": [
+    "The sunscreen trials on this page ran in Australia. How well the results carry over to other skin types and to places with weaker sun is less certain.",
+    "Sunscreen is only one part of sun protection. This page has no graded finding on clothing, shade or avoiding midday sun, because it did not find trials of them that could be graded here.",
+    "The sunscreen absorption trials used much more sunscreen, much more often, than people usually do. Their authors said the results do not mean people should stop using sunscreen.",
+    "Sun avoidance and sunscreen are different things. The Swedish link between sun avoidance and death says nothing on its own about sunscreen."
+  ],
+  "unknowns": [
+    "Whether sunscreen prevents melanoma is not settled: the randomised result rests on few cases and the observational studies show no clear link.",
+    "No trial of the high-SPF sunscreens that are now widely used had measured vitamin D before the 2025 trial, and it is one trial.",
+    "Whether the sunscreen ingredients found in blood cause any harm is not known; the authors call for more studies.",
+    "Whether avoiding the sun raises the risk of death, or whether sun avoiders simply differ in other ways, has not been tested in a trial.",
+    "How well clothing, shade and timing outdoor activity work for preventing skin cancer is not graded on this page."
+  ],
+  "sources": [
+    {
+      "pmid": "10475183",
+      "doi": "10.1016/s0140-6736(98)12168-2",
+      "title": "Daily sunscreen application and betacarotene supplementation in prevention of basal-cell and squamous-cell carcinomas of the skin: a randomised controlled trial.",
+      "year": 1999,
+      "studyType": "rct",
+      "n": 1621
+    },
+    {
+      "pmid": "8377777",
+      "doi": "10.1056/nejm199310143291602",
+      "title": "Reduction of solar keratoses by regular sunscreen use.",
+      "year": 1993,
+      "studyType": "rct",
+      "n": 588
+    },
+    {
+      "pmid": "23732711",
+      "doi": "10.7326/0003-4819-158-11-201306040-00002",
+      "title": "Sunscreen and prevention of skin aging: a randomized trial.",
+      "year": 2013,
+      "studyType": "rct",
+      "n": 903
+    },
+    {
+      "pmid": "40927943",
+      "doi": "10.1093/bjd/ljaf310",
+      "title": "Effect of daily sunscreen application on vitamin D: findings from the open-label randomized controlled Sun-D Trial.",
+      "year": 2025,
+      "studyType": "rct",
+      "n": 639
+    },
+    {
+      "pmid": "29620003",
+      "doi": "10.1684/ejd.2018.3251",
+      "title": "Use of sunscreen and risk of melanoma and non-melanoma skin cancer: a systematic review and meta-analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 313717
+    }
+  ]
+}

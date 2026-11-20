@@ -4,19 +4,9 @@
  * words), reviews of any design count (most of what is known about habits comes from studies that follow
  * people over years), and the question asks about a habit or exposure.
  */
-import type { Question } from "@bt/shared/core/evidenceMap";
+
+import { all, any, CVD, DEATH, GENERAL, q, w } from "./lifestyleHelpers";
 import type { TopicDef } from "./topics";
-
-/** Any of these words or word starts in a title, any case. */
-const w = (...x: string[]) => new RegExp(`\\b(${x.join("|")})`, "i");
-/** Any of these in the title or abstract (Europe PMC syntax; phrases quoted). */
-const any = (...x: string[]) => `(${x.map((p) => `TITLE_ABS:${/[\s-]/.test(p) ? `"${p}"` : p}`).join(" OR ")})`;
-const all = (...groups: string[]) => groups.join(" AND ");
-const q = (population: string, intervention: string, comparison: string, outcome: string): Question => ({ population, intervention, comparison, outcome });
-
-const GENERAL = "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)";
-const DEATH = any("mortality", "death", "deaths");
-const CVD = any("cardiovascular", "coronary", "heart disease", "stroke", "myocardial infarction");
 
 // ---- Walking
 const STEPS = any("daily steps", "step count", "step counts", "steps per day", "pedometer", "pedometers", "walking");
