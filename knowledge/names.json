@@ -51,15 +51,5 @@
     { "name": "Walnuts" },
     { "name": "Watermelon" }
   ],
-  "lifestyle": [
-    { "name": "High-intensity interval training (HIIT)" },
-    { "name": "Hyperbaric oxygen chamber" },
-    { "name": "Keto diet" },
-    { "name": "Low-calorie diet" },
-    { "name": "Paleo diet" },
-    { "name": "UV protection" },
-    { "name": "Vegan diet" },
-    { "name": "Weight lifting" },
-    { "name": "Zone 2 cardio" }
-  ]
+  "lifestyle": []
 }

@@ -39,6 +39,14 @@ describe("knowledge base: lifestyle", () => {
 
   it("rejects a visual without numbers that fit", () => {
     const base = { title: "T", caption: "C", sources: [{ pmid: "1", title: "S", year: 2020, studyType: "review" }] };
+    const flow0 = {
+      ...base,
+      kind: "flow",
+      steps: [
+        { label: "a", text: "b" },
+        { label: "c", text: "d" },
+      ],
+    };
     const entry = (visual: unknown) => ({
       id: "x",
       name: "X",
@@ -48,6 +56,11 @@ describe("knowledge base: lifestyle", () => {
       howItWorks: ["H"],
       whatStudiesDid: "W",
       markers: [],
+      claims: [
+        { claim: "It helps one thing", topic: "one thing", label: "One thing", category: "health" },
+        { claim: "It helps another thing", topic: "another thing", label: "Another thing", category: "health" },
+        { claim: "It helps a third thing", topic: "a third thing", label: "Third thing", category: "longevity" },
+      ],
       findings: [{ outcome: "O", population: "P", effect: "helps", grade: "low", whyThisGrade: ["w"], summary: "S", studies: base.sources }],
       visuals: [visual],
       whoShouldBeCareful: [],
@@ -83,6 +96,12 @@ describe("knowledge base: lifestyle", () => {
         }),
       ),
     ).toEqual([]);
+    // Common claims: at least 3, plain topics, unique.
+    const withClaims = (claims: unknown) => ({ ...entry({ ...flow0 }), claims });
+    expect(validateLifestyleDef(withClaims([]))).toContain("claims needs at least 3 common claims");
+    const c = (claim: string, topic = "a topic") => ({ claim, topic, label: "Label", category: "health" });
+    expect(validateLifestyleDef(withClaims([c("a"), c("a"), c("b")]))).toContain("duplicate claim: a");
+    expect(validateLifestyleDef(withClaims([c("a", "50% more"), c("b"), c("c")]))).toContain("claim topic is not a plain public topic: 50% more");
     // Not a habit (sleep): needs a marker to link to instead.
     const flow = {
       ...base,

@@ -1,3 +1,4 @@
+import { CLAIM_CATEGORIES, type ClaimCategory, publicClaimTopic } from "./claimEvidence";
 import { citationErrors, findingErrors, type NutrientFinding, PRESCRIBING } from "./nutrients";
 import type { Citation, SafetyId } from "./types";
 
@@ -9,8 +10,8 @@ import type { Citation, SafetyId } from "./types";
  * Every number in a visual comes from a cited source; the app draws it, it never invents one.
  */
 
-export type LifestyleCategory = "movement" | "heat and cold" | "light" | "sleep" | "breathing and mind";
-export const LIFESTYLE_CATEGORIES: readonly LifestyleCategory[] = ["movement", "heat and cold", "light", "sleep", "breathing and mind"];
+export type LifestyleCategory = "movement" | "heat and cold" | "light" | "sleep" | "breathing and mind" | "diet";
+export const LIFESTYLE_CATEGORIES: readonly LifestyleCategory[] = ["movement", "heat and cold", "light", "sleep", "breathing and mind", "diet"];
 
 /** Bars, each with an optional interval: hazard ratios against a reference group, or amounts. */
 export interface BarsVisual {
@@ -77,6 +78,11 @@ export interface LifestyleDef {
   markers: string[];
   /** false when it isn't something you start or add to a protocol (sleep): the page links to the first marker's chart instead. */
   asHabit?: boolean;
+  /**
+   * Things people say this does, each checkable on demand with Brain (never a finding: the graded findings below are the reviewed ones).
+   * `claim` is the wording shown, `topic` the outcome searched (letters, digits, spaces and , ( ) ' ’ / - only), `label` a short name.
+   */
+  claims: { claim: string; topic: string; label: string; category: ClaimCategory }[];
   findings: NutrientFinding[];
   visuals: LifestyleVisual[];
   /** People who should be careful, or check with a doctor first. */
@@ -147,6 +153,21 @@ export function validateLifestyleDef(v: unknown): string[] {
   if (v.asHabit !== undefined && typeof v.asHabit !== "boolean") errs.push("asHabit must be true or false");
   if (v.asHabit === false && !(Array.isArray(v.markers) && v.markers.length > 0)) errs.push("an entry that isn't a habit needs a marker to link to");
   errs.push(...findingErrors(v.findings, "finding"));
+  if (!Array.isArray(v.claims) || v.claims.length < 3) errs.push("claims needs at least 3 common claims");
+  else {
+    const seen = new Set<string>();
+    for (const c of v.claims as unknown[]) {
+      if (!isObj(c) || !isStr(c.claim) || !isStr(c.topic) || !isStr(c.label) || !(CLAIM_CATEGORIES as readonly unknown[]).includes(c.category)) {
+        errs.push("every claim needs a claim, topic, label and category (health, longevity or appearance)");
+        continue;
+      }
+      if (c.claim.length > 180) errs.push(`claim too long: ${c.claim}`);
+      if (c.label.length < 3 || c.label.length > 34) errs.push(`claim label must be 3 to 34 characters: ${c.label}`);
+      if (publicClaimTopic(c.topic) !== c.topic) errs.push(`claim topic is not a plain public topic: ${c.topic}`);
+      if (seen.has(c.claim)) errs.push(`duplicate claim: ${c.claim}`);
+      seen.add(c.claim);
+    }
+  }
   if (Array.isArray(v.findings) && v.findings.length === 0) errs.push("findings needs at least one finding");
   if (!Array.isArray(v.visuals) || v.visuals.length === 0) errs.push("visuals needs at least one visual");
   else (v.visuals as unknown[]).forEach((x, i) => errs.push(...visualErrors(x, `visual ${i + 1}`)));
@@ -166,6 +187,7 @@ export function lifestyleText(l: LifestyleDef): string[] {
   return [
     l.summary,
     l.whatStudiesDid,
+    ...l.claims.flatMap((c) => [c.claim, c.label]),
     ...l.howItWorks,
     ...l.findings.flatMap((f) => [f.outcome, f.population, f.summary, f.bottomLine ?? "", f.label ?? "", f.line ?? "", ...f.whyThisGrade]),
     ...l.visuals.flatMap((v) => [v.title, v.caption]),

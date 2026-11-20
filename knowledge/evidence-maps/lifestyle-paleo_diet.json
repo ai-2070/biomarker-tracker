@@ -1,0 +1,694 @@
+{
+ "topic": "lifestyle-paleo_diet",
+ "kind": "lifestyle",
+ "lifestyleId": "paleo_diet",
+ "name": "paleo diet",
+ "builtAt": "2026-11-20",
+ "fetchedAt": "2026-11-20",
+ "source": "Europe PMC (PubMed records)",
+ "queries": {
+  "weight": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:weight OR TITLE_ABS:\"body weight\" OR TITLE_ABS:obesity OR TITLE_ABS:overweight OR TITLE_ABS:waist OR TITLE_ABS:\"body composition\" OR TITLE_ABS:\"body fat\" OR TITLE_ABS:anthropometric)) AND SRC:MED",
+  "metabolic": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:\"metabolic syndrome\" OR TITLE_ABS:triglycerides OR TITLE_ABS:\"blood pressure\" OR TITLE_ABS:cardiovascular OR TITLE_ABS:lipids OR TITLE_ABS:cardiometabolic OR TITLE_ABS:cholesterol)) AND SRC:MED",
+  "diabetes": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:\"type 2 diabetes\" OR TITLE_ABS:diabetes OR TITLE_ABS:\"glycemic control\" OR TITLE_ABS:\"glycaemic control\" OR TITLE_ABS:\"insulin sensitivity\" OR TITLE_ABS:HbA1c)) AND SRC:MED",
+  "long-term": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:mortality OR TITLE_ABS:death OR TITLE_ABS:cohort OR TITLE_ABS:incidence OR TITLE_ABS:\"cardiovascular disease\" OR TITLE_ABS:\"cancer risk\" OR TITLE_ABS:prospective OR TITLE_ABS:longevity)) AND SRC:MED",
+  "gut": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:\"gut microbiota\" OR TITLE_ABS:\"gut microbiome\" OR TITLE_ABS:microbiome OR TITLE_ABS:microbiota OR TITLE_ABS:TMAO OR TITLE_ABS:trimethylamine OR TITLE_ABS:\"short chain fatty acids\" OR TITLE_ABS:fibre OR TITLE_ABS:fiber)) AND SRC:MED",
+  "nutrients": "((TITLE_ABS:\"paleolithic diet\" OR TITLE_ABS:\"palaeolithic diet\" OR TITLE_ABS:\"paleo diet\" OR TITLE_ABS:\"paleolithic nutrition\" OR TITLE_ABS:\"palaeolithic nutrition\" OR TITLE_ABS:\"paleolithic-type diet\" OR TITLE_ABS:\"paleolithic dietary\" OR TITLE_ABS:\"stone age diet\") AND (TITLE_ABS:iodine OR TITLE_ABS:calcium OR TITLE_ABS:\"nutrient intake\" OR TITLE_ABS:\"nutritional adequacy\" OR TITLE_ABS:micronutrient OR TITLE_ABS:micronutrients OR TITLE_ABS:bone OR TITLE_ABS:\"vitamin D\" OR TITLE_ABS:dairy)) AND SRC:MED"
+ },
+ "rules": [
+  "Each finding has its own written search of every PubMed record in Europe PMC (titles and abstracts); all reviews, randomised trials and guidelines it found were downloaded.",
+  "Left out animal studies (MeSH tags, or the title when there are none) and retracted papers.",
+  "A review counts for a finding when the finding's search found it and the finding's words are in its title.",
+  "Reviews: meta-analyses or systematic reviews of any design, because most of what is known about habits like walking, sleep or sauna comes from studies that follow people over years, as well as from trials. Chosen: the three newest meta-analyses (systematic reviews only if fewer than three), plus the most comprehensive one (most studies pooled, read from the abstract). Citations are shown but do not choose.",
+  "Newer large trials: randomised trials of at least 1,000 people (read from the abstract) from the year of the newest chosen review on, which those reviews may not include.",
+  "Only decisions with matching title, abstract, question and screening mode and known per-decision model attribution may select reviews. Missing, legacy or stale decisions remain unscreened. Current decisions and their provenance are listed per finding; not yet checked by a clinician.",
+  "Overlap between the chosen reviews isn't shown: they mostly pool cohort studies, which aren't downloaded, so shared studies can't be counted reliably."
+ ],
+ "counts": {
+  "all": 145,
+  "retrieved": 42,
+  "animal": 0,
+  "retracted": 0,
+  "reviews": 17,
+  "trials": 25,
+  "guidelines": 0
+ },
+ "guidelines": [],
+ "outcomes": [
+  {
+   "id": "weight",
+   "label": "Weight and waist",
+   "anyDesign": true,
+   "finding": "Body weight, waist and body fat",
+   "counts": {
+    "all": 82,
+    "reviews": 2,
+    "trialReviews": 2,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41129328",
+     "doi": "10.1080/10408398.2025.2576815",
+     "title": "The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials",
+     "year": 2026,
+     "firstAuthor": "Bahrami M",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 0,
+     "n": 19,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2026); screened as answering the question"
+    },
+    {
+     "pmid": "31337389",
+     "doi": "10.1186/s12937-019-0457-z",
+     "title": "Influence of Paleolithic diet on anthropometric markers in chronic diseases: systematic review and meta-analysis",
+     "year": 2019,
+     "firstAuthor": "de Menezes EVA",
+     "journal": "Nutrition journal",
+     "citedBy": 25,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2019); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 3
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2022,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "31337389"
+    ],
+    "citedNotChosen": [
+     "31041449",
+     "24473459"
+    ],
+    "citedNotEligible": [
+     "31041449",
+     "24473459"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41129328",
+      "doi": "10.1080/10408398.2025.2576815",
+      "title": "The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials",
+      "year": 2026,
+      "firstAuthor": "Bahrami M",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 0,
+      "n": 19,
+      "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, most with overweight or a chronic illness (reviews of one illness count as partly)",
+     "intervention": "A paleo diet",
+     "comparison": "Guideline-based or usual diets",
+     "outcome": "Body weight, waist size or body fat"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [
+     {
+      "pmid": "41129328",
+      "fits": "yes",
+      "reason": "Pools RCTs of the Paleolithic diet that report body weight and BMI; the abstract does not state the comparison diets or the population.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with overweight or a chronic illness (reviews of one illness count as partly)\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Body weight, waist size or body fat\",\"41129328\",2026,\"The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials.\",\"This systematic review and meta-analysis evaluate the effects of the Paleolithic diet on cardiometabolic parameters and chronic disease outcomes by combining evidence from interventional and observational studies. We analyzed 19 randomized controlled trials (RCTs) and 12 prospective cohort studies identified through systematic searches. Both random-effects and fixed-effects meta-analyses, along with dose-response evaluations, were conducted for cohort studies. A fixed-effects model was applied when fewer than five comparisons were available to ensure model stability with limited data. Meta-analysis of RCTs demonstrated significant improvements in cardiometabolic markers including, fasting insulin [Weighted Mean Differences (WMD -1.01 [-1.45, -0.57], p < 0.001], total cholesterol (WMD -0.15, [-0.24, -0.07], p < 0.001), low-density lipoprotein cholesterol (WMD -0.24, [-0.40, -0.08], p = 0.003), triglycerides (WMD -0.16, [-0.24, -0.08], p < 0.001), body weight (WMD -1.74, [-2.57, -0.91], p < 0.001), body mass index (WMD -1.12, [-1.42, -0.82], p < 0.001), and diastolic blood pressure (WMD -3.28, [-4.55, -2.01], p < 0.001). Cohort studies revealed 10% lower all-cause mortality risk (RR: 0.90, 95% CI: 0.87-0.94, p < 0.001), 10% reduced cancer mortality (RR: 0.90, 95% CI: 0.85-0.97, p = 0.004), and 16% lower coronary heart disease incidence (RR: 0.84, 95% CI: 0.70-1.00, p = 0.05) among high adherers. The Paleolithic diet may provide significant benefits for cardiometabolic health and potentially lower the risk of chronic disease.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with overweight or a chronic illness (reviews of one illness count as partly)\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Body weight, waist size or body fat\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 41129328 (2026)\\nTitle: The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials.\\nAbstract: This systematic review and meta-analysis evaluate the effects of the Paleolithic diet on cardiometabolic parameters and chronic disease outcomes by combining evidence from interventional and observational studies. We analyzed 19 randomized controlled trials (RCTs) and 12 prospective cohort studies identified through systematic searches. Both random-effects and fixed-effects meta-analyses, along with dose-response evaluations, were conducted for cohort studies. A fixed-effects model was applied when fewer than five comparisons were available to ensure model stability with limited data. Meta-analysis of RCTs demonstrated significant improvements in cardiometabolic markers including, fasting insulin [Weighted Mean Differences (WMD -1.01 [-1.45, -0.57], p < 0.001], total cholesterol (WMD -0.15, [-0.24, -0.07], p < 0.001), low-density lipoprotein cholesterol (WMD -0.24, [-0.40, -0.08], p = 0.003), triglycerides (WMD -0.16, [-0.24, -0.08], p < 0.001), body weight (WMD -1.74, [-2.57, -0.91], p < 0.001), body mass index (WMD -1.12, [-1.42, -0.82], p < 0.001), and diastolic blood pressure (WMD -3.28, [-4.55, -2.01], p < 0.001). Cohort studies revealed 10% lower all-cause mortality risk (RR: 0.90, 95% CI: 0.87-0.94, p < 0.001), 10% reduced cancer mortality (RR: 0.90, 95% CI: 0.85-0.97, p = 0.004), and 16% lower coronary heart disease incidence (RR: 0.84, 95% CI: 0.70-1.00, p = 0.05) among high adherers. The Paleolithic diet may provide significant benefits for cardiometabolic health and potentially lower the risk of chronic disease.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "31337389",
+      "fits": "yes",
+      "reason": "Pools RCTs in adults with chronic disease comparing a Paleolithic diet with guideline-based diets on weight, BMI and waist size.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with overweight or a chronic illness (reviews of one illness count as partly)\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Body weight, waist size or body fat\",\"31337389\",2019,\"Influence of Paleolithic diet on anthropometric markers in chronic diseases: systematic review and meta-analysis.\",\"Background The Paleolithic diet has been studied in the scope of prevention and control of chronic noncommunicable diseases (CNCD). The objective of this study was to analyze the influence of the Paleolithic diet on the prevention and control of CNCD in humans, specifically on anthropometric markers, through a systematic review with meta-analysis. Methods What is the effect of the Paleolithic diet on anthropometric parameters (weight, body mass index and waist circumference) compared to other control diets based on recommendations in adults? We included only randomized studies with humans that used the Paleolithic Diet in the prevention and control of CNCD published in Portuguese, English or Spanish. The search period was until March 2019, in the LILACS, PubMed, Scielo, Science Direct, Medline, Web of Science and Scopus databases. The abstracts were evaluated by two researchers. We found 1224 articles, of which 24 were selected and 11 were included in the meta-analysis. The effect of dietary use on body weight, body mass index and waist circumference was evaluated. Results The summary of the effect showed a loss of - 3.52 kg in the mean weight (CI 95%: - 5.26; - 1.79; p < 0,001; I2 = 24%) of people who adopted the Paleolithic diet compared to diets based on recommendations. The analysis showed a positive association of adopting the Paleolithic diet in relation to weight loss. The effect was significant on weight, body mass index and waist circumference. Conclusion The Paleolithic diet may assist in controlling weight and waist circumference and in the management of chronic diseases. However, more randomized clinical studies with larger populations and duration are necessary to prove health benefits. Trial registration CRD42015027849 .\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with overweight or a chronic illness (reviews of one illness count as partly)\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Body weight, waist size or body fat\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 31337389 (2019)\\nTitle: Influence of Paleolithic diet on anthropometric markers in chronic diseases: systematic review and meta-analysis.\\nAbstract: Background The Paleolithic diet has been studied in the scope of prevention and control of chronic noncommunicable diseases (CNCD). The objective of this study was to analyze the influence of the Paleolithic diet on the prevention and control of CNCD in humans, specifically on anthropometric markers, through a systematic review with meta-analysis. Methods What is the effect of the Paleolithic diet on anthropometric parameters (weight, body mass index and waist circumference) compared to other control diets based on recommendations in adults? We included only randomized studies with humans that used the Paleolithic Diet in the prevention and control of CNCD published in Portuguese, English or Spanish. The search period was until March 2019, in the LILACS, PubMed, Scielo, Science Direct, Medline, Web of Science and Scopus databases. The abstracts were evaluated by two researchers. We found 1224 articles, of which 24 were selected and 11 were included in the meta-analysis. The effect of dietary use on body weight, body mass index and waist circumference was evaluated. Results The summary of the effect showed a loss of - 3.52 kg in the mean weight (CI 95%: - 5.26; - 1.79; p < 0,001; I2 = 24%) of people who adopted the Paleolithic diet compared to diets based on recommendations. The analysis showed a positive association of adopting the Paleolithic diet in relation to weight loss. The effect was significant on weight, body mass index and waist circumference. Conclusion The Paleolithic diet may assist in controlling weight and waist circumference and in the management of chronic diseases. However, more randomized clinical studies with larger populations and duration are necessary to prove health benefits. Trial registration CRD42015027849 .\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     }
+    ],
+    "counts": {
+     "yes": 2,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "metabolic",
+   "label": "Blood fats and blood pressure",
+   "anyDesign": true,
+   "finding": "Triglycerides, blood pressure and other metabolic syndrome measures",
+   "counts": {
+    "all": 66,
+    "reviews": 5,
+    "trialReviews": 5,
+    "trials": 5,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "33492173",
+     "doi": "10.1080/10408398.2021.1876625",
+     "title": "The effect of paleolithic diet on glucose metabolism and lipid profile among patients with metabolic disorders: a systematic review and meta-analysis of randomized controlled trials",
+     "year": 2022,
+     "firstAuthor": "Sohouli MH",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 19,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2022); screened as answering the question"
+    },
+    {
+     "pmid": "31041449",
+     "doi": "10.1093/advances/nmz007",
+     "title": "Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+     "year": 2019,
+     "firstAuthor": "Ghaedi E",
+     "journal": "Advances in nutrition (Bethesda, Md.)",
+     "citedBy": 65,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2019); screened as answering the question"
+    },
+    {
+     "pmid": "26269362",
+     "doi": "10.3945/ajcn.115.113613",
+     "title": "Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis",
+     "year": 2015,
+     "firstAuthor": "Manheimer EW",
+     "journal": "The American journal of clinical nutrition",
+     "citedBy": 100,
+     "n": 159,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2015); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2014,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2015,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 2,
+     "trials": 0
+    },
+    {
+     "year": 2022,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [
+     "26269362",
+     "31041449"
+    ],
+    "citedNotChosen": [
+     "24473459"
+    ],
+    "citedNotEligible": [
+     "24473459"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "33492173",
+      "doi": "10.1080/10408398.2021.1876625",
+      "title": "The effect of paleolithic diet on glucose metabolism and lipid profile among patients with metabolic disorders: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2022,
+      "firstAuthor": "Sohouli MH",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 19,
+      "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2022); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults, most with metabolic syndrome or overweight",
+     "intervention": "A paleo diet",
+     "comparison": "Guideline-based or usual diets",
+     "outcome": "Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [
+     {
+      "pmid": "31041449",
+      "fits": "yes",
+      "reason": "Meta-analysis of RCTs comparing a paleo diet with control diets in adults, with pooled triglycerides, blood pressure and HDL; the population isn't limited to metabolic syndrome.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with metabolic syndrome or overweight\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\",\"31041449\",2019,\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\",\"There is some evidence supporting the beneficial effects of a Paleolithic Diet (PD) on cardiovascular disease risk factors. This diet advises consuming lean meat, fish, vegetables, fruits, and nuts and avoiding intake of grains, dairy products, processed foods, and added sugar and salt. This study was performed to assess the effects of a PD on cardiovascular disease risk factors including anthropometric indexes, lipid profile, blood pressure, and inflammatory markers using data from randomized controlled trials. A comprehensive search was performed in the PubMed, Scopus, ISI Web of Science, and Google Scholar databases up to August, 2018. A meta-analysis was performed using a random-effects model to estimate the pooled effect size. Meta-analysis of 8 eligible studies revealed that a PD significantly reduced body weight [weighted mean difference (WMD) = -2.17 kg; 95% CI: -3.48, -0.87 kg], waist circumference (WMD = -2.90 cm; 95% CI: -4.51, -1.28 cm), body mass index (in kg/m2) (WMD = -1.15; 95% CI: -1.68, -0.62), body fat percentage (WMD = -1.38%; 95% CI: -2.08%, -0.67%), systolic (WMD = -4.24 mm Hg; 95% CI: -7.11, -1.38 mm Hg) and diastolic (WMD = -2.95 mm Hg; 95% CI: -4.72, -1.18 mm Hg) blood pressure, and circulating concentrations of total cholesterol (WMD = -0.22 mg/dL; 95% CI: -0.42, -0.03 mg/dL), TGs (WMD = -0.23 mg/dL; 95% CI: -0.46, -0.01 mg/dL), LDL cholesterol (WMD = -0.13 mg/dL; 95% CI: -0.25, -0.01 mg/dL), and C-reactive protein (CRP) (WMD = -0.41 mg/L; 95% CI: -0.81, -0.008 mg/L) and also significantly increased HDL cholesterol (WMD = 0.05 mg/dL; 95% CI: 0.005, 0.10 mg/dL). However, sensitivity analysis revealed that the overall effects of a PD on lipid profile, blood pressure, and circulating CRP concentrations were significantly influenced by removing some studies, hence the results must be interpreted with caution. Although the present meta-analysis revealed that a PD has favorable effects on cardiovascular disease risk factors, the evidence is not conclusive and more well-designed trials are still needed.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with metabolic syndrome or overweight\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 31041449 (2019)\\nTitle: Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\\nAbstract: There is some evidence supporting the beneficial effects of a Paleolithic Diet (PD) on cardiovascular disease risk factors. This diet advises consuming lean meat, fish, vegetables, fruits, and nuts and avoiding intake of grains, dairy products, processed foods, and added sugar and salt. This study was performed to assess the effects of a PD on cardiovascular disease risk factors including anthropometric indexes, lipid profile, blood pressure, and inflammatory markers using data from randomized controlled trials. A comprehensive search was performed in the PubMed, Scopus, ISI Web of Science, and Google Scholar databases up to August, 2018. A meta-analysis was performed using a random-effects model to estimate the pooled effect size. Meta-analysis of 8 eligible studies revealed that a PD significantly reduced body weight [weighted mean difference (WMD) = -2.17 kg; 95% CI: -3.48, -0.87 kg], waist circumference (WMD = -2.90 cm; 95% CI: -4.51, -1.28 cm), body mass index (in kg/m2) (WMD = -1.15; 95% CI: -1.68, -0.62), body fat percentage (WMD = -1.38%; 95% CI: -2.08%, -0.67%), systolic (WMD = -4.24 mm Hg; 95% CI: -7.11, -1.38 mm Hg) and diastolic (WMD = -2.95 mm Hg; 95% CI: -4.72, -1.18 mm Hg) blood pressure, and circulating concentrations of total cholesterol (WMD = -0.22 mg/dL; 95% CI: -0.42, -0.03 mg/dL), TGs (WMD = -0.23 mg/dL; 95% CI: -0.46, -0.01 mg/dL), LDL cholesterol (WMD = -0.13 mg/dL; 95% CI: -0.25, -0.01 mg/dL), and C-reactive protein (CRP) (WMD = -0.41 mg/L; 95% CI: -0.81, -0.008 mg/L) and also significantly increased HDL cholesterol (WMD = 0.05 mg/dL; 95% CI: 0.005, 0.10 mg/dL). However, sensitivity analysis revealed that the overall effects of a PD on lipid profile, blood pressure, and circulating CRP concentrations were significantly influenced by removing some studies, hence the results must be interpreted with caution. Although the present meta-analysis revealed that a PD has favorable effects on cardiovascular disease risk factors, the evidence is not conclusive and more well-designed trials are still needed.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "26269362",
+      "fits": "yes",
+      "reason": "RCTs comparing a paleo diet with guideline-based diets in people with metabolic syndrome components, pooling triglycerides, blood pressure, HDL and fasting blood sugar.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with metabolic syndrome or overweight\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\",\"26269362\",2015,\"Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis.\",\"Background Paleolithic nutrition, which has attracted substantial public attention lately because of its putative health benefits, differs radically from dietary patterns currently recommended in guidelines, particularly in terms of its recommendation to exclude grains, dairy, and nutritional products of industry. Objective We evaluated whether a Paleolithic nutritional pattern improves risk factors for chronic disease more than do other dietary interventions. Design We conducted a systematic review of randomized controlled trials (RCTs) that compared the Paleolithic nutritional pattern with any other dietary pattern in participants with one or more of the 5 components of metabolic syndrome. Two reviewers independently extracted study data and assessed risk of bias. Outcome data were extracted from the first measurement time point (≤6 mo). A random-effects model was used to estimate the average intervention effect. The quality of the evidence was rated with the use of the Grading of Recommendations Assessment, Development and Evaluation approach. Results Four RCTs that involved 159 participants were included. The 4 control diets were based on distinct national nutrition guidelines but were broadly similar. Paleolithic nutrition resulted in greater short-term improvements than did the control diets (random-effects model) for waist circumference (mean difference: -2.38 cm; 95% CI: -4.73, -0.04 cm), triglycerides (-0.40 mmol/L; 95% CI: -0.76, -0.04 mmol/L), systolic blood pressure (-3.64 mm Hg; 95% CI: -7.36, 0.08 mm Hg), diastolic blood pressure (-2.48 mm Hg; 95% CI: -4.98, 0.02 mm Hg), HDL cholesterol (0.12 mmol/L; 95% CI: -0.03, 0.28 mmol/L), and fasting blood sugar (-0.16 mmol/L; 95% CI: -0.44, 0.11 mmol/L). The quality of the evidence for each of the 5 metabolic components was moderate. The home-delivery (n = 1) and dietary recommendation (n = 3) RCTs showed similar effects with the exception of greater improvements in triglycerides relative to the control with the home delivery. None of the RCTs evaluated an improvement in quality of life. Conclusions The Paleolithic diet resulted in greater short-term improvements in metabolic syndrome components than did guideline-based control diets. The available data warrant additional evaluations of the health benefits of Paleolithic nutrition. This systematic review was registered at PROSPERO (www.crd.york.ac.uk/PROSPERO) as CRD42014015119.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with metabolic syndrome or overweight\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 26269362 (2015)\\nTitle: Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis.\\nAbstract: Background Paleolithic nutrition, which has attracted substantial public attention lately because of its putative health benefits, differs radically from dietary patterns currently recommended in guidelines, particularly in terms of its recommendation to exclude grains, dairy, and nutritional products of industry. Objective We evaluated whether a Paleolithic nutritional pattern improves risk factors for chronic disease more than do other dietary interventions. Design We conducted a systematic review of randomized controlled trials (RCTs) that compared the Paleolithic nutritional pattern with any other dietary pattern in participants with one or more of the 5 components of metabolic syndrome. Two reviewers independently extracted study data and assessed risk of bias. Outcome data were extracted from the first measurement time point (≤6 mo). A random-effects model was used to estimate the average intervention effect. The quality of the evidence was rated with the use of the Grading of Recommendations Assessment, Development and Evaluation approach. Results Four RCTs that involved 159 participants were included. The 4 control diets were based on distinct national nutrition guidelines but were broadly similar. Paleolithic nutrition resulted in greater short-term improvements than did the control diets (random-effects model) for waist circumference (mean difference: -2.38 cm; 95% CI: -4.73, -0.04 cm), triglycerides (-0.40 mmol/L; 95% CI: -0.76, -0.04 mmol/L), systolic blood pressure (-3.64 mm Hg; 95% CI: -7.36, 0.08 mm Hg), diastolic blood pressure (-2.48 mm Hg; 95% CI: -4.98, 0.02 mm Hg), HDL cholesterol (0.12 mmol/L; 95% CI: -0.03, 0.28 mmol/L), and fasting blood sugar (-0.16 mmol/L; 95% CI: -0.44, 0.11 mmol/L). The quality of the evidence for each of the 5 metabolic components was moderate. The home-delivery (n = 1) and dietary recommendation (n = 3) RCTs showed similar effects with the exception of greater improvements in triglycerides relative to the control with the home delivery. None of the RCTs evaluated an improvement in quality of life. Conclusions The Paleolithic diet resulted in greater short-term improvements in metabolic syndrome components than did guideline-based control diets. The available data warrant additional evaluations of the health benefits of Paleolithic nutrition. This systematic review was registered at PROSPERO (www.crd.york.ac.uk/PROSPERO) as CRD42014015119.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "33492173",
+      "fits": "yes",
+      "reason": "Meta-analysis of RCTs comparing a paleo diet with control diets in adults with metabolic disorders, with pooled triglycerides and blood pressure.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with metabolic syndrome or overweight\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\",\"33492173\",2022,\"The effect of paleolithic diet on glucose metabolism and lipid profile among patients with metabolic disorders: a systematic review and meta-analysis of randomized controlled trials.\",\"Objective Several randomized clinical trials (RCTs) have investigated the effects of the Paleolithic diet (PD) in adult patients suffering from metabolic disorders. However, the results of these RCTs are conflicting. Therefore, we conducted a systematic review and meta-analysis to assess the effects of the PD in patients with metabolic disorders. Methods We searched the PubMed/Medline, Scopus, Cochrane Databases, Google Scholar, Web of Science, and Embase databases up to June, 2020. The data were pooled using a random-effects model. From the eligible publications, 10 articles were selected for inclusion in this systematic review and meta-analysis. The meta-analysis was performed using a random-effects model. The heterogeneity was determined using the I2 statistics and the Cochrane Q test. Results The pooled results from the random-effects model showed a significant reduction of the homeostatic model assessment of insulin resistance (HOMA-IR) (weighted mean difference, WMD: -0.39, 95% CI: -0.70, -0.08), fasting insulin (WMD: -12.17 μU/mL, 95% CI: -24.26, -0.08), total cholesterol (WMD: -0.32 mmol/l, 95% CI: -0.49, -0.15), triglycerides (WMD: -0.29 mmol/L, 95% CI: -0.42, -0.16), low-density lipoprotein cholesterol (WMD: -0.35 mmol/L, 95% CI: -0.67, -0.03), blood pressure (BP)(WMD - 5.89 mmHg; 95% CI - 9.973 to - 1.86 for the systolic BP and WMD - 4.01 mmHg; 95% CI - 6.21 to - 1.80 for the diastolic BP values) and C-reactive protein (CRP) levels (WMD: -0.84, mg/L, 95% CI: -1.62, -0.06) in the PD group versus control group. Conclusions Our findings provide better insights into the effect of the PD on the modulation of the glucose and lipid metabolism factors in patients with metabolic disorders, providing comprehensive information for the development of future RCTs with a high quality design.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with metabolic syndrome or overweight\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 33492173 (2022)\\nTitle: The effect of paleolithic diet on glucose metabolism and lipid profile among patients with metabolic disorders: a systematic review and meta-analysis of randomized controlled trials.\\nAbstract: Objective Several randomized clinical trials (RCTs) have investigated the effects of the Paleolithic diet (PD) in adult patients suffering from metabolic disorders. However, the results of these RCTs are conflicting. Therefore, we conducted a systematic review and meta-analysis to assess the effects of the PD in patients with metabolic disorders. Methods We searched the PubMed/Medline, Scopus, Cochrane Databases, Google Scholar, Web of Science, and Embase databases up to June, 2020. The data were pooled using a random-effects model. From the eligible publications, 10 articles were selected for inclusion in this systematic review and meta-analysis. The meta-analysis was performed using a random-effects model. The heterogeneity was determined using the I2 statistics and the Cochrane Q test. Results The pooled results from the random-effects model showed a significant reduction of the homeostatic model assessment of insulin resistance (HOMA-IR) (weighted mean difference, WMD: -0.39, 95% CI: -0.70, -0.08), fasting insulin (WMD: -12.17 μU/mL, 95% CI: -24.26, -0.08), total cholesterol (WMD: -0.32 mmol/l, 95% CI: -0.49, -0.15), triglycerides (WMD: -0.29 mmol/L, 95% CI: -0.42, -0.16), low-density lipoprotein cholesterol (WMD: -0.35 mmol/L, 95% CI: -0.67, -0.03), blood pressure (BP)(WMD - 5.89 mmHg; 95% CI - 9.973 to - 1.86 for the systolic BP and WMD - 4.01 mmHg; 95% CI - 6.21 to - 1.80 for the diastolic BP values) and C-reactive protein (CRP) levels (WMD: -0.84, mg/L, 95% CI: -1.62, -0.06) in the PD group versus control group. Conclusions Our findings provide better insights into the effect of the PD on the modulation of the glucose and lipid metabolism factors in patients with metabolic disorders, providing comprehensive information for the development of future RCTs with a high quality design.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "32348451",
+      "fits": "no",
+      "reason": "This is a comment pointing out errors in an earlier meta-analysis, not a systematic review itself.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with metabolic syndrome or overweight\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\",\"32348451\",2020,\"Errors in Meta-Analysis Should Be Corrected: Comment on \\\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\\\".\",\"\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with metabolic syndrome or overweight\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 32348451 (2020)\\nTitle: Errors in Meta-Analysis Should Be Corrected: Comment on \\\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\\\".\\nAbstract: (none)\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "32666106",
+      "fits": "partly",
+      "reason": "The title names a paleo diet meta-analysis of RCTs on cardiovascular risk factors, but with no abstract the population, comparison and outcomes can't be confirmed.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults, most with metabolic syndrome or overweight\",\"A paleo diet\",\"Guideline-based or usual diets\",\"Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\",\"32666106\",2020,\"Effects of a Paleolithic Diet on Cardiovascular Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\",\"\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults, most with metabolic syndrome or overweight\\nHabit or exposure: A paleo diet\\nComparison: Guideline-based or usual diets\\nOutcome: Triglycerides, blood pressure, HDL cholesterol or fasting blood sugar\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 32666106 (2020)\\nTitle: Effects of a Paleolithic Diet on Cardiovascular Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\\nAbstract: (none)\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     }
+    ],
+    "counts": {
+     "yes": 3,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "32666106",
+      "title": "Effects of a Paleolithic Diet on Cardiovascular Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "The title names a paleo diet meta-analysis of RCTs on cardiovascular risk factors, but with no abstract the population, comparison and outcomes can't be confirmed."
+     },
+     {
+      "pmid": "32348451",
+      "title": "Errors in Meta-Analysis Should Be Corrected: Comment on \"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\"",
+      "year": 2020,
+      "fits": "no",
+      "reason": "This is a comment pointing out errors in an earlier meta-analysis, not a systematic review itself."
+     }
+    ]
+   }
+  },
+  {
+   "id": "diabetes",
+   "label": "Type 2 diabetes",
+   "anyDesign": true,
+   "finding": "Blood sugar in type 2 diabetes",
+   "counts": {
+    "all": 47,
+    "reviews": 1,
+    "trialReviews": 1,
+    "trials": 9,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2013,
+     "reviews": 0,
+     "trials": 2
+    },
+    {
+     "year": 2015,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2016,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2017,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2021,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "19604407",
+     "27235022"
+    ],
+    "citedNotEligible": [
+     "19604407",
+     "27235022"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults with type 2 diabetes",
+     "intervention": "A paleo diet",
+     "comparison": "A diabetes diet or usual care",
+     "outcome": "Blood sugar (HbA1c) and insulin resistance"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [
+     {
+      "pmid": "31973038",
+      "fits": "partly",
+      "reason": "Compares paleo with other diets, including a diabetes diet, on HbA1c and HOMA-IR, but in people with altered glucose metabolism generally, with no separate type 2 diabetes analysis.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults with type 2 diabetes\",\"A paleo diet\",\"A diabetes diet or usual care\",\"Blood sugar (HbA1c) and insulin resistance\",\"31973038\",2020,\"The Effect of the Paleolithic Diet vs. Healthy Diets on Glucose and Insulin Homeostasis: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\",\"Recently, the Paleolithic diet became popular due to its possible health benefits. Several, albeit not all, studies suggested that the consumption of the Paleolithic diet might improve glucose tolerance, decrease insulin secretion, and increase insulin sensitivity. Therefore, the aim of this meta-analysis was to compare the effect of the Paleolithic diet with other types of diets on glucose and insulin homeostasis in subjects with altered glucose metabolism. Four databases (PubMed, Web of Sciences, Scopus, and the Cochrane Library) were searched to select studies in which the effects of the Paleolithic diet on fasting glucose and insulin levels, glycated hemoglobin (HbA1c), homeostasis model assessment of insulin resistance (HOMA-IR), and area under the curve (AUC 0-120) for glucose and insulin during the oral glucose tolerance test were assessed. In total, four studies with 98 subjects which compared the effect of the Paleolithic diet with other types of diets (the Mediterranean diet, diabetes diet, and a diet recommended by the Dutch Health Council) were included in this meta-analysis. The Paleolithic diet did not differ from other types of diets with regard to its effect on fasting glucose (standardized mean difference (SMD): -0.343, 95% confidence interval (CI): -0.867, 0.181, p = 0.200) and insulin (SMD: -0.141; 95% CI: -0.599, 0.318; p = 0.548) levels. In addition, there were no differences between the Paleolithic diet and other types of diets in HOMA-IR (SMD: -0.151; 95% CI: -0.610, 0.309; p = 0.521), HbA1c (SMD: -0.380; 95% CI: -0.870, 0.110; p = 0.129), AUC 0-120 glucose (SMD: -0.558; 95% CI: -1.380, 0.264; p = 0.183), and AUC 0-120 insulin (SMD: -0.068; 95% CI: -0.526, 0.390; p = 0.772). In conclusion, the Paleolithic diet did not differ from other types of diets commonly perceived as healthy with regard to effects on glucose and insulin homeostasis in subjects with altered glucose metabolism.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults with type 2 diabetes\\nHabit or exposure: A paleo diet\\nComparison: A diabetes diet or usual care\\nOutcome: Blood sugar (HbA1c) and insulin resistance\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 31973038 (2020)\\nTitle: The Effect of the Paleolithic Diet vs. Healthy Diets on Glucose and Insulin Homeostasis: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\\nAbstract: Recently, the Paleolithic diet became popular due to its possible health benefits. Several, albeit not all, studies suggested that the consumption of the Paleolithic diet might improve glucose tolerance, decrease insulin secretion, and increase insulin sensitivity. Therefore, the aim of this meta-analysis was to compare the effect of the Paleolithic diet with other types of diets on glucose and insulin homeostasis in subjects with altered glucose metabolism. Four databases (PubMed, Web of Sciences, Scopus, and the Cochrane Library) were searched to select studies in which the effects of the Paleolithic diet on fasting glucose and insulin levels, glycated hemoglobin (HbA1c), homeostasis model assessment of insulin resistance (HOMA-IR), and area under the curve (AUC 0-120) for glucose and insulin during the oral glucose tolerance test were assessed. In total, four studies with 98 subjects which compared the effect of the Paleolithic diet with other types of diets (the Mediterranean diet, diabetes diet, and a diet recommended by the Dutch Health Council) were included in this meta-analysis. The Paleolithic diet did not differ from other types of diets with regard to its effect on fasting glucose (standardized mean difference (SMD): -0.343, 95% confidence interval (CI): -0.867, 0.181, p = 0.200) and insulin (SMD: -0.141; 95% CI: -0.599, 0.318; p = 0.548) levels. In addition, there were no differences between the Paleolithic diet and other types of diets in HOMA-IR (SMD: -0.151; 95% CI: -0.610, 0.309; p = 0.521), HbA1c (SMD: -0.380; 95% CI: -0.870, 0.110; p = 0.129), AUC 0-120 glucose (SMD: -0.558; 95% CI: -1.380, 0.264; p = 0.183), and AUC 0-120 insulin (SMD: -0.068; 95% CI: -0.526, 0.390; p = 0.772). In conclusion, the Paleolithic diet did not differ from other types of diets commonly perceived as healthy with regard to effects on glucose and insulin homeostasis in subjects with altered glucose metabolism.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     }
+    ],
+    "counts": {
+     "yes": 0,
+     "partly": 1,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "31973038",
+      "title": "The Effect of the Paleolithic Diet vs. Healthy Diets on Glucose and Insulin Homeostasis: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2020,
+      "fits": "partly",
+      "reason": "Compares paleo with other diets, including a diabetes diet, on HbA1c and HOMA-IR, but in people with altered glucose metabolism generally, with no separate type 2 diabetes analysis."
+     }
+    ]
+   }
+  },
+  {
+   "id": "long-term",
+   "label": "Disease and death",
+   "anyDesign": true,
+   "finding": "Long-term disease and death",
+   "counts": {
+    "all": 47,
+    "reviews": 3,
+    "trialReviews": 3,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [
+    {
+     "pmid": "41129328",
+     "doi": "10.1080/10408398.2025.2576815",
+     "title": "The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials",
+     "year": 2026,
+     "firstAuthor": "Bahrami M",
+     "journal": "Critical reviews in food science and nutrition",
+     "citedBy": 0,
+     "n": 19,
+     "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2026); screened as answering the question"
+    }
+   ],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2009,
+     "reviews": 0,
+     "trials": 1
+    },
+    {
+     "year": 2019,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2020,
+     "reviews": 1,
+     "trials": 0
+    },
+    {
+     "year": 2026,
+     "reviews": 1,
+     "trials": 0
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28179490",
+     "33909140"
+    ],
+    "citedNotEligible": [
+     "28179490",
+     "33909140"
+    ],
+    "chosenNotCited": [
+     {
+      "pmid": "41129328",
+      "doi": "10.1080/10408398.2025.2576815",
+      "title": "The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials",
+      "year": 2026,
+      "firstAuthor": "Bahrami M",
+      "journal": "Critical reviews in food science and nutrition",
+      "citedBy": 0,
+      "n": 19,
+      "why": "One of the newest meta-analyses on this finding (reviews of any study design) (2026); screened as answering the question"
+     }
+    ]
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "Eating closer to a paleo pattern",
+     "comparison": "Eating less like a paleo pattern",
+     "outcome": "Death, heart disease, cancer, type 2 diabetes or high blood pressure"
+    },
+    "by": "Claude Code (opus), titles and abstracts only",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [
+     {
+      "pmid": "41129328",
+      "fits": "yes",
+      "reason": "Pools cohort studies comparing high and low paleo diet adherence for all-cause mortality, cancer mortality and coronary heart disease, plus trials on blood pressure.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\",\"Eating closer to a paleo pattern\",\"Eating less like a paleo pattern\",\"Death, heart disease, cancer, type 2 diabetes or high blood pressure\",\"41129328\",2026,\"The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials.\",\"This systematic review and meta-analysis evaluate the effects of the Paleolithic diet on cardiometabolic parameters and chronic disease outcomes by combining evidence from interventional and observational studies. We analyzed 19 randomized controlled trials (RCTs) and 12 prospective cohort studies identified through systematic searches. Both random-effects and fixed-effects meta-analyses, along with dose-response evaluations, were conducted for cohort studies. A fixed-effects model was applied when fewer than five comparisons were available to ensure model stability with limited data. Meta-analysis of RCTs demonstrated significant improvements in cardiometabolic markers including, fasting insulin [Weighted Mean Differences (WMD -1.01 [-1.45, -0.57], p < 0.001], total cholesterol (WMD -0.15, [-0.24, -0.07], p < 0.001), low-density lipoprotein cholesterol (WMD -0.24, [-0.40, -0.08], p = 0.003), triglycerides (WMD -0.16, [-0.24, -0.08], p < 0.001), body weight (WMD -1.74, [-2.57, -0.91], p < 0.001), body mass index (WMD -1.12, [-1.42, -0.82], p < 0.001), and diastolic blood pressure (WMD -3.28, [-4.55, -2.01], p < 0.001). Cohort studies revealed 10% lower all-cause mortality risk (RR: 0.90, 95% CI: 0.87-0.94, p < 0.001), 10% reduced cancer mortality (RR: 0.90, 95% CI: 0.85-0.97, p = 0.004), and 16% lower coronary heart disease incidence (RR: 0.84, 95% CI: 0.70-1.00, p = 0.05) among high adherers. The Paleolithic diet may provide significant benefits for cardiometabolic health and potentially lower the risk of chronic disease.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\\nHabit or exposure: Eating closer to a paleo pattern\\nComparison: Eating less like a paleo pattern\\nOutcome: Death, heart disease, cancer, type 2 diabetes or high blood pressure\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 41129328 (2026)\\nTitle: The Paleolithic diet and chronic disease risk: a GRADE-assessed systematic review and dose-response meta-analysis of prospective cohort studies and randomized controlled trials.\\nAbstract: This systematic review and meta-analysis evaluate the effects of the Paleolithic diet on cardiometabolic parameters and chronic disease outcomes by combining evidence from interventional and observational studies. We analyzed 19 randomized controlled trials (RCTs) and 12 prospective cohort studies identified through systematic searches. Both random-effects and fixed-effects meta-analyses, along with dose-response evaluations, were conducted for cohort studies. A fixed-effects model was applied when fewer than five comparisons were available to ensure model stability with limited data. Meta-analysis of RCTs demonstrated significant improvements in cardiometabolic markers including, fasting insulin [Weighted Mean Differences (WMD -1.01 [-1.45, -0.57], p < 0.001], total cholesterol (WMD -0.15, [-0.24, -0.07], p < 0.001), low-density lipoprotein cholesterol (WMD -0.24, [-0.40, -0.08], p = 0.003), triglycerides (WMD -0.16, [-0.24, -0.08], p < 0.001), body weight (WMD -1.74, [-2.57, -0.91], p < 0.001), body mass index (WMD -1.12, [-1.42, -0.82], p < 0.001), and diastolic blood pressure (WMD -3.28, [-4.55, -2.01], p < 0.001). Cohort studies revealed 10% lower all-cause mortality risk (RR: 0.90, 95% CI: 0.87-0.94, p < 0.001), 10% reduced cancer mortality (RR: 0.90, 95% CI: 0.85-0.97, p = 0.004), and 16% lower coronary heart disease incidence (RR: 0.84, 95% CI: 0.70-1.00, p = 0.05) among high adherers. The Paleolithic diet may provide significant benefits for cardiometabolic health and potentially lower the risk of chronic disease.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "31041449",
+      "fits": "partly",
+      "reason": "Trials compare a paleo diet with other diets, but blood pressure is the only matching outcome; death, heart disease, cancer and diabetes are not assessed.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\",\"Eating closer to a paleo pattern\",\"Eating less like a paleo pattern\",\"Death, heart disease, cancer, type 2 diabetes or high blood pressure\",\"31041449\",2019,\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\",\"There is some evidence supporting the beneficial effects of a Paleolithic Diet (PD) on cardiovascular disease risk factors. This diet advises consuming lean meat, fish, vegetables, fruits, and nuts and avoiding intake of grains, dairy products, processed foods, and added sugar and salt. This study was performed to assess the effects of a PD on cardiovascular disease risk factors including anthropometric indexes, lipid profile, blood pressure, and inflammatory markers using data from randomized controlled trials. A comprehensive search was performed in the PubMed, Scopus, ISI Web of Science, and Google Scholar databases up to August, 2018. A meta-analysis was performed using a random-effects model to estimate the pooled effect size. Meta-analysis of 8 eligible studies revealed that a PD significantly reduced body weight [weighted mean difference (WMD) = -2.17 kg; 95% CI: -3.48, -0.87 kg], waist circumference (WMD = -2.90 cm; 95% CI: -4.51, -1.28 cm), body mass index (in kg/m2) (WMD = -1.15; 95% CI: -1.68, -0.62), body fat percentage (WMD = -1.38%; 95% CI: -2.08%, -0.67%), systolic (WMD = -4.24 mm Hg; 95% CI: -7.11, -1.38 mm Hg) and diastolic (WMD = -2.95 mm Hg; 95% CI: -4.72, -1.18 mm Hg) blood pressure, and circulating concentrations of total cholesterol (WMD = -0.22 mg/dL; 95% CI: -0.42, -0.03 mg/dL), TGs (WMD = -0.23 mg/dL; 95% CI: -0.46, -0.01 mg/dL), LDL cholesterol (WMD = -0.13 mg/dL; 95% CI: -0.25, -0.01 mg/dL), and C-reactive protein (CRP) (WMD = -0.41 mg/L; 95% CI: -0.81, -0.008 mg/L) and also significantly increased HDL cholesterol (WMD = 0.05 mg/dL; 95% CI: 0.005, 0.10 mg/dL). However, sensitivity analysis revealed that the overall effects of a PD on lipid profile, blood pressure, and circulating CRP concentrations were significantly influenced by removing some studies, hence the results must be interpreted with caution. Although the present meta-analysis revealed that a PD has favorable effects on cardiovascular disease risk factors, the evidence is not conclusive and more well-designed trials are still needed.\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\\nHabit or exposure: Eating closer to a paleo pattern\\nComparison: Eating less like a paleo pattern\\nOutcome: Death, heart disease, cancer, type 2 diabetes or high blood pressure\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 31041449 (2019)\\nTitle: Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.\\nAbstract: There is some evidence supporting the beneficial effects of a Paleolithic Diet (PD) on cardiovascular disease risk factors. This diet advises consuming lean meat, fish, vegetables, fruits, and nuts and avoiding intake of grains, dairy products, processed foods, and added sugar and salt. This study was performed to assess the effects of a PD on cardiovascular disease risk factors including anthropometric indexes, lipid profile, blood pressure, and inflammatory markers using data from randomized controlled trials. A comprehensive search was performed in the PubMed, Scopus, ISI Web of Science, and Google Scholar databases up to August, 2018. A meta-analysis was performed using a random-effects model to estimate the pooled effect size. Meta-analysis of 8 eligible studies revealed that a PD significantly reduced body weight [weighted mean difference (WMD) = -2.17 kg; 95% CI: -3.48, -0.87 kg], waist circumference (WMD = -2.90 cm; 95% CI: -4.51, -1.28 cm), body mass index (in kg/m2) (WMD = -1.15; 95% CI: -1.68, -0.62), body fat percentage (WMD = -1.38%; 95% CI: -2.08%, -0.67%), systolic (WMD = -4.24 mm Hg; 95% CI: -7.11, -1.38 mm Hg) and diastolic (WMD = -2.95 mm Hg; 95% CI: -4.72, -1.18 mm Hg) blood pressure, and circulating concentrations of total cholesterol (WMD = -0.22 mg/dL; 95% CI: -0.42, -0.03 mg/dL), TGs (WMD = -0.23 mg/dL; 95% CI: -0.46, -0.01 mg/dL), LDL cholesterol (WMD = -0.13 mg/dL; 95% CI: -0.25, -0.01 mg/dL), and C-reactive protein (CRP) (WMD = -0.41 mg/L; 95% CI: -0.81, -0.008 mg/L) and also significantly increased HDL cholesterol (WMD = 0.05 mg/dL; 95% CI: 0.005, 0.10 mg/dL). However, sensitivity analysis revealed that the overall effects of a PD on lipid profile, blood pressure, and circulating CRP concentrations were significantly influenced by removing some studies, hence the results must be interpreted with caution. Although the present meta-analysis revealed that a PD has favorable effects on cardiovascular disease risk factors, the evidence is not conclusive and more well-designed trials are still needed.\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     },
+     {
+      "pmid": "32348451",
+      "fits": "no",
+      "reason": "This is a comment pointing out errors in an earlier meta-analysis, not a systematic review itself.",
+      "input": "[\"screening-v1\",\"lifestyle\",\"meta-analysis\",\"Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\",\"Eating closer to a paleo pattern\",\"Eating less like a paleo pattern\",\"Death, heart disease, cancer, type 2 diabetes or high blood pressure\",\"32348451\",2020,\"Errors in Meta-Analysis Should Be Corrected: Comment on \\\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\\\".\",\"\",\"You are screening systematic reviews for an evidence map. For each review below, decide whether it answers this question:\\n\\nPopulation: Adults in general (not a group defined by one illness, such as people in hospital or with cancer)\\nHabit or exposure: Eating closer to a paleo pattern\\nComparison: Eating less like a paleo pattern\\nOutcome: Death, heart disease, cancer, type 2 diabetes or high blood pressure\\n\\nfits = \\\"yes\\\": the review pooled or systematically reviewed studies of any design (randomised trials or studies following people over time) that match the population, habit or exposure, comparison and outcome (a separate analysis or subgroup that matches counts).\\nfits = \\\"partly\\\": close, but one part differs (for example a different kind of exercise, heat, cold or light than the question names, a combined programme where this habit is not analysed on its own, a narrower or different group of people, or only one part of the outcome).\\nfits = \\\"no\\\": a different question.\\nJudge only from the title and abstract given. Don't judge whether the habit works, and don't use outside knowledge about the paper.\\n\\nAnswer with JSON only, no other text: [{\\\"pmid\\\": \\\"...\\\", \\\"fits\\\": \\\"yes\\\" | \\\"partly\\\" | \\\"no\\\", \\\"reason\\\": \\\"one plain sentence, under 200 characters, saying which part matches or differs\\\"}], one entry per review, in the same order.\\n\\nReviews:\\n\\nPMID 32348451 (2020)\\nTitle: Errors in Meta-Analysis Should Be Corrected: Comment on \\\"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\\\".\\nAbstract: (none)\"]",
+      "by": "Claude Code (opus), titles and abstracts only",
+      "at": "2026-11-20"
+     }
+    ],
+    "counts": {
+     "yes": 1,
+     "partly": 1,
+     "no": 1,
+     "unscreened": 0
+    },
+    "left": [
+     {
+      "pmid": "32348451",
+      "title": "Errors in Meta-Analysis Should Be Corrected: Comment on \"Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials\"",
+      "year": 2020,
+      "fits": "no",
+      "reason": "This is a comment pointing out errors in an earlier meta-analysis, not a systematic review itself."
+     },
+     {
+      "pmid": "31041449",
+      "title": "Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2019,
+      "fits": "partly",
+      "reason": "Trials compare a paleo diet with other diets, but blood pressure is the only matching outcome; death, heart disease, cancer and diabetes are not assessed."
+     }
+    ]
+   }
+  },
+  {
+   "id": "gut",
+   "label": "Gut bacteria and TMAO",
+   "anyDesign": true,
+   "finding": "Gut bacteria and TMAO",
+   "counts": {
+    "all": 29,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2019,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "31273523"
+    ],
+    "citedNotEligible": [
+     "31273523"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "A paleo diet",
+     "comparison": "A diet typical of national recommendations",
+     "outcome": "Gut bacteria, resistant starch or blood TMAO"
+    },
+    "by": "Not yet screened with current inputs",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [],
+    "counts": {
+     "yes": 0,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  },
+  {
+   "id": "nutrients",
+   "label": "Iodine and calcium",
+   "anyDesign": true,
+   "finding": "Iodine and other nutrients",
+   "counts": {
+    "all": 58,
+    "reviews": 0,
+    "trialReviews": 0,
+    "trials": 1,
+    "largeTrials": 0
+   },
+   "chosenReviews": [],
+   "newerLargeTrials": [],
+   "timeline": [
+    {
+     "year": 2018,
+     "reviews": 0,
+     "trials": 1
+    }
+   ],
+   "largeTrials": [],
+   "page": {
+    "alsoChosen": [],
+    "citedNotChosen": [
+     "28901333",
+     "19604407"
+    ],
+    "citedNotEligible": [
+     "28901333",
+     "19604407"
+    ],
+    "chosenNotCited": []
+   },
+   "screening": {
+    "question": {
+     "population": "Adults in general (not a group defined by one illness, such as people in hospital or with cancer)",
+     "intervention": "A paleo diet (no grains, dairy or legumes)",
+     "comparison": "A diet based on national recommendations",
+     "outcome": "Iodine, calcium or other nutrient intakes or levels"
+    },
+    "by": "Not yet screened with current inputs",
+    "at": "2026-11-20",
+    "provenance": "current",
+    "decisions": [],
+    "counts": {
+     "yes": 0,
+     "partly": 0,
+     "no": 0,
+     "unscreened": 0
+    },
+    "left": []
+   }
+  }
+ ]
+}

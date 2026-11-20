@@ -1,0 +1,461 @@
+{
+  "id": "weight_lifting",
+  "name": "Weight lifting",
+  "category": "movement",
+  "otherNames": [
+    "Resistance training",
+    "Strength training",
+    "Weight training",
+    "Lifting weights",
+    "Muscle-strengthening exercise",
+    "Progressive resistance training"
+  ],
+  "summary": "Lifting weights, or other resistance training, reliably increases muscle strength, including in people in their 70s and 80s. In large studies of people's habits, those who did some resistance training had about 15% fewer deaths, a link rather than proof.",
+  "howItWorks": [
+    "Muscles work against a load that is heavier than they are used to, and with repeated training they get stronger. Many studies of older adults also saw bigger muscles, but results on total lean mass are less consistent.",
+    "Resistance training is also linked to body fat, blood sugar, bone and mood outcomes in trials. How it does this is not fully known, and the effects are modest.",
+    "Most of the evidence is about doing resistance training at all, compared with none. Which exact amounts, loads or exercises are best is less clear."
+  ],
+  "whatStudiesDid": "Randomised trials of at least 4 to 12 weeks compared resistance training programmes with no exercise or usual care. In older adults, trials used training for at least 6 weeks, and one analysis looked at people aged 75 and over, and at people aged 80 and over. In healthy adults, a meta-analysis of 58 studies used full-body resistance training for at least 4 weeks. Cohort studies recorded people's muscle-strengthening activity and followed them for deaths. In one analysis of four studies, the largest drop in all-cause deaths was seen at around 60 minutes a week of resistance training. Trials in people with type 2 diabetes measured HbA1c, a long-term blood sugar measure.",
+  "markers": [
+    "grip_strength",
+    "weight",
+    "body_fat",
+    "waist",
+    "hba1c",
+    "bp_systolic",
+    "bp_diastolic",
+    "chair_stand_30s",
+    "sit_to_stand_5x",
+    "pushups"
+  ],
+  "claims": [
+    {
+      "claim": "Builds muscle and strength at any age",
+      "topic": "Resistance training and muscle strength in older adults",
+      "label": "Strength at any age",
+      "category": "health"
+    },
+    {
+      "claim": "Burns more fat in the long run by raising your resting metabolism",
+      "topic": "Resistance training and resting metabolic rate",
+      "label": "Higher resting metabolism",
+      "category": "appearance"
+    },
+    {
+      "claim": "Strengthens your bones and helps prevent osteoporosis",
+      "topic": "Resistance training and bone mineral density",
+      "label": "Stronger bones",
+      "category": "health"
+    },
+    {
+      "claim": "Helps you live longer",
+      "topic": "Resistance training and death from any cause",
+      "label": "Weights and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Improves blood sugar control",
+      "topic": "Resistance training and blood sugar",
+      "label": "Weights and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Lifts your mood and eases depression",
+      "topic": "Resistance training and depression",
+      "label": "Weights and depression",
+      "category": "health"
+    },
+    {
+      "claim": "Only heavy weights build muscle, light weights do not",
+      "topic": "Light loads versus heavy loads and muscle growth",
+      "label": "Heavy versus light weights",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lifting weights is dangerous and causes injuries",
+      "topic": "Resistance training and injury risk",
+      "label": "Weights and injuries",
+      "category": "health"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Muscle strength and muscle size in older adults",
+      "population": "Adults aged 60 and over, and a separate analysis of adults aged 75 and over (randomised trials)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Several meta-analyses of randomised trials agree on a strength gain",
+        "Strength was measured as lifted weight or tests; total lean body mass did not change clearly, and handgrip strength did not change clearly in the oldest group",
+        "Trials were mostly short, and results varied between trials",
+        "Adverse events were rarely reported, so safety is not well known"
+      ],
+      "summary": "A network meta-analysis of 30 trials with 1,405 people aged 60 to 92 found resistance training of at least 6 weeks increased muscle strength by 12.8 kg (95% confidence interval 8.5 to 17.0 kg) compared with usual care, and physical performance by 2.6 times more (1.3 to 3.9). It found no significant difference in lean body mass for any exercise type. In 22 studies in adults aged 75 and over, resistance training raised muscle strength (effect size 0.97, 0.50 to 1.44; for ages 80 and over 1.28, 0.28 to 2.29) and whole-muscle size (0.30, 0.10 to 0.50). Handgrip strength (0.26, -0.02 to 0.54) and muscle fibre size (0.33, -0.67 to 1.33) did not change clearly. Few adverse events were reported.",
+      "bottomLine": "In older adults, resistance training clearly increased muscle strength and physical performance in pooled trials, even from age 80. Muscle size increased in the oldest group, but total lean mass and handgrip did not change clearly.",
+      "label": "Strength and muscle in older age",
+      "line": "Strength rises, even at 80 and over; lean mass and grip less clear",
+      "studies": [
+        {
+          "pmid": "29471456",
+          "doi": "10.1093/ageing/afy009",
+          "title": "Effects of resistance training, endurance training and whole-body vibration on lean body mass, muscle strength and physical performance in older people: a systematic review and network meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 1405
+        },
+        {
+          "pmid": "32740889",
+          "doi": "10.1007/s40279-020-01331-7",
+          "title": "Effects of Resistance Training on Muscle Size and Strength in Very Elderly Adults: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Body fat and fat mass",
+      "population": "Healthy adults (58 randomised trials of at least 4 weeks of full-body resistance training, compared with no exercise)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analysis of randomised trials in healthy adults",
+        "Study quality was average (mean 9 out of 15 on the TESTEX scale)",
+        "The amounts are modest, and a lot depended on how fat was measured",
+        "No clear effect of training volume or components on the size of the change"
+      ],
+      "summary": "A meta-analysis of 54 randomised trials (58 included studies, healthy adults) found that, compared with no exercise, resistance training lowered body fat percentage by 1.46 percentage points (95% confidence interval -1.78 to -1.14), body fat mass by 0.55 kg (-0.75 to -0.34) and visceral fat (fat around the organs) by a standardised mean difference of 0.49 (-0.87 to -0.11). Measurement type mattered for percentage and fat mass, but sex did not.",
+      "bottomLine": "In healthy adults, resistance training lowered body fat compared with no exercise, but by modest amounts, about 1.5 percentage points of body fat and about half a kilogram of fat. It was not tested as a way to lose weight.",
+      "label": "Body fat",
+      "line": "Body fat down about 1.5 points and 0.55 kg versus no exercise",
+      "studies": [
+        {
+          "pmid": "34536199",
+          "doi": "10.1007/s40279-021-01562-2",
+          "title": "The Effect of Resistance Training in Healthy Adults on Body Fat Percentage, Fat Mass and Visceral Fat: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause, heart disease and cancer",
+      "population": "Adults in cohort studies without severe illness (10 studies for resistance training, 16 studies for all muscle-strengthening activity)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people who lift weights may differ in many other ways",
+        "Only a few studies (6 for death from any cause), mostly asking people how much they lifted",
+        "The link was J-shaped: the largest drop was at around 30 to 60 minutes a week, and benefit was less clear at higher amounts"
+      ],
+      "summary": "A meta-analysis of 10 studies found that, compared with no resistance training, any resistance training was linked to a 15% lower risk of death from any cause (relative risk 0.85, 95% confidence interval 0.77 to 0.93, 6 studies), 19% lower death from heart and blood vessel disease (0.81, 0.66 to 1.00, 4 studies) and 14% lower death from cancer (0.86, 0.78 to 0.95, 5 studies). In 4 studies, the maximum reduction in all-cause deaths was 27% at around 60 minutes a week (0.74, 0.64 to 0.86), with smaller reductions at higher amounts. A second meta-analysis of 16 cohort studies found muscle-strengthening activities linked to a 10 to 17% lower risk of all-cause death, heart disease, total cancer and diabetes, with the best result around 30 to 60 minutes a week.",
+      "bottomLine": "In cohort studies, people who did resistance training had about 15% fewer deaths from any cause, a link that does not show that weights extend life. The biggest difference was at around an hour a week.",
+      "label": "Death and disease",
+      "line": "About 15% fewer deaths in cohort studies (a link, not proof)",
+      "studies": [
+        {
+          "pmid": "35599175",
+          "doi": "10.1016/j.amepre.2022.03.020",
+          "title": "Resistance Training and Mortality Risk: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35228201",
+          "doi": "10.1136/bjsports-2021-105061",
+          "title": "Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases: a systematic review and meta-analysis of cohort studies.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar (HbA1c) in type 2 diabetes",
+      "population": "Adults with type 2 diabetes (20 randomised trials with 1,172 people, and a larger review of 47 trials)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analyses of randomised trials",
+        "The results varied between trials (I2 of 69%)",
+        "Trials were at least 12 weeks in the larger review; long-term effects are not known",
+        "No clear difference from aerobic training"
+      ],
+      "summary": "A meta-analysis of 20 randomised trials (1,172 adults with type 2 diabetes) found resistance training lowered HbA1c by 0.39 percentage points (95% confidence interval 0.18 to 0.60) compared with controls. Larger gains in muscle strength went with larger falls in HbA1c. There was no significant difference compared with aerobic training. In an earlier review of 47 trials, structured resistance training lowered HbA1c by 0.57 (0.01 to 1.14), aerobic training by 0.73 (0.40 to 1.06) and both together by 0.51 (0.23 to 0.79).",
+      "bottomLine": "In people with type 2 diabetes, resistance training lowered HbA1c by around 0.4 to 0.6 percentage points in pooled trials, similar to aerobic exercise. It does not replace medical care.",
+      "label": "Blood sugar (type 2 diabetes)",
+      "line": "HbA1c down about 0.4 to 0.6 points, similar to aerobic exercise",
+      "studies": [
+        {
+          "pmid": "35273011",
+          "doi": "10.1136/bmjdrc-2021-002595",
+          "title": "Effect of resistance training on HbA1c in adults with type 2 diabetes mellitus and the moderating effect of changes in muscular strength: a systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 1172
+        },
+        {
+          "pmid": "21540423",
+          "doi": "10.1001/jama.2011.576",
+          "title": "Physical activity advice only or structured exercise training and association with HbA1c levels in type 2 diabetes: a systematic review and meta-analysis.",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 8538
+        }
+      ]
+    },
+    {
+      "outcome": "Bone density in older adults",
+      "population": "Adults aged 65 and over (14 randomised trials of progressive resistance training)",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analysis of 14 randomised trials, but the results on bone density varied enormously (I2 of 98.6%)",
+        "Hip bone density rose, but the lower spine's did not clearly change",
+        "Strength results were more consistent than bone density results",
+        "Bone density is a stand-in for fracture risk; fractures were not measured"
+      ],
+      "summary": "In 14 randomised trials in adults aged 65 and over, progressive resistance training increased muscle strength (standardised mean difference 1.1, 95% confidence interval 0.73 to 1.47) and femur or hip bone mineral density (mean difference 2.77%, 0.44 to 5.10), but not bone density in the lumbar spine (1.60%, -1.44 to 4.63). The authors say certainty was greater for strength than for bone density, because bone density results varied far more between trials (I2 98.6% versus 78.1%).",
+      "bottomLine": "In older adults, resistance training raised hip bone density by about 2.8% on average but did not clearly raise spine bone density, and the results varied a lot. Whether it lowers the risk of fractures was not measured here.",
+      "label": "Bone density in older adults",
+      "line": "Hip bone density up about 2.8%; spine not clearly changed",
+      "studies": [
+        {
+          "pmid": "35608815",
+          "doi": "10.1007/s40279-022-01675-2",
+          "title": "Progressive Resistance Training for Concomitant Increases in Muscle Strength and Bone Mineral Density in Older Adults: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Depression and depressive symptoms",
+      "population": "Adults, with and without illness (33 randomised trials with 1,877 people, compared with non-active controls)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Meta-analysis of 33 randomised trials",
+        "Results varied between trials (I2 of 76%)",
+        "Trials with blinded allocation or assessment found smaller falls in symptoms",
+        "Compared with doing nothing, not with other treatments"
+      ],
+      "summary": "A meta-analysis of 54 effects from 33 randomised trials (947 people in resistance training and 930 in non-active control groups) found resistance training was linked to a moderate reduction in depressive symptoms (Hedges d 0.66, 95% confidence interval 0.48 to 0.83; I2 76.0%). The effect was seen regardless of health status, total training volume or strength gains. Trials with blinded allocation or assessment found smaller reductions.",
+      "bottomLine": "In pooled trials, resistance training reduced depressive symptoms by a moderate amount compared with no active treatment. The better-designed, blinded trials found smaller effects, so the true effect may be smaller.",
+      "label": "Depressive symptoms",
+      "line": "Moderate fall in symptoms versus no activity; smaller in blinded trials",
+      "studies": [
+        {
+          "pmid": "29800984",
+          "doi": "10.1001/jamapsychiatry.2018.0572",
+          "title": "Association of Efficacy of Resistance Exercise Training With Depressive Symptoms: Meta-analysis and Meta-regression Analysis of Randomized Clinical Trials.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 1877
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Deaths and resistance training in cohort studies",
+      "scale": "ratio",
+      "caption": "Pooled relative risks with 95% confidence intervals from a meta-analysis of cohort studies, compared with people who did no resistance training. Below 1 means fewer deaths. An interval that reaches 1 could be chance. These are links, not proof that lifting weights lengthens life.",
+      "reference": {
+        "value": 1,
+        "label": "No resistance training (comparison)"
+      },
+      "items": [
+        {
+          "label": "Death from any cause, any amount",
+          "value": 0.85,
+          "low": 0.77,
+          "high": 0.93,
+          "note": "6 studies (2022)"
+        },
+        {
+          "label": "Death from heart and blood vessel disease, any amount",
+          "value": 0.81,
+          "low": 0.66,
+          "high": 1.0,
+          "note": "4 studies (2022)"
+        },
+        {
+          "label": "Death from cancer, any amount",
+          "value": 0.86,
+          "low": 0.78,
+          "high": 0.95,
+          "note": "5 studies (2022)"
+        },
+        {
+          "label": "Death from any cause at around 60 minutes a week",
+          "value": 0.74,
+          "low": 0.64,
+          "high": 0.86,
+          "note": "Dose-response analysis of 4 studies (2022)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "35599175",
+          "doi": "10.1016/j.amepre.2022.03.020",
+          "title": "Resistance Training and Mortality Risk: A Systematic Review and Meta-Analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "HbA1c change by type of exercise in type 2 diabetes",
+      "scale": "linear",
+      "unit": "percentage points",
+      "caption": "Average change in HbA1c (a long-term blood sugar measure) compared with control groups, from a review of randomised trials of at least 12 weeks in adults with type 2 diabetes. Below 0 means HbA1c fell. Results varied a lot between trials (I2 of 67% to 93%). The intervals overlap, so the types of exercise cannot be ranked from these data.",
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
+      "items": [
+        {
+          "label": "Aerobic exercise",
+          "value": -0.73,
+          "low": -1.06,
+          "high": -0.4,
+          "note": "Structured aerobic exercise (2011)"
+        },
+        {
+          "label": "Resistance training",
+          "value": -0.57,
+          "low": -1.14,
+          "high": -0.01,
+          "note": "Structured resistance training (2011)"
+        },
+        {
+          "label": "Aerobic and resistance together",
+          "value": -0.51,
+          "low": -0.79,
+          "high": -0.23,
+          "note": "Combined (2011)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "21540423",
+          "doi": "10.1001/jama.2011.576",
+          "title": "Physical activity advice only or structured exercise training and association with HbA1c levels in type 2 diabetes: a systematic review and meta-analysis.",
+          "year": 2011,
+          "studyType": "meta-analysis",
+          "n": 8538
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Heart disease, high blood pressure or chest pain on effort",
+      "note": "Talk to your doctor before starting if you have heart disease or high blood pressure."
+    },
+    {
+      "with": "Bone, joint or back problems, or a recent injury",
+      "note": "In reviews of weight-training sports, the shoulder, lower back, knee, elbow and wrist were the most commonly injured. Talk to your doctor or a physiotherapist if you have an existing problem."
+    },
+    {
+      "with": "Kidney disease or long-term illness",
+      "note": "Talk to your doctor about exercise if you have kidney disease or another long-term illness.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Pregnancy",
+      "note": "The studies found here did not look at pregnancy. Talk to your midwife or doctor.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "Injury rates in competitive weight-training sports looked relatively low compared with common team sports (bodybuilding 0.12 to 0.7 injuries per lifter per year), but only 5 of 20 studies had a low risk of bias and most were retrospective.",
+    "Strongman and Highland Games had the highest injury rates (4.5 to 7.5 injuries per 1,000 hours), and the results come from competitive athletes, not beginners.",
+    "Anything clearly out of range in your blood pressure, blood sugar or other results is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "Most health links come from people's own reports of resistance training, and people who lift weights may also differ in diet, income and other habits.",
+    "No trial has tested whether resistance training changes how long people live. The best dose in cohort studies, around an hour a week, may not hold for everyone.",
+    "It is not known whether the small average falls in HbA1c, blood pressure or body fat matter to a given person.",
+    "Most trials were short, from weeks to months. The long-term effects of years of training are less well studied.",
+    "Evidence on bone density varied enormously between trials, and whether weights lower the risk of fractures was not shown in these studies."
+  ],
+  "sources": [
+    {
+      "pmid": "29471456",
+      "doi": "10.1093/ageing/afy009",
+      "title": "Effects of resistance training, endurance training and whole-body vibration on lean body mass, muscle strength and physical performance in older people: a systematic review and network meta-analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 1405
+    },
+    {
+      "pmid": "32740889",
+      "doi": "10.1007/s40279-020-01331-7",
+      "title": "Effects of Resistance Training on Muscle Size and Strength in Very Elderly Adults: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "34536199",
+      "doi": "10.1007/s40279-021-01562-2",
+      "title": "The Effect of Resistance Training in Healthy Adults on Body Fat Percentage, Fat Mass and Visceral Fat: A Systematic Review and Meta-Analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35599175",
+      "doi": "10.1016/j.amepre.2022.03.020",
+      "title": "Resistance Training and Mortality Risk: A Systematic Review and Meta-Analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35228201",
+      "doi": "10.1136/bjsports-2021-105061",
+      "title": "Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases: a systematic review and meta-analysis of cohort studies.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35273011",
+      "doi": "10.1136/bmjdrc-2021-002595",
+      "title": "Effect of resistance training on HbA1c in adults with type 2 diabetes mellitus and the moderating effect of changes in muscular strength: a systematic review and meta-analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 1172
+    },
+    {
+      "pmid": "21540423",
+      "doi": "10.1001/jama.2011.576",
+      "title": "Physical activity advice only or structured exercise training and association with HbA1c levels in type 2 diabetes: a systematic review and meta-analysis.",
+      "year": 2011,
+      "studyType": "meta-analysis",
+      "n": 8538
+    },
+    {
+      "pmid": "35608815",
+      "doi": "10.1007/s40279-022-01675-2",
+      "title": "Progressive Resistance Training for Concomitant Increases in Muscle Strength and Bone Mineral Density in Older Adults: A Systematic Review and Meta-Analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "29800984",
+      "doi": "10.1001/jamapsychiatry.2018.0572",
+      "title": "Association of Efficacy of Resistance Exercise Training With Depressive Symptoms: Meta-analysis and Meta-regression Analysis of Randomized Clinical Trials.",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 1877
+    },
+    {
+      "pmid": "27328853",
+      "doi": "10.1007/s40279-016-0575-0",
+      "title": "The Epidemiology of Injuries Across the Weight-Training Sports.",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}

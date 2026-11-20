@@ -20,6 +20,16 @@
   ],
   "whatStudiesDid": "Trials shone red light (611 to 655 nm) or near-infrared light (785 to 904 nm), from LEDs or low-power lasers, on one area at a time. Face trials used sessions twice a week for 4 weeks, 30 sessions twice a week, or a home LED mask for 16 weeks. Hair trials used home combs, caps or helmets; in two trials a helmet was used for 25 minutes every other day for 16 weeks. Knee, muscle, mouth and wound trials were run by clinicians or researchers, with a set dose for each treatment spot. Mouth-sore prevention was given in hospital to people having cancer treatment.",
   "markers": [],
+  "claims": [
+    {"claim": "Red light therapy makes wrinkles disappear", "topic": "Red light therapy and wrinkles", "label": "Red light and wrinkles", "category": "appearance"},
+    {"claim": "Red light therapy regrows hair", "topic": "Red light therapy and hair loss", "label": "Red light and hair regrowth", "category": "appearance"},
+    {"claim": "Red light therapy relieves joint pain", "topic": "Red light therapy and joint pain", "label": "Red light and joint pain", "category": "health"},
+    {"claim": "Red light therapy speeds up muscle recovery", "topic": "Red light therapy and muscle recovery", "label": "Red light and recovery", "category": "health"},
+    {"claim": "Red light therapy heals wounds faster", "topic": "Red light therapy and wound healing", "label": "Red light and wound healing", "category": "health"},
+    {"claim": "Red light therapy clears acne", "topic": "Red light therapy and acne", "label": "Red light and acne", "category": "appearance"},
+    {"claim": "Red light therapy boosts your energy", "topic": "Red light therapy and energy or fatigue", "label": "Red light and energy", "category": "health"},
+    {"claim": "Red light therapy improves sleep", "topic": "Red light therapy and sleep quality", "label": "Red light and sleep", "category": "health"}
+  ],
   "findings": [
     {
       "outcome": "Wrinkles, skin roughness and collagen (skin ageing)",

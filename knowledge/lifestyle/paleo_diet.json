@@ -1,0 +1,491 @@
+{
+  "id": "paleo_diet",
+  "name": "Paleo diet",
+  "category": "diet",
+  "otherNames": [
+    "Paleolithic diet",
+    "Palaeolithic diet",
+    "Caveman diet",
+    "Stone Age diet",
+    "Hunter-gatherer diet"
+  ],
+  "summary": "The paleo diet is built on meat, fish, eggs, vegetables, fruit and nuts, and leaves out grains, dairy, legumes and processed foods. Small trials of up to 2 years found more weight, waist and blood pressure improvement than guideline diets in the short term, but the benefit faded over time, and no trial has tested heart attacks or lifespan.",
+  "howItWorks": [
+    "The diet is based on the idea that human bodies are best suited to foods people ate before farming. This is a theory about history; it has not been shown to explain any health effect.",
+    "It removes processed foods, refined sugar and most added salt, and leaves out grains, dairy and legumes. Weight and blood pressure changes in trials may come from these changes, from eating fewer calories or from losing weight.",
+    "Leaving out dairy, grains and iodised salt changes the diet's mix of nutrients: some studies found lower calcium, fibre or iodine intakes than on standard diets.",
+    "Some studies suggest changes in the gut bacteria and in a blood marker called TMAO. What this means for health is not known."
+  ],
+  "whatStudiesDid": "Most trials were small. They asked adults, often with overweight, type 2 diabetes or metabolic syndrome, to follow a paleo diet (lean meat, fish, eggs, fruit, vegetables, nuts, root vegetables; no grains, dairy or processed foods) for 3 months to 2 years, compared with diets built on national nutrition guidelines or a diabetes diet. Some trials gave meals or advice only, and some let people eat as much as they wanted. Cohort studies scored how closely people's usual eating matched a paleo pattern, using food questionnaires, and followed them for years. Most scores reward eating more fruit, vegetables, fish and nuts, and less processed food, not strict avoidance of grains.",
+  "markers": [
+    "weight",
+    "waist",
+    "body_fat",
+    "triglycerides",
+    "hdl",
+    "ldl",
+    "bp_systolic",
+    "bp_diastolic",
+    "hba1c",
+    "glucose",
+    "crp_hs",
+    "tsh"
+  ],
+  "claims": [
+    {
+      "claim": "The paleo diet is how humans are meant to eat, so it is the healthiest diet",
+      "topic": "Paleolithic diet and long-term health",
+      "label": "Paleo as the natural diet",
+      "category": "health"
+    },
+    {
+      "claim": "The paleo diet helps you lose weight",
+      "topic": "Paleolithic diet and weight loss",
+      "label": "Paleo and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "The paleo diet lowers your risk of heart disease",
+      "topic": "Paleolithic diet and heart disease",
+      "label": "Paleo and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "The paleo diet reduces inflammation in the body",
+      "topic": "Paleolithic diet and inflammation",
+      "label": "Paleo and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "The paleo diet fixes gut problems",
+      "topic": "Paleolithic diet and gut health",
+      "label": "Paleo and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Cutting out grains and dairy makes you healthier",
+      "topic": "Avoiding grains and dairy and health outcomes",
+      "label": "No grains or dairy",
+      "category": "health"
+    },
+    {
+      "claim": "The paleo diet helps with autoimmune disease",
+      "topic": "Paleolithic diet and autoimmune disease",
+      "label": "Paleo and autoimmune disease",
+      "category": "health"
+    },
+    {
+      "claim": "The paleo diet helps you live longer",
+      "topic": "Paleolithic diet and lifespan",
+      "label": "Paleo and a longer life",
+      "category": "longevity"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Body weight, waist and body fat",
+      "population": "Adults, mostly with overweight, obesity or chronic conditions, in 8 to 11 randomised trials, and obese postmenopausal women over 2 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Most trials were small and short, from 3 months to 2 years",
+        "The paleo diets were compared with a range of control diets",
+        "In the only 2-year trial the extra fat loss had faded by 24 months",
+        "People in trials cannot be blinded to the diet"
+      ],
+      "summary": "A 2019 meta-analysis of 8 randomised trials found that paleo diets lowered body weight by 2.17 kg (95% confidence interval 0.87 to 3.48 kg), waist by 2.90 cm (1.28 to 4.51), body mass index by 1.15 (0.62 to 1.68) and body fat by 1.38 percentage points (0.67 to 2.08), compared with control diets. Another 2019 meta-analysis of 11 trials found 3.52 kg more weight loss (1.79 to 5.26) than diets based on recommendations. In a 2-year trial of 70 obese postmenopausal women (ad libitum paleo against a Nordic recommendations diet), fat mass fell by 6.5 kg against 2.6 kg at 6 months (p < 0.001) but by 4.6 kg against 2.9 kg at 24 months (p = 0.095, not a clear difference); waist fell more at 6 months. The authors said more trials with larger populations and longer duration are needed.",
+      "bottomLine": "In meta-analyses of small trials, people on paleo diets lost about 2 to 3.5 kg more than people on guideline diets, with a smaller waist. In the one 2-year trial the extra fat loss had faded by 24 months.",
+      "label": "Weight and waist",
+      "line": "About 2 to 3.5 kg more weight lost than on guideline diets, fading by 2 years",
+      "studies": [
+        {
+          "pmid": "31041449",
+          "doi": "10.1093/advances/nmz007",
+          "title": "Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31337389",
+          "doi": "10.1186/s12937-019-0457-z",
+          "title": "Influence of Paleolithic diet on anthropometric markers in chronic diseases: systematic review and meta-analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24473459",
+          "doi": "10.1038/ejcn.2013.290",
+          "title": "Long-term effects of a Palaeolithic-type diet in obese postmenopausal women: a 2-year randomized trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 70
+        }
+      ]
+    },
+    {
+      "outcome": "Triglycerides, blood pressure and other metabolic syndrome measures",
+      "population": "Adults with at least one part of metabolic syndrome (4 randomised trials, 159 people, up to 6 months), and obese postmenopausal women over 2 years",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Only 4 small trials, with moderate-quality evidence by the authors' own rating",
+        "Several intervals include no difference, including systolic blood pressure, HDL cholesterol and fasting blood sugar",
+        "A larger 2019 review found lipid, blood pressure and CRP results changed when single studies were removed",
+        "No trial reported quality of life or heart attacks"
+      ],
+      "summary": "A 2015 meta-analysis of 4 randomised trials (159 people with at least one component of metabolic syndrome) found that paleo diets gave greater short-term improvements than guideline-based control diets in waist (-2.38 cm, 95% confidence interval -4.73 to -0.04), triglycerides (-0.40 mmol/L, -0.76 to -0.04), systolic blood pressure (-3.64 mmHg, -7.36 to 0.08), diastolic blood pressure (-2.48 mmHg, -4.98 to 0.02), HDL cholesterol (+0.12 mmol/L, -0.03 to 0.28) and fasting blood sugar (-0.16 mmol/L, -0.44 to 0.11). Only waist and triglycerides had intervals that excluded zero. A 2019 meta-analysis of 8 trials found lower systolic and diastolic blood pressure (about 4.2 and 3.0 mmHg), LDL cholesterol, triglycerides and CRP, but said these results changed when some studies were removed, so they must be read with caution. In the 2-year trial, triglycerides fell more on the paleo diet at 6 and 24 months.",
+      "bottomLine": "Paleo diets lowered triglycerides and waist more than guideline diets in 4 small trials, with smaller, less certain changes in blood pressure and HDL cholesterol. A larger review said the results are not conclusive.",
+      "label": "Blood fats and blood pressure",
+      "line": "Triglycerides lower; blood pressure and HDL changes smaller and less certain",
+      "studies": [
+        {
+          "pmid": "26269362",
+          "doi": "10.3945/ajcn.115.113613",
+          "title": "Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 159
+        },
+        {
+          "pmid": "31041449",
+          "doi": "10.1093/advances/nmz007",
+          "title": "Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "24473459",
+          "doi": "10.1038/ejcn.2013.290",
+          "title": "Long-term effects of a Palaeolithic-type diet in obese postmenopausal women: a 2-year randomized trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 70
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar in type 2 diabetes",
+      "population": "Adults with type 2 diabetes in two small trials (13 and 32 people, 3 months each)",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Very small trials: a 13-person crossover and a 32-person trial without a non-paleo comparison diet",
+        "The second trial reports changes within each paleo group, not against a control diet",
+        "Only 3 months long",
+        "People lost weight, which on its own lowers blood sugar"
+      ],
+      "summary": "In a randomised crossover trial of 13 people with type 2 diabetes (average diabetes duration 9 years, HbA1c 6.6%), 3 months on a paleo diet gave lower values than 3 months on a guideline-based diabetes diet: HbA1c 0.4 percentage points lower (p = 0.01), triglycerides 0.4 mmol/L lower, diastolic blood pressure 4 mmHg lower, weight 3 kg lower and waist 4 cm lower. In a trial of 32 people with type 2 diabetes who followed a paleo diet for 12 weeks (half also exercised under supervision), HbA1c fell by 0.9 percentage points in the diet-only group (p < 0.001) and insulin resistance (HOMA-IR) improved by 45%; this was a within-group change, not a comparison with another diet. Supervised exercise preserved lean mass in men.",
+      "bottomLine": "In two very small 3-month trials of people with type 2 diabetes, blood sugar (HbA1c) fell on a paleo diet, by 0.4 points more than a diabetes diet in one. The trials were tiny and short, and weight also fell.",
+      "label": "Type 2 diabetes",
+      "line": "HbA1c lower in two small 3-month trials; weight also fell",
+      "studies": [
+        {
+          "pmid": "19604407",
+          "doi": "10.1186/1475-2840-8-35",
+          "title": "Beneficial effects of a Paleolithic diet on cardiovascular risk factors in type 2 diabetes: a randomized cross-over pilot study.",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 13
+        },
+        {
+          "pmid": "27235022",
+          "doi": "10.1002/dmrr.2828",
+          "title": "Benefits of a Paleolithic diet with and without supervised exercise on fat mass, insulin sensitivity, and glycemic control: a randomized controlled trial in individuals with type 2 diabetes.",
+          "year": 2017,
+          "studyType": "rct",
+          "n": 32
+        }
+      ]
+    },
+    {
+      "outcome": "Long-term disease and death",
+      "population": "Adults aged 45 and over in the US (21,423 people, 6 years) and 70,991 French women followed for nearly 20 years, scored on how paleo-like their eating was",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Observational: people were not assigned a diet",
+        "Scores reward eating more fruit, vegetables and fish, which is also true of other healthy diets",
+        "The Mediterranean diet score went with a bigger drop in deaths than the paleo score",
+        "No trial has tested paleo for heart attacks, cancer or lifespan"
+      ],
+      "summary": "In the US REGARDS study (21,423 people aged 45 and over, 2,513 deaths over a median of 6.25 years), people in the highest fifth of a Paleolithic diet score had a lower risk of death from any cause than those in the lowest fifth (hazard ratio 0.77, 95% confidence interval 0.67 to 0.89), cancer death (0.72, 0.55 to 0.95) and cardiovascular death (0.78, 0.61 to 1.00). The Mediterranean diet score went with larger differences (0.63, 0.54 to 0.73 for any cause). In the French E3N study of 70,991 women followed for nearly 20 years, the highest against lowest fifth of a paleo score had a lower risk of type 2 diabetes (0.88, 0.79 to 0.98) and of high blood pressure (0.91, 0.86 to 0.96). These are links in groups of people, not proof that a paleo diet prevents disease.",
+      "bottomLine": "In large cohorts, people whose eating was closer to a paleo pattern had fewer deaths and less type 2 diabetes and high blood pressure, but a Mediterranean pattern did even better. These links reflect eating more fruit, vegetables and fish, not necessarily avoiding grains and dairy.",
+      "label": "Disease and death",
+      "line": "Closer-to-paleo eating linked to fewer deaths (a link; Mediterranean did better)",
+      "studies": [
+        {
+          "pmid": "28179490",
+          "doi": "10.3945/jn.116.241919",
+          "title": "Paleolithic and Mediterranean Diet Pattern Scores Are Inversely Associated with All-Cause and Cause-Specific Mortality in Adults.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 21423
+        },
+        {
+          "pmid": "33909140",
+          "doi": "10.1007/s00394-021-02565-5",
+          "title": "The associations of the Palaeolithic diet alone and in combination with lifestyle factors with type 2 diabetes and hypertension risks in women in the E3N prospective cohort.",
+          "year": 2021,
+          "studyType": "observational",
+          "n": 70991
+        }
+      ]
+    },
+    {
+      "outcome": "Gut bacteria and TMAO",
+      "population": "44 long-term followers of a paleo diet (over a year) and 47 people on a diet typical of national recommendations",
+      "effect": "harms",
+      "grade": "very low",
+      "whyThisGrade": [
+        "A single study of 91 people at one time point: it cannot show that the diet caused the difference",
+        "TMAO is a marker linked with heart disease, but a rise in TMAO here has not been shown to cause harm",
+        "People chose their own diets, so other differences may explain it",
+        "Results depended on how strictly people avoided grains and dairy"
+      ],
+      "summary": "In a cross-sectional study, 44 people who had followed a paleo diet for more than a year (22 strict, 22 who still ate some grains or dairy) were compared with 47 controls on a diet typical of national recommendations. Resistant starch intake was lower in both paleo groups (2.62 and 1.26 g a day against 4.48 g a day, p < 0.05), the microbiota differed, with more Hungatella, a bacteria that makes TMA, and blood TMAO, a gut-derived metabolite linked to cardiovascular disease, was higher in the strict group (p < 0.01) and was inversely related to whole grain intake. The authors said a variety of fibre, including whole grains, may be needed to maintain gut and heart health.",
+      "bottomLine": "People who had followed a strict paleo diet for over a year had less resistant starch, different gut bacteria and higher blood TMAO than controls. This is a single small study and does not show that paleo harms the heart.",
+      "label": "Gut bacteria and TMAO",
+      "line": "Different gut bacteria and higher TMAO in strict long-term followers (one small study)",
+      "studies": [
+        {
+          "pmid": "31273523",
+          "doi": "10.1007/s00394-019-02036-y",
+          "title": "Long-term Paleolithic diet is associated with lower resistant starch intake, different gut microbiota composition and increased serum TMAO concentrations.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 91
+        }
+      ]
+    },
+    {
+      "outcome": "Iodine and other nutrients",
+      "population": "Overweight and obese postmenopausal women in a 2-year randomised trial (35 on paleo, 35 on a Nordic recommendations diet)",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "One randomised trial of 70 women, measured by urine tests",
+        "Thyroid blood tests were mostly unchanged, so the health effect is unclear",
+        "Iodine was measured by urine tests in a single trial",
+        "Other nutrients were not measured in the same way"
+      ],
+      "summary": "In a 2-year randomised trial, 70 healthy overweight or obese postmenopausal women were assigned to a paleo diet (35) or a diet following the Nordic Nutrition Recommendations (35). After 6 months, 24-hour urinary iodine concentration, a measure of iodine intake, fell from 71.0 to 36.0 micrograms per litre in the paleo group and stayed the same in the other group, and iodine excretion fell from 134.0 to 77.0 micrograms a day. Thyroid hormones (FT4, TSH) were similar in both groups; FT3 was lower in the paleo group at 6 months. The authors concluded the paleo diet carries a higher risk of iodine deficiency than the recommended diet, because table salt and dairy, two of the largest iodine sources, are excluded. In the 13-person diabetes trial, the paleo diet was also lower in calcium than the diabetes diet.",
+      "bottomLine": "In a 2-year trial, women on a paleo diet had falling iodine levels (about half of baseline) compared with women on a recommendations-based diet, because dairy and iodised salt were left out. Thyroid tests were mostly unchanged, but the diet can leave gaps.",
+      "label": "Iodine and calcium",
+      "line": "Urine iodine fell by about half after 6 months in one 2-year trial",
+      "studies": [
+        {
+          "pmid": "28901333",
+          "doi": "10.1038/ejcn.2017.134",
+          "title": "A Paleolithic-type diet results in iodine deficiency: a 2-year randomized trial in postmenopausal obese women.",
+          "year": 2018,
+          "studyType": "rct",
+          "n": 70
+        },
+        {
+          "pmid": "19604407",
+          "doi": "10.1186/1475-2840-8-35",
+          "title": "Beneficial effects of a Paleolithic diet on cardiovascular risk factors in type 2 diabetes: a randomized cross-over pilot study.",
+          "year": 2009,
+          "studyType": "rct",
+          "n": 13
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Paleo diet score and the risk of dying, compared with a Mediterranean score",
+      "caption": "Hazard ratios for people in the highest fifth of each diet score, compared with the lowest fifth (1 = no difference), from the REGARDS cohort (21,423 adults aged 45 and over, 6 years); lines show the 95% confidence interval. These are links, adjusted for other factors. The Mediterranean score went with the larger differences.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Lowest fifth of the score"
+      },
+      "items": [
+        {
+          "label": "Any death, paleo score",
+          "value": 0.77,
+          "low": 0.67,
+          "high": 0.89
+        },
+        {
+          "label": "Any death, Mediterranean score",
+          "value": 0.63,
+          "low": 0.54,
+          "high": 0.73
+        },
+        {
+          "label": "Cancer death, paleo score",
+          "value": 0.72,
+          "low": 0.55,
+          "high": 0.95
+        },
+        {
+          "label": "Cancer death, Mediterranean score",
+          "value": 0.64,
+          "low": 0.48,
+          "high": 0.84
+        },
+        {
+          "label": "Heart and blood vessel death, paleo score",
+          "value": 0.78,
+          "low": 0.61,
+          "high": 1.0
+        },
+        {
+          "label": "Heart and blood vessel death, Mediterranean score",
+          "value": 0.68,
+          "low": 0.53,
+          "high": 0.88
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "28179490",
+          "doi": "10.3945/jn.116.241919",
+          "title": "Paleolithic and Mediterranean Diet Pattern Scores Are Inversely Associated with All-Cause and Cause-Specific Mortality in Adults.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 21423
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Fat mass change over 2 years: paleo diet against a recommendations diet",
+      "caption": "Average change in fat mass (kg) in 70 obese postmenopausal women, 35 on an ad libitum paleo diet and 35 on a Nordic Nutrition Recommendations diet. The paleo group lost more at 6 months (p < 0.001) but the difference was not clear at 24 months (p = 0.095).",
+      "scale": "linear",
+      "unit": "kg",
+      "reference": {
+        "value": 0,
+        "label": "No change"
+      },
+      "items": [
+        {
+          "label": "6 months, paleo diet",
+          "value": -6.5
+        },
+        {
+          "label": "6 months, recommendations diet",
+          "value": -2.6
+        },
+        {
+          "label": "24 months, paleo diet",
+          "value": -4.6
+        },
+        {
+          "label": "24 months, recommendations diet",
+          "value": -2.9
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "24473459",
+          "doi": "10.1038/ejcn.2013.290",
+          "title": "Long-term effects of a Palaeolithic-type diet in obese postmenopausal women: a 2-year randomized trial.",
+          "year": 2014,
+          "studyType": "rct",
+          "n": 70
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Diabetes treated with insulin or tablets that can cause low blood sugar",
+      "note": "Changing what you eat can change blood sugar and the doses of medicines needed. The diabetes trials were small and followed by doctors. Talk to a doctor or diabetes nurse first.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Kidney disease",
+      "note": "Paleo diets are often high in protein and potassium-rich foods. People with kidney disease usually have limits on these. Ask a kidney doctor or dietitian first.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Pregnancy or breastfeeding",
+      "note": "Leaving out dairy and iodised salt can lower calcium and iodine, which matter in pregnancy. The trials were not in pregnant women. Talk to a doctor or midwife.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "A past or current eating disorder",
+      "note": "Strict rules about which foods are allowed can worsen an eating disorder. A doctor or dietitian can help judge whether the diet is safe."
+    },
+    {
+      "with": "Low calcium or iodine intake, low bone density, or thyroid disease",
+      "note": "Dairy and iodised salt are two of the main sources of calcium and iodine in many diets. A doctor or dietitian can check intakes and blood tests if you leave them out."
+    },
+    {
+      "with": "Children and teenagers",
+      "note": "Growing bodies need calcium and other nutrients, and the trials were in adults. Ask a doctor or dietitian first."
+    }
+  ],
+  "cautions": [
+    "There are many versions of the paleo diet. Some allow dairy, potatoes, honey or red meat in different amounts; results may differ.",
+    "Trials tested the diet for no longer than 2 years, with most under 6 months."
+  ],
+  "unknowns": [
+    "No trial has tested whether a paleo diet affects heart attacks, cancer, bone fractures or how long people live.",
+    "It is not known whether any benefit comes from the paleo pattern itself or from eating fewer processed foods, eating fewer calories or losing weight, which many diets share.",
+    "Long-term effects on bone, thyroid and gut health from leaving out dairy, grains and iodised salt have been studied very little.",
+    "Whether higher TMAO and different gut bacteria in followers of the diet matter for heart health is not known.",
+    "The idea that this is how humans are meant to eat is a theory; there is no trial of paleo diets against other healthy diets for lifespan."
+  ],
+  "sources": [
+    {
+      "pmid": "31041449",
+      "doi": "10.1093/advances/nmz007",
+      "title": "Effects of a Paleolithic Diet on Cardiovascular Disease Risk Factors: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "26269362",
+      "doi": "10.3945/ajcn.115.113613",
+      "title": "Paleolithic nutrition for metabolic syndrome: systematic review and meta-analysis.",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 159
+    },
+    {
+      "pmid": "24473459",
+      "doi": "10.1038/ejcn.2013.290",
+      "title": "Long-term effects of a Palaeolithic-type diet in obese postmenopausal women: a 2-year randomized trial.",
+      "year": 2014,
+      "studyType": "rct",
+      "n": 70
+    },
+    {
+      "pmid": "28179490",
+      "doi": "10.3945/jn.116.241919",
+      "title": "Paleolithic and Mediterranean Diet Pattern Scores Are Inversely Associated with All-Cause and Cause-Specific Mortality in Adults.",
+      "year": 2017,
+      "studyType": "observational",
+      "n": 21423
+    },
+    {
+      "pmid": "19604407",
+      "doi": "10.1186/1475-2840-8-35",
+      "title": "Beneficial effects of a Paleolithic diet on cardiovascular risk factors in type 2 diabetes: a randomized cross-over pilot study.",
+      "year": 2009,
+      "studyType": "rct",
+      "n": 13
+    },
+    {
+      "pmid": "31273523",
+      "doi": "10.1007/s00394-019-02036-y",
+      "title": "Long-term Paleolithic diet is associated with lower resistant starch intake, different gut microbiota composition and increased serum TMAO concentrations.",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 91
+    },
+    {
+      "pmid": "28901333",
+      "doi": "10.1038/ejcn.2017.134",
+      "title": "A Paleolithic-type diet results in iodine deficiency: a 2-year randomized trial in postmenopausal obese women.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 70
+    }
+  ]
+}

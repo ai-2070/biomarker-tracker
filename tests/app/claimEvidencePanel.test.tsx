@@ -66,7 +66,18 @@ function auditedCheck(depth: ClaimDepth): ClaimCheck {
     },
   };
 }
-const render = (critical = false) => renderToStaticMarkup(createElement(ClaimEvidencePanel, { n, guide, critical }));
+const render = (critical = false) =>
+  renderToStaticMarkup(
+    createElement(ClaimEvidencePanel, {
+      id: n.id,
+      name: n.name,
+      critical,
+      claims: (n.commonUses ?? []).flatMap((claim) => {
+        const topic = guide.claimTopics?.[claim];
+        return topic ? [{ claim, topic, category: guide.claimCategories?.[claim] ?? "health", label: guide.claimLabels?.[claim] ?? claim }] : [];
+      }),
+    }),
+  );
 beforeEach(() => {
   checkRequest.mockReset();
   view.snapshot = { cache: { version: 1, checks: [], customTopics: [], updates: [] }, identity: { loaded: null, browser: "{}", epoch: 0 }, damaged: false };

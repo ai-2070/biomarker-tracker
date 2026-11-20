@@ -80,7 +80,15 @@ export function SupplementGuide({
       </Card>
 
       {guide.claimTopics ? (
-        <ClaimEvidencePanel n={n} guide={guide} critical={critical} />
+        <ClaimEvidencePanel
+          id={n.id}
+          name={n.name}
+          critical={critical}
+          claims={(n.commonUses ?? []).flatMap((claim) => {
+            const topic = guide.claimTopics?.[claim];
+            return topic ? [{ claim, topic, category: guide.claimCategories?.[claim] ?? "health", label: guide.claimLabels?.[claim] ?? claim }] : [];
+          })}
+        />
       ) : (
         <Card id="uses" className="scroll-mt-6">
           <h2 className="font-serif text-2xl font-normal">Potential benefits &amp; common claims</h2>

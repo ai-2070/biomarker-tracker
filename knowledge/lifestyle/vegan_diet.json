@@ -1,0 +1,567 @@
+{
+  "id": "vegan_diet",
+  "name": "Vegan diet",
+  "category": "diet",
+  "otherNames": [
+    "Vegan",
+    "Plant-based diet (fully)",
+    "Whole-food vegan diet",
+    "Low-fat vegan diet",
+    "Veganism"
+  ],
+  "summary": "In trials, vegan diets lowered LDL cholesterol by about 0.3 mmol/L, and in people with overweight or type 2 diabetes they also lowered body weight and blood sugar. Large cohorts link vegetarian diets to less heart disease and cancer but more hip fractures, and a vegan diet without supplements carries a real risk of low vitamin B12.",
+  "howItWorks": [
+    "A vegan diet has no meat, fish, eggs, dairy or honey. It usually has more fibre and less saturated fat and cholesterol than a mixed diet, which fits the lower cholesterol seen in trials.",
+    "In trials in people with overweight, part of the weight loss may come from differences in the mix of nutrients and in how much people ate, rather than from anything special about being vegan. One review said this directly.",
+    "Vitamin B12 is found in animal foods. Plant foods are not a dependable source, so intake falls on a vegan diet unless it comes from fortified foods or supplements. In a 4-week trial, a marker of B12 supply fell in people who switched to a vegan diet without supplements.",
+    "Calcium, vitamin D, protein and body weight tend to be lower in people on vegan diets, and a review suggests this may help explain the higher fracture risk. This is a proposed explanation, not proven."
+  ],
+  "whatStudiesDid": "The cholesterol and weight trials compared vegetarian or vegan diets with a mixed or less restrictive diet, usually for at least 12 weeks; the review of blood sugar in type 2 diabetes pooled 7 trials of 770 people. The long-term links come from cohort studies that asked people how they ate and followed them for years, such as EPIC-Oxford in the UK, which followed about 55,000 people for an average of 17.6 years. Many people in the cohorts were vegetarian rather than vegan, so vegan results rest on fewer people. The B12 trial put 53 healthy omnivores on a vegan or meat-rich diet for 4 weeks without supplements.",
+  "markers": [
+    "ldl",
+    "total_cholesterol",
+    "b12",
+    "weight",
+    "hba1c",
+    "bp_systolic",
+    "bp_diastolic"
+  ],
+  "claims": [
+    {
+      "claim": "A vegan diet lowers your cholesterol",
+      "topic": "Vegan diet and LDL cholesterol",
+      "label": "Cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Vegans live longer than meat eaters",
+      "topic": "Vegan diet and death from any cause",
+      "label": "Living longer",
+      "category": "longevity"
+    },
+    {
+      "claim": "A vegan diet protects against heart disease",
+      "topic": "Vegan diet and heart disease",
+      "label": "Heart disease",
+      "category": "health"
+    },
+    {
+      "claim": "A vegan diet protects against cancer",
+      "topic": "Vegan diet and cancer risk",
+      "label": "Cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Going vegan is the best way to lose weight",
+      "topic": "Vegan diet and weight loss",
+      "label": "Weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "You can get all the vitamin B12 you need from plant foods",
+      "topic": "Vegan diet and vitamin B12 deficiency",
+      "label": "Vitamin B12",
+      "category": "health"
+    },
+    {
+      "claim": "A vegan diet reverses type 2 diabetes",
+      "topic": "Vegan diet and blood sugar in type 2 diabetes",
+      "label": "Type 2 diabetes",
+      "category": "health"
+    },
+    {
+      "claim": "A vegan diet clears your skin and makes you look younger",
+      "topic": "Vegan diet and skin health or acne",
+      "label": "Skin and looking younger",
+      "category": "appearance"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "LDL cholesterol and other blood fats",
+      "population": "Adults in 30 randomised trials, healthy or with a health condition, comparing vegetarian or vegan diets with an omnivorous diet",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Randomised trials, and the result was similar across age, continent, study length and health status",
+        "Trials mixed vegetarian and vegan diets, and people cannot be blinded to what they eat",
+        "Cholesterol is a marker of heart risk, not a measure of heart attacks"
+      ],
+      "summary": "A meta-analysis of 30 randomised trials compared vegetarian or vegan diets with an omnivorous diet in adults. The plant-based diets lowered total cholesterol by 0.34 mmol/L (95% confidence interval -0.44 to -0.23), LDL cholesterol by 0.30 mmol/L (-0.40 to -0.19) and apolipoprotein B by 12.92 mg/dL (-22.63 to -3.20). There was no significant difference in triglycerides. The effects were similar across age, continent, study length, health status, type of diet and study design. A separate meta-analysis of 11 vegan diet trials (796 people with overweight or type 2 diabetes) found total cholesterol 0.30 mmol/L lower (-0.52 to -0.08) and LDL 0.24 mmol/L lower (-0.40 to -0.07), with no effect on HDL cholesterol or triglycerides.",
+      "bottomLine": "In trials, vegetarian and vegan diets lowered LDL cholesterol by about 0.3 mmol/L compared with a mixed diet, with similar results in healthy people and in people with health conditions. Triglycerides did not change. This is a lab marker, not proof of fewer heart attacks.",
+      "label": "LDL cholesterol",
+      "line": "About 0.3 mmol/L lower than a mixed diet in 30 trials",
+      "studies": [
+        {
+          "pmid": "37226630",
+          "doi": "10.1093/eurheartj/ehad211",
+          "title": "Vegetarian or vegan diets and blood lipids: a meta-analysis of randomized trials.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35672940",
+          "doi": "10.1111/obr.13462",
+          "title": "Effects of vegan diets on cardiometabolic health: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 796
+        }
+      ]
+    },
+    {
+      "outcome": "Body weight and blood sugar (HbA1c)",
+      "population": "Adults with overweight or type 2 diabetes in trials of vegan or vegetarian diets lasting at least 12 weeks",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Pooled randomised trials with a clear direction",
+        "Small trials; people cannot be blinded to their diet",
+        "Some of the effect may come from different nutrient mix and energy intake rather than from being vegan, as the authors say",
+        "In the diabetes review, moderate certainty for HbA1c and body mass index, low or very low for other outcomes"
+      ],
+      "summary": "In 11 trials (796 people with overweight or type 2 diabetes), vegan diets lasting at least 12 weeks lowered body weight by 4.1 kg (95% confidence interval -5.9 to -2.4), body mass index by 1.38 kg/m2 (-1.96 to -0.80) and HbA1c, a marker of average blood sugar, by 0.18 percentage points (-0.29 to -0.07) compared with control diets. There was no effect on blood pressure, HDL cholesterol or triglycerides. A review of 7 trials (770 people) of vegetarian or vegan diets in adults with type 2 diabetes found HbA1c 0.40 percentage points lower (-0.59 to -0.21) and body mass index 0.96 kg/m2 lower (-1.58 to -0.34), with moderate certainty, and said they may allow less diabetes medication (low certainty). Fasting blood glucose and fasting insulin did not differ.",
+      "bottomLine": "In people with overweight or type 2 diabetes, vegan diets lasting at least 12 weeks lowered body weight by about 4 kg and HbA1c by about 0.2 points compared with control diets. Part of this may come from eating different amounts and nutrients, not from being vegan itself.",
+      "label": "Weight and blood sugar",
+      "line": "About 4 kg less weight and lower HbA1c in people with overweight or diabetes",
+      "studies": [
+        {
+          "pmid": "35672940",
+          "doi": "10.1111/obr.13462",
+          "title": "Effects of vegan diets on cardiometabolic health: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 796
+        },
+        {
+          "pmid": "39415400",
+          "doi": "10.1016/j.advnut.2024.100294",
+          "title": "Vegetarian and Vegan Dietary Patterns to Treat Adult Type 2 Diabetes: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2024,
+          "studyType": "meta-analysis",
+          "n": 770
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults in 11 randomised trials comparing a vegan diet with a less restrictive diet",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Pooled randomised trials, but the overall difference could be chance",
+        "The result for people with high starting blood pressure comes from a subgroup analysis",
+        "Trials are small, short and cannot hide the diet from people"
+      ],
+      "summary": "A meta-analysis of 11 randomised trials with 983 participants compared vegan diets with less restrictive diets. Overall, systolic blood pressure changed by -1.33 mm Hg (95% confidence interval -3.50 to 0.84) and diastolic by -1.21 mm Hg (-3.06 to 0.65), neither clearly different from no change. In a planned subgroup of trials where average starting systolic pressure was 130 mm Hg or higher, vegan diets lowered systolic pressure by 4.10 mm Hg (-8.14 to -0.06) and diastolic by 4.01 mm Hg (-5.97 to -2.05). A separate review of 11 trials in people with overweight or type 2 diabetes also found no effect on blood pressure.",
+      "bottomLine": "Across 11 trials, a vegan diet did not clearly change blood pressure (about 1 mm Hg lower, within chance). In trials of people who started with systolic pressure of 130 mm Hg or higher, it fell by about 4 mm Hg. That subgroup result needs confirming.",
+      "label": "Blood pressure",
+      "line": "No clear change overall; about 4 mm Hg lower in those starting high",
+      "studies": [
+        {
+          "pmid": "30851264",
+          "doi": "10.1016/j.amjmed.2019.01.044",
+          "title": "The Effect of Vegan Diets on Blood Pressure in Adults: A Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 983
+        },
+        {
+          "pmid": "35672940",
+          "doi": "10.1111/obr.13462",
+          "title": "Effects of vegan diets on cardiometabolic health: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 796
+        }
+      ]
+    },
+    {
+      "outcome": "Heart disease, cancer and death from any cause",
+      "population": "Adults in large cohort studies, comparing vegetarians or vegans with people who eat meat",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: people who choose these diets may differ in smoking, weight, income and health habits",
+        "Most people in the cohorts were vegetarian; results for vegans rest on far fewer people",
+        "Diet was asked about once or a few times and may have changed",
+        "Results differ between studies (heterogeneity was high for several outcomes)"
+      ],
+      "summary": "A meta-analysis of 13 prospective cohort studies (844,175 participants) found vegetarians had less cardiovascular disease than non-vegetarians (relative risk 0.85, 95% confidence interval 0.79 to 0.92) and less ischemic heart disease (0.79, 0.71 to 0.88), but no clear difference in stroke (0.90, 0.77 to 1.05). For vegans, the ischemic heart disease ratio was 0.82 (0.68 to 1.00), right at the edge of chance. An earlier meta-analysis found vegetarian diets went with 8% less total cancer (relative risk 0.92, 0.87 to 0.98) and vegan diets with 15% less (0.85, 0.75 to 0.95, from few studies), but no significant link with all-cause mortality, cancer deaths or specific cancer types. In the Australian 45 and Up Study (243,096 people, 16,836 deaths), vegetarians did not differ from non-vegetarians in all-cause mortality (hazard ratio 1.16, 0.93 to 1.45). These are links, not proof of cause.",
+      "bottomLine": "Cohort studies link vegetarian diets to about 15% less cardiovascular disease and 21% less ischemic heart disease, and vegan diets to less cancer, but not to a clear difference in stroke or in death from any cause. These are links with many other possible explanations.",
+      "label": "Heart disease, cancer, death",
+      "line": "Less heart disease and cancer in cohorts; no clear difference in total deaths",
+      "studies": [
+        {
+          "pmid": "36030329",
+          "doi": "10.1007/s00394-022-02942-8",
+          "title": "Vegetarian and vegan diets and the risk of cardiovascular disease, ischemic heart disease and stroke: a systematic review and meta-analysis of prospective cohort studies.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 844175
+        },
+        {
+          "pmid": "26853923",
+          "doi": "10.1080/10408398.2016.1138447",
+          "title": "Vegetarian, vegan diets and multiple health outcomes: A systematic review with meta-analysis of observational studies.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "28040519",
+          "doi": "10.1016/j.ypmed.2016.12.044",
+          "title": "Vegetarian diet and all-cause mortality: Evidence from a large population-based Australian cohort - the 45 and Up Study.",
+          "year": 2017,
+          "studyType": "observational",
+          "n": 243096
+        }
+      ]
+    },
+    {
+      "outcome": "Hip and other fractures",
+      "population": "Adults in prospective cohorts, vegetarians and vegans compared with meat eaters",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "Observational: no trial has tested fractures",
+        "Four cohorts in the meta-analysis; the vegan result has very low certainty",
+        "Lower body weight and lower calcium, vitamin D and protein intake may explain part of the link",
+        "In favour: the same direction in separate cohorts, and a clearer link in vegans than vegetarians"
+      ],
+      "summary": "In EPIC-Oxford (about 55,000 people followed for 17.6 years on average), compared with meat eaters the risk of hip fracture was higher in vegetarians (hazard ratio 1.25, 95% confidence interval 1.04 to 1.50) and vegans (2.31, 1.66 to 3.22), after adjusting for body mass index and lifestyle. That is 14.9 more cases per 1,000 vegans over 10 years. Vegans also had more total fractures (1.43, 1.20 to 1.70) and leg fractures (2.05, 1.23 to 3.41); wrist and ankle fractures did not differ clearly. A 2026 meta-analysis of 4 cohorts (529,672 participants) found hip fracture risk 25% higher in vegetarians (1.25, 1.11 to 1.39, low certainty) and 75% higher in vegans (1.75, 1.17 to 2.63, very low certainty). A review notes this may be partly due to lower body mass index and lower intake of calcium, vitamin D and protein.",
+      "bottomLine": "In several cohorts, vegans had a higher risk of hip fracture than meat eaters (about 1.75 to 2.3 times) and vegetarians a smaller increase (about 1.25 times). The link may partly reflect lower body weight and lower calcium, vitamin D and protein intake; no trial has tested it.",
+      "label": "Hip fractures",
+      "line": "Higher in vegans and vegetarians than meat eaters, in cohort studies",
+      "studies": [
+        {
+          "pmid": "33222682",
+          "doi": "10.1186/s12916-020-01815-3",
+          "title": "Vegetarian and vegan diets and risks of total and site-specific fractures: results from the prospective EPIC-Oxford study.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 54898
+        },
+        {
+          "pmid": "41275510",
+          "doi": "10.1093/nutrit/nuaf241",
+          "title": "Vegetarian and Vegan Diets and the Risk of Hip Fracture in Adults: A Systematic Review and Meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 529672
+        },
+        {
+          "pmid": "38554239",
+          "doi": "10.1007/s13668-024-00533-z",
+          "title": "Risk of Bone Fracture on Vegetarian and Vegan Diets.",
+          "year": 2024,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Vitamin B12 status",
+      "population": "Vegans and vegetarians, and healthy omnivores switched to a vegan diet for 4 weeks, not taking supplements",
+      "effect": "harms",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Consistent across many studies and across age groups",
+        "A randomised trial shows the direction within 4 weeks",
+        "Review prevalence figures vary widely (0 to 86.5% in adults) because studies used different cut-offs and groups",
+        "Reviews rely mostly on cross-sectional studies, and few trials test supplements in vegans"
+      ],
+      "summary": "A review of 40 studies of vitamin B12 deficiency (by serum B12) in vegetarians found prevalence of up to 45% in infants, 0 to 33.3% in children and adolescents, 17 to 39% in pregnant women and 0 to 86.5% in adults and the elderly; deficiency was more common in vegans than in other vegetarians, and vegans who did not take B12 supplements were at especially high risk. In a randomised trial, 53 healthy omnivores ate a vegan diet (26 people) or a meat-rich diet (27 people) for 4 weeks without supplements: holotranscobalamin, an early marker of B12 supply, fell significantly in the vegan group, along with serum B12, while methylmalonic acid and homocysteine did not change in that time. A 2024 scoping review of 70 studies concluded B12 deficiency is prevalent in vegans and noted a lack of trials comparing forms or amounts of supplementation.",
+      "bottomLine": "People on vegan diets who do not take B12 supplements or eat fortified foods are at especially high risk of low vitamin B12. Reviews found deficiency in up to 86.5% of adults in some studies, and B12 markers fell within 4 weeks in a trial of healthy people.",
+      "label": "Vitamin B12",
+      "line": "Low B12 is common in vegans without supplements; fell within 4 weeks in a trial",
+      "studies": [
+        {
+          "pmid": "24667752",
+          "doi": "10.1038/ejcn.2014.46",
+          "title": "The prevalence of cobalamin deficiency among vegetarians assessed by serum vitamin B12: a review of literature.",
+          "year": 2014,
+          "studyType": "review"
+        },
+        {
+          "pmid": "31752105",
+          "doi": "10.3390/nu11112815",
+          "title": "Vitamin B12 Status Upon Short-Term Intervention with a Vegan Diet-A Randomized Controlled Trial in Healthy Participants.",
+          "year": 2019,
+          "studyType": "rct",
+          "n": 53
+        },
+        {
+          "pmid": "38794680",
+          "doi": "10.3390/nu16101442",
+          "title": "Exploring Vitamin B12 Supplementation in the Vegan Population: A Scoping Review of the Evidence.",
+          "year": 2024,
+          "studyType": "review"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Fractures in vegetarians and vegans compared with meat eaters",
+      "caption": "Hazard ratios with 95% confidence intervals, compared with meat eaters (1 = same risk; above 1 = more fractures). Values come from the EPIC-Oxford cohort (adjusted for body mass index and lifestyle) and a 2026 meta-analysis of four cohorts. These are links from observational studies, not proof of cause.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Meat eaters (comparison group)"
+      },
+      "items": [
+        {
+          "label": "Hip fracture, vegetarians",
+          "value": 1.25,
+          "low": 1.04,
+          "high": 1.5,
+          "note": "EPIC-Oxford, 15,499 vegetarians, 17.6 years (2020)"
+        },
+        {
+          "label": "Hip fracture, vegans",
+          "value": 2.31,
+          "low": 1.66,
+          "high": 3.22,
+          "note": "EPIC-Oxford, 1,982 vegans, 17.6 years (2020)"
+        },
+        {
+          "label": "All fractures, vegans",
+          "value": 1.43,
+          "low": 1.2,
+          "high": 1.7,
+          "note": "EPIC-Oxford (2020)"
+        },
+        {
+          "label": "Hip fracture, vegetarians (4 cohorts)",
+          "value": 1.25,
+          "low": 1.11,
+          "high": 1.39,
+          "note": "Meta-analysis, 529,672 participants; low certainty (2026)"
+        },
+        {
+          "label": "Hip fracture, vegans (4 cohorts)",
+          "value": 1.75,
+          "low": 1.17,
+          "high": 2.63,
+          "note": "Meta-analysis; very low certainty (2026)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "33222682",
+          "doi": "10.1186/s12916-020-01815-3",
+          "title": "Vegetarian and vegan diets and risks of total and site-specific fractures: results from the prospective EPIC-Oxford study.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 54898
+        },
+        {
+          "pmid": "41275510",
+          "doi": "10.1093/nutrit/nuaf241",
+          "title": "Vegetarian and Vegan Diets and the Risk of Hip Fracture in Adults: A Systematic Review and Meta-analysis.",
+          "year": 2026,
+          "studyType": "meta-analysis",
+          "n": 529672
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Cholesterol change in trials of plant-based diets",
+      "caption": "Mean difference in cholesterol (mmol/L) with 95% confidence intervals, compared with an omnivorous or control diet. Negative means lower cholesterol on the plant-based diet. The first two rows pool vegetarian and vegan diets in 30 trials; the last two pool vegan diets only in people with overweight or type 2 diabetes.",
+      "scale": "linear",
+      "unit": "mmol/L",
+      "items": [
+        {
+          "label": "Total cholesterol, vegetarian or vegan (30 trials)",
+          "value": -0.34,
+          "low": -0.44,
+          "high": -0.23,
+          "note": "Meta-analysis (2023)"
+        },
+        {
+          "label": "LDL cholesterol, vegetarian or vegan (30 trials)",
+          "value": -0.3,
+          "low": -0.4,
+          "high": -0.19,
+          "note": "Meta-analysis (2023)"
+        },
+        {
+          "label": "Total cholesterol, vegan, overweight or type 2 diabetes",
+          "value": -0.3,
+          "low": -0.52,
+          "high": -0.08,
+          "note": "11 trials, 796 people (2022)"
+        },
+        {
+          "label": "LDL cholesterol, vegan, overweight or type 2 diabetes",
+          "value": -0.24,
+          "low": -0.4,
+          "high": -0.07,
+          "note": "11 trials, 796 people (2022)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "37226630",
+          "doi": "10.1093/eurheartj/ehad211",
+          "title": "Vegetarian or vegan diets and blood lipids: a meta-analysis of randomized trials.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "35672940",
+          "doi": "10.1111/obr.13462",
+          "title": "Effects of vegan diets on cardiometabolic health: A systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 796
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Heart disease and cancer in vegetarians and vegans",
+      "caption": "Relative risks with 95% confidence intervals from meta-analyses of cohort studies, compared with non-vegetarians (1 = same risk; below 1 = less disease). Heart results are for incidence or deaths; cancer results are for new cases. The stroke and vegan heart disease intervals reach 1, so they could be chance. These are links, not proof of cause.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Non-vegetarians (comparison group)"
+      },
+      "items": [
+        {
+          "label": "Cardiovascular disease, vegetarians",
+          "value": 0.85,
+          "low": 0.79,
+          "high": 0.92,
+          "note": "13 cohorts, 844,175 participants (2023)"
+        },
+        {
+          "label": "Ischemic heart disease, vegetarians",
+          "value": 0.79,
+          "low": 0.71,
+          "high": 0.88,
+          "note": "13 cohorts (2023)"
+        },
+        {
+          "label": "Ischemic heart disease, vegans",
+          "value": 0.82,
+          "low": 0.68,
+          "high": 1.0,
+          "note": "13 cohorts (2023)"
+        },
+        {
+          "label": "Stroke, vegetarians",
+          "value": 0.9,
+          "low": 0.77,
+          "high": 1.05,
+          "note": "13 cohorts (2023)"
+        },
+        {
+          "label": "Total cancer, vegetarians",
+          "value": 0.92,
+          "low": 0.87,
+          "high": 0.98,
+          "note": "Meta-analysis, 10 cohorts (2017)"
+        },
+        {
+          "label": "Total cancer, vegans",
+          "value": 0.85,
+          "low": 0.75,
+          "high": 0.95,
+          "note": "Meta-analysis, few studies (2017)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "36030329",
+          "doi": "10.1007/s00394-022-02942-8",
+          "title": "Vegetarian and vegan diets and the risk of cardiovascular disease, ischemic heart disease and stroke: a systematic review and meta-analysis of prospective cohort studies.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 844175
+        },
+        {
+          "pmid": "26853923",
+          "doi": "10.1080/10408398.2016.1138447",
+          "title": "Vegetarian, vegan diets and multiple health outcomes: A systematic review with meta-analysis of observational studies.",
+          "year": 2017,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Pregnancy, breastfeeding, infants and children",
+      "note": "In a review, vitamin B12 deficiency was found in up to 45% of infants and 17 to 39% of pregnant women on vegetarian diets. A doctor or dietitian can check B12 and other nutrients and plan the diet.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Diabetes treated with medicines that can lower blood sugar",
+      "note": "In trials, vegetarian and vegan diets may have allowed less diabetes medicine. A change of diet can change how much medicine is needed, so this is worth planning with the care team.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Older adults, low body weight, or a history of fractures or low bone density",
+      "note": "Cohorts link vegan diets with more hip fractures, and a review suggests calcium, vitamin D and protein intake and low body weight may play a part. A doctor can talk through bone health."
+    },
+    {
+      "with": "Signs of low vitamin B12",
+      "note": "Tingling or numbness, unusual tiredness, a sore tongue or memory problems can have many causes, including low B12. A blood test for B12 is worth discussing with a doctor."
+    }
+  ],
+  "cautions": [
+    "Vegan diets differ widely. Studies on them cannot say what a particular person's diet does, because a vegan diet can be rich in vegetables, pulses and whole grains or mostly refined foods.",
+    "The reviews' authors suggested that vegans consider vitamin B12 supplements and be screened for deficiency, because deficiency was common without them. The vitamin B12 page has what the research says.",
+    "In a 4-week trial, vitamin B12 markers fell in healthy people who switched to a vegan diet without supplements, so a drop can begin within weeks.",
+    "Vegan diet studies in this app are about the diet as a whole. They say nothing about a single food, vitamin or supplement; those have their own pages."
+  ],
+  "unknowns": [
+    "Whether a vegan diet itself prevents heart disease, cancer or early death is not known: the data come from observational studies, and no long trial has tested it.",
+    "Most trials last weeks to months and measure lab markers and weight, not heart attacks, cancer or fractures.",
+    "Results for vegans rest on far fewer people than those for vegetarians, so the vegan estimates are less certain.",
+    "How much of the higher fracture risk is explained by body weight, calcium, vitamin D and protein, and whether supplements or fortified foods remove it, has not been tested in trials.",
+    "How the health effects of a vegan diet differ between a whole-food version and one built on refined or processed foods is not settled."
+  ],
+  "sources": [
+    {
+      "pmid": "37226630",
+      "doi": "10.1093/eurheartj/ehad211",
+      "title": "Vegetarian or vegan diets and blood lipids: a meta-analysis of randomized trials.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35672940",
+      "doi": "10.1111/obr.13462",
+      "title": "Effects of vegan diets on cardiometabolic health: A systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 796
+    },
+    {
+      "pmid": "36030329",
+      "doi": "10.1007/s00394-022-02942-8",
+      "title": "Vegetarian and vegan diets and the risk of cardiovascular disease, ischemic heart disease and stroke: a systematic review and meta-analysis of prospective cohort studies.",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 844175
+    },
+    {
+      "pmid": "33222682",
+      "doi": "10.1186/s12916-020-01815-3",
+      "title": "Vegetarian and vegan diets and risks of total and site-specific fractures: results from the prospective EPIC-Oxford study.",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 54898
+    },
+    {
+      "pmid": "24667752",
+      "doi": "10.1038/ejcn.2014.46",
+      "title": "The prevalence of cobalamin deficiency among vegetarians assessed by serum vitamin B12: a review of literature.",
+      "year": 2014,
+      "studyType": "review"
+    }
+  ]
+}

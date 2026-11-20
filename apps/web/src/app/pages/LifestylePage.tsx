@@ -6,6 +6,7 @@ import type { SafetyId } from "@bt/shared/core/types";
 import { useState } from "react";
 import names from "../../../../../knowledge/names.json";
 import { AddToProtocol } from "../components/AddToProtocol";
+import { ClaimEvidencePanel } from "../components/ClaimEvidencePanel";
 import { ClockNote } from "../components/ClockEvidence";
 import { EvidenceMap, hasEvidenceMap } from "../components/EvidenceMap";
 import { StudyLink } from "../components/evidence";
@@ -29,6 +30,7 @@ const CATEGORY_LABEL: Record<LifestyleCategory, string> = {
   light: "Light",
   sleep: "Sleep",
   "breathing and mind": "Breathing and mind",
+  diet: "Diet",
 };
 
 /** Every word must start a word somewhere in the entry (name, other names, summary, findings). */
@@ -191,6 +193,7 @@ export function LifestyleItemPage({ id }: { id: string }) {
             intro="See where this habit may help and who was studied. Open the research details for the full findings and sources."
             findings={l.findings}
           />
+          <ClaimEvidencePanel id={l.id} name={l.name} claims={l.claims} critical={false} title="Common claims to check" />
           {(l.whoShouldBeCareful.length > 0 || l.cautions.length > 0) && (
             <Card id="careful" className="flex scroll-mt-6 flex-col gap-3">
               <H2>Who should be careful</H2>

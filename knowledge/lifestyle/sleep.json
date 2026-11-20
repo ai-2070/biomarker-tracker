@@ -27,6 +27,16 @@
     "weight"
   ],
   "asHabit": false,
+  "claims": [
+    {"claim": "You need 8 hours of sleep every night", "topic": "Sleep duration and health", "label": "How many hours of sleep", "category": "health"},
+    {"claim": "Too little sleep shortens your life", "topic": "Short sleep and death from any cause", "label": "Short sleep and life span", "category": "longevity"},
+    {"claim": "Sleeping badly makes you gain weight", "topic": "Short sleep and weight gain", "label": "Poor sleep and weight", "category": "health"},
+    {"claim": "A regular bedtime matters as much as sleep length", "topic": "Sleep regularity and death from any cause", "label": "Regular bedtimes", "category": "longevity"},
+    {"claim": "Beauty sleep is real and shows on your face", "topic": "Sleep loss and facial appearance or skin ageing", "label": "Sleep and looks", "category": "appearance"},
+    {"claim": "Sleeping badly raises your risk of diabetes", "topic": "Sleep loss and insulin sensitivity or type 2 diabetes", "label": "Poor sleep and diabetes", "category": "health"},
+    {"claim": "You can catch up on lost sleep at the weekend", "topic": "Weekend catch-up sleep and health", "label": "Catching up on sleep", "category": "health"},
+    {"claim": "Sleeping less than 6 hours raises dementia risk", "topic": "Short sleep and dementia", "label": "Short sleep and dementia", "category": "health"}
+  ],
   "findings": [
     {
       "outcome": "Short or long sleep and death from any cause",
