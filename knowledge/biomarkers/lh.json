@@ -1,0 +1,87 @@
+{
+  "id": "lh",
+  "name": "Luteinising hormone",
+  "abbreviation": "LH",
+  "category": "Hormones",
+  "aliases": [
+    "Luteinising hormone",
+    "Luteinizing hormone",
+    "Luteinising hormone (LH)",
+    "Luteinizing hormone (LH)",
+    "LH",
+    "Lutropin",
+    "Luteinisierendes Hormon",
+    "Luteinisierendes Hormon (LH)",
+    "LH (luteinisierendes Hormon)",
+    "Luteinizáló hormon",
+    "Luteinizáló hormon (LH)",
+    "LH (luteinizáló hormon)",
+    "Hormone lutéinisante",
+    "Hormone lutéinisante (LH)",
+    "Hormona luteinizante",
+    "Hormona luteinizante (LH)",
+    "Luteiniserande hormon",
+    "Luteiniserande hormon (LH)"
+  ],
+  "loinc": [
+    "10501-5"
+  ],
+  "canonicalUnit": "IU/L",
+  "conversions": {
+    "IU/L": 1,
+    "U/L": 1,
+    "mIU/mL": 1,
+    "mIU/L": 0.001
+  },
+  "rangeNote": "No population range is built in: normal values depend on sex, age, the phase of the menstrual cycle (a short peak before ovulation), pregnancy and menopause, and on the assay and its calibration. Use your lab's printed range and, for women, the cycle day.",
+  "summary": "LH (luteinising hormone) is released by the pituitary gland at the base of the brain. In men it tells the testes to make testosterone; in women it triggers ovulation and supports the second half of the cycle.",
+  "high": {
+    "meaning": "A higher LH can mean the pituitary is pushing harder because the testes or ovaries are not responding well, or can reflect the normal surge before ovulation. After menopause it is high. Read together with testosterone or estradiol and FSH (follicle-stimulating hormone). Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Menopause and the menopausal transition",
+      "Mid-cycle surge before ovulation",
+      "Premature ovarian insufficiency",
+      "Polycystic ovary syndrome, where LH can be high relative to FSH",
+      "Testicular conditions in men (for example Klinefelter syndrome, injury or chemotherapy)",
+      "Clomiphene or similar medicines, which raise LH",
+      "Anti-androgen medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low LH with low testosterone or estradiol points to reduced signalling from the pituitary or hypothalamus; a low LH with high testosterone or estradiol from outside the body shows the body's own signal is switched off. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Testosterone treatment, anabolic steroids or SARMs (selective androgen receptor modulators), which suppress LH through feedback",
+      "HCG (human chorionic gonadotropin) use, which suppresses LH by feedback",
+      "Hormonal contraceptives and GnRH (gonadotropin-releasing hormone) analogues",
+      "Pregnancy",
+      "Low energy availability from very low food intake or very heavy training",
+      "Pituitary or hypothalamus conditions, high prolactin",
+      "Long-term opioid medicines, glucocorticoids, or significant illness",
+      "Obesity"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "22344196",
+      "doi": "10.1210/jc.2011-3362",
+      "title": "Executive summary of the Stages of Reproductive Aging Workshop + 10: addressing the unfinished agenda of staging reproductive aging.",
+      "year": 2012,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "37580037",
+      "doi": "10.1093/humrep/dead156",
+      "title": "Recommendations from the 2023 International Evidence-based Guideline for the Assessment and Management of Polycystic Ovary Syndrome.",
+      "year": 2023,
+      "studyType": "guideline"
+    }
+  ]
+}

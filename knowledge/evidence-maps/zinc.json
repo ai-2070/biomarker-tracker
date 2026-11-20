@@ -63,7 +63,6 @@
    "id": "colds-catching",
    "label": "Catching colds",
    "anyDesign": false,
-   "finding": "Catching colds",
    "counts": {
     "reviews": 11,
     "trialReviews": 8,
@@ -323,7 +322,6 @@
    "id": "colds-duration",
    "label": "How long colds last",
    "anyDesign": false,
-   "finding": "How long colds last, when zinc is started at the first symptoms",
    "counts": {
     "reviews": 11,
     "trialReviews": 8,
@@ -576,7 +574,6 @@
    "id": "colds-side-effects",
    "label": "Side effects for colds",
    "anyDesign": false,
-   "finding": "Side effects of zinc for colds",
    "counts": {
     "reviews": 11,
     "trialReviews": 8,
@@ -821,7 +818,6 @@
    "id": "amd",
    "label": "Macular degeneration",
    "anyDesign": false,
-   "finding": "Worsening of age-related macular degeneration (AMD), an eye disease of older age",
    "counts": {
     "reviews": 18,
     "trialReviews": 12,
@@ -1184,7 +1180,6 @@
    "id": "urinary",
    "label": "Urinary problems",
    "anyDesign": false,
-   "finding": "Hospital stays for urinary problems",
    "counts": {
     "reviews": 16,
     "trialReviews": 6,
@@ -1428,7 +1423,6 @@
    "id": "blood-sugar",
    "label": "Blood sugar",
    "anyDesign": false,
-   "finding": "Blood sugar (fasting glucose, HbA1c)",
    "counts": {
     "reviews": 58,
     "trialReviews": 22,

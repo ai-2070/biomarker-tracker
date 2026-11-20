@@ -2,21 +2,60 @@
   "id": "hyaluronic_acid",
   "name": "Hyaluronic acid",
   "kind": "supplement",
-  "otherNames": ["Hyaluronic Acid", "hyaluronan", "sodium hyaluronate", "oral hyaluronic acid"],
+  "otherNames": [
+    "Hyaluronic Acid",
+    "hyaluronan",
+    "sodium hyaluronate",
+    "oral hyaluronic acid"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Hyaluronic acid, also called hyaluronan, is a long-chain carbohydrate made naturally in the body. Oral supplements are different products from skin creams, eye preparations and medical injections. This guide covers the swallowed ingredient, not those other uses.",
-  "commonUses": ["Used in oral products marketed for skin hydration.", "Used in oral products marketed for joint health."],
-  "roles": ["Hyaluronan is part of the material surrounding cells and is present in skin and joint fluid.", "Its ability to bind water and its viscosity depend partly on the length of its molecular chains."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Oral hyaluronic acid or sodium hyaluronate", "note": "Sodium hyaluronate is a salt form. Products can differ in molecular chain length; the name alone does not identify an equivalent formulation."},
-    {"name": "Fermentation-derived ingredient", "note": "Made using microorganisms rather than extracted from animal tissue. Check the finished product's ingredients, not just the source of the hyaluronan."},
-    {"name": "Animal-derived ingredient", "note": "Some products use material extracted from chicken combs. Source and purification differ from fermentation-derived products."}
+  "commonUses": [
+    "May improve skin hydration",
+    "May reduce wrinkles and keep skin plump",
+    "May ease joint pain",
+    "May ease dry eyes"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "Hyaluronan is part of the material surrounding cells and is present in skin and joint fluid.",
+    "Its ability to bind water and its viscosity depend partly on the length of its molecular chains."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": [],
+    "note": "Hyaluronic acid is not an essential nutrient: the body makes it. No deficiency condition or required intake has been established."
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [],
+    "note": "The body makes hyaluronic acid, and about half of it is in the skin. Eating animal tissue is different from taking an isolated supplement."
+  },
+  "forms": [
+    {
+      "name": "Oral hyaluronic acid or sodium hyaluronate",
+      "note": "Sodium hyaluronate is a salt form. Products can differ in molecular chain length; the name alone does not identify an equivalent formulation."
+    },
+    {
+      "name": "Fermentation-derived ingredient",
+      "note": "Made using microorganisms rather than extracted from animal tissue. Check the finished product's ingredients, not just the source of the hyaluronan."
+    },
+    {
+      "name": "Animal-derived ingredient",
+      "note": "Some products use material extracted from chicken combs. Source and purification differ from fermentation-derived products."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for hyaluronic acid taken by mouth was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
   "evidenceClaims": [],
   "interactions": [],
@@ -27,7 +66,64 @@
     "The cited review's oral safety observations concern particular preparations and study populations. They do not establish safety for every molecular size, blend or person."
   ],
   "sources": [
-    {"pmid": "25014997", "doi": "10.1186/1475-2891-13-70", "title": "Ingested hyaluronan moisturizes dry skin.", "year": 2014, "studyType": "review"},
-    {"pmid": "31320101", "doi": "10.1016/j.carbpol.2019.115001", "title": "Hyaluronic acid behavior in oral administration and perspectives for nanotechnology-based formulations: A review.", "year": 2019, "studyType": "review"}
-  ]
+    {
+      "pmid": "25014997",
+      "doi": "10.1186/1475-2891-13-70",
+      "title": "Ingested hyaluronan moisturizes dry skin.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "31320101",
+      "doi": "10.1016/j.carbpol.2019.115001",
+      "title": "Hyaluronic acid behavior in oral administration and perspectives for nanotechnology-based formulations: A review.",
+      "year": 2019,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May improve skin hydration": "skin hydration",
+      "May reduce wrinkles and keep skin plump": "skin wrinkles",
+      "May ease joint pain": "joint pain",
+      "May ease dry eyes": "dry eye"
+    },
+    "claimCategories": {
+      "May improve skin hydration": "appearance",
+      "May reduce wrinkles and keep skin plump": "appearance",
+      "May ease joint pain": "health",
+      "May ease dry eyes": "health"
+    },
+    "claimLabels": {
+      "May improve skin hydration": "Skin hydration",
+      "May reduce wrinkles and keep skin plump": "Wrinkles",
+      "May ease joint pain": "Joints",
+      "May ease dry eyes": "Dry eyes"
+    },
+    "origin": [
+      "Hyaluronic acid (hyaluronan) is a long-chain carbohydrate made by the body. It is found in skin, joint fluid and the eye, where it binds water. About half of the body's hyaluronan is in the skin.",
+      "Supplement hyaluronic acid is either made by fermentation with microorganisms or extracted from animal tissue such as chicken combs. This guide covers swallowed products, not creams, eye drops or injections."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit. Products differ in the size of the molecule (medium-sized particles are often advertised), source and amount, and a study of one product does not carry over to others.",
+      "Amounts commonly used in studies and supplements are about 120 to 200 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check the amount on the label, the source and the molecular size where stated, and avoid adding together several products. Combination products with collagen cannot be judged from hyaluronic acid alone."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not checked. This guide has no checked figures for hyaluronic acid in foods, so it cannot say how much food would match the 120–200 mg commonly used in supplements. The body makes it itself, and the research on swallowed hyaluronan concerns purified supplements, a different intervention from eating animal tissue.",
+      "notChecked": "No per-food hyaluronic acid figures were checked for this guide, so none are listed.",
+      "sources": [
+        {
+          "pmid": "25014997",
+          "doi": "10.1186/1475-2891-13-70",
+          "title": "Ingested hyaluronan moisturizes dry skin.",
+          "year": 2014,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

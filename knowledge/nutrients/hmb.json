@@ -3,22 +3,112 @@
   "name": "HMB",
   "kind": "supplement",
   "researchStatus": "not-reviewed",
-  "otherNames": ["HMB", "Beta-hydroxy-beta-methylbutyrate", "Hydroxymethylbutyrate", "HMB-Ca", "HMB-FA"],
-  "summary": "HMB is a substance the body makes when it breaks down leucine, an amino acid found in protein. Supplements contain a calcium salt or a free-acid form; this basic guide does not assess their benefits.",
-  "commonUses": ["Used in products marketed for exercise recovery.", "Used in sports and older-adult nutrition products marketed for muscle maintenance."],
-  "roles": ["HMB is a metabolite of leucine, not leucine itself.", "The body produces HMB through an intermediate called alpha-ketoisocaproate."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Calcium HMB", "note": "Also labelled HMB-Ca; the calcium salt contributes calcium as well as HMB."},
-    {"name": "Free-acid HMB", "note": "Also labelled HMB-FA; this differs from the calcium salt in composition and absorption. The forms are not identical products."}
+  "otherNames": [
+    "HMB",
+    "Beta-hydroxy-beta-methylbutyrate",
+    "Hydroxymethylbutyrate",
+    "HMB-Ca",
+    "HMB-FA"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "summary": "HMB is a substance the body makes when it breaks down leucine, an amino acid found in protein. Supplements contain a calcium salt or a free-acid form; this basic guide does not assess their benefits.",
+  "commonUses": [
+    "May prevent muscle loss with age or dieting",
+    "May increase muscle size and strength",
+    "May speed recovery from hard exercise"
+  ],
+  "roles": [
+    "HMB is a metabolite of leucine, not leucine itself.",
+    "The body produces HMB through an intermediate called alpha-ketoisocaproate."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": [],
+    "note": "HMB is not an essential nutrient: the body makes it. No deficiency condition or required intake has been established."
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [],
+    "note": "HMB is made in the body from leucine, an amino acid in protein. Eating protein is different from taking HMB."
+  },
+  "forms": [
+    {
+      "name": "Calcium HMB",
+      "note": "Also labelled HMB-Ca; the calcium salt contributes calcium as well as HMB."
+    },
+    {
+      "name": "Free-acid HMB",
+      "note": "Also labelled HMB-FA; this differs from the calcium salt in composition and absorption. The forms are not identical products."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for HMB was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
   "interactions": [],
-  "cautions": ["Safety observations from studied HMB products do not establish that any amount or every formulation is safe.", "Calcium HMB adds calcium to the total from foods and other supplements; it is not calcium-free.", "Combination nutrition products may contain other amino acids or ingredients. Their safety cannot be judged from HMB alone."],
+  "cautions": [
+    "Safety observations from studied HMB products do not establish that any amount or every formulation is safe.",
+    "Calcium HMB adds calcium to the total from foods and other supplements; it is not calcium-free.",
+    "Combination nutrition products may contain other amino acids or ingredients. Their safety cannot be judged from HMB alone."
+  ],
   "evidenceClaims": [],
-  "sources": [{"pmid": "23374455", "doi": "10.1186/1550-2783-10-6", "title": "International Society of Sports Nutrition Position Stand: beta-hydroxy-beta-methylbutyrate (HMB)", "year": 2013, "studyType": "review"}]
+  "sources": [
+    {
+      "pmid": "23374455",
+      "doi": "10.1186/1550-2783-10-6",
+      "title": "International Society of Sports Nutrition Position Stand: beta-hydroxy-beta-methylbutyrate (HMB)",
+      "year": 2013,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-04",
+    "claimTopics": {
+      "May prevent muscle loss with age or dieting": "muscle loss in ageing and dieting",
+      "May increase muscle size and strength": "muscle size and strength",
+      "May speed recovery from hard exercise": "exercise recovery and muscle damage"
+    },
+    "claimCategories": {
+      "May prevent muscle loss with age or dieting": "longevity",
+      "May increase muscle size and strength": "health",
+      "May speed recovery from hard exercise": "health"
+    },
+    "claimLabels": {
+      "May prevent muscle loss with age or dieting": "Muscle loss",
+      "May increase muscle size and strength": "Muscle and strength",
+      "May speed recovery from hard exercise": "Recovery"
+    },
+    "origin": [
+      "HMB (beta-hydroxy-beta-methylbutyrate) is a substance the body makes when it breaks down the amino acid leucine, which is in protein foods. The body makes only a small amount of it.",
+      "Supplement HMB is manufactured, as a calcium salt (HMB-Ca) or a free acid (HMB-FA). The two forms are absorbed differently, so results for one do not carry over to the other."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit. The ISSN position stand describes an amount studied per kilogram of body weight; that describes the research, not a recommended amount.",
+      "An amount commonly used in studies and supplements is about 3 g a day. This is not a reference intake or a personal recommendation.",
+      "Check the form and the amount of HMB on the label. Calcium HMB adds calcium to your total."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "No usable amounts. This guide has no checked figures for HMB in foods. The body makes a small amount of HMB itself from leucine, an amino acid in protein, but this guide has no checked figures for how much protein would be needed to reach an amount like 3 g. Eating protein and taking HMB are different interventions.",
+      "notChecked": "No per-food HMB figures were checked for this guide, so none are listed.",
+      "sources": [
+        {
+          "pmid": "23374455",
+          "doi": "10.1186/1550-2783-10-6",
+          "title": "International Society of Sports Nutrition Position Stand: beta-hydroxy-beta-methylbutyrate (HMB)",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

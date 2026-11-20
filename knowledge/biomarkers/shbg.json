@@ -1,0 +1,89 @@
+{
+  "id": "shbg",
+  "name": "Sex hormone-binding globulin",
+  "abbreviation": "SHBG",
+  "category": "Hormones",
+  "aliases": [
+    "Sex hormone-binding globulin",
+    "Sex hormone binding globulin",
+    "Sex hormone-binding globulin (SHBG)",
+    "Sex hormone binding globulin (SHBG)",
+    "SHBG",
+    "Sexualhormonbindendes Globulin",
+    "Sexualhormon-bindendes Globulin",
+    "Sexualhormon bindendes Globulin",
+    "Szexuálhormon-kötő globulin",
+    "Szexhormon-kötő globulin",
+    "Szexuálhormon kötő globulin",
+    "Globuline liant les hormones sexuelles",
+    "Globulina fijadora de hormonas sexuales",
+    "Globulina transportadora de hormonas sexuales",
+    "Könshormonbindande globulin"
+  ],
+  "loinc": [
+    "13967-5"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1
+  },
+  "rangeNote": "Typical values differ by sex, age and assay, and labs often print age-specific ranges. No population range is built in; use your lab's printed range. SHBG can only be converted between mass and molar units approximately, so only nmol/L is supported.",
+  "summary": "SHBG (sex hormone-binding globulin) is a protein made mainly by the liver that carries testosterone and estradiol in the blood. It controls how much of these hormones is free to act, so it helps in reading total testosterone.",
+  "high": {
+    "meaning": "A higher SHBG holds more testosterone bound, so total testosterone can look normal or high while the free amount is lower. SHBG is raised by estrogens and an overactive thyroid, among other things.",
+    "commonCauses": [
+      "Oral estrogens, oral contraceptive pills and some menopausal hormone treatments",
+      "Overactive thyroid",
+      "Liver conditions, such as hepatitis or cirrhosis",
+      "Ageing",
+      "Low food intake or low body weight",
+      "Some anticonvulsant medicines",
+      "HIV infection",
+      "Pregnancy"
+    ]
+  },
+  "low": {
+    "meaning": "A lower SHBG holds less testosterone bound, so total testosterone can be low while the free amount is closer to normal. Low SHBG is commonly seen with excess body weight and insulin resistance and is linked in studies to type 2 diabetes and metabolic syndrome, though this does not show it is the cause.",
+    "commonCauses": [
+      "Excess body fat",
+      "Insulin resistance, type 2 diabetes or metabolic syndrome",
+      "Polycystic ovary syndrome",
+      "Underactive thyroid",
+      "Androgens, including testosterone treatment and anabolic steroids",
+      "Glucocorticoid (steroid) medicines",
+      "Excess growth hormone",
+      "Nephrotic syndrome (protein loss through the kidneys)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "40427034",
+      "doi": "10.3390/biomedicines13051207",
+      "title": "New Insights in the Diagnostic Potential of Sex Hormone-Binding Globulin (SHBG)-Clinical Approach.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "10523012",
+      "doi": "10.1210/jcem.84.10.6079",
+      "title": "A critical evaluation of simple methods for the estimation of free testosterone in serum.",
+      "year": 1999,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "40068942",
+      "doi": "10.1515/cclm-2024-1237",
+      "title": "A survey on measurement and reporting of total testosterone, sex hormone-binding globulin and free testosterone in clinical laboratories in Europe.",
+      "year": 2025,
+      "studyType": "observational"
+    }
+  ]
+}

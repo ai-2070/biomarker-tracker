@@ -79,7 +79,6 @@
    "id": "oral-vs-injection",
    "label": "Tablets vs injections",
    "anyDesign": false,
-   "finding": "Blood B12 levels: high-dose tablets compared with injections",
    "counts": {
     "reviews": 14,
     "trialReviews": 11,
@@ -388,7 +387,6 @@
    "id": "older-doses",
    "label": "Doses in older people",
    "anyDesign": false,
-   "finding": "Correcting mild deficiency in older people: low compared with high doses",
    "counts": {
     "reviews": 32,
     "trialReviews": 7,
@@ -674,7 +672,6 @@
    "id": "cognition-mood",
    "label": "Memory, mood and tiredness",
    "anyDesign": false,
-   "finding": "Memory and thinking, low mood and tiredness",
    "counts": {
     "reviews": 51,
     "trialReviews": 17,
@@ -1050,7 +1047,6 @@
    "id": "cardiovascular",
    "label": "Heart, stroke and death",
    "anyDesign": false,
-   "finding": "Heart attacks, strokes and death (B12 given together with folic acid, often with B6)",
    "counts": {
     "reviews": 30,
     "trialReviews": 9,
@@ -1447,7 +1443,6 @@
    "id": "neuropathy",
    "label": "Diabetic nerve damage",
    "anyDesign": false,
-   "finding": "Nerve damage from diabetes (diabetic neuropathy)",
    "counts": {
     "reviews": 41,
     "trialReviews": 16,

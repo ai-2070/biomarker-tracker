@@ -1,0 +1,87 @@
+{
+  "id": "fsh",
+  "name": "Follicle-stimulating hormone",
+  "abbreviation": "FSH",
+  "category": "Hormones",
+  "aliases": [
+    "Follicle-stimulating hormone",
+    "Follicle stimulating hormone",
+    "Follicle-stimulating hormone (FSH)",
+    "Follicle stimulating hormone (FSH)",
+    "FSH",
+    "Follitropin",
+    "Follikelstimulierendes Hormon",
+    "Follikelstimulierendes Hormon (FSH)",
+    "Follikel-stimulierendes Hormon",
+    "FSH (follikelstimulierendes Hormon)",
+    "Tüszőstimuláló hormon",
+    "Tüszőstimuláló hormon (FSH)",
+    "Tüszőserkentő hormon",
+    "Tüszőserkentő hormon (FSH)",
+    "Hormone folliculo-stimulante",
+    "Hormone folliculo-stimulante (FSH)",
+    "Hormona foliculoestimulante",
+    "Hormona foliculoestimulante (FSH)",
+    "Follikelstimulerande hormon",
+    "Follikelstimulerande hormon (FSH)"
+  ],
+  "loinc": [
+    "15067-2"
+  ],
+  "canonicalUnit": "IU/L",
+  "conversions": {
+    "IU/L": 1,
+    "U/L": 1,
+    "mIU/mL": 1,
+    "mIU/L": 0.001
+  },
+  "rangeNote": "No population range is built in: normal values depend on sex, age, the phase of the menstrual cycle, pregnancy and menopause, and on the assay and its calibration. FSH varies from cycle to cycle during the menopausal transition, so a single value is hard to interpret. Use your lab's printed range and, for women, the cycle day.",
+  "summary": "FSH (follicle-stimulating hormone) is released by the pituitary gland at the base of the brain. In women it helps eggs mature in the ovaries; in men it supports sperm production in the testes.",
+  "high": {
+    "meaning": "A higher FSH usually means the pituitary is pushing harder because the ovaries or testes are not responding well. It rises as the menopausal transition proceeds and stays high after menopause. Read together with LH (luteinising hormone) and estradiol or testosterone. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Menopause and the menopausal transition",
+      "Premature ovarian insufficiency",
+      "Damage to the testes from injury, infection, chemotherapy or radiation, or conditions such as Klinefelter syndrome",
+      "Clomiphene or similar medicines, which raise FSH",
+      "Low sperm production in men",
+      "Turner syndrome"
+    ]
+  },
+  "low": {
+    "meaning": "A low FSH can mean reduced signalling from the pituitary or hypothalamus, or that the body's own signal is switched off by hormones from outside. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Testosterone treatment, anabolic steroids or SARMs (selective androgen receptor modulators), which suppress FSH and sperm production",
+      "Hormonal contraceptives, estrogen treatment and GnRH (gonadotropin-releasing hormone) analogues",
+      "Pregnancy",
+      "Low energy availability from very low food intake or very heavy training",
+      "Pituitary or hypothalamus conditions, high prolactin",
+      "Polycystic ovary syndrome, where FSH is often in the normal to low-normal range",
+      "Significant illness or obesity"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "22344196",
+      "doi": "10.1210/jc.2011-3362",
+      "title": "Executive summary of the Stages of Reproductive Aging Workshop + 10: addressing the unfinished agenda of staging reproductive aging.",
+      "year": 2012,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "37580037",
+      "doi": "10.1093/humrep/dead156",
+      "title": "Recommendations from the 2023 International Evidence-based Guideline for the Assessment and Management of Polycystic Ovary Syndrome.",
+      "year": 2023,
+      "studyType": "guideline"
+    }
+  ]
+}

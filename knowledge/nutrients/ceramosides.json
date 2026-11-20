@@ -1,0 +1,153 @@
+{
+  "id": "ceramosides",
+  "name": "Ceramosides",
+  "kind": "supplement",
+  "otherNames": [
+    "Ceramosides",
+    "wheat ceramides",
+    "phytoceramides",
+    "wheat extract oil"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Ceramosides is a brand name for a wheat oil extract rich in ceramide-like fats. Ceramides are fats that help form the skin's outer barrier. 'Phytoceramide' only means plant-derived: the fats in the extract are not identical to the ones human skin makes.",
+  "commonUses": [
+    "May help the skin hold on to moisture and rebuild its barrier.",
+    "May prevent the dryness that leads to fine lines.",
+    "May work well when combined with hyaluronic acid for skin hydration."
+  ],
+  "roles": [
+    "Ceramides are part of the fatty layer between skin cells that helps hold water in.",
+    "Plant-derived ceramides are taken by mouth in supplements; how much reaches the skin barrier in people is what the studies test."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Wheat germ and whole grains contain these fats in small, unreported amounts"
+    ],
+    "note": "Amounts in food are not reliably published."
+  },
+  "forms": [
+    {
+      "name": "Wheat extract oil (such as Ceramosides)",
+      "note": "A wheat lipid extract. The amount of ceramide-like fat in it is much smaller than the extract weight."
+    },
+    {
+      "name": "Other plant ceramides",
+      "note": "Rice, konjac or other sources. Results from one source do not carry over to another."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No reference intake or tolerable upper intake level for wheat-derived ceramides was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. EFSA's 2012 opinion on a wheat polar lipid extract concerned a skin-hydration claim, not a safe amount.",
+    "sources": [
+      {
+        "pmid": "42016138",
+        "doi": "10.2903/j.efsa.2012.2773",
+        "title": "Scientific Opinion on the substantiation of a health claim related to Wheat Polar Lipid Extract and protection of the skin against dehydration pursuant to Article 13(5) of Regulation (EC) No 1924/2006.",
+        "year": 2012,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Wheat-derived products can contain gluten and wheat proteins, so people with coeliac disease or a wheat allergy should check with a clinician and the label first.",
+    "Trials were short (about 3 to 5 months) and small (roughly 50 to 65 people), and some were run with the ingredient makers; long-term safety is not well studied.",
+    "Ceramide supplements differ in source (wheat, rice, konjac, bacteria) and dose, so results from one product do not carry over to another.",
+    "Anyone pregnant, breastfeeding or with a skin condition such as eczema should talk to a clinician before using it."
+  ],
+  "sources": [
+    {
+      "pmid": "42016138",
+      "doi": "10.2903/j.efsa.2012.2773",
+      "title": "Scientific Opinion on the substantiation of a health claim related to Wheat Polar Lipid Extract and protection of the skin against dehydration pursuant to Article 13(5) of Regulation (EC) No 1924/2006.",
+      "year": 2012,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "20646083",
+      "doi": "10.1111/j.1468-2494.2010.00600.x",
+      "title": "The moisturizing effect of a wheat extract food supplement on women's skin: a randomized, double-blind placebo-controlled trial.",
+      "year": 2011,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "31033133",
+      "doi": "10.1111/jocd.12967",
+      "title": "Polar lipids from wheat extract oil improve skin damages induced by aging: Evidence from a randomized, placebo-controlled clinical trial in women and an ex vivo study on human skin explant.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "33055441",
+      "doi": "10.5650/jos.ess20115",
+      "title": "Safety and Efficacy of Oral Intake of Ceramide-Containing Acetic Acid Bacteria for Improving the Stratum Corneum Hydration: A Randomized, Double-Blind, Placebo-Controlled Study over 12 Weeks.",
+      "year": 2020,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help the skin hold on to moisture and rebuild its barrier.": "skin moisture and barrier",
+      "May prevent the dryness that leads to fine lines.": "dry skin and fine lines",
+      "May work well when combined with hyaluronic acid for skin hydration.": "combination with hyaluronic acid"
+    },
+    "claimCategories": {
+      "May help the skin hold on to moisture and rebuild its barrier.": "appearance",
+      "May prevent the dryness that leads to fine lines.": "appearance",
+      "May work well when combined with hyaluronic acid for skin hydration.": "appearance"
+    },
+    "claimLabels": {
+      "May help the skin hold on to moisture and rebuild its barrier.": "Skin barrier",
+      "May prevent the dryness that leads to fine lines.": "Fine lines",
+      "May work well when combined with hyaluronic acid for skin hydration.": "With hyaluronic acid"
+    },
+    "origin": [
+      "Ceramosides is a brand name for a plant oil extract made from wheat (Triticum aestivum). It is rich in glycolipids and ceramide-like fats (glucosylceramides and galactolipids) taken from the grain. Ceramides are fats that make up a large share of the skin's outer barrier, which is why wheat-derived ones are sold as 'phytoceramides' (plant ceramides). 'Phyto' only means plant-derived: the fats in the extract are not identical to the ones human skin makes.",
+      "Supplements are made by extracting the lipid fraction from wheat with a solvent, then purifying and drying it, often onto a carrier powder or into an oil. Wheat germ, wheat bran and other cereal grains contain these fats naturally, as do rice, soy and konjac used in other ceramide products. The amount in food is small and is rarely reported."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. EFSA assessed a skin-hydration claim for a wheat polar lipid extract in 2012 and concluded that a cause-and-effect relationship had not been established; that opinion is not a statement about a safe amount.",
+      "Amounts commonly used in supplements are about 30 to 70 mg of the extract a day. Trials of wheat extract oil have used larger amounts, for example 350 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check whether the label amount is the whole wheat extract or only its ceramide part, which is much smaller. The product is made from wheat, so look for wheat and gluten warnings."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in supplements (low)",
+          "mg": 30
+        },
+        {
+          "label": "Amount commonly used in supplements (high)",
+          "mg": 70
+        }
+      ],
+      "foods": [],
+      "verdict": "Not checked. Wheat germ and whole grains contain these fats, but this guide has no checked per-food figures, so it cannot say how much food would match 30 to 70 mg of extract.",
+      "notChecked": "The food table used by this app does not measure wheat ceramides, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "42016138",
+          "doi": "10.2903/j.efsa.2012.2773",
+          "title": "Scientific Opinion on the substantiation of a health claim related to Wheat Polar Lipid Extract and protection of the skin against dehydration pursuant to Article 13(5) of Regulation (EC) No 1924/2006.",
+          "year": 2012,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "insulin",
+  "name": "Insulin (fasting)",
+  "category": "Metabolic",
+  "aliases": [
+    "Insulin",
+    "Insulin (fasting)",
+    "Fasting insulin",
+    "Insulin, fasting",
+    "Insulin (S)",
+    "Serum insulin",
+    "Plasma insulin",
+    "Insulin fasting",
+    "Insulin nüchtern",
+    "Insulin (nüchtern)",
+    "Nüchterninsulin",
+    "Inzulin",
+    "Inzulin (éhgyomri)",
+    "Éhgyomri inzulin",
+    "Inzulin (szérum)",
+    "Insuline",
+    "Insuline à jeun",
+    "Insulina",
+    "Insulina basal",
+    "Insulina en ayunas",
+    "Insulin (fastande)",
+    "Fasteinsulin"
+  ],
+  "loinc": [
+    "20448-7",
+    "14796-7"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "µIU/mL": 6.945,
+    "mIU/L": 6.945,
+    "µU/mL": 6.945,
+    "mU/L": 6.945
+  },
+  "comparisonOnly": true,
+  "rangeNote": "No range is set: insulin assays disagree with one another (an American Diabetes Association workgroup found differences of 12-66 % between assays), so a result is best compared with the range printed by the lab that measured it. Use a fasting sample, since eating raises insulin sharply. µIU/mL and mIU/L are the same value, and the conversion uses 6.945 pmol/L per µIU/mL; the older factor of 6.0 understates insulin concentrations by about 15 %. Some assays also detect injected insulin.",
+  "summary": "Insulin is the hormone that moves sugar from the blood into cells. A fasting level shows how much insulin the pancreas releases to keep fasting blood sugar steady.",
+  "high": {
+    "meaning": "A high fasting insulin often means the body is releasing extra insulin to keep blood sugar steady (insulin resistance). It can be raised years before blood sugar rises. It is often read together with fasting glucose, for example in the HOMA index.",
+    "commonCauses": [
+      "Insulin resistance, prediabetes or type 2 diabetes",
+      "Excess body fat, especially around the waist",
+      "Recent meal (sample not fasting)",
+      "Insulin injections (some assays detect them)",
+      "Medicines such as corticosteroids",
+      "Rarely, an insulin-producing tumour"
+    ]
+  },
+  "low": {
+    "meaning": "A low fasting insulin can be normal in lean, fit people. If it is low while blood sugar is high, it can mean the pancreas is not making enough insulin.",
+    "commonCauses": [
+      "Type 1 diabetes or long-standing type 2 diabetes with reduced insulin production",
+      "Prolonged fasting or a very low-carbohydrate diet",
+      "High fitness level",
+      "Pancreatic disease or pancreas surgery"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "17272483",
+      "doi": "10.1373/clinchem.2006.082214",
+      "title": "Standardization of insulin immunoassays: report of the American Diabetes Association Workgroup",
+      "year": 2007,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "30318910",
+      "doi": "10.1177/1932296818805074",
+      "title": "Insulin Units and Conversion Factors: A Story of Truth, Boots, and Faster Half-Truths",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "3899825",
+      "doi": "10.1007/bf00280883",
+      "title": "Homeostasis model assessment: insulin resistance and beta-cell function from fasting plasma glucose and insulin concentrations in man",
+      "year": 1985,
+      "studyType": "observational"
+    }
+  ]
+}

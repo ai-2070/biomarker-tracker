@@ -1,0 +1,77 @@
+{
+  "id": "progesterone",
+  "name": "Progesterone",
+  "category": "Hormones",
+  "aliases": [
+    "Progesterone",
+    "Serum progesterone",
+    "Progesterone (serum)",
+    "Progesterone, serum",
+    "Progesteron",
+    "Progesteron (Serum)",
+    "Progeszteron",
+    "Progestérone",
+    "Progestérone sérique",
+    "Progesterona",
+    "Progesterona sérica",
+    "Progesteron i serum",
+    "S-Progesteron"
+  ],
+  "loinc": [
+    "2839-9"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1,
+    "ng/mL": 3.18,
+    "µg/L": 3.18,
+    "ng/dL": 0.0318,
+    "pg/mL": 0.00318
+  },
+  "comparisonOnly": true,
+  "rangeNote": "Normal values depend on the phase of the menstrual cycle, pregnancy, sex and the assay, so the app shows no default range and uses the range printed by your lab. Levels are low before ovulation and highest about a week after it, so one result is only meaningful with its cycle day. 1 ng/mL equals about 3.18 nmol/L.",
+  "summary": "Progesterone is a sex hormone made mainly by the ovaries after ovulation and by the placenta in pregnancy. Smaller amounts come from the adrenal glands and, in men, the testes.",
+  "high": {
+    "meaning": "A high progesterone is expected in the second half of the menstrual cycle and in pregnancy, so it is read together with the day of the cycle. Outside those situations it can come from hormone treatment or, rarely, from an adrenal or ovarian cause.",
+    "commonCauses": [
+      "Second half of the menstrual cycle (after ovulation)",
+      "Pregnancy",
+      "Progesterone or progestin medicines and fertility treatments",
+      "Rare adrenal or ovarian conditions, and some inherited adrenal enzyme conditions"
+    ]
+  },
+  "low": {
+    "meaning": "A low progesterone is normal before ovulation, in men and after menopause. A low result taken in the second half of the cycle can mean ovulation did not happen in that cycle, which is one reason for irregular periods or trouble conceiving.",
+    "commonCauses": [
+      "Sample taken before ovulation or early in the cycle",
+      "Cycles without ovulation, for example with polycystic ovary syndrome, high prolactin or low body weight",
+      "Menopause",
+      "Hormonal contraceptives that prevent ovulation",
+      "In pregnancy, a pregnancy that is not developing normally (discuss with a doctor)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "26111590",
+      "doi": "10.1016/j.steroids.2015.06.013",
+      "title": "Random serum progesterone threshold to confirm ovulation.",
+      "year": 2015,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "21397560",
+      "doi": "10.1016/j.rbmo.2011.01.006",
+      "title": "Mid-luteal progesterone concentrations are associated with live birth rates during ovulation induction.",
+      "year": 2011,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "12521235",
+      "doi": "10.1515/cclm.2002.202",
+      "title": "Reference ranges for serum concentrations of lutropin (LH), follitropin (FSH), estradiol (E2), prolactin, progesterone, sex hormone-binding globulin (SHBG), dehydroepiandrosterone sulfate (DHEAS), cortisol and ferritin in neonates, children and young adults.",
+      "year": 2002,
+      "studyType": "observational"
+    }
+  ]
+}

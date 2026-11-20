@@ -92,7 +92,6 @@
    "id": "status",
    "label": "Status markers",
    "anyDesign": false,
-   "finding": "Blood markers of vitamin K status (inactive osteocalcin and matrix Gla protein)",
    "counts": {
     "reviews": 9,
     "trialReviews": 0,
@@ -246,7 +245,6 @@
    "id": "fractures",
    "label": "Fractures",
    "anyDesign": false,
-   "finding": "Bone fractures",
    "counts": {
     "reviews": 6,
     "trialReviews": 4,
@@ -388,7 +386,6 @@
    "id": "bone-density",
    "label": "Bone density",
    "anyDesign": false,
-   "finding": "Bone mineral density",
    "counts": {
     "reviews": 12,
     "trialReviews": 7,
@@ -629,7 +626,6 @@
    "id": "calcification",
    "label": "Artery calcification",
    "anyDesign": false,
-   "finding": "Calcification and stiffness of arteries and heart valves",
    "counts": {
     "reviews": 9,
     "trialReviews": 5,
@@ -833,7 +829,6 @@
    "id": "warfarin",
    "label": "Warfarin stability",
    "anyDesign": false,
-   "finding": "Stability of warfarin treatment in people whose INR swings a lot",
    "counts": {
     "reviews": 18,
     "trialReviews": 4,

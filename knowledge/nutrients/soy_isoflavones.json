@@ -1,0 +1,191 @@
+{
+  "id": "soy_isoflavones",
+  "name": "Soy isoflavones",
+  "kind": "supplement",
+  "otherNames": [
+    "Genistein",
+    "Daidzein",
+    "Glycitein",
+    "Soy phytoestrogens",
+    "Soy extract"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Soy isoflavones are plant compounds in soybeans that act weakly like estrogen. Extracts are sold for menopause symptoms, bones and skin.",
+  "commonUses": [
+    "May reduce hot flushes (sudden waves of heat) in women around and after menopause.",
+    "May support the effects of low estrogen, the main female sex hormone, in women after menopause.",
+    "May slow bone loss in the spine and hip after menopause.",
+    "May improve skin elasticity, fine wrinkles and hydration."
+  ],
+  "roles": [
+    "Isoflavones bind weakly to estrogen receptors, but no essential role in the body is known. Evidence is best for a modest effect on hot flushes and bone density in women after menopause, and mixed for the rest."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Soybeans and edamame",
+      "Tofu",
+      "Tempeh",
+      "Soy milk",
+      "Miso",
+      "Natto"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Soy germ or soybean extract",
+      "note": "The usual supplement; labelled by isoflavone content, as aglycones or glycosides."
+    },
+    {
+      "name": "Purified genistein",
+      "note": "Used in several bone trials (genistein 54 mg a day was highlighted in one meta-analysis)."
+    },
+    {
+      "name": "Soy foods",
+      "note": "Tofu, tempeh, soy milk, edamame and miso; they carry isoflavones with protein and other soy compounds."
+    },
+    {
+      "name": "Ipriflavone",
+      "note": "A synthetic isoflavone, not a natural plant compound; included in one bone analysis."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for isoflavones. EFSA assessed isolated isoflavone food supplements for women around and after menopause in 2015. In the studies it reviewed, up to 150 mg a day for up to 30 months did not change the breast, thyroid hormone levels or the lining of the uterus. It could not set a safe intake level, and said long-term high intake is not without risk for this group, because breast cancer risk rises after menopause. These are population findings, not a personal limit.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4246",
+        "title": "Risk assessment for peri- and post-menopausal women taking food supplements containing isolated isoflavones",
+        "year": 2015,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Thyroid hormone medicine (levothyroxine)",
+      "note": "Soy products can reduce absorption of levothyroxine taken at the same time. Doctors often advise spacing them out; this is a point to ask about."
+    },
+    {
+      "with": "Tamoxifen, aromatase inhibitors and other hormone-related cancer medicines",
+      "note": "Isoflavones act weakly like estrogen, and the interaction is not settled. Anyone on these medicines should ask their oncology team before taking isoflavone supplements."
+    }
+  ],
+  "cautions": [
+    "People with a history of breast or other hormone-sensitive cancers, or on treatment for them, should talk to their doctor before using isoflavone supplements. Eating normal soy foods is a different exposure from concentrated extracts.",
+    "A meta-analysis of soy trials found no change in free thyroid hormones but a small rise in TSH (the thyroid-stimulating hormone) with soy supplements. People with thyroid disease or on thyroid medicine should keep their doctor informed.",
+    "Not for use in pregnancy or while breastfeeding in supplement amounts, and not for children, because safety has not been shown.",
+    "Soy is a common allergen. Hot flushes, bleeding after menopause or bone loss need a doctor's assessment, not self-treatment with a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "22433977",
+      "doi": "10.1097/gme.0b013e3182410159",
+      "title": "Extracted or synthesized soybean isoflavones reduce menopausal hot flash frequency and severity:  systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2012,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "24323914",
+      "doi": "10.1002/14651858.cd001395.pub4",
+      "title": "Phytoestrogens for menopausal vasomotor symptoms.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32524173",
+      "doi": "10.1007/s00198-020-05476-z",
+      "title": "Effects of isoflavone interventions on bone mineral density in postmenopausal women: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "37875614",
+      "doi": "10.1007/s00198-023-06944-y",
+      "title": "Isoflavone intervention and its impact on bone mineral density in postmenopausal women: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "17484381",
+      "doi": "10.3177/jnsv.53.57",
+      "title": "Oral intake of soy isoflavone aglycone improves the aged skin of adult women.",
+      "year": 2007,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "30850697",
+      "doi": "10.1038/s41598-019-40647-x",
+      "title": "Systematic Review and Meta-analysis on the Effect of Soy on Thyroid Function.",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May reduce hot flushes (sudden waves of heat) in women around and after menopause.": "hot flushes",
+      "May support the effects of low estrogen, the main female sex hormone, in women after menopause.": "low estrogen effects",
+      "May slow bone loss in the spine and hip after menopause.": "bone density",
+      "May improve skin elasticity, fine wrinkles and hydration.": "skin"
+    },
+    "claimCategories": {
+      "May reduce hot flushes (sudden waves of heat) in women around and after menopause.": "health",
+      "May support the effects of low estrogen, the main female sex hormone, in women after menopause.": "health",
+      "May slow bone loss in the spine and hip after menopause.": "longevity",
+      "May improve skin elasticity, fine wrinkles and hydration.": "appearance"
+    },
+    "claimLabels": {
+      "May reduce hot flushes (sudden waves of heat) in women around and after menopause.": "Hot flushes",
+      "May support the effects of low estrogen, the main female sex hormone, in women after menopause.": "Estrogen support",
+      "May slow bone loss in the spine and hip after menopause.": "Bone density",
+      "May improve skin elasticity, fine wrinkles and hydration.": "Skin"
+    },
+    "origin": [
+      "Isoflavones are plant compounds found mostly in soybeans and other legumes. The main ones are genistein, daidzein and glycitein. They have a shape similar to estrogen, the main female sex hormone, and can bind weakly to its receptors, so they are called phytoestrogens (plant estrogens). In soy foods they occur mainly as glycosides (bound to a sugar); the gut converts them to the active forms, called aglycones.",
+      "Supplements are extracts from soy germ or soybeans, sometimes with added synthetic or purified genistein. Traditional soy foods such as tofu, tempeh, soy milk, miso and edamame also supply isoflavones. A review of Japanese-style diets puts them at about 25 to 50 mg a day from 2 to 3 servings of soy foods."
+    ],
+    "dosage": [
+      "There is no reference intake for isoflavones. EFSA assessed isolated isoflavone food supplements for women around and after menopause in 2015. In the studies it reviewed, up to 150 mg a day for up to 30 months did not change the breast, thyroid hormone levels or the lining of the uterus. It could not set a safe intake level, and said long-term high intake is not without risk for this group, because breast cancer risk rises after menopause. These are population findings, not a personal limit.",
+      "An amount commonly used in studies and supplements is about 40 to 100 mg of isoflavones a day. A meta-analysis of hot flush trials had a median of 54 mg a day (aglycone equivalents). A bone meta-analysis found larger gains at more than 90 mg a day. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check whether the number is total isoflavones or the weight of the extract, and whether it is given as aglycones or as glycosides. The two are not the same weight for the same effect. Products also differ in how much is genistein, daidzein or glycitein. Several soy products can add up."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements, isoflavones (low)",
+          "mg": 40
+        },
+        {
+          "label": "Amount commonly used in studies and supplements, isoflavones (high)",
+          "mg": 100
+        }
+      ],
+      "foods": [],
+      "verdict": "Partly. Soy foods such as tofu, soy milk, tempeh and edamame are the main food source of isoflavones, but this guide has no checked per-food figures, so it cannot say how much food matches 40 to 100 mg. Studies of supplements and of soy foods are different interventions.",
+      "notChecked": "Isoflavones are not measured in the UK food table used by this app, so no per-food amounts are listed. Content varies with variety, processing and fermentation.",
+      "sources": [
+        {
+          "pmid": "22433977",
+          "doi": "10.1097/gme.0b013e3182410159",
+          "title": "Extracted or synthesized soybean isoflavones reduce menopausal hot flash frequency and severity:  systematic review and meta-analysis of randomized controlled trials.",
+          "year": 2012,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "lp_a",
+  "name": "Lipoprotein(a)",
+  "abbreviation": "Lp(a)",
+  "category": "Lipids",
+  "aliases": [
+    "Lipoprotein(a)",
+    "Lipoprotein (a)",
+    "Lp(a)",
+    "Lp (a)",
+    "Lipoprotein a",
+    "Lipoprotein little a",
+    "Lipoprotein(a) (S)",
+    "Lipoprotein(a), serum",
+    "Lipoprotein-(a)",
+    "Lipoprotein(a) Konzentration",
+    "Lipoprotéine(a)",
+    "Lipoprotéine (a)",
+    "Lipoproteína(a)",
+    "Lipoproteína (a)",
+    "Lipoprotein(a) szérum",
+    "Lipoprotein(a) (szérum)"
+  ],
+  "loinc": [
+    "43583-4",
+    "10835-7"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1
+  },
+  "defaultRanges": [
+    {
+      "high": 125
+    }
+  ],
+  "rangeNote": "The 2022 European Atherosclerosis Society statement suggests a cut-off above 125 nmol/L (about 50 mg/dL) as higher risk, below 75 nmol/L (about 30 mg/dL) as lower risk, and a grey zone in between. Lp(a) is largely set by genes and changes little over life, so the statement suggests measuring it at least once in adults. Assays differ, and there is no reliable conversion between mg/dL and nmol/L (the statement calls a factor of 2-2.5 only a best guess), so results in mg/dL are not converted by the app: compare them with the lab's own range.",
+  "summary": "Lipoprotein(a), written Lp(a), is a cholesterol-carrying particle in the blood that is similar to LDL but has an extra protein attached. Its level is mostly inherited and stays fairly steady through life.",
+  "high": {
+    "meaning": "A high Lp(a) is linked to a higher risk of heart attack, stroke and narrowing of the aortic valve, even when LDL cholesterol is low. The link is continuous: risk rises with the level rather than at one sharp threshold.",
+    "commonCauses": [
+      "Inherited variants in the LPA gene (the main cause)",
+      "Kidney disease (can raise levels)",
+      "Underactive thyroid (can raise levels)",
+      "Menopause (levels tend to rise slightly)"
+    ]
+  },
+  "low": {
+    "meaning": "A low Lp(a) is common and is not a problem in itself. Some studies suggest very low levels may be linked to a higher chance of diabetes, which needs more research.",
+    "commonCauses": [
+      "Inherited variants in the LPA gene",
+      "Liver disease (reduced production)",
+      "Overactive thyroid (can lower levels)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "36036785",
+      "doi": "10.1093/eurheartj/ehac361",
+      "title": "Lipoprotein(a) in atherosclerotic cardiovascular disease and aortic stenosis: a European Atherosclerosis Society consensus statement",
+      "year": 2022,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "20965889",
+      "doi": "10.1093/eurheartj/ehq386",
+      "title": "Lipoprotein(a) as a cardiovascular risk factor: current status",
+      "year": 2010,
+      "studyType": "guideline"
+    }
+  ]
+}

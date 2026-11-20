@@ -3,29 +3,134 @@
   "name": "Multivitamin",
   "kind": "supplement",
   "researchStatus": "not-reviewed",
-  "otherNames": ["Multivitamin", "Multivitamin and mineral", "Multivitamin-mineral", "Multimineral", "MVM"],
-  "summary": "A multivitamin combines several vitamins, often with minerals and sometimes other ingredients. Formulas differ, so the name alone does not tell you which nutrients or amounts a product contains.",
-  "commonUses": ["Used to supply several vitamins or minerals in one product.", "Used in products marketed for general nutritional coverage."],
-  "roles": ["Each vitamin or mineral has its own nutritional role; a combined product is not a separate nutrient.", "Ingredients can overlap with individual supplements and fortified foods."],
-  "status": {"biomarkerIds": [], "note": "There is no single multivitamin status test. Tests for individual nutrients depend on the clinical question; this guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Vitamin and mineral combination", "note": "The included nutrients and amounts vary by product; products with similar names are not necessarily equivalent."},
-    {"name": "With or without iron", "note": "Iron is not present in every formula. Its inclusion changes the safety considerations."},
-    {"name": "Combination with other ingredients", "note": "Some products also contain herbs or other supplements. Those ingredients need their own safety review."}
+  "otherNames": [
+    "Multivitamin",
+    "Multivitamin and mineral",
+    "Multivitamin-mineral",
+    "Multimineral",
+    "MVM"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "summary": "A multivitamin combines several vitamins, often with minerals and sometimes other ingredients. Formulas differ, so the name alone does not tell you which nutrients or amounts a product contains.",
+  "commonUses": [
+    "May fill gaps in a restricted diet",
+    "May support general health",
+    "May lower the risk of heart disease or cancer"
+  ],
+  "roles": [
+    "Each vitamin or mineral has its own nutritional role; a combined product is not a separate nutrient.",
+    "Ingredients can overlap with individual supplements and fortified foods."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no single multivitamin status test. Tests for individual nutrients depend on the clinical question; this guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "A varied diet with vegetables, fruit, wholegrains, dairy or alternatives, and protein foods"
+    ],
+    "note": "A multivitamin does not replace a varied diet."
+  },
+  "forms": [
+    {
+      "name": "Vitamin and mineral combination",
+      "note": "The included nutrients and amounts vary by product; products with similar names are not necessarily equivalent."
+    },
+    {
+      "name": "With or without iron",
+      "note": "Iron is not present in every formula. Its inclusion changes the safety considerations."
+    },
+    {
+      "name": "Combination with other ingredients",
+      "note": "Some products also contain herbs or other supplements. Those ingredients need their own safety review."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "There is no upper limit for a multivitamin as a whole. Each vitamin and mineral in it has its own tolerable upper intake level, where one exists: see that nutrient's page and add up all products and fortified foods.",
+    "sources": []
+  },
   "findings": [],
   "interactions": [
-    {"with": "Warfarin and other vitamin K antagonists", "note": "Vitamin K in a multivitamin can change anticoagulation control. Discuss the exact formula and any changes with your anticoagulation clinician.", "safetyId": "anticoagulant"},
-    {"with": "Pregnancy", "note": "Excess preformed vitamin A, including retinol, can harm a developing baby. Discuss the formula and overlapping supplements with your clinician.", "safetyId": "pregnancy"}
+    {
+      "with": "Warfarin and other vitamin K antagonists",
+      "note": "Vitamin K in a multivitamin can change anticoagulation control. Discuss the exact formula and any changes with your anticoagulation clinician.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Pregnancy",
+      "note": "Excess preformed vitamin A, including retinol, can harm a developing baby. Discuss the formula and overlapping supplements with your clinician.",
+      "safetyId": "pregnancy"
+    }
   ],
-  "cautions": ["Overlapping products can add up to excessive intake. Check the full ingredient list alongside individual supplements and fortified foods.", "Vitamin B6 can cause nerve damage with excessive ongoing exposure; it may appear in several products at once.", "Excess preformed vitamin A, such as retinol, can damage the liver and is a particular concern during pregnancy.", "Iron-containing products can cause nausea, abdominal pain and constipation. Their safety cannot be inferred from the word 'multivitamin'."],
+  "cautions": [
+    "Overlapping products can add up to excessive intake. Check the full ingredient list alongside individual supplements and fortified foods.",
+    "Vitamin B6 can cause nerve damage with excessive ongoing exposure; it may appear in several products at once.",
+    "Excess preformed vitamin A, such as retinol, can damage the liver and is a particular concern during pregnancy.",
+    "Iron-containing products can cause nausea, abdominal pain and constipation. Their safety cannot be inferred from the word 'multivitamin'."
+  ],
   "evidenceClaims": [],
   "sources": [
-    {"pmid": "34421176", "doi": "10.18773/austprescr.2021.029", "title": "The safety of commonly used vitamins and minerals", "year": 2021, "studyType": "review"},
-    {"pmid": "20653669", "doi": "10.1111/j.1365-2125.2010.03672.x", "title": "Warfarin and vitamin K intake in the era of pharmacogenetics", "year": 2010, "studyType": "review"}
-  ]
+    {
+      "pmid": "35727271",
+      "doi": "10.1001/jama.2022.8970",
+      "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement.",
+      "year": 2022,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "19204221",
+      "doi": "10.1001/archinternmed.2008.540",
+      "title": "Multivitamin use and risk of cancer and cardiovascular disease in the Women's Health Initiative cohorts.",
+      "year": 2009,
+      "studyType": "observational"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May fill gaps in a restricted diet": "dietary gaps",
+      "May support general health": "general health",
+      "May lower the risk of heart disease or cancer": "heart disease and cancer"
+    },
+    "claimCategories": {
+      "May fill gaps in a restricted diet": "health",
+      "May support general health": "health",
+      "May lower the risk of heart disease or cancer": "longevity"
+    },
+    "claimLabels": {
+      "May fill gaps in a restricted diet": "Dietary gaps",
+      "May support general health": "General health",
+      "May lower the risk of heart disease or cancer": "Heart disease and cancer"
+    },
+    "origin": [
+      "A multivitamin is a manufactured product that combines several vitamins, often minerals and sometimes other ingredients, in one tablet, capsule or gummy.",
+      "There is no standard formula. Two products called multivitamins can differ in which nutrients they contain and in how much."
+    ],
+    "dosage": [
+      "There is no single reference intake for a multivitamin, since each nutrient in it has its own value. Compare each ingredient on the label with that nutrient's own page.",
+      "Check the full label alongside other supplements and fortified foods, because amounts add up. Iron and vitamin A (retinol) are the ingredients to check first."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Partly. A mixed diet supplies each vitamin and mineral from food, which is the whole point of a diet, but there is no single food amount that matches a multivitamin. This guide lists no figures; look at the individual nutrient pages for food amounts.",
+      "sources": [
+        {
+          "pmid": "35727271",
+          "doi": "10.1001/jama.2022.8970",
+          "title": "Vitamin, Mineral, and Multivitamin Supplementation to Prevent Cardiovascular Disease and Cancer: US Preventive Services Task Force Recommendation Statement.",
+          "year": 2022,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

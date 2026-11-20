@@ -1,0 +1,164 @@
+{
+  "id": "lions_mane",
+  "name": "Lion's mane",
+  "kind": "supplement",
+  "otherNames": [
+    "Hericium erinaceus",
+    "Yamabushitake",
+    "Monkey head mushroom",
+    "Hou tou gu"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Lion's mane is an edible mushroom sold as a powder or extract for memory, brain ageing and mood. A few small trials report benefits, but the evidence is early and the products differ.",
+  "commonUses": [
+    "May support memory and thinking.",
+    "May slow age-related decline in brain function.",
+    "May stimulate nerve growth factor (NGF), a protein that helps nerve cells grow.",
+    "May ease low mood and anxiety."
+  ],
+  "roles": [
+    "It is a food and traditional remedy. It is not an essential nutrient, and no needed role in the body is established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Fresh lion's mane mushroom"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Fruiting body powder",
+      "note": "The mushroom itself; used in several trials."
+    },
+    {
+      "name": "Fruiting body extract",
+      "note": "Concentrated; check the extract ratio."
+    },
+    {
+      "name": "Mycelium (erinacine-enriched)",
+      "note": "Grown on grain; a different product, used in the Alzheimer's trial."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for lion's mane. Europe PMC was searched for EFSA, other regulator and safety-assessment documents on Hericium erinaceus; none were found. Absence of a limit is not proof that high amounts are safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Human evidence is limited to a few small, short trials. The nerve growth factor claim comes mainly from cell and animal studies; the human trials found here did not show that the mushroom raises NGF in the brain.",
+    "Allergic reactions to mushrooms can occur. A 2025 systematic review lists the side effects reported in trials.",
+    "People who are pregnant, breastfeeding, have a mushroom allergy or take regular medicines should check with a doctor or pharmacist before taking a supplement. No specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "40959699",
+      "doi": "10.3389/fnut.2025.1641246",
+      "title": "Benefits, side effects, and uses of &lt;i&gt;Hericium erinaceus&lt;/i&gt; as a supplement: a systematic review.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "18844328",
+      "doi": "10.1002/ptr.2634",
+      "title": "Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment: a double-blind placebo-controlled clinical trial.",
+      "year": 2009,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "31413233",
+      "doi": "10.2220/biomedres.40.125",
+      "title": "Improvement of cognitive functions by oral intake of Hericium erinaceus.",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "32581767",
+      "doi": "10.3389/fnagi.2020.00155",
+      "title": "Prevention of Early Alzheimer's Disease by Erinacine A-Enriched Hericium erinaceus Mycelia Pilot Double-Blind Placebo-Controlled Study.",
+      "year": 2020,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "31118969",
+      "doi": "10.1155/2019/7861297",
+      "title": "Hericium erinaceus Improves Mood and Sleep Disorders in Patients Affected by Overweight or Obesity: Could Circulating Pro-BDNF and BDNF Be Potential Biomarkers?",
+      "year": 2019,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "40276537",
+      "doi": "10.3389/fnut.2025.1405796",
+      "title": "Acute effects of a standardised extract of &lt;i&gt;Hericium erinaceus&lt;/i&gt; (Lion's Mane mushroom) on cognition and mood in healthy younger adults: a double-blind randomised placebo-controlled study.",
+      "year": 2025,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support memory and thinking.": "memory and cognition",
+      "May slow age-related decline in brain function.": "brain ageing",
+      "May stimulate nerve growth factor (NGF), a protein that helps nerve cells grow.": "nerve growth factor",
+      "May ease low mood and anxiety.": "mood and anxiety"
+    },
+    "claimCategories": {
+      "May support memory and thinking.": "health",
+      "May slow age-related decline in brain function.": "longevity",
+      "May stimulate nerve growth factor (NGF), a protein that helps nerve cells grow.": "health",
+      "May ease low mood and anxiety.": "health"
+    },
+    "claimLabels": {
+      "May support memory and thinking.": "Memory",
+      "May slow age-related decline in brain function.": "Brain ageing",
+      "May stimulate nerve growth factor (NGF), a protein that helps nerve cells grow.": "Nerve growth",
+      "May ease low mood and anxiety.": "Mood"
+    },
+    "origin": [
+      "Lion's mane (Hericium erinaceus) is an edible mushroom with long white shaggy spines, eaten in East Asia and used in traditional medicine. It contains hericenones in the fruiting body and erinacines in the mycelium (the root-like threads), which stimulated nerve growth factor production in cell and animal studies.",
+      "Supplements are made from the fruiting body (the mushroom itself), the mycelium grown on grain, or extracts of either. These are different products: trials of erinacine-enriched mycelium do not tell us about fruiting body powder. Most human trials are small and short."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level has been set for lion's mane. Searches of Europe PMC for an EFSA or other regulator opinion on Hericium erinaceus found none, so no official safe-intake figure could be verified. The whole mushroom is eaten as food.",
+      "An amount commonly used in studies and supplements is about 1 to 3 g a day of fruiting body powder or extract. Key trials used 3 g a day of dry powder in tablets for 16 weeks (adults with mild cognitive impairment), a single 3 g dose of a 10:1 fruiting body extract (healthy young adults) and about 1 g a day of erinacine A-enriched mycelium (three 350 mg capsules) for 49 weeks (mild Alzheimer's disease). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check whether the product is fruiting body or mycelium, whether it is powder or an extract (and the extract ratio), and whether it states hericenones, erinacines or beta-glucans. A lion's mane and ginkgo blend has been studied in mice (PMID 35126824); no human trial of the combination was found."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 1000
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 3000
+        }
+      ],
+      "foods": [],
+      "verdict": "Not checked. Lion's mane is an edible mushroom, but the trials used dried fruiting body powder or extracts (1 to 3 g a day), and this guide has no checked figures for how much fresh mushroom that equals.",
+      "notChecked": "Lion's mane compounds are not measured in the UK food table used by this app, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "40959699",
+          "doi": "10.3389/fnut.2025.1641246",
+          "title": "Benefits, side effects, and uses of &lt;i&gt;Hericium erinaceus&lt;/i&gt; as a supplement: a systematic review.",
+          "year": 2025,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

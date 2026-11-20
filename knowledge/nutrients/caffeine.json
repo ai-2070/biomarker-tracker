@@ -1,0 +1,190 @@
+{
+  "id": "caffeine",
+  "name": "Caffeine",
+  "kind": "supplement",
+  "otherNames": [
+    "1,3,7-trimethylxanthine",
+    "Guaranine",
+    "Theine"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Caffeine is the stimulant in coffee, tea, cola and energy drinks. Trials show it can raise alertness and exercise performance, but it also disturbs sleep and has safety limits.",
+  "commonUses": [
+    "May increase alertness and focus.",
+    "May improve physical performance, especially endurance.",
+    "May raise energy and ease tiredness.",
+    "May improve attention and short-term memory."
+  ],
+  "roles": [
+    "It is a stimulant, not a nutrient. No needed role in the body is established, and regular use can cause tolerance and withdrawal."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Coffee",
+      "Tea",
+      "Cola",
+      "Energy drinks",
+      "Dark chocolate"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Coffee, tea and other drinks",
+      "note": "The most common source; amount varies with brewing, serving size and product."
+    },
+    {
+      "name": "Capsules, tablets and powders",
+      "note": "A measured amount per dose, as used in most trials."
+    },
+    {
+      "name": "Gum, pre-workout and energy products",
+      "note": "Often faster acting; pre-workout products can have high amounts and added ingredients."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "upperLimit": {
+      "amount": 400,
+      "unit": "mg",
+      "note": "EFSA (2015) safety level, not a legal tolerable upper intake level: healthy adults, all sources, per day; single doses up to 200 mg; 200 mg a day in pregnancy and breastfeeding; 3 mg per kg of body weight a day for children and adolescents."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2015.4102",
+        "title": "Scientific Opinion on the safety of caffeine",
+        "year": 2015,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Caffeine can disturb sleep, and a 2023 meta-analysis found it shortened total sleep time by about 45 minutes on average, with effects lasting many hours: it suggested a coffee of about 107 mg should be taken at least 8.8 hours before bedtime. Sensitivity differs a lot between people.",
+    "It can cause jitteriness, anxiety, a faster heartbeat and a short rise in blood pressure, mostly with higher amounts. People with anxiety or panic disorders, heart-rhythm problems, high blood pressure or reflux should check with a doctor.",
+    "A regular user who stops suddenly may get withdrawal symptoms such as headache, tiredness and low mood; a critical review describes these as common. Observational studies link higher caffeine intake in pregnancy with a higher risk of pregnancy loss and lower birth weight, though the association may partly reflect bias; EFSA's pregnancy level is 200 mg a day from all sources. Some medicines slow caffeine breakdown or are affected by it, so ask a pharmacist if you take regular medicines."
+  ],
+  "sources": [
+    {
+      "pmid": "33388079",
+      "doi": "10.1186/s12970-020-00383-4",
+      "title": "International society of sports nutrition position stand: caffeine and exercise performance.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33800853",
+      "doi": "10.3390/nu13030868",
+      "title": "Caffeine and Cognitive Functions in Sports: A Systematic Review and Meta-Analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31837359",
+      "doi": "10.1016/j.neubiorev.2019.12.008",
+      "title": "Effects of acute caffeine consumption following sleep loss on cognitive, physical, occupational and driving performance: A systematic review and meta-analysis.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "36870101",
+      "doi": "10.1016/j.smrv.2023.101764",
+      "title": "The effect of caffeine on subsequent sleep: A systematic review and meta-analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25179792",
+      "doi": "10.1007/s10654-014-9944-x",
+      "title": "Caffeine intake during pregnancy and adverse birth outcomes: a systematic review and dose-response meta-analysis.",
+      "year": 2014,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "15448977",
+      "doi": "10.1007/s00213-004-2000-x",
+      "title": "A critical review of caffeine withdrawal: empirical validation of symptoms and signs, incidence, severity, and associated features.",
+      "year": 2004,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May increase alertness and focus.": "alertness and focus",
+      "May improve physical performance, especially endurance.": "physical performance",
+      "May raise energy and ease tiredness.": "energy and tiredness",
+      "May improve attention and short-term memory.": "attention and short-term memory"
+    },
+    "claimCategories": {
+      "May increase alertness and focus.": "health",
+      "May improve physical performance, especially endurance.": "health",
+      "May raise energy and ease tiredness.": "health",
+      "May improve attention and short-term memory.": "health"
+    },
+    "claimLabels": {
+      "May increase alertness and focus.": "Alertness",
+      "May improve physical performance, especially endurance.": "Performance",
+      "May raise energy and ease tiredness.": "Energy",
+      "May improve attention and short-term memory.": "Attention"
+    },
+    "origin": [
+      "Caffeine is a natural stimulant found in coffee beans, tea leaves, cacao, guarana and kola nuts, and added to cola, energy drinks, chewing gum, pre-workout products and some medicines. It is not an essential nutrient. It blocks adenosine, a chemical that builds up during waking hours and makes people feel sleepy.",
+      "Most people take it as coffee or tea. Supplements are capsules, tablets, powders and gums that give a measured amount, often 100 to 200 mg per dose, sometimes combined with other ingredients such as L-theanine (an amino acid from tea). Caffeine content of drinks varies widely with brand, brewing and portion size: a laboratory study of 10 energy drinks found from none to 141 mg per serving, and 19 sodas from none to 48 mg per serving."
+    ],
+    "dosage": [
+      "The European Food Safety Authority (EFSA) assessed caffeine in 2015 (EFSA Journal 13(5):4102). It concluded that, for healthy adults, single doses up to 200 mg and habitual intake up to 400 mg a day from all sources do not raise safety concerns. For pregnant and breastfeeding women it considered up to 200 mg a day safe for the unborn child or infant. For children and adolescents it proposed 3 mg per kg of body weight a day. These are safety levels from all sources, not targets. EFSA also noted that sleep can be disturbed at doses of about 100 mg close to bedtime.",
+      "An amount commonly used in studies and supplements is about 100 to 200 mg per dose, and in sport studies 3 to 6 mg per kg of body weight about one hour before exercise (the International Society of Sports Nutrition position, which also says doses as low as 2 mg per kg may work and that 9 mg per kg often causes side effects). This is not a reference intake or a personal recommendation, and 6 mg per kg is above EFSA's single-dose level for many adults.",
+      "Typical amounts per serving as shown by EUFIC, which cites EFSA: tea (220 mL) about 50 mg, filter coffee (200 mL) about 90 mg, espresso (60 mL) about 80 mg, standard energy drink (250 mL) about 80 mg, cola (355 mL) about 40 mg, plain chocolate (50 g) about 25 mg. Actual products vary. On a label, check mg per serving, the serving size, and caffeine from other ingredients such as guarana, yerba mate or green tea extract, which add to the total."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA single dose, healthy adults, no safety concern",
+          "mg": 200
+        },
+        {
+          "label": "EFSA daily intake, healthy adults, no safety concern",
+          "mg": 400
+        },
+        {
+          "label": "EFSA daily intake, pregnancy and breastfeeding",
+          "mg": 200
+        },
+        {
+          "label": "Amount commonly used per dose in studies and supplements (low)",
+          "mg": 100
+        },
+        {
+          "label": "Amount commonly used per dose in studies and supplements (high)",
+          "mg": 200
+        }
+      ],
+      "foods": [],
+      "verdict": "Yes, from drinks. Caffeine comes mainly from coffee, tea, cola, energy drinks and chocolate. Typical servings hold about 25 to 90 mg each (a filter coffee about 90 mg, a cup of tea about 50 mg, a can of cola about 40 mg, 50 g of plain chocolate about 25 mg), so 100 to 200 mg is roughly one to two cups of filter coffee. Amounts vary a lot by product and brewing.",
+      "notChecked": "Caffeine is not measured in the UK food table used by this app. Serving amounts are approximate figures that EUFIC reports from EFSA, and laboratory analyses show wide differences between products.",
+      "sources": [
+        {
+          "pmid": "16620542",
+          "doi": "10.1093/jat/30.2.112",
+          "title": "Caffeine content of energy drinks, carbonated sodas, and other beverages.",
+          "year": 2006,
+          "studyType": "observational"
+        }
+      ]
+    }
+  }
+}

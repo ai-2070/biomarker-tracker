@@ -88,7 +88,6 @@
    "id": "triglycerides",
    "label": "Triglycerides",
    "anyDesign": false,
-   "finding": "Triglycerides (a blood fat)",
    "counts": {
     "reviews": 94,
     "trialReviews": 25,
@@ -580,7 +579,6 @@
    "id": "cardiovascular",
    "label": "Heart attacks, strokes, deaths",
    "anyDesign": false,
-   "finding": "Heart attacks, strokes and deaths",
    "counts": {
     "reviews": 217,
     "trialReviews": 91,
@@ -1731,7 +1729,6 @@
    "id": "atrial-fibrillation",
    "label": "Atrial fibrillation",
    "anyDesign": false,
-   "finding": "Atrial fibrillation (an irregular heartbeat)",
    "counts": {
     "reviews": 29,
     "trialReviews": 12,
@@ -2053,7 +2050,6 @@
    "id": "bleeding",
    "label": "Bleeding",
    "anyDesign": false,
-   "finding": "Bleeding",
    "counts": {
     "reviews": 5,
     "trialReviews": 2,
@@ -2177,7 +2173,6 @@
    "id": "blood-pressure",
    "label": "Blood pressure",
    "anyDesign": false,
-   "finding": "Blood pressure",
    "counts": {
     "reviews": 24,
     "trialReviews": 8,
@@ -2566,7 +2561,6 @@
    "id": "depression",
    "label": "Depression",
    "anyDesign": false,
-   "finding": "Depression",
    "counts": {
     "reviews": 92,
     "trialReviews": 38,
@@ -3037,7 +3031,6 @@
    "id": "preterm",
    "label": "Preterm birth",
    "anyDesign": false,
-   "finding": "Preterm birth (baby born before 37 weeks)",
    "counts": {
     "reviews": 101,
     "trialReviews": 54,

@@ -17,6 +17,7 @@ import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../d
 import { isImage, isPdf, monthFirst } from "../components/LabReview";
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
 import { BIOMARKER_MAP, BLOOD_MARKERS } from "../knowledge";
+import { chatTitle, fromSaved, loadChats, saveChat, toSaved } from "./chatHistory";
 import { isTextFile, questionWithFiles, redactName } from "./logic";
 import { type PreparedPhoto, shrinkPhoto } from "./photo";
 import type { LiveAnswer } from "./stream";
@@ -135,7 +136,7 @@ type Reply =
     }
   | { ok: false; error: string };
 
-type Thread = Pick<BrainState, "draft" | "turns" | "busy" | "attachments" | "pending"> & { researchContext?: string };
+type Thread = Pick<BrainState, "draft" | "turns" | "busy" | "attachments" | "pending"> & { researchContext?: string; chatId?: string };
 const emptyThread = (): Thread => ({ draft: "", turns: [], busy: false, attachments: [] });
 const threads: Record<BrainScope, Thread> = { personal: emptyThread(), research: emptyThread() };
 const epochs: Record<BrainScope, number> = { personal: 0, research: 0 };
@@ -152,7 +153,26 @@ let nextId = 0;
 const newId = () => `b${++nextId}`;
 const notify = () => {
   for (const l of listeners) l();
+  scheduleSave();
 };
+
+// The person's own conversation is kept in the history list as it goes (public research questions are not).
+let saveTimer: ReturnType<typeof setTimeout> | undefined;
+let lastSaved = "";
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(persistChat, 600);
+}
+function persistChat() {
+  const thread = threads.personal;
+  const turns = toSaved(thread.turns);
+  if (!turns.some((t) => t.role === "user")) return;
+  const json = JSON.stringify(turns);
+  if (json === lastSaved) return;
+  thread.chatId ??= `c${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+  lastSaved = json;
+  saveChat({ id: thread.chatId, title: chatTitle(turns), updated: Date.now(), turns });
+}
 
 function set(patch: Partial<BrainState> | ((s: BrainState) => Partial<BrainState>)) {
   state = { ...state, ...(typeof patch === "function" ? patch(state) : patch) };
@@ -386,7 +406,26 @@ export function resultTurns(steps: readonly Step[], files: File[], today: string
   });
 }
 
+/** Brings a past conversation back into the window. The one on screen was already kept in the history as it went. */
+export function openChat(id: string): void {
+  const chat = loadChats().find((c) => c.id === id);
+  if (!chat) return;
+  clearTimeout(saveTimer);
+  persistChat();
+  cancelRequest();
+  epochs.personal++;
+  threads.personal = { ...emptyThread(), turns: fromSaved(chat.turns, newId), chatId: chat.id };
+  lastSaved = JSON.stringify(chat.turns);
+  state = { ...state, scope: "personal", ...threads.personal, pending: undefined, open: true, focusTick: state.focusTick + 1 };
+  notify();
+}
+
 export function newConversation(): void {
+  if (state.scope === "personal") {
+    clearTimeout(saveTimer);
+    persistChat();
+    lastSaved = "";
+  }
   cancelRequest();
   epochs[state.scope]++;
   threads[state.scope] = emptyThread();

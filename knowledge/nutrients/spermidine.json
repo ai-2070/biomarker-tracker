@@ -1,0 +1,239 @@
+{
+  "id": "spermidine",
+  "name": "Spermidine",
+  "kind": "supplement",
+  "otherNames": [
+    "Spermidine",
+    "spermidine-rich wheat germ extract",
+    "polyamine"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Spermidine is a polyamine, a small molecule that every cell makes and needs for growth, protein production and DNA handling. It also comes from food, and gut bacteria make it. Levels in tissues are reported to fall with age.",
+  "commonUses": [
+    "May switch on autophagy, the cell's recycling process, so old damaged cell parts are cleared and cells work 'like new'.",
+    "May support healthy ageing and longer life.",
+    "May support memory and thinking in older adults.",
+    "May support heart and blood vessel health."
+  ],
+  "roles": [
+    "Cells use polyamines such as spermidine for growth and protein production.",
+    "In laboratory and animal work, spermidine triggers autophagy, the cell's recycling process. Whether supplements do this in people is not established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Matured cheese",
+      "Soybeans and natto",
+      "Mushrooms",
+      "Green peas and broccoli",
+      "Wheat germ and whole grains"
+    ],
+    "note": "Amounts vary a lot between foods, countries and storage."
+  },
+  "forms": [
+    {
+      "name": "Wheat germ extract standardised to spermidine",
+      "note": "The most common supplement. Check whether the label gives milligrams of spermidine or of the extract, which holds far less. Contains gluten."
+    },
+    {
+      "name": "Synthetic spermidine (for example the trihydrochloride salt)",
+      "note": "Used in some studies and products. Label amounts may refer to the salt, not spermidine itself."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No reference intake or tolerable upper intake level for spermidine was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Human evidence is limited: the main trials were in older adults with memory complaints, used low amounts (about 1 mg a day) and were small to moderate in size (30 and 100 people).",
+    "A 2023 crossover study found that 15 mg a day for 5 days did not raise plasma spermidine but did raise spermine, so how supplements act in the body is still unclear.",
+    "Because polyamines support cell growth, people with a current or past cancer, or who are pregnant or breastfeeding, should talk to a clinician before using spermidine supplements; this is a theoretical concern, not an established harm.",
+    "Wheat germ extracts contain gluten and may not suit coeliac disease or wheat allergy; some products are made from other plants."
+  ],
+  "sources": [
+    {
+      "pmid": "35616942",
+      "doi": "10.1001/jamanetworkopen.2022.13875",
+      "title": "Effects of Spermidine Supplementation on Cognition and Biomarkers in Older Adults With Subjective Cognitive Decline: A Randomized Clinical Trial.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29315079",
+      "doi": "10.18632/aging.101354",
+      "title": "Safety and tolerability of spermidine supplementation in mice and older adults with subjective cognitive decline.",
+      "year": 2018,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "37111071",
+      "doi": "10.3390/nu15081852",
+      "title": "High-Dose Spermidine Supplementation Does Not Increase Spermidine Levels in Blood Plasma and Saliva of Healthy Adults: A Randomized Placebo-Controlled Pharmacokinetic and Metabolomic Study.",
+      "year": 2023,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29955838",
+      "doi": "10.1093/ajcn/nqy102",
+      "title": "Higher spermidine intake is linked to lower mortality: a prospective population-based study.",
+      "year": 2018,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29371440",
+      "doi": "10.1126/science.aan2788",
+      "title": "Spermidine in health and disease.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35478379",
+      "doi": "10.1111/1541-4337.12963",
+      "title": "A comprehensive review of spermidine: Safety, health effects, absorption and metabolism, food materials evaluation, physical and chemical processing, and bioprocessing.",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May switch on autophagy, the cell's recycling process, so old damaged cell parts are cleared and cells work 'like new'.": "autophagy and cell renewal",
+      "May support healthy ageing and longer life.": "ageing and longevity",
+      "May support memory and thinking in older adults.": "memory and cognition",
+      "May support heart and blood vessel health.": "cardiovascular health"
+    },
+    "claimCategories": {
+      "May switch on autophagy, the cell's recycling process, so old damaged cell parts are cleared and cells work 'like new'.": "longevity",
+      "May support healthy ageing and longer life.": "longevity",
+      "May support memory and thinking in older adults.": "health",
+      "May support heart and blood vessel health.": "health"
+    },
+    "claimLabels": {
+      "May switch on autophagy, the cell's recycling process, so old damaged cell parts are cleared and cells work 'like new'.": "Autophagy",
+      "May support healthy ageing and longer life.": "Longevity",
+      "May support memory and thinking in older adults.": "Memory",
+      "May support heart and blood vessel health.": "Heart health"
+    },
+    "origin": [
+      "Spermidine is a polyamine, a small molecule that every cell in the body makes and needs for growth, protein production and DNA handling. The body makes it itself, gut bacteria make it, and it also comes from food. Levels in tissues are reported to fall with age.",
+      "Food sources include wheat germ, soybeans and natto, mushrooms, aged cheese, green peas, broccoli and whole grains. Supplements are usually spermidine-rich wheat germ extract (sometimes other plant germ extracts) standardised to a spermidine content, or synthetic spermidine (often as a salt such as trihydrochloride)."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient.",
+      "Amounts commonly used in studies and supplements are about 1 to 10 mg of spermidine a day; the published trials of wheat germ extract provided about 1 mg a day, and one 5-day study used 15 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check whether the label gives milligrams of spermidine itself or milligrams of wheat germ extract, which holds far less. Wheat germ products contain gluten."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount in trials of wheat germ extract (about 1 mg)",
+          "mg": 1
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high, 10 mg)",
+          "mg": 10
+        }
+      ],
+      "foods": [
+        {
+          "name": "Cheddar, matured (1 year)",
+          "mgPer100g": [
+            19.7,
+            20.2
+          ],
+          "note": "one UK study, 3 samples"
+        },
+        {
+          "name": "Soybean, dried",
+          "mgPer100g": [
+            3.3,
+            20.7
+          ],
+          "note": "UK min-max 3.3-6.2; Japan means 12.8 and 20.7"
+        },
+        {
+          "name": "Mushroom",
+          "mgPer100g": [
+            6.2,
+            13.9
+          ],
+          "note": "Japan, 5 samples"
+        },
+        {
+          "name": "Green peas, frozen",
+          "mgPer100g": [
+            0.3,
+            8.8
+          ],
+          "note": "Czech study, 14 samples, mean 4.7"
+        },
+        {
+          "name": "Broccoli, fresh",
+          "mgPer100g": [
+            2.5,
+            5.2
+          ],
+          "note": "Germany and Norway"
+        },
+        {
+          "name": "Cauliflower, fresh",
+          "mgPer100g": [
+            1.7,
+            4.3
+          ],
+          "note": "UK, Germany, Norway"
+        },
+        {
+          "name": "Whole-grain bread",
+          "mgPer100g": [
+            1.0,
+            2.7
+          ],
+          "note": "UK, Norway, France"
+        },
+        {
+          "name": "Maize (corn)",
+          "mgPer100g": [
+            0.8,
+            3.9
+          ],
+          "note": "Japan, 6 samples, mean 2.1"
+        },
+        {
+          "name": "Banana",
+          "mgPer100g": [
+            0.4,
+            1.1
+          ],
+          "note": "Spain 1.1; Japan 0.4-0.8"
+        }
+      ],
+      "verdict": "Yes for about 1 mg, harder for 10 mg. About 1 mg is a few grams of matured cheddar or a small serving of soybeans, mushrooms or broccoli. 10 mg needs about 50 g of matured cheddar, or a few hundred grams of broccoli. Amounts vary a lot between studies, countries and storage, and trials used a wheat germ extract rather than whole foods.",
+      "notChecked": "Food values come from a published polyamine food database (Ali et al. 2011), mg per kg converted to mg per 100 g, as a range across the studies it lists. They are not from the UK food table, which does not measure spermidine. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "21249159",
+          "doi": "10.3402/fnr.v55i0.5572",
+          "title": "Polyamines in foods: development of a food database.",
+          "year": 2011,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

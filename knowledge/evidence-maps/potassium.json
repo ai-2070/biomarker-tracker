@@ -53,7 +53,6 @@
    "id": "bp-high",
    "label": "Blood pressure (high)",
    "anyDesign": false,
-   "finding": "Blood pressure in people with high blood pressure",
    "counts": {
     "reviews": 47,
     "trialReviews": 16,
@@ -636,7 +635,6 @@
    "id": "bp-normal",
    "label": "Blood pressure (normal)",
    "anyDesign": false,
-   "finding": "Blood pressure in people with normal blood pressure",
    "counts": {
     "reviews": 47,
     "trialReviews": 16,
@@ -1232,7 +1230,6 @@
    "id": "bp-dose",
    "label": "Blood pressure by amount",
    "anyDesign": false,
-   "finding": "Blood pressure at large supplement amounts",
    "counts": {
     "reviews": 52,
     "trialReviews": 16,
@@ -1816,7 +1813,6 @@
    "id": "kidney-stones",
    "label": "Kidney stones (citrate)",
    "anyDesign": false,
-   "finding": "New kidney stones (potassium citrate, under medical care)",
    "counts": {
     "reviews": 10,
     "trialReviews": 3,
@@ -2023,7 +2019,6 @@
    "id": "bone",
    "label": "Calcium loss and bone",
    "anyDesign": false,
-   "finding": "Calcium loss in urine and a marker of bone breakdown",
    "counts": {
     "reviews": 9,
     "trialReviews": 3,

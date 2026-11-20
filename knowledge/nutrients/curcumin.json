@@ -1,0 +1,197 @@
+{
+  "id": "curcumin",
+  "name": "Curcumin",
+  "kind": "supplement",
+  "otherNames": [
+    "Curcuminoids",
+    "Diferuloylmethane",
+    "Turmeric extract",
+    "E100"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Curcumin is the yellow compound in turmeric. As an extract in capsules it is sold for inflammation, joints, brain health and mood, but it is poorly absorbed unless made into special forms.",
+  "commonUses": [
+    "May lower inflammation in the body.",
+    "May ease joint pain and stiffness in osteoarthritis.",
+    "May support memory and brain health.",
+    "May lift mood.",
+    "May work well together with omega-3 fats."
+  ],
+  "roles": [
+    "A plant compound with no known essential role in the body, studied for effects on inflammation markers and pain. It is not a nutrient, so there is no deficiency."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Turmeric (spice)",
+      "Curry powder"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Curcuminoid extract (standardised)",
+      "note": "Concentrated extract of turmeric; absorption on its own is poor."
+    },
+    {
+      "name": "Curcumin with piperine",
+      "note": "Black pepper extract slows the body's breakdown of curcumin; raised blood levels in a small human study. Reported in some liver injury cases."
+    },
+    {
+      "name": "Phytosome and lipid forms",
+      "note": "Curcumin bound to lecithin or fats; made to be absorbed better. The same caution on liver reports applies."
+    },
+    {
+      "name": "Turmeric root powder",
+      "note": "The whole spice; contains only a small share of curcuminoids."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for curcumin supplements was found from EFSA or other official sources in the searches made for this guide. A 2026 expert-committee review of liver reports (USP) recommends a warning label rather than a numeric limit. That is not proof that none exists, and not evidence that any amount is safe.",
+    "sources": [
+      {
+        "pmid": "42364655",
+        "doi": "10.1080/13880209.2026.2693375",
+        "title": "Rarely reported cases of hepatotoxicity associated with turmeric- and curcuminoid-containing dietary supplements: a comprehensive review by USP.",
+        "year": 2026,
+        "studyType": "review"
+      },
+      {
+        "pmid": "32656820",
+        "doi": "10.1111/bcp.14460",
+        "title": "Acute liver injury following turmeric use in Tuscany: An analysis of the Italian Phytovigilance database and systematic review of case reports.",
+        "year": 2021,
+        "studyType": "review"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood thinners (warfarin, clopidogrel)",
+      "note": "In rats, curcumin changed how much of these drugs was found in blood but did not change clotting or platelet function. No human study was found, so a pharmacist or doctor should be asked before combining them."
+    }
+  ],
+  "cautions": [
+    "Rare cases of liver injury, usually within 1 to 4 months of starting, have been reported with turmeric and curcumin supplements, often those with piperine or high-absorption forms. Most cases improved after stopping; a few acute liver failures have been reported. People with liver problems should check with a doctor first, and stop and seek advice for abdominal pain, dark urine or yellow skin or eyes.",
+    "Many case reports involved other medicines or supplements taken at the same time, so the exact role of curcumin is hard to separate.",
+    "Many trials are small, short or done in people with a disease, and they use different products. Results from patients do not show the same effect in healthy people. Ask a doctor or pharmacist if you take medicines, are pregnant or breastfeeding, or have gallbladder or bleeding problems."
+  ],
+  "sources": [
+    {
+      "pmid": "34017975",
+      "doi": "10.1042/bsr20210817",
+      "title": "The efficacy and safety of Curcuma longa extract and curcumin supplements on osteoarthritis: a systematic review and meta-analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "34586711",
+      "doi": "10.1002/ptr.7284",
+      "title": "Effect of curcumin on C-reactive protein as a biomarker of systemic inflammation: An updated meta-analysis of randomized controlled trials.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40579315",
+      "doi": "10.1016/j.tjpad.2025.100248",
+      "title": "Targeting cognitive aging with curcumin supplementation: A systematic review and meta-analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33418373",
+      "doi": "10.1016/j.jad.2020.12.158",
+      "title": "The efficacy and acceptability of curcumin for the treatment of depression or depressive symptoms: A systematic review and meta-analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32656820",
+      "doi": "10.1111/bcp.14460",
+      "title": "Acute liver injury following turmeric use in Tuscany: An analysis of the Italian Phytovigilance database and systematic review of case reports.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42364655",
+      "doi": "10.1080/13880209.2026.2693375",
+      "title": "Rarely reported cases of hepatotoxicity associated with turmeric- and curcuminoid-containing dietary supplements: a comprehensive review by USP.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May lower inflammation in the body.": "inflammation (for example C-reactive protein)",
+      "May ease joint pain and stiffness in osteoarthritis.": "joint pain and osteoarthritis",
+      "May support memory and brain health.": "memory and brain health (neuroplasticity)",
+      "May lift mood.": "mood and low mood",
+      "May work well together with omega-3 fats.": "combination with omega-3 fats"
+    },
+    "claimCategories": {
+      "May lower inflammation in the body.": "health",
+      "May ease joint pain and stiffness in osteoarthritis.": "health",
+      "May support memory and brain health.": "longevity",
+      "May lift mood.": "health",
+      "May work well together with omega-3 fats.": "health"
+    },
+    "claimLabels": {
+      "May lower inflammation in the body.": "Inflammation",
+      "May ease joint pain and stiffness in osteoarthritis.": "Joints",
+      "May support memory and brain health.": "Brain health",
+      "May lift mood.": "Mood",
+      "May work well together with omega-3 fats.": "With omega-3"
+    },
+    "origin": [
+      "Curcumin is the main yellow pigment of turmeric, the root of Curcuma longa, a plant of the ginger family. It belongs to a small group of related compounds called curcuminoids. Turmeric powder is only a few percent curcuminoids by weight (a figure not checked in a source here), so supplements use an extract that concentrates them. This guide is about the extracted compound; turmeric as a food and spice has its own page.",
+      "Plain curcumin is poorly absorbed: the gut and liver break it down fast, and in one early study 2 g alone gave blood levels that were undetectable or very low in healthy volunteers. Products try to fix this by adding piperine (from black pepper, which slows that breakdown), by binding curcumin to fats or lecithin (phytosome and lipid forms), or by making very small particles. In that same early study, 20 mg of piperine raised the measured increase in availability by about 2000% in people. Whether a better-absorbed form works better for health is a separate question, and reviews disagree on how much absorption matters."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for curcumin supplements was found. Curcumin is also an approved food colour (E100) with an acceptable daily intake set by European authorities; that figure applies to its use as an additive in foods and drinks, not to supplements. In 2026 the United States Pharmacopeia (USP) expert committee reviewed liver reports and recommended this warning on turmeric and curcuminoid products: liver problems have been reported very rarely; consult a health-care practitioner if you have a history of liver problems; stop use and seek medical advice for abdominal pain, dark urine or yellowing of the skin or eyes.",
+      "An amount commonly used in studies and supplements is about 500 to 1,000 mg a day of an extract made for better absorption. Trials in depression used 1,000 mg of curcumin a day for 6 weeks, and a meta-analysis of cognition trials estimated the best-fitting amount at about 0.8 g a day. This is not a reference intake or a personal recommendation.",
+      "On a label, check what the number counts. Curcuminoids (curcumin plus related compounds) are not the same as turmeric root powder, which holds only a small share. Look for the form: with piperine (black pepper extract), a lipid or phytosome form, or plain extract. Italian reports of liver injury involved forms with high absorption and high curcumin doses, so more absorbable is not automatically safer. Products sold as supplements are lightly regulated, so strength and purity can vary between brands."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in trials (low)",
+          "mg": 500
+        },
+        {
+          "label": "Best-fitting amount in a cognition meta-analysis",
+          "mg": 800
+        },
+        {
+          "label": "Amount in depression trials (curcumin, 6 weeks)",
+          "mg": 1000
+        }
+      ],
+      "foods": [],
+      "verdict": "No. Turmeric is eaten as a spice in small amounts, so food supplies far less curcumin than the 500 to 1,000 mg used in supplement trials. This guide has no checked figure for curcumin in turmeric.",
+      "notChecked": "Curcumin is not measured in the UK food table used by this app, so no per-food amounts are listed. Turmeric the spice and curcumin the extract are different interventions.",
+      "sources": [
+        {
+          "pmid": "34017975",
+          "doi": "10.1042/bsr20210817",
+          "title": "The efficacy and safety of Curcuma longa extract and curcumin supplements on osteoarthritis: a systematic review and meta-analysis.",
+          "year": 2021,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

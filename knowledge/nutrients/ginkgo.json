@@ -1,0 +1,166 @@
+{
+  "id": "ginkgo",
+  "name": "Ginkgo",
+  "kind": "supplement",
+  "otherNames": [
+    "Ginkgo biloba",
+    "Maidenhair tree",
+    "EGb 761",
+    "Ginkgo leaf extract"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Ginkgo is a tree whose standardised leaf extract is sold for memory, circulation and ringing in the ears. Large trials and reviews mostly do not show a clear benefit for these uses, and it can matter for people who take blood thinners.",
+  "commonUses": [
+    "May support memory and thinking.",
+    "May lower the risk of dementia or slow brain ageing.",
+    "May improve blood flow and circulation.",
+    "May ease ringing in the ears (tinnitus) and dizziness."
+  ],
+  "roles": [
+    "It is a traditional herbal remedy, not an essential nutrient. Its extracts act on several systems in laboratory studies, but a needed role in the body is not established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Standardised leaf extract (such as EGb 761)",
+      "note": "The form used in most trials; usually standardised to flavonoid glycosides and terpene lactones."
+    },
+    {
+      "name": "Other leaf extracts",
+      "note": "Different makers and standardisation; trial results for EGb 761 do not automatically apply."
+    },
+    {
+      "name": "Plain leaf powder or tea",
+      "note": "Content of active compounds is unpredictable."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for ginkgo leaf extract was found in the sources checked (Europe PMC search for EFSA or other regulator assessments). Absence of a limit is not proof that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood thinners and antiplatelet medicines (for example warfarin, aspirin, clopidogrel)",
+      "note": "Case reports link ginkgo to bleeding, and a review of the evidence on interactions with these drugs has been published. A meta-analysis of trials of standardised extract found no higher bleeding risk in clotting tests, but people taking these medicines or facing surgery should ask a doctor or pharmacist first."
+    }
+  ],
+  "cautions": [
+    "Ginkgo has been linked to bleeding in case reports. A meta-analysis of 18 trials found no change in clotting measures with standardised extract, but the evidence cannot rule out rare cases. People taking blood thinners, or having an operation, should check with a doctor first.",
+    "Raw or roasted ginkgo seeds can cause seizures and should not be used as a supplement. People with epilepsy, and people who are pregnant or breastfeeding, should talk to a doctor before taking any ginkgo product.",
+    "Ringing in the ears, dizziness, memory loss and circulation problems can have causes that need a doctor's assessment. A supplement is not a substitute for that."
+  ],
+  "sources": [
+    {
+      "pmid": "19160216",
+      "doi": "10.1002/14651858.cd003120.pub3",
+      "title": "Ginkgo biloba for cognitive impairment and dementia.",
+      "year": 2009,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "19017911",
+      "doi": "10.1001/jama.2008.683",
+      "title": "Ginkgo biloba for prevention of dementia: a randomized controlled trial.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "26058281",
+      "title": "Ginkgo biloba for prevention of dementia: a systematic review and meta-analysis.",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23543524",
+      "doi": "10.1002/14651858.cd003852.pub3",
+      "title": "Ginkgo biloba for tinnitus.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "21923430",
+      "doi": "10.1592/phco.31.5.490",
+      "title": "Is there a risk of bleeding associated with standardized Ginkgo biloba extract therapy? A systematic review and meta-analysis.",
+      "year": 2011,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "17480002",
+      "doi": "10.1002/hup.843",
+      "title": "Ginkgo biloba is not a smart drug: an updated systematic review of randomised clinical trials testing the nootropic effects of G. biloba extracts in healthy people.",
+      "year": 2007,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support memory and thinking.": "memory and thinking",
+      "May lower the risk of dementia or slow brain ageing.": "brain ageing and dementia risk",
+      "May improve blood flow and circulation.": "blood flow and circulation",
+      "May ease ringing in the ears (tinnitus) and dizziness.": "tinnitus and dizziness"
+    },
+    "claimCategories": {
+      "May support memory and thinking.": "health",
+      "May lower the risk of dementia or slow brain ageing.": "longevity",
+      "May improve blood flow and circulation.": "health",
+      "May ease ringing in the ears (tinnitus) and dizziness.": "health"
+    },
+    "claimLabels": {
+      "May support memory and thinking.": "Memory",
+      "May lower the risk of dementia or slow brain ageing.": "Brain ageing",
+      "May improve blood flow and circulation.": "Circulation",
+      "May ease ringing in the ears (tinnitus) and dizziness.": "Tinnitus"
+    },
+    "origin": [
+      "Ginkgo (Ginkgo biloba) is a tree native to China, often called a living fossil because its family is very old. Its fan-shaped leaves have long been used in traditional Chinese medicine. The main active groups are flavonoid glycosides and terpene lactones (ginkgolides and bilobalide).",
+      "Supplements are made from a standardised leaf extract. The best-studied one is the branded extract EGb 761, which is standardised to about 24 percent flavonoid glycosides and 6 percent terpene lactones, with ginkgolic acids kept very low. Many trials used this extract, and several were run or funded by its makers, so results for other products may differ."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for ginkgo was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+      "An amount commonly used in studies and supplements is about 120 to 240 mg a day of a standardised leaf extract. The large US prevention trial gave 120 mg twice a day (240 mg in total) for a median of about 6 years, and a review of dementia trials found the reported benefits mostly came from 240 mg a day of EGb 761. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check that the product is a standardised leaf extract (not plain leaf powder, and never seeds), the extract name and standardisation (flavonoid glycosides and terpene lactones), and the amount of extract rather than raw leaf. Ginkgo seeds are a different material and can be toxic. Product quality varies between brands."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 120
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 240
+        }
+      ],
+      "foods": [],
+      "verdict": "Not applicable. Ginkgo leaf is not eaten as an ordinary food; it is used as a standardised leaf extract, so there is no food amount to compare.",
+      "notChecked": "Ginkgo is not measured in the UK food table used by this app.",
+      "sources": [
+        {
+          "pmid": "19160216",
+          "doi": "10.1002/14651858.cd003120.pub3",
+          "title": "Ginkgo biloba for cognitive impairment and dementia.",
+          "year": 2009,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

@@ -26,6 +26,16 @@
     "bp_diastolic",
     "hrv"
   ],
+  "claims": [
+    {"claim": "Cold showers boost your mood", "topic": "Cold water immersion and mood", "label": "Cold water and mood", "category": "health"},
+    {"claim": "Cold plunges strengthen your immune system", "topic": "Cold water exposure and infections or sick days", "label": "Cold water and immunity", "category": "health"},
+    {"claim": "Ice baths speed up muscle recovery", "topic": "Cold water immersion and muscle soreness after exercise", "label": "Ice baths and recovery", "category": "health"},
+    {"claim": "Cold exposure burns fat and helps you lose weight", "topic": "Cold exposure and brown fat or weight loss", "label": "Cold and fat loss", "category": "appearance"},
+    {"claim": "Cold water helps you live longer", "topic": "Cold water exposure and death from any cause", "label": "Cold water and a longer life", "category": "longevity"},
+    {"claim": "Cold showers make your skin and hair shinier", "topic": "Cold water and skin or hair appearance", "label": "Cold water and skin", "category": "appearance"},
+    {"claim": "Ice baths make your muscles grow more", "topic": "Cold water immersion and muscle growth after strength training", "label": "Ice baths and muscle growth", "category": "health"},
+    {"claim": "Cold water cures depression", "topic": "Cold water exposure and depression", "label": "Cold water and depression", "category": "health"}
+  ],
   "findings": [
     {
       "outcome": "Sickness absence from work and days of illness",

@@ -13,6 +13,7 @@ export const CATEGORY_ORDER: readonly BiomarkerCategory[] = [
   "Liver",
   "Thyroid",
   "Iron & vitamins",
+  "Hormones",
   "Electrolytes",
   "Inflammation",
   "Aging",

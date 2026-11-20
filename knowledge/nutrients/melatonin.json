@@ -1,0 +1,199 @@
+{
+  "id": "melatonin",
+  "name": "Melatonin",
+  "kind": "supplement",
+  "otherNames": [
+    "N-acetyl-5-methoxytryptamine",
+    "Sleep hormone"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Melatonin is the body's own night-time signal hormone, also sold as a sleep supplement. Rules differ by country: it is a medicine in some places and a supplement in others.",
+  "commonUses": [
+    "May help people fall asleep faster.",
+    "May improve sleep quality.",
+    "May ease jet lag after crossing several time zones.",
+    "May help sleep after night shift work.",
+    "May help shift the timing of the body clock."
+  ],
+  "roles": [
+    "The body makes melatonin to help time sleep and the body clock. Supplements seem to shorten the time to fall asleep a little, and may help shift the body clock."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Tart cherries",
+      "Walnuts",
+      "Eggs",
+      "Fish",
+      "Some mushrooms"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Immediate-release tablets, capsules or drops",
+      "note": "Most trials of falling asleep faster and jet lag used these."
+    },
+    {
+      "name": "Slow-release tablets",
+      "note": "Used to extend effect through the night, often as medicines; fewer supplement trials."
+    },
+    {
+      "name": "Gummies and sprays",
+      "note": "Labelled amounts have been found to be unreliable in some products."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for melatonin was found from EFSA or other official sources in the searches made for this guide. A 2022 meta-analysis of doses of 10 mg or more found no detectable rise in serious adverse events in the few low-risk-of-bias trials, but many trials did not report side effects.",
+    "sources": [
+      {
+        "doi": "10.2903/j.efsa.2011.2241",
+        "title": "Scientific Opinion on the substantiation of a health claim related to melatonin and reduction of sleep onset latency (ID 1698, 1780, 4080) pursuant to Article 13(1) of Regulation (EC) No 1924/2006",
+        "year": 2011,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Sedatives and sleep medicines",
+      "note": "Melatonin can add to drowsiness; combined use should be discussed with a doctor or pharmacist."
+    },
+    {
+      "with": "Blood thinners (such as warfarin)",
+      "note": "Possible effects on clotting have been raised; a doctor should be told."
+    },
+    {
+      "with": "Diabetes medicines",
+      "note": "Melatonin may affect blood sugar control in some people; medical advice is needed."
+    },
+    {
+      "with": "Blood pressure medicines",
+      "note": "Small blood pressure changes have been reported; combined effects are not well studied."
+    },
+    {
+      "with": "Transplant and other immune-suppressing medicines",
+      "note": "Melatonin can influence immune activity in theory; medical advice should be sought first."
+    }
+  ],
+  "cautions": [
+    "The most reported side effects in trials are daytime sleepiness, headache and dizziness; most trials were short, so long-term safety is less clear.",
+    "Pregnancy, breastfeeding and children: melatonin should only be used on medical advice. Reviews in children call for caution about long-term use.",
+    "People with autoimmune conditions or epilepsy, or taking blood thinners, diabetes, blood pressure, sedative or transplant medicines, should ask a doctor first.",
+    "Do not drive or use machines while drowsy. Long-lasting sleep problems need a doctor's assessment."
+  ],
+  "sources": [
+    {
+      "pmid": "23691095",
+      "doi": "10.1371/journal.pone.0063773",
+      "title": "Meta-analysis: melatonin for the treatment of primary sleep disorders.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33417003",
+      "doi": "10.1007/s00415-020-10381-w",
+      "title": "Effect of melatonin supplementation on sleep quality: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "12076414",
+      "doi": "10.1002/14651858.cd001520",
+      "title": "Melatonin for the prevention and treatment of jet lag.",
+      "year": 2002,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "34923676",
+      "doi": "10.1111/jpi.12782",
+      "title": "Safety of higher doses of melatonin in adults: A systematic review and meta-analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31722088",
+      "doi": "10.1007/s40263-019-00680-w",
+      "title": "Adverse Events Associated with Melatonin for the Treatment of Primary or Secondary Sleep Disorders: A Systematic Review.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37097362",
+      "doi": "10.1001/jama.2023.2296",
+      "title": "Quantity of Melatonin and CBD in Melatonin Gummies Sold in the US.",
+      "year": 2023,
+      "studyType": "observational"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help people fall asleep faster.": "falling asleep faster",
+      "May improve sleep quality.": "sleep quality",
+      "May ease jet lag after crossing several time zones.": "jet lag",
+      "May help sleep after night shift work.": "shift work sleep",
+      "May help shift the timing of the body clock.": "body-clock timing"
+    },
+    "claimCategories": {
+      "May help people fall asleep faster.": "health",
+      "May improve sleep quality.": "health",
+      "May ease jet lag after crossing several time zones.": "health",
+      "May help sleep after night shift work.": "health",
+      "May help shift the timing of the body clock.": "health"
+    },
+    "claimLabels": {
+      "May help people fall asleep faster.": "Fall asleep faster",
+      "May improve sleep quality.": "Sleep quality",
+      "May ease jet lag after crossing several time zones.": "Jet lag",
+      "May help sleep after night shift work.": "Shift work",
+      "May help shift the timing of the body clock.": "Body clock"
+    },
+    "origin": [
+      "Melatonin is a hormone made mainly by the pineal gland in the brain. Levels rise in the evening in darkness and fall in the morning, which helps signal night to the body. It is also found in tiny amounts in some foods, such as tart cherries and nuts.",
+      "Supplement melatonin is usually made synthetically. It comes as tablets, capsules, drops, sprays and gummies, as immediate-release or slow-release forms. In some countries it is a medicine only (for example, in the UK it needs a prescription); in others, including the US, it is sold as a supplement."
+    ],
+    "dosage": [
+      "There is no reference intake or tolerable upper intake level for melatonin. EFSA concluded in 2011 that melatonin and a shorter time to fall asleep are linked, tying the effect to about 1 mg taken close to bedtime. In some countries melatonin is a prescription medicine, so what is sold as a supplement differs by country.",
+      "An amount commonly used in studies and supplements is about 0.3 to 10 mg, usually taken shortly before bedtime. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check the amount per serving and whether it is slow-release. A 2023 JAMA study of US melatonin gummies found that the melatonin in products often differed from the label, and some contained cannabidiol (CBD). Look for third-party testing marks where available."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 0.3
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 10
+        }
+      ],
+      "foods": [],
+      "verdict": "No. Foods contain only tiny amounts of melatonin, far below the 0.3 to 10 mg used in studies, so food cannot supply supplement amounts.",
+      "notChecked": "Melatonin is not measured in the UK food table used by this app, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "23691095",
+          "doi": "10.1371/journal.pone.0063773",
+          "title": "Meta-analysis: melatonin for the treatment of primary sleep disorders.",
+          "year": 2013,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

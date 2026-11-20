@@ -184,3 +184,13 @@ describe("vitamins and minerals", () => {
     expect(searchNutrients(all, "café")).toEqual([]);
   });
 });
+
+describe("gramsForAmount", () => {
+  it("works out grams of a food for an amount, rounded to 10 g", async () => {
+    const { gramsForAmount } = await import("@bt/shared/core/nutrients");
+    expect(gramsForAmount(8, 3.8)).toBe(210);
+    expect(gramsForAmount(8, 2.6)).toBe(310);
+    expect(gramsForAmount(12, 0.6)).toBe(2000);
+    expect(gramsForAmount(0, 1)).toBeNaN();
+  });
+});

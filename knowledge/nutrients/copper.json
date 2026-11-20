@@ -1,0 +1,345 @@
+{
+  "id": "copper",
+  "name": "Copper",
+  "kind": "mineral",
+  "otherNames": [
+    "Cu",
+    "cupric sulfate",
+    "copper gluconate",
+    "copper bisglycinate",
+    "cupric oxide"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Copper is a trace mineral that enzymes need for using iron, building connective tissue, protecting cells and working nerves. Most people get enough from food, and too little or too much both cause harm.",
+  "commonUses": [
+    "May support healthy iron use and red blood cells.",
+    "May support connective tissue, collagen and skin.",
+    "May support antioxidant defence through copper-containing enzymes.",
+    "May support nerve and brain function.",
+    "May keep natural hair colour."
+  ],
+  "roles": [
+    "Helps the body use iron, so it is needed for normal red blood cells.",
+    "Part of enzymes that cross-link collagen and elastin in connective tissue, blood vessels and skin.",
+    "Part of an antioxidant enzyme (copper-zinc superoxide dismutase) that handles free radicals.",
+    "Needed for nerve function and for making the nerve messengers that include dopamine and noradrenaline.",
+    "Needed to make melanin, the pigment in skin and hair."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This app has no copper or ceruloplasmin marker. Labs measure copper and ceruloplasmin (the main copper-carrying protein) in serum. Both rise with inflammation, pregnancy and oestrogen, so one result needs a doctor to read it. Wilson disease (a genetic copper overload) is diagnosed with several tests, not copper alone."
+  },
+  "low": {
+    "signs": [
+      "Anaemia that does not respond to iron",
+      "Low white blood cells (neutropenia)",
+      "Numbness, tingling and an unsteady walk from spinal cord and nerve damage (myelopathy)",
+      "Easy tiring"
+    ],
+    "atRisk": [
+      "People who have had weight-loss (bariatric) surgery, especially gastric bypass",
+      "People with gut diseases that reduce absorption",
+      "People taking high-dose zinc for months",
+      "People on long-term intravenous feeding without copper",
+      "Premature babies, and people with the inherited Menkes disease"
+    ]
+  },
+  "high": {
+    "signs": [
+      "Nausea, vomiting, stomach pain and diarrhoea from large single doses",
+      "Metallic taste",
+      "Liver damage with long-term intake far above the upper limit"
+    ],
+    "note": "Food seldom causes a problem except very large amounts of liver. Drinking water from copper pipes can add some. Wilson disease is a genetic disorder in which copper builds up in the liver and brain; it needs a specialist and is not caused by diet."
+  },
+  "foodSources": {
+    "examples": [
+      "Oysters and other shellfish",
+      "Liver and other organ meats (very high in copper)",
+      "Cashews, sunflower seeds, sesame seeds and other nuts and seeds",
+      "Cocoa and dark chocolate",
+      "Lentils, beans and other pulses",
+      "Whole grains and mushrooms"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Copper bisglycinate (chelate)",
+      "note": "Copper bound to the amino acid glycine. Sold as better absorbed; there are few independent human comparisons."
+    },
+    {
+      "name": "Copper gluconate",
+      "note": "A salt that dissolves well and is common in multivitamins and low-dose copper products."
+    },
+    {
+      "name": "Copper sulfate",
+      "note": "A cheap, well-dissolving salt used in many supplements and trials; can upset the stomach on an empty stomach."
+    },
+    {
+      "name": "Copper oxide",
+      "note": "Does not dissolve well, so less is absorbed; found in some multivitamins."
+    }
+  ],
+  "reference": {
+    "intake": [
+      {
+        "group": "Infants 7 to 11 months",
+        "amount": 0.4,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Children 1 to 2 years",
+        "amount": 0.7,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Children 3 to 9 years",
+        "amount": 1.0,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Boys 10 to 17 years",
+        "amount": 1.3,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Girls 10 to 17 years",
+        "amount": 1.1,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Men 18 years and over",
+        "amount": 1.6,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Women 18 years and over",
+        "amount": 1.3,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 1.5,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 1.5,
+        "unit": "mg",
+        "type": "AI"
+      }
+    ],
+    "upperLimit": {
+      "amount": 5,
+      "unit": "mg",
+      "note": "From all sources, for adults. Set by the EU Scientific Committee on Food in 2003 from a 12-week supplementation study (no harm at 10 mg a day, halved for uncertainty), with liver effects as the concern; EFSA's overview table (2025) lists it unchanged. Lower limits apply to children (1 mg at 1 to 3 years, rising to 4 mg at 11 to 17 years), and none was set for pregnancy or breastfeeding. In 2023 EFSA also set an acceptable daily intake of 0.07 mg per kg body weight for copper from all sources."
+    },
+    "sources": [
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for the EU (summary report)",
+        "year": 2017,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "36694841",
+        "doi": "10.2903/j.efsa.2023.7728",
+        "title": "Re-evaluation of the existing health-based guidance values for copper and exposure assessment from all sources.",
+        "year": 2023,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Zinc",
+      "note": "High zinc intake over months makes the gut hold on to copper, so less is absorbed. This can cause copper deficiency with anaemia, low white blood cells and nerve damage."
+    },
+    {
+      "with": "Penicillamine and other Wilson disease treatments",
+      "note": "These medicines are used to remove or block copper, so copper supplements work against them; this is managed by a specialist."
+    },
+    {
+      "with": "Wilson disease",
+      "note": "Copper builds up in the body, so copper supplements are not suitable."
+    }
+  ],
+  "cautions": [
+    "Too little copper damages blood and nerves, and too much can harm the liver, so the safe range is narrow compared with many vitamins.",
+    "Long-term high-dose zinc can cause copper deficiency, and copper deficiency can be mistaken for a bone marrow or vitamin B12 problem.",
+    "A blood copper or ceruloplasmin result rises with inflammation and pregnancy, so it is hard to read alone.",
+    "Anyone with liver disease, Wilson disease, pregnancy or breastfeeding should check with a doctor or pharmacist before using a copper supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "36694841",
+      "doi": "10.2903/j.efsa.2023.7728",
+      "title": "Re-evaluation of the existing health-based guidance values for copper and exposure assessment from all sources.",
+      "year": 2023,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "27049134",
+      "doi": "10.1016/j.jtemb.2016.02.006",
+      "title": "Dietary copper and human health: Current evidence and unresolved issues.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29959467",
+      "doi": "10.1007/s00277-018-3407-5",
+      "title": "Copper deficiency anemia: review article.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "15762288",
+      "doi": "10.1309/v6gvyw2qtyd5c5pj",
+      "title": "Zinc-induced copper deficiency: a report of three cases initially recognized on bone marrow examination.",
+      "year": 2005,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "22444781",
+      "doi": "10.1016/j.metabol.2012.02.002",
+      "title": "A randomized trial of copper supplementation effects on blood copper enzyme activities and parameters related to cardiovascular health.",
+      "year": 2012,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "25496901",
+      "doi": "10.1016/s1474-4422(14)70190-5",
+      "title": "Wilson's disease and other neurological copper disorders.",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support healthy iron use and red blood cells.": "iron use and red blood cells",
+      "May support connective tissue, collagen and skin.": "connective tissue, collagen and skin",
+      "May support antioxidant defence through copper-containing enzymes.": "antioxidant defence",
+      "May support nerve and brain function.": "nerve and brain function",
+      "May keep natural hair colour.": "hair colour"
+    },
+    "claimCategories": {
+      "May support healthy iron use and red blood cells.": "health",
+      "May support connective tissue, collagen and skin.": "appearance",
+      "May support antioxidant defence through copper-containing enzymes.": "longevity",
+      "May support nerve and brain function.": "health",
+      "May keep natural hair colour.": "appearance"
+    },
+    "claimLabels": {
+      "May support healthy iron use and red blood cells.": "Iron and blood",
+      "May support connective tissue, collagen and skin.": "Collagen and skin",
+      "May support antioxidant defence through copper-containing enzymes.": "Antioxidant defence",
+      "May support nerve and brain function.": "Nerves and brain",
+      "May keep natural hair colour.": "Hair colour"
+    },
+    "origin": [
+      "Copper is a trace mineral. Several enzymes need it, including ones that help the body use iron, build connective tissue, handle free radicals (unstable molecules that can damage cells), make the pigment melanin and work in nerves. The body holds only a small amount and clears the excess through bile. Food sources include shellfish, organ meats such as liver, nuts, seeds, cocoa, pulses and whole grains.",
+      "Supplement copper is a manufactured salt or chelate, such as sulfate, gluconate or bisglycinate. It is often sold alone in small amounts, or added to zinc products and multivitamins, because high zinc intake over time lowers copper absorption."
+    ],
+    "dosage": [
+      "EFSA (2015) set adequate intakes for copper: 1.6 mg a day for men and 1.3 mg a day for women (18 years and over), and 1.5 mg a day in pregnancy and breastfeeding. For children the values range from 0.4 mg (7 to 11 months) to 1.3 mg (boys 10 to 17 years) and 1.1 mg (girls 10 to 17 years). An adequate intake is the typical intake of healthy people, used when there is too little data for a firmer requirement. The upper limit for adults is 5 mg a day from all sources (EU Scientific Committee on Food, 2003, set from liver effects); none was set for pregnancy or breastfeeding. These are population values, not personal targets.",
+      "Amounts commonly used in supplements are about 1 to 2 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check the elemental copper in mg on the label, and count multivitamins and zinc products, since many add copper. Long-term high zinc intake lowers copper absorption, which is why the zinc upper limit was set to protect copper status."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, men",
+          "mg": 1.6
+        },
+        {
+          "label": "EFSA adequate intake, women",
+          "mg": 1.3
+        },
+        {
+          "label": "Amount commonly used in supplements (2 mg)",
+          "mg": 2
+        }
+      ],
+      "foods": [
+        {
+          "name": "Oysters, raw",
+          "mgPer100g": [
+            7.5,
+            7.5
+          ]
+        },
+        {
+          "name": "Lamb liver, raw (very high: see upper limit)",
+          "mgPer100g": [
+            9.67,
+            9.67
+          ]
+        },
+        {
+          "name": "Cocoa powder",
+          "mgPer100g": [
+            3.9,
+            3.9
+          ]
+        },
+        {
+          "name": "Sunflower seeds",
+          "mgPer100g": [
+            2.27,
+            2.27
+          ]
+        },
+        {
+          "name": "Cashew nuts, plain",
+          "mgPer100g": [
+            2.11,
+            2.11
+          ]
+        },
+        {
+          "name": "Sesame seeds",
+          "mgPer100g": [
+            1.46,
+            1.46
+          ]
+        },
+        {
+          "name": "Green and brown lentils, dried, raw",
+          "mgPer100g": [
+            1.02,
+            1.02
+          ]
+        },
+        {
+          "name": "Chocolate, plain",
+          "mgPer100g": [
+            0.71,
+            0.71
+          ]
+        }
+      ],
+      "verdict": "Yes. A mixed diet with shellfish, nuts, seeds, cocoa or pulses reaches the reference intake. Liver is so rich that a small portion can pass the adult upper limit if eaten often, so it is not a daily food in large amounts. For example, for the EFSA adequate intake, women, about 17 g of oysters, raw, or about 30 g of cocoa powder; for the amount commonly used in supplements (2 mg), about 30 g of oysters, raw, or about 50 g of cocoa powder.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the food named. Other foods, brands and drinking water differ. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "36694841",
+          "doi": "10.2903/j.efsa.2023.7728",
+          "title": "Re-evaluation of the existing health-based guidance values for copper and exposure assessment from all sources.",
+          "year": 2023,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
+}

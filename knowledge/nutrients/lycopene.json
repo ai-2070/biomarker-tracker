@@ -1,0 +1,217 @@
+{
+  "id": "lycopene",
+  "name": "Lycopene",
+  "kind": "supplement",
+  "otherNames": [
+    "Lycopene",
+    "tomato extract",
+    "tomato oleoresin"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Lycopene is the red pigment that gives tomatoes, watermelon, pink grapefruit and guava their colour. It is a carotenoid, related to beta-carotene, but the body does not turn it into vitamin A. Plants make it; people get it from food.",
+  "commonUses": [
+    "May work as an \"internal sunscreen\" that makes skin less likely to burn in the sun.",
+    "May protect the DNA in skin cells from sun damage.",
+    "May keep skin tone even and clear."
+  ],
+  "roles": [
+    "Lycopene is stored in fat tissue and in organs such as the skin, adrenal glands and prostate.",
+    "Cooked and processed tomato products hold more absorbable lycopene than raw tomato, because heat and oil help release it."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Tomato sauce, paste and ketchup",
+      "Fresh tomatoes",
+      "Watermelon",
+      "Pink grapefruit and guava"
+    ],
+    "note": "Processing and oil make lycopene easier to absorb."
+  },
+  "forms": [
+    {
+      "name": "Tomato extract (oleoresin)",
+      "note": "Made from tomatoes. Check whether the label amount is lycopene or extract weight."
+    },
+    {
+      "name": "Blakeslea trispora lycopene",
+      "note": "Made by growing a fungus. Permitted in the EU as a food colour and a novel food ingredient."
+    },
+    {
+      "name": "Synthetic lycopene",
+      "note": "Made chemically."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for lycopene. EFSA's acceptable daily intake (0.5 mg per kg of body weight a day) is a safety figure for use as a food colour, not a limit for supplements. EFSA's 2026 report notes that the EU novel-food list allows up to 15 mg a day in food supplements.",
+    "sources": [
+      {
+        "pmid": "40371319",
+        "doi": "10.2903/j.efsa.2025.9373",
+        "title": "Safety of yellow tomato extract as a novel food pursuant to Regulation (EU) 2015/2283.",
+        "year": 2025,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "41972196",
+        "doi": "10.2903/j.efsa.2026.9994",
+        "title": "Dietary exposure to lycopene from background diet, novel foods and food additive use in the European population.",
+        "year": 2026,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Eating or taking a lot of lycopene over weeks can turn the skin orange-yellow (lycopenaemia, a harmless carotenoid skin discolouration reported in case reports), which fades after stopping; it is not jaundice, but yellow skin or eyes should still be checked by a doctor.",
+    "Lycopene does not replace sunscreen, shade or skin checks. A new or changing mole or skin spot should be looked at by a doctor, not treated with a supplement.",
+    "Supplements may come from tomato extract, a fungus fermentation or chemical synthesis, and strengths differ; EFSA has flagged that total lycopene intake from food, colours and novel foods may exceed its ADI in some groups, especially children, so keep children out of adult supplements.",
+    "People with prostate conditions, on blood-thinning or other regular medicines, or who are pregnant should check with a pharmacist or doctor before taking a supplement; no specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "36606553",
+      "doi": "10.1080/10408398.2022.2164557",
+      "title": "The effect of tomato and lycopene on clinical characteristics and molecular markers of UV-induced skin deterioration: A systematic review and meta-analysis of intervention trials.",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28440323",
+      "doi": "10.1038/pcan.2017.25",
+      "title": "Increased dietary and circulating lycopene are associated with reduced prostate cancer risk: a systematic review and meta-analysis.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28129549",
+      "doi": "10.1016/j.atherosclerosis.2017.01.009",
+      "title": "Tomato and lycopene supplementation and cardiovascular risk factors: A systematic review and meta-analysis.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28799780",
+      "doi": "10.1080/10408398.2017.1362630",
+      "title": "Lycopene and tomato and risk of cardiovascular diseases: A systematic review and meta-analysis of epidemiological evidence.",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "40371319",
+      "doi": "10.2903/j.efsa.2025.9373",
+      "title": "Safety of yellow tomato extract as a novel food pursuant to Regulation (EU) 2015/2283.",
+      "year": 2025,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "41972196",
+      "doi": "10.2903/j.efsa.2026.9994",
+      "title": "Dietary exposure to lycopene from background diet, novel foods and food additive use in the European population.",
+      "year": 2026,
+      "studyType": "guideline"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May work as an \"internal sunscreen\" that makes skin less likely to burn in the sun.": "sunburn and UV skin reaction",
+      "May protect the DNA in skin cells from sun damage.": "skin DNA and UV damage",
+      "May keep skin tone even and clear.": "skin tone and pigmentation"
+    },
+    "claimCategories": {
+      "May work as an \"internal sunscreen\" that makes skin less likely to burn in the sun.": "appearance",
+      "May protect the DNA in skin cells from sun damage.": "longevity",
+      "May keep skin tone even and clear.": "appearance"
+    },
+    "claimLabels": {
+      "May work as an \"internal sunscreen\" that makes skin less likely to burn in the sun.": "Internal sunscreen",
+      "May protect the DNA in skin cells from sun damage.": "Skin DNA",
+      "May keep skin tone even and clear.": "Even skin tone"
+    },
+    "origin": [
+      "Lycopene is the red pigment that gives tomatoes, watermelon, pink grapefruit and guava their colour. It is a carotenoid, a fat-soluble plant pigment related to beta-carotene, but unlike beta-carotene the body does not turn it into vitamin A. Plants make it; humans cannot, so it comes from food. In the body it is stored in fat tissue and in organs such as the skin, adrenal glands and prostate.",
+      "Supplements are made from tomato extracts (oleoresin), by growing the fungus Blakeslea trispora, or by chemical synthesis. In the EU, lycopene from these sources is allowed as a food colour (E 160d) and as a novel food ingredient. Cooked and processed tomato products such as paste and sauce contain more absorbable lycopene than raw tomato, because heat and oil help release it."
+    ],
+    "dosage": [
+      "There is no reference intake for lycopene. EFSA set an acceptable daily intake of 0.5 mg per kg of body weight a day for lycopene from all sources; that is a safety figure for additive use, not a target. EFSA's 2026 report notes that the EU novel-food list allows up to 15 mg of lycopene a day in food supplements, so check which source and legal basis a product uses.",
+      "An amount commonly used in studies and supplements is about 15 to 30 mg a day. This is not a reference intake or a personal recommendation.",
+      "Check the source on the label (tomato extract, a fungus called Blakeslea trispora, or synthetic) and whether the number is pure lycopene or extract weight. Lycopene dissolves in fat, so it is usually taken with a meal that contains some oil."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low, 15 mg)",
+          "mg": 15
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high, 30 mg)",
+          "mg": 30
+        }
+      ],
+      "foods": [
+        {
+          "name": "Tomato ketchup",
+          "mgPer100g": [
+            9.9,
+            13.4
+          ]
+        },
+        {
+          "name": "Tomato sauce",
+          "mgPer100g": [
+            6.2,
+            6.2
+          ]
+        },
+        {
+          "name": "Tomato paste",
+          "mgPer100g": [
+            5.4,
+            150
+          ],
+          "note": "Varies enormously between products."
+        },
+        {
+          "name": "Watermelon",
+          "mgPer100g": [
+            2.3,
+            7.2
+          ]
+        },
+        {
+          "name": "Fresh tomato",
+          "mgPer100g": [
+            0.88,
+            4.2
+          ]
+        }
+      ],
+      "verdict": "Partly. Processed tomato products are the practical route: about 250 g of tomato sauce or 110 to 150 g of ketchup gives 15 mg, and double that gives 30 mg. Fresh tomato needs several hundred grams to over a kilogram for 15 mg. Amounts vary a lot with variety and processing, and the studies behind the supplement amounts used extracts as well as tomato products.",
+      "notChecked": "Lycopene is not measured in the UK food table used by this app. Values are mg per 100 g from a published review, as ranges across the studies it lists. These are amounts eaten, not absorbed; cooking with oil makes lycopene easier to absorb.",
+      "sources": [
+        {
+          "pmid": "39619948",
+          "doi": "10.1002/fsn3.4502",
+          "title": "Nutritional Benefits of Lycopene and Beta-Carotene: A Comprehensive Overview.",
+          "year": 2024,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

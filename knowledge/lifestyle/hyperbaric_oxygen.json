@@ -1,0 +1,477 @@
+{
+  "id": "hyperbaric_oxygen",
+  "name": "Hyperbaric oxygen chamber",
+  "category": "breathing and mind",
+  "otherNames": [
+    "Hyperbaric oxygen therapy",
+    "HBOT",
+    "HBO2",
+    "Hyperbaric chamber",
+    "Oxygen chamber",
+    "Mild hyperbaric oxygen"
+  ],
+  "summary": "Breathing pure oxygen in a pressurised chamber is a long-established hospital treatment for decompression sickness and is used for some wounds and radiation injuries, with limited trial evidence. For healthy people, the claims about ageing, memory or sport recovery rest on a few small studies, and a review of trials found no recovery benefit.",
+  "howItWorks": [
+    "In a hyperbaric chamber the air pressure is raised above normal and the person breathes 100% oxygen. At higher pressure much more oxygen dissolves in the blood than at normal pressure.",
+    "For decompression sickness, which is caused by gas bubbles in the tissues after pressure drops quickly (for example after a dive), the pressure squeezes bubbles smaller and oxygen helps the tissue recover.",
+    "For wounds and radiation-damaged tissue, the idea is that extra oxygen helps damaged tissue with poor blood supply to heal. This is a proposed mechanism; the trials below test whether it works in people.",
+    "Mild hyperbaric oxygen, as described in a review, uses a pressure of 1266 to 1317 hPa (only about 1.25 to 1.3 times normal air pressure) and 35 to 40% oxygen. Most of the research on it is in rats and mice. It is a different treatment from the hospital one, which uses about 2.4 to 2.5 times normal pressure and 100% oxygen."
+  ],
+  "whatStudiesDid": "Hospital treatments in the studies used 100% oxygen at about 2.4 to 2.8 times normal air pressure (240 to 250 kPa in a large safety series, 243 kPa in jaw-bone trials, 2.82 atmospheres absolute for decompression sickness). Sessions of about 90 minutes were given over weeks, for example 30 sessions before and 10 after surgery in the jaw trials. The trials in healthy older adults gave 60 daily sessions over three months. The recovery trials used a few sessions after exercise that left muscles sore. Mild hyperbaric chambers, sold for home use, were not tested in these trials.",
+  "markers": [],
+  "claims": [
+    {
+      "claim": "Hyperbaric oxygen slows or reverses ageing",
+      "topic": "Hyperbaric oxygen and ageing",
+      "label": "Slowing ageing",
+      "category": "longevity"
+    },
+    {
+      "claim": "Hyperbaric oxygen lengthens your telomeres",
+      "topic": "Hyperbaric oxygen and telomere length",
+      "label": "Telomere length",
+      "category": "longevity"
+    },
+    {
+      "claim": "Hyperbaric oxygen boosts memory and focus in healthy people",
+      "topic": "Hyperbaric oxygen and cognition in healthy adults",
+      "label": "Memory and focus",
+      "category": "health"
+    },
+    {
+      "claim": "Hyperbaric oxygen speeds muscle recovery after hard training",
+      "topic": "Hyperbaric oxygen and recovery after exercise",
+      "label": "Sport recovery",
+      "category": "health"
+    },
+    {
+      "claim": "Hyperbaric oxygen helps chronic wounds heal",
+      "topic": "Hyperbaric oxygen and diabetic foot ulcers",
+      "label": "Chronic wounds",
+      "category": "health"
+    },
+    {
+      "claim": "Home mild hyperbaric chambers work like hospital chambers",
+      "topic": "Mild hyperbaric oxygen chambers",
+      "label": "Home chambers",
+      "category": "health"
+    },
+    {
+      "claim": "Hyperbaric oxygen treats concussion symptoms",
+      "topic": "Hyperbaric oxygen and concussion symptoms",
+      "label": "Concussion",
+      "category": "health"
+    },
+    {
+      "claim": "Hyperbaric oxygen treatment is free of side effects",
+      "topic": "Hyperbaric oxygen side effects",
+      "label": "Side effects",
+      "category": "health"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Decompression sickness (approved medical use)",
+      "population": "Divers and others who develop decompression sickness after a drop in surrounding pressure",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The sources are a review and a practice guideline on how the condition is treated, not randomised trials",
+        "Treatment of the condition with hyperbaric oxygen is long-established, so trials against no treatment are rare",
+        "The review notes that 100% oxygen alone is often enough for decompression sickness at altitude"
+      ],
+      "summary": "A review describes decompression sickness (DCS) as a syndrome that usually starts within 24 hours of a reduction in surrounding pressure, most often in divers ascending from a depth of at least 6 metres of sea water, and sometimes in rapid decompression from sea level to altitude. Symptoms range from joint pain, numbness, fatigue or rash to motor weakness, lung fluid, shock and death. The cause is bubble formation in tissues. High-concentration oxygen is recommended as first aid for all cases and can be definitive treatment for most altitude cases; for most other cases, hyperbaric oxygen is recommended, most commonly 100% oxygen at 2.82 atmospheres absolute (US Navy Treatment Table 6 or equivalent), with one or two further treatments for lasting symptoms. A separate practice guideline on hyperbaric treatment of DCS covers current recommendations.",
+      "bottomLine": "Hyperbaric oxygen is the recommended treatment for most cases of decompression sickness in divers. This is a long-standing medical use, supported by treatment guidance and reviews rather than by randomised trials. It is an emergency treatment, not something for healthy people.",
+      "label": "Decompression sickness",
+      "line": "Recommended hospital treatment for most diving-related cases",
+      "studies": [
+        {
+          "pmid": "24851553",
+          "title": "Hyperbaric oxygen treatment for decompression sickness.",
+          "year": 2014,
+          "studyType": "review"
+        },
+        {
+          "pmid": "31683368",
+          "doi": "10.22462/10.12.2019.14",
+          "title": "Hyperbaric treatment for decompression sickness: current recommendations.",
+          "year": 2019,
+          "studyType": "guideline"
+        }
+      ]
+    },
+    {
+      "outcome": "Diabetic foot ulcers",
+      "population": "People with diabetic foot ulcers, in 14 controlled studies (768 people), mostly randomised trials, with standard wound care in both groups",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Pooled randomised and non-randomised trials, but small and with methodological flaws, as the authors say",
+        "Large differences between trials on some outcomes",
+        "More side effects were reported with hyperbaric oxygen",
+        "The benefit was for major amputation, not for minor amputation or death"
+      ],
+      "summary": "A 2021 meta-analysis of 14 controlled studies (12 randomised, 2 not; 768 participants) tested hyperbaric oxygen added to standard care in diabetic foot ulcers. The pooled analysis found a significantly better chance of complete healing (odds ratio reported as 0.29, 95% confidence interval 0.14 to 0.61) and fewer major amputations (relative risk 0.60, 0.39 to 0.92). Minor amputations did not clearly differ (0.82, 0.34 to 1.97), and neither did ulcer area reduction or death. Side effects were more common in the hyperbaric oxygen groups (relative risk 1.68, 1.07 to 2.65). The authors said the results can be generalised only cautiously because of flaws in the studies.",
+      "bottomLine": "In 14 studies of people with diabetic foot ulcers, adding hyperbaric oxygen to standard care led to more complete healing and about 40% fewer major amputations, but more side effects. The studies were small and flawed, so the result is cautious.",
+      "label": "Diabetic foot ulcers",
+      "line": "More healing and fewer major amputations in 14 small studies, with more side effects",
+      "studies": [
+        {
+          "pmid": "33500533",
+          "doi": "10.1038/s41598-021-81886-1",
+          "title": "Efficacy of hyperbaric oxygen therapy for diabetic foot ulcer, a systematic review and meta-analysis of controlled clinical trials.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 768
+        }
+      ]
+    },
+    {
+      "outcome": "Late radiation injury (for example in the jaw, head and neck, rectum)",
+      "population": "People with tissue injury months or years after radiotherapy, in 6 randomised trials (447 people), and two combined jaw-bone trials",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials; pooling was limited by large differences between them",
+        "Each benefit comes from a single trial",
+        "A later pair of trials for jaw-bone injury found a higher healing rate (70% versus 51%) that was not statistically significant because the trials were too small",
+        "No benefit was found for injury to nerve tissue"
+      ],
+      "summary": "A Cochrane review of 6 randomised trials (447 participants) of hyperbaric oxygen for late radiation tissue injury found, from single trials, a significantly better chance of healing for radiation proctitis (relative risk 2.7, 95% confidence interval 1.2 to 6.0), after surgical flaps (8.7, 2.7 to 27.5), after hemimandibulectomy (1.4, 1.1 to 1.8) and for irradiated tooth sockets after dental extraction (1.4, 1.1 to 1.7). There was no evidence of benefit for established radiation injury to nerve tissue, and the trials did not report side effects. In two later randomised jaw-bone (mandibular osteoradionecrosis) trials combined (97 enrolled, 65 analysed), 70% healed with hyperbaric oxygen plus surgery and 51% with surgery alone, but this was not statistically significant because the combined study was underpowered.",
+      "bottomLine": "Small trials found that hyperbaric oxygen improved healing for some late radiation injuries, such as radiation proctitis and tooth sockets after extraction, but each result comes from a single trial. A later jaw-bone study was too small to confirm a benefit.",
+      "label": "Late radiation injury",
+      "line": "Better healing in some small trials; a later jaw trial was too small to confirm",
+      "studies": [
+        {
+          "pmid": "16034961",
+          "doi": "10.1002/14651858.cd005005.pub2",
+          "title": "Hyperbaric oxygen therapy for late radiation tissue injury.",
+          "year": 2005,
+          "studyType": "meta-analysis",
+          "n": 447
+        },
+        {
+          "pmid": "34843843",
+          "doi": "10.1016/j.radonc.2021.11.021",
+          "title": "Hyperbaric oxygen treatment of mandibular osteoradionecrosis: Combined data from the two randomized clinical trials DAHANCA-21 and NWHHT2009-1.",
+          "year": 2022,
+          "studyType": "rct",
+          "n": 97
+        }
+      ]
+    },
+    {
+      "outcome": "Memory, ageing markers and thinking in healthy people",
+      "population": "Healthy adults aged 64 and older who had 60 daily sessions (63 people in a randomised trial; 35 in a trial with no control group)",
+      "effect": "helps",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Two small studies, 63 and 35 people",
+        "One of them had no control group",
+        "Results were measured on tests and blood cells, not on how people function in daily life or live over time",
+        "A review of 42 studies of cognitive effects in neurological conditions found controversial results"
+      ],
+      "summary": "In a randomised trial of 63 healthy adults over 64, those who had hyperbaric oxygen for three months improved on a global cognitive measure compared with controls (group-by-time interaction p = 0.0017), with the clearest gains in attention (net effect size 0.745) and information processing speed (0.788) and higher blood flow in some brain regions on perfusion MRI. In a trial of 35 healthy adults aged 64 and older with no control group, 60 daily sessions were followed by telomere lengths in several immune cell types increasing by over 20%, with a 37.30% fall in senescent T helper cells. The authors suggested it may have senolytic effects. A 2022 systematic review of 42 studies on hyperbaric oxygen and cognition in neurological conditions found controversial results.",
+      "bottomLine": "In two small studies of healthy adults over 64, 60 daily sessions were followed by better attention and processing speed in a randomised trial and by longer telomeres in immune cells in a study with no control group. Neither shows that it slows ageing or improves daily life.",
+      "label": "Ageing and thinking",
+      "line": "Better attention in a trial of 63; longer telomeres in a study of 35 with no controls",
+      "studies": [
+        {
+          "pmid": "32589613",
+          "doi": "10.18632/aging.103571",
+          "title": "Cognitive enhancement of healthy older adults using hyperbaric oxygen: a randomized controlled trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 63
+        },
+        {
+          "pmid": "33206062",
+          "doi": "10.18632/aging.202188",
+          "title": "Hyperbaric oxygen therapy increases telomere length and decreases immunosenescence in isolated blood cells: a prospective trial.",
+          "year": 2020,
+          "studyType": "observational",
+          "n": 35
+        },
+        {
+          "pmid": "33847854",
+          "doi": "10.1007/s11065-021-09500-9",
+          "title": "Impact of Hyperbaric Oxygen Therapy on Cognitive Functions: a Systematic Review.",
+          "year": 2022,
+          "studyType": "review"
+        }
+      ]
+    },
+    {
+      "outcome": "Recovery from muscle soreness and sports injuries",
+      "population": "219 people in 9 small randomised trials: seven in volunteers with exercise-induced muscle soreness, two in people with sprains or ligament injuries",
+      "effect": "no clear effect",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small trials, and the review is from 2005, so newer trials are not included",
+        "Soreness was induced in unconditioned volunteers, not trained athletes",
+        "Pain scores were higher, not lower, at 48 and 72 hours when treatment started immediately"
+      ],
+      "summary": "A Cochrane review of 9 small randomised trials (219 participants) tested hyperbaric oxygen for closed soft tissue injury and delayed onset muscle soreness (DOMS). In the two injury trials (ankle sprain and medial collateral knee ligament injury), there were no significant differences in time to recovery, function, pain or swelling. Pooling the seven DOMS trials showed significantly higher pain at 48 and 72 hours in the hyperbaric oxygen group when treatment started immediately (mean difference at 48 hours 0.88 on a 0 to 10 scale, 95% confidence interval 0.09 to 1.67); there were no differences in longer-term pain, swelling or muscle strength.",
+      "bottomLine": "In 9 small trials, hyperbaric oxygen did not speed recovery from sprains or from exercise-induced muscle soreness, and pain was slightly higher at 2 to 3 days when treatment started straight away. The review is older, and trained athletes were not studied.",
+      "label": "Sport and muscle recovery",
+      "line": "No faster recovery in 9 small trials; slightly more pain at 48 hours",
+      "studies": [
+        {
+          "pmid": "16235376",
+          "doi": "10.1002/14651858.cd004713.pub2",
+          "title": "Hyperbaric oxygen therapy for delayed onset muscle soreness and closed soft tissue injury.",
+          "year": 2005,
+          "studyType": "meta-analysis",
+          "n": 219
+        }
+      ]
+    },
+    {
+      "outcome": "Ear, sinus and oxygen-toxicity side effects",
+      "population": "782 people treated for various conditions in one hospital chamber (11,376 sessions at 240 or 250 kPa)",
+      "effect": "harms",
+      "grade": "low",
+      "whyThisGrade": [
+        "One hospital, patients treated for medical reasons and monitored, so rates may differ elsewhere",
+        "Observational series with no comparison group",
+        "The authors concluded the complication rate was acceptable if safety guidelines are followed"
+      ],
+      "summary": "A prospective safety series followed 782 patients who had 11,376 sessions in a multiplace chamber at 240 or 250 kPa. More than 17% of patients had ear pain or discomfort from trouble equalising middle ear pressure, and 3.8% had barotrauma lesions found on ear examination; three eardrum ruptures occurred in patients with sensory deficits in the ear region. Sinus barotrauma was rare, and no barotrauma of the inner ear, lung or teeth was noted. Oxygen toxicity affecting the central nervous system caused generalised seizures in four patients without recognisable risk factors, with no recurrences or lasting effects. Lung function did not worsen in patients with prolonged treatment (average 52.8 sessions). The review lists other possible complications: confinement anxiety and eye effects such as short-sightedness and cataract growth.",
+      "bottomLine": "In a series of 782 hospital patients, more than 1 in 6 had ear pain or discomfort, 3.8% had ear barotrauma, and 4 had seizures from oxygen toxicity, with no lasting effects. Careful screening and monitoring made the overall complication rate acceptable, according to the authors.",
+      "label": "Ear, sinus and seizure risks",
+      "line": "Ear pain in over 17% and seizures in 4 of 782 patients in one hospital series",
+      "studies": [
+        {
+          "pmid": "10685584",
+          "title": "Complications and side effects of hyperbaric oxygen therapy.",
+          "year": 2000,
+          "studyType": "observational",
+          "n": 782
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Healing of late radiation injury with hyperbaric oxygen",
+      "caption": "Relative risks of healing with hyperbaric oxygen compared with no hyperbaric oxygen, each from a single small randomised trial (Cochrane review). Above 1 means a better chance of healing. Intervals that stay above 1 are unlikely to be chance, but each is one small trial.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "No hyperbaric oxygen (comparison)"
+      },
+      "items": [
+        {
+          "label": "Radiation proctitis",
+          "value": 2.7,
+          "low": 1.2,
+          "high": 6.0,
+          "note": "Single trial; number needed to treat 3"
+        },
+        {
+          "label": "After surgical flaps",
+          "value": 8.7,
+          "low": 2.7,
+          "high": 27.5,
+          "note": "Single trial; number needed to treat 4"
+        },
+        {
+          "label": "After hemimandibulectomy",
+          "value": 1.4,
+          "low": 1.1,
+          "high": 1.8,
+          "note": "Single trial; number needed to treat 5"
+        },
+        {
+          "label": "Tooth sockets after extraction",
+          "value": 1.4,
+          "low": 1.1,
+          "high": 1.7,
+          "note": "Single trial; number needed to treat 4"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "16034961",
+          "doi": "10.1002/14651858.cd005005.pub2",
+          "title": "Hyperbaric oxygen therapy for late radiation tissue injury.",
+          "year": 2005,
+          "studyType": "meta-analysis",
+          "n": 447
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Diabetic foot ulcers: amputations and side effects",
+      "caption": "Relative risks for hyperbaric oxygen compared with standard care alone, pooled from 14 controlled studies (768 participants). Below 1 means fewer events with hyperbaric oxygen; above 1 means more. Only major amputation and side effects have intervals that stay on one side of 1. The studies were small and had methodological flaws.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Standard care alone (comparison)"
+      },
+      "items": [
+        {
+          "label": "Major amputation",
+          "value": 0.6,
+          "low": 0.39,
+          "high": 0.92,
+          "note": "Pooled relative risk (2021)"
+        },
+        {
+          "label": "Minor amputation",
+          "value": 0.82,
+          "low": 0.34,
+          "high": 1.97,
+          "note": "Pooled relative risk (2021)"
+        },
+        {
+          "label": "Side effects",
+          "value": 1.68,
+          "low": 1.07,
+          "high": 2.65,
+          "note": "Pooled relative risk (2021)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "33500533",
+          "doi": "10.1038/s41598-021-81886-1",
+          "title": "Efficacy of hyperbaric oxygen therapy for diabetic foot ulcer, a systematic review and meta-analysis of controlled clinical trials.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 768
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "title": "What went wrong, and how often, in one hospital series",
+      "caption": "Complications recorded prospectively in 782 patients having 11,376 sessions at 240 or 250 kPa in one hospital chamber. These patients were treated for medical reasons and monitored. Rates in other settings, or in untrained use, are not known.",
+      "steps": [
+        {
+          "label": "Ear pain or discomfort",
+          "text": "More than 17% of patients had trouble equalising the pressure in the middle ear. Most episodes happened only once."
+        },
+        {
+          "label": "Ear barotrauma",
+          "text": "3.8% had pressure damage visible on an ear examination. Three eardrums ruptured, all in patients with sensory deficits in the ear region."
+        },
+        {
+          "label": "Sinus, inner ear, lung and teeth",
+          "text": "Sinus barotrauma was rare. No barotrauma of the inner ear, lung or teeth was noted."
+        },
+        {
+          "label": "Oxygen toxicity",
+          "text": "Four patients had generalised seizures from the effect of oxygen on the central nervous system. There were no recurrences and no lasting effects."
+        },
+        {
+          "label": "Lungs over many sessions",
+          "text": "Lung function tests did not worsen in patients who had prolonged treatment (an average of 52.8 sessions)."
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "10685584",
+          "title": "Complications and side effects of hyperbaric oxygen therapy.",
+          "year": 2000,
+          "studyType": "observational",
+          "n": 782
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Ear, nose or sinus problems, a cold, or trouble equalising ear pressure",
+      "note": "Ear pain was the most common problem in a hospital series, and ear barotrauma and eardrum ruptures occurred. A doctor can check the ears and sinuses first."
+    },
+    {
+      "with": "Diabetes treated with insulin or tablets that can lower blood sugar",
+      "note": "In the hospital series, blood glucose in people with diabetes was checked regularly during treatment. Hyperbaric treatment for diabetic foot ulcers is given with a wound care team, not as a stand-alone home treatment.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "A history of seizures, lung disease or eye problems such as short-sightedness",
+      "note": "Seizures from oxygen toxicity, lung effects and eye effects (short-sightedness, cataract growth) are known possible complications. A doctor who treats people in hyperbaric chambers can assess the risk."
+    },
+    {
+      "with": "Buying or using a chamber at home",
+      "note": "The trials on this page used hospital chambers with trained staff. A doctor can say whether a treatment is suitable and which chamber type is meant."
+    }
+  ],
+  "cautions": [
+    "Hospital chambers use about 2.4 to 2.5 times normal pressure and 100% oxygen. Mild hyperbaric chambers, as described in a review, use only about 1.25 to 1.3 times normal pressure and 35 to 40% oxygen, so results from hospital trials cannot be applied to them, and most mild-chamber research is in animals.",
+    "The approved medical uses, like decompression sickness and some wounds, are for people with a diagnosed problem, treated in hospital. They do not show a benefit for healthy people.",
+    "The studies in healthy older adults gave 60 daily sessions in hospital-type chambers. How much of the result would apply to a few sessions, or to a different chamber, is not known."
+  ],
+  "unknowns": [
+    "Whether hyperbaric oxygen slows ageing or improves thinking in healthy people is not known: the studies are small, one had no control group, and they measured test scores and blood cells, not long-term health.",
+    "Whether the telomere changes seen in one study mean anything for health or lifespan is not known.",
+    "For carbon monoxide poisoning, a 2026 meta-analysis of 6 randomised trials found no significant benefit for death or neurological outcomes, with low to very low certainty, so whether it helps remains unproven.",
+    "Whether mild hyperbaric chambers sold for home use have any health benefit in people has not been shown in the studies found for this page.",
+    "How hyperbaric oxygen compares with a sham chamber for wounds and radiation injury is not covered by the studies cited here."
+  ],
+  "sources": [
+    {
+      "pmid": "24851553",
+      "title": "Hyperbaric oxygen treatment for decompression sickness.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33500533",
+      "doi": "10.1038/s41598-021-81886-1",
+      "title": "Efficacy of hyperbaric oxygen therapy for diabetic foot ulcer, a systematic review and meta-analysis of controlled clinical trials.",
+      "year": 2021,
+      "studyType": "meta-analysis",
+      "n": 768
+    },
+    {
+      "pmid": "16034961",
+      "doi": "10.1002/14651858.cd005005.pub2",
+      "title": "Hyperbaric oxygen therapy for late radiation tissue injury.",
+      "year": 2005,
+      "studyType": "meta-analysis",
+      "n": 447
+    },
+    {
+      "pmid": "32589613",
+      "doi": "10.18632/aging.103571",
+      "title": "Cognitive enhancement of healthy older adults using hyperbaric oxygen: a randomized controlled trial.",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 63
+    },
+    {
+      "pmid": "16235376",
+      "doi": "10.1002/14651858.cd004713.pub2",
+      "title": "Hyperbaric oxygen therapy for delayed onset muscle soreness and closed soft tissue injury.",
+      "year": 2005,
+      "studyType": "meta-analysis",
+      "n": 219
+    },
+    {
+      "pmid": "10685584",
+      "title": "Complications and side effects of hyperbaric oxygen therapy.",
+      "year": 2000,
+      "studyType": "observational",
+      "n": 782
+    },
+    {
+      "pmid": "41624627",
+      "doi": "10.1002/ams2.70114",
+      "title": "Evaluating the Efficacy of Hyperbaric Oxygen Therapy for Acute Carbon Monoxide Poisoning: A Systematic Review and Meta-Analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31062232",
+      "doi": "10.1007/s12576-019-00678-5",
+      "title": "Mild hyperbaric oxygen: mechanisms and effects.",
+      "year": 2019,
+      "studyType": "review"
+    }
+  ]
+}

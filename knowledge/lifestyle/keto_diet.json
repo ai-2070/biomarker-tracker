@@ -1,0 +1,508 @@
+{
+  "id": "keto_diet",
+  "name": "Keto diet",
+  "category": "diet",
+  "otherNames": [
+    "Ketogenic diet",
+    "Very low-carbohydrate ketogenic diet",
+    "VLCKD",
+    "Keto",
+    "Modified Atkins diet",
+    "Low-carb high-fat diet"
+  ],
+  "summary": "A keto diet is very low in carbohydrate and high in fat, so the body makes ketones as an extra fuel. Over a year or more it led to a little more weight loss than low-fat diets and lower blood sugar in type 2 diabetes, but LDL cholesterol often rose. Its best-proven use is as a medical treatment for epilepsy that medicines do not control.",
+  "howItWorks": [
+    "With very little carbohydrate, the liver turns fat into ketones, which the brain and muscles can use as fuel. This state is called ketosis.",
+    "Fewer carbohydrates usually means lower blood sugar and insulin after meals. Some of the weight and blood sugar changes in trials may come from this, and some from simply eating fewer calories.",
+    "Many people feel tired, dizzy or get headaches in the first days or weeks (called the keto flu). These symptoms are known mainly from forum posts, not from controlled studies.",
+    "For epilepsy, how the diet reduces seizures is not fully understood. It is used under a specialist team, mostly in children whose seizures medicines do not control."
+  ],
+  "whatStudiesDid": "In the weight-loss trials, adults on a very low-carbohydrate ketogenic diet (no more than 50 g of carbohydrate a day) were compared with adults on a conventional low-fat diet for 12 months or more. The type 2 diabetes review pooled 23 trials of low-carbohydrate diets (under 130 g a day, or under 26% of a 2,000 kcal diet) and very low-carbohydrate diets (under 10% of calories) lasting at least 12 weeks. The epilepsy trials tested classic ketogenic diets, medium-chain triglyceride (MCT) versions and the modified Atkins diet, mostly in children, under the care of a specialist team. Studies of long-term outcomes such as deaths followed large groups of people and scored how low in carbohydrate their usual eating was; most of those people were not in ketosis.",
+  "markers": [
+    "weight",
+    "waist",
+    "ldl",
+    "triglycerides",
+    "hdl",
+    "total_cholesterol",
+    "apo_b",
+    "hba1c",
+    "glucose",
+    "bp_systolic",
+    "bp_diastolic",
+    "crp_hs"
+  ],
+  "claims": [
+    {
+      "claim": "A keto diet burns fat better than other diets",
+      "topic": "Ketogenic diet and weight loss compared with other diets",
+      "label": "Keto and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "A keto diet reverses type 2 diabetes",
+      "topic": "Ketogenic diet and type 2 diabetes remission",
+      "label": "Keto and diabetes",
+      "category": "health"
+    },
+    {
+      "claim": "A keto diet sharpens your mind and focus",
+      "topic": "Ketogenic diet and cognition in healthy adults",
+      "label": "Keto and mental clarity",
+      "category": "health"
+    },
+    {
+      "claim": "A keto diet is harmless for cholesterol and the heart",
+      "topic": "Ketogenic diet and LDL cholesterol",
+      "label": "Keto and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "A keto diet helps you live longer",
+      "topic": "Ketogenic diet and lifespan",
+      "label": "Keto and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "A keto diet treats or cures cancer",
+      "topic": "Ketogenic diet and cancer treatment",
+      "label": "Keto and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "A keto diet gives you more energy and better athletic performance",
+      "topic": "Ketogenic diet and athletic performance",
+      "label": "Keto and energy",
+      "category": "health"
+    },
+    {
+      "claim": "A keto diet clears up skin and acne",
+      "topic": "Ketogenic diet and acne",
+      "label": "Keto and skin",
+      "category": "appearance"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Body weight compared with a low-fat diet",
+      "population": "Adults, mostly with overweight or obesity, followed for 12 months or more (13 trials), and adults with overweight or obesity in 14 trials of any length",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The difference after a year or more was small, under 1 kg on average",
+        "People cannot be blinded to what they eat, and diets in the trials were not all alike",
+        "The reviews pooled trials of different people and diets",
+        "In favour: trials were randomised and the direction was the same in several reviews"
+      ],
+      "summary": "A 2013 meta-analysis of 13 randomised trials compared a very low-carbohydrate ketogenic diet (no more than 50 g of carbohydrate a day) with a low-fat diet for 12 months or more. People on the ketogenic diet had lost a little more weight: 0.91 kg more (95% confidence interval 0.17 to 1.65 kg, 1,415 people). A 2020 meta-analysis of 14 trials in people with overweight or obesity also found more weight loss on ketogenic diets than on low-fat diets (standardised mean difference -0.46, p = 0.04), whether or not they had diabetes. A 2020 review of very low-calorie ketogenic programmes (12 studies, where the diets also cut calories sharply) found average weight losses of about 10 kg to 15.6 kg during the ketogenic phase, which stayed stable in follow-up of up to two years. Those programmes were not compared with other diets in the same way, and the weight lost came from cutting calories as well as carbohydrate.",
+      "bottomLine": "After a year or more, people on a very low-carbohydrate ketogenic diet had lost about 1 kg more than people on low-fat diets in a 13-trial meta-analysis. The gap is small, and the diets differ a lot between trials.",
+      "label": "Weight",
+      "line": "A little more weight loss than low-fat diets after a year or more",
+      "studies": [
+        {
+          "pmid": "23651522",
+          "doi": "10.1017/s0007114513000548",
+          "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 1415
+        },
+        {
+          "pmid": "32640608",
+          "doi": "10.3390/nu12072005",
+          "title": "Impact of a Ketogenic Diet on Metabolic Parameters in Patients with Obesity or Overweight and with or without Type 2 Diabetes: A Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "31705259",
+          "doi": "10.1007/s11154-019-09514-y",
+          "title": "Efficacy and safety of very low calorie ketogenic diet (VLCKD) in patients with overweight and obesity: A systematic review and meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and remission in type 2 diabetes",
+      "population": "Adults with type 2 diabetes (23 trials of low-carbohydrate and very low-carbohydrate diets, lasting at least 12 weeks)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The review rated its evidence moderate to low certainty, and only 40.6% of outcomes had a low risk of bias",
+        "Benefits seen at 6 months mostly faded by 12 months",
+        "The trials covered low-carbohydrate diets in general, not only ketogenic ones",
+        "Remission means different things in different trials, and was much smaller without medicines"
+      ],
+      "summary": "A 2021 BMJ review pooled 23 trials (1,357 people with type 2 diabetes) of low-carbohydrate and very low-carbohydrate diets. At 6 months, 57% (76 of 133) of people on these diets reached remission (HbA1c below 6.5%, with or without diabetes medicines) compared with 31% (41 of 131) on control diets (risk difference 0.32, 95% confidence interval 0.17 to 0.47). The effect was smaller and not significant when remission was defined as HbA1c below 6.5% without any medicines. Remission fell markedly in studies that included people using insulin. At 12 months the data on remission were sparse, from a small effect to a trivial increase in risk, and the improvements in weight, triglycerides and insulin sensitivity seen at 6 months had faded. A 2020 meta-analysis of ketogenic diets in 14 trials found lower HbA1c than on low-fat diets in people with diabetes (standardised mean difference -0.62, p < 0.001).",
+      "bottomLine": "In people with type 2 diabetes, low-carbohydrate diets brought more people to remission at 6 months (57% against 31%), but the benefit faded by 12 months and was smaller without medicines. People on insulin did worse, so medicines need a doctor's involvement.",
+      "label": "Type 2 diabetes",
+      "line": "More people in remission at 6 months (57% vs 31%), fading by 12 months",
+      "studies": [
+        {
+          "pmid": "33441384",
+          "doi": "10.1136/bmj.m4743",
+          "title": "Efficacy and safety of low and very low carbohydrate diets for type 2 diabetes remission: systematic review and meta-analysis of published and unpublished randomized trial data.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1357
+        },
+        {
+          "pmid": "32640608",
+          "doi": "10.3390/nu12072005",
+          "title": "Impact of a Ketogenic Diet on Metabolic Parameters in Patients with Obesity or Overweight and with or without Type 2 Diabetes: A Meta-Analysis of Randomized Controlled Trials.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "LDL cholesterol",
+      "population": "Adults following very low-carbohydrate or ketogenic diets, with and without overweight (several meta-analyses)",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Results differ between reviews: some found LDL cholesterol rising, one found no change",
+        "The normal-weight analysis rests on only 3 studies",
+        "LDL cholesterol is a marker of heart risk, not a measured heart attack",
+        "Results may depend on how much weight people lose and what fats they eat"
+      ],
+      "summary": "In the 2013 meta-analysis of 13 trials lasting 12 months or more, LDL cholesterol was 0.12 mmol/L higher on a very low-carbohydrate ketogenic diet than on a low-fat diet (95% confidence interval 0.04 to 0.2, 1,255 people). In a 2023 meta-analysis of 3 trials in normal-weight adults (body mass index below 25), a ketogenic diet raised LDL cholesterol by 1.08 mmol/L (0.37 to 1.79) and apolipoprotein B by 0.35 g/L (0.06 to 0.65), and also raised HDL cholesterol; the authors suggested normal-weight people should consider the risk of high cholesterol. In the 2021 BMJ review of low-carbohydrate diets in type 2 diabetes, blood lipids did not differ significantly at 6 and 12 months, though LDL cholesterol was clinically worse, but not significantly so, at 12 months. A 2020 review of 12 very low-calorie ketogenic studies found no change in LDL cholesterol.",
+      "bottomLine": "LDL cholesterol tended to be higher on ketogenic diets in several meta-analyses, by a small amount over a year and by much more in a 3-study analysis of normal-weight adults. One review of calorie-cut ketogenic programmes found no change. It varies from person to person.",
+      "label": "LDL cholesterol",
+      "line": "Often higher: +0.12 mmol/L in 13 trials, no change in one review",
+      "studies": [
+        {
+          "pmid": "23651522",
+          "doi": "10.1017/s0007114513000548",
+          "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 1415
+        },
+        {
+          "pmid": "36931263",
+          "doi": "10.1093/nutrit/nuad017",
+          "title": "Effects of very low-carbohydrate ketogenic diets on lipid profiles in normal-weight (body mass index < 25 kg/m2) adults: a meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "33441384",
+          "doi": "10.1136/bmj.m4743",
+          "title": "Efficacy and safety of low and very low carbohydrate diets for type 2 diabetes remission: systematic review and meta-analysis of published and unpublished randomized trial data.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1357
+        },
+        {
+          "pmid": "31705259",
+          "doi": "10.1007/s11154-019-09514-y",
+          "title": "Efficacy and safety of very low calorie ketogenic diet (VLCKD) in patients with overweight and obesity: A systematic review and meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Triglycerides, HDL cholesterol and blood pressure",
+      "population": "Adults in trials of 12 months or more, and people with overweight or obesity in very low-calorie ketogenic programmes",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "The changes in blood pressure were small",
+        "Some lab markers improved because people lost weight, not only because of the diet",
+        "The review of very low-calorie programmes combined studies without a comparison diet",
+        "Results for triglycerides were inconsistent in normal-weight adults"
+      ],
+      "summary": "In the 2013 meta-analysis of 13 trials, a very low-carbohydrate ketogenic diet lowered triglycerides by 0.18 mmol/L (95% confidence interval 0.08 to 0.27) and diastolic blood pressure by 1.43 mmHg (0.37 to 2.49) and raised HDL cholesterol by 0.09 mmol/L (0.06 to 0.12) compared with a low-fat diet. Systolic blood pressure was not among the outcomes that differed significantly. In the 2020 review of 12 very low-calorie ketogenic studies, triglycerides fell by about 30 mg/dl and systolic and diastolic blood pressure by about 8 and 7 mmHg. In the 2023 analysis in normal-weight adults, triglycerides did not differ significantly from control diets.",
+      "bottomLine": "Compared with low-fat diets, ketogenic diets lowered triglycerides a little, raised HDL cholesterol a little and lowered diastolic blood pressure by about 1 mmHg over a year or more. Larger drops came in programmes that also cut calories heavily.",
+      "label": "Triglycerides and HDL",
+      "line": "Triglycerides lower and HDL higher by small amounts over a year",
+      "studies": [
+        {
+          "pmid": "23651522",
+          "doi": "10.1017/s0007114513000548",
+          "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 1415
+        },
+        {
+          "pmid": "31705259",
+          "doi": "10.1007/s11154-019-09514-y",
+          "title": "Efficacy and safety of very low calorie ketogenic diet (VLCKD) in patients with overweight and obesity: A systematic review and meta-analysis.",
+          "year": 2020,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "36931263",
+          "doi": "10.1093/nutrit/nuad017",
+          "title": "Effects of very low-carbohydrate ketogenic diets on lipid profiles in normal-weight (body mass index < 25 kg/m2) adults: a meta-analysis.",
+          "year": 2023,
+          "studyType": "meta-analysis"
+        }
+      ]
+    },
+    {
+      "outcome": "Seizures in drug-resistant epilepsy (a medical treatment, kept apart from the other findings)",
+      "population": "Children and adults with epilepsy that medicines had not controlled (13 trials, 932 people), treated by a specialist team",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "All 13 trials were open (no blinding) and small",
+        "The Cochrane review rated the evidence low to very low certainty",
+        "Evidence in adults is much weaker than in children",
+        "The diets are used only with medical supervision, so the results do not apply to a self-started diet"
+      ],
+      "summary": "A 2020 Cochrane review included 13 trials with 932 people (711 children and 221 adults) with epilepsy not controlled by medicines. In children, ketogenic diets (classic, medium-chain triglyceride and modified Atkins versions) led to more seizure freedom than usual care (risk ratio 3.16, 95% confidence interval 1.20 to 8.35; 4 studies, 385 children; very low-certainty evidence) and more children with at least half as many seizures (risk ratio 5.80, 3.48 to 9.65; low-certainty evidence). The most common side effects in both groups were vomiting, constipation and diarrhoea. In adults, no one became seizure-free, and the effect on seizure reduction is uncertain. The reviewers concluded that ketogenic diets are a valid option for children whose seizures medicines do not control, with more research needed in adults.",
+      "bottomLine": "For children whose epilepsy medicines do not control, ketogenic diets led to more seizure freedom and fewer seizures than usual care, but the evidence is low to very low certainty. In adults it is much less clear. This is specialist-supervised treatment, not a general diet.",
+      "label": "Epilepsy (medical use)",
+      "line": "Fewer seizures in children when medicines fail; specialist care only",
+      "studies": [
+        {
+          "pmid": "32588435",
+          "doi": "10.1002/14651858.cd001903.pub5",
+          "title": "Ketogenic diets for drug-resistant epilepsy.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 932
+        }
+      ]
+    },
+    {
+      "outcome": "Long-term health: deaths and heart disease",
+      "population": "Large groups of adults whose usual eating was low in carbohydrate (not necessarily ketogenic), followed for many years",
+      "effect": "harms",
+      "grade": "very low",
+      "whyThisGrade": [
+        "Observational: people were not assigned a diet, and food questionnaires are imprecise",
+        "These studies measure low-carbohydrate eating in general, not ketosis, so they do not describe a ketogenic diet itself",
+        "What the carbohydrate is replaced with (animal or plant foods) seems to matter",
+        "No trial has followed people on a ketogenic diet for years"
+      ],
+      "summary": "A 2013 meta-analysis of cohort studies found that, among 272,216 people in 4 cohorts, a high low-carbohydrate score went with a higher risk of death from any cause (pooled risk ratio 1.31, 95% confidence interval 1.07 to 1.59). Risks of death from heart and blood vessel disease (1.10, 0.98 to 1.24; 3 cohorts) and of new cases (0.98, 0.78 to 1.24; 4 cohorts) were not significantly different. In a 2023 study of 371,159 people aged 50 to 71 followed for a median of 23.5 years (165,698 deaths), the highest overall and unhealthy low-carbohydrate scores went with higher death rates (hazard ratios 1.12 to 1.18), while a healthy low-carbohydrate score went with slightly lower mortality (0.95, 0.94 to 0.97). These are links, not proof of cause, and they are not about ketogenic diets in particular.",
+      "bottomLine": "In large observational studies, low-carbohydrate eating patterns that rely on animal foods went with more deaths over decades, while healthier low-carbohydrate patterns did not. These are links about low-carb eating in general; the long-term effect of a ketogenic diet is unknown.",
+      "label": "Long-term health",
+      "line": "Low-carb eating linked to more deaths over decades (a link, not keto itself)",
+      "studies": [
+        {
+          "pmid": "23372809",
+          "doi": "10.1371/journal.pone.0055030",
+          "title": "Low-carbohydrate diets and all-cause mortality: a systematic review and meta-analysis of observational studies.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 272216
+        },
+        {
+          "pmid": "37132226",
+          "doi": "10.1111/joim.13639",
+          "title": "Low-carbohydrate diets, low-fat diets, and mortality in middle-aged and older people: A prospective cohort study.",
+          "year": 2023,
+          "studyType": "observational",
+          "n": 371159
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Blood fats on a keto diet compared with a low-fat diet",
+      "caption": "Differences in mmol/L after 12 months or more, from a 2013 meta-analysis of 13 randomised trials (about 1,255 people). Bars to the right mean higher on the ketogenic diet; lines show the 95% confidence interval. LDL cholesterol was higher, triglycerides lower and HDL cholesterol higher. Cholesterol numbers are markers, not proof of heart disease.",
+      "scale": "linear",
+      "unit": "mmol/L",
+      "reference": {
+        "value": 0,
+        "label": "Low-fat diet (no difference)"
+      },
+      "items": [
+        {
+          "label": "LDL cholesterol",
+          "value": 0.12,
+          "low": 0.04,
+          "high": 0.2
+        },
+        {
+          "label": "HDL cholesterol",
+          "value": 0.09,
+          "low": 0.06,
+          "high": 0.12
+        },
+        {
+          "label": "Triglycerides",
+          "value": -0.18,
+          "low": -0.27,
+          "high": -0.08
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "23651522",
+          "doi": "10.1017/s0007114513000548",
+          "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 1415
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Type 2 diabetes in remission at 6 months",
+      "caption": "Share of people whose HbA1c was below 6.5% (with or without diabetes medicines) at 6 months, from a 2021 review of 8 trials: 76 of 133 people on low-carbohydrate diets and 41 of 131 on control diets. Remission was smaller and not significant without medicines, and data at 12 months were sparse.",
+      "scale": "linear",
+      "unit": "% of people",
+      "items": [
+        {
+          "label": "Low-carbohydrate diets (76 of 133)",
+          "value": 57
+        },
+        {
+          "label": "Control diets (41 of 131)",
+          "value": 31
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "33441384",
+          "doi": "10.1136/bmj.m4743",
+          "title": "Efficacy and safety of low and very low carbohydrate diets for type 2 diabetes remission: systematic review and meta-analysis of published and unpublished randomized trial data.",
+          "year": 2021,
+          "studyType": "meta-analysis",
+          "n": 1357
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Epilepsy in children: seizures with a ketogenic diet",
+      "caption": "Risk ratios from a 2020 Cochrane review of 4 trials in 385 children with epilepsy that medicines had not controlled, against usual care (1 = no difference); lines show the 95% confidence interval. The certainty was very low for seizure freedom and low for seizure reduction. This is a specialist-supervised treatment.",
+      "scale": "ratio",
+      "reference": {
+        "value": 1,
+        "label": "Usual care"
+      },
+      "items": [
+        {
+          "label": "Seizure freedom",
+          "value": 3.16,
+          "low": 1.2,
+          "high": 8.35,
+          "note": "very low certainty"
+        },
+        {
+          "label": "At least half as many seizures",
+          "value": 5.8,
+          "low": 3.48,
+          "high": 9.65,
+          "note": "low certainty"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "32588435",
+          "doi": "10.1002/14651858.cd001903.pub5",
+          "title": "Ketogenic diets for drug-resistant epilepsy.",
+          "year": 2020,
+          "studyType": "meta-analysis",
+          "n": 932
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Diabetes treated with insulin or tablets that can cause low blood sugar",
+      "note": "Eating very little carbohydrate can lower blood sugar quickly, and medicine doses may need to change. In the diabetes review, remission fell markedly in studies that included people using insulin. A doctor or diabetes nurse needs to be involved first.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "Kidney disease",
+      "note": "A ketogenic diet changes the balance of protein, fluid, acid and minerals the body has to handle. Ask a kidney doctor before trying it.",
+      "safetyId": "kidney"
+    },
+    {
+      "with": "Pregnancy or breastfeeding",
+      "note": "There is not enough research on ketogenic diets in pregnancy. Talk to a doctor or midwife first.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "A past or current eating disorder",
+      "note": "Strict food rules can make an eating disorder worse. A doctor or dietitian can help judge whether any restrictive diet is safe."
+    },
+    {
+      "with": "High LDL cholesterol, a family history of early heart disease, or existing heart disease",
+      "note": "LDL cholesterol rose in several reviews and varies a lot between people. A doctor can follow your blood tests during a change in diet."
+    },
+    {
+      "with": "Liver, pancreas or gallbladder conditions, or rare disorders of fat metabolism",
+      "note": "Ketogenic diets for epilepsy are started by specialist teams who check for these first. Ask a doctor before starting a ketogenic diet."
+    },
+    {
+      "with": "Children and teenagers",
+      "note": "Ketogenic diets are used for epilepsy only under a specialist paediatric team, with regular check-ups. They are not tested as a diet for weight loss in children."
+    }
+  ],
+  "cautions": [
+    "Headache, tiredness, dizziness, nausea and low energy are common in the first days or weeks (the keto flu). A study of 300 forum users reported them most often in the first weeks, easing after about 4 weeks; this is not controlled research.",
+    "Many ketogenic menus leave out whole food groups, such as fruit, whole grains and pulses. Nutrients, fibre and fluid can fall short without careful planning.",
+    "Ketogenic diets in the studies were run with check-ups and blood tests. The studies do not show that a self-started diet gives the same results or safety."
+  ],
+  "unknowns": [
+    "No trial has followed people on a ketogenic diet for many years, so the effects on heart attacks, strokes, cancer, bone and kidneys over decades are unknown.",
+    "Why LDL cholesterol rises in some people and not others is not understood, and whether it raises heart risk on a keto diet is not known.",
+    "Weight and blood sugar benefits faded by 12 months in the diabetes review. It is not clear whether this is because people stop following the diet or the effect wears off.",
+    "Claims about a clearer mind, better sport performance, cancer treatment or longer life are not backed by trials in healthy people.",
+    "Most studies cannot separate the effect of very low carbohydrate from the effect of eating fewer calories or losing weight."
+  ],
+  "sources": [
+    {
+      "pmid": "23651522",
+      "doi": "10.1017/s0007114513000548",
+      "title": "Very-low-carbohydrate ketogenic diet v. low-fat diet for long-term weight loss: a meta-analysis of randomised controlled trials.",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 1415
+    },
+    {
+      "pmid": "33441384",
+      "doi": "10.1136/bmj.m4743",
+      "title": "Efficacy and safety of low and very low carbohydrate diets for type 2 diabetes remission: systematic review and meta-analysis of published and unpublished randomized trial data.",
+      "year": 2021,
+      "studyType": "meta-analysis",
+      "n": 1357
+    },
+    {
+      "pmid": "32588435",
+      "doi": "10.1002/14651858.cd001903.pub5",
+      "title": "Ketogenic diets for drug-resistant epilepsy.",
+      "year": 2020,
+      "studyType": "meta-analysis",
+      "n": 932
+    },
+    {
+      "pmid": "36931263",
+      "doi": "10.1093/nutrit/nuad017",
+      "title": "Effects of very low-carbohydrate ketogenic diets on lipid profiles in normal-weight (body mass index < 25 kg/m2) adults: a meta-analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23372809",
+      "doi": "10.1371/journal.pone.0055030",
+      "title": "Low-carbohydrate diets and all-cause mortality: a systematic review and meta-analysis of observational studies.",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 272216
+    },
+    {
+      "pmid": "32232045",
+      "doi": "10.3389/fnut.2020.00020",
+      "title": "Consumer Reports of \"Keto Flu\" Associated With the Ketogenic Diet.",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 300
+    }
+  ]
+}

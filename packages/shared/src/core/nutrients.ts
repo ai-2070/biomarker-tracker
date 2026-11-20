@@ -56,6 +56,25 @@ export interface ReferenceIntake {
   type: "PRI" | "AI";
 }
 
+/** Amounts of one ingredient in whole foods, set against the amounts that studies or safety reviews used. */
+export interface FoodAmounts {
+  /** Amounts to compare against, in mg a day (e.g. the amount EFSA assessed). May be empty when no food can supply the ingredient. */
+  targets: { label: string; mg: number }[];
+  /** mg per 100 g as [low, high] from a cited analysis; list only measured foods (may be empty). */
+  foods: { name: string; mgPer100g: [number, number]; note?: string }[];
+  /** Plain-language answer to "could you eat this every day?". */
+  verdict: string;
+  /** Foods the guide did not list because no cited amount was found. */
+  notChecked?: string;
+  sources: Citation[];
+}
+
+/** Grams of a food holding `mg` of the ingredient, given its mg per 100 g; rounded to the nearest 10 g. */
+export function gramsForAmount(mg: number, mgPer100g: number): number {
+  if (!(mg > 0) || !(mgPer100g > 0)) return NaN;
+  return Math.round(((mg / mgPer100g) * 100) / 10) * 10;
+}
+
 export interface NutrientDef {
   id: string;
   name: string;
@@ -83,6 +102,8 @@ export interface NutrientDef {
     claimCategories?: Record<string, ClaimCategory>;
     /** Neutral row labels; the underlying claim text remains the saved-check identity. */
     claimLabels?: Record<string, string>;
+    /** Could the amounts studied come from whole foods? Grams are worked out in code (`gramsForAmount`). */
+    foodAmounts?: FoodAmounts;
   };
   /** Its main jobs in the body, short phrases. */
   roles: string[];
@@ -201,6 +222,24 @@ export function validateNutrientDef(v: unknown): string[] {
           !v.commonUses.every((claim) => typeof claim === "string" && Object.hasOwn(topics, claim) && isStr(topics[claim])))
       )
         errs.push("simpleGuide claimTopics must name each common claim exactly once");
+      const fa = v.simpleGuide.foodAmounts;
+      if (fa !== undefined) {
+        const okRange = (r: unknown) =>
+          Array.isArray(r) && r.length === 2 && r.every((x) => typeof x === "number" && x > 0) && (r[0] as number) <= (r[1] as number);
+        if (
+          !isObj(fa) ||
+          !Array.isArray(fa.targets) ||
+          !fa.targets.every((t) => isObj(t) && isStr(t.label) && typeof t.mg === "number" && t.mg > 0) ||
+          !Array.isArray(fa.foods) ||
+          !fa.foods.every((f) => isObj(f) && isStr(f.name) && okRange(f.mgPer100g)) ||
+          (fa.foods.length > 0 && fa.targets.length === 0) ||
+          !isStr(fa.verdict) ||
+          !Array.isArray(fa.sources) ||
+          fa.sources.length === 0
+        )
+          errs.push("simpleGuide foodAmounts needs a verdict, sources, and (when it lists foods) targets and a [low, high] mg per 100 g for each food");
+        else errs.push(...citationErrors(fa.sources as Citation[], "foodAmounts sources"));
+      }
       const categories = v.simpleGuide.claimCategories;
       if (
         categories !== undefined &&
@@ -227,7 +266,7 @@ export function validateNutrientDef(v: unknown): string[] {
         errs.push("simpleGuide claimLabels must label each common claim exactly once");
     }
   }
-  if (basic && v.kind !== "supplement") errs.push("basic guides are for other supplements, not vitamins or minerals");
+  if (basic && v.kind !== "supplement" && v.simpleGuide === undefined) errs.push("basic guides are for other supplements, not vitamins or minerals");
   if ((basic || v.commonUses !== undefined) && !strList(v.commonUses, basic ? 1 : 0)) errs.push("commonUses must list the purposes of a basic guide");
   if (v.basicSources !== undefined) {
     if (!basic) errs.push("basicSources belong only to basic supplement guides");
@@ -296,6 +335,9 @@ export function nutrientText(n: NutrientDef): string[] {
     ...(n.commonUses ?? []),
     ...(n.simpleGuide?.origin ?? []),
     ...(n.simpleGuide?.dosage ?? []),
+    n.simpleGuide?.foodAmounts?.verdict ?? "",
+    n.simpleGuide?.foodAmounts?.notChecked ?? "",
+    ...(n.simpleGuide?.foodAmounts?.foods.map((f) => f.note ?? "") ?? []),
     ...n.roles,
     n.status.note,
     ...n.low.signs,
