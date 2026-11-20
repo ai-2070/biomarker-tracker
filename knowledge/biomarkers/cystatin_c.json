@@ -1,0 +1,69 @@
+{
+  "id": "cystatin_c",
+  "name": "Cystatin C",
+  "category": "Kidney",
+  "aliases": [
+    "Cystatin C",
+    "Cystatin-C",
+    "Cystatin C (S)",
+    "Serum cystatin C",
+    "Plasma cystatin C",
+    "Cystatin C, serum",
+    "CysC",
+    "Cys C",
+    "Cystatin C Serum",
+    "Cystatin C (Serum)",
+    "Cisztatin C",
+    "Cisztatin-C",
+    "Cisztatin C (szérum)",
+    "Cystatine C",
+    "Cystatine C sérique",
+    "Cistatina C",
+    "Cistatina C sérica",
+    "Cystatin C i serum"
+  ],
+  "loinc": [
+    "33863-2"
+  ],
+  "canonicalUnit": "mg/L",
+  "conversions": {
+    "mg/L": 1
+  },
+  "rangeNote": "No default range: reference values depend on the assay, age and sex, and children differ from adults. Cystatin C is less affected by muscle mass and diet than creatinine, so it can help when creatinine may mislead (for example with a lot or very little muscle). It can also be raised by inflammation, obesity, smoking, thyroid disease and corticosteroids, independent of kidney function. Used with creatinine to give a combined eGFR estimate.",
+  "summary": "Cystatin C is a small protein made by almost all cells at a steady rate and cleared by the kidneys. Its blood level rises when the kidneys filter less, so it is used to estimate kidney filtration (eGFR), alone or together with creatinine.",
+  "high": {
+    "meaning": "A high cystatin C usually means the kidneys are filtering less than usual. In large studies, a cystatin C-based eGFR was linked to risk of death, cardiovascular death and kidney failure, and it classified more people as having reduced kidney function than a creatinine-based eGFR.",
+    "commonCauses": [
+      "Reduced kidney function",
+      "Inflammation or acute illness",
+      "Obesity and smoking",
+      "Overactive thyroid",
+      "Corticosteroid medicines"
+    ]
+  },
+  "low": {
+    "meaning": "A low cystatin C is usually normal and reflects good kidney filtration.",
+    "commonCauses": [
+      "Healthy kidney filtration",
+      "Underactive thyroid",
+      "Some medicines that lower its production"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "22762315",
+      "doi": "10.1056/nejmoa1114248",
+      "title": "Estimating glomerular filtration rate from serum creatinine and cystatin C",
+      "year": 2012,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "24004120",
+      "doi": "10.1056/nejmoa1214234",
+      "title": "Cystatin C versus creatinine in determining risk based on kidney function",
+      "year": 2013,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "estradiol",
+  "name": "Estradiol",
+  "category": "Hormones",
+  "aliases": [
+    "Estradiol",
+    "Oestradiol",
+    "Estradiol (E2)",
+    "Oestradiol (E2)",
+    "Estradiol, E2",
+    "17-beta estradiol",
+    "17-beta-estradiol",
+    "17β-estradiol",
+    "17β-Estradiol",
+    "Estradiol-17β",
+    "Östradiol",
+    "Östradiol (E2)",
+    "Estradiol (Östradiol)",
+    "Ösztradiol",
+    "Ösztradiol (E2)",
+    "Œstradiol",
+    "Estradiol sensible",
+    "Estradiol ultrasensible",
+    "Östradiol, sensitiv"
+  ],
+  "loinc": [
+    "2243-4",
+    "14715-7"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "nmol/L": 1000,
+    "pg/mL": 3.671,
+    "ng/L": 3.671,
+    "ng/dL": 36.71
+  },
+  "rangeNote": "No population range is built in, because normal values depend on sex, age, the phase of the menstrual cycle, pregnancy and menopause, and on the assay. Cycle phase matters most in women: levels are lowest in the early follicular phase, peak before ovulation and rise again in the luteal phase. Standard immunoassays and LC-MS/MS (a mass-spectrometry method) agree reasonably at reproductive-age levels, but the very low levels in men, children and after menopause or on aromatase inhibitors are measured accurately only with sensitive methods. Use your lab's printed range.",
+  "summary": "Estradiol (E2) is the main estrogen, made mainly by the ovaries in women and in smaller amounts in men by converting testosterone. It drives the menstrual cycle and affects bone, blood vessels, skin and brain.",
+  "high": {
+    "meaning": "A higher estradiol is expected at ovulation, in pregnancy and with some hormone treatments. Outside those situations it depends on the person and the timing in the cycle. In men, higher levels often come from conversion of testosterone, more so with extra body fat. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Normal rise around ovulation, in the luteal phase and in pregnancy",
+      "Estrogen treatment (patches, gels, tablets or injections)",
+      "Fertility treatment that stimulates the ovaries",
+      "Testosterone treatment, anabolic steroids, or HCG (human chorionic gonadotropin), which can be converted to estradiol",
+      "Clomiphene, which raises the body's own hormone production",
+      "Excess body fat, which converts more testosterone to estradiol",
+      "Liver disease or an overactive thyroid",
+      "Rarely, an estrogen-producing tumour"
+    ]
+  },
+  "low": {
+    "meaning": "A low estradiol is expected in children, after menopause, and early in the menstrual cycle. In reproductive-age women, persistently low levels are one finding looked at when periods stop or are irregular. In men, low levels can be seen when testosterone production is low or when aromatase (the converting enzyme) is blocked. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Menopause or ovary removal",
+      "Premature ovarian insufficiency",
+      "Aromatase inhibitors, which block estradiol production",
+      "GnRH (gonadotropin-releasing hormone) analogues and some hormonal contraceptives",
+      "Low energy availability from very low food intake or very heavy training, with absent periods",
+      "Pituitary or hypothalamus conditions, high prolactin",
+      "Breastfeeding",
+      "Testosterone treatment, anabolic steroids or SARMs (selective androgen receptor modulators), which suppress the body's own production",
+      "Turner syndrome"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "23463657",
+      "doi": "10.1210/jc.2012-3780",
+      "title": "Challenges to the measurement of estradiol: an endocrine society position statement.",
+      "year": 2013,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "26444994",
+      "doi": "10.1210/jc.2015-2236",
+      "title": "Treatment of Symptoms of the Menopause: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2015,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "22344196",
+      "doi": "10.1210/jc.2011-3362",
+      "title": "Executive summary of the Stages of Reproductive Aging Workshop + 10: addressing the unfinished agenda of staging reproductive aging.",
+      "year": 2012,
+      "studyType": "guideline"
+    }
+  ]
+}

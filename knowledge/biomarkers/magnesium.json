@@ -1,0 +1,80 @@
+{
+  "id": "magnesium",
+  "name": "Magnesium",
+  "category": "Electrolytes",
+  "aliases": [
+    "Magnesium",
+    "Magnesium (serum)",
+    "Magnesium (S)",
+    "Serum magnesium",
+    "Plasma magnesium",
+    "Magnesium, total",
+    "Total magnesium",
+    "Magnesium (total)",
+    "Mg (serum)",
+    "Magnézium",
+    "Magnézium (szérum)",
+    "Magnésium",
+    "Magnésium sérique",
+    "Magnesio",
+    "Magnesio sérico"
+  ],
+  "loinc": [
+    "2601-3",
+    "19123-9"
+  ],
+  "canonicalUnit": "mmol/L",
+  "conversions": {
+    "mmol/L": 1,
+    "mg/dL": 0.4114,
+    "mg/L": 0.04114,
+    "mEq/L": 0.5
+  },
+  "defaultRanges": [
+    {
+      "low": 0.75,
+      "high": 0.95
+    }
+  ],
+  "comparisonOnly": true,
+  "rangeNote": "The range shown (0.75-0.95 mmol/L) is the serum reference interval cited in the literature; labs use their own limits, which can differ, and the lab's range replaces it. Serum holds only a tiny share of the body's magnesium, so a normal result does not rule out low body stores. mg/dL to mmol/L uses the atomic weight of magnesium (24.3).",
+  "summary": "Magnesium is a mineral needed for muscles, nerves, energy production and heart rhythm. Most of it is stored in bone and inside cells, so a blood test shows only a small part of the total.",
+  "high": {
+    "meaning": "A high magnesium is uncommon and usually comes from reduced kidney function or from magnesium-containing medicines. Very high levels can cause weakness and heart rhythm problems.",
+    "commonCauses": [
+      "Reduced kidney function",
+      "Magnesium-containing antacids, laxatives or supplements, especially with kidney disease",
+      "Intravenous magnesium",
+      "Dehydration"
+    ]
+  },
+  "low": {
+    "meaning": "A low magnesium can cause muscle cramps, tremor, tiredness and heart rhythm changes, and it can make low potassium and low calcium harder to correct. Many people with low magnesium have no clear symptoms.",
+    "commonCauses": [
+      "Long-term use of proton pump inhibitors (acid-reducing medicines)",
+      "Diuretics (water pills) and some other medicines",
+      "Heavy alcohol use",
+      "Diarrhoea, vomiting or other gut losses",
+      "Poorly controlled diabetes",
+      "Low dietary intake",
+      "Kidney losses or inherited conditions (less common)"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "28140318",
+      "doi": "10.3945/an.116.012765",
+      "title": "Perspective: The Case for an Evidence-Based Reference Interval for Serum Magnesium: The Time Has Come",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26582556",
+      "doi": "10.1002/jcph.672",
+      "title": "Magnesium Deficiency and Proton-Pump Inhibitor Use: A Clinical Review",
+      "year": 2016,
+      "studyType": "review"
+    }
+  ]
+}

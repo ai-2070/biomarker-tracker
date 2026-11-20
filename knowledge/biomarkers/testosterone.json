@@ -1,0 +1,105 @@
+{
+  "id": "testosterone",
+  "name": "Testosterone (total)",
+  "category": "Hormones",
+  "aliases": [
+    "Testosterone",
+    "Total testosterone",
+    "Testosterone total",
+    "Testosterone, total",
+    "Serum testosterone",
+    "Testosterone (total)",
+    "Testosteron",
+    "Testosteron gesamt",
+    "Testosteron (gesamt)",
+    "Gesamttestosteron",
+    "Gesamt-Testosteron",
+    "Tesztoszteron",
+    "Összes tesztoszteron",
+    "Tesztoszteron (összes)",
+    "Tesztoszteron total",
+    "Testostérone",
+    "Testostérone totale",
+    "Testosterona",
+    "Testosterona total",
+    "Testosteron totalt",
+    "Totalt testosteron",
+    "Total testosteron"
+  ],
+  "loinc": [
+    "2986-8",
+    "14913-8"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1,
+    "ng/dL": 0.03467,
+    "ng/mL": 3.467,
+    "µg/L": 3.467,
+    "ng/L": 0.003467,
+    "pmol/L": 0.001
+  },
+  "defaultRanges": [
+    {
+      "low": 9.2,
+      "high": 31.8,
+      "sex": "m",
+      "ageFrom": 19
+    }
+  ],
+  "comparisonOnly": true,
+  "rangeNote": "For men, the app shows a reference position, not an alarm: 9.2–31.8 nmol/L (264–916 ng/dL) is the harmonised 2.5th–97.5th percentile range of healthy non-obese men aged 19–39, measured with assays calibrated to the CDC reference method. Levels tend to be lower in older men and with excess weight, and labs' own ranges differ by assay, so a lab's printed range takes priority. Guidelines advise a fasting morning sample and repeating a low result before drawing conclusions. No range is shown for women: normal values are much lower, vary with age, cycle and menopause, and depend on the assay (LC-MS/MS is the more accurate method at low levels).",
+  "summary": "Testosterone is a sex hormone made mainly in the testes in men and, in much smaller amounts, in the ovaries and adrenal glands in women. The total test counts testosterone bound to proteins as well as the small part that is free.",
+  "high": {
+    "meaning": "A higher total testosterone means more of the hormone is circulating, either made by the body or taken from outside. It does not by itself show how much is active, because most of it is bound to SHBG (sex hormone-binding globulin), so a high SHBG can raise the total. In women, a raised level is one of the findings used when looking into conditions such as polycystic ovary syndrome. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Testosterone treatment (gels, injections, patches or pellets); gel can also transfer to another person by skin contact",
+      "Anabolic steroids, including testosterone-based products",
+      "HCG (human chorionic gonadotropin), which stimulates the testes to make testosterone",
+      "Clomiphene or similar medicines that raise the body's own production",
+      "High SHBG, which raises the total but not the free amount",
+      "Polycystic ovary syndrome in women",
+      "Congenital adrenal hyperplasia (an inherited adrenal condition)",
+      "Rarely, a testosterone-producing tumour of the ovary, adrenal gland or testis"
+    ]
+  },
+  "low": {
+    "meaning": "A low total testosterone can be real or can come from a low SHBG, which lowers the total without lowering the free amount. A single low result is not enough on its own; guidelines recommend repeating a fasting morning sample and looking at symptoms and the cause. In women, low levels are expected after menopause or ovary removal. Discuss a repeated low result with your doctor.",
+    "commonCauses": [
+      "Ageing",
+      "Excess body fat, type 2 diabetes or metabolic syndrome",
+      "Acute illness, poor sleep or sleep apnoea, heavy alcohol use",
+      "Long-term opioid or glucocorticoid (steroid) medicines",
+      "Testosterone treatment, anabolic steroids or SARMs (selective androgen receptor modulators), which switch off the body's own production through LH (luteinising hormone) and FSH (follicle-stimulating hormone)",
+      "Low energy availability from very low food intake or very heavy training",
+      "Pituitary or hypothalamus conditions, high prolactin",
+      "Testicular conditions, such as Klinefelter syndrome, injury, infection or chemotherapy",
+      "Low SHBG, for example with obesity or insulin resistance",
+      "In women: menopause, ovary removal, and oral estrogens or contraceptive pills, which raise SHBG and lower the free amount"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "28324103",
+      "doi": "10.1210/jc.2016-2935",
+      "title": "Harmonized Reference Ranges for Circulating Testosterone Levels in Men of Four Cohort Studies in the United States and Europe.",
+      "year": 2017,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29601923",
+      "doi": "10.1016/j.juro.2018.03.115",
+      "title": "Evaluation and Management of Testosterone Deficiency: AUA Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    }
+  ]
+}

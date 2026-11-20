@@ -1,0 +1,85 @@
+{
+  "id": "ck",
+  "name": "Creatine kinase",
+  "abbreviation": "CK",
+  "category": "Metabolic",
+  "aliases": [
+    "Creatine kinase",
+    "Creatine kinase (CK)",
+    "Creatine kinase, total",
+    "CK",
+    "CK total",
+    "CK-total",
+    "Total CK",
+    "CPK",
+    "Creatine phosphokinase",
+    "Creatinine kinase",
+    "Kreatinkinase",
+    "Kreatinkinase (CK)",
+    "CK gesamt",
+    "Kreatin-kináz",
+    "Kreatin kináz",
+    "Kreatinkináz",
+    "Kreatin-kináz (CK)",
+    "CK (kreatin-kináz)",
+    "Créatine kinase",
+    "Créatine phosphokinase",
+    "Creatina quinasa",
+    "Creatinquinasa",
+    "Creatincinasa",
+    "Creatinfosfoquinasa",
+    "Kreatinkinas",
+    "Kreatinkinas (CK)"
+  ],
+  "loinc": [
+    "2157-6"
+  ],
+  "canonicalUnit": "U/L",
+  "conversions": {
+    "U/L": 1,
+    "IU/L": 1,
+    "µkat/L": 60,
+    "nkat/L": 0.06
+  },
+  "rangeNote": "No default range: values depend on sex, ethnicity, muscle mass and training. CK is generally higher in men than in women. Hard or unaccustomed exercise can raise it for several days; in one study of athletes the 95 % reference intervals were 82-1083 U/L for men and 47-513 U/L for women, with upper limits about twice those of moderately active non-athletes. A test taken after a hard workout may not be comparable with a rested one. 1 U/L equals about 0.0167 µkat/L.",
+  "summary": "Creatine kinase (CK) is an enzyme found mostly in muscle, including the heart, and in the brain. It leaks into the blood when muscle cells are strained or damaged.",
+  "high": {
+    "meaning": "A high CK usually points to muscle strain or injury, most often from exercise. Very high values can accompany serious muscle breakdown (rhabdomyolysis) and are looked at together with symptoms and kidney tests. CK can also be raised by heart or muscle disease.",
+    "commonCauses": [
+      "Intense, long or unaccustomed exercise",
+      "Muscle injury, intramuscular injections or falls",
+      "Statins and some other medicines (muscle side effects)",
+      "Anabolic steroids and some other performance-enhancing drugs",
+      "Alcohol and some drugs of abuse",
+      "Underactive thyroid",
+      "Inherited or inflammatory muscle disease",
+      "Naturally higher levels in men, in some ethnic groups and with more muscle"
+    ]
+  },
+  "low": {
+    "meaning": "A low CK is usually not a concern and often reflects low muscle mass or inactivity.",
+    "commonCauses": [
+      "Low muscle mass, older age or inactivity",
+      "Rest after a long period without exercise",
+      "Some autoimmune and connective-tissue conditions",
+      "Medicines such as corticosteroids"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "17526622",
+      "doi": "10.1136/bjsm.2006.034041",
+      "title": "Reference intervals for serum creatine kinase in athletes",
+      "year": 2007,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "22288008",
+      "doi": "10.1155/2012/960363",
+      "title": "Creatine-kinase- and exercise-related muscle damage implications for muscle performance and recovery",
+      "year": 2012,
+      "studyType": "review"
+    }
+  ]
+}

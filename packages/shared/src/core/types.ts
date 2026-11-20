@@ -72,6 +72,8 @@ export type BiomarkerCategory =
   | "Liver"
   | "Thyroid"
   | "Iron & vitamins"
+  /** Sex hormones, cortisol, IGF-1, DHEA-S and PSA. Normal levels depend on sex, age, cycle phase and treatment, so most have a comparison range only. */
+  | "Hormones"
   | "Electrolytes"
   | "Inflammation"
   /** Measures of how fast the body ages from a specialised blood test (DunedinPACE). */
