@@ -1,5 +1,5 @@
 # Developer-only fitting environment; no app/runtime dependencies. Requires Python 3.12+ and Bun.
-numpy==2.5.4
+numpy==2.5.5
 scipy==1.18.1
 # lifelines 0.30.3 requires pandas<3.0; defer pandas 3 until the fitter supports it.
 pandas==2.3.3
