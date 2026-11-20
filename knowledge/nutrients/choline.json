@@ -1,0 +1,305 @@
+{
+  "id": "choline",
+  "name": "Choline",
+  "kind": "supplement",
+  "otherNames": [
+    "Alpha-GPC",
+    "Choline alfoscerate",
+    "Citicoline",
+    "CDP-choline",
+    "Choline bitartrate",
+    "Vitamin B4 (old name)"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Choline is an essential nutrient used to build cell membranes and the brain messenger acetylcholine. Most people get it from eggs, meat, fish and dairy, and supplements such as alpha-GPC and citicoline supply it in concentrated form.",
+  "commonUses": [
+    "May improve focus and attention.",
+    "May improve memory and learning.",
+    "May raise acetylcholine, the brain's chemical messenger for memory and muscle control.",
+    "May boost mitochondrial function, the energy machinery inside cells.",
+    "May improve overall cognitive and cellular performance."
+  ],
+  "roles": [
+    "Builds cell membranes, makes acetylcholine, and helps move methyl groups. Needed for liver fat handling and, in pregnancy, for foetal development."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Eggs",
+      "Beef liver",
+      "Beef",
+      "Salmon",
+      "Chicken",
+      "Almonds",
+      "Broccoli",
+      "Beans"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Alpha-GPC (choline alfoscerate)",
+      "note": "About 40% choline by weight; made from soy lecithin; EFSA 2026 found no safety concern at its proposed level."
+    },
+    {
+      "name": "Citicoline (CDP-choline)",
+      "note": "Roughly a fifth choline by weight; EFSA 2013 judged it safe up to 1,000 mg a day in supplements."
+    },
+    {
+      "name": "Choline bitartrate",
+      "note": "A simple salt, used in a 2016 trial at 2.0 to 2.5 g that showed no memory benefit in healthy young adults."
+    },
+    {
+      "name": "Lecithin or phosphatidylcholine",
+      "note": "Food-type forms; lower choline per gram."
+    }
+  ],
+  "reference": {
+    "intake": [
+      {
+        "group": "Infants 7 to 11 months",
+        "amount": 160,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Children 1 to 3 years",
+        "amount": 140,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Children 4 to 6 years",
+        "amount": 170,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Children 7 to 10 years",
+        "amount": 250,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Adolescents 11 to 14 years",
+        "amount": 340,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Adolescents 15 to 17 years",
+        "amount": 400,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Adults 18 years and over",
+        "amount": 400,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Pregnancy",
+        "amount": 480,
+        "unit": "mg",
+        "type": "AI"
+      },
+      {
+        "group": "Breastfeeding",
+        "amount": 520,
+        "unit": "mg",
+        "type": "AI"
+      }
+    ],
+    "upperLimit": {
+      "amount": 3500,
+      "unit": "mg",
+      "note": "From the US Institute of Medicine (1998), for adults including pregnancy and breastfeeding, choline from all sources; set from low blood pressure and fishy body odour. EFSA's 2016 opinion lists adequate intakes only and set no upper limit."
+    },
+    "sources": [
+      {
+        "pmid": "42131868",
+        "doi": "10.2903/j.efsa.2026.10008",
+        "title": "Safety of L-alpha-glycerylphosphorylcholine (L-alpha-GPC) from soya phospholipids (lecithin) as a novel food pursuant to Regulation (EU) 2015/2283.",
+        "year": 2026,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Choline above the usual intake can cause a fishy body odour, sweating, low blood pressure and stomach upset; the US upper limit of 3,500 mg a day for adults was set from these effects.",
+    "Choline is turned by gut bacteria into trimethylamine, which the liver converts to TMAO (trimethylamine N-oxide), a compound linked to heart disease risk in observational studies; whether choline supplements raise that risk in people is not settled.",
+    "Brain-disease results (dementia, stroke) come from patients and often from prescribed doses; they do not show the same effect in healthy people. Anyone with a brain condition, on prescribed medicines, pregnant or breastfeeding should check with a doctor or pharmacist before using a supplement."
+  ],
+  "sources": [
+    {
+      "pmid": "42131868",
+      "doi": "10.2903/j.efsa.2026.10008",
+      "title": "Safety of L-alpha-glycerylphosphorylcholine (L-alpha-GPC) from soya phospholipids (lecithin) as a novel food pursuant to Regulation (EU) 2015/2283.",
+      "year": 2026,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "30332744",
+      "doi": "10.3390/nu10101513",
+      "title": "Dietary Choline Intake: Current State of Knowledge Across the Life Cycle.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36683513",
+      "doi": "10.3233/jad-221189",
+      "title": "Activity of Choline Alphoscerate on Adult-Onset Cognitive Dysfunctions: A Systematic Review and Meta-Analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33053828",
+      "doi": "10.3390/nu12103113",
+      "title": "Application of Citicoline in Neurological Disorders: A Systematic Review.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "27341028",
+      "doi": "10.1371/journal.pone.0157714",
+      "title": "No Acute Effects of Choline Bitartrate Food Supplements on Memory in Healthy, Young, Human Adults.",
+      "year": 2016,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "40077755",
+      "doi": "10.3390/nu17050886",
+      "title": "Choline During Pregnancy and Child Neurodevelopment: A Systematic Review of Randomized Controlled Trials and Observational Studies.",
+      "year": 2025,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May improve focus and attention.": "focus and attention",
+      "May improve memory and learning.": "memory",
+      "May raise acetylcholine, the brain's chemical messenger for memory and muscle control.": "acetylcholine levels",
+      "May boost mitochondrial function, the energy machinery inside cells.": "mitochondrial function",
+      "May improve overall cognitive and cellular performance.": "cognitive and cellular performance"
+    },
+    "claimCategories": {
+      "May improve focus and attention.": "health",
+      "May improve memory and learning.": "health",
+      "May raise acetylcholine, the brain's chemical messenger for memory and muscle control.": "health",
+      "May boost mitochondrial function, the energy machinery inside cells.": "longevity",
+      "May improve overall cognitive and cellular performance.": "longevity"
+    },
+    "claimLabels": {
+      "May improve focus and attention.": "Focus",
+      "May improve memory and learning.": "Memory",
+      "May raise acetylcholine, the brain's chemical messenger for memory and muscle control.": "Acetylcholine",
+      "May boost mitochondrial function, the energy machinery inside cells.": "Cell energy",
+      "May improve overall cognitive and cellular performance.": "Brain performance"
+    },
+    "origin": [
+      "Choline is an essential nutrient: the body makes only a little of it, so most must come from food. It is a building block of cell membranes (as phosphatidylcholine), of the nerve messenger acetylcholine, and it supplies methyl groups (small chemical units used in many reactions) through its breakdown product betaine. Foods rich in it include eggs, liver, meat, fish, and, in smaller amounts, beans, nuts and some vegetables.",
+      "Supplements use several forms. Alpha-GPC (L-alpha-glycerylphosphorylcholine, also called choline alfoscerate) is made from soy lecithin. Citicoline (CDP-choline) is a compound the body forms naturally and that is also made industrially; EFSA assessed it as a novel food in 2013 for food supplements up to 1,000 mg a day. Choline bitartrate and choline chloride are simpler, cheaper salts. In 2026 EFSA found no safety concern for alpha-GPC at the maximum level proposed for food supplements."
+    ],
+    "dosage": [
+      "EFSA sets adequate intakes (AI) for choline: 400 mg a day for adults and teenagers from 15 years, 480 mg in pregnancy and 520 mg while breastfeeding. An AI is the intake of a typical healthy group, used when there is too little data for a firmer requirement. EFSA set no upper limit; the US Institute of Medicine's is 3,500 mg a day for adults from all sources, set from low blood pressure and fishy body odour. These are population values, not personal targets.",
+      "An amount commonly used in supplements is about 250 to 300 mg a day of alpha-GPC or citicoline. This is not a reference intake or a personal recommendation.",
+      "Check whether the label number is the compound or the choline it supplies. Alpha-GPC is about 40% choline by weight (203.7 mg of alpha-GPC gave 82.5 mg of choline in EFSA's 2026 opinion), and citicoline roughly a fifth. Large amounts can cause a fishy body smell and low blood pressure."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA adequate intake, adults (all sources)",
+          "mg": 400
+        },
+        {
+          "label": "Amount commonly used in supplements (250 mg of alpha-GPC or citicoline)",
+          "mg": 250
+        }
+      ],
+      "foods": [
+        {
+          "name": "Beef liver, cooked",
+          "mgPer100g": [
+            431,
+            431
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Egg, hard boiled",
+          "mgPer100g": [
+            225.7,
+            225.7
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Beef steak, cooked",
+          "mgPer100g": [
+            104.2,
+            104.2
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Salmon, cooked",
+          "mgPer100g": [
+            90.4,
+            90.4
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Chicken breast, cooked",
+          "mgPer100g": [
+            61.8,
+            61.8
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Almonds",
+          "mgPer100g": [
+            52.5,
+            52.5
+          ],
+          "note": "Total choline."
+        },
+        {
+          "name": "Broccoli, cooked",
+          "mgPer100g": [
+            40.1,
+            40.1
+          ],
+          "note": "Total choline."
+        }
+      ],
+      "verdict": "Yes for the EU adequate intake: about 180 g of hard-boiled egg (3 to 4 eggs) or 90 g of cooked beef liver gives 400 mg. The supplement amount is smaller than that in choline terms, because alpha-GPC is about 40% choline and citicoline about a fifth by weight. Egg, meat and fish are the practical sources; most plant foods have much less.",
+      "notChecked": "Choline is not measured in the UK food table used by this app. Values are total choline per 100 g of cooked food from the US food database, as reproduced in a published review. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "30332744",
+          "doi": "10.3390/nu10101513",
+          "title": "Dietary Choline Intake: Current State of Knowledge Across the Life Cycle.",
+          "year": 2018,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

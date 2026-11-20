@@ -1,5 +1,5 @@
 import type { Profile } from "@bt/shared/core/types";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type * as BrainStore from "../../apps/web/src/app/brain/store";
 import type { BrainState } from "../../apps/web/src/app/brain/store";
 import type { ProfileFillResult } from "../../apps/web/src/db/db";
@@ -720,5 +720,61 @@ describe("results Brain read from photos", () => {
     mocks.shrinkPhoto.mockRejectedValueOnce(new Error("This browser can't open this picture."));
     await brain.readWithBrain(new File(["heic"], "scan.heic", { type: "image/heic" }));
     expect(brain.useBrain().pending).toBeUndefined();
+  });
+});
+
+describe("conversation history", () => {
+  const data = new Map<string, string>();
+  beforeEach(() => {
+    data.clear();
+    vi.useFakeTimers();
+    vi.stubGlobal("localStorage", {
+      getItem: (k: string) => data.get(k) ?? null,
+      setItem: (k: string, v: string) => void data.set(k, v),
+      removeItem: (k: string) => void data.delete(k),
+    });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("keeps a conversation when a new chat starts and brings it back", async () => {
+    const { loadChats } = await import("../../apps/web/src/app/brain/chatHistory");
+    mocks.api.mockResolvedValueOnce(reply("First answer"));
+    await brain.send("Model", "First question");
+    brain.newConversation();
+    expect(brain.useBrain().turns).toEqual([]);
+    // Other tests leave their own debounce timers behind, so look only at this test's questions.
+    const mine = () => loadChats().filter((c) => c.title.includes(" question") || c.title === "Follow-up");
+    expect(mine().map((c) => c.title)).toEqual(["First question"]);
+
+    mocks.api.mockResolvedValueOnce(reply("Second answer"));
+    await brain.send("Model", "Second question");
+    await vi.advanceTimersByTimeAsync(700);
+    const saved = mine();
+    expect(saved).toHaveLength(2);
+    expect(saved.map((c) => c.title).sort()).toEqual(["First question", "Second question"]);
+
+    const first = saved.find((c) => c.title === "First question");
+    brain.openChat(first!.id);
+    const turns = brain.useBrain().turns;
+    expect(turns.map((t) => t.role)).toEqual(["user", "assistant"]);
+    expect(turns[1]).toMatchObject({ content: "First answer", studyIds: ["PMID:123"] });
+
+    // A follow-up continues that conversation, not a new one.
+    mocks.api.mockResolvedValueOnce(reply("Third answer"));
+    await brain.send("Model", "Follow-up");
+    await vi.advanceTimersByTimeAsync(700);
+    expect(mine()).toHaveLength(2);
+    expect(mine().find((c) => c.id === first!.id)?.turns).toHaveLength(4);
+  });
+
+  it("never keeps the public research thread", async () => {
+    const { loadChats } = await import("../../apps/web/src/app/brain/chatHistory");
+    brain.askResearchBrain(claim);
+    await brain.send("Model");
+    await vi.advanceTimersByTimeAsync(700);
+    expect(loadChats().filter((c) => c.title.includes("astaxanthin"))).toEqual([]);
   });
 });

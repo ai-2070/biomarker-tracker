@@ -1,0 +1,89 @@
+{
+  "id": "tpo_antibodies",
+  "name": "Thyroid peroxidase antibodies",
+  "abbreviation": "TPO-Ab",
+  "category": "Thyroid",
+  "aliases": [
+    "TPO antibodies",
+    "TPO antibody",
+    "TPO-Ab",
+    "TPOAb",
+    "TPO Ab",
+    "Anti-TPO",
+    "Anti TPO",
+    "Anti-TPO antibodies",
+    "aTPO",
+    "Thyroid peroxidase antibodies",
+    "Thyroid peroxidase antibody",
+    "Thyroperoxidase antibodies",
+    "Thyroperoxidase Ab",
+    "Anti-thyroid peroxidase antibodies",
+    "Antithyroid peroxidase antibodies",
+    "Anti-Thyroid Peroxidase",
+    "TPO-Antikörper",
+    "TPO-Antikoerper",
+    "Anti-TPO-Antikörper",
+    "Thyreoperoxidase-Antikörper",
+    "TPO-ellenanyag",
+    "TPO ellenanyag",
+    "Anti-TPO ellenanyag",
+    "Tireoperoxidáz ellenanyag",
+    "Anticorps anti-TPO",
+    "Anticorps anti-thyroperoxydase",
+    "Anticuerpos anti-TPO",
+    "Anticuerpos antiperoxidasa tiroidea",
+    "TPO-antikroppar",
+    "Anti-TPO-antikroppar"
+  ],
+  "loinc": [
+    "8099-4"
+  ],
+  "canonicalUnit": "IU/mL",
+  "conversions": {
+    "IU/mL": 1,
+    "kIU/L": 1
+  },
+  "rangeNote": "No default range: TPO antibody assays use different calibrations and cut-offs, so a lab's positive or negative limit applies only to its own assay and results from two labs cannot be compared directly. Only the lab's printed range is used. High-dose biotin supplements can distort some thyroid immunoassays.",
+  "summary": "Thyroid peroxidase antibodies are immune proteins directed at an enzyme in the thyroid. Their presence shows that the immune system has been targeting the thyroid, a common cause of an underactive thyroid.",
+  "high": {
+    "meaning": "Positive TPO antibodies are linked to autoimmune thyroid disease such as Hashimoto's thyroiditis. In a large US survey, about 11 % of people without known thyroid disease were positive, with more positives in women and at older ages, and many positive people have normal thyroid hormone levels.",
+    "commonCauses": [
+      "Autoimmune thyroid disease (Hashimoto's thyroiditis, Graves' disease)",
+      "Postpartum thyroid inflammation",
+      "Other autoimmune conditions such as type 1 diabetes",
+      "Older age and female sex (more often positive)",
+      "Occasionally positive in people with no thyroid disease"
+    ]
+  },
+  "low": {
+    "meaning": "A negative or low result means no antibodies were detected by that assay. This is the usual and expected result.",
+    "commonCauses": [
+      "No thyroid autoimmunity",
+      "Rarely, thyroid disease without TPO antibodies"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "11836274",
+      "doi": "10.1210/jcem.87.2.8182",
+      "title": "Serum TSH, T(4), and thyroid antibodies in the United States population (1988 to 1994): National Health and Nutrition Examination Survey (NHANES III)",
+      "year": 2002,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "7641412",
+      "doi": "10.1111/j.1365-2265.1995.tb01894.x",
+      "title": "The incidence of thyroid disorders in the community: a twenty-year follow-up of the Whickham Survey",
+      "year": 1995,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "28336049",
+      "doi": "10.1016/s0140-6736(17)30703-1",
+      "title": "Hypothyroidism",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}

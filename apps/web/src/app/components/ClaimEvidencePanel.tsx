@@ -10,7 +10,6 @@ import {
   claimRunKey,
   publicClaimTopic,
 } from "@bt/shared/core/claimEvidence";
-import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { useEffect, useId, useRef, useState } from "react";
 import { useServerStatus } from "../api";
 import { type ClaimRecordUpdate, checkClaimEvidence, refreshClaimUpdates, sameClaim, useClaimEvidence } from "../claimEvidence";
@@ -28,9 +27,28 @@ const categoryOptions = CLAIM_CATEGORIES.map((value) => ({ value, label: categor
 const gradeName = (check: ClaimCheck) => (check.grade ? GRADE[check.grade].label : "Not graded");
 const budgetName = (check: ClaimCheck) => (check.research?.depth === "deep" ? "Deep" : check.research?.depth === "quick" ? "Quick" : "Unknown");
 type CategorizedClaim = ClaimRequest & { category: ClaimCategory; label: string };
+/** One common claim of a guide: its wording, the topic searched, a short label and a group. */
+export interface PublicClaim {
+  claim: string;
+  topic: string;
+  category: ClaimCategory;
+  label: string;
+}
 
 /** Claim-by-claim research; neither opening the page nor detecting a new paper calls a model. */
-export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; guide: NonNullable<NutrientDef["simpleGuide"]>; critical: boolean }) {
+export function ClaimEvidencePanel({
+  id,
+  name,
+  claims,
+  critical,
+  title = "Potential benefits & common claims",
+}: {
+  id: string;
+  name: string;
+  claims: readonly PublicClaim[];
+  critical: boolean;
+  title?: string;
+}) {
   const snapshot = useClaimEvidence();
   const server = useServerStatus();
   const [active, setActive] = useState<{ key: string; controller: AbortController } | null>(null);
@@ -41,13 +59,10 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
   const [category, setCategory] = useState<ClaimCategory>("health");
   const [discovering, setDiscovering] = useState<string[]>([]);
   const inputId = useId();
-  const staticRequests: CategorizedClaim[] = (n.commonUses ?? []).flatMap((claim) => {
-    const topic = guide.claimTopics?.[claim];
-    return topic ? [{ nutrientId: n.id, claim, topic, category: guide.claimCategories?.[claim] ?? "health", label: guide.claimLabels?.[claim] ?? claim }] : [];
-  });
+  const staticRequests: CategorizedClaim[] = claims.map((c) => ({ nutrientId: id, ...c }));
   const custom =
     snapshot?.cache.customTopics
-      .filter((r) => r.nutrientId === n.id && !staticRequests.some((s) => sameClaim(s, r)))
+      .filter((r) => r.nutrientId === id && !staticRequests.some((s) => sameClaim(s, r)))
       .map((r): CategorizedClaim => ({ ...r, category: r.category ?? "health", label: r.claim })) ?? [];
   const requests = [...staticRequests, ...custom];
   // Depend on successful checks, not record-count writes, to avoid a refresh/render loop.
@@ -126,9 +141,9 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
 
   return (
     <Card id="uses" className="scroll-mt-24">
-      <h2 className="font-serif text-2xl font-normal">Potential benefits &amp; common claims</h2>
+      <h2 className="font-serif text-2xl font-normal">{title}</h2>
       <p className="mt-2 text-sm text-ink-2">
-        People explore {n.name.toLowerCase()} for several purposes. These are proposed uses, not established benefits; the evidence differs by claim.
+        People explore {name.toLowerCase()} for several purposes. These are proposed uses, not established benefits; the evidence differs by claim.
       </p>
       <p className="mt-2 text-sm text-ink-2">
         Check any statement with Brain. Your saved assessment, confidence and sources appear alongside it; nothing is checked automatically.
@@ -280,7 +295,7 @@ export function ClaimEvidencePanel({ n, guide, critical }: { n: NutrientDef; gui
             return;
           }
           setTopicError("");
-          const request = { nutrientId: n.id, claim: value, topic: value, category, label: value };
+          const request = { nutrientId: id, claim: value, topic: value, category, label: value };
           setTopic("");
           void run(request, true);
         }}

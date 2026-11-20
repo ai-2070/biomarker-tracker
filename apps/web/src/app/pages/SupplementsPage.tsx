@@ -38,7 +38,7 @@ export function SupplementsPage({ kind }: { kind?: NutrientKind }) {
   const [query, setQuery] = useState("");
   const inKind = NUTRIENTS.filter((n) => !kind || n.kind === kind);
   const shown = searchNutrients(inKind, query);
-  const inKindNames = names.supplements.filter((n) => !kind || n.kind === kind);
+  const inKindNames = (names.supplements as { name: string; kind?: NutrientKind }[]).filter((n) => !kind || n.kind === kind);
   const shownNames = searchKnowledgeNames(inKindNames, query);
   const matchCount = shown.length + shownNames.length;
   const totalCount = inKind.length + inKindNames.length;

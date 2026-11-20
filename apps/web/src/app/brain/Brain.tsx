@@ -3,14 +3,17 @@ import { computeTrend, flagMeasurement, groupByBiomarker, isCritical } from "@bt
 import { type DragEvent, type ReactNode, useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { CitedAnswer } from "../components/CitedAnswer";
 import { CriticalBanner, type CriticalItem } from "../components/CriticalBanner";
-import { BrainIcon, CloseIcon, FileIcon, NewChatIcon } from "../components/icons";
+import { BrainIcon, CloseIcon, FileIcon, HistoryIcon, NewChatIcon } from "../components/icons";
 import { Button, cx } from "../components/ui";
 import { useAllMeasurements, useProfile } from "../hooks";
 import { BIOMARKER_MAP } from "../knowledge";
+import { loadedProfileId } from "../profiles";
 import { Composer } from "./Composer";
+import { loadHistory } from "./chatHistory";
+import { HistoryList } from "./HistoryList";
 import { brainShortcut, INTERACTIVE_SELECTOR } from "./logic";
 import { type BrainSettings, goToSettings, modelLabel, useBrainSettings } from "./menus";
-import { addFiles, backToMyChat, closeBrain, newConversation, openBrain, send, type Turn, takePending, toggleBrain, useBrain } from "./store";
+import { addFiles, backToMyChat, closeBrain, newConversation, openBrain, openChat, send, type Turn, takePending, toggleBrain, useBrain } from "./store";
 import { HabitTurn } from "./turns/HabitTurn";
 import { LiveTurn, StepList } from "./turns/LiveTurn";
 import { MealTurn } from "./turns/MealTurn";
@@ -133,6 +136,7 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
   const titleId = useId();
   const { settings, fresh, reload } = useBrainSettings(brain.open);
   const [dragging, setDragging] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const stickToEnd = useRef(true);
   const research = brain.scope === "research";
@@ -153,7 +157,13 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
   useEffect(() => {
     setDragging(false);
     stickToEnd.current = true;
+    setShowHistory(false);
   }, [brain.scope]);
+
+  // The conversation list belongs to the open profile.
+  useEffect(() => {
+    void loadedProfileId().then(loadHistory);
+  }, []);
 
   const onDrag = (e: DragEvent, over: boolean) => {
     if (!e.dataTransfer.types.includes("Files")) return;
@@ -208,12 +218,27 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
         <h2 id={titleId} className="flex-1 font-serif text-xl">
           Brain
         </h2>
+        {!research && (
+          <button
+            type="button"
+            onClick={() => setShowHistory((v) => !v)}
+            title="Past conversations"
+            aria-label="Past conversations"
+            aria-pressed={showHistory}
+            className={cx("flex size-10 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink", showHistory && "bg-sunken text-ink")}
+          >
+            <HistoryIcon className="size-[18px]" />
+          </button>
+        )}
         <button
           type="button"
-          onClick={newConversation}
-          disabled={brain.turns.length === 0 && brain.attachments.length === 0 && !brain.draft && !brain.pending && !brain.busy}
-          title="New conversation"
-          aria-label="New conversation"
+          onClick={() => {
+            newConversation();
+            setShowHistory(false);
+          }}
+          disabled={!showHistory && brain.turns.length === 0 && brain.attachments.length === 0 && !brain.draft && !brain.pending && !brain.busy}
+          title="New chat"
+          aria-label="New chat"
           className="flex size-10 items-center justify-center rounded-lg text-ink-2 hover:bg-sunken hover:text-ink disabled:opacity-40 disabled:hover:bg-transparent"
         >
           <NewChatIcon className="size-[18px]" />
@@ -248,8 +273,15 @@ function Panel({ panelRef, closing, onClosed }: { panelRef: React.RefObject<HTML
           closing ? "animate-brain-content-out" : "animate-brain-content [animation-delay:60ms] lg:[animation-delay:140ms]",
         )}
       >
-        {!research && <PersonalCriticalBanner />}
-        {fresh && settings === null ? (
+        {!research && !showHistory && <PersonalCriticalBanner />}
+        {showHistory && !research ? (
+          <HistoryList
+            onOpen={(id) => {
+              openChat(id);
+              setShowHistory(false);
+            }}
+          />
+        ) : fresh && settings === null ? (
           <NoServer />
         ) : fresh && settings && !ready && brain.turns.length === 0 ? (
           <NeedsModel settings={settings} />

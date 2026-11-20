@@ -1,0 +1,228 @@
+{
+  "id": "quercetin",
+  "name": "Quercetin",
+  "kind": "supplement",
+  "otherNames": [
+    "Quercetin aglycone",
+    "Flavonol quercetin",
+    "Q (in senolytic papers: D+Q)"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Quercetin is a yellow plant pigment (a flavonol) found in onions, apples, tea and many vegetables. It is also sold as a supplement for inflammation, blood vessel and immune support, and as a partner to fisetin in senolytic regimens.",
+  "commonUses": [
+    "May help clear \"zombie\" (senescent) cells, especially when taken with fisetin.",
+    "May lower inflammation in the body.",
+    "May improve the body's own antioxidant defences.",
+    "May support blood vessel health, such as blood pressure.",
+    "May support immune health and fewer colds."
+  ],
+  "roles": [
+    "In plants it is a pigment and protective compound. In the body it acts as an antioxidant in lab studies, but it is not an essential nutrient and its role in people is not established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Onions",
+      "Capers",
+      "Apples",
+      "Red leaf lettuce",
+      "Asparagus",
+      "Green tea",
+      "Berries"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Quercetin dihydrate",
+      "note": "Common powder or capsule form; poorly soluble and absorbed."
+    },
+    {
+      "name": "Quercetin phytosome",
+      "note": "Bound to lecithin; raised absorption in a small human crossover study."
+    },
+    {
+      "name": "Quercetin with vitamin C or bromelain",
+      "note": "Often sold in blends; extra ingredients are not proven to add benefit."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for quercetin was found from EFSA or other official sources in the searches made for this guide. A 2018 safety review notes there are not enough long-term data at 1,000 mg a day or more. That is not proof that none exists, and not evidence that any amount is safe.",
+    "sources": [
+      {
+        "pmid": "29127724",
+        "doi": "10.1002/mnfr.201700447",
+        "title": "Safety Aspects of the Use of Quercetin as a Dietary Supplement.",
+        "year": 2018,
+        "studyType": "review"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Medicines absorbed or cleared by the liver",
+      "note": "A 2018 safety review reports that quercetin can change how much of some medicines the body takes up. Specific medicines were not checked, so people on regular medicines should ask a pharmacist."
+    }
+  ],
+  "cautions": [
+    "Animal studies suggest quercetin could worsen kidney damage that already exists and might promote some hormone-sensitive tumours; this is not shown in people, but people with kidney disease or hormone-sensitive cancer should ask a doctor first.",
+    "Long-term data for 1000 mg or more a day (over 12 weeks) are lacking. Reported side effects in trials were mild.",
+    "The senolytic trials gave quercetin together with dasatinib, a prescription cancer drug with its own side effects. Results with the drug pair do not show what quercetin alone does.",
+    "People who are pregnant or breastfeeding, or who take regular medicines, should check with a doctor or pharmacist."
+  ],
+  "sources": [
+    {
+      "pmid": "28537580",
+      "doi": "10.1038/ejcn.2017.55",
+      "title": "Effects of supplementation with quercetin on plasma C-reactive protein concentrations: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "27405810",
+      "doi": "10.1161/jaha.115.002713",
+      "title": "Effects of Quercetin on Blood Pressure: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31017459",
+      "doi": "10.1080/10408398.2019.1604491",
+      "title": "The effects of quercetin supplementation on lipid profiles and inflammatory markers among patients with metabolic syndrome and related disorders: A systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "20478383",
+      "doi": "10.1016/j.phrs.2010.05.001",
+      "title": "Quercetin supplementation and upper respiratory tract infection: A randomized community clinical trial.",
+      "year": 2010,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36857968",
+      "doi": "10.1016/j.ebiom.2023.104481",
+      "title": "Senolytics dasatinib and quercetin in idiopathic pulmonary fibrosis: results of a phase I, single-blind, single-center, randomized, placebo-controlled pilot trial on feasibility and tolerability.",
+      "year": 2023,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29127724",
+      "doi": "10.1002/mnfr.201700447",
+      "title": "Safety Aspects of the Use of Quercetin as a Dietary Supplement.",
+      "year": 2018,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May help clear \"zombie\" (senescent) cells, especially when taken with fisetin.": "senolysis (clearing senescent cells)",
+      "May lower inflammation in the body.": "inflammation (for example C-reactive protein)",
+      "May improve the body's own antioxidant defences.": "antioxidant defences and oxidative stress",
+      "May support blood vessel health, such as blood pressure.": "blood vessel and blood pressure health",
+      "May support immune health and fewer colds.": "immune health and respiratory infections"
+    },
+    "claimCategories": {
+      "May help clear \"zombie\" (senescent) cells, especially when taken with fisetin.": "longevity",
+      "May lower inflammation in the body.": "health",
+      "May improve the body's own antioxidant defences.": "health",
+      "May support blood vessel health, such as blood pressure.": "health",
+      "May support immune health and fewer colds.": "health"
+    },
+    "claimLabels": {
+      "May help clear \"zombie\" (senescent) cells, especially when taken with fisetin.": "Senolytic",
+      "May lower inflammation in the body.": "Inflammation",
+      "May improve the body's own antioxidant defences.": "Antioxidant",
+      "May support blood vessel health, such as blood pressure.": "Vascular",
+      "May support immune health and fewer colds.": "Immune"
+    },
+    "origin": [
+      "Quercetin is a yellow plant pigment and the most common flavonol in the diet. It is found in onions, capers, apples, red leaf lettuce, asparagus, berries and tea, mostly attached to sugar molecules. Plants make it; humans cannot, so it comes from food. A Japanese study estimated an average intake of about 16 mg a day, mostly from onions and green tea.",
+      "Supplements use plain quercetin (often the dihydrate form) or versions made to be absorbed better. Plain quercetin dissolves poorly and is absorbed poorly. Quercetin phytosome binds it to lecithin (a fat-like substance) and raised absorption in a small crossover study in healthy people. In ageing research, quercetin is best known as one half of a drug pair with dasatinib (a cancer drug) called D+Q, tested in small human trials."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for quercetin. No EFSA or other official opinion setting one was found in the searches made for this guide. A 2018 safety review found adverse effects in published supplement studies (up to 1,000 mg a day) were rare and mild, but that long-term data (over 12 weeks) at 1,000 mg or more a day are lacking.",
+      "Amounts commonly used in studies and supplements are about 100 mg a day, and 500 to 1,000 mg a day on short courses. In ageing trials, quercetin was given with dasatinib, a cancer drug, so those results do not show what quercetin alone does. This is not a reference intake or a personal recommendation.",
+      "Check the form (quercetin dihydrate, phytosome or another), how much is quercetin itself, and added ingredients such as vitamin C or bromelain. Absorption differs a lot between forms."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Typical food intake in Japan (average)",
+          "mg": 16
+        },
+        {
+          "label": "Amount commonly used in supplements (daily, 100 mg)",
+          "mg": 100
+        },
+        {
+          "label": "Amount commonly used on short courses (500 mg)",
+          "mg": 500
+        }
+      ],
+      "foods": [
+        {
+          "name": "Onion",
+          "mgPer100g": [
+            11.0,
+            41.9
+          ],
+          "note": "Lowest in summer, highest in winter samples."
+        },
+        {
+          "name": "Red leaf lettuce",
+          "mgPer100g": [
+            10.3,
+            30.6
+          ]
+        },
+        {
+          "name": "Asparagus",
+          "mgPer100g": [
+            23.6,
+            23.6
+          ]
+        },
+        {
+          "name": "Green pepper",
+          "mgPer100g": [
+            9.9,
+            9.9
+          ]
+        },
+        {
+          "name": "Apple",
+          "mgPer100g": [
+            2.3,
+            2.3
+          ]
+        }
+      ],
+      "verdict": "Partly. Everyday food gives about 16 mg a day on average. 100 mg takes roughly 240 to 910 g of onion, or about 420 g of asparagus, a lot but possible. 500 mg or more is not realistic from food: it would take well over a kilogram of onion. Supplements also use forms made to be absorbed better.",
+      "notChecked": "Quercetin is not measured in the UK food table used by this app. Values are mg per 100 g of fresh weight from a Japanese food analysis and vary with variety, season and part of the plant. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "25849945",
+          "doi": "10.3390/nu7042345",
+          "title": "Estimated daily intake and seasonal food sources of quercetin in Japan.",
+          "year": 2015,
+          "studyType": "observational"
+        }
+      ]
+    }
+  }
+}

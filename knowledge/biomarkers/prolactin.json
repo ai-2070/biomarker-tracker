@@ -1,0 +1,88 @@
+{
+  "id": "prolactin",
+  "name": "Prolactin",
+  "abbreviation": "PRL",
+  "category": "Hormones",
+  "aliases": [
+    "Prolactin",
+    "Serum prolactin",
+    "Prolactin (serum)",
+    "Prolactin, serum",
+    "PRL",
+    "Prolaktin",
+    "Prolaktin (Serum)",
+    "Prolactine",
+    "Prolactine sérique",
+    "Prolactina",
+    "Prolactina sérica",
+    "Prolaktin i serum",
+    "S-Prolaktin"
+  ],
+  "loinc": [
+    "2842-3"
+  ],
+  "canonicalUnit": "ng/mL",
+  "conversions": {
+    "ng/mL": 1,
+    "µg/L": 1
+  },
+  "comparisonOnly": true,
+  "rangeNote": "No single normal range: it depends on the assay, sex, age and pregnancy, so the app shows no default range and uses the range printed by your lab. Stress, sleep, exercise, a recent meal and nipple stimulation can raise it briefly, so labs often ask for a rested sample. Some labs print mIU/L; that unit is not converted here because the factor depends on the standard each assay is calibrated to.",
+  "summary": "Prolactin is a hormone made by the pituitary gland at the base of the brain. It helps the breasts make milk after childbirth and also takes part in reproductive and stress-related signalling in men and women.",
+  "high": {
+    "meaning": "A high prolactin can reduce sex hormones and may cause missed or absent periods, milk production unrelated to pregnancy, lower sex drive or fertility problems. Part of a high result can be macroprolactin, a large inactive form of the hormone that standard tests also detect, so labs sometimes retest to check for it. A result that is clearly high is worth discussing with a doctor.",
+    "commonCauses": [
+      "Pregnancy and breastfeeding",
+      "Medicines that block dopamine, such as many antipsychotics and some anti-nausea medicines",
+      "Some other medicines, such as certain antidepressants, opioids and oestrogen-containing products",
+      "A benign pituitary growth that makes prolactin (prolactinoma)",
+      "Underactive thyroid",
+      "Reduced kidney function",
+      "Stress, intense exercise or a blood draw that was difficult or came right after eating",
+      "Macroprolactin, an inactive large form that adds to the measured value"
+    ]
+  },
+  "low": {
+    "meaning": "A low prolactin is uncommon and usually has no symptoms. In women who have just given birth it can mean the pituitary gland was damaged, which can make breast milk production difficult.",
+    "commonCauses": [
+      "Medicines that raise dopamine activity, such as bromocriptine and cabergoline",
+      "Damage to or reduced function of the pituitary gland",
+      "Normal variation (no cause found)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 45,
+    "ciLow": 39.2,
+    "ciHigh": 58,
+    "studies": 2,
+    "analyte": "Prolactin",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "21296991",
+      "doi": "10.1210/jc.2010-1692",
+      "title": "Diagnosis and treatment of hyperprolactinemia: an Endocrine Society clinical practice guideline.",
+      "year": 2011,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "26642103",
+      "doi": "10.4158/ep15938.dsc",
+      "title": "American Association of Clinical Endocrinologists, American College of Endocrinology disease state clinical review: clinical relevance of macroprolactin in the absence or presence of true hyperprolactinemia.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "12521235",
+      "doi": "10.1515/cclm.2002.202",
+      "title": "Reference ranges for serum concentrations of lutropin (LH), follitropin (FSH), estradiol (E2), prolactin, progesterone, sex hormone-binding globulin (SHBG), dehydroepiandrosterone sulfate (DHEAS), cortisol and ferritin in neonates, children and young adults.",
+      "year": 2002,
+      "studyType": "observational"
+    }
+  ]
+}

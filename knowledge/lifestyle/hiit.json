@@ -1,0 +1,473 @@
+{
+  "id": "hiit",
+  "name": "High-intensity interval training (HIIT)",
+  "category": "movement",
+  "otherNames": [
+    "HIIT",
+    "HIT",
+    "Interval training",
+    "High-intensity interval exercise",
+    "Sprint interval training",
+    "SIT"
+  ],
+  "summary": "HIIT alternates short hard efforts with easier recovery. In pooled trials it raised fitness (VO2max) more than no exercise and slightly more than steady moderate exercise, and in one five-year trial of older adults it made no clear difference to deaths.",
+  "howItWorks": [
+    "HIIT means repeating hard efforts, for example at about 90% of peak heart rate, with easier recovery in between. The studies used many different patterns of effort and rest.",
+    "VO2max is the most oxygen a person's body can use in a minute. The trials measured it directly in a lab. How HIIT raises it is not settled.",
+    "Hard efforts push the heart and muscles near their limit for a few minutes in total, so a session can be short. Whether that is why benefits appear in studies is a proposed explanation, not something these trials tested.",
+    "Most of the benefits seen with HIIT are also seen with steady moderate exercise. The differences between the two in pooled trials are small, and they depend on the group studied."
+  ],
+  "whatStudiesDid": "Fitness trials in healthy adults aged 18 to 45 lasted from 2 weeks to 13 weeks. In one set of them the hard intervals added up to at least 10 minutes of work, on 3 or more days a week, with rest no longer than the effort. The Generation 100 trial put 1,567 Norwegian adults aged 70 to 77 into three groups for five years: HIIT twice a week at about 90% of peak heart rate (400 people), steady training at about 70% of peak heart rate (387) or the national activity guidelines (780). Trials in older adults lasted at least 4 weeks. Trials in people with high blood pressure or type 2 diabetes compared HIIT with steady moderate training or no training. A Norwegian study followed 4,846 people with heart disease during supervised high-intensity and moderate-intensity sessions in cardiac rehabilitation.",
+  "markers": [
+    "vo2max",
+    "resting_hr",
+    "bp_systolic",
+    "bp_diastolic",
+    "body_fat",
+    "weight",
+    "hba1c",
+    "glucose",
+    "heart_rate",
+    "exercise_hr"
+  ],
+  "claims": [
+    {
+      "claim": "Gives you the same fitness as long steady cardio in far less time",
+      "topic": "High-intensity interval training and cardiorespiratory fitness",
+      "label": "Fitness in less time",
+      "category": "health"
+    },
+    {
+      "claim": "Is the fastest way to raise your VO2max",
+      "topic": "High-intensity interval training and VO2max",
+      "label": "HIIT and VO2max",
+      "category": "health"
+    },
+    {
+      "claim": "Burns more fat than steady cardio",
+      "topic": "High-intensity interval training and fat loss",
+      "label": "HIIT and fat loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Keeps burning calories for hours afterwards (the afterburn effect)",
+      "topic": "Excess post-exercise oxygen consumption (afterburn) after high-intensity interval training",
+      "label": "The afterburn effect",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lowers blood pressure more than easy cardio",
+      "topic": "High-intensity interval training and blood pressure",
+      "label": "HIIT and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Controls blood sugar better in type 2 diabetes",
+      "topic": "High-intensity interval training and blood sugar in type 2 diabetes",
+      "label": "HIIT and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Helps you live longer",
+      "topic": "High-intensity interval training and death from any cause",
+      "label": "HIIT and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Makes ageing muscles younger by rebuilding mitochondria",
+      "topic": "High-intensity interval training and mitochondrial function in older adults",
+      "label": "Mitochondria and ageing",
+      "category": "longevity"
+    }
+  ],
+  "findings": [
+    {
+      "outcome": "Fitness (VO2max)",
+      "population": "Healthy adults aged 18 to 45, mostly young and not trained (pooled controlled trials of 2 to 13 weeks)",
+      "effect": "helps",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Pooled controlled trials, and VO2max was measured directly in a lab",
+        "Mostly young, healthy people over a few weeks; long-term results and older people are less clear",
+        "The trials used very different interval patterns, and the pooled results varied (I2 of 70% in one of the meta-analyses)",
+        "In favour: two separate meta-analyses agree on a clear gain"
+      ],
+      "summary": "A meta-analysis of 28 controlled trials in 723 healthy adults (average age 25.1) found that, compared with no exercise, HIIT raised VO2max by 5.5 mL/kg/min (95% confidence limits plus or minus 1.2). Steady endurance training raised it by 4.9 (plus or minus 1.4). Compared directly, HIIT came out slightly ahead by 1.2 mL/kg/min (plus or minus 0.9), a possibly small difference. Gains were larger in people with lower starting fitness and in longer programmes. A second meta-analysis of 37 studies (334 people, 120 of them women, under 45, 6 to 13 weeks) found VO2max rose by 0.51 L/min (95% confidence interval 0.43 to 0.60) with interval training.",
+      "bottomLine": "In pooled trials of healthy young and middle-aged adults, HIIT raised VO2max clearly more than no exercise and a little more than steady endurance training. Most studies were short, so it is not known how long the gains last.",
+      "label": "Fitness (VO2max)",
+      "line": "Clearly up versus no exercise; slightly more than steady cardio",
+      "studies": [
+        {
+          "pmid": "26243014",
+          "doi": "10.1007/s40279-015-0365-0",
+          "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials.",
+          "year": 2015,
+          "studyType": "meta-analysis",
+          "n": 723
+        },
+        {
+          "pmid": "24066036",
+          "doi": "10.1371/journal.pone.0073182",
+          "title": "VO2max trainability and high intensity interval training in humans: a meta-analysis.",
+          "year": 2013,
+          "studyType": "meta-analysis",
+          "n": 334
+        }
+      ]
+    },
+    {
+      "outcome": "Blood pressure",
+      "population": "Adults aged 60 and over (with or without high blood pressure), and adults with high blood pressure (trials of 4 weeks or more)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "Small pooled groups: 266 older adults in 10 trials, and 442 patients in 13 trials",
+        "Compared with no exercise the fall was clear, but compared with steady moderate exercise there was no clear difference",
+        "Trials were short and used different HIIT patterns",
+        "In people with high blood pressure, only the daytime reading and blood vessel widening differed from steady exercise"
+      ],
+      "summary": "In 10 randomised trials with 266 adults aged 60 and over, HIIT lowered systolic blood pressure (the top number) by 7.36 mmHg (95% confidence interval 2.92 to 11.80) and diastolic pressure by 5.48 mmHg (2.25 to 8.71) compared with no exercise. Compared with moderate continuous training the differences were small and could be chance: systolic -2.09 (-9.76 to 5.58), diastolic -1.00 (-6.01 to 4.01). In 13 randomised trials with 442 people with high blood pressure, HIIT and moderate continuous training changed resting blood pressure by a similar amount. HIIT lowered daytime systolic pressure more than moderate training (-4.14 mmHg, -6.98 to -1.30) and raised flow-mediated vasodilation (how well arteries widen) by 2.75 percentage points more (0.43 to 5.07).",
+      "bottomLine": "In small pooled trials, HIIT lowered blood pressure compared with no exercise, in older adults and in people with high blood pressure. Compared with steady moderate exercise the result was mostly the same, with a small edge for daytime readings.",
+      "label": "Blood pressure",
+      "line": "Lower than with no exercise; about the same as steady cardio",
+      "studies": [
+        {
+          "pmid": "34921916",
+          "doi": "10.1016/j.exger.2021.111657",
+          "title": "High-intensity interval training reduces blood pressure in older adults: A systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 266
+        },
+        {
+          "pmid": "36550888",
+          "doi": "10.1097/md.0000000000032246",
+          "title": "Effects of high-intensity interval training versus moderate-intensity continuous training on blood pressure in patients with hypertension: A meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 442
+        }
+      ]
+    },
+    {
+      "outcome": "Body fat and fat mass",
+      "population": "Adults in general, with and without overweight (pooled trials of at least 4 weeks)",
+      "effect": "mixed",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "Meta-analyses of trials, but the 36 to 39 studies were small and used many protocols",
+        "HIIT lowered body fat, but so did steady moderate exercise, with no clear difference in body fat percentage",
+        "The extra loss in kilograms of fat compared with moderate exercise came mostly from short studies",
+        "The amounts lost are modest"
+      ],
+      "summary": "A meta-analysis of 39 studies with 617 people (average age 38.8) found that HIIT significantly reduced total, abdominal and visceral (around the organs) fat mass. A second meta-analysis of 36 studies compared interval training with moderate-intensity continuous training (MOD). Both reduced body fat percentage (interval training -1.50 percentage points, 95% confidence interval -2.14 to -0.86; MOD -1.44, -2.00 to -0.89), with no clear difference between them (-0.23, -1.43 to 0.97). In kilograms of fat mass, interval training came out ahead of MOD by 2.28 kg (0.56 to 4.00), 28.5% greater reductions.",
+      "bottomLine": "HIIT reduced body fat in pooled trials, but so did steady moderate exercise, and the two did not differ clearly in body fat percentage. HIIT did better in kilograms of fat lost, mostly in short studies.",
+      "label": "Body fat",
+      "line": "Fat falls, but by about the same percentage as with steady cardio",
+      "studies": [
+        {
+          "pmid": "30765340",
+          "doi": "10.1136/bjsports-2018-099928",
+          "title": "Is interval training the magic bullet for fat loss? A systematic review and meta-analysis comparing moderate-intensity continuous training with high-intensity interval training (HIIT).",
+          "year": 2019,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "29127602",
+          "doi": "10.1007/s40279-017-0807-y",
+          "title": "Effect of High-Intensity Interval Training on Total, Abdominal and Visceral Fat Mass: A Meta-Analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis",
+          "n": 617
+        }
+      ]
+    },
+    {
+      "outcome": "Blood sugar and fitness in type 2 diabetes",
+      "population": "Adults with type 2 diabetes (13 randomised trials, 345 people)",
+      "effect": "helps",
+      "grade": "low",
+      "whyThisGrade": [
+        "13 small randomised trials with a total of 345 people",
+        "Long-term results are not known",
+        "The comparison was with moderate continuous training or no training, not with medicines",
+        "Results on HbA1c may vary between trials"
+      ],
+      "summary": "In 13 randomised trials with 345 people with type 2 diabetes, HIIT lowered BMI, body fat, HbA1c (a long-term blood sugar measure) and fasting insulin, and raised VO2peak. Compared with moderate continuous training, HIIT lowered body weight by a further 1.22 kg (95% confidence interval 0.18 to 2.23) and BMI by 0.40 kg/m2 (0.02 to 0.78). It lowered HbA1c by 0.37 percentage points (0.19 to 0.55) and raised VO2peak by 3.37 mL/kg/min (1.88 to 4.87).",
+      "bottomLine": "In small trials of people with type 2 diabetes, HIIT lowered HbA1c and raised fitness. The trials were small and short, and exercise is not a substitute for medical care.",
+      "label": "Blood sugar (type 2 diabetes)",
+      "line": "HbA1c and weight fell in small trials in people with type 2 diabetes",
+      "studies": [
+        {
+          "pmid": "30097811",
+          "doi": "10.1007/s40520-018-1012-z",
+          "title": "Effectiveness of high-intensity interval training on glycemic control and cardiorespiratory fitness in patients with type 2 diabetes: a systematic review and meta-analysis.",
+          "year": 2019,
+          "studyType": "meta-analysis",
+          "n": 345
+        }
+      ]
+    },
+    {
+      "outcome": "Death from any cause",
+      "population": "Older adults aged 70 to 77 in Norway, mostly in good health, followed for five years (Generation 100 trial)",
+      "effect": "no clear effect",
+      "grade": "moderate",
+      "whyThisGrade": [
+        "A randomised trial of 1,567 people, which is strong evidence for cause and effect",
+        "Few deaths (4.7% in the control group), so the confidence intervals are wide",
+        "Control participants did a lot of hard exercise themselves, so the groups overlapped",
+        "The HIIT versus steady-exercise comparison was exploratory, not the main question"
+      ],
+      "summary": "In 1,567 people aged 70 to 77, five years of supervised training did not change death from any cause compared with following the national activity guidelines (combined HIIT and steady training groups). For HIIT (400 people) the hazard ratio against the control group was 0.63 (95% confidence interval 0.33 to 1.20), an absolute risk reduction of 1.7 percentage points that could be chance. For steady moderate training (387 people) it was 1.24 (0.73 to 2.10). HIIT compared with steady training gave 0.51 (0.25 to 1.02), 2.9 percentage points lower. The authors say combined training had no effect on deaths, though there was a lower death trend after HIIT.",
+      "bottomLine": "In a five-year trial of 1,567 older adults, supervised HIIT did not clearly change deaths compared with recommended activity levels. The trend favoured HIIT, but the intervals include no difference, so it could be chance.",
+      "label": "Death from any cause",
+      "line": "No clear difference in a five-year trial of older adults",
+      "studies": [
+        {
+          "pmid": "33028588",
+          "doi": "10.1136/bmj.m3485",
+          "title": "Effect of exercise training for five years on all cause mortality in older adults-the Generation 100 study: randomised controlled trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 1567
+        }
+      ]
+    },
+    {
+      "outcome": "Enjoyment and sticking with it",
+      "population": "Healthy and overweight adults (enjoyment: 8 short studies of single sessions), and inactive adults or adults with a medical condition (adherence: 188 studies, 8,928 people)",
+      "effect": "mixed",
+      "grade": "low",
+      "whyThisGrade": [
+        "Enjoyment studies measured single sessions, not months of training",
+        "The pooled results varied between studies (I2 of 69% for one enjoyment scale)",
+        "Adherence at home rests on only 10 studies, with very low-quality evidence",
+        "Attendance at supervised sessions was high and similar to steady training"
+      ],
+      "summary": "A meta-analysis of 8 studies found enjoyment after a session was similar or slightly higher with HIIT than with steady moderate training (Physical Activity Enjoyment Scale: standardised mean difference 0.49; Exercise Enjoyment Scale 0.48; Feeling Scale, how good people feel, 0.19). A meta-analysis of 188 studies (8,928 people) found compliance with supervised HIIT (attending sessions) averaged 89.4% and adherence to unsupervised HIIT 63%, against 92.5% and 68.2% with steady training. Supervised compliance did not differ (Hedges g 0.015, 95% confidence interval -0.088 to 0.118), and unsupervised adherence did not differ clearly (-0.313, -0.681 to 0.056), though the authors rate that evidence as very low quality.",
+      "bottomLine": "People rated single HIIT sessions as about as enjoyable as steady training, and attendance in supervised programmes was high. Whether people keep doing HIIT on their own for months is not known, because the evidence is very low quality.",
+      "label": "Enjoyment and sticking with it",
+      "line": "Similar enjoyment; keeping it up alone is not well known",
+      "studies": [
+        {
+          "pmid": "29874256",
+          "doi": "10.1371/journal.pone.0197124",
+          "title": "Affective and enjoyment responses in high intensity interval training and continuous training: A systematic review and meta-analysis.",
+          "year": 2018,
+          "studyType": "meta-analysis"
+        },
+        {
+          "pmid": "37990239",
+          "doi": "10.1186/s12966-023-01535-w",
+          "title": "Rates of compliance and adherence to high-intensity interval training: a systematic review and Meta-analyses.",
+          "year": 2023,
+          "studyType": "meta-analysis",
+          "n": 8928
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "kind": "bars",
+      "title": "Blood pressure after HIIT in adults aged 60 and over",
+      "scale": "linear",
+      "unit": "mmHg",
+      "caption": "Average difference in systolic blood pressure (the top number) from a meta-analysis of 10 randomised trials with 266 adults aged 60 and over. Below 0 means lower pressure than the comparison group. A bar whose line crosses 0 could be chance. The comparison with moderate training had too few people to tell the two apart.",
+      "reference": {
+        "value": 0,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "HIIT compared with no exercise",
+          "value": -7.36,
+          "low": -11.8,
+          "high": -2.92,
+          "note": "Systolic pressure, 10 trials, 266 adults aged 60 and over (2022)"
+        },
+        {
+          "label": "HIIT compared with steady moderate training",
+          "value": -2.09,
+          "low": -9.76,
+          "high": 5.58,
+          "note": "Systolic pressure, same meta-analysis (2022)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "34921916",
+          "doi": "10.1016/j.exger.2021.111657",
+          "title": "High-intensity interval training reduces blood pressure in older adults: A systematic review and meta-analysis.",
+          "year": 2022,
+          "studyType": "meta-analysis",
+          "n": 266
+        }
+      ]
+    },
+    {
+      "kind": "bars",
+      "title": "Death from any cause in the Generation 100 trial",
+      "scale": "ratio",
+      "caption": "Hazard ratios with 95% confidence intervals over five years in 1,567 adults aged 70 to 77 in Norway. Below 1 means fewer deaths in the first-named group. Every interval crosses 1, so none of these differences can be told from chance. The HIIT versus steady training comparison was an exploratory question.",
+      "reference": {
+        "value": 1,
+        "label": "No difference"
+      },
+      "items": [
+        {
+          "label": "HIIT compared with the control group",
+          "value": 0.63,
+          "low": 0.33,
+          "high": 1.2,
+          "note": "400 people given HIIT, 780 controls (2020)"
+        },
+        {
+          "label": "Steady moderate training compared with the control group",
+          "value": 1.24,
+          "low": 0.73,
+          "high": 2.1,
+          "note": "387 people given steady training, 780 controls (2020)"
+        },
+        {
+          "label": "HIIT compared with steady moderate training",
+          "value": 0.51,
+          "low": 0.25,
+          "high": 1.02,
+          "note": "Exploratory comparison (2020)"
+        }
+      ],
+      "sources": [
+        {
+          "pmid": "33028588",
+          "doi": "10.1136/bmj.m3485",
+          "title": "Effect of exercise training for five years on all cause mortality in older adults-the Generation 100 study: randomised controlled trial.",
+          "year": 2020,
+          "studyType": "rct",
+          "n": 1567
+        }
+      ]
+    }
+  ],
+  "whoShouldBeCareful": [
+    {
+      "with": "Heart disease",
+      "note": "In a Norwegian cardiac rehabilitation study of 4,846 people with heart disease, over 175,820 supervised exercise hours there was 1 fatal cardiac arrest during moderate exercise (1 per 129,456 hours) and 2 non-fatal cardiac arrests during high-intensity intervals (1 per 23,182 hours), with no heart attacks. The authors call the risk low in that supervised setting. Talk to your doctor or heart specialist before hard exercise."
+    },
+    {
+      "with": "Diabetes",
+      "note": "Hard exercise can change blood sugar. Talk to your doctor if you have diabetes, especially if you use insulin or medicines that lower blood sugar.",
+      "safetyId": "diabetes"
+    },
+    {
+      "with": "High blood pressure, or not having exercised for a long time",
+      "note": "Hard efforts are demanding for the heart. Talk to your doctor first if you have high blood pressure or have been inactive for a long time."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "The studies found here did not look at pregnancy. Talk to your midwife or doctor.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "HIIT is demanding, and results in studies do not show what would happen to a given person.",
+    "Most trials lasted weeks to months.",
+    "Anything clearly out of range in your blood pressure, heart rate or blood sugar is worth discussing with your doctor."
+  ],
+  "unknowns": [
+    "Most fitness trials lasted 6 to 13 weeks and enrolled young healthy adults. How long the gains last, and how they compare in older or less healthy people, is mostly unknown.",
+    "HIIT covers hundreds of patterns of effort and rest. No trial shows which pattern is best, and the pooled results varied a lot between patterns.",
+    "The only long trial of HIIT and deaths (Generation 100, five years) found no clear difference, and it had few deaths to compare.",
+    "Whether HIIT lowers the chance of heart attacks, strokes or other disease has not been tested in a large randomised trial.",
+    "It is not known whether people keep up HIIT at home as well as steady exercise, because the evidence on adherence is of very low quality."
+  ],
+  "sources": [
+    {
+      "pmid": "22879367",
+      "doi": "10.1161/circulationaha.112.123117",
+      "title": "Cardiovascular risk of high- versus moderate-intensity aerobic exercise in coronary heart disease patients.",
+      "year": 2012,
+      "studyType": "observational",
+      "n": 4846
+    },
+    {
+      "pmid": "26243014",
+      "doi": "10.1007/s40279-015-0365-0",
+      "title": "Effectiveness of High-Intensity Interval Training (HIT) and Continuous Endurance Training for VO2max Improvements: A Systematic Review and Meta-Analysis of Controlled Trials.",
+      "year": 2015,
+      "studyType": "meta-analysis",
+      "n": 723
+    },
+    {
+      "pmid": "24066036",
+      "doi": "10.1371/journal.pone.0073182",
+      "title": "VO2max trainability and high intensity interval training in humans: a meta-analysis.",
+      "year": 2013,
+      "studyType": "meta-analysis",
+      "n": 334
+    },
+    {
+      "pmid": "34921916",
+      "doi": "10.1016/j.exger.2021.111657",
+      "title": "High-intensity interval training reduces blood pressure in older adults: A systematic review and meta-analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 266
+    },
+    {
+      "pmid": "36550888",
+      "doi": "10.1097/md.0000000000032246",
+      "title": "Effects of high-intensity interval training versus moderate-intensity continuous training on blood pressure in patients with hypertension: A meta-analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis",
+      "n": 442
+    },
+    {
+      "pmid": "30765340",
+      "doi": "10.1136/bjsports-2018-099928",
+      "title": "Is interval training the magic bullet for fat loss? A systematic review and meta-analysis comparing moderate-intensity continuous training with high-intensity interval training (HIIT).",
+      "year": 2019,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "29127602",
+      "doi": "10.1007/s40279-017-0807-y",
+      "title": "Effect of High-Intensity Interval Training on Total, Abdominal and Visceral Fat Mass: A Meta-Analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis",
+      "n": 617
+    },
+    {
+      "pmid": "30097811",
+      "doi": "10.1007/s40520-018-1012-z",
+      "title": "Effectiveness of high-intensity interval training on glycemic control and cardiorespiratory fitness in patients with type 2 diabetes: a systematic review and meta-analysis.",
+      "year": 2019,
+      "studyType": "meta-analysis",
+      "n": 345
+    },
+    {
+      "pmid": "33028588",
+      "doi": "10.1136/bmj.m3485",
+      "title": "Effect of exercise training for five years on all cause mortality in older adults-the Generation 100 study: randomised controlled trial.",
+      "year": 2020,
+      "studyType": "rct",
+      "n": 1567
+    },
+    {
+      "pmid": "29874256",
+      "doi": "10.1371/journal.pone.0197124",
+      "title": "Affective and enjoyment responses in high intensity interval training and continuous training: A systematic review and meta-analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "37990239",
+      "doi": "10.1186/s12966-023-01535-w",
+      "title": "Rates of compliance and adherence to high-intensity interval training: a systematic review and Meta-analyses.",
+      "year": 2023,
+      "studyType": "meta-analysis",
+      "n": 8928
+    }
+  ]
+}

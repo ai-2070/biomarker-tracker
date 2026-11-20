@@ -1,0 +1,164 @@
+{
+  "id": "rhodiola",
+  "name": "Rhodiola",
+  "kind": "supplement",
+  "otherNames": [
+    "Rhodiola rosea",
+    "Roseroot",
+    "Golden root",
+    "Arctic root",
+    "Rosenroot",
+    "Sedum roseum"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Rhodiola rosea is a cold-climate root herb sold for stress, tiredness, focus and exercise performance. Some small trials report benefits, but reviews find the evidence contradictory and often biased.",
+  "commonUses": [
+    "May ease fatigue and burnout symptoms.",
+    "May ease stress and lift mood.",
+    "May improve mental performance and focus when tired.",
+    "May improve exercise endurance."
+  ],
+  "roles": [
+    "It is a traditional herbal remedy. It is not an essential nutrient, and no needed role in the body is established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Standardised root extract (capsule or tablet)",
+      "note": "The form used in most trials, often branded and standardised to rosavins and salidroside."
+    },
+    {
+      "name": "Liquid or tincture",
+      "note": "Strength varies widely between products."
+    },
+    {
+      "name": "Plain root powder",
+      "note": "Content of active compounds is less predictable; trial results do not carry over."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for Rhodiola. The EMA traditional-use status carries a two-week limit without medical advice, which is not a safety limit. That is not proof that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Reviews rate the evidence as contradictory or limited, because most trials were small, short and at high or unclear risk of bias. Long-term safety is not well studied.",
+    "EMA advises the traditional medicine only for adults over 18 and for no more than two weeks without medical advice. Safety in pregnancy and breastfeeding has not been established.",
+    "People with depression, anxiety, bipolar disorder or a heart-rhythm or blood-pressure condition, and people who take antidepressants, stimulants or other regular medicines, should check with a doctor or pharmacist first. Stimulating herbs may disturb sleep in some people, which is one reason many products suggest taking them early in the day."
+  ],
+  "sources": [
+    {
+      "pmid": "22643043",
+      "doi": "10.1186/1472-6882-12-70",
+      "title": "Rhodiola rosea for physical and mental fatigue: a systematic review.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37495266",
+      "doi": "10.1002/ptr.7950",
+      "title": "Rhodiola rosea supplementation on sports performance: A systematic review of randomized controlled trials.",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26502953",
+      "doi": "10.1002/ptr.5486",
+      "title": "The Effects of Rhodiola rosea L. Extract on Anxiety, Stress, Cognition and Other Mood Symptoms.",
+      "year": 2015,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "25837277",
+      "doi": "10.1016/j.phymed.2015.01.010",
+      "title": "Rhodiola rosea versus sertraline for major depressive disorder: A randomized placebo-controlled trial.",
+      "year": 2015,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "15256690",
+      "doi": "10.1123/ijsnem.14.3.298",
+      "title": "Acute Rhodiola rosea intake can improve endurance exercise performance.",
+      "year": 2004,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "11081987",
+      "doi": "10.1016/s0944-7113(00)80055-0",
+      "title": "Rhodiola rosea in stress induced fatigue--a double blind cross-over study of a standardized extract SHR-5 with a repeated low-dose regimen on the mental performance of healthy physicians during night duty.",
+      "year": 2000,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May ease fatigue and burnout symptoms.": "fatigue and burnout",
+      "May ease stress and lift mood.": "stress and mood",
+      "May improve mental performance and focus when tired.": "mental performance and focus",
+      "May improve exercise endurance.": "exercise endurance"
+    },
+    "claimCategories": {
+      "May ease fatigue and burnout symptoms.": "health",
+      "May ease stress and lift mood.": "health",
+      "May improve mental performance and focus when tired.": "health",
+      "May improve exercise endurance.": "health"
+    },
+    "claimLabels": {
+      "May ease fatigue and burnout symptoms.": "Fatigue",
+      "May ease stress and lift mood.": "Stress and mood",
+      "May improve mental performance and focus when tired.": "Focus",
+      "May improve exercise endurance.": "Endurance"
+    },
+    "origin": [
+      "Rhodiola rosea (roseroot, golden root, arctic root) is a perennial plant that grows at high altitude and in cold northern regions of Europe and Asia. Its root and rhizome are used in traditional medicine, and it is often called an \"adaptogen\", a marketing and traditional term for a herb said to help the body cope with stress. Its characteristic compounds include rosavins and salidroside.",
+      "Supplements are usually a dry alcohol or water-alcohol extract of the root, often a branded and standardised one (for example SHR-5 or WS 1375), and most human trials tested one of these extracts. Reviews describe the trials as mostly small, short and at high or unclear risk of bias, with contradictory results."
+    ],
+    "dosage": [
+      "The European Medicines Agency (EMA) lists Rhodiola rosea root as a traditional herbal medicine for the temporary relief of stress symptoms such as fatigue and a sense of weakness, for adults over 18 only, and not for longer than two weeks without medical advice. Traditional-use status rests on long use, not on proof of effect. No EFSA reference intake or upper limit was found.",
+      "An amount commonly used in studies and supplements is about 200 to 600 mg a day of a standardised root extract. Examples: a single 200 mg dose (3 percent rosavin and 1 percent salidroside) in an exercise trial, 2 x 200 mg a day for 14 days in mildly anxious adults, and 400 mg a day for 12 weeks in people with burnout symptoms. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check that it is Rhodiola rosea (other Rhodiola species differ), the part used (root), the extract type and ratio, the standardisation (the percentage of rosavins and of salidroside) and the milligrams of extract per capsule rather than raw root. Some products add caffeine or other stimulants, so check the full ingredient list."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 200
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 600
+        }
+      ],
+      "foods": [],
+      "verdict": "Not applicable. Rhodiola root is not eaten as an ordinary food; it is used as a standardised root extract, so there is no food amount to compare.",
+      "notChecked": "Rhodiola is not measured in the UK food table used by this app.",
+      "sources": [
+        {
+          "pmid": "22643043",
+          "doi": "10.1186/1472-6882-12-70",
+          "title": "Rhodiola rosea for physical and mental fatigue: a systematic review.",
+          "year": 2012,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

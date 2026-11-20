@@ -1,0 +1,161 @@
+{
+  "id": "maca",
+  "name": "Maca",
+  "kind": "supplement",
+  "otherNames": [
+    "Lepidium meyenii",
+    "Peruvian ginseng",
+    "Andean maca"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Maca is a root vegetable from the Peruvian Andes, sold as a powder or extract. It is mostly taken for energy, libido, mood and fertility, but human trials are small and results are mixed.",
+  "commonUses": [
+    "May raise energy, especially when energy is low.",
+    "May support libido and sexual function.",
+    "May lift mood.",
+    "May support male fertility and semen quality."
+  ],
+  "roles": [
+    "It is an Andean food and traditional remedy. It is not an essential nutrient, and no needed role in the body is established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Raw or gelatinised root powder",
+      "note": "Gelatinised powder has the starch removed by heat; several trials used it."
+    },
+    {
+      "name": "Concentrated or spray-dried extract",
+      "note": "Stronger per gram than powder; check how many grams of root it represents."
+    },
+    {
+      "name": "Colour types (yellow, red, black)",
+      "note": "Trials of red and black extracts exist; differences between types are not well proven."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for maca. Europe PMC was searched for EFSA, other regulator and safety-assessment documents on maca; none were found. Absence of a limit is not proof that high amounts are safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "Human evidence is limited: most trials are small, short and use different products. Reviews describe the evidence as limited or unclear, and one says safety has not been well proven.",
+    "Maca is a brassica food. Whether concentrated products suit people with thyroid conditions was not verified in a human study here.",
+    "People who are pregnant, breastfeeding, have a hormone-related condition or take regular medicines should check with a doctor or pharmacist before taking a supplement. No specific interaction was verified here."
+  ],
+  "sources": [
+    {
+      "pmid": "20691074",
+      "doi": "10.1186/1472-6882-10-44",
+      "title": "Maca (L. meyenii) for improving sexual function: a systematic review.",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "21840656",
+      "doi": "10.1016/j.maturitas.2011.07.017",
+      "title": "Maca (Lepidium meyenii) for treatment of menopausal symptoms: A systematic review.",
+      "year": 2011,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36110519",
+      "doi": "10.3389/fphar.2022.934740",
+      "title": "Maca (Lepidium meyenii Walp.) on semen quality parameters: A systematic review and meta-analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "12472620",
+      "doi": "10.1046/j.1439-0272.2002.00519.x",
+      "title": "Effect of Lepidium meyenii (MACA) on sexual desire and its absent relationship with serum testosterone levels in adult healthy men.",
+      "year": 2002,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "27548190",
+      "doi": "10.3390/ph9030049",
+      "title": "Acceptability, Safety, and Efficacy of Oral Administration of Extracts of Black or Red Maca (Lepidium meyenii) in Adult Human Subjects: A Randomized, Double-Blind, Placebo-Controlled Study.",
+      "year": 2016,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36593713",
+      "doi": "10.5534/wjmh.220112",
+      "title": "Efficacy and Safety of Maca (Lepidium meyenii) in Patients with Symptoms of Late-Onset Hypogonadism: A Randomized, Double-Blind, Placebo-Controlled Clinical Trial.",
+      "year": 2023,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May raise energy, especially when energy is low.": "energy and fatigue",
+      "May support libido and sexual function.": "libido and sexual function",
+      "May lift mood.": "mood and low mood",
+      "May support male fertility and semen quality.": "fertility and semen quality"
+    },
+    "claimCategories": {
+      "May raise energy, especially when energy is low.": "health",
+      "May support libido and sexual function.": "health",
+      "May lift mood.": "health",
+      "May support male fertility and semen quality.": "health"
+    },
+    "claimLabels": {
+      "May raise energy, especially when energy is low.": "Energy",
+      "May support libido and sexual function.": "Libido",
+      "May lift mood.": "Mood",
+      "May support male fertility and semen quality.": "Fertility"
+    },
+    "origin": [
+      "Maca (Lepidium meyenii) is a root vegetable of the mustard (brassica) family. It grows at about 4,000 m altitude in the Peruvian Andes and has been eaten and used in traditional medicine there for centuries. The dried root (hypocotyl) is eaten as a food or ground into a powder. Its characteristic compounds include glucosinolates and macamides, which are studied in the lab.",
+      "Supplements are usually dried root powder, sometimes \"gelatinised\" (heated to remove starch) or concentrated extracts, and sometimes colour types (yellow, red, black). Most human trials are small, short and use different products, so results cannot be pooled easily. Much of the enthusiasm comes from animal and cell studies."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for maca was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+      "An amount commonly used in studies and supplements is about 1.5 to 3 g of root powder a day. Key trials used 1.5 g or 3 g a day for 12 weeks (men's sexual desire), 3 g a day of spray-dried black or red maca extract for 12 weeks, 3 g a day for 12 weeks (antidepressant-related sexual problems in women) and 3 g a day as 1,000 mg pills three times daily for 12 weeks (men with symptoms of late-onset hypogonadism). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check which part of the plant is used (root), the form (raw powder, gelatinised powder or extract), the colour type, and whether the amount is powder or an extract. An extract can stand for several times its weight in root. Few products state macamide content."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 1500
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 3000
+        }
+      ],
+      "foods": [],
+      "verdict": "Not checked. Maca root is eaten as a food in the Andes, but studies used 1.5 to 3 g of dried root powder or an extract, and this guide has no checked per-food figures to compare.",
+      "notChecked": "Maca is not measured in the UK food table used by this app, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "20691074",
+          "doi": "10.1186/1472-6882-10-44",
+          "title": "Maca (L. meyenii) for improving sexual function: a systematic review.",
+          "year": 2010,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

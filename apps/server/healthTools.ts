@@ -660,14 +660,15 @@ export function healthTools(
                 ...(n
                   ? {
                       nutrient: n.name,
-                      ...(n.researchStatus === "not-reviewed"
-                        ? { researchStatus: n.researchStatus }
-                        : {
+                      ...(n.researchStatus === "not-reviewed" ? { researchStatus: n.researchStatus } : {}),
+                      ...(n.researchStatus !== "not-reviewed" || n.reference.intake.length > 0
+                        ? {
                             euReferenceForThisPerson: dailyReference(n, {
                               sex: s.profile.sex,
                               age: s.profile.birthMonth ? ageAt(s.profile.birthMonth, todayIso()) : undefined,
                             }),
-                          }),
+                          }
+                        : {}),
                     }
                   : {}),
               };
@@ -840,7 +841,7 @@ export function healthTools(
           reference: {
             ...n.reference,
             note:
-              n.researchStatus === "not-reviewed"
+              n.researchStatus === "not-reviewed" && n.reference.intake.length === 0
                 ? "This basic guide does not provide reference intakes or upper-limit values."
                 : "EFSA population values for healthy adults. Not a target or a dose for this person.",
             sources: n.reference.sources.map(cite),

@@ -88,7 +88,6 @@
    "id": "fractures",
    "label": "Fractures",
    "anyDesign": false,
-   "finding": "Bone fractures",
    "counts": {
     "reviews": 72,
     "trialReviews": 24,
@@ -725,7 +724,6 @@
    "id": "bone-density",
    "label": "Bone density",
    "anyDesign": false,
-   "finding": "Bone mineral density",
    "counts": {
     "reviews": 89,
     "trialReviews": 27,
@@ -1283,7 +1281,6 @@
    "id": "cardiovascular",
    "label": "Heart attacks and strokes",
    "anyDesign": false,
-   "finding": "Heart attacks and strokes",
    "counts": {
     "reviews": 55,
     "trialReviews": 18,
@@ -1696,7 +1693,6 @@
    "id": "kidney-stones",
    "label": "Kidney stones",
    "anyDesign": false,
-   "finding": "Kidney stones",
    "counts": {
     "reviews": 28,
     "trialReviews": 4,
@@ -1929,7 +1925,6 @@
    "id": "pre-eclampsia",
    "label": "Pre-eclampsia",
    "anyDesign": false,
-   "finding": "Pre-eclampsia and high blood pressure in pregnancy",
    "counts": {
     "reviews": 104,
     "trialReviews": 49,
@@ -2593,7 +2588,6 @@
    "id": "adenomas",
    "label": "Bowel polyps",
    "anyDesign": false,
-   "finding": "Bowel polyps (colorectal adenomas) coming back",
    "counts": {
     "reviews": 36,
     "trialReviews": 9,

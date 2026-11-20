@@ -3,26 +3,213 @@
   "name": "Protein powder",
   "kind": "supplement",
   "researchStatus": "not-reviewed",
-  "otherNames": ["Protein Powder", "Protein supplement", "Protein shake", "Whey protein", "Casein protein", "Plant protein"],
-  "summary": "Protein powder is a concentrated source of dietary protein made from milk, eggs or plant ingredients such as soy and peas. It supplies amino acids, like protein foods do; it is not a promise of muscle gain or a complete meal by itself.",
-  "commonUses": ["Used as a convenient source of dietary protein in drinks and foods.", "Used in sports nutrition products marketed for training and recovery."],
-  "roles": ["Protein provides amino acids for the maintenance and repair of body tissues.", "The body uses amino acids to make enzymes, many hormones and other proteins, not just muscle."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Whey and casein", "note": "Both come from milk. Concentrates and isolates differ in protein and other components; a milk-derived isolate is not automatically suitable for milk allergy."},
-    {"name": "Plant protein", "note": "Soy, pea, rice and blends differ in their amino acid profiles and other ingredients. Plant-based does not mean allergen-free."},
-    {"name": "Egg protein", "note": "Made from egg, often egg white; this is an egg-containing product, not an alternative for someone with egg allergy."}
+  "otherNames": [
+    "Protein Powder",
+    "Protein supplement",
+    "Protein shake",
+    "Whey protein",
+    "Casein protein",
+    "Plant protein"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "summary": "Protein powder is a concentrated source of dietary protein made from milk, eggs or plant ingredients such as soy and peas. It supplies amino acids, like protein foods do; it is not a promise of muscle gain or a complete meal by itself.",
+  "commonUses": [
+    "May build and keep muscle",
+    "May support metabolism",
+    "May support skin and hair",
+    "May support the immune system"
+  ],
+  "roles": [
+    "Protein provides amino acids for the maintenance and repair of body tissues.",
+    "The body uses amino acids to make enzymes, many hormones and other proteins, not just muscle."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Meat, fish, eggs, dairy",
+      "Pulses, tofu, nuts and seeds"
+    ],
+    "note": "Protein foods also supply fibre, fats, vitamins and minerals that a powder does not."
+  },
+  "forms": [
+    {
+      "name": "Whey and casein",
+      "note": "Both come from milk. Concentrates and isolates differ in protein and other components; a milk-derived isolate is not automatically suitable for milk allergy."
+    },
+    {
+      "name": "Plant protein",
+      "note": "Soy, pea, rice and blends differ in their amino acid profiles and other ingredients. Plant-based does not mean allergen-free."
+    },
+    {
+      "name": "Egg protein",
+      "note": "Made from egg, often egg white; this is an egg-containing product, not an alternative for someone with egg allergy."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "EFSA could not set a tolerable upper intake level for protein (2012; summarised in 2017) and considered an intake of twice the reference intake safe in adults. The reference is 0.83 g per kg a day, so twice that is about 1.7 g per kg a day. Intakes above that are not shown to be unsafe, but this guide did not find an official statement covering them.",
+    "sources": [
+      {
+        "doi": "10.2903/sp.efsa.2017.e15121",
+        "title": "Dietary Reference Values for nutrients: Summary report",
+        "year": 2017,
+        "studyType": "guideline"
+      }
+    ]
+  },
   "findings": [],
-  "interactions": [{"with": "Kidney disease", "note": "Protein needs can differ with kidney disease and its treatment. Discuss a protein powder with your clinician or renal dietitian rather than using a general sports nutrition target.", "safetyId": "kidney"}],
-  "cautions": ["Milk, egg and soy proteins can be allergens. Check the source and allergen information, including warnings about shared manufacturing equipment.", "Milk allergy is different from lactose intolerance. Milk-derived powders vary in lactose content, and lower lactose does not remove the milk protein allergen.", "A protein powder is not necessarily a complete meal: fibre, vitamins, minerals and other food components depend on the actual product."],
+  "interactions": [
+    {
+      "with": "Kidney disease",
+      "note": "Protein needs can differ with kidney disease and its treatment. Discuss a protein powder with your clinician or renal dietitian rather than using a general sports nutrition target.",
+      "safetyId": "kidney"
+    }
+  ],
+  "cautions": [
+    "Milk, egg and soy proteins can be allergens. Check the source and allergen information, including warnings about shared manufacturing equipment.",
+    "Milk allergy is different from lactose intolerance. Milk-derived powders vary in lactose content, and lower lactose does not remove the milk protein allergen.",
+    "A protein powder is not necessarily a complete meal: fibre, vitamins, minerals and other food components depend on the actual product."
+  ],
   "evidenceClaims": [],
   "sources": [
-    {"pmid": "28642676", "doi": "10.1186/s12970-017-0177-8", "title": "International Society of Sports Nutrition Position Stand: protein and exercise", "year": 2017, "studyType": "review"},
-    {"pmid": "24482589", "title": "Protein – Which is Best?", "year": 2004, "studyType": "review"}
-  ]
+    {
+      "pmid": "28698222",
+      "doi": "10.1136/bjsports-2017-097608",
+      "title": "A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "30383278",
+      "doi": "10.1093/jn/nxy197",
+      "title": "Changes in Kidney Function Do Not Differ between Healthy Adults Consuming Higher- Compared with Lower- or Normal-Protein Diets: A Systematic Review and Meta-Analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May build and keep muscle": "muscle mass",
+      "May support metabolism": "metabolism",
+      "May support skin and hair": "skin and hair",
+      "May support the immune system": "immune system"
+    },
+    "claimCategories": {
+      "May build and keep muscle": "health",
+      "May support metabolism": "health",
+      "May support skin and hair": "appearance",
+      "May support the immune system": "health"
+    },
+    "claimLabels": {
+      "May build and keep muscle": "Muscle",
+      "May support metabolism": "Metabolism",
+      "May support skin and hair": "Skin and hair",
+      "May support the immune system": "Immunity"
+    },
+    "origin": [
+      "Protein powder is made by separating protein from a food. Whey and casein come from milk, often as a by-product of cheese making; soy, pea and rice powders come from plants, and egg protein from egg white.",
+      "It supplies amino acids in the same way protein foods do. Powders are usually described as concentrate, isolate or hydrolysate, which differ in how much protein and how much lactose and fat they leave in."
+    ],
+    "dosage": [
+      "EFSA's reference intake for adult protein from all sources is 0.83 g per kg of body weight a day. It is a population value for healthy adults, not a personal target.",
+      "Amounts commonly used in studies and sports nutrition are about 1.6 to 2 g per kg of body weight a day from all sources, powder and food together. This is not a reference intake or a personal recommendation.",
+      "Check the protein per serving on the label, the protein source and allergen warnings. Kidney disease and milk, egg or soy allergy are the main reasons to ask a clinician first."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "EFSA reference intake (0.83 g/kg) for a 70 kg adult, from all foods",
+          "mg": 58100
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (1.6 g/kg for a 70 kg adult)",
+          "mg": 112000
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (2 g/kg for a 70 kg adult)",
+          "mg": 140000
+        }
+      ],
+      "foods": [
+        {
+          "name": "Chicken, light meat, raw",
+          "mgPer100g": [
+            24000,
+            24000
+          ]
+        },
+        {
+          "name": "Tuna, canned in brine, drained",
+          "mgPer100g": [
+            24900,
+            24900
+          ]
+        },
+        {
+          "name": "Salmon, raw (farmed to wild)",
+          "mgPer100g": [
+            20400,
+            22100
+          ]
+        },
+        {
+          "name": "Beef, raw (mince to rump steak)",
+          "mgPer100g": [
+            19700,
+            22000
+          ]
+        },
+        {
+          "name": "Cod, raw",
+          "mgPer100g": [
+            17500,
+            17500
+          ]
+        },
+        {
+          "name": "Eggs, whole, raw",
+          "mgPer100g": [
+            12600,
+            12600
+          ]
+        },
+        {
+          "name": "Red lentils, dried, raw",
+          "mgPer100g": [
+            25600,
+            25600
+          ],
+          "note": "Dry weight; they take up water when cooked."
+        },
+        {
+          "name": "Tofu, steamed",
+          "mgPer100g": [
+            8100,
+            8100
+          ]
+        }
+      ],
+      "verdict": "Yes. All three amounts can come from ordinary foods: about 240 g of raw chicken or 230 g of dry lentils gives 58 g of protein, 470 g of chicken gives 112 g and 580 g gives 140 g. Eggs need more (about 460 g, roughly 8 eggs, for 58 g, and over 1 kg for 112 g). Many people reach their protein from food and use a powder for convenience, not necessity.",
+      "notChecked": "Food values are from the UK food composition table (McCance and Widdowson's CoFID 2021) built into this app, for the raw food named. Cooking removes water, so cooked weights differ. Body weight of 70 kg is only an example. Protein quality and digestibility differ between foods.",
+      "sources": [
+        {
+          "doi": "10.2903/j.efsa.2012.2557",
+          "title": "Scientific Opinion on Dietary Reference Values for protein",
+          "year": 2012,
+          "studyType": "guideline"
+        }
+      ]
+    }
+  }
 }

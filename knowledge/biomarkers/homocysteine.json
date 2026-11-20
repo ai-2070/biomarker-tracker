@@ -1,0 +1,89 @@
+{
+  "id": "homocysteine",
+  "name": "Homocysteine",
+  "category": "Metabolic",
+  "aliases": [
+    "Homocysteine",
+    "Homocysteine (total)",
+    "Total homocysteine",
+    "tHcy",
+    "Hcy",
+    "Plasma homocysteine",
+    "Serum homocysteine",
+    "Homocysteine, plasma",
+    "Homocystein",
+    "Homocystein (gesamt)",
+    "Gesamt-Homocystein",
+    "Homocisztein",
+    "Homocisztein (szérum)",
+    "Homocystéine",
+    "Homocystéine totale",
+    "Homocisteína",
+    "Homocisteína total"
+  ],
+  "loinc": [
+    "13965-9"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1
+  },
+  "rangeNote": "No single range is used, because suggested limits differ between sources and labs (for example, risk was described as rising from about 10 µmol/L and levels above 12 µmol/L as moderately raised in a German-Austrian-Swiss consensus, and above 11 µmol/L in older adults in a dementia consensus). Levels rise if the blood sample is left unspun before it reaches the lab. Folate, vitamin B12 and vitamin B6 supplements can lower the level.",
+  "summary": "Homocysteine is an amino acid the body makes when it processes methionine, a protein building block. B vitamins (folate, B12 and B6) help clear it, so the level partly reflects their status and kidney function.",
+  "high": {
+    "meaning": "A raised homocysteine is linked in studies to a higher chance of cardiovascular disease and, in older adults, to cognitive decline. It is read as a pointer to B vitamin status or kidney function; whether lowering it prevents these conditions is a separate question that trials have not settled.",
+    "commonCauses": [
+      "Low folate, vitamin B12 or vitamin B6",
+      "Reduced kidney function",
+      "Underactive thyroid",
+      "Metformin (associated with lower B12 and higher homocysteine)",
+      "Methotrexate and some epilepsy medicines",
+      "Smoking, heavy alcohol or coffee intake",
+      "Older age",
+      "Inherited enzyme variants (rare when severe)"
+    ]
+  },
+  "low": {
+    "meaning": "A low homocysteine is generally not a concern. It is common in people who take B vitamin supplements or eat plenty of folate-rich foods.",
+    "commonCauses": [
+      "B vitamin supplements (folate, B12, B6)",
+      "Folate-rich diet",
+      "Pregnancy (levels fall)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 6.1,
+    "ciLow": 4.6,
+    "ciHigh": 8.8,
+    "studies": 3,
+    "analyte": "Homocysteine - total (tHcy)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "14709635",
+      "doi": "10.1373/clinchem.2003.021634",
+      "title": "Facts and recommendations about total homocysteine determinations: an expert opinion",
+      "year": 2004,
+      "studyType": "review"
+    },
+    {
+      "pmid": "14656016",
+      "doi": "10.1515/cclm.2003.214",
+      "title": "DACH-LIGA homocystein (german, austrian and swiss homocysteine society): consensus paper on the rational clinical use of homocysteine, folic acid and B-vitamins in cardiovascular and thrombotic diseases: guidelines and recommendations",
+      "year": 2003,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29480200",
+      "doi": "10.3233/jad-171042",
+      "title": "Homocysteine and Dementia: An International Consensus Statement",
+      "year": 2018,
+      "studyType": "review"
+    }
+  ]
+}

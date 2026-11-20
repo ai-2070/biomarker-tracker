@@ -2,25 +2,146 @@
   "id": "probiotics",
   "name": "Probiotics",
   "kind": "supplement",
-  "otherNames": ["Probiotic", "probiotic bacteria", "live cultures", "Lactobacillus", "Bifidobacterium", "Saccharomyces boulardii"],
+  "otherNames": [
+    "Probiotic",
+    "probiotic bacteria",
+    "live cultures",
+    "Lactobacillus",
+    "Bifidobacterium",
+    "Saccharomyces boulardii"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Probiotics are live microorganisms supplied in foods or supplements for intended health benefits. Products can contain bacteria, yeasts, or mixtures; the exact strain matters, not just the word probiotic.",
-  "commonUses": ["Used in products marketed for digestive health", "Used in products marketed for the gut microbiome"],
-  "roles": ["Probiotic ingredients are living microorganisms, not vitamins or minerals.", "Different microorganisms can interact with the gut and immune system in different ways; results for one strain do not establish what another strain does."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. It does not define a probiotic deficiency."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": ["Some yogurts and other fermented foods contain live microorganisms"], "note": "A fermented food is not automatically equivalent to a supplement containing a named strain."},
-  "forms": [
-    {"name": "Bacterial strains", "note": "Labels may name Lactobacillus or Bifidobacterium species and a strain identifier. A species name alone does not identify the strain tested in research."},
-    {"name": "Yeast probiotics", "note": "Saccharomyces boulardii is a yeast, not a bacterial probiotic; it is a different ingredient."},
-    {"name": "Mixtures and synbiotics", "note": "Mixtures contain several microorganisms. Synbiotics combine probiotics with prebiotics, ingredients used by microorganisms; these products are not equivalent to each single strain."}
+  "commonUses": [
+    "May support digestive health",
+    "May support the gut microbiome",
+    "May reduce inflammation and ageing signs"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "Probiotic ingredients are living microorganisms, not vitamins or minerals.",
+    "Different microorganisms can interact with the gut and immune system in different ways; results for one strain do not establish what another strain does."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test. It does not define a probiotic deficiency."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Some yogurts and other fermented foods contain live microorganisms"
+    ],
+    "note": "A fermented food is not automatically equivalent to a supplement containing a named strain."
+  },
+  "forms": [
+    {
+      "name": "Bacterial strains",
+      "note": "Labels may name Lactobacillus or Bifidobacterium species and a strain identifier. A species name alone does not identify the strain tested in research."
+    },
+    {
+      "name": "Yeast probiotics",
+      "note": "Saccharomyces boulardii is a yeast, not a bacterial probiotic; it is a different ingredient."
+    },
+    {
+      "name": "Mixtures and synbiotics",
+      "note": "Mixtures contain several microorganisms. Synbiotics combine probiotics with prebiotics, ingredients used by microorganisms; these products are not equivalent to each single strain."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level was found for probiotics. Amounts are counted in live organisms and differ by strain, and the official documents found set minimum amounts for health claims or strain-specific limits rather than a general safety ceiling.",
+    "sources": []
+  },
   "findings": [],
-  "interactions": [{"with": "Severe illness or a weakened immune system", "note": "Live microorganisms can cause infection in higher-risk people. Discuss a specific product with the treating clinician rather than treating probiotics as harmless food ingredients."}],
-  "cautions": ["Serious infections are a greater concern in people with severe illness or a weakened immune system, including seriously ill hospital patients.", "Severe and fatal infections have occurred in premature infants given probiotics. Infant use belongs with the baby's medical team, not a general supplement routine.", "Some products have contained microorganisms not listed on their labels; contamination can pose serious health risks.", "Safety and effects depend on the strain and product. A finding for one probiotic does not establish the safety or usefulness of another."],
+  "interactions": [
+    {
+      "with": "Severe illness or a weakened immune system",
+      "note": "Live microorganisms can cause infection in higher-risk people. Discuss a specific product with the treating clinician rather than treating probiotics as harmless food ingredients."
+    }
+  ],
+  "cautions": [
+    "Serious infections are a greater concern in people with severe illness or a weakened immune system, including seriously ill hospital patients.",
+    "Severe and fatal infections have occurred in premature infants given probiotics. Infant use belongs with the baby's medical team, not a general supplement routine.",
+    "Some products have contained microorganisms not listed on their labels; contamination can pose serious health risks.",
+    "Safety and effects depend on the strain and product. A finding for one probiotic does not establish the safety or usefulness of another."
+  ],
   "evidenceClaims": [],
-  "sources": [],
-  "basicSources": [{"title": "Probiotics: Usefulness and Safety — NCCIH", "year": 2019, "url": "https://www.nccih.nih.gov/health/probiotics-usefulness-and-safety"}]
+  "sources": [
+    {
+      "pmid": "25922398",
+      "doi": "10.1093/cid/civ085",
+      "title": "Risk and safety of probiotics.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22570464",
+      "doi": "10.1001/jama.2012.3507",
+      "title": "Probiotics for the prevention and treatment of antibiotic-associated diarrhea: a systematic review and meta-analysis.",
+      "year": 2012,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "30294792",
+      "doi": "10.1111/apt.15001",
+      "title": "Systematic review with meta-analysis: the efficacy of prebiotics, probiotics, synbiotics and antibiotics in irritable bowel syndrome.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    }
+  ],
+  "basicSources": [
+    {
+      "title": "Probiotics: Usefulness and Safety — NCCIH",
+      "year": 2019,
+      "url": "https://www.nccih.nih.gov/health/probiotics-usefulness-and-safety"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May support digestive health": "digestive health",
+      "May support the gut microbiome": "gut microbiome",
+      "May reduce inflammation and ageing signs": "systemic inflammation"
+    },
+    "claimCategories": {
+      "May support digestive health": "health",
+      "May support the gut microbiome": "health",
+      "May reduce inflammation and ageing signs": "longevity"
+    },
+    "claimLabels": {
+      "May support digestive health": "Digestive health",
+      "May support the gut microbiome": "Gut microbiome",
+      "May reduce inflammation and ageing signs": "Inflammation"
+    },
+    "origin": [
+      "Probiotics are live bacteria or yeasts. Some foods contain them after fermentation, such as yoghurt, kefir and sauerkraut, and supplements contain named strains.",
+      "The strain matters. A result for one strain says little about another, and many products do not name the strain on the label."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Amounts are counted in live organisms (colony-forming units) and differ by strain.",
+      "A common supplement label amount is one capsule a day of a multi-strain product, but live-organism counts differ by strain. This is not a reference intake or a personal recommendation.",
+      "Check that the label names the genus, species and strain, and the count at the end of shelf life, not only at manufacture. Higher-risk groups such as seriously ill people or premature babies should only use them under medical supervision."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not checked. Fermented foods such as kefir, sauerkraut and plain yoghurt contain live microbes, but this guide has no checked figures for how many live organisms of a named strain each food gives, and unpasteurised products carry their own food-safety considerations, so it cannot say whether food matches a supplement.",
+      "notChecked": "The food table used by this app does not measure live microbes.",
+      "sources": [
+        {
+          "pmid": "25922398",
+          "doi": "10.1093/cid/civ085",
+          "title": "Risk and safety of probiotics.",
+          "year": 2015,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

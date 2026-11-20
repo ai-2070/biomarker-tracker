@@ -2,21 +2,61 @@
   "id": "sulforaphane",
   "name": "Sulforaphane",
   "kind": "supplement",
-  "otherNames": ["Sulforaphane", "broccoli sprout extract", "glucoraphanin"],
+  "otherNames": [
+    "Sulforaphane",
+    "broccoli sprout extract",
+    "glucoraphanin"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Sulforaphane is a sulfur-containing compound formed from glucoraphanin, a precursor found in broccoli and other cruciferous vegetables. Supplements may supply sulforaphane itself or ingredients intended to produce it. A glucoraphanin label is not a measurement of sulforaphane delivered to the body.",
-  "commonUses": ["Used in broccoli-derived supplements marketed for cellular defence.", "Used in products marketed for antioxidant support."],
-  "roles": ["The enzyme myrosinase converts glucoraphanin into sulforaphane.", "Plant enzymes and gut microbes can contribute to this conversion, so the preparation affects exposure."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Sulforaphane", "note": "Supplies the compound itself; its stability and the finished formulation matter."},
-    {"name": "Glucoraphanin", "note": "Supplies the precursor, not sulforaphane itself. Conversion varies between people and preparations."},
-    {"name": "Glucoraphanin with myrosinase", "note": "Adds the converting enzyme. Enzyme activity and processing affect conversion; this is not automatically equivalent to preformed sulforaphane."}
+  "commonUses": [
+    "May protect DNA",
+    "May activate the Nrf2 antioxidant pathway",
+    "May help the body clear air pollutants"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "The enzyme myrosinase converts glucoraphanin into sulforaphane.",
+    "Plant enzymes and gut microbes can contribute to this conversion, so the preparation affects exposure."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Raw or lightly cooked broccoli",
+      "Broccoli sprouts",
+      "Other cruciferous vegetables (cabbage, kale, rocket)"
+    ],
+    "note": "Preparation matters: chopping and waiting, or adding raw mustard seed (a source of myrosinase), changes how much is formed."
+  },
+  "forms": [
+    {
+      "name": "Sulforaphane",
+      "note": "Supplies the compound itself; its stability and the finished formulation matter."
+    },
+    {
+      "name": "Glucoraphanin",
+      "note": "Supplies the precursor, not sulforaphane itself. Conversion varies between people and preparations."
+    },
+    {
+      "name": "Glucoraphanin with myrosinase",
+      "note": "Adds the converting enzyme. Enzyme activity and processing affect conversion; this is not automatically equivalent to preformed sulforaphane."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for sulforaphane or broccoli extracts was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
   "evidenceClaims": [],
   "interactions": [],
@@ -27,6 +67,68 @@
     "The source and formulation matter to safety as well as absorption; findings about one broccoli preparation cannot establish the safety of every concentrated supplement."
   ],
   "sources": [
-    {"pmid": "31590459", "doi": "10.3390/molecules24193593", "title": "Broccoli or Sulforaphane: Is It the Source or Dose That Matters?", "year": 2019, "studyType": "review"}
-  ]
+    {
+      "pmid": "21372038",
+      "doi": "10.1158/1940-6207.capr-10-0296",
+      "title": "Bioavailability of Sulforaphane from two broccoli sprout beverages: results of a short-term, cross-over clinical trial in Qidong, China.",
+      "year": 2011,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "21816223",
+      "doi": "10.1016/j.phrs.2011.07.005",
+      "title": "Bioavailability and inter-conversion of sulforaphane and erucin in human subjects consuming broccoli sprouts or broccoli supplement in a cross-over study design.",
+      "year": 2011,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "24913818",
+      "doi": "10.1158/1940-6207.capr-14-0103",
+      "title": "Rapid and sustainable detoxication of airborne pollutants by broccoli sprout beverage: results of a randomized clinical trial in China.",
+      "year": 2014,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May protect DNA": "DNA protection",
+      "May activate the Nrf2 antioxidant pathway": "Nrf2 antioxidant pathway",
+      "May help the body clear air pollutants": "clearing air pollutants"
+    },
+    "claimCategories": {
+      "May protect DNA": "longevity",
+      "May activate the Nrf2 antioxidant pathway": "longevity",
+      "May help the body clear air pollutants": "health"
+    },
+    "claimLabels": {
+      "May protect DNA": "DNA protection",
+      "May activate the Nrf2 antioxidant pathway": "Nrf2 pathway",
+      "May help the body clear air pollutants": "Pollutants"
+    },
+    "origin": [
+      "Sulforaphane is formed when an enzyme, myrosinase, meets glucoraphanin, a compound in broccoli and other cruciferous vegetables. This happens when raw broccoli is chopped or chewed.",
+      "Broccoli sprouts and broccoli seed extract are rich in glucoraphanin. Cooking damages myrosinase, so how a food or supplement is prepared changes how much sulforaphane the body receives."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Studies measure different things (glucoraphanin, sulforaphane or the extract), so amounts are not interchangeable.",
+      "Amounts commonly used in studies and supplements are about 10 to 30 mg a day of sulforaphane from broccoli seed extract. This is not a reference intake or a personal recommendation.",
+      "Check whether the label states sulforaphane itself, glucoraphanin, or a broccoli extract weight, and whether the enzyme is included."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Partly. Raw broccoli and broccoli sprouts are food sources, and studies show that chopping and the enzyme myrosinase largely decide how much sulforaphane you get. This guide has no checked figures for sulforaphane or glucoraphanin in foods, so it cannot say how much broccoli matches 10–30 mg.",
+      "notChecked": "The food table used by this app does not measure sulforaphane or glucoraphanin, so no per-food amounts are listed.",
+      "sources": [
+        {
+          "pmid": "26524341",
+          "doi": "10.1371/journal.pone.0140963",
+          "title": "Sulforaphane Bioavailability from Glucoraphanin-Rich Broccoli: Control by Active Endogenous Myrosinase.",
+          "year": 2015,
+          "studyType": "rct"
+        }
+      ]
+    }
+  }
 }

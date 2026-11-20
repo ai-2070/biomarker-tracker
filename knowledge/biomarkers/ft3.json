@@ -1,0 +1,97 @@
+{
+  "id": "ft3",
+  "name": "Free triiodothyronine",
+  "abbreviation": "FT3",
+  "category": "Thyroid",
+  "aliases": [
+    "FT3",
+    "fT3",
+    "Free T3",
+    "Free triiodothyronine",
+    "T3, free",
+    "T3 free",
+    "T3 (free)",
+    "FT3 (S)",
+    "Free T3 (FT3)",
+    "Triiodothyronine, free",
+    "Freies T3",
+    "Freies Trijodthyronin",
+    "Freies Triiodthyronin",
+    "fT3 (freies T3)",
+    "Szabad T3",
+    "Szabad trijódtironin",
+    "fT3 (szabad T3)",
+    "T3 libre",
+    "Triiodothyronine libre",
+    "Triyodotironina libre",
+    "Fritt T3",
+    "Fritt trijodtyronin"
+  ],
+  "loinc": [
+    "14928-6",
+    "3051-0"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "pg/mL": 1.536,
+    "ng/L": 1.536,
+    "ng/dL": 15.36
+  },
+  "rangeNote": "No default range: free T3 reference ranges differ between assays and labs, so the lab's own range is the one to compare with. FT3 is usually read together with TSH and free T4. High-dose biotin supplements can distort some thyroid immunoassays; the effect depends on the test platform. pg/mL to pmol/L uses the molar mass of T3 (about 651 g/mol).",
+  "summary": "Free T3 is the active thyroid hormone, measured in the form that is free to act in the body. Most of it is made from T4 in tissues outside the thyroid, and it is read together with TSH and free T4.",
+  "high": {
+    "meaning": "A high free T3, with a low TSH, usually points to an overactive thyroid. Free T3 can be the first thyroid hormone to rise in some forms of hyperthyroidism.",
+    "commonCauses": [
+      "Overactive thyroid (e.g. Graves' disease or thyroid nodules)",
+      "Too much thyroid hormone medicine, especially T3-containing preparations",
+      "Biotin supplements (can interfere with some assays)",
+      "Early thyroid inflammation"
+    ]
+  },
+  "low": {
+    "meaning": "A low free T3 can occur in an underactive thyroid, but it is also common in serious illness, fasting and after surgery, when the body converts less T4 to T3 without a thyroid problem.",
+    "commonCauses": [
+      "Underactive thyroid",
+      "Serious illness or hospital stay",
+      "Prolonged fasting or very low calorie intake",
+      "Some medicines (e.g. amiodarone, corticosteroids, propranolol)",
+      "Biotin supplements (can interfere with some assays)"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 5.1,
+    "ciLow": 4.7,
+    "ciHigh": 7.9,
+    "studies": 4,
+    "analyte": "Triiodothyronine - free (FT3)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "34042535",
+      "doi": "10.1089/thy.2020.0866",
+      "title": "Biotin Interference in Assays for Thyroid Hormones, Thyrotropin and Thyroglobulin",
+      "year": 2021,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "27521067",
+      "doi": "10.1089/thy.2016.0229",
+      "title": "2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis",
+      "year": 2016,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "28336049",
+      "doi": "10.1016/s0140-6736(17)30703-1",
+      "title": "Hypothyroidism",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}

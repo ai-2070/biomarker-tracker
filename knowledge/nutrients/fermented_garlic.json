@@ -2,26 +2,74 @@
   "id": "fermented_garlic",
   "name": "Fermented garlic extract",
   "kind": "supplement",
-  "otherNames": ["Fermented Garlic Extract", "fermented garlic", "aged garlic extract", "black garlic extract"],
+  "otherNames": [
+    "Fermented Garlic Extract",
+    "fermented garlic",
+    "aged garlic extract",
+    "black garlic extract"
+  ],
   "researchStatus": "not-reviewed",
   "summary": "Garlic supplements are made from Allium sativum using different processing and extraction methods. Fermented garlic, aged garlic extract and black garlic are related preparations, not interchangeable ingredients. This guide covers their names and basic cautions, not their effectiveness.",
-  "commonUses": ["Used in products marketed for cardiovascular health.", "Used in products marketed for immune support."],
-  "roles": ["Garlic contains sulfur-containing compounds; processing changes the mixture present in an extract.", "Heating and browning, ageing and microbial fermentation are different processes even when product names overlap."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": []},
-  "forms": [
-    {"name": "Fermented garlic extract", "note": "Check the manufacturer's processing description and ingredient specification; the name alone does not identify the extract's composition."},
-    {"name": "Aged garlic extract", "note": "An aged preparation; do not assume that a product labelled fermented garlic contains the same compounds or matches the extract in an aged-garlic study."},
-    {"name": "Black garlic extract", "note": "Black garlic commonly undergoes controlled heat and humidity, with browning reactions. The term fermented is also used, but black colour does not establish microbial fermentation or equivalence to aged garlic extract."}
+  "commonUses": [
+    "May lower blood pressure",
+    "May stop LDL cholesterol oxidising (plaque prevention)",
+    "May act as an antioxidant"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "roles": [
+    "Garlic contains sulfur-containing compounds; processing changes the mixture present in an extract.",
+    "Heating and browning, ageing and microbial fermentation are different processes even when product names overlap."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Fresh garlic (cooked or raw)",
+      "Black garlic"
+    ],
+    "note": "A garlic clove is different from a processed extract: heating and ageing change the compounds."
+  },
+  "forms": [
+    {
+      "name": "Fermented garlic extract",
+      "note": "Check the manufacturer's processing description and ingredient specification; the name alone does not identify the extract's composition."
+    },
+    {
+      "name": "Aged garlic extract",
+      "note": "An aged preparation; do not assume that a product labelled fermented garlic contains the same compounds or matches the extract in an aged-garlic study."
+    },
+    {
+      "name": "Black garlic extract",
+      "note": "Black garlic commonly undergoes controlled heat and humidity, with browning reactions. The term fermented is also used, but black colour does not establish microbial fermentation or equivalence to aged garlic extract."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for garlic extracts was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
   "evidenceClaims": [],
   "interactions": [
-    {"with": "Blood thinners and medicines that affect bleeding", "note": "Garlic supplements may increase bleeding risk, including with anticoagulants or aspirin. Talk with a clinician about the specific preparation.", "safetyId": "anticoagulant"},
-    {"with": "Pregnancy or breastfeeding", "note": "Garlic supplement use beyond food amounts may not be safe in pregnancy or breastfeeding. Discuss the product with a clinician.", "safetyId": "pregnancy"}
+    {
+      "with": "Blood thinners and medicines that affect bleeding",
+      "note": "Garlic supplements may increase bleeding risk, including with anticoagulants or aspirin. Talk with a clinician about the specific preparation.",
+      "safetyId": "anticoagulant"
+    },
+    {
+      "with": "Pregnancy or breastfeeding",
+      "note": "Garlic supplement use beyond food amounts may not be safe in pregnancy or breastfeeding. Discuss the product with a clinician.",
+      "safetyId": "pregnancy"
+    }
   ],
   "cautions": [
     "Garlic can cause abdominal pain, gas, nausea, and breath or body odour.",
@@ -30,8 +78,68 @@
     "Safety information for garlic in general does not establish the safety of every concentrated, fermented or blended extract."
   ],
   "sources": [
-    {"pmid": "17918162", "doi": "10.1002/mnfr.200700072", "title": "Garlic (Allium sativum L.): adverse effects and drug interactions in humans.", "year": 2007, "studyType": "review"},
-    {"pmid": "36125851", "doi": "10.1111/jfbc.14394", "title": "Black garlic: A review of its biological significance.", "year": 2022, "studyType": "review"}
+    {
+      "pmid": "26764326",
+      "doi": "10.3945/jn.114.202192",
+      "title": "Garlic Lowers Blood Pressure in Hypertensive Individuals, Regulates Serum Cholesterol, and Stimulates Immunity: An Updated Meta-analysis and Review.",
+      "year": 2016,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23169470",
+      "doi": "10.1038/ejcn.2012.178",
+      "title": "Aged garlic extract reduces blood pressure in hypertensives: a dose-response trial.",
+      "year": 2013,
+      "studyType": "rct"
+    }
   ],
-  "basicSources": [{"title": "Garlic: Usefulness and Safety — NCCIH", "year": 2025, "url": "https://www.nccih.nih.gov/health/garlic"}]
+  "basicSources": [
+    {
+      "title": "Garlic: Usefulness and Safety — NCCIH",
+      "year": 2025,
+      "url": "https://www.nccih.nih.gov/health/garlic"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May lower blood pressure": "blood pressure",
+      "May stop LDL cholesterol oxidising (plaque prevention)": "LDL oxidation and artery plaque",
+      "May act as an antioxidant": "antioxidant protection"
+    },
+    "claimCategories": {
+      "May lower blood pressure": "health",
+      "May stop LDL cholesterol oxidising (plaque prevention)": "health",
+      "May act as an antioxidant": "longevity"
+    },
+    "claimLabels": {
+      "May lower blood pressure": "Blood pressure",
+      "May stop LDL cholesterol oxidising (plaque prevention)": "LDL and plaque",
+      "May act as an antioxidant": "Antioxidant"
+    },
+    "origin": [
+      "Garlic (Allium sativum) is a vegetable. Garlic supplements are made by processing it: aged garlic extract is aged for a long time, black garlic is heated under controlled humidity, and other products are fermented.",
+      "Each process changes which sulfur compounds are present, so the extracts are not the same. S-allylcysteine is the compound often named in aged garlic extract."
+    ],
+    "dosage": [
+      "There is no reference intake and no upper limit for this ingredient. Amounts in studies refer to specific extracts and cannot be transferred to another garlic product.",
+      "Amounts commonly used in studies of aged garlic extract are about 1.2 to 2.4 g a day, but extracts differ and amounts cannot be moved between products. This is not a reference intake or a personal recommendation.",
+      "Check the manufacturer's description of how the garlic was processed. Garlic products may add to the effect of blood thinners, and surgery teams should be told about them."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Not checked. Fresh garlic is a food, but this guide has no checked figures for the compounds in aged or fermented extracts, so it cannot say how much garlic would match a supplement.",
+      "notChecked": "The food table used by this app does not measure the active compounds of garlic extracts.",
+      "sources": [
+        {
+          "pmid": "26764326",
+          "doi": "10.3945/jn.114.202192",
+          "title": "Garlic Lowers Blood Pressure in Hypertensive Individuals, Regulates Serum Cholesterol, and Stimulates Immunity: An Updated Meta-analysis and Review.",
+          "year": 2016,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
 }

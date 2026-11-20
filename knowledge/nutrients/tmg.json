@@ -1,0 +1,222 @@
+{
+  "id": "tmg",
+  "name": "TMG (betaine)",
+  "kind": "supplement",
+  "otherNames": [
+    "Trimethylglycine",
+    "TMG",
+    "Betaine anhydrous",
+    "Glycine betaine"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Betaine, also sold as trimethylglycine (TMG), is a small molecule from beets, spinach and whole grains that the body uses to lower homocysteine and to supply methyl groups. Supplements are sold for liver health, fatigue and exercise, but trials are small and mixed.",
+  "commonUses": [
+    "May protect the liver.",
+    "May balance the extra methyl groups used up when taking NR or NMN.",
+    "May prevent fatigue and support exercise.",
+    "May keep methylation cycles running by lowering homocysteine."
+  ],
+  "roles": [
+    "Helps convert homocysteine to methionine in the liver and acts as an osmolyte that helps cells hold water."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Wheat bran",
+      "Whole wheat bread",
+      "Quinoa",
+      "Spinach",
+      "Beetroot",
+      "Shellfish"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Betaine anhydrous (TMG)",
+      "note": "The usual supplement form and the one EFSA assessed as a novel food."
+    },
+    {
+      "name": "Betaine hydrochloride",
+      "note": "A different product, sold for stomach acid; not the same as TMG."
+    },
+    {
+      "name": "Beet and whole-grain foods",
+      "note": "Dietary source; amounts are far below trial doses."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level has been set for betaine. EFSA's 2017 novel-food opinion judged an extra 400 mg a day (6 mg per kg of body weight) safe on top of food, a safety figure for the authorised uses rather than a limit for supplements in general.",
+    "sources": [
+      {
+        "pmid": "32625349",
+        "doi": "10.2903/j.efsa.2017.5057",
+        "title": "Safety of betaine as a novel food pursuant to Regulation (EC) No 258/97.",
+        "year": 2017,
+        "studyType": "guideline"
+      },
+      {
+        "pmid": "32626284",
+        "doi": "10.2903/j.efsa.2019.5658",
+        "title": "Safety of betaine as a novel food pursuant to Regulation (EU) 2015/2283.",
+        "year": 2019,
+        "studyType": "guideline"
+      }
+    ]
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "At about 4 g a day or more, betaine can raise total cholesterol (a 2021 meta-analysis found about +0.34 mmol/L) and, in overweight people with metabolic syndrome, LDL cholesterol; it is not a harmless extra for people with high blood lipids.",
+    "Homocysteine is only one marker; lowering it with betaine has not been shown to prevent heart disease. A high homocysteine can have causes such as low B12 or folate, kidney disease or genetics, and is worth discussing with a doctor.",
+    "Fishy odour, nausea and stomach upset can occur at higher amounts. People with a metabolic disorder, kidney or liver disease, who are pregnant or breastfeeding, or who take prescribed medicines should check with a doctor first."
+  ],
+  "sources": [
+    {
+      "pmid": "32625349",
+      "doi": "10.2903/j.efsa.2017.5057",
+      "title": "Safety of betaine as a novel food pursuant to Regulation (EC) No 258/97.",
+      "year": 2017,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "32626284",
+      "doi": "10.2903/j.efsa.2019.5658",
+      "title": "Safety of betaine as a novel food pursuant to Regulation (EU) 2015/2283.",
+      "year": 2019,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "23997720",
+      "doi": "10.1016/j.jcm.2012.11.001",
+      "title": "Betaine supplementation decreases plasma homocysteine in healthy adult participants: a meta-analysis.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "39514262",
+      "doi": "10.1080/02640414.2024.2423578",
+      "title": "Effects of chronic betaine supplementation on exercise performance: Systematic review and meta-analysis.",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "31809615",
+      "doi": "10.1080/19390211.2019.1699223",
+      "title": "Betaine Supplementation Moderately Increases Total Cholesterol Levels: A Systematic Review and Meta-Analysis.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "19824078",
+      "doi": "10.1002/hep.23239",
+      "title": "Betaine for nonalcoholic fatty liver disease: results of a randomized placebo-controlled trial.",
+      "year": 2009,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May protect the liver.": "liver health",
+      "May balance the extra methyl groups used up when taking NR or NMN.": "methyl balance with NR/NMN",
+      "May prevent fatigue and support exercise.": "fatigue and exercise",
+      "May keep methylation cycles running by lowering homocysteine.": "methylation and homocysteine"
+    },
+    "claimCategories": {
+      "May protect the liver.": "health",
+      "May balance the extra methyl groups used up when taking NR or NMN.": "longevity",
+      "May prevent fatigue and support exercise.": "health",
+      "May keep methylation cycles running by lowering homocysteine.": "longevity"
+    },
+    "claimLabels": {
+      "May protect the liver.": "Liver",
+      "May balance the extra methyl groups used up when taking NR or NMN.": "NR/NMN balance",
+      "May prevent fatigue and support exercise.": "Fatigue",
+      "May keep methylation cycles running by lowering homocysteine.": "Homocysteine"
+    },
+    "origin": [
+      "Betaine (trimethylglycine, TMG) is a small molecule made of the amino acid glycine with three methyl groups attached. It occurs in beets (the name origin), spinach, wheat bran and whole grains, quinoa and shellfish. The body also makes it from choline. Its two main jobs are as an osmolyte (it helps cells hold water under stress) and as a methyl donor: in the liver it gives one methyl group to homocysteine, turning it back into methionine.",
+      "Supplement betaine is usually betaine anhydrous. EFSA assessed betaine as a novel food in 2017 and again in 2019 for revised uses. A note on names: betaine hydrochloride is a different product, sold for stomach acid, and betaine from beets is not the same as the TMG of this guide."
+    ],
+    "dosage": [
+      "There is no reference intake for betaine. In 2017 EFSA judged an extra 400 mg a day (6 mg per kg of body weight) safe on top of the normal diet, using studies in which cholesterol rose at about 4 g a day; its 2019 opinion kept that level for revised uses. This is a safety finding for that product, not a tolerable upper intake level.",
+      "An amount commonly used in supplements is about 500 to 1,000 mg a day, while many trials used 2.5 to 6 g or more. This is not a reference intake or a personal recommendation.",
+      "Check that the product is betaine anhydrous (trimethylglycine) and not betaine hydrochloride, and whether the amount is per capsule or per serving. High amounts can cause a fishy smell and stomach upset."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in supplements (low, 500 mg)",
+          "mg": 500
+        },
+        {
+          "label": "Amount commonly used in supplements (high, 1,000 mg)",
+          "mg": 1000
+        }
+      ],
+      "foods": [
+        {
+          "name": "Wheat bran",
+          "mgPer100g": [
+            230,
+            720
+          ]
+        },
+        {
+          "name": "Quinoa",
+          "mgPer100g": [
+            61,
+            630
+          ]
+        },
+        {
+          "name": "Beetroot",
+          "mgPer100g": [
+            75,
+            129
+          ],
+          "note": "Weight basis not stated."
+        },
+        {
+          "name": "Spinach",
+          "mgPer100g": [
+            67.5,
+            110
+          ],
+          "note": "Weight basis not stated."
+        },
+        {
+          "name": "Beef",
+          "mgPer100g": [
+            5.8,
+            17
+          ]
+        }
+      ],
+      "verdict": "Yes, roughly. Estimates of betaine from ordinary food range from about 130 to 830 mg a day, so 500 to 1,000 mg is in the range of a diet rich in whole grains. Wheat bran, quinoa, beetroot and spinach are the richest common sources: roughly 100 to 200 g of wheat bran, or several hundred grams of beetroot or spinach, gives 500 mg. Many trials of homocysteine or exercise used 2.5 to 6 g, far more than food gives.",
+      "notChecked": "Betaine is not measured in the UK food table used by this app. Values are per 100 g from a published review table headed dry weight, so fresh vegetables may hold less. These are amounts eaten, not absorbed.",
+      "sources": [
+        {
+          "pmid": "37375378",
+          "doi": "10.3390/molecules28124824",
+          "title": "Betaine as a Functional Ingredient: Metabolism, Health-Promoting Attributes, Food Sources, Applications and Analysis Methods.",
+          "year": 2023,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
+}

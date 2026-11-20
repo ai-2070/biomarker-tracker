@@ -1,0 +1,236 @@
+{
+  "id": "alcar",
+  "name": "ALCAR (acetyl-L-carnitine)",
+  "kind": "supplement",
+  "otherNames": [
+    "Acetyl-L-carnitine",
+    "ALCAR",
+    "Acetylcarnitine",
+    "L-acetylcarnitine"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Acetyl-L-carnitine (ALCAR) is a carnitine supplement that reaches the brain, sold for memory, mood, nerve pain and energy. Small trials suggest possible benefit for mood, nerve pain and fatigue, but the evidence is limited, and it made chemotherapy nerve damage worse in one large trial.",
+  "commonUses": [
+    "May slow age-related decline in memory and thinking.",
+    "May ease low mood and depressive symptoms.",
+    "May ease nerve pain from diabetes or other long-term nerve damage. It should not be used to prevent nerve damage from chemotherapy.",
+    "May reduce tiredness in some illnesses and in older adults.",
+    "May help muscles recover after exercise.",
+    "May improve sperm movement in men with unexplained fertility problems."
+  ],
+  "roles": [
+    "Carnitine helps move fatty acids into the cell's energy-producing parts. The body makes it, so it is not an essential nutrient for healthy adults."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": [
+      "Red meat",
+      "Dairy products"
+    ]
+  },
+  "forms": [
+    {
+      "name": "Acetyl-L-carnitine (ALCAR)",
+      "note": "The form studied for brain and nerve uses; capsules or powder."
+    },
+    {
+      "name": "L-carnitine and L-carnitine tartrate",
+      "note": "Different forms, mostly studied for exercise and fertility; results do not automatically carry over."
+    },
+    {
+      "name": "Propionyl-L-carnitine and blends",
+      "note": "Studied for circulation and in combinations; check the label for what is actually inside."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for acetyl-L-carnitine was found in the sources checked (Europe PMC search for EFSA or other regulator assessments). Absence of a limit is not proof that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [
+    {
+      "with": "Blood thinners of the warfarin type (acenocoumarol)",
+      "note": "Some case reports describe carnitine changing the effect of acenocoumarol. The evidence is thin. If you take a blood thinner, ask your doctor or pharmacist before taking any carnitine product."
+    }
+  ],
+  "cautions": [
+    "Do not take ALCAR to prevent nerve damage from chemotherapy. In the SWOG S0715 trial of 409 women having taxane chemotherapy for breast cancer, 3 g a day of ALCAR did not help at 12 weeks and nerve symptoms were worse than with placebo at 24 weeks (PMID 23733756); the difference was still seen in follow-up (PMID 29361042). The 2020 ASCO guideline update says use of acetyl-L-carnitine to prevent chemotherapy-induced neuropathy should be discouraged (PMID 32663120). Anyone having chemotherapy should talk to their cancer team before taking any supplement.",
+    "A gut-bacteria by-product of carnitine, called TMAO, has been linked to heart disease risk. A 2013 study found that people who eat meat made more TMAO after a carnitine dose than vegans, and that blood carnitine predicted heart events only in people with high TMAO (PMID 23563705). Whether long-term carnitine supplements raise heart risk in people has not been shown here.",
+    "Human evidence for most uses is a few small or older trials, often from the same research groups. Products and doses differ.",
+    "People who are pregnant or breastfeeding, who have kidney disease, a seizure disorder or a thyroid condition, or who take regular medicines should check with a doctor or pharmacist first. No specific seizure or thyroid-medicine interaction was verified here.",
+    "Memory problems, low mood, persistent tiredness and nerve pain can have causes that need a doctor's assessment. A supplement is not a substitute for that."
+  ],
+  "sources": [
+    {
+      "pmid": "12598816",
+      "doi": "10.1097/00004850-200303000-00001",
+      "title": "Meta-analysis of double blind randomized controlled clinical trials of acetyl-L-carnitine versus placebo in the treatment of mild cognitive impairment and mild Alzheimer's disease.",
+      "year": 2003,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32408706",
+      "doi": "10.3390/nu12051389",
+      "title": "Acetyl-L-Carnitine in Dementia and Other Cognitive Disorders: A Critical Update.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29076953",
+      "doi": "10.1097/psy.0000000000000537",
+      "title": "Acetyl-L-Carnitine Supplementation and the Treatment of Depressive Symptoms: A Systematic Review and Meta-Analysis.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "42261369",
+      "doi": "10.2147/ndt.s586506",
+      "title": "Current Evidence of Acetyl-L-Carnitine Use in Mood Disorders-: A Systematic Review and Meta-Analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25751285",
+      "doi": "10.1371/journal.pone.0119479",
+      "title": "Acetyl-L-carnitine in the treatment of peripheral neuropathic pain: a systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23733756",
+      "doi": "10.1200/jco.2012.44.8738",
+      "title": "Randomized double-blind placebo-controlled trial of acetyl-L-carnitine for the prevention of taxane-induced neuropathy in women undergoing adjuvant breast cancer therapy.",
+      "year": 2013,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "36873277",
+      "doi": "10.4103/1735-5362.367791",
+      "title": "Acetyl-L-carnitine for the prevention of taxane-induced neuropathy in patients with breast cancer: a systematic review and meta-analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "29361042",
+      "doi": "10.1093/jnci/djx259",
+      "title": "Two-Year Trends of Taxane-Induced Neuropathy in Women Enrolled in a Randomized Trial of Acetyl-L-Carnitine (SWOG S0715).",
+      "year": 2018,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "32663120",
+      "doi": "10.1200/jco.20.01399",
+      "title": "Prevention and Management of Chemotherapy-Induced Peripheral Neuropathy in Survivors of Adult Cancers: ASCO Guideline Update.",
+      "year": 2020,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "17658628",
+      "doi": "10.1016/j.archger.2007.03.012",
+      "title": "Acetyl L-carnitine (ALC) treatment in elderly patients with fatigue.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "14759641",
+      "doi": "10.1016/j.jns.2003.11.005",
+      "title": "Comparison of the effects of acetyl L-carnitine and amantadine for the treatment of fatigue in multiple sclerosis: results of a pilot, randomised, double-blind, crossover trial.",
+      "year": 2004,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "32154768",
+      "doi": "10.1080/07315724.2019.1661804",
+      "title": "The Effect of L-Carnitine Supplementation on Exercise-Induced Muscle Damage: A Systematic Review and Meta-Analysis of Randomized Clinical Trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33906513",
+      "doi": "10.1177/15579883211011371",
+      "title": "A Meta-Analysis of the Efficacy of L-Carnitine/L-Acetyl-Carnitine or N-Acetyl-Cysteine in Men With Idiopathic Asthenozoospermia.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "23563705",
+      "doi": "10.1038/nm.3145",
+      "title": "Intestinal microbiota metabolism of L-carnitine, a nutrient in red meat, promotes atherosclerosis.",
+      "year": 2013,
+      "studyType": "observational"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May slow age-related decline in memory and thinking.": "memory and brain ageing",
+      "May ease low mood and depressive symptoms.": "mood and depression",
+      "May ease nerve pain from diabetes or other long-term nerve damage. It should not be used to prevent nerve damage from chemotherapy.": "nerve pain (neuropathy)",
+      "May reduce tiredness in some illnesses and in older adults.": "fatigue",
+      "May help muscles recover after exercise.": "exercise and muscle recovery",
+      "May improve sperm movement in men with unexplained fertility problems.": "male fertility"
+    },
+    "claimCategories": {
+      "May slow age-related decline in memory and thinking.": "longevity",
+      "May ease low mood and depressive symptoms.": "health",
+      "May ease nerve pain from diabetes or other long-term nerve damage. It should not be used to prevent nerve damage from chemotherapy.": "health",
+      "May reduce tiredness in some illnesses and in older adults.": "health",
+      "May help muscles recover after exercise.": "health",
+      "May improve sperm movement in men with unexplained fertility problems.": "health"
+    },
+    "claimLabels": {
+      "May slow age-related decline in memory and thinking.": "Brain ageing",
+      "May ease low mood and depressive symptoms.": "Mood",
+      "May ease nerve pain from diabetes or other long-term nerve damage. It should not be used to prevent nerve damage from chemotherapy.": "Nerve pain",
+      "May reduce tiredness in some illnesses and in older adults.": "Fatigue",
+      "May help muscles recover after exercise.": "Recovery",
+      "May improve sperm movement in men with unexplained fertility problems.": "Male fertility"
+    },
+    "origin": [
+      "Acetyl-L-carnitine (ALCAR, ALC) is a form of carnitine, a compound the body makes and also gets from food, mainly red meat and dairy. Carnitine helps carry fatty acids into the cell's energy-producing parts (mitochondria). ALCAR carries an extra acetyl group, which lets it cross into the brain more easily than plain carnitine, and this is the reason it is studied for the brain and nerves.",
+      "Supplements are made in a lab. Most trials used ALCAR itself, taken by mouth, for 3 to 12 months. Plain L-carnitine, L-carnitine L-tartrate and propionyl-L-carnitine are different products with their own trials, so results for one do not automatically apply to another."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for ALCAR was found. Searches of Europe PMC did not return an EFSA or other regulator opinion that could be opened and confirmed, so no official safe-intake figure is given here. The body makes carnitine itself, and healthy adults are not known to need a supplement. Absence of a limit is not proof that any amount is safe.",
+      "An amount commonly used in studies is about 1.5 to 3 g a day. A meta-analysis of trials in mild cognitive impairment and early Alzheimer's disease reports doses of 1.5 to 3.0 g a day for 3 to 12 months. A large cancer-patient trial gave 3 g a day (1,000 mg three times a day) for 24 weeks, and a trial in multiple sclerosis fatigue gave 1 g twice a day for 3 months. This is not a reference intake or a personal recommendation.",
+      "When reading a label, check that the product is acetyl-L-carnitine (not plain L-carnitine or a blend), the amount of ALCAR per capsule, and how many capsules make a serving. Look for the L form. Because studies ran for months, effects are not expected within days."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 1500
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 3000
+        }
+      ],
+      "foods": [],
+      "verdict": "Not checked. Carnitine occurs naturally in red meat and dairy, but this guide has no checked per-food figures for acetyl-L-carnitine to compare with the 1.5 to 3 g used in studies.",
+      "notChecked": "Carnitine, including its acetyl form, occurs naturally in red meat and dairy, but the UK food table (CoFID 2021) used by the app does not list carnitine or acetylcarnitine, so no per-100 g amounts are given.",
+      "sources": [
+        {
+          "pmid": "12598816",
+          "doi": "10.1097/00004850-200303000-00001",
+          "title": "Meta-analysis of double blind randomized controlled clinical trials of acetyl-L-carnitine versus placebo in the treatment of mild cognitive impairment and mild Alzheimer's disease.",
+          "year": 2003,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}

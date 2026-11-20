@@ -1,0 +1,105 @@
+{
+  "id": "psa",
+  "name": "PSA (prostate-specific antigen), total",
+  "abbreviation": "PSA",
+  "category": "Hormones",
+  "aliases": [
+    "PSA",
+    "Total PSA",
+    "PSA total",
+    "PSA, total",
+    "PSA (total)",
+    "tPSA",
+    "Prostate-specific antigen",
+    "Prostate specific antigen",
+    "Prostate-specific antigen, total",
+    "PSA gesamt",
+    "Gesamt-PSA",
+    "Prostataspezifisches Antigen",
+    "PSA-total",
+    "Prosztata specifikus antigén",
+    "Prosztata-specifikus antigén",
+    "PSA (összes)",
+    "Antigène prostatique spécifique",
+    "Antigène spécifique de la prostate",
+    "PSA total sérique",
+    "Antígeno prostático específico",
+    "Antígeno prostático específico total",
+    "PSA totalt",
+    "Prostataspecifikt antigen",
+    "S-PSA"
+  ],
+  "loinc": [
+    "2857-1"
+  ],
+  "canonicalUnit": "ng/mL",
+  "conversions": {
+    "ng/mL": 1,
+    "µg/L": 1,
+    "pg/mL": 0.001
+  },
+  "defaultRanges": [
+    {
+      "high": 4,
+      "sex": "m"
+    }
+  ],
+  "comparisonOnly": true,
+  "rangeNote": "4 ng/mL is a long-used reference point, not a line between healthy and not: prostate cancer is found at levels below it, and PSA normally rises with age and prostate size, so labs and guidelines use age-specific or risk-specific limits. The app shows it as a reference position only; your lab's printed range is used when there is one. PSA can rise temporarily after a prostate infection, ejaculation, cycling, a catheter, prostate examination or biopsy, so tests are usually taken a few days after such events. PSA is checked before and during testosterone treatment.",
+  "summary": "PSA is a protein made by the prostate gland, and a small amount reaches the blood. Because it is androgen-regulated, it is tracked alongside testosterone, and it is the blood test used in prostate screening and in monitoring prostate disease.",
+  "high": {
+    "meaning": "A high PSA means the prostate is releasing more PSA than usual. This has many harmless and treatable causes, and it can also be a sign of prostate cancer, so a result above the lab's reference should be discussed with a doctor, who may repeat it or arrange further tests.",
+    "commonCauses": [
+      "Benign prostate enlargement, which is common with age",
+      "Prostate infection or inflammation (prostatitis) or a urinary tract infection",
+      "Ejaculation, vigorous cycling or a prostate examination in the days before the test",
+      "A catheter, prostate biopsy or other procedure",
+      "Prostate cancer",
+      "Testosterone treatment, which can raise it in men with low testosterone (it is monitored for this reason)"
+    ]
+  },
+  "low": {
+    "meaning": "A low PSA is generally expected and is not a problem. It does not completely rule out prostate cancer.",
+    "commonCauses": [
+      "Normal for a younger man or a small prostate",
+      "Medicines used for prostate enlargement, such as finasteride and dutasteride, which lower PSA by roughly half over time",
+      "Treatment that lowers testosterone",
+      "Prostate removal or radiation treatment"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 8.8,
+    "ciLow": 8,
+    "ciHigh": 9.7,
+    "studies": 1,
+    "analyte": "Prostate specific antigen (PSA)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "15163773",
+      "doi": "10.1056/nejmoa031918",
+      "title": "Prevalence of prostate cancer among men with a prostate-specific antigen level < or =4.0 ng per milliliter.",
+      "year": 2004,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29801017",
+      "doi": "10.1001/jama.2018.3710",
+      "title": "Screening for prostate cancer: US Preventive Services Task Force recommendation statement.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone therapy in men with hypogonadism: an Endocrine Society clinical practice guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    }
+  ]
+}

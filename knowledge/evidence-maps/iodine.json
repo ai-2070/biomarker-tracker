@@ -90,7 +90,6 @@
    "id": "child-development-pregnancy",
    "label": "Child development (pregnancy)",
    "anyDesign": false,
-   "finding": "Child development after iodine supplements in pregnancy",
    "counts": {
     "reviews": 97,
     "trialReviews": 26,
@@ -683,7 +682,6 @@
    "id": "maternal-thyroid",
    "label": "Mother's thyroid",
    "anyDesign": false,
-   "finding": "Mother's thyroid during and after pregnancy",
    "counts": {
     "reviews": 105,
     "trialReviews": 16,
@@ -1188,7 +1186,6 @@
    "id": "schoolchildren",
    "label": "Schoolchildren's thinking",
    "anyDesign": false,
-   "finding": "Thinking skills in schoolchildren",
    "counts": {
     "reviews": 39,
     "trialReviews": 10,
@@ -1522,7 +1519,6 @@
    "id": "young-children",
    "label": "Young children's development",
    "anyDesign": false,
-   "finding": "Mental development of young children in iodine-deficient areas",
    "counts": {
     "reviews": 58,
     "trialReviews": 15,

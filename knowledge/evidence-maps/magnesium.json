@@ -46,7 +46,6 @@
    "id": "blood-pressure",
    "label": "Blood pressure",
    "anyDesign": false,
-   "finding": "Blood pressure",
    "counts": {
     "reviews": 31,
     "trialReviews": 14,
@@ -442,7 +441,6 @@
    "id": "cramps",
    "label": "Night-time leg cramps",
    "anyDesign": false,
-   "finding": "Night-time leg cramps",
    "counts": {
     "reviews": 8,
     "trialReviews": 3,
@@ -578,7 +576,6 @@
    "id": "sleep",
    "label": "Sleep",
    "anyDesign": false,
-   "finding": "Sleep in older adults with insomnia",
    "counts": {
     "reviews": 6,
     "trialReviews": 6,
@@ -737,7 +734,6 @@
    "id": "migraine",
    "label": "Migraine prevention",
    "anyDesign": false,
-   "finding": "Migraine attacks (prevention)",
    "counts": {
     "reviews": 4,
     "trialReviews": 3,
@@ -884,7 +880,6 @@
    "id": "blood-sugar",
    "label": "Blood sugar",
    "anyDesign": false,
-   "finding": "Blood sugar",
    "counts": {
     "reviews": 61,
     "trialReviews": 25,
@@ -1284,7 +1279,6 @@
    "id": "pregnancy",
    "label": "Pregnancy outcomes",
    "anyDesign": false,
-   "finding": "Pregnancy outcomes (pre-eclampsia, baby's growth, stillbirth)",
    "counts": {
     "reviews": 39,
     "trialReviews": 11,

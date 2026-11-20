@@ -2,23 +2,176 @@
   "id": "glycine",
   "name": "Glycine",
   "kind": "supplement",
-  "otherNames": ["Glycine", "glycine amino acid", "aminoacetic acid"],
-  "researchStatus": "not-reviewed",
-  "summary": "Glycine is a normal amino acid found in proteins and made by the body. It also takes part in making other molecules; selling it as a supplement does not mean that everyone has too little.",
-  "commonUses": ["Used in products marketed for sleep", "Used in amino-acid and glutathione-support products"],
-  "roles": ["Glycine is a building block for proteins and for glutathione.", "It participates in one-carbon metabolism, the transfer of small chemical units used to make and maintain other molecules."],
-  "status": {"biomarkerIds": [], "note": "This basic guide does not provide a routine status test. Lower blood glycine in some research populations does not establish a general dietary deficiency syndrome or a need for supplements."},
-  "low": {"signs": [], "atRisk": []},
-  "high": {"signs": [], "note": "See the cautions below; this guide does not establish a safe upper amount."},
-  "foodSources": {"examples": [], "note": "Glycine occurs in dietary proteins, and the body can also make it. This is different from taking isolated glycine."},
-  "forms": [
-    {"name": "Isolated glycine", "note": "Sold as an amino-acid powder or in capsules. This is not a complete protein source."},
-    {"name": "Combination products", "note": "Products combining glycine with NAC or other ingredients have different compositions from glycine alone. Findings about a mixture cannot be assigned to glycine by itself."}
+  "otherNames": [
+    "Glycine",
+    "glycine amino acid",
+    "aminoacetic acid"
   ],
-  "reference": {"intake": [], "noUpperLimit": "This basic guide does not provide reference intakes or upper-limit values.", "sources": []},
+  "researchStatus": "not-reviewed",
+  "summary": "Glycine is the simplest amino acid. The body makes it and uses it to build proteins such as collagen, and to make other molecules including glutathione and creatine. Supplements are sold in powders and capsules.",
+  "commonUses": [
+    "May improve sleep quality",
+    "May calm the nervous system and ease stress",
+    "May support collagen formation and skin",
+    "May raise glutathione, the body's main antioxidant",
+    "May support healthy ageing (with NAC)"
+  ],
+  "roles": [
+    "A building block of proteins, and the most common amino acid in collagen.",
+    "Used by the body to make glutathione (an antioxidant), creatine and bile acids.",
+    "Acts as a signal in the brain and spinal cord."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "There is no routine clinical test for glycine status. Lower blood glycine in some research groups does not establish a deficiency or a need for supplements."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": [],
+    "note": "Glycine is not an essential amino acid. One metabolic analysis estimated that the body makes about 3 g a day and the diet adds about 1.5–3 g, and argued this may fall short of what collagen turnover needs. That is a model, not a diagnosed deficiency, and no required intake has been set."
+  },
+  "high": {
+    "signs": [],
+    "note": "No upper limit has been set. Long-term supplement safety has not been established in this guide."
+  },
+  "foodSources": {
+    "examples": [
+      "Meat, poultry and fish",
+      "Gelatin, bone broth and other collagen-rich foods",
+      "Eggs, dairy and legumes"
+    ],
+    "note": "Glycine occurs inside dietary proteins, with the most in collagen-rich foods. Eating these foods is different from taking isolated glycine."
+  },
+  "forms": [
+    {
+      "name": "Plain glycine powder or capsules",
+      "note": "The form used in the sleep studies."
+    },
+    {
+      "name": "Glycinate minerals (e.g. magnesium glycinate, zinc bisglycinate)",
+      "note": "Glycine bound to a mineral. The amount of glycine in them is small, and results on glycine alone do not apply to them."
+    },
+    {
+      "name": "Combination products (GlyNAC)",
+      "note": "Glycine with NAC. Findings about the mixture cannot be assigned to glycine by itself."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for glycine was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe. Health Canada has licensing dose limits for some of these ingredients; they are product-licensing rules, not safety limits.",
+    "sources": []
+  },
   "findings": [],
-  "interactions": [],
-  "cautions": ["Being a normal part of proteins does not establish that concentrated supplements are safe in every circumstance. This guide does not establish long-term supplement safety.", "Blood-level associations with metabolic disease are not a diagnosis of glycine deficiency and are not instructions to treat a condition with glycine.", "This guide has not assessed medicine interactions or safety in pregnancy, breastfeeding or children; an empty interaction list is not confirmation that every combination is safe."],
+  "interactions": [
+    {
+      "with": "Pregnancy or breastfeeding",
+      "note": "Supplement safety has not been established during pregnancy or breastfeeding. Discuss it with a doctor or pharmacist.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [
+    "Being a normal part of proteins does not establish that concentrated supplements are safe in every circumstance. Long-term supplement safety has not been established in this guide.",
+    "Blood-level associations with metabolic disease are not a diagnosis of glycine deficiency and are not instructions to treat a condition with glycine.",
+    "Medicine interactions have not been fully assessed; an empty list is not confirmation that every combination is safe. Ask a doctor or pharmacist if you use prescription medicines, especially for mental health."
+  ],
   "evidenceClaims": [],
-  "sources": [{"pmid": "31208147", "doi": "10.3390/nu11061356", "title": "Glycine Metabolism and Its Alterations in Obesity and Metabolic Diseases.", "year": 2019, "studyType": "review"}]
+  "sources": [
+    {
+      "pmid": "31208147",
+      "doi": "10.3390/nu11061356",
+      "title": "Glycine Metabolism and Its Alterations in Obesity and Metabolic Diseases.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23615880",
+      "doi": "10.1007/s00726-013-1493-1",
+      "title": "Glycine metabolism in animals and humans: implications for nutrition and health.",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20093739",
+      "doi": "10.1007/s12038-009-0100-9",
+      "title": "A weak link in metabolism: the metabolic capacity for glycine biosynthesis does not satisfy the need for collagen synthesis.",
+      "year": 2009,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22293292",
+      "doi": "10.1254/jphs.11r04fm",
+      "title": "New therapeutic strategy for amino acid medicine: glycine improves the quality of sleep.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22529837",
+      "doi": "10.3389/fneur.2012.00061",
+      "title": "The effects of glycine on subjective daytime performance in partially sleep-restricted healthy volunteers.",
+      "year": 2012,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "35975308",
+      "doi": "10.1093/gerona/glac135",
+      "title": "Supplementing Glycine and N-Acetylcysteine (GlyNAC) in Older Adults Improves Glutathione Deficiency, Oxidative Stress, Mitochondrial Dysfunction, Inflammation, Physical Function, and Aging Hallmarks: A Randomized Clinical Trial.",
+      "year": 2023,
+      "studyType": "rct"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-03",
+    "claimTopics": {
+      "May improve sleep quality": "sleep",
+      "May calm the nervous system and ease stress": "stress and calming",
+      "May support collagen formation and skin": "skin and collagen",
+      "May raise glutathione, the body's main antioxidant": "glutathione",
+      "May support healthy ageing (with NAC)": "ageing"
+    },
+    "claimCategories": {
+      "May improve sleep quality": "health",
+      "May calm the nervous system and ease stress": "health",
+      "May support collagen formation and skin": "appearance",
+      "May raise glutathione, the body's main antioxidant": "health",
+      "May support healthy ageing (with NAC)": "longevity"
+    },
+    "claimLabels": {
+      "May improve sleep quality": "Sleep quality",
+      "May calm the nervous system and ease stress": "Calming and stress",
+      "May support collagen formation and skin": "Collagen and skin",
+      "May raise glutathione, the body's main antioxidant": "Glutathione",
+      "May support healthy ageing (with NAC)": "Healthy ageing"
+    },
+    "origin": [
+      "Glycine is made in the body, mostly from the amino acid serine, in the liver and kidneys. It also comes from dietary protein. Collagen, the main protein of skin, tendons and bone, is especially rich in glycine.",
+      "Supplement glycine is a manufactured powder, not an extract of a food. Combination products such as GlyNAC mix it with N-acetylcysteine (NAC), so results for a mixture cannot be credited to glycine alone."
+    ],
+    "dosage": [
+      "There is no established daily requirement or upper limit. The sleep trial in this guide gave 3 g before bedtime; that describes the study, not a recommended amount.",
+      "Amounts commonly used in studies and supplements are about 2 to 3 g a day. This is not a reference intake or a personal recommendation.",
+      "Check the glycine content in grams on the label, and avoid adding together several products that contain it."
+    ],
+    "foodAmounts": {
+      "targets": [],
+      "foods": [],
+      "verdict": "Partly. A normal diet supplies about 1.5–3 g of glycine a day on top of what the body makes, so the 3 g used in the sleep trial is within the range food can reach, mainly from protein and collagen-rich foods such as meat, fish and bone broth. But glycine from food arrives inside protein, not as a bedtime amount on its own, so it is a different intervention from the supplement.",
+      "notChecked": "This guide has no checked per-food glycine figures, so it does not list how many grams of each food would give a set amount.",
+      "sources": [
+        {
+          "pmid": "20093739",
+          "doi": "10.1007/s12038-009-0100-9",
+          "title": "A weak link in metabolism: the metabolic capacity for glycine biosynthesis does not satisfy the need for collagen synthesis.",
+          "year": 2009,
+          "studyType": "review"
+        },
+        {
+          "pmid": "23615880",
+          "doi": "10.1007/s00726-013-1493-1",
+          "title": "Glycine metabolism in animals and humans: implications for nutrition and health.",
+          "year": 2013,
+          "studyType": "review"
+        }
+      ]
+    }
+  }
 }

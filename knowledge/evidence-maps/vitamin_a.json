@@ -79,7 +79,6 @@
    "id": "lung-cancer",
    "label": "Lung cancer",
    "anyDesign": false,
-   "finding": "Lung cancer (beta-carotene supplements)",
    "counts": {
     "reviews": 11,
     "trialReviews": 3,
@@ -425,7 +424,6 @@
    "id": "cancer",
    "label": "Cancer overall",
    "anyDesign": false,
-   "finding": "Cancer overall and other cancer types (beta-carotene supplements)",
    "counts": {
     "reviews": 73,
     "trialReviews": 16,
@@ -1144,7 +1142,6 @@
    "id": "mortality",
    "label": "Death from any cause",
    "anyDesign": false,
-   "finding": "Death from any cause",
    "counts": {
     "reviews": 43,
     "trialReviews": 11,
@@ -1942,7 +1939,6 @@
    "id": "children",
    "label": "Young children",
    "anyDesign": false,
-   "finding": "Death and illness in young children",
    "counts": {
     "reviews": 115,
     "trialReviews": 46,
@@ -3096,7 +3092,6 @@
    "id": "birth-defects",
    "label": "Birth defects",
    "anyDesign": false,
-   "finding": "Birth defects (preformed vitamin A in early pregnancy)",
    "counts": {
     "reviews": 28,
     "trialReviews": 12,

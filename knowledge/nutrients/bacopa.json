@@ -1,0 +1,163 @@
+{
+  "id": "bacopa",
+  "name": "Bacopa",
+  "kind": "supplement",
+  "otherNames": [
+    "Bacopa monnieri",
+    "Brahmi",
+    "Water hyssop",
+    "Bacopa monniera"
+  ],
+  "researchStatus": "not-reviewed",
+  "summary": "Bacopa is an Ayurvedic marsh plant whose standardised extract is sold for memory, calm and focus. Meta-analyses of small, mostly 12-week trials suggest some benefit for memory and attention speed, but the evidence is limited and products differ.",
+  "commonUses": [
+    "May improve memory and learning.",
+    "May ease anxiety and stress.",
+    "May improve focus and attention.",
+    "May slow age-related decline in thinking."
+  ],
+  "roles": [
+    "It is a traditional herbal remedy, not an essential nutrient. No needed role in the body is established."
+  ],
+  "status": {
+    "biomarkerIds": [],
+    "note": "This basic guide does not provide a routine status test."
+  },
+  "low": {
+    "signs": [],
+    "atRisk": []
+  },
+  "high": {
+    "signs": [],
+    "note": "See the cautions below; this guide does not establish a safe upper amount."
+  },
+  "foodSources": {
+    "examples": []
+  },
+  "forms": [
+    {
+      "name": "Standardised whole-plant extract",
+      "note": "The form used in most trials, often a branded extract standardised to bacosides."
+    },
+    {
+      "name": "Other extracts or blends",
+      "note": "Different makers and combinations; trial results for one extract do not carry over."
+    },
+    {
+      "name": "Plain plant powder",
+      "note": "Bacoside content is less predictable."
+    }
+  ],
+  "reference": {
+    "intake": [],
+    "noUpperLimit": "No tolerable upper intake level for bacopa was found in the sources checked (Europe PMC search for EFSA, EMA or other regulator assessments). Absence of a limit is not proof that any amount is safe.",
+    "sources": []
+  },
+  "findings": [],
+  "evidenceClaims": [],
+  "interactions": [],
+  "cautions": [
+    "In trials, bacopa caused stomach and bowel side effects such as more frequent stools, abdominal cramps and nausea. Taking it with food is often suggested for this reason.",
+    "Long-term safety in people is not well studied, and trials were short (mostly 12 weeks). Products differ between makers.",
+    "People who are pregnant or breastfeeding, who take regular medicines (including thyroid, sedative or heart medicines) or who have a long-term condition should check with a doctor or pharmacist first. No specific drug interaction was verified.",
+    "Memory problems and anxiety can have causes that need a doctor's assessment. A supplement is not a substitute for that."
+  ],
+  "sources": [
+    {
+      "pmid": "24252493",
+      "doi": "10.1016/j.jep.2013.11.008",
+      "title": "Meta-analysis of randomized controlled trials on cognitive effects of Bacopa monnieri extract.",
+      "year": 2014,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "22747190",
+      "doi": "10.1089/acm.2011.0367",
+      "title": "The cognitive-enhancing effects of Bacopa monnieri: a systematic review of randomized, controlled human clinical trials.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41678913",
+      "doi": "10.1016/j.phymed.2026.157915",
+      "title": "Comparative effects of Bacopa monnieri and Ginkgo biloba on cognitive functions: A systematic review and network meta-analysis.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "18611150",
+      "doi": "10.1089/acm.2008.0018",
+      "title": "Effects of a standardized Bacopa monnieri extract on cognitive performance, anxiety, and depression in the elderly: a randomized, double-blind, placebo-controlled trial.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "20590480",
+      "doi": "10.1089/acm.2009.0342",
+      "title": "Does Bacopa monnieri improve memory performance in older persons? Results of a randomized, placebo-controlled, double-blind trial.",
+      "year": 2010,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "28588366",
+      "doi": "10.1159/000475900",
+      "title": "Neurocognitive Effect of Nootropic Drug Brahmi (Bacopa monnieri) in Alzheimer's Disease.",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ],
+  "simpleGuide": {
+    "factsReviewedOn": "2026-11-18",
+    "claimTopics": {
+      "May improve memory and learning.": "memory and learning",
+      "May ease anxiety and stress.": "anxiety and stress",
+      "May improve focus and attention.": "focus and attention",
+      "May slow age-related decline in thinking.": "brain ageing"
+    },
+    "claimCategories": {
+      "May improve memory and learning.": "health",
+      "May ease anxiety and stress.": "health",
+      "May improve focus and attention.": "health",
+      "May slow age-related decline in thinking.": "longevity"
+    },
+    "claimLabels": {
+      "May improve memory and learning.": "Memory",
+      "May ease anxiety and stress.": "Calm",
+      "May improve focus and attention.": "Focus",
+      "May slow age-related decline in thinking.": "Brain ageing"
+    },
+    "origin": [
+      "Bacopa (Bacopa monnieri, also called brahmi) is a creeping marsh plant that grows in wet tropical areas, including India. It has been used for centuries in Ayurvedic medicine as a tonic for the mind. Its characteristic compounds are saponins called bacosides.",
+      "Supplements are usually a standardised extract of the above-ground plant, often standardised to a percentage of bacosides (commonly around 20 percent). Several different branded extracts have been tested, so results for one product may not apply to another. Most trials last 12 weeks, because effects, if any, are reported to build up slowly."
+    ],
+    "dosage": [
+      "No reference intake or tolerable upper intake level for bacopa was found from EFSA or other official sources in the searches made for this guide. That is not proof that none exists, and not evidence that any amount is safe.",
+      "An amount commonly used in studies and supplements is about 300 to 450 mg a day of a standardised extract. A systematic review found 12-week trials using 300 to 450 mg of extract a day, and key trials gave 300 mg a day for 12 weeks (older adults). This is not a reference intake or a personal recommendation.",
+      "When reading a label, check that it is a standardised extract of the whole plant (not plain powder), the extract type and the stated bacoside content, and the amount of extract rather than raw plant. Because trials ran for 12 weeks, effects are not expected within days. Bacopa can upset the stomach, so some products advise taking it with food."
+    ],
+    "foodAmounts": {
+      "targets": [
+        {
+          "label": "Amount commonly used in studies and supplements (low)",
+          "mg": 300
+        },
+        {
+          "label": "Amount commonly used in studies and supplements (high)",
+          "mg": 450
+        }
+      ],
+      "foods": [],
+      "verdict": "Not applicable. Bacopa is a herb used as a standardised extract, not an ordinary food, so there is no food amount to compare.",
+      "notChecked": "Bacopa is not measured in the UK food table used by this app.",
+      "sources": [
+        {
+          "pmid": "24252493",
+          "doi": "10.1016/j.jep.2013.11.008",
+          "title": "Meta-analysis of randomized controlled trials on cognitive effects of Bacopa monnieri extract.",
+          "year": 2014,
+          "studyType": "meta-analysis"
+        }
+      ]
+    }
+  }
+}
