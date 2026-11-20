@@ -1,0 +1,87 @@
+{
+  "id": "zinc",
+  "name": "Zinc",
+  "category": "Iron & vitamins",
+  "aliases": [
+    "Zinc",
+    "Zinc (serum)",
+    "Zinc (S)",
+    "Serum zinc",
+    "Plasma zinc",
+    "Zinc, serum",
+    "Zinc, plasma",
+    "Zn (serum)",
+    "Zink",
+    "Zink (Serum)",
+    "Zink im Serum",
+    "Cink",
+    "Cink (szérum)",
+    "Zinc sérique",
+    "Zinc plasmatique",
+    "Zinc sérico",
+    "Zinc en suero",
+    "Zink (serum)",
+    "Zink i serum"
+  ],
+  "loinc": [
+    "14955-9",
+    "5763-8"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "µg/dL": 0.153,
+    "µg/L": 0.0153,
+    "mg/L": 15.3
+  },
+  "rangeNote": "No default range: cut-offs for low zinc depend on age, sex, the time of day and whether the person had eaten, and labs use their own limits. Blood zinc is a limited measure of zinc status: it is affected by recent meals, the time of day, inflammation and some medicines and hormones, and a normal result does not rule out a shortage. µg/dL to µmol/L uses the atomic weight of zinc (65.38).",
+  "summary": "Zinc is a trace mineral needed for immune function, wound healing, taste and many enzymes. The blood level is a rough guide to zinc status, not a precise measure.",
+  "high": {
+    "meaning": "A high zinc level is uncommon. It usually results from high-dose supplements, and long-term excess can lower copper and affect blood counts and immune function.",
+    "commonCauses": [
+      "High-dose zinc supplements, lozenges or denture creams",
+      "Contaminated blood tube or sampling",
+      "Kidney disease (less often)",
+      "Rarely, industrial exposure"
+    ]
+  },
+  "low": {
+    "meaning": "A low zinc level can come from low intake, poor absorption or losses, and also from inflammation, which temporarily lowers blood zinc without a true shortage. It is read together with symptoms such as poor wound healing, hair loss, frequent infections or loss of taste.",
+    "commonCauses": [
+      "Low dietary zinc, or diets high in phytate that reduce absorption",
+      "Digestive conditions that reduce absorption (e.g. coeliac or inflammatory bowel disease)",
+      "Acute illness or inflammation (lowers blood zinc temporarily)",
+      "Pregnancy and breastfeeding (higher needs)",
+      "Heavy alcohol use or liver disease",
+      "Some medicines, such as diuretics"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 8.5,
+    "ciLow": 6.3,
+    "ciHigh": 11,
+    "studies": 6,
+    "analyte": "Zinc",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "26962190",
+      "doi": "10.3945/jn.115.220079",
+      "title": "Biomarkers of Nutrition for Development (BOND)-Zinc Review",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "38917458",
+      "doi": "10.1093/nutrit/nuae072",
+      "title": "Methods of Assessment of Zinc Status in Humans: An Updated Review and Meta-analysis",
+      "year": 2025,
+      "studyType": "review"
+    }
+  ]
+}

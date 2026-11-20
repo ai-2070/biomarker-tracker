@@ -1,0 +1,73 @@
+{
+  "id": "c_peptide",
+  "name": "C-peptide",
+  "category": "Metabolic",
+  "aliases": [
+    "C-peptide",
+    "C peptide",
+    "C-Peptide",
+    "Cpeptide",
+    "C-peptide (S)",
+    "C-peptide, fasting",
+    "Fasting C-peptide",
+    "Connecting peptide",
+    "C-Peptid",
+    "C-Peptid (nüchtern)",
+    "C-peptid",
+    "C-peptid (éhgyomri)",
+    "C-peptid (szérum)",
+    "Peptide C",
+    "Peptide-C",
+    "Péptido C",
+    "Péptido-C"
+  ],
+  "loinc": [
+    "1986-9",
+    "14633-2"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "nmol/L": 1000,
+    "ng/mL": 331.1,
+    "µg/L": 331.1
+  },
+  "rangeNote": "No default range: C-peptide has to be read with the blood glucose at the time of the sample, and labs and assays use different limits. The sample may be taken fasting or after a meal or stimulation test, and the setting changes the expected value. C-peptide is cleared by the kidneys, so it can read higher when kidney function is low. ng/mL to pmol/L uses the molar mass of C-peptide (about 3,020 g/mol).",
+  "summary": "C-peptide is released from the pancreas in equal amounts with insulin, so it shows how much insulin the body is making itself. It is excreted at a steadier rate than insulin and is not affected by insulin injections.",
+  "high": {
+    "meaning": "A high C-peptide means the pancreas is releasing a lot of insulin, which can happen when the body responds poorly to insulin (insulin resistance). It is read together with a blood glucose measured at the same time.",
+    "commonCauses": [
+      "Insulin resistance, as in type 2 diabetes or obesity",
+      "Reduced kidney function (slower clearance)",
+      "Medicines that stimulate insulin release (sulfonylureas)",
+      "Rarely, an insulin-producing tumour",
+      "Recent meal or a stimulation test"
+    ]
+  },
+  "low": {
+    "meaning": "A low C-peptide means the pancreas is making little insulin of its own. A level below 0.2 nmol/L has been associated with type 1 diabetes, and C-peptide is used to help classify diabetes in people on insulin.",
+    "commonCauses": [
+      "Type 1 diabetes or other loss of insulin-producing cells",
+      "Long-standing diabetes with reduced insulin production",
+      "Surgical removal of the pancreas",
+      "Fasting or a very low-carbohydrate state"
+    ]
+  },
+  "affectedBy": [],
+  "sources": [
+    {
+      "pmid": "23413806",
+      "doi": "10.1111/dme.12159",
+      "title": "The clinical utility of C-peptide measurement in the care of patients with diabetes",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "28484968",
+      "doi": "10.1007/s13300-017-0265-4",
+      "title": "A Practical Review of C-Peptide Testing in Diabetes",
+      "year": 2017,
+      "studyType": "review"
+    }
+  ]
+}

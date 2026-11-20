@@ -1,0 +1,99 @@
+{
+  "id": "cortisol",
+  "name": "Cortisol (morning)",
+  "category": "Hormones",
+  "aliases": [
+    "Cortisol",
+    "Serum cortisol",
+    "Plasma cortisol",
+    "Cortisol (serum)",
+    "Cortisol, serum",
+    "Cortisol, plasma",
+    "Cortisol AM",
+    "Cortisol morning",
+    "Morning cortisol",
+    "Cortisol (morning)",
+    "Cortisol 8 am",
+    "Kortisol",
+    "Kortisol (Serum)",
+    "Kortisol morgens",
+    "Kortizol",
+    "Kortizol (szérum)",
+    "Cortisol sérique",
+    "Cortisol plasmatique",
+    "Cortisolémie",
+    "Cortisol sérico",
+    "Cortisol plasmático",
+    "Cortisol i serum",
+    "Kortisol i serum",
+    "S-Kortisol"
+  ],
+  "loinc": [
+    "2143-6"
+  ],
+  "canonicalUnit": "nmol/L",
+  "conversions": {
+    "nmol/L": 1,
+    "µg/dL": 27.59,
+    "µg/L": 2.759,
+    "ng/mL": 2.759,
+    "ng/dL": 0.02759
+  },
+  "comparisonOnly": true,
+  "rangeNote": "Cortisol is highest soon after waking and lowest around midnight, so a result only makes sense with the time of day; the app shows no default range and uses the range printed by your lab. The test measures total cortisol, which rises with oestrogen-containing medicines and pregnancy, and is lowered by glucocorticoid medicines. Illness, stress and poor sleep also change it. 1 µg/dL equals about 27.6 nmol/L.",
+  "summary": "Cortisol is the body's main stress hormone, made by the adrenal glands. It helps control blood sugar, blood pressure and the response to illness, and follows a daily rhythm with a peak in the morning.",
+  "high": {
+    "meaning": "A high cortisol is often temporary, for example after stress, illness or poor sleep, or from a sample taken later in the day than the lab expected. Persistently high cortisol can come from medicines or, less commonly, from a condition where the body makes too much (Cushing's syndrome), which needs further tests that a single morning sample cannot settle.",
+    "commonCauses": [
+      "Acute stress, illness, pain or heavy exercise before the test",
+      "Poor sleep or shift work (changes the daily rhythm)",
+      "Oestrogen-containing medicines, including oral contraceptives, and pregnancy, which raise the cortisol-carrying protein",
+      "Obesity, depression or heavy alcohol use",
+      "A pituitary or adrenal tumour (rare)"
+    ]
+  },
+  "low": {
+    "meaning": "A low morning cortisol can mean the adrenal glands or pituitary gland are not making enough (adrenal insufficiency), which needs a doctor's assessment and usually a confirmation test. It is more often caused by glucocorticoid medicines.",
+    "commonCauses": [
+      "Glucocorticoid medicines such as prednisolone, dexamethasone and hydrocortisone, including tablets, inhalers, creams and injections, which suppress the body's own production",
+      "Sample taken in the afternoon or evening, when levels are naturally low",
+      "Autoimmune damage to the adrenal glands or pituitary disease (uncommon)",
+      "Recent sudden stop of long-term glucocorticoid treatment"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 16.4,
+    "ciLow": 15.5,
+    "ciHigh": 21.7,
+    "studies": 3,
+    "analyte": "Cortisol",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "26760044",
+      "doi": "10.1210/jc.2015-1710",
+      "title": "Diagnosis and treatment of primary adrenal insufficiency: an Endocrine Society clinical practice guideline.",
+      "year": 2016,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "18334580",
+      "doi": "10.1210/jc.2008-0125",
+      "title": "The diagnosis of Cushing's syndrome: an Endocrine Society clinical practice guideline.",
+      "year": 2008,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "12521235",
+      "doi": "10.1515/cclm.2002.202",
+      "title": "Reference ranges for serum concentrations of lutropin (LH), follitropin (FSH), estradiol (E2), prolactin, progesterone, sex hormone-binding globulin (SHBG), dehydroepiandrosterone sulfate (DHEAS), cortisol and ferritin in neonates, children and young adults.",
+      "year": 2002,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "id": "dhea_s",
+  "name": "DHEA sulfate",
+  "abbreviation": "DHEA-S",
+  "category": "Hormones",
+  "aliases": [
+    "DHEA sulfate",
+    "DHEA sulphate",
+    "DHEA-S",
+    "DHEAS",
+    "DHEA-sulfate",
+    "DHEA-sulphate",
+    "Dehydroepiandrosterone sulfate",
+    "Dehydroepiandrosterone sulphate",
+    "Dehydroepiandrosterone-sulfate",
+    "DHEA-Sulfat",
+    "DHEA Sulfat",
+    "Dehydroepiandrosteronsulfat",
+    "DHEA-szulfát",
+    "Dehidroepiandroszteron-szulfát",
+    "Sulfate de DHEA",
+    "DHEA sulfate sérique",
+    "SDHEA",
+    "Sulfato de DHEA",
+    "DHEA sulfato",
+    "Sulfato de dehidroepiandrosterona",
+    "DHEA-sulfat",
+    "DHEAS i serum"
+  ],
+  "loinc": [
+    "2191-5"
+  ],
+  "canonicalUnit": "µmol/L",
+  "conversions": {
+    "µmol/L": 1,
+    "nmol/L": 0.001,
+    "µg/dL": 0.02714,
+    "µg/mL": 2.714,
+    "mg/L": 2.714,
+    "µg/L": 0.002714,
+    "ng/mL": 0.002714
+  },
+  "comparisonOnly": true,
+  "rangeNote": "Normal values fall steadily with age after the twenties and differ by sex and assay, so the app shows no default range and uses the range printed by your lab. Oral contraceptives and glucocorticoid medicines can lower it. 1 µg/dL equals about 0.0271 µmol/L (molar mass of DHEA sulfate 368.5 g/mol).",
+  "summary": "DHEA sulfate is the most abundant hormone made by the adrenal glands and acts as a stored form that the body converts into androgens and oestrogens. It is highest in young adulthood and then declines gradually with age.",
+  "high": {
+    "meaning": "A high DHEA-S points to the adrenal glands making more androgens (male-type hormones) than usual. It is one of the tests used when a woman has excess hair growth, acne or irregular periods, but it has to be read with age and other hormones.",
+    "commonCauses": [
+      "Polycystic ovary syndrome",
+      "Late-onset congenital adrenal hyperplasia (an inherited enzyme difference)",
+      "Adrenal tumours (rare)",
+      "DHEA supplements",
+      "Young age, when levels are naturally at their peak"
+    ]
+  },
+  "low": {
+    "meaning": "A low DHEA-S is common in older adults, because it falls with age. In younger people it can reflect reduced adrenal or pituitary activity, and it is one part of the picture in adrenal insufficiency.",
+    "commonCauses": [
+      "Older age",
+      "Glucocorticoid medicines, which suppress the adrenal glands",
+      "Oral contraceptives",
+      "Adrenal insufficiency or pituitary disease",
+      "Long-term illness or severe stress"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 20,
+    "ciLow": 17.4,
+    "ciHigh": 23.1,
+    "studies": 1,
+    "analyte": "Dehydroepiandrosterone sulphate (DHEAS)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "18599883",
+      "doi": "10.2164/jandrol.108.005561",
+      "title": "Reference ranges for serum dehydroepiandrosterone sulfate and testosterone in adult men.",
+      "year": 2008,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "38116488",
+      "doi": "10.4103/jrms.jrms_100_22",
+      "title": "Reference range of testosterone and dehydroepiandrosterone sulfate levels in women during reproductive age in the Iranian population.",
+      "year": 2023,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "12521235",
+      "doi": "10.1515/cclm.2002.202",
+      "title": "Reference ranges for serum concentrations of lutropin (LH), follitropin (FSH), estradiol (E2), prolactin, progesterone, sex hormone-binding globulin (SHBG), dehydroepiandrosterone sulfate (DHEAS), cortisol and ferritin in neonates, children and young adults.",
+      "year": 2002,
+      "studyType": "observational"
+    }
+  ]
+}

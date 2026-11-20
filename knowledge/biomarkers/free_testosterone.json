@@ -1,0 +1,96 @@
+{
+  "id": "free_testosterone",
+  "name": "Free testosterone",
+  "category": "Hormones",
+  "aliases": [
+    "Free testosterone",
+    "Testosterone free",
+    "Testosterone, free",
+    "Testosterone (free)",
+    "Free testosterone (calculated)",
+    "Calculated free testosterone",
+    "Free testosterone, calculated",
+    "Testosteron frei",
+    "Freies Testosteron",
+    "Freies Testosteron (berechnet)",
+    "Testosteron, freies",
+    "Szabad tesztoszteron",
+    "Tesztoszteron szabad",
+    "Szabad tesztoszteron (számított)",
+    "Testostérone libre",
+    "Testosterona libre",
+    "Fritt testosteron",
+    "Testosteron fritt"
+  ],
+  "loinc": [
+    "2991-8",
+    "14914-6"
+  ],
+  "canonicalUnit": "pmol/L",
+  "conversions": {
+    "pmol/L": 1,
+    "nmol/L": 1000,
+    "pg/mL": 3.467,
+    "ng/L": 3.467,
+    "ng/dL": 34.67
+  },
+  "rangeNote": "Labs report free testosterone either calculated from total testosterone, SHBG (sex hormone-binding globulin) and albumin (the Vermeulen equation) or measured directly. Calculated values and equilibrium-dialysis values agree well; direct analogue immunoassays read much lower and are less reliable. Ranges depend on the method, age and sex, so no population range is built in. Use your lab's printed range.",
+  "summary": "Free testosterone is the small part of testosterone that is not attached to proteins and so is thought to be the part most available to the body's tissues. Most labs calculate it from total testosterone, SHBG (sex hormone-binding globulin) and albumin rather than measuring it directly.",
+  "high": {
+    "meaning": "A higher free testosterone means more of the hormone is unbound. It rises with added testosterone and when SHBG is low. The number depends heavily on the method used, so compare results from the same lab and method. Discuss unexpected results with your doctor.",
+    "commonCauses": [
+      "Testosterone treatment (gels, injections, patches or pellets)",
+      "Anabolic steroids, including testosterone-based products",
+      "HCG (human chorionic gonadotropin) or clomiphene, which raise the body's own production",
+      "Low SHBG, for example with obesity, insulin resistance or an underactive thyroid",
+      "Polycystic ovary syndrome in women",
+      "Rarely, a testosterone-producing tumour"
+    ]
+  },
+  "low": {
+    "meaning": "A lower free testosterone can come from low total testosterone or from high SHBG, which holds more of the hormone bound. Guidelines suggest checking free testosterone when total is near the lower limit or a condition that changes SHBG is present. Discuss a repeated low result with your doctor.",
+    "commonCauses": [
+      "High SHBG, for example with ageing, an overactive thyroid, liver disease, or oral estrogens and contraceptive pills",
+      "Ageing",
+      "Anything that lowers total testosterone: obesity, type 2 diabetes, acute illness, opioids, glucocorticoids",
+      "Testosterone treatment, anabolic steroids or SARMs (selective androgen receptor modulators), which suppress the body's own production",
+      "Pituitary or testicular conditions",
+      "Menopause or ovary removal in women"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 55,
+    "ciLow": 48.8,
+    "ciHigh": 63,
+    "studies": 1,
+    "analyte": "Testosterone - free",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "10523012",
+      "doi": "10.1210/jcem.84.10.6079",
+      "title": "A critical evaluation of simple methods for the estimation of free testosterone in serum.",
+      "year": 1999,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29562364",
+      "doi": "10.1210/jc.2018-00229",
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline.",
+      "year": 2018,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "17090633",
+      "doi": "10.1210/jc.2006-1864",
+      "title": "Position statement: Utility, limitations, and pitfalls in measuring testosterone: an Endocrine Society position statement.",
+      "year": 2007,
+      "studyType": "guideline"
+    }
+  ]
+}

@@ -325,9 +325,9 @@ describe("line matching rules", () => {
   });
 
   it("ignores lines without a value and lists unknown result lines", () => {
-    const report = parseLabText("Ferritin\nHomocysteine 9.2 µmol/L 5 - 15", defs);
+    const report = parseLabText("Ferritin\nProcalcitonin 0.8 ng/mL 0 - 0.5", defs);
     expect(report.rows).toEqual([]);
-    expect(report.unmatched).toEqual(["Homocysteine 9.2 µmol/L 5 - 15"]);
+    expect(report.unmatched).toEqual(["Procalcitonin 0.8 ng/mL 0 - 0.5"]);
   });
 
   it("skips lines with birth dates entirely", () => {

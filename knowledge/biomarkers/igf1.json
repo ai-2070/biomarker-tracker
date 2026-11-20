@@ -1,0 +1,106 @@
+{
+  "id": "igf1",
+  "name": "IGF-1 (insulin-like growth factor 1)",
+  "abbreviation": "IGF-1",
+  "category": "Hormones",
+  "aliases": [
+    "IGF-1",
+    "IGF1",
+    "IGF-I",
+    "IGF I",
+    "Insulin-like growth factor 1",
+    "Insulin-like growth factor-1",
+    "Insulin-like growth factor I",
+    "Insulin like growth factor 1",
+    "Somatomedin C",
+    "Serum IGF-1",
+    "IGF-1 (serum)",
+    "Insulinähnlicher Wachstumsfaktor 1",
+    "Insulin-like Growth Factor 1 (IGF-1)",
+    "Inzulinszerű növekedési faktor 1",
+    "Inzulinszerű növekedési faktor",
+    "Facteur de croissance analogue à l'insuline 1",
+    "Somatomédine C",
+    "Factor de crecimiento similar a la insulina tipo 1",
+    "Factor de crecimiento insulínico tipo 1",
+    "Insulinliknande tillväxtfaktor 1",
+    "Insulinliknande tillväxtfaktor I",
+    "S-IGF-1"
+  ],
+  "loinc": [
+    "2484-4"
+  ],
+  "canonicalUnit": "ng/mL",
+  "conversions": {
+    "ng/mL": 1,
+    "µg/L": 1,
+    "nmol/L": 7.649,
+    "mg/L": 1000
+  },
+  "comparisonOnly": true,
+  "rangeNote": "Normal values depend strongly on age (they peak in puberty and then decline through adult life), on sex and on the assay, so the app shows no default range and uses the range printed by your lab, which should be age- and sex-specific. Labs often also print an age-adjusted score (SDS). Undereating, liver disease, obesity and oral oestrogens change it. 1 nmol/L is about 7.65 ng/mL.",
+  "summary": "IGF-1 is a hormone made mostly by the liver in response to growth hormone from the pituitary gland. It supports growth in childhood and the maintenance of muscle, bone and other tissues in adults, and its level is steadier through the day than growth hormone itself.",
+  "high": {
+    "meaning": "A high IGF-1 for the person's age and sex can point to too much growth hormone (acromegaly in adults), which develops slowly and needs further tests. High values can also follow treatment with growth hormone or related products.",
+    "commonCauses": [
+      "Growth hormone excess from a pituitary tumour (rare)",
+      "Growth hormone, IGF-1 or growth-hormone-releasing products taken as medicine or for performance",
+      "Pregnancy",
+      "Anabolic steroids and some other hormone treatments",
+      "Normal puberty or young age compared with an adult range"
+    ]
+  },
+  "low": {
+    "meaning": "A low IGF-1 for the person's age and sex can reflect low growth hormone, but it is also lowered by many other conditions, so it does not prove growth hormone deficiency on its own. Confirmation usually needs further tests.",
+    "commonCauses": [
+      "Growth hormone deficiency or pituitary disease",
+      "Undernutrition, very low calorie or protein intake, or eating disorders",
+      "Liver disease",
+      "Uncontrolled diabetes or an underactive thyroid",
+      "Oral oestrogens and oral contraceptives",
+      "Acute illness or older age"
+    ]
+  },
+  "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 9.4,
+    "ciLow": 7.9,
+    "ciHigh": 11.7,
+    "studies": 1,
+    "analyte": "Insulin-like growth factor-1 (IGF-1)",
+    "matrix": "Serum/plasma",
+    "source": "EFLM Biological Variation Database",
+    "url": "https://biologicalvariation.eu/meta_calculations",
+    "retrieved": "2026-11-20"
+  },
+  "sources": [
+    {
+      "pmid": "24606072",
+      "doi": "10.1210/jc.2013-3059",
+      "title": "Reference intervals for insulin-like growth factor-1 (IGF-I) from birth to senescence: results from a multicenter study using a new automated chemiluminescence IGF-I immunoassay conforming to recent international recommendations.",
+      "year": 2014,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "21285256",
+      "doi": "10.1373/clinchem.2010.150631",
+      "title": "Consensus statement on the standardization and evaluation of growth hormone and insulin-like growth factor assays.",
+      "year": 2011,
+      "studyType": "guideline"
+    },
+    {
+      "pmid": "35294528",
+      "doi": "10.1210/clinem/dgac157",
+      "title": "BMI and contraceptives affect new age-, sex-, and puberty-adjusted IGF-I and IGFBP-3 reference ranges across life span.",
+      "year": 2022,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "21602453",
+      "doi": "10.1210/jc.2011-0179",
+      "title": "Evaluation and treatment of adult growth hormone deficiency: an Endocrine Society clinical practice guideline.",
+      "year": 2011,
+      "studyType": "guideline"
+    }
+  ]
+}
