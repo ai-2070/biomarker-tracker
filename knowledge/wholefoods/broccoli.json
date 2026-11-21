@@ -1,0 +1,165 @@
+{
+  "id": "broccoli",
+  "name": "Broccoli",
+  "group": "vegetables",
+  "otherNames": [
+    "Broccoli florets",
+    "Calabrese",
+    "Purple sprouting broccoli",
+    "Sprouting broccoli",
+    "Broccolini",
+    "Tenderstem broccoli",
+    "Broccoli sprouts",
+    "Raw broccoli",
+    "Steamed broccoli",
+    "Boiled broccoli",
+    "Brassica oleracea var. italica"
+  ],
+  "summary": "Broccoli is a green cruciferous vegetable eaten raw, steamed or boiled. This page lists what people say broccoli does and what writers in ancient Rome believed about cabbage sprouts; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Broccoli holds a compound called glucoraphanin. An enzyme, myrosinase, turns it into sulforaphane; the enzyme is in the plant tissue and also in the gut microbiome.",
+    "Like other cruciferous vegetables it is rich in glucosinolates and the indoles and isothiocyanates they break down into. A 2007 review says cooking procedures change how much of these the body takes in.",
+    "The UK food table (CoFID) measures raw green broccoli at 34 kcal, 1.9 g of sugars, 4.0 g of fibre, 397 mg of potassium, 185 µg of vitamin K1, 95 µg of folate and 79 mg of vitamin C per 100 g. It does not measure glucoraphanin, sulforaphane or the other plant compounds."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the sprout (cyma) of the cabbage is pleasant to the taste but is not used in medicine, because it is hard to digest and not good for the kidneys.",
+      "note": "The Latin word cyma means the young sprout of a cabbage, and the translators render it 'cabbage-sprout'. Whether Pliny meant what we now call broccoli or cauliflower is uncertain, so this is a belief about cabbage sprouts in general.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.35 (cabbage-sprouts), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=35"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cabbage, and even more its sprouts, among foods that give bad juice, meaning foods that nourish poorly.",
+      "note": "The Latin word cyma means the young sprout of a cabbage, and the translators render it 'cabbage-sprout'. Whether Pliny meant what we now call broccoli or cauliflower is uncertain, so this is a belief about cabbage sprouts in general.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.21.1 (foods of good and bad juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#21"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-502",
+      "label": "1 serving of raw broccoli (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "Cooking changes broccoli: the UK food table has 79 mg of vitamin C and 95 µg of folate per 100 g raw, against 44 mg and 34 µg when boiled in unsalted water.",
+    "A 2007 review says cooking procedures affect the bioavailability and intake of glucosinolates and their breakdown products."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Broccoli prevents cancer",
+      "topic": "Broccoli and cancer risk",
+      "label": "Broccoli and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Sulforaphane from broccoli detoxifies the body",
+      "topic": "Broccoli sulforaphane and detox",
+      "label": "Broccoli and detox",
+      "category": "health"
+    },
+    {
+      "claim": "Broccoli lowers blood pressure",
+      "topic": "Broccoli and blood pressure",
+      "label": "Broccoli and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Broccoli sprouts are far more powerful than ordinary broccoli",
+      "topic": "Broccoli sprouts versus broccoli",
+      "label": "Broccoli sprouts",
+      "category": "health"
+    },
+    {
+      "claim": "Sulforaphane from broccoli helps with autism and brain health",
+      "topic": "Broccoli sulforaphane and brain health",
+      "label": "Broccoli and the brain",
+      "category": "health"
+    },
+    {
+      "claim": "Broccoli lowers blood sugar in type 2 diabetes",
+      "topic": "Broccoli and blood sugar",
+      "label": "Broccoli and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Raw broccoli is healthier than cooked broccoli",
+      "topic": "Raw versus cooked broccoli",
+      "label": "Raw or cooked broccoli",
+      "category": "health"
+    },
+    {
+      "claim": "Broccoli harms the thyroid",
+      "topic": "Broccoli and thyroid function",
+      "label": "Broccoli and thyroid",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Warfarin and other vitamin K blockers",
+      "note": "Broccoli is rich in vitamin K1: 185 µg per 100 g raw in the UK food table. A 2016 systematic review of 11 studies (2 diet trials, 9 observational) found conflicting evidence on whether dietary vitamin K changes the blood-thinning effect, and said an effect may show only with high intakes (above 150 µg a day). Talk to your doctor or anticoagulation clinic about green vegetables if you take a vitamin K blocker such as warfarin.",
+      "safetyId": "anticoagulant"
+    }
+  ],
+  "cautions": [
+    "A 2016 review estimated that commercial broccoli holds under 10 µmol of goitrin per 100 g serving, which it called minimal risk for the thyroid's iodine uptake."
+  ],
+  "unknowns": [
+    "Whether eating ordinary broccoli changes cancer or heart outcomes: the 2007 review links cruciferous vegetables to lower lung and colorectal cancer risk in some studies, but breast and prostate results were limited and inconsistent, and these studies group many vegetables.",
+    "How much sulforaphane a portion gives: it depends on the form (plant, sprouts, drink, supplement) and on the myrosinase present, and the 2019 review says doses used in trials vary widely.",
+    "How much the plant compounds that the food table does not measure add: they are not in the table's figures."
+  ],
+  "sources": [
+    {
+      "pmid": "31590459",
+      "doi": "10.3390/molecules24193593",
+      "title": "Broccoli or Sulforaphane: Is It the Source or Dose That Matters?",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17317210",
+      "doi": "10.1016/j.phrs.2007.01.009",
+      "title": "Cruciferous vegetables and human cancer risk: epidemiologic evidence and mechanistic basis.",
+      "year": 2007,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26946249",
+      "doi": "10.1093/nutrit/nuv110",
+      "title": "Concentrations of thiocyanate and goitrin in human plasma, their precursor concentrations in brassica vegetables, and associated potential risk for hypothyroidism.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26962786",
+      "doi": "10.1097/md.0000000000002895",
+      "title": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.",
+      "year": 2016,
+      "studyType": "review"
+    }
+  ]
+}

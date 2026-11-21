@@ -64,6 +64,11 @@ describe("whole foods: then and now", () => {
     whatStudiesDid: "W",
     markers: [],
     findings: [finding],
+    claims: [
+      { claim: "It helps", topic: "Honey and cough", label: "Honey and cough", category: "health" },
+      { claim: "It heals", topic: "Honey and wounds", label: "Honey and wounds", category: "health" },
+      { claim: "It soothes", topic: "Honey and sleep", label: "Honey and sleep", category: "health" },
+    ],
     visuals: [
       {
         kind: "flow",
@@ -118,6 +123,11 @@ describe("whole foods: what people believed", () => {
     whatStudiesDid: "W",
     markers: [],
     findings: [finding],
+    claims: [
+      { claim: "It helps", topic: "Honey and cough", label: "Honey and cough", category: "health" },
+      { claim: "It heals", topic: "Honey and wounds", label: "Honey and wounds", category: "health" },
+      { claim: "It soothes", topic: "Honey and sleep", label: "Honey and sleep", category: "health" },
+    ],
     visuals: [
       {
         kind: "flow",
@@ -165,6 +175,11 @@ describe("whole foods: linking protocol items", () => {
     whatStudiesDid: "W",
     markers: [],
     findings: [],
+    claims: [
+      { claim: "It helps", topic: "Honey and cough", label: "Honey and cough", category: "health" },
+      { claim: "It heals", topic: "Honey and wounds", label: "Honey and wounds", category: "health" },
+      { claim: "It soothes", topic: "Honey and sleep", label: "Honey and sleep", category: "health" },
+    ],
     visuals: [],
     whoShouldBeCareful: [],
     cautions: [],

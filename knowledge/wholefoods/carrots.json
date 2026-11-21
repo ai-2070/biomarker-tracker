@@ -1,0 +1,190 @@
+{
+  "id": "carrots",
+  "name": "Carrots and carrot juice",
+  "group": "vegetables",
+  "otherNames": [
+    "Carrot",
+    "Carrot juice",
+    "Raw carrots",
+    "Cooked carrots",
+    "Boiled carrots",
+    "Baby carrots",
+    "Carrot sticks",
+    "Purple carrots",
+    "Orange carrots",
+    "Daucus carota"
+  ],
+  "summary": "Carrots are an orange root vegetable eaten raw, cooked or pressed into juice. This page lists what people say carrots and carrot juice do and what writers in ancient Rome believed about carrot-like roots; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "A 2023 review says the common edible carrot is rich in carotenoids and dietary fibre. Beta-carotene is a source of vitamin A, and a 2010 expert consensus called it a safe source.",
+    "The UK food table (CoFID) measures raw old carrots at 34 kcal, 7.2 g of sugars, 3.9 g of fibre and 1,961 µg of vitamin A (retinol equivalents) per 100 g; carrot juice at 24 kcal, 5.7 g of sugars, 0.6 g of fibre and 1,355 µg of vitamin A. It does not measure individual carotenoids or other plant compounds.",
+    "A 2018 review says how much carotenoid the body takes up depends on food factors such as fat eaten at the same time and food processing, and on the person's age, body make-up and genes."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the seed of the staphylinos, pounded and taken in wine, reduces swelling of the abdomen and eases pains of the womb, that it is a diuretic, and that the leaves are eaten as a remedy for indigestion. He added that the root rubbed on the teeth removes toothache.",
+      "note": "The translators call this plant the wild parsnip, and the Latin name was used for more than one root vegetable. Whether it is the orange carrot we eat is uncertain.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.15 (the staphylinos, or wild parsnip), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=15"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said people who carry the staphylinos about them will never be stung by serpents, that those who have just eaten it are not hurt by them, and that the cultivated kind's seed, taken in wine or vinegar and water, helps against scorpion stings.",
+      "note": "The translators call this plant the wild parsnip, and the Latin name was used for more than one root vegetable. Whether it is the orange carrot we eat is uncertain.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.15 (the staphylinos, or wild parsnip), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=15"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny described a Syrian plant like the staphylinos, called gingidion, saying that eaten raw or boiled it is very good for the stomach because it absorbs all the humours that overload it.",
+      "note": "The translators' footnote links gingidion to the wild carrot (Daucus), not to the orange carrot we eat.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.16 (gingidion), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=16"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-496",
+      "label": "1 medium old carrot, raw (about 80 g)",
+      "grams": 80
+    },
+    {
+      "id": "13-607",
+      "label": "1 glass of carrot juice (about 200 g)",
+      "grams": 200
+    }
+  ],
+  "processing": [
+    "Carrot juice holds much less fibre than the whole root: 0.6 g per 100 g in the UK food table, against 3.9 g in raw old carrots.",
+    "Boiling old carrots in unsalted water gives 1,850 µg of vitamin A (retinol equivalents) per 100 g in the UK food table, against 1,961 µg raw.",
+    "A 2018 review says food processing and co-eaten fat change how well carotenoids are absorbed."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Carrots improve night vision",
+      "topic": "Carrots and night vision",
+      "label": "Carrots and night vision",
+      "category": "health"
+    },
+    {
+      "claim": "Carrots prevent cancer",
+      "topic": "Carrots and cancer risk",
+      "label": "Carrots and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Carrots lower cholesterol",
+      "topic": "Carrots and cholesterol",
+      "label": "Carrots and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Carrots give you a tan and a healthy glow",
+      "topic": "Carrots and skin colour",
+      "label": "Carrots and skin glow",
+      "category": "appearance"
+    },
+    {
+      "claim": "Carrot juice cleanses the liver",
+      "topic": "Carrot juice and the liver",
+      "label": "Carrot juice and the liver",
+      "category": "health"
+    },
+    {
+      "claim": "Too many carrots turn your skin orange",
+      "topic": "Carrots and orange skin",
+      "label": "Carrots and orange skin",
+      "category": "health"
+    },
+    {
+      "claim": "Carrots are high in sugar and bad for blood sugar",
+      "topic": "Carrots and blood sugar",
+      "label": "Carrots and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Cooked carrots are healthier than raw carrots",
+      "topic": "Raw versus cooked carrots",
+      "label": "Raw or cooked carrots",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Birch pollen allergy",
+      "note": "A 2002 review says proteins that share features with the main birch pollen allergen occur in apples, stone fruits, celery, carrot, nuts and soybeans, and that about 70% of its patients allergic to birch pollen may have symptoms after eating foods from these groups. A 1995 study of 20 such patients found IgE antibodies that cross-reacted between birch pollen proteins and proteins in carrot and other foods. If you react to carrots, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating carrots changes cancer, vision or heart outcomes: this page does not review the studies, and the 2023 review is mostly about carrot compounds in lab models.",
+    "How much carotenoid a person absorbs from a carrot: it varies with fat eaten with it, processing and the person.",
+    "How much the plant compounds that the food table does not measure add: they are not in the table's figures."
+  ],
+  "sources": [
+    {
+      "pmid": "37894640",
+      "doi": "10.3390/molecules28207161",
+      "title": "Chemical Composition, Functional and Anticancer Properties of Carrot.",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "20980645",
+      "doi": "10.3945/jn.109.119024",
+      "title": "Beta-carotene is an important vitamin A source for humans.",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "30032230",
+      "doi": "10.1093/advances/nmy025",
+      "title": "Intrinsic and Extrinsic Factors Impacting Absorption, Metabolism, and Health Effects of Dietary Carotenoids.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "12023194",
+      "doi": "10.1111/j.1749-6632.2002.tb04132.x",
+      "title": "Current understanding of cross-reactivity of food allergens and pollen.",
+      "year": 2002,
+      "studyType": "review"
+    },
+    {
+      "pmid": "7751517",
+      "doi": "10.1016/s0091-6749(95)70096-x",
+      "title": "Identification of allergens in fruits and vegetables: IgE cross-reactivities with the important birch pollen allergens Bet v 1 and Bet v 2 (birch profilin).",
+      "year": 1995,
+      "studyType": "observational",
+      "n": 20
+    }
+  ]
+}

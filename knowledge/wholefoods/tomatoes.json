@@ -1,0 +1,134 @@
+{
+  "id": "tomatoes",
+  "name": "Tomatoes and tomato sauce",
+  "group": "fruit",
+  "otherNames": [
+    "Tomato",
+    "Tomatoes",
+    "Tomato sauce",
+    "Cherry tomatoes",
+    "Canned tomatoes",
+    "Cooked tomatoes",
+    "Tomato puree",
+    "Tomato paste",
+    "Tomato juice",
+    "Passata",
+    "Lycopene",
+    "Solanum lycopersicum"
+  ],
+  "summary": "Tomatoes are a juicy red fruit eaten raw, cooked, canned and as sauce. This page lists what people say tomatoes do; each claim can be checked against the research when you choose. Tomatoes came from the Americas, so ancient Greek and Roman writers did not know them and there is no Then and now.",
+  "inIt": [
+    "Tomatoes are the main food source of lycopene, the red carotenoid. A 2021 umbrella review of human studies describes lycopene as a potent fat-soluble antioxidant, and also found that most of the evidence on tomato and lycopene was of low or very low quality.",
+    "Lycopene is better taken up from heat-processed tomato: in one human study, blood lycopene rose only after processed tomato juice (boiled with corn oil), not after unprocessed juice.",
+    "The UK food table (CoFID) measures standard raw tomatoes at 14 kcal, 3.0 g of sugars, 1.0 g of fibre, 223 mg of potassium, 22 mg of vitamin C and 23 µg of folate per 100 g. Homemade tomato sauce is 89 kcal with 5.5 g of fat per 100 g, mostly from the oil. The table does not measure lycopene or the other plant compounds."
+  ],
+  "tableFoods": [
+    {
+      "id": "13-517",
+      "label": "1 medium tomato, raw (about 85 g)",
+      "grams": 85
+    },
+    {
+      "id": "50-1173",
+      "label": "A ladle of homemade tomato sauce (about 100 g)",
+      "grams": 100
+    },
+    {
+      "id": "13-530",
+      "label": "Half a can of tomatoes (about 200 g)",
+      "grams": 200
+    }
+  ],
+  "processing": [
+    "Heat and fat change how much lycopene the body takes up: in the 1992 human study, serum lycopene rose only after tomato juice boiled with corn oil, not after unprocessed juice.",
+    "Cooking in oil adds energy: the table has tomatoes fried in rapeseed oil at 89 kcal per 100 g, against 14 kcal for raw tomatoes."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Tomatoes protect against prostate cancer",
+      "topic": "Tomatoes and prostate cancer",
+      "label": "Tomatoes and prostate cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Cooked tomatoes are healthier than raw ones",
+      "topic": "Cooked tomatoes and lycopene",
+      "label": "Cooked tomatoes and lycopene",
+      "category": "health"
+    },
+    {
+      "claim": "Tomatoes and lycopene protect your heart",
+      "topic": "Tomatoes and heart health",
+      "label": "Tomatoes and heart health",
+      "category": "health"
+    },
+    {
+      "claim": "Tomatoes protect your skin from sunburn",
+      "topic": "Tomatoes and sun damage",
+      "label": "Tomatoes and sun damage",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lycopene pills work as well as eating tomatoes",
+      "topic": "Lycopene supplements versus tomatoes",
+      "label": "Lycopene pills versus tomatoes",
+      "category": "health"
+    },
+    {
+      "claim": "Tomatoes and other nightshades cause joint inflammation",
+      "topic": "Tomatoes and arthritis",
+      "label": "Tomatoes and arthritis",
+      "category": "health"
+    },
+    {
+      "claim": "Tomatoes cause acid reflux and heartburn",
+      "topic": "Tomatoes and acid reflux",
+      "label": "Tomatoes and acid reflux",
+      "category": "health"
+    },
+    {
+      "claim": "Eating tomatoes helps you live longer",
+      "topic": "Tomatoes and longevity",
+      "label": "Tomatoes and longevity",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Grass pollen allergy or tomato allergy",
+      "note": "In people allergic to grass pollen, IgE antibodies also reacted to tomato fruit allergens, and the 2021 umbrella review says caution is warranted for potential allergy. If tomatoes make your mouth itch or cause other reactions, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating tomatoes changes health outcomes the way lycopene levels in blood suggest: the 2021 umbrella review found associations, mostly from low or very low quality evidence, and associations do not show cause.",
+    "How much lycopene a given tomato holds: it varies by variety, ripeness and how it is cooked.",
+    "Whether lycopene pills do what tomatoes do: this page does not review that."
+  ],
+  "sources": [
+    {
+      "pmid": "33131949",
+      "doi": "10.1016/j.foodchem.2020.128396",
+      "title": "Tomato and lycopene and multiple health outcomes: Umbrella review.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "1432255",
+      "doi": "10.1093/jn/122.11.2161",
+      "title": "Uptake of lycopene and its geometrical isomers is greater from heat-processed than from unprocessed tomato juice in humans.",
+      "year": 1992,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "8876557",
+      "doi": "10.1016/s0091-6749(96)70130-6",
+      "title": "Ubiquitous structures responsible for IgE cross-reactivity between tomato fruit and grass pollen allergens.",
+      "year": 1996,
+      "studyType": "in vitro"
+    }
+  ]
+}

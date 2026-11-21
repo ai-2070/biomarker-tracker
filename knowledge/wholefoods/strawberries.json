@@ -727,6 +727,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Strawberries lower cholesterol",
+      "topic": "Strawberries and cholesterol",
+      "label": "Strawberries and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Strawberries protect your heart",
+      "topic": "Strawberries and heart disease",
+      "label": "Strawberries and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Strawberries lower blood sugar after meals",
+      "topic": "Strawberries and blood sugar",
+      "label": "Strawberries and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Strawberries reduce inflammation",
+      "topic": "Strawberries and inflammation",
+      "label": "Strawberries and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Strawberries lower blood pressure",
+      "topic": "Strawberries and blood pressure",
+      "label": "Strawberries and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Strawberries whiten your teeth",
+      "topic": "Strawberries and tooth whitening",
+      "label": "Strawberries and teeth",
+      "category": "appearance"
+    },
+    {
+      "claim": "Strawberries are good for your skin",
+      "topic": "Strawberries and skin health",
+      "label": "Strawberries and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Strawberries protect your memory",
+      "topic": "Strawberries and cognitive decline",
+      "label": "Strawberries and memory",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

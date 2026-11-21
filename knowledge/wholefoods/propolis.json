@@ -1,0 +1,162 @@
+{
+  "id": "propolis",
+  "name": "Propolis",
+  "group": "sweets",
+  "otherNames": [
+    "Bee propolis",
+    "Bee glue",
+    "Propolis extract",
+    "Propolis tincture",
+    "Brazilian propolis",
+    "Green propolis",
+    "Poplar propolis",
+    "Propolis capsules"
+  ],
+  "summary": "Propolis is the resinous glue honeybees make to seal their hives, sold as drops, lozenges and capsules. This page lists what people say propolis does and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Propolis is a mix of compounds, not one substance. A review of honeybee products says it contains caffeic acid phenethyl ester and, in Brazilian propolis, artepillin C.",
+    "What propolis holds depends on the bees and the plants around the hive, so one product's make-up does not carry over to another. The UK food table has no propolis entry."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said propolis, found in the hives, has the property of extracting stings and all foreign bodies from the flesh.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.50 (propolis: five remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=50"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that propolis disperses tumours, ripens indurations (hardened swellings), allays pains of the sinews and cicatrizes (heals over) ulcers of the most obstinate kind.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.50 (propolis: five remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=50"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed propolis among the substances that mature abscesses and promote suppuration (the forming and draining of pus).",
+      "note": "The chapter number is read from the layout of the open Loeb text on LacusCurtius.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.3.1 (medicines that mature abscesses), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#3"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [],
+  "processing": [],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Propolis is a natural antibiotic that can replace antibiotics",
+      "topic": "Propolis and infections",
+      "label": "Propolis as antibiotic",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis prevents and shortens colds and sore throats",
+      "topic": "Propolis and colds",
+      "label": "Propolis and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis heals wounds and burns faster",
+      "topic": "Propolis and wound healing",
+      "label": "Propolis and wounds",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis heals mouth ulcers and cold sores",
+      "topic": "Propolis and mouth ulcers",
+      "label": "Propolis and mouth ulcers",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis protects teeth and gums",
+      "topic": "Propolis and gum health",
+      "label": "Propolis and gums",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis lowers blood sugar",
+      "topic": "Propolis and blood sugar",
+      "label": "Propolis and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis calms hay fever and allergies",
+      "topic": "Propolis and allergies",
+      "label": "Propolis and allergies",
+      "category": "health"
+    },
+    {
+      "claim": "Propolis fights cancer",
+      "topic": "Propolis and cancer",
+      "label": "Propolis and cancer",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Allergy to propolis, fragrances or other bee products",
+      "note": "Contact allergy to propolis is well documented, and a review reports co-reactions with fragrances and other compounds. Propolis is found in few cosmetics, but a case report describes a pustular skin reaction after propolis-enriched honey. If you get a rash or swelling, talk to your doctor or a dermatologist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether propolis helps any health problem in people: this page does not review the studies, and a review says products vary too much to standardise.",
+    "How much of any active compound a given product holds: it depends on where the bees foraged.",
+    "Why Roman writers thought it drew out stings: no modern test of that claim is shown here."
+  ],
+  "sources": [
+    {
+      "pmid": "28701955",
+      "doi": "10.3389/fphar.2017.00412",
+      "title": "Therapeutic Properties of Bioactive Compounds from Different Honeybee Products.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41346028",
+      "doi": "10.1177/17103568251392243",
+      "title": "Contact Allergy to Propolis: Update 2013-2025.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41663074",
+      "doi": "10.1111/cod.70108",
+      "title": "Propolis and Beeswax in Cosmetics: A Market Survey and Literature Review on Their Relationship and Role in Allergic Contact Dermatitis.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40645776",
+      "doi": "10.1177/17103568251359602",
+      "title": "Natural but Not Harmless: A Case of Pustular Allergic Contact Dermatitis Triggered by Propolis-Enriched Honey.",
+      "year": 2025,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "id": "baby_spinach",
+  "name": "Baby spinach",
+  "group": "vegetables",
+  "otherNames": [
+    "Baby spinach leaves",
+    "Spinach",
+    "Spinach leaves",
+    "Mature spinach",
+    "Raw spinach",
+    "Cooked spinach",
+    "Frozen spinach",
+    "Spinach juice",
+    "Spinacia oleracea"
+  ],
+  "summary": "Baby spinach is the young, tender leaf of the spinach plant, eaten raw in salads or wilted when cooked. This page lists what people say spinach does; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw baby spinach at 16 kcal, 1.0 g of fibre, 682 mg of potassium, 119 mg of calcium, 80 mg of magnesium, 1.9 mg of iron, 161 µg of folate and 29 mg of vitamin C per 100 g. It does not measure oxalate, nitrate or plant pigments.",
+    "The table has no vitamin K1 value for baby spinach, only for mature spinach (394 µg per 100 g raw), so the vitamin K content of baby spinach is not known from this table.",
+    "Spinach is high in oxalate. A 2014 comparison of 8 web sources and apps found spinach listed at 364 to 1,145 mg per 100 g, a wide spread, and a 1999 review names rhubarb, spinach and beet as common high-oxalate foods.",
+    "Spinach is rich in nitrate. In a 2012 crossover trial of 30 healthy adults, a spinach meal raised blood nitrite and S-nitrosothiols (nitric oxide markers) compared with a control meal."
+  ],
+  "tableFoods": [
+    {
+      "id": "13-521",
+      "label": "1 handful of raw baby spinach (about 30 g)",
+      "grams": 30
+    }
+  ],
+  "processing": [
+    "Boiling baby spinach in unsalted water gives 135 µg of folate and 22 mg of vitamin C per 100 g in the UK food table, against 161 µg and 29 mg raw.",
+    "A 1999 review says soaking and cooking foods high in oxalate lowers their oxalate by leaching."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Spinach gives you strength because of its iron",
+      "topic": "Spinach iron and strength",
+      "label": "Spinach and strength",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach lowers blood pressure",
+      "topic": "Spinach and blood pressure",
+      "label": "Spinach and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach protects your eyesight",
+      "topic": "Spinach and eye health",
+      "label": "Spinach and the eyes",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach causes kidney stones",
+      "topic": "Spinach and kidney stones",
+      "label": "Spinach and kidney stones",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach slows memory decline and protects the brain",
+      "topic": "Spinach and brain health",
+      "label": "Spinach and the brain",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach interferes with blood thinners",
+      "topic": "Spinach and warfarin",
+      "label": "Spinach and blood thinners",
+      "category": "health"
+    },
+    {
+      "claim": "Reheated spinach is poisonous",
+      "topic": "Reheated spinach safety",
+      "label": "Reheated spinach",
+      "category": "health"
+    },
+    {
+      "claim": "Spinach improves skin and hair",
+      "topic": "Spinach and skin health",
+      "label": "Spinach and skin",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Kidney stones",
+      "note": "Dietary oxalate is passed in the urine. In a 1981 study of 9 healthy adults, urine oxalate came mainly from dietary oxalate (up to two-thirds), and spinach was among the foods counted as high-risk. A 1999 review says the occasional high-oxalate food in an otherwise nutritious diet poses no particular problem, but that diets low in calcium and high in oxalate are not recommended. If you have had kidney stones, talk to your doctor or a dietitian."
+    },
+    {
+      "with": "Warfarin and other vitamin K blockers",
+      "note": "Spinach is a vitamin K food: mature spinach has 394 µg of vitamin K1 per 100 g raw in the UK food table, and the table has no value for baby spinach. A 2016 systematic review of 11 studies (2 diet trials, 9 observational) found conflicting evidence on whether dietary vitamin K changes the blood-thinning effect, and said an effect may show only with high intakes (above 150 µg a day). Talk to your doctor or anticoagulation clinic about green vegetables if you take a vitamin K blocker such as warfarin.",
+      "safetyId": "anticoagulant"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "How much vitamin K1 baby spinach holds: the UK food table does not measure it.",
+    "How much oxalate a portion holds: the 2014 comparison found sources disagreed by about three times for spinach.",
+    "Whether eating ordinary spinach changes blood pressure or other health outcomes over time: this page does not review the studies, and the 2012 trial was a single-meal crossover in 30 healthy adults."
+  ],
+  "sources": [
+    {
+      "pmid": "24393738",
+      "doi": "10.1046/j.1440-6047.1999.00038.x",
+      "title": "Oxalate content of foods and its effect on humans.",
+      "year": 1999,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25168533",
+      "doi": "10.1016/j.urology.2014.03.053",
+      "title": "Oxalate content of food: a tangled web.",
+      "year": 2014,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "7249530",
+      "doi": "10.1042/cs0600411",
+      "title": "Urine composition in normal subjects after oral ingestion of oxalate-rich foods.",
+      "year": 1981,
+      "studyType": "observational",
+      "n": 9
+    },
+    {
+      "pmid": "26962786",
+      "doi": "10.1097/md.0000000000002895",
+      "title": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22019438",
+      "doi": "10.1016/j.freeradbiomed.2011.09.028",
+      "title": "Flavonoid-rich apples and nitrate-rich spinach augment nitric oxide status and improve endothelial function in healthy men and women: a randomized controlled trial.",
+      "year": 2012,
+      "studyType": "rct",
+      "n": 30
+    }
+  ]
+}

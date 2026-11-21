@@ -1,0 +1,127 @@
+{
+  "id": "coconut_oil",
+  "name": "Coconut oil",
+  "group": "oils and fats",
+  "otherNames": [
+    "Virgin coconut oil",
+    "Extra virgin coconut oil",
+    "Refined coconut oil",
+    "Cold-pressed coconut oil",
+    "Coconut fat",
+    "Copra oil",
+    "Cocos nucifera oil",
+    "Fractionated coconut oil"
+  ],
+  "summary": "Coconut oil is the fat pressed from the flesh of coconuts, solid in a cool kitchen and used for cooking and on skin. This page lists what people say coconut oil does; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Coconut oil is a rich source of medium-chain fatty acids, and it is very high in saturated fat. A 2021 overview describes its composition and how extraction methods differ.",
+    "The UK food table (CoFID) measures coconut oil at 899 kcal and 99.9 g of fat per 100 g, with 86.5 g of it saturated, 0.66 mg of vitamin E, and no protein, sugars, fibre or minerals.",
+    "For comparison, the same table measures fresh coconut flesh at 351 kcal and 36 g of fat per 100 g (31.4 g saturated), with 370 mg of potassium and 41 mg of magnesium. The oil does not carry those minerals."
+  ],
+  "tableFoods": [
+    {
+      "id": "17-031",
+      "label": "1 tablespoon coconut oil (about 14 g)",
+      "grams": 14
+    }
+  ],
+  "processing": [
+    "Coconut oil is not the same food as coconut flesh or coconut milk: the table's flesh has 36 g of fat per 100 g and the oil 99.9 g, so figures for one do not carry over to the other.",
+    "The 2021 overview describes the composition and properties of coconut oils extracted by different methods, such as virgin and refined; this page cannot say which is healthier."
+  ],
+  "markers": [
+    "ldl",
+    "hdl"
+  ],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Coconut oil is a healthy fat that does not raise cholesterol",
+      "topic": "Coconut oil and cholesterol",
+      "label": "Coconut oil and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Coconut oil burns fat and helps you lose weight",
+      "topic": "Coconut oil and weight loss",
+      "label": "Coconut oil and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Coconut oil protects your heart",
+      "topic": "Coconut oil and heart disease",
+      "label": "Coconut oil and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Coconut oil prevents or treats Alzheimer's disease through ketones",
+      "topic": "Coconut oil and Alzheimer's disease",
+      "label": "Coconut oil and Alzheimer's",
+      "category": "longevity"
+    },
+    {
+      "claim": "Coconut oil is good for skin and hair",
+      "topic": "Coconut oil and skin",
+      "label": "Coconut oil and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Oil pulling with coconut oil whitens teeth and cleans the mouth",
+      "topic": "Coconut oil pulling",
+      "label": "Coconut oil pulling",
+      "category": "appearance"
+    },
+    {
+      "claim": "Coconut oil kills germs and boosts immunity",
+      "topic": "Coconut oil and immunity",
+      "label": "Coconut oil and immunity",
+      "category": "health"
+    },
+    {
+      "claim": "Coconut oil is a pure poison",
+      "topic": "Coconut oil and saturated fat",
+      "label": "Coconut oil and saturated fat",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "High LDL cholesterol or heart disease",
+      "note": "A 2020 meta-analysis of 16 trials found that coconut oil raised LDL cholesterol by 10.5 mg/dL and HDL cholesterol by 4.0 mg/dL compared with non-tropical vegetable oils, and concluded that coconut oil results in significantly higher LDL cholesterol. If your cholesterol is high or you have heart disease, talk to your doctor."
+    },
+    {
+      "with": "Tree nut allergy",
+      "note": "A 1999 report describes two people with life-threatening tree nut allergy who reacted to coconut, with antibodies that recognised proteins shared by coconut and walnut. This is two patients; it does not say how common this is, and oil is not the same as the flesh. If you react to nuts, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether coconut oil changes heart attacks or strokes: the trials measured blood fats and other risk markers, not these outcomes.",
+    "Why the trials disagree on HDL and LDL: the meta-analysis found a lot of difference between studies (I2 of 84 % for LDL), and this page does not resolve it.",
+    "What coconut oil did in the writings of ancient Greece and Rome: coconut was not known to them in a text this page could open and read, so no older beliefs are listed."
+  ],
+  "sources": [
+    {
+      "pmid": "31928080",
+      "doi": "10.1161/circulationaha.119.043052",
+      "title": "The Effect of Coconut Oil Consumption on Cardiovascular Risk Factors: A Systematic Review and Meta-Analysis of Clinical Trials.",
+      "year": 2020,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "33022082",
+      "doi": "10.1002/jsfa.10870",
+      "title": "Chemical composition and health benefits of coconut oil: an overview.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "10359903",
+      "doi": "10.1016/s0091-6749(99)70196-x",
+      "title": "Systemic allergic reaction to coconut (Cocos nucifera) in 2 subjects with hypersensitivity to tree nut and demonstration of cross-reactivity to legumin-like seed storage proteins: new coconut and walnut food allergens.",
+      "year": 1999,
+      "studyType": "observational"
+    }
+  ]
+}

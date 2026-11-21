@@ -1,0 +1,228 @@
+{
+  "id": "lemon",
+  "name": "Lemon and lemon juice",
+  "group": "fruit",
+  "otherNames": [
+    "Lemons",
+    "Lemon",
+    "Citrus limon",
+    "Lemon juice",
+    "Fresh lemon juice",
+    "Lemon water",
+    "Lemon peel",
+    "Lemon zest"
+  ],
+  "summary": "Lemons are a sour citrus fruit used for their juice, peel and zest. This page lists what people say lemons do and what writers in ancient Greece and Rome believed about the citron, a related citrus fruit; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "A 2020 review says lemon's biological activity comes mainly from phenolic compounds, chiefly flavonoids such as diosmin and hesperidin, and that the peel's essential oil is rich in monoterpenes such as D-limonene.",
+    "The UK food table (CoFID) measures fresh lemon juice at 7 kcal, 1.6 g of sugars, 130 mg of potassium and 36 mg of vitamin C per 100 g. A whole lemon without pips has 58 mg of vitamin C per 100 g, and lemon peel 130 mg and 10.6 g of fibre.",
+    "The table does not measure the flavonoids or the essential oil, and it has no fibre value for the juice or the whole fruit."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Theophrastus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Theophrastus, quoted at a dinner in Athenaeus, wrote that the Median apple is useful when someone has taken a deadly poison: given in wine it acts strongly on the bowels and draws the poison out. He also said the inner part of the fruit, boiled and pressed in the mouth, makes the breath smell sweet.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today. The speaker in Athenaeus argues that the fruit Theophrastus meant is the citron.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3, chapter 26 (the citron; passage quoting Theophrastus, History of Plants), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.20-3.39"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Athenaeus, about 200 AD)",
+      "belief": "A speaker at Athenaeus's banquet said that citron eaten before any food is an antidote to every kind of harm. He told of condemned men in Egypt who ate citron and were not hurt by asps in the theatre, while those given none died at once. He added that two or three mouthfuls of a whole citron boiled in Attic honey, taken early in the morning, would keep a person from ever being harmed by poison.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3, chapter 28 (the citron as an antidote), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.20-3.39"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the citron tree, called the Assyrian or Median apple, is an antidote against poisons. He said the fruit is never eaten, but is remarkable for its strong smell, and that the pips are used to sweeten the breath.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 12.7 (how the citron is planted), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=12:chapter=7"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that citron pulp or pips, taken in wine, are an antidote to poisons.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.56 (citrons: five observations), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=56"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that a decoction of citron, or its juice, is used as a gargle to sweeten the breath, that pregnant women chew the pips for qualmishness, and that citrons are good for a weak stomach but hard to eat except with vinegar.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today. The translator's footnote calls the remark about vinegar quite unaccountable.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.56 (citrons: five observations), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=56"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Virgil, about 29 BC)",
+      "belief": "The poet Virgil wrote that the 'blest citron-fruit' of Media is the speediest aid when fierce stepmothers drug the cup, driving the deadly poison from the limbs. He added that the Medes use it to sweeten the breath and ease the panting breathlessness of age.",
+      "note": "The writer means the citron, a citrus fruit related to the lemon, not the lemon sold today.",
+      "sources": [
+        {
+          "title": "Virgil, Georgics 2.126-135, Rhoades translation (the citron of Media)",
+          "author": "Virgil (James Rhoades, translator)",
+          "when": "about 29 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0058:book=2:card=126"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "14-277",
+      "label": "Juice of 1 lemon (about 45 g)",
+      "grams": 45
+    },
+    {
+      "id": "14-129",
+      "label": "1 lemon, peeled flesh only (about 60 g)",
+      "grams": 60
+    }
+  ],
+  "processing": [
+    "Juice, flesh and peel differ in the UK food table: 36 mg of vitamin C per 100 g in fresh juice, 58 mg in the whole lemon without pips and 130 mg in the peel, which also holds 10.6 g of fibre.",
+    "Lemonade is not lemon juice: the table lists shop lemonade at 5.8 g of sugars and no vitamin C per 100 g, and homemade lemonade at 16.7 g of sugars.",
+    "A 2014 review of citrus and teeth names the acidity of the fruit, the way it is taken and how long teeth are exposed as factors in dental erosion."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Lemon water detoxes your body",
+      "topic": "Lemon water and detox",
+      "label": "Lemon water and detox",
+      "category": "health"
+    },
+    {
+      "claim": "Lemon water helps you lose weight",
+      "topic": "Lemon water and weight loss",
+      "label": "Lemon water and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lemon juice prevents kidney stones",
+      "topic": "Lemon juice and kidney stones",
+      "label": "Lemon juice and kidney stones",
+      "category": "health"
+    },
+    {
+      "claim": "Lemon juice lowers blood sugar after meals",
+      "topic": "Lemon juice and blood sugar",
+      "label": "Lemon juice and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Lemon juice makes your body more alkaline",
+      "topic": "Lemon juice and body acidity",
+      "label": "Lemon juice and body acidity",
+      "category": "health"
+    },
+    {
+      "claim": "Lemon juice damages your tooth enamel",
+      "topic": "Lemon juice and tooth enamel",
+      "label": "Lemon juice and tooth enamel",
+      "category": "health"
+    },
+    {
+      "claim": "Lemon juice helps your body absorb iron",
+      "topic": "Lemon juice and iron absorption",
+      "label": "Lemon juice and iron absorption",
+      "category": "health"
+    },
+    {
+      "claim": "Lemons prevent colds because of their vitamin C",
+      "topic": "Lemons, vitamin C and colds",
+      "label": "Lemons, vitamin C and colds",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Worn or sensitive teeth",
+      "note": "A 2014 review says frequent and prolonged exposure of teeth to citrus fruit and juice can damage them, because of the fruit's acidity and how it is taken. If you have worn or sensitive teeth, talk to your dentist or doctor."
+    },
+    {
+      "with": "Lemon juice or peel on skin in sunlight",
+      "note": "A 2020 review of lemon addresses the potential phototoxicity of its juice, oil and extracts, and a 2026 review describes how lime juice on skin followed by sunlight causes painful blistering that can leave dark marks. If you get a rash or blisters after handling citrus in the sun, talk to your doctor."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether lemon juice lowers blood sugar after meals outside a small test: a 2021 crossover trial in healthy adults saw a lower glucose peak after bread with lemon juice, and it did not test people with diabetes.",
+    "Whether 'lemon water' does anything beyond giving fluid: this page does not review studies of it.",
+    "How much the juice of one lemon holds of the flavonoids and oils: the food table does not measure them."
+  ],
+  "sources": [
+    {
+      "pmid": "31963590",
+      "doi": "10.3390/plants9010119",
+      "title": "Citrus limon (Lemon) Phenomenon-A Review of the Chemistry, Pharmacological Properties, Applications in the Modern Pharmaceutical, Food, and Cosmetics Industries, and Biotechnological Studies.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24401351",
+      "title": "Clinical observations of dental erosion associated with citrus diet and intake methods.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "32201919",
+      "doi": "10.1007/s00394-020-02228-x",
+      "title": "Lemon juice, but not tea, reduces the glycemic response to bread in healthy volunteers: a randomized crossover trial.",
+      "year": 2021,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "42889495",
+      "doi": "10.7759/cureus.116249",
+      "title": "Margarita Dermatitis Revisited: A Case Report and Literature Review of Lime-Associated Phytophotodermatitis.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

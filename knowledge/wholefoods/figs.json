@@ -24,6 +24,238 @@
   ],
   "lore": [
     {
+      "who": "Ancient Greece (Diogenes Laertius, about 200 AD)",
+      "belief": "Diogenes Laertius reports that athletes in earlier times trained on dried figs, soft cheese and wheatmeal, until a diet of meat replaced it (credited to Pythagoras, who first tried it on the athlete Eurymenes).",
+      "note": "Told as a report of older practice, not an observation of his own day; he says others credit a different Pythagoras, a trainer. Hicks's translation prints 'butter' with a footnote 'or rather soft cheese'.",
+      "sources": [
+        {
+          "title": "Diogenes Laertius, Lives of Eminent Philosophers, Book 8 (Pythagoras), section 12, translated by R. D. Hicks",
+          "author": "Diogenes Laertius",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0258:book=8:chapter=1"
+        },
+        {
+          "title": "From Olympia to Atlanta: a cultural-historical perspective on diet and athletic training (abstract: Diogenes Laertius wrote that Greek athletes trained on dried figs, moist cheese and wheat; then the pattern changed and focused on meat)",
+          "author": "Grivetti LE, Applegate EA",
+          "when": "1997",
+          "kind": "scholarship",
+          "pmid": "9164253",
+          "doi": "10.1093/jn/127.5.860s"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny says dried figs are nourishing and invigorating, which is why athletes in former times used them as their food, until the gymnast Pythagoras first brought in a flesh diet.",
+      "note": "Same tradition as Diogenes Laertius, set down earlier; Pliny gives the reason he thought they were chosen.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, Book 23, chapter 63 (Figs: one hundred and eleven observations upon them), translated by Bostock and Riley",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=63"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Plato, about 375 BC)",
+      "belief": "In the Republic Socrates describes a plain city whose people have figs, chickpeas and beans as dessert, along with olives, cheese and boiled greens, and expects them to live in peace and health and die in old age.",
+      "note": "Figs are one of several simple foods in an imagined city, not singled out for a health effect; Glaucon mocks it as a 'city of pigs'.",
+      "sources": [
+        {
+          "title": "Plato, Republic, Book 2, 372c-d, translated by Paul Shorey",
+          "author": "Plato",
+          "when": "about 375 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0168:book=2:section=372c"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Regimen says the green fig moistens, warms and passes well by stool, that the latest crop of figs is the best and the first the worst, and that dry figs are 'burning' but also pass well by stool.",
+      "note": "Told in the writer's terms of hot, cold, moist and dry.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 55 (fruits), Loeb Classical Library vol. IV, translated by W. H. S. Jones (scan, p. 336)",
+          "author": "Hippocratic Corpus",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/hippocrates04hippuoft"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Regimen says millet groats and husks eaten with figs make strong nourishment for hard workers.",
+      "note": "A passing remark in a list of grains and pulses, not a claim about figs alone.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 45 (grains and pulses), Loeb Classical Library vol. IV, translated by W. H. S. Jones",
+          "author": "Hippocratic Corpus",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/hippocrates04hippuoft"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Herodotus of Lycia, quoted by Athenaeus, about 200 AD)",
+      "belief": "The physician Herodotus of Lycia, in a treatise on figs, argued that figs are more useful to people than any other tree fruit and that new-born children grow sturdy when fed fig juice.",
+      "note": "Herodotus of Lycia's own treatise is lost; this is Athenaeus's report of it, spoken by a character at a dinner.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae, Book 3, section 78d-e (Loeb, translated by C. B. Gulick)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/3A*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (the comic poet Pherecrates, quoted by Athenaeus)",
+      "belief": "In Pherecrates's play The Persians a character says that anyone who finds a fresh fig smears it on babies' eyes, which Athenaeus takes as a sign that people thought figs an uncommonly good remedy.",
+      "note": "A line from a comedy, so a sign of a folk belief, not a medical text.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae, Book 3, section 78e (Loeb, translated by C. B. Gulick)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/3A*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (the physician Phylotimus, quoted by Athenaeus)",
+      "belief": "Phylotimus held that ripe fresh figs are digested more easily than other fruit, do not hinder the digestion of other food eaten with them, and cause a copious, quick and painless loosening of the bowels.",
+      "note": "Phylotimus's book On Food survives only in quotation. He also noted that figs left the hands both sticky and clean.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae, Book 3, section 79b-d (Loeb, translated by C. B. Gulick)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/3A*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (comic poets and the physician Diphilus of Siphnos, quoted by Athenaeus)",
+      "belief": "Greek comic poets joked that figs eaten at midday bring on fever and vomiting of bile, and the physician Diphilus of Siphnos said fresh figs are only slightly nourishing and make poor chyle but pass easily and are better when ripened naturally in season.",
+      "note": "Two separate beliefs quoted together by Athenaeus; the midday-fig lines come from plays by Pherecrates, Aristophanes, Eubulus and Nicophon.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae, Book 3, section 80a-c (Loeb, translated by C. B. Gulick)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/3A*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece and Rome (Demetrius of Scepsis, quoted by Athenaeus; Pliny the Elder)",
+      "belief": "Demetrius of Scepsis said people who abstain from figs have good voices, citing the actor Hegesianax, who found his pleasing voice after eighteen years without them, and Pliny likewise says it is generally thought that figs spoil the voice.",
+      "note": "Both treat it as a common belief; Demetrius's anecdote is the only evidence offered.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae, Book 3, section 80d (Loeb, translated by C. B. Gulick)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Athenaeus/3A*.html"
+        },
+        {
+          "title": "Pliny the Elder, Natural History, Book 23, chapter 63",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=63"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny says ripe figs are diuretic and laxative, that dried figs are wonderfully good for the throat and fauces, and that figs boiled with hyssop cure inveterate coughs.",
+      "note": "He also says dried figs are bad for the stomach and cause thirst; these are separate points in the same chapter.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, Book 23, chapter 63 (Figs: one hundred and eleven observations upon them), translated by Bostock and Riley",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=63"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny says ripe figs allay thirst and are cooling, so they should not be refused in the fevers he calls 'stegnae', and that fig ash rubbed on with oil cures weakness of sight.",
+      "note": "The ash belief is about the burnt wood, not the fruit.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History, Book 23, chapter 63",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=63"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus recommends a gargle made from dried figs (with hyssop, thyme and other herbs) for a sore throat, and for a chronic cough a few very juicy figs cooked over charcoal after exercises.",
+      "note": "Figs are one item among several in each remedy; he also uses a fig-and-honey-wine gargle for throat swellings.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina, Book 4, chapter 7, section 3 (gargle with dried figs) and chapter 10, section 1 (figs for chronic cough), Loeb translation by W. G. Spencer",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html"
+        },
+        {
+          "title": "Celsus, De Medicina, Book 6, chapter 10, section 3 (gargle of fig and honey wine)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/6*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a patient with pain in the side, Celsus gives a drink of hyssop boiled with a dried fig, and for a gut illness in which the bowels void nothing he lists green figs in season, taken a little at a time, among the ways to loosen them.",
+      "note": "Both are minor parts of longer treatments.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina, Book 4, chapter 14, section 2 (hyssop and dried fig drink) and chapter 19, section 2 (green figs to loosen the bowels), Loeb translation by W. G. Spencer",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
       "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
       "belief": "Pliny wrote that dried figs, though hard on the stomach, were good in every case for the bladder, for laboured breathing and asthma, and for diseases of the liver, kidneys and spleen.",
       "modern": "not tested",
@@ -196,17 +428,6 @@
           "url": "https://en.wikisource.org/wiki/Bible_(King_James)/Mark"
         }
       ]
-    },
-    {
-      "who": "Islam (the Qur'an)",
-      "belief": "A chapter of the Qur'an is named The Fig (At-Tin) and opens with an oath: 'By the fig and the olive, and by Mount Sinai, and by this secure city', meaning Mecca.",
-      "sources": [
-        {
-          "title": "Qur'an 95:1-3 (Saheeh International translation)",
-          "kind": "ancient text",
-          "url": "https://quran.com/95/1-3"
-        }
-      ]
     }
   ],
   "history": [
@@ -265,44 +486,6 @@
           "doi": "10.3389/fphar.2022.936047",
           "title": "Medicinal Plants Used Traditionally for Skin Related Problems in the South Balkan and East Mediterranean Region-A Review.",
           "year": 2022,
-          "studyType": "review"
-        }
-      ]
-    },
-    {
-      "who": "Traditional medicine (including Indian medicine)",
-      "use": "The fruit as a mild laxative, and for other stomach and gut complaints such as colic and indigestion.",
-      "modern": "partly",
-      "finding": "Functional constipation",
-      "note": "Two small trials found that a fig paste or dried figs eased constipation, but there are few trials and a meta-analysis of fruit trials did not count the fig paste trial as changing stool form or frequency. Nobody has tested figs for colic or indigestion.",
-      "sources": [
-        {
-          "pmid": "24159359",
-          "doi": "10.1155/2013/974256",
-          "title": "Ficus carica L. (Moraceae): Phytochemistry, Traditional Uses and Biological Activities.",
-          "year": 2013,
-          "studyType": "review"
-        },
-        {
-          "pmid": "25017517",
-          "doi": "10.3109/13880209.2014.892515",
-          "title": "Traditional uses, phytochemistry and pharmacology of Ficus carica: a review.",
-          "year": 2014,
-          "studyType": "review"
-        }
-      ]
-    },
-    {
-      "who": "Traditional medicine (including Indian medicine)",
-      "use": "Fruit, leaves or roots for sore throats, coughs and bronchial problems; in Indian medicine the fruit as an expectorant, to help bring up mucus.",
-      "modern": "not tested",
-      "note": "No trial has tested figs for coughs or chest complaints.",
-      "sources": [
-        {
-          "pmid": "24159359",
-          "doi": "10.1155/2013/974256",
-          "title": "Ficus carica L. (Moraceae): Phytochemistry, Traditional Uses and Biological Activities.",
-          "year": 2013,
           "studyType": "review"
         }
       ]
@@ -542,6 +725,56 @@
           "n": 88
         }
       ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Figs relieve constipation",
+      "topic": "Figs and constipation",
+      "label": "Figs and constipation",
+      "category": "health"
+    },
+    {
+      "claim": "Figs lower blood sugar",
+      "topic": "Figs and blood sugar",
+      "label": "Figs and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Figs are good for your heart and cholesterol",
+      "topic": "Figs and cholesterol",
+      "label": "Figs and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Fig leaf tea lowers blood sugar in diabetes",
+      "topic": "Fig leaf tea and blood sugar",
+      "label": "Fig leaf tea",
+      "category": "health"
+    },
+    {
+      "claim": "Figs give you energy and stamina",
+      "topic": "Figs and athletic performance",
+      "label": "Figs for energy",
+      "category": "health"
+    },
+    {
+      "claim": "Figs help you lose weight",
+      "topic": "Figs and weight loss",
+      "label": "Figs and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Figs are good for your skin",
+      "topic": "Figs and skin health",
+      "label": "Figs and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Figs strengthen your bones",
+      "topic": "Figs and bone health",
+      "label": "Figs and bones",
+      "category": "health"
     }
   ],
   "visuals": [

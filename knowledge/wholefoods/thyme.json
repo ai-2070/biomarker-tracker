@@ -1,0 +1,254 @@
+{
+  "id": "thyme",
+  "name": "Thyme",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Common thyme",
+    "Thymus vulgaris",
+    "Garden thyme",
+    "Dried thyme",
+    "Fresh thyme",
+    "Thyme leaves",
+    "Thyme tea",
+    "Thyme sprigs"
+  ],
+  "summary": "Thyme is a small-leaved Mediterranean herb, used fresh or dried in cooking and as a tea. This page lists what people say thyme does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Thyme (Thymus vulgaris) is a Mediterranean herb of the mint family. A 2018 review says thymol makes up 10 to 64% of its essential oil and that thymol shows antimicrobial, antioxidant, anti-inflammatory and antispasmodic activity in studies, some of which may help explain its traditional uses.",
+    "A 2006 trial gave 361 adults with acute bronchitis either a fixed thyme and ivy-leaf extract syrup or placebo for 11 days: coughing fits fell 68.7% with the extract and 47.6% with placebo, with no difference in side effects. It tested a combination extract, not thyme tea or the herb in food.",
+    "The UK food table (CoFID) measures dried, ground thyme at 276 kcal, 37 g of fibre, 1,890 mg of calcium, 810 mg of potassium and 123.6 mg of iron per 100 g, and fresh thyme at 95 kcal, 12.3 g of fibre, 630 mg of calcium and 17 mg of vitamin C. It does not measure thymol or the other plant compounds. A teaspoon of dried thyme is only about 1 g."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that thyme is hot, passes easily by stool and urine, and evacuates phlegmatic humours.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 54 (the qualities of herbs and vegetables), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that thyme is a remedy for the stings of serpents and of the scolopendra, that burnt it puts venomous creatures to flight by its smell, and that a decoction in vinegar with rose oil, applied to the temples and forehead, helps headache, phrenitis and lethargy.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.90 (wild thyme), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=90"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that thyme is given for gripings of the stomach, strangury, quinsy and vomiting, taken in water for liver complaints, in vinegar for diseases of the spleen, and beaten up in oxymel for spitting of blood.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.90 (wild thyme), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=90"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that both kinds of thyme are 'extremely beneficial to the sight', whether eaten or used as medicine, and good for old coughs; with vinegar and salt they help bring up phlegm, and with honey they stop the blood from coagulating. He added that thyme is heating and must be used in moderation.",
+      "note": "The 1855 translator's footnote says most of the assertions about thyme's virtues are 'quite unfounded'.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 21.89 (thyme: twenty-eight remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=21:chapter=89"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that thyme beaten up with salt is given for loss of appetite, that it helps hard breathing and asthma, and that people with epilepsy should smell it when a fit comes on and sleep on soft thyme.",
+      "note": "The 1855 translator's footnote says most of the assertions about thyme's virtues are 'quite unfounded'.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 21.89 (thyme: twenty-eight remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=21:chapter=89"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides wrote that thyme drunk with salt and vinegar drives phlegmy matter out through the bowels, that with honey it helps asthma, that applied with vinegar it dissolves new swellings and clots of blood and takes away hanging warts, and that eaten with meat it is good for poor vision. He added that it is good instead of sauce for use in health.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 3.44 (thyme), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed thyme among the foods that do not agree with the stomach, together with catmint, savory, hyssop, cress, sorrel and walnuts.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.25.2 (foods that disagree with the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#25"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus named thyme among the foods that increase the urine, and among those that excite the senses, together with catmint, savory, hyssop, pennyroyal, rue and onion.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.31.1 (foods that increase the urine; 2.32.1 for exciting the senses), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#31"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a swollen, sore throat, Celsus wrote that it is useful to gargle a decoction of hyssop, catmint, thyme or wormwood in hydromel (honey water).",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.7.3 (the throat (cynanche)), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#7"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-883",
+      "label": "1 teaspoon dried, ground thyme (about 1 g)",
+      "grams": 1
+    },
+    {
+      "id": "13-893",
+      "label": "1 tablespoon fresh thyme leaves (about 3 g)",
+      "grams": 3
+    }
+  ],
+  "processing": [
+    "Drying concentrates thyme: the UK food table has 37 g of fibre and 123.6 mg of iron per 100 g of dried, ground thyme, against 12.3 g of fibre in fresh thyme (no iron value for fresh). A teaspoon of dried thyme weighs about 1 g."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Thyme soothes coughs and bronchitis",
+      "topic": "Thyme and cough",
+      "label": "Thyme and cough",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme tea relieves a sore throat",
+      "topic": "Thyme tea and sore throat",
+      "label": "Thyme tea and sore throat",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme kills germs",
+      "topic": "Thyme and infections",
+      "label": "Thyme and infections",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme lowers blood pressure",
+      "topic": "Thyme and blood pressure",
+      "label": "Thyme and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme is full of antioxidants",
+      "topic": "Thyme and antioxidants",
+      "label": "Thyme and antioxidants",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme clears acne and helps skin",
+      "topic": "Thyme and acne",
+      "label": "Thyme and acne",
+      "category": "appearance"
+    },
+    {
+      "claim": "Thyme tea eases period pain",
+      "topic": "Thyme and period pain",
+      "label": "Thyme and period pain",
+      "category": "health"
+    },
+    {
+      "claim": "Thyme essential oil is safe to swallow",
+      "topic": "Thyme essential oil and safety",
+      "label": "Thyme oil safety",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Allergy to mint-family herbs or other spices",
+      "note": "A case report describes three systemic allergic reactions to oregano and thyme in one patient, who also tested positive to other plants of the mint family. If you react to herbs or spices, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether thyme eaten as a herb or drunk as tea soothes a cough: the trial here used a combined thyme and ivy extract.",
+    "How much thymol a given jar or tea bag holds: it varies by variety and drying.",
+    "Whether thymol, tested mostly in the lab and in animals, does the same in people at the amounts in food."
+  ],
+  "sources": [
+    {
+      "pmid": "29785774",
+      "doi": "10.1002/ptr.6109",
+      "title": "Thymol, thyme, and other plant sources: Health and potential uses.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17063641",
+      "doi": "10.1055/s-0031-1296767",
+      "title": "Efficacy and tolerability of a fluid extract combination of thyme herb and ivy leaves and matched placebo in adults suffering from acute bronchitis with productive cough. A prospective, double-blind, placebo-controlled clinical trial.",
+      "year": 2006,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "8630713",
+      "doi": "10.1016/s1081-1206(10)63456-4",
+      "title": "Labiatae allergy: systemic reactions due to ingestion of oregano and thyme.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

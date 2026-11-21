@@ -1,0 +1,291 @@
+{
+  "id": "oysters",
+  "name": "Oysters",
+  "group": "fish",
+  "otherNames": [
+    "Oyster",
+    "Raw oysters",
+    "Pacific oyster",
+    "Native oyster",
+    "Crassostrea gigas",
+    "Ostrea edulis",
+    "Cooked oysters",
+    "Oyster meat"
+  ],
+  "summary": "Oysters are shellfish eaten raw or cooked, long prized at the table. This page lists what people say oysters do and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw oysters at 65 kcal, 10.8 g of protein and 1.3 g of fat per 100 g, with 59.2 mg of zinc, 17 µg of vitamin B12, 5.7 mg of iron, 7.5 mg of copper, 23 µg of selenium and 60 µg of iodine. It does not measure the many other compounds in shellfish.",
+    "Oysters feed by filtering water, so they can collect microbes from it. A review of one such bacterium, Vibrio parahaemolyticus, says oysters may accumulate it in their soft tissues."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said oysters are singularly refreshing to the stomach and tend to restore the appetite.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.21 (oysters), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that oysters are slightly laxative to the bowels, and that boiled in honied wine they relieve tenesmus (a straining to pass stool) when there is no ulceration. He also said they cleanse ulcerations of the bladder.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.21 (oysters), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reported that oysters boiled in their shells, unopened, are marvellously efficacious for rheumatic defluxions (a flow of humours he blamed for aching joints and catarrh).",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.21 (oysters), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said calcined (burnt) oyster shells mixed with honey ease sore tonsils and the uvula, and that the ashes with water are good for ulcers of the head and give a plumpness to the skin of women.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.21 (oysters), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that oyster-shell ashes are esteemed as a tooth powder, and that raw oysters beaten up cure scrofula (swollen neck glands) and chilblains on the feet.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.21 (oysters), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed oysters among the foods best suited to the stomach, along with scallops, murex and purple shellfish.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.24.3 (foods best suited to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#24"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted oysters, with soft fish, among the foods that readily decompose inside the body.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.28.1 (foods that readily decompose inside), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#28"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed oysters, giant mussels, sea-urchins and almost all shellfish among the foods that move the bowels, especially the soup made from them.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.29.2 (foods that move the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#29"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Diphilus and Mnesitheus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Diphilus, a Greek physician, held that oysters taken in spring and early summer are good for the stomach and easily digested, and nutritious and good for the bowels when boiled with mallow, sorrel or fish.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3 (passages quoting Diphilus and Mnesitheus on oysters), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.40-3.59"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Diphilus and Mnesitheus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Mnesitheus, an Athenian writer on food, taught that raw oysters are not very digestible and loosen the bowels because of their saltiness. He said boiling removes most of it, roasted oysters cause the least trouble, and oysters are not good as diuretics.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3 (passages quoting Diphilus and Mnesitheus on oysters), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.40-3.59"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "16-260",
+      "label": "6 raw oysters, meat only (about 70 g)",
+      "grams": 70
+    }
+  ],
+  "processing": [
+    "Weighed with their shells the UK food table has 9 kcal and 8.3 mg of zinc per 100 g, because most of that weight is shell; the meat alone has 65 kcal and 59.2 mg.",
+    "Oysters are often eaten raw, so any bacteria or viruses they filtered from the water are still there when they are eaten; a review of oyster safety describes control measures along the whole chain from farm to table."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Oysters are an aphrodisiac",
+      "topic": "Oysters and libido",
+      "label": "Oysters as aphrodisiac",
+      "category": "appearance"
+    },
+    {
+      "claim": "Oysters raise testosterone",
+      "topic": "Oysters and testosterone",
+      "label": "Oysters and testosterone",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters boost immunity because of their zinc",
+      "topic": "Oysters and immunity",
+      "label": "Oysters and immunity",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters improve male fertility and sperm quality",
+      "topic": "Oysters and fertility",
+      "label": "Oysters and fertility",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters fix vitamin B12 deficiency and tiredness",
+      "topic": "Oysters and vitamin B12",
+      "label": "Oysters and B12",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters are safe only in months with an R",
+      "topic": "Oysters and months with an R",
+      "label": "Oysters and R months",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters are safe raw if they smell fresh",
+      "topic": "Raw oysters and food poisoning",
+      "label": "Raw oysters and safety",
+      "category": "health"
+    },
+    {
+      "claim": "Oysters are good for your skin and hair",
+      "topic": "Oysters and skin",
+      "label": "Oysters and skin",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Liver disease (cirrhosis)",
+      "note": "A case report describes a man with cirrhosis who died of overwhelming Vibrio vulnificus sepsis after eating oysters, and a letter reports greater susceptibility to this infection in people with chronic liver disease. If you have liver disease, talk to your doctor before eating raw shellfish."
+    },
+    {
+      "with": "Pregnancy",
+      "note": "A risk assessment found hepatitis A and hepatitis E viruses in raw oysters, and a review says severe hepatitis E has mostly been reported in pregnant women and people with weakened immunity. If you are pregnant, talk to your doctor or midwife about raw shellfish.",
+      "safetyId": "pregnancy"
+    },
+    {
+      "with": "Shellfish allergy",
+      "note": "Shellfish allergy is of increasing concern; the main allergen, tropomyosin, resists heat in some cases, and cross-reactions between unrelated shellfish are common. If you react to shellfish, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating oysters changes testosterone, fertility or immunity in people: this page does not review those studies.",
+    "How much zinc, iron or B12 a given oyster holds: it varies by species, season and water.",
+    "The Roman writers' ideas of humours and defluxions have no modern counterpart, so those claims cannot be mapped to a condition."
+  ],
+  "sources": [
+    {
+      "pmid": "33331689",
+      "doi": "10.1111/1541-4337.12557",
+      "title": "Managing the risk of Vibrio parahaemolyticus infections associated with oyster consumption: A review.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "37170537",
+      "doi": "10.1177/00031348231174013",
+      "title": "Fulminant Overwhelming Necrotizing Vibrio vulnificus Sepsis Secondary to Oyster Consumption.",
+      "year": 2023,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "34601752",
+      "doi": "10.1111/risa.13832",
+      "title": "Quantitative Risk Assessments of Hepatitis A Virus and Hepatitis E Virus from Raw Oyster Consumption.",
+      "year": 2022,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "40284721",
+      "doi": "10.3390/microorganisms13040885",
+      "title": "Hepatitis E Virus in the Role of an Emerging Food-Borne Pathogen.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24870065",
+      "doi": "10.1007/s12016-014-8429-8",
+      "title": "Shellfish Allergy: a Comprehensive Review.",
+      "year": 2015,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40482969",
+      "doi": "10.1016/j.amjms.2025.06.002",
+      "title": "Increased susceptibility to vibrio vulnificus infection in patients with MASLD, cirrhosis, and chronic liver diseases.",
+      "year": 2025,
+      "studyType": "observational"
+    }
+  ]
+}

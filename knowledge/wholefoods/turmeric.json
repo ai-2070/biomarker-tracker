@@ -1,0 +1,148 @@
+{
+  "id": "turmeric",
+  "name": "Turmeric",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Curcuma longa",
+    "Ground turmeric",
+    "Turmeric powder",
+    "Turmeric root",
+    "Fresh turmeric",
+    "Turmeric rhizome",
+    "Turmeric tea"
+  ],
+  "summary": "Turmeric is the dried, ground root of Curcuma longa, which gives curry its yellow colour. This page lists what people say turmeric does and what writers in the past believed; each claim can be checked against the research when you choose. Its old records are mostly Asian, so this page shows only the one it could read.",
+  "inIt": [
+    "Turmeric is the dried root of Curcuma longa. Its yellow pigment is curcumin, and most trials test curcumin or turmeric extract in capsules, not turmeric used as a spice.",
+    "A 2024 meta-analysis of 103 randomised trials (7,216 people) compared curcumin supplements with placebo. It rated the evidence high for fasting blood sugar, CRP (a marker of inflammation), HDL cholesterol and weight, and moderate to very low for most other outcomes.",
+    "Curcumin is poorly absorbed on its own: in a 1998 study, 2 g of curcumin alone gave undetectable or very low blood levels in volunteers, while adding 20 mg of piperine from black pepper raised the absorbed amount about 2000%.",
+    "In a 4-week crossover trial in 11 healthy people, about 91% of turmeric's oxalate was water soluble (6% in cinnamon), and turmeric raised urinary oxalate after an oxalate test dose.",
+    "The UK food table (CoFID) measures ground turmeric at 6.7 g of protein, 7 g of fat, 2,910 mg of potassium, 190 mg of magnesium and 39.5 mg of iron per 100 g. It gives no energy or fibre value and does not measure curcumin. A teaspoon is only about 3 g."
+  ],
+  "lore": [
+    {
+      "who": "China (Tang dynasty addition to the herbal tradition, as quoted in the Zhenglei bencao, 1108)",
+      "belief": "The entry calls turmeric pungent, bitter and very cold. It says turmeric treats hard lumps and accumulations in the chest and belly, brings qi (the body's flowing energy) down, breaks up stagnant blood, clears 'wind-heat' and disperses swellings from abscesses, and acts more fiercely than yujin, a related root.",
+      "note": "The page tags the entry as a Tang addition to the older herbal. Other old records of turmeric are not shown here.",
+      "sources": [
+        {
+          "title": "Zhenglei bencao (Song dynasty materia medica, 1108), Siku quanshu edition, volume 9: entry for turmeric (Jianghuang), in the section 'herbs of the middle class' (Chinese Wikisource)",
+          "author": "Tang Shenwei (compiler)",
+          "when": "1108",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%AD%89%E9%A1%9E%E6%9C%AC%E8%8D%89_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B709"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-861",
+      "label": "1 teaspoon ground turmeric (about 3 g)",
+      "grams": 3
+    }
+  ],
+  "processing": [
+    "Piperine from black pepper changes how much curcumin is absorbed: about 2000% more in the 1998 study, which used 20 mg of piperine with 2 g of curcumin, not a pinch of pepper in food."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Turmeric reduces inflammation",
+      "topic": "Turmeric and inflammation",
+      "label": "Turmeric and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric relieves joint pain and arthritis",
+      "topic": "Turmeric and joint pain",
+      "label": "Turmeric and joint pain",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric only works if you add black pepper",
+      "topic": "Turmeric and black pepper",
+      "label": "Turmeric and black pepper",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric lowers blood sugar",
+      "topic": "Turmeric and blood sugar",
+      "label": "Turmeric and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric detoxes and protects the liver",
+      "topic": "Turmeric and the liver",
+      "label": "Turmeric and the liver",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric prevents cancer",
+      "topic": "Turmeric and cancer",
+      "label": "Turmeric and cancer",
+      "category": "longevity"
+    },
+    {
+      "claim": "Turmeric improves mood and depression",
+      "topic": "Turmeric and depression",
+      "label": "Turmeric and depression",
+      "category": "health"
+    },
+    {
+      "claim": "Turmeric brightens the skin and whitens teeth",
+      "topic": "Turmeric and skin",
+      "label": "Turmeric and skin",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Liver disease, or anyone taking turmeric or curcumin supplements",
+      "note": "A 2026 review by the United States Pharmacopeia says liver problems have been reported very rarely with turmeric or curcuminoid supplements, usually after 1 to 4 months of use and usually resolving when the supplement stops; acute liver failure was reported rarely. Many cases also involved other medicines or supplements. It proposes a label advising people with a history of liver problems to consult a health-care practitioner. If this applies to you, talk to your doctor."
+    },
+    {
+      "with": "Kidney stones",
+      "note": "In healthy volunteers, turmeric's oxalate was mostly water soluble and turmeric raised urinary oxalate, a risk factor for kidney stones. The study used supplement-size amounts. If you have had kidney stones, talk to your doctor."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether turmeric used as a spice in cooking does what curcumin capsules did in trials: the amounts of curcumin differ by a large factor.",
+    "How the 103-trial meta-analysis' results carry over to long-term health: it measured blood markers and weight, not diseases.",
+    "Other old records of turmeric are not shown on this page."
+  ],
+  "sources": [
+    {
+      "pmid": "39478418",
+      "doi": "10.1002/ptr.8340",
+      "title": "Curcumin on Human Health: A Comprehensive Systematic Review and Meta-Analysis of 103 Randomized Controlled Trials.",
+      "year": 2024,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "9619120",
+      "doi": "10.1055/s-2006-957450",
+      "title": "Influence of piperine on the pharmacokinetics of curcumin in animals and human volunteers.",
+      "year": 1998,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "18469248",
+      "doi": "10.1093/ajcn/87.5.1262",
+      "title": "Effect of cinnamon and turmeric on urinary oxalate excretion, plasma lipids, and plasma glucose in healthy subjects.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "42364655",
+      "doi": "10.1080/13880209.2026.2693375",
+      "title": "Rarely reported cases of hepatotoxicity associated with turmeric- and curcuminoid-containing dietary supplements: a comprehensive review by USP.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

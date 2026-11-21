@@ -688,6 +688,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Pomegranate juice lowers blood pressure",
+      "topic": "Pomegranate juice and blood pressure",
+      "label": "Pomegranate and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate protects your heart and arteries",
+      "topic": "Pomegranate and heart disease",
+      "label": "Pomegranate and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate lowers cholesterol",
+      "topic": "Pomegranate and cholesterol",
+      "label": "Pomegranate and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate helps prevent prostate cancer",
+      "topic": "Pomegranate and prostate cancer",
+      "label": "Pomegranate and prostate",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate lowers blood sugar",
+      "topic": "Pomegranate and blood sugar",
+      "label": "Pomegranate and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate improves exercise performance",
+      "topic": "Pomegranate and exercise performance",
+      "label": "Pomegranate and exercise",
+      "category": "health"
+    },
+    {
+      "claim": "Pomegranate keeps skin looking young",
+      "topic": "Pomegranate and skin aging",
+      "label": "Pomegranate and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Pomegranate improves memory",
+      "topic": "Pomegranate and memory",
+      "label": "Pomegranate and memory",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

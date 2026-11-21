@@ -408,12 +408,18 @@ const ART: Record<string, ReactNode> = {
 const ALIAS: Record<string, string> = {
   "carrots and carrot juice": "carrots",
   "lemon and lemon juice": "lemon",
+  "dark chocolate": "dark chocolate and cocoa",
+  tomatoes: "tomatoes and tomato sauce",
 };
 
 function drawing(key: string): ReactNode {
-  const k = key.toLowerCase();
-  const id = ALIAS[k] ?? MORE_ALIAS[k] ?? k;
-  return ART[id] ?? MORE[id];
+  const raw = key.toLowerCase();
+  for (const k of [raw, raw.replace(/_/g, " ")]) {
+    const id = ALIAS[k] ?? MORE_ALIAS[k] ?? k;
+    const art = ART[id] ?? MORE[id];
+    if (art) return art;
+  }
+  return undefined;
 }
 
 export function hasFoodArt(key: string): boolean {

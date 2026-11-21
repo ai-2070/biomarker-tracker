@@ -12,9 +12,9 @@ const key = (text: string) =>
 describe("name-only knowledge catalogue", () => {
   it("does not duplicate another name or an existing guide's name or alias", () => {
     for (const group of [
-      { entries: names.supplements, guides: NUTRIENTS },
-      { entries: names.foods, guides: WHOLE_FOODS },
-      { entries: names.lifestyle, guides: LIFESTYLE },
+      { entries: names.supplements as { name: string }[], guides: NUTRIENTS },
+      { entries: names.foods as { name: string }[], guides: WHOLE_FOODS },
+      { entries: names.lifestyle as { name: string }[], guides: LIFESTYLE },
     ]) {
       const registered = new Set(group.guides.flatMap((guide) => [guide.name, ...guide.otherNames]).map(key));
       const seen = new Set<string>();

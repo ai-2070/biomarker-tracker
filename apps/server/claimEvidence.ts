@@ -8,7 +8,7 @@ import {
 } from "@bt/shared/core/claimEvidence";
 import { ask } from "./assistant";
 import { ClaimSearchSession } from "./claimSearchSession";
-import { findLifestyle, findNutrient } from "./knowledge";
+import { findLifestyle, findNutrient, findWholeFood } from "./knowledge";
 
 export class ClaimEvidenceError extends Error {
   constructor(
@@ -20,6 +20,7 @@ export class ClaimEvidenceError extends Error {
 }
 
 const lifestyleById = (id: string) => (findLifestyle(id)?.id === id ? findLifestyle(id) : undefined);
+const wholeFoodById = (id: string) => (findWholeFood(id)?.id === id ? findWholeFood(id) : undefined);
 
 /** Knowledge supplies names and preset topics when available; custom interventions need no KB entry. */
 export function parseClaimRequest(value: unknown): ClaimRequest {
@@ -46,8 +47,7 @@ export function parseClaimRequest(value: unknown): ClaimRequest {
   const topics = nutrient?.simpleGuide?.claimTopics;
   const staticTopic = topics && Object.hasOwn(topics, claim) ? topics[claim] : undefined;
   if (staticTopic && nutrient?.commonUses?.includes(claim)) return { nutrientId: record.nutrientId, claim, topic: staticTopic };
-  const lifestyle = lifestyleById(record.nutrientId);
-  const listed = lifestyle?.claims.find((c) => c.claim === claim);
+  const listed = (lifestyleById(record.nutrientId) ?? wholeFoodById(record.nutrientId))?.claims.find((c) => c.claim === claim);
   if (listed) return { nutrientId: record.nutrientId, claim, topic: listed.topic };
   const topic = publicClaimTopic(record.topic);
   if (!topic || publicClaimTopic(claim) !== topic)
@@ -59,7 +59,11 @@ export async function checkClaimEvidence(value: unknown, opts: { signal?: AbortS
   const request = parseClaimRequest(value);
   const options = value as { depth?: ClaimDepth };
   const depth = options.depth ?? "quick";
-  const intervention = findNutrient(request.nutrientId)?.name ?? lifestyleById(request.nutrientId)?.name ?? request.nutrientId.replace(/[_-]/g, " ");
+  const intervention =
+    findNutrient(request.nutrientId)?.name ??
+    lifestyleById(request.nutrientId)?.name ??
+    wholeFoodById(request.nutrientId)?.name ??
+    request.nutrientId.replace(/[_-]/g, " ");
   const session = new ClaimSearchSession(intervention, request.topic, depth, opts.fetchFn, opts.signal);
   const reply = await ask(
     [

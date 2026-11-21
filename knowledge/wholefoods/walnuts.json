@@ -1,0 +1,238 @@
+{
+  "id": "walnuts",
+  "name": "Walnuts",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Walnut",
+    "English walnut",
+    "Persian walnut",
+    "Common walnut",
+    "Juglans regia",
+    "Walnut kernels",
+    "Shelled walnuts",
+    "Black walnut",
+    "Walnut oil",
+    "Raw walnuts"
+  ],
+  "summary": "Walnuts are the oily, brain-shaped kernels of the walnut tree, eaten raw, toasted or in cooking. This page lists what people say walnuts do and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Walnuts are a nutrient-dense nut, mainly because of their oil, which can be up to about 74 % of the kernel in some varieties. The oil is mostly unsaturated fats: mainly linoleic acid, with smaller amounts of oleic and linolenic acid.",
+    "Minor parts of the oil include tocopherols (vitamin E forms), phospholipids, sterols and other compounds. Phenolic compounds with strong antioxidant properties sit at high levels in the seed coat (the thin brown skin).",
+    "The UK food table (CoFID) measures walnut kernels at 688 kcal, 68.5 g of fat (7.5 g of it saturated), 14.7 g of protein, 2.6 g of sugars, 160 mg of magnesium, 1.34 mg of copper, 3.9 mg of vitamin E and 66 µg of folate per 100 g. It does not measure fibre for this entry, nor the phenolic compounds."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-879",
+      "label": "a handful of walnut kernels (about 30 g)",
+      "grams": 30
+    }
+  ],
+  "processing": [
+    "The phenolic compounds sit mostly in the seed coat and are poorly extracted with the oil, so walnut oil carries far fewer of them than the whole kernel with its skin. The 2010 review describes this for the oil and the by-products.",
+    "Walnut oil is pressed from the kernel and can be eaten without refining; the table lists it separately (899 kcal per 100 g), so numbers for walnuts do not carry over to the oil."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Walnuts lower cholesterol",
+      "topic": "Walnuts and cholesterol",
+      "label": "Walnuts and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Walnuts are brain food and protect memory",
+      "topic": "Walnuts and brain health",
+      "label": "Walnuts and the brain",
+      "category": "longevity"
+    },
+    {
+      "claim": "Walnuts protect your heart",
+      "topic": "Walnuts and heart disease",
+      "label": "Walnuts and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Walnuts make you gain weight",
+      "topic": "Walnuts and weight gain",
+      "label": "Walnuts and weight gain",
+      "category": "appearance"
+    },
+    {
+      "claim": "Walnuts lower blood pressure",
+      "topic": "Walnuts and blood pressure",
+      "label": "Walnuts and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Walnuts help sleep because of their melatonin",
+      "topic": "Walnuts and sleep",
+      "label": "Walnuts and sleep",
+      "category": "health"
+    },
+    {
+      "claim": "Walnuts reduce the risk of type 2 diabetes",
+      "topic": "Walnuts and type 2 diabetes",
+      "label": "Walnuts and diabetes",
+      "category": "longevity"
+    },
+    {
+      "claim": "Walnuts improve gut bacteria",
+      "topic": "Walnuts and gut bacteria",
+      "label": "Walnuts and gut bacteria",
+      "category": "health"
+    }
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny linked the Greek name of the walnut to heaviness of the head, and said the tree and its leaves reach the brain, with the eaten nuts having a milder version of the same effect.",
+      "note": "The translators' footnotes in the same edition question several of Pliny's walnut claims.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (walnuts: twenty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that fresh walnut kernels are pleasant to eat, while dried ones are oily, hard to digest and upsetting to the stomach, and bad for a cough.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (walnuts: twenty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said that walnuts eaten beforehand dull the effects of poison, and he set down a recipe he said was found in the papers of King Mithridates: two dried walnuts, two figs and twenty rue leaves pounded with a grain of salt, taken fasting, to protect against all poisons that day.",
+      "note": "The translators call the Mithridates story a fable.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (the Mithridatic antidote), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny recommended walnuts with rue and oil as a cure for quinsy (a throat abscess), and walnuts with honey for inflamed ears; pounded walnut leaves in vinegar were put on an earache.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (walnuts: twenty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said walnuts pounded with onions, salt and honey were put on bites of dogs or people, and that kernels chewed fasting and laid on the wound cured the bite of a mad dog.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (walnuts: twenty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that burned walnut shells mixed with oil or wine, rubbed on the heads of infants, make hair grow, and that the same is used for hair loss; he also said that eating many walnuts drives out tapeworm.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.77 (walnuts: twenty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=77"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed walnuts among the foods that are alien to the stomach and do not agree with it, and listed nuts, except pine kernels, among foods that cause wind.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.25.2 and 2.26.2 (foods that disagree with the stomach; foods that cause wind), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#25"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (physician Diocles, quoted by Athenaeus, about 200 AD)",
+      "belief": "Diocles held that walnuts are less nourishing than almonds and that eaten in quantity they make the head feel heavy, with green walnuts less harmful than dry ones. Other physicians quoted in the same passage said nuts of this kind give headaches and are hard to digest, and are most digestible roasted and eaten with honey.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 2 (the passage on nuts, Yonge translation, 1854, vol. 1 pp. 87-89; chapter numbers are not printed in this edition)",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/2.40-2.59"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Tree nut allergy",
+      "note": "A 2015 systematic review says tree nuts are among the most common foods causing acute allergic reactions and that nearly all have been linked to fatal reactions; walnut and cashew were the most common tree nut allergies in the USA and Brazil, and walnut was among the most reported in the UK. If you react to nuts, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating walnuts changes long-term health outcomes beyond blood fats: a 2018 meta-analysis of 26 trials found better blood lipids without weight gain, but this page does not review the longer-term evidence.",
+    "How much of the phenolic compounds in the skin the body takes up: the food table does not measure them.",
+    "Whether the many ancient remedies above did anything: this page does not test them."
+  ],
+  "sources": [
+    {
+      "pmid": "20586084",
+      "doi": "10.1002/jsfa.4059",
+      "title": "Walnut (Juglans regia L.): genetic resources, chemistry, by-products.",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29931130",
+      "doi": "10.1093/ajcn/nqy091",
+      "title": "Effects of walnut consumption on blood lipids and other cardiovascular risk factors: an updated meta-analysis and systematic review of controlled trials.",
+      "year": 2018,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "26233427",
+      "doi": "10.1007/s11882-015-0555-8",
+      "title": "The Prevalence of Tree Nut Allergy: A Systematic Review.",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}

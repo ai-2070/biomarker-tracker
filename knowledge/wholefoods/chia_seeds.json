@@ -1,0 +1,113 @@
+{
+  "id": "chia_seeds",
+  "name": "Chia seeds",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Chia",
+    "Chia seed",
+    "Salvia hispanica",
+    "White chia seeds",
+    "Black chia seeds",
+    "Chia pudding",
+    "Chia gel",
+    "Ground chia seeds"
+  ],
+  "summary": "Chia seeds are tiny seeds of a plant from Mexico and Central America, eaten whole, soaked in liquid or ground. This page lists what people say chia seeds do; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Chia seeds are a rich source of alpha-linolenic acid, a plant omega-3 fat: about 65 % of the seed oil, according to a 2016 review.",
+    "They hold a lot of dietary fibre, plus protein without gluten, vitamins, minerals and plant compounds such as chlorogenic acid, caffeic acid, quercetin and kaempferol.",
+    "The UK food table (CoFID) has no entry for chia seeds, so this page gives no per-100 g figures from it. Plant compounds like the ones above are not measured in food tables, which cover about 150 nutrients."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Chia seeds are eaten whole, soaked or ground. The 2019 review covers how the seeds are used in food production; this page does not claim that grinding or soaking changes what the body takes up."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Chia seeds lower cholesterol",
+      "topic": "Chia seeds and cholesterol",
+      "label": "Chia and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Chia seeds help you lose weight by keeping you full",
+      "topic": "Chia seeds and weight loss",
+      "label": "Chia and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Chia seeds lower blood sugar",
+      "topic": "Chia seeds and blood sugar",
+      "label": "Chia and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Chia seeds lower blood pressure",
+      "topic": "Chia seeds and blood pressure",
+      "label": "Chia and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Chia seeds are a good source of omega-3 for your heart",
+      "topic": "Chia seeds and omega-3",
+      "label": "Chia and omega-3",
+      "category": "health"
+    },
+    {
+      "claim": "Chia seeds relieve constipation",
+      "topic": "Chia seeds and constipation",
+      "label": "Chia and constipation",
+      "category": "health"
+    },
+    {
+      "claim": "Chia seeds give long-lasting energy for athletes",
+      "topic": "Chia seeds and endurance",
+      "label": "Chia and endurance",
+      "category": "longevity"
+    },
+    {
+      "claim": "Chia seeds are a complete superfood with no downsides",
+      "topic": "Chia seeds and allergy",
+      "label": "Chia and allergy",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Allergy to sesame or other seeds",
+      "note": "A 2026 review says chia seed is a potential emerging food allergen, with case reports of immediate allergic reactions and anaphylaxis, and that its proteins can be recognised by the antibodies of people allergic to sesame. It also says this does not prove a person with sesame allergy will react to chia, and that it cannot give how common chia allergy is. If you have a seed allergy, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating chia seeds changes health outcomes in people: this page does not review the trials, and the reviews mix lab, animal and human findings.",
+    "How common chia seed allergy is, and who reacts: the 2026 review says the evidence cannot say.",
+    "How the plant omega-3 in chia seeds compares with the fish omega-3s (EPA and DHA) in the body: the food table does not measure it."
+  ],
+  "sources": [
+    {
+      "pmid": "27413203",
+      "doi": "10.1007/s13197-015-1967-0",
+      "title": "Nutritional and therapeutic perspectives of Chia (Salvia hispanica L.): a review.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "31159190",
+      "doi": "10.3390/nu11061242",
+      "title": "The Chemical Composition and Nutritional Value of Chia Seeds-Current State of Knowledge.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42797010",
+      "doi": "10.3390/nu18183027",
+      "title": "Chia Seed Allergy: Emerging Clinical Evidence, Molecular Allergens, and the Unresolved Question of Cross-Reactivity.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

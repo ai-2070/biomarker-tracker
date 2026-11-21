@@ -621,6 +621,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Beetroot juice lowers blood pressure",
+      "topic": "Beetroot juice and blood pressure",
+      "label": "Beetroot and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot improves exercise stamina",
+      "topic": "Beetroot juice and exercise performance",
+      "label": "Beetroot and stamina",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot juice improves blood flow to the brain",
+      "topic": "Beetroot juice and brain blood flow",
+      "label": "Beetroot and brain blood flow",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot protects your heart",
+      "topic": "Beetroot and heart disease",
+      "label": "Beetroot and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot cleanses the liver",
+      "topic": "Beetroot and liver health",
+      "label": "Beetroot and the liver",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot lowers blood sugar",
+      "topic": "Beetroot and blood sugar",
+      "label": "Beetroot and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Beetroot slows memory decline",
+      "topic": "Beetroot and cognitive decline",
+      "label": "Beetroot and memory",
+      "category": "longevity"
+    },
+    {
+      "claim": "Beetroot turns your urine red, and that is harmless",
+      "topic": "Beeturia after eating beetroot",
+      "label": "Beetroot and red urine",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "flow",

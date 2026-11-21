@@ -22,6 +22,51 @@
   ],
   "lore": [
     {
+      "who": "Ancient Greece (Cyrneans, as reported by Lycus via Athenaeus)",
+      "belief": "The people of Cyrnos, near Sardinia, were said to be very long-lived because they ate honey all the time.",
+      "note": "Pliny's translator adds the same Corsican tradition in a footnote; Athenaeus gives it as Lycus's statement.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae 2.26 (Yonge translation), last sentence of the passage",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://atlas.perseus.tufts.edu/library/passage/urn:cts:greekLit:tlg0008.tlg001.perseus-eng2:2.26/text"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Pythagoreans, as reported by Aristoxenus via Athenaeus)",
+      "belief": "Bread and honey for breakfast was said to keep the Pythagoreans free from disease all their lives.",
+      "note": "Athenaeus cites Aristoxenus (4th century BC); the claim is theirs, with no evidence behind it.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae 2.26 (Yonge translation), the passage after the Democritus story",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://atlas.perseus.tufts.edu/library/passage/urn:cts:greekLit:tlg0008.tlg001.perseus-eng2:2.26/text"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Democritus, as told by Athenaeus, about 200 AD)",
+      "belief": "Democritus was said to have answered a man who asked how to live in the best health that he should keep his insides moist with honey and his outside with oil.",
+      "note": "Told by Athenaeus about a philosopher of about 400 BC; a saying, not a documented practice. Same passage also says honey kept him alive for several days when he was ready to die.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae 2.26 (Yonge translation; section 46 in Casaubon's numbering)",
+          "author": "Athenaeus",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://atlas.perseus.tufts.edu/library/passage/urn:cts:greekLit:tlg0008.tlg001.perseus-eng2:2.26/text"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
       "who": "Ancient Rome (Pliny the Elder, Natural History, about AD 77)",
       "belief": "Pliny wrote that honey keeps things from rotting by its sweetness alone, and that it was used with the greatest success for the throat and tonsils, for quinsy (an abscess beside the tonsils) and for all ailments of the mouth, and in fevers when the tongue is parched.",
       "modern": "partly",
@@ -79,90 +124,6 @@
           "when": "compiled about the 6th century AD",
           "kind": "ancient text",
           "url": "https://www.sefaria.org/Yoma.83b.7-10"
-        }
-      ]
-    },
-    {
-      "who": "Hebrew Bible",
-      "belief": "God promised to bring the Israelites out of Egypt to 'a land flowing with milk and honey'. Samson, who had torn a lion apart with his bare hands, later found bees and honey in its skeleton and made a riddle of it: 'Out of the eater came something to eat, out of the strong came something sweet.' And when Saul's son Jonathan, in a battle where the troops had been forbidden to eat, dipped a stick in honey and tasted it, 'his eyes lit up'.",
-      "sources": [
-        {
-          "title": "Exodus 3:8 (JPS Tanakh)",
-          "author": "Hebrew Bible",
-          "kind": "ancient text",
-          "url": "https://www.sefaria.org/Exodus.3.8"
-        },
-        {
-          "title": "Judges 14:5-14 (JPS Tanakh)",
-          "author": "Hebrew Bible",
-          "kind": "ancient text",
-          "url": "https://www.sefaria.org/Judges.14.5-14"
-        },
-        {
-          "title": "1 Samuel 14:27-29 (JPS Tanakh)",
-          "author": "Hebrew Bible",
-          "kind": "ancient text",
-          "url": "https://www.sefaria.org/I_Samuel.14.27-29"
-        }
-      ]
-    },
-    {
-      "who": "Jewish New Year (Rosh Hashanah), written down in the 16th century",
-      "belief": "On the eve of the Jewish New Year many eat a sweet apple dipped in honey and say: 'May a sweet year be renewed on us!' Moses Isserles, writing in the 1500s, recorded the custom with the words 'This is what we do', citing older authorities.",
-      "sources": [
-        {
-          "title": "Shulchan Arukh, Orach Chayim 583:1, with the gloss of Moses Isserles (Sefaria Community Translation)",
-          "author": "Joseph Karo and Moses Isserles",
-          "when": "16th century",
-          "kind": "ancient text",
-          "url": "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.583.1"
-        }
-      ]
-    },
-    {
-      "who": "Islam (the Qur'an and the sayings of the Prophet)",
-      "belief": "The Qur'an says God taught the bee to make its homes in the mountains and trees and to eat from every fruit, and that from its belly comes 'a drink, varying in colors, in which there is healing for people'. Paradise has rivers of purified honey. The Prophet Muhammad is reported to have advised honey for diarrhoea.",
-      "modern": "partly",
-      "finding": "Short-term (acute) cough in children",
-      "note": "Trials found that honey eased children's short-term coughs, and honey dressings helped burns heal; nobody has tested honey as a cure for illness in general, and no trial of honey for diarrhoea was found for this page. Honey isn't safe for babies under one (see Then and now).",
-      "sources": [
-        {
-          "title": "Qur'an 16:68-69 (Saheeh International translation)",
-          "kind": "ancient text",
-          "url": "https://quran.com/16/68-69"
-        },
-        {
-          "title": "Qur'an 47:15 (Saheeh International translation)",
-          "kind": "ancient text",
-          "url": "https://quran.com/47/15"
-        },
-        {
-          "title": "Traditional and modern uses of natural honey in human diseases: a review",
-          "author": "Eteraf-Oskouei",
-          "when": "2013",
-          "kind": "scholarship",
-          "pmid": "23997898"
-        }
-      ]
-    },
-    {
-      "who": "Ancient Greece (the infant Zeus, as retold by Diodorus of Sicily; a shrine at Paestum, about 520 BC)",
-      "belief": "The Greeks told that Rhea hid the newborn Zeus from his father Cronus in a cave on Crete, where nymphs fed him on honey and milk; in thanks he made the bees' colour like copper with a gleam of gold and made them proof against wind and snow. At Paestum, a Greek city in southern Italy, sealed bronze jars were left in an underground shrine; the excavators called their contents honey, 'a symbol of immortality', and in 2025 chemists confirmed the jars had once held honey or honeycomb.",
-      "sources": [
-        {
-          "title": "Diodorus Siculus, Library of History, book 5, chapter 70 (translated by C. H. Oldfather, Loeb)",
-          "author": "Diodorus Siculus",
-          "when": "1st century BC",
-          "kind": "ancient text",
-          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Diodorus_Siculus/5D*.html"
-        },
-        {
-          "title": "A Symbol of Immortality: Evidence of Honey in Bronze Jars Found in a Paestum Shrine Dating to 530-510 BCE",
-          "author": "Carvalho",
-          "when": "2025",
-          "kind": "scholarship",
-          "doi": "10.1021/jacs.5c04888",
-          "pmid": "40736130"
         }
       ]
     },
@@ -227,21 +188,6 @@
       ]
     },
     {
-      "who": "Ancient India (Ayurveda: the Charaka and Sushruta texts)",
-      "use": "Honey in dressings to clean sores and help them heal",
-      "modern": "partly",
-      "finding": "Healing of leg ulcers, diabetic foot ulcers and other wounds, with honey applied to the skin (not eaten)",
-      "note": "For leg ulcers, diabetic foot ulcers and other long-lasting wounds, trials of honey dressings are small and their results unclear. One small trial found infected wounds after surgery healed more often with honey than with antiseptic washes.",
-      "sources": [
-        {
-          "pmid": "23888738",
-          "title": "Burns treatment in ancient times.",
-          "year": 2013,
-          "studyType": "review"
-        }
-      ]
-    },
-    {
       "who": "Ancient Greece (Hippocrates)",
       "use": "Honey for cough and sore throat",
       "modern": "partly",
@@ -274,21 +220,6 @@
           "title": "Oxymel: A systematic review of preclinical and clinical studies.",
           "year": 2023,
           "studyType": "review"
-        }
-      ]
-    },
-    {
-      "who": "Muslim communities (tahnik), still practised today",
-      "use": "A little honey (or dates) given to a newborn baby",
-      "modern": "harmful",
-      "note": "A custom rather than a treatment, and no study has tested a benefit. It carries a known risk: honey can hold spores that cause infant botulism, a rare paralysing illness, which is why health authorities advise against honey before 12 months (see Who should be careful). In a survey of 419 mothers in Karachi, Pakistan, 61.6% practised tahnik and 94.75% had never heard of botulism.",
-      "sources": [
-        {
-          "pmid": "41084783",
-          "doi": "10.1080/07370016.2025.2572611",
-          "title": "Cultural Persistence of Tahnik Practice (Use of Honey) Despite Infant Botulism Risk: A Community-Based Study in Pakistan.",
-          "year": 2026,
-          "studyType": "observational"
         }
       ]
     },
@@ -591,6 +522,56 @@
           "studyType": "guideline"
         }
       ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Honey soothes a cough and sore throat",
+      "topic": "Honey and cough in children",
+      "label": "Honey for cough",
+      "category": "health"
+    },
+    {
+      "claim": "Honey is better for you than sugar",
+      "topic": "Honey compared with sugar and health",
+      "label": "Honey versus sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Honey helps heal burns and wounds",
+      "topic": "Honey dressings and wound healing",
+      "label": "Honey on wounds",
+      "category": "health"
+    },
+    {
+      "claim": "Honey clears up acne",
+      "topic": "Honey and acne",
+      "label": "Honey and acne",
+      "category": "appearance"
+    },
+    {
+      "claim": "Local honey cures hay fever",
+      "topic": "Local honey and seasonal allergy",
+      "label": "Local honey and allergy",
+      "category": "health"
+    },
+    {
+      "claim": "Raw honey has more health benefits than regular honey",
+      "topic": "Raw honey compared with processed honey",
+      "label": "Raw versus regular honey",
+      "category": "health"
+    },
+    {
+      "claim": "Honey is safe for people with diabetes",
+      "topic": "Honey and blood sugar control",
+      "label": "Honey and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Honey helps you sleep better",
+      "topic": "Honey and sleep quality",
+      "label": "Honey and sleep",
+      "category": "health"
     }
   ],
   "visuals": [

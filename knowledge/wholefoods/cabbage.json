@@ -1,0 +1,303 @@
+{
+  "id": "cabbage",
+  "name": "Cabbage",
+  "group": "vegetables",
+  "otherNames": [
+    "White cabbage",
+    "Red cabbage",
+    "Green cabbage",
+    "Savoy cabbage",
+    "Chinese cabbage",
+    "Napa cabbage",
+    "Pointed cabbage",
+    "Cabbage leaves",
+    "Cabbage juice",
+    "Sauerkraut",
+    "Brassica oleracea var. capitata"
+  ],
+  "summary": "Cabbage is a leafy cruciferous vegetable eaten raw, cooked or fermented. This page lists what people say cabbage does and what writers in ancient Rome and Greece believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Cabbage is a cruciferous vegetable, rich in glucosinolates and the indoles and isothiocyanates they break down into, according to a 2007 review.",
+    "The UK food table (CoFID) measures raw cabbage (average of types) at 26 kcal, 4.4 g of sugars, 3.5 g of fibre, 258 mg of potassium, 151 µg of vitamin K1, 65 µg of folate and 48 mg of vitamin C per 100 g. It does not measure glucosinolates or the pigments in red cabbage."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Cato the Elder, as reported by Pliny the Elder, about 77 AD)",
+      "belief": "Cato rated the curly cabbage above all others and said that taken raw in the morning, with oxymel, coriander, rue, mint and silphium root, it is good for headache, dim or dazzled sight, the spleen, the stomach and the chest. He said it is so strong that even the person beating up the mixture feels stronger.",
+      "note": "The translators' footnote says that most of the stated virtues of cabbage, though backed by Cato and in large part by Hippocrates, are quite untrue.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.33 (the cabbage and Cato's remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Cato the Elder, as reported by Pliny the Elder, about 77 AD)",
+      "belief": "Cato said a cabbage liniment helps gout and diseases of the joints, that the water it was boiled in is good for the sinews and joints, and that fomentations followed by a beaten cabbage poultice twice a day treat wounds, sprains, fistulas and even cancer.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.33 (the cabbage and Cato's remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Cato the Elder, as reported by Pliny the Elder, about 77 AD)",
+      "belief": "Cato said boiled cabbage eaten fasting with oil and salt prevents dreams and wakefulness, and that cabbage boiled a second time with oil, salt, cumin and polenta relieves gripes in the stomach.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.33 (the cabbage and Cato's remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Cato the Elder, as reported by Pliny the Elder, about 77 AD)",
+      "belief": "Cato said warm cabbage juice with wine dropped into the ears is a capital remedy for deafness, and that cabbage cures impetigo without ulcers forming.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.33 (the cabbage and Cato's remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Greek physicians quoted by Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reports that Greek writers held that cabbage not fully boiled carries off bile and loosens the bowels, while cabbage boiled twice acts as an astringent. They said eaten before drinking it prevents drunkenness and eaten after it clears the heavy feeling, and that the raw juice with Attic honey at the corners of the eyes helps the sight.",
+      "note": "The translators' footnote doubts the claim about drunkenness.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.34 (opinions of the Greeks on the cabbage), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=34"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (school of Erasistratus, quoted by Pliny the Elder, about 77 AD)",
+      "belief": "The school of Erasistratus said nothing is better for the stomach and the sinews than cabbage, and that it should be given to people with paralysis, nervous disorders or spitting of blood.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.34 (opinions of the Greeks on the cabbage), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=34"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocrates, quoted by Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reports that Hippocrates prescribed cabbage, boiled twice and eaten with salt, for dysentery, coeliac disorders, tenesmus and kidney diseases, and held that as food it increases the milk of nursing women and promotes the monthly flow.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.34 (opinions of the Greeks on the cabbage), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=34"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the sprout (cyma) is the tastiest part of any cabbage but is not used in medicine, because it is hard to digest and not good for the kidneys. He added that cabbage is said to taint the breath and harm the teeth and gums, and that it is never eaten in Egypt because it is so bitter.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.35 (cabbage-sprouts), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=35"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cabbage, and even more its sprouts, among foods that give bad juice, and cabbage among foods that cause flatulence.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.21.1 (foods of bad juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#21"
+        },
+        {
+          "title": "Celsus, De Medicina 2.26.1 (foods that cause flatulence), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#26"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus said cabbage that is lightly cooked moves the bowels, while cabbage boiled twice is among the foods that bind them.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.29.1 (foods that move the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#29"
+        },
+        {
+          "title": "Celsus, De Medicina 2.30.1 (foods that bind the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#30"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For round worms in children, Celsus listed cabbage seeds pounded in water among the milder remedies.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.24.1 (intestinal worms), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#24"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-582",
+      "label": "1 serving of raw cabbage (about 90 g)",
+      "grams": 90
+    }
+  ],
+  "processing": [
+    "Boiling cuts some vitamins: the UK food table has 48 mg of vitamin C and 65 µg of folate per 100 g raw cabbage, against 32 mg and 38 µg boiled in unsalted water.",
+    "Sauerkraut is fermented cabbage. In a 2018 pilot trial of 34 people with irritable bowel syndrome, symptom scores fell in both groups eating pasteurised or unpasteurised sauerkraut for 6 weeks, with no difference between them; there was no group without sauerkraut."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Cabbage juice heals stomach ulcers",
+      "topic": "Cabbage juice and stomach ulcers",
+      "label": "Cabbage juice and ulcers",
+      "category": "health"
+    },
+    {
+      "claim": "Cabbage leaf wraps relieve breast engorgement and sore joints",
+      "topic": "Cabbage leaf wraps",
+      "label": "Cabbage leaf wraps",
+      "category": "health"
+    },
+    {
+      "claim": "Cabbage prevents cancer",
+      "topic": "Cabbage and cancer risk",
+      "label": "Cabbage and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "The cabbage soup diet melts fat",
+      "topic": "Cabbage soup diet",
+      "label": "Cabbage soup diet",
+      "category": "appearance"
+    },
+    {
+      "claim": "Sauerkraut heals the gut",
+      "topic": "Sauerkraut and gut health",
+      "label": "Sauerkraut and the gut",
+      "category": "health"
+    },
+    {
+      "claim": "Cabbage causes gas and bloating",
+      "topic": "Cabbage and bloating",
+      "label": "Cabbage and gas",
+      "category": "health"
+    },
+    {
+      "claim": "Cabbage harms the thyroid",
+      "topic": "Cabbage and thyroid function",
+      "label": "Cabbage and thyroid",
+      "category": "health"
+    },
+    {
+      "claim": "Red cabbage protects the heart and lowers blood pressure",
+      "topic": "Red cabbage and heart health",
+      "label": "Red cabbage and the heart",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Warfarin and other vitamin K blockers",
+      "note": "Cabbage holds vitamin K1: 151 µg per 100 g raw (average of types) in the UK food table. A 2016 systematic review of 11 studies (2 diet trials, 9 observational) found conflicting evidence on whether dietary vitamin K changes the blood-thinning effect, and said an effect may show only with high intakes (above 150 µg a day). Talk to your doctor or anticoagulation clinic about green vegetables if you take a vitamin K blocker such as warfarin.",
+      "safetyId": "anticoagulant"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating cabbage itself lowers cancer risk: a 2009 systematic review found lower lung cancer odds with the most cruciferous vegetables in case-control studies (odds ratio 0.78) but a less clear result in cohort studies (relative risk 0.83, interval 0.62 to 1.08), and these studies group all cruciferous vegetables.",
+    "Whether the sauerkraut result was due to sauerkraut: the 2018 trial had no group without it and was small.",
+    "How much of cabbage's thyroid effect, if any, matters at normal intakes: the 2016 goitrin review does not give a figure for cabbage."
+  ],
+  "sources": [
+    {
+      "pmid": "17317210",
+      "doi": "10.1016/j.phrs.2007.01.009",
+      "title": "Cruciferous vegetables and human cancer risk: epidemiologic evidence and mechanistic basis.",
+      "year": 2007,
+      "studyType": "review"
+    },
+    {
+      "pmid": "19124497",
+      "doi": "10.1158/1055-9965.epi-08-0710",
+      "title": "Cruciferous vegetable consumption and lung cancer risk: a systematic review.",
+      "year": 2009,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "26962786",
+      "doi": "10.1097/md.0000000000002895",
+      "title": "Interaction Between Dietary Vitamin K Intake and Anticoagulation by Vitamin K Antagonists: Is It Really True?: A Systematic Review.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "30256365",
+      "doi": "10.1039/c8fo00968f",
+      "title": "Lacto-fermented sauerkraut improves symptoms in IBS patients independent of product pasteurisation - a pilot study.",
+      "year": 2018,
+      "studyType": "rct",
+      "n": 34
+    }
+  ]
+}

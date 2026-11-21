@@ -1,0 +1,266 @@
+{
+  "id": "apple",
+  "name": "Apple",
+  "group": "fruit",
+  "otherNames": [
+    "Apples",
+    "Eating apple",
+    "Malus domestica",
+    "Cooking apple",
+    "Bramley apple",
+    "Granny Smith apple",
+    "Gala apple",
+    "Braeburn apple",
+    "Apple peel",
+    "Apple sauce",
+    "Dried apples",
+    "Apple juice"
+  ],
+  "summary": "Apples are a crisp fruit eaten raw, baked, stewed, dried or pressed into juice. This page lists what people say apples do and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Apples hold fibre, sugars and plant compounds such as quercetin, catechin, phloridzin and chlorogenic acid. A 2004 review says the amounts vary greatly between varieties.",
+    "A 2026 study of 18 traditional apple cultivars measured phenols and flavonoids in the peel and the flesh separately. The amounts differed between cultivars and between peel and flesh.",
+    "The UK food table (CoFID) measures a raw eating apple with its skin at 51 kcal, 11.6 g of sugars, 1.2 g of fibre, 100 mg of potassium and 6 mg of vitamin C per 100 g. It does not measure the polyphenols, and it covers only a small part of what an apple contains."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that sweet apples are indigestible, and that acid apples are less so when ripe. Wild apples were said to be astringent, but to pass more easily by stool when cooked.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 55 (the qualities of fruits), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer said apple juice stops vomiting and promotes urine, and that the smell of apples is good for vomiting. Of wild apples he said the juice, or a drink made from the apples themselves, helps orthopnea (trouble breathing unless sitting upright).",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 55 (the qualities of fruits), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Diphilus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Diphilus held that green, unripe apples are full of bad juice, are bad for the stomach, breed bile and bring on shivering. Ripe sweet apples were said to be the juiciest and easily passed, while sharp ones were more astringent.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3, chapter 20 (the passage quoting Diphilus on apples), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.20-3.39"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (physician Philotimus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Philotimus, a Greek physician, held that spring apples are much harder to digest than pears, and that sharp or unripe apples spread a juice through the body that he called corrosive. People who ate the most apples were said to suffer the most from indigestion.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3, chapter 20 (the passage on apples quoting Philotimus 'On Food'), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.20-3.39"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the sour spring apples are unwholesome to the stomach, disturb the bowels, contract the bladder and harm the nerves, but that cooked apples are more harmless.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.54 (the medicinal properties of apples), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=54"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that sweet apples (the melimela) relax the stomach and bowels but cause heat and thirst. Round apples were said to stop diarrhoea and vomiting and to act as a diuretic, and wild apples to act on the bowels like the sour kind, binding them.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.55 (sweet and sour apples), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=55"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed the round Scandian apple and the apple of Ameria among the orchard fruits best suited to the stomach, along with quinces and pomegranates.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.24 (foods best suited to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#24"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted sour apples among the cooling foods, beside lettuce, cucumber and vinegar.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.27 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus advised chewing apples (and pears) that are not too ripe, and holding their juice in the mouth, when the gums have drawn back from the teeth.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 6.13 (gums and teeth), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/6*.html#13"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "14-319",
+      "label": "1 medium apple, flesh and skin (about 150 g)",
+      "grams": 150
+    }
+  ],
+  "processing": [
+    "Apple juice is not the whole fruit: a 2025 review says processing or storing 100% juice reduces its fibre, vitamins and antioxidant content and turns the fruit's own sugars into free sugars. The UK food table lists clear apple juice at 0 g of fibre per 100 g, against 1.2 g in a raw apple with its skin.",
+    "Peeling and heating can lower how allergenic an apple is, according to a 2021 review of apple allergy.",
+    "A 2004 review says processing can greatly change an apple's plant compounds, while storage has little or no effect on them."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "An apple a day keeps the doctor away",
+      "topic": "Apples and general health",
+      "label": "Apple a day and health",
+      "category": "health"
+    },
+    {
+      "claim": "Apples lower cholesterol",
+      "topic": "Apples and cholesterol",
+      "label": "Apples and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Apples help you lose weight",
+      "topic": "Apples and weight loss",
+      "label": "Apples and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Apples lower blood sugar and the risk of diabetes",
+      "topic": "Apples and blood sugar",
+      "label": "Apples and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Apples clean your teeth like a toothbrush",
+      "topic": "Apples and teeth",
+      "label": "Apples and teeth",
+      "category": "health"
+    },
+    {
+      "claim": "Apple seeds contain cyanide and are dangerous to eat",
+      "topic": "Apple seeds and cyanide",
+      "label": "Apple seeds and cyanide",
+      "category": "health"
+    },
+    {
+      "claim": "Apples feed healthy gut bacteria",
+      "topic": "Apples and gut bacteria",
+      "label": "Apples and gut bacteria",
+      "category": "health"
+    },
+    {
+      "claim": "Eating apples lowers your risk of cancer",
+      "topic": "Apples and cancer risk",
+      "label": "Apples and cancer risk",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Birch pollen allergy or apple allergy",
+      "note": "In North and Central Europe, allergy to apples is mostly caused by cross-reaction with birch pollen, and some reactions can be severe. A 2021 review says the variety, ripeness, storage, peeling and heating all change how allergenic an apple is. If you react to apples, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating apples changes health outcomes: a 2026 review of 38 human studies says the evidence is not enough for firm conclusions, because the studies differ in design, people and products tested.",
+    "How one apple compares with another: the plant compounds vary greatly by variety, so numbers for one apple do not carry over to all."
+  ],
+  "sources": [
+    {
+      "pmid": "15140261",
+      "doi": "10.1186/1475-2891-3-5",
+      "title": "Apple phytochemicals and their health benefits.",
+      "year": 2004,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42306828",
+      "doi": "10.1039/d5fo05460e",
+      "title": "Apples and apple-based products in the modulation of cardiometabolic and functional markers: a systematic review of human intervention studies.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "34123364",
+      "doi": "10.1002/clt2.12032",
+      "title": "Apple allergy: Causes and factors influencing fruits allergenic properties-Review.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42794070",
+      "doi": "10.3390/foods15183285",
+      "title": "Evaluation of Total Phenols, Flavonoids, and Antioxidant Activity in the Peel and Flesh of Old Apple Cultivars.",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "40341750",
+      "doi": "10.1111/nbu.70009",
+      "title": "Whole Fruits Versus 100% Fruit Juice: Revisiting the Evidence and Its Implications for US Healthy Dietary Recommendations.",
+      "year": 2025,
+      "studyType": "review"
+    }
+  ]
+}

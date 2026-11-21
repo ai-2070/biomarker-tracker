@@ -1,3 +1,4 @@
+import { CLAIM_CATEGORIES, type ClaimCategory, publicClaimTopic } from "./claimEvidence";
 import { type LifestyleVisual, visualErrors } from "./lifestyle";
 import { citationErrors, findingErrors, type NutrientFinding, PRESCRIBING } from "./nutrients";
 import type { Citation, SafetyId } from "./types";
@@ -66,10 +67,13 @@ export interface WholeFoodDef {
   /** What processing, storage or the form changes: extra virgin vs refined, juice vs whole fruit, fresh vs dried. */
   processing: string[];
   /** What the studies had people eat (describing studies, never advising): "about 50 g of olive oil a day in PREDIMED". */
-  whatStudiesDid: string;
+  /** Optional: a page without paper research (no findings) has nothing to describe. */
+  whatStudiesDid?: string;
   /** Markers in this app it may move (for links and habit watches): "ldl", "bp_systolic"… */
   markers: string[];
   findings: NutrientFinding[];
+  /** Common public claims about the food, each checkable on demand (Common claims to check). At least 3. */
+  claims: { claim: string; topic: string; label: string; category: ClaimCategory }[];
   visuals: LifestyleVisual[];
   whoShouldBeCareful: { with: string; note: string; safetyId?: SafetyId }[];
   cautions: string[];
@@ -133,7 +137,8 @@ export function validateWholeFoodDef(v: unknown): string[] {
   if (!isObj(v)) return ["entry is not an object"];
   const errs: string[] = [];
   if (!isStr(v.id) || !/^[a-z0-9_]+$/.test(v.id)) errs.push("id must be lowercase_with_underscores");
-  for (const k of ["name", "summary", "whatStudiesDid"] as const) if (!isStr(v[k])) errs.push(`${k} is required`);
+  for (const k of ["name", "summary"] as const) if (!isStr(v[k])) errs.push(`${k} is required`);
+  if (v.whatStudiesDid !== undefined && !isStr(v.whatStudiesDid)) errs.push("whatStudiesDid must be text");
   if (!FOOD_GROUPS.includes(v.group as FoodGroup)) errs.push(`group must be one of ${FOOD_GROUPS.join(", ")}`);
   if (!strList(v.otherNames)) errs.push("otherNames must be a list of strings");
   if (!strList(v.inIt, 1)) errs.push("inIt needs at least one point");
@@ -182,8 +187,22 @@ export function validateWholeFoodDef(v: unknown): string[] {
     errs.push("tableFoods need a CoFID id, a label and grams");
   if (!strList(v.markers)) errs.push("markers must be a list of marker ids");
   errs.push(...findingErrors(v.findings, "finding"));
-  if (Array.isArray(v.findings) && v.findings.length === 0) errs.push("findings needs at least one finding");
-  if (!Array.isArray(v.visuals) || v.visuals.length === 0) errs.push("visuals needs at least one visual");
+  if (!Array.isArray(v.claims) || v.claims.length < 3) errs.push("claims needs at least 3 common claims");
+  else {
+    const seen = new Set<string>();
+    for (const c of v.claims as unknown[]) {
+      if (!isObj(c) || !isStr(c.claim) || !isStr(c.topic) || !isStr(c.label) || !(CLAIM_CATEGORIES as readonly unknown[]).includes(c.category)) {
+        errs.push("every claim needs a claim, topic, label and category (health, longevity or appearance)");
+        continue;
+      }
+      if (c.claim.length > 180) errs.push(`claim too long: ${c.claim}`);
+      if (c.label.length < 3 || c.label.length > 34) errs.push(`claim label must be 3 to 34 characters: ${c.label}`);
+      if (publicClaimTopic(c.topic) !== c.topic) errs.push(`claim topic is not a plain public topic: ${c.topic}`);
+      if (seen.has(c.claim)) errs.push(`duplicate claim: ${c.claim}`);
+      seen.add(c.claim);
+    }
+  }
+  if (!Array.isArray(v.visuals)) errs.push("visuals must be a list (it may be empty)");
   else (v.visuals as unknown[]).forEach((x, i) => errs.push(...visualErrors(x, `visual ${i + 1}`)));
   if (
     !Array.isArray(v.whoShouldBeCareful) ||
@@ -200,7 +219,8 @@ export function validateWholeFoodDef(v: unknown): string[] {
 export function wholeFoodText(f: WholeFoodDef): string[] {
   return [
     f.summary,
-    f.whatStudiesDid,
+    f.whatStudiesDid ?? "",
+    ...f.claims.flatMap((c) => [c.claim, c.label]),
     ...f.inIt,
     ...(f.history ?? []).flatMap((h) => [h.use, h.note]),
     ...(f.lore ?? []).flatMap((l) => [l.belief, l.note ?? ""]),

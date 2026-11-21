@@ -731,6 +731,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Green tea helps you live longer",
+      "topic": "Green tea and death from any cause",
+      "label": "Green tea and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Green tea protects your heart",
+      "topic": "Green tea and heart disease",
+      "label": "Green tea and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Green tea lowers blood pressure",
+      "topic": "Green tea and blood pressure",
+      "label": "Green tea and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Green tea lowers cholesterol",
+      "topic": "Green tea and cholesterol",
+      "label": "Green tea and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Green tea helps you lose weight and burn fat",
+      "topic": "Green tea and weight loss",
+      "label": "Green tea and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Green tea prevents cancer",
+      "topic": "Green tea and cancer",
+      "label": "Green tea and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Green tea lowers blood sugar",
+      "topic": "Green tea and blood sugar",
+      "label": "Green tea and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Green tea improves focus and memory",
+      "topic": "Green tea and cognitive function",
+      "label": "Green tea and focus",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

@@ -665,6 +665,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Kiwifruit relieves constipation",
+      "topic": "Kiwifruit and constipation",
+      "label": "Kiwifruit and constipation",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit helps you sleep better",
+      "topic": "Kiwifruit and sleep quality",
+      "label": "Kiwifruit and sleep",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit lowers blood pressure",
+      "topic": "Kiwifruit and blood pressure",
+      "label": "Kiwifruit and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit boosts your immune system and prevents colds",
+      "topic": "Kiwifruit and common cold",
+      "label": "Kiwifruit and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit improves mood and vitality",
+      "topic": "Kiwifruit and mood",
+      "label": "Kiwifruit and mood",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit helps your body absorb iron",
+      "topic": "Kiwifruit and iron absorption",
+      "label": "Kiwifruit and iron",
+      "category": "health"
+    },
+    {
+      "claim": "Kiwifruit is good for your skin",
+      "topic": "Kiwifruit and skin health",
+      "label": "Kiwifruit and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Kiwifruit lowers blood sugar",
+      "topic": "Kiwifruit and blood sugar",
+      "label": "Kiwifruit and blood sugar",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

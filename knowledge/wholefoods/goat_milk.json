@@ -1,0 +1,206 @@
+{
+  "id": "goat_milk",
+  "name": "Goat milk",
+  "group": "eggs and dairy",
+  "otherNames": [
+    "Goat's milk",
+    "Goats milk",
+    "Fresh goat milk",
+    "Raw goat milk",
+    "Pasteurised goat milk",
+    "Pasteurized goat milk",
+    "Whole goat milk",
+    "Goat milk powder"
+  ],
+  "summary": "Goat milk is the milk of the domestic goat, drunk fresh or made into cheese, yoghurt and baby formula. This page lists what people say it does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures pasteurised goat's milk at 62 kcal, 3.1 g of protein, 3.7 g of fat, 4.4 g of sugars (lactose), 100 mg of calcium and 170 mg of potassium per 100 g. It does not measure the milk sugars other than lactose or the shape of the fat droplets.",
+    "A 100-year review of goat milk research says it differs from cow milk in softer curd formation, a higher share of small fat globules and different allergenic properties, but that key nutritional deficiencies limit its suitability for infants."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the most nutritive milk is woman's milk and next to it goats' milk, and that goats' milk agrees best with the stomach because the goat browses more than it grazes.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said goats' milk is a cure for diseases of the spleen, if the goats are kept fasting for two days and fed ivy leaves on the third, and the patient drinks the milk for three days without any other food.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the ancients held it a great secret to give children, before they ate, a measure of asses' milk or, when there was none, goats' milk.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny described \"schiston\", a divided milk that doctors made from goats' milk boiled in a new earthen pot with honeyed wine and stirred with fig branches until the whey separated. He said the whey was given for epilepsy, melancholy, paralysis, leprosy, elephantiasis and diseases of the joints.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that a barley drink (cyceon) made with milk is nourishing, and that the kind of milk changes its effect on the bowels: made with goats' milk it is more laxative, made with sheep's milk it is astringent, and made with cows' milk it is less laxative than with goats' milk.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 41 (cyceon), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "12-328",
+      "label": "1 glass of pasteurised goat's milk (about 200 ml, 206 g)",
+      "grams": 206
+    }
+  ],
+  "processing": [
+    "Pasteurisation matters for safety: in a review of dairy outbreaks in Canada and the United States from 2007, 20 outbreaks involved unpasteurised products (449 confirmed cases, 124 hospitalisations, five deaths) and 12 involved pasteurised ones (174 cases, 17 deaths), with Listeria behind 10 of those 12."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Goat milk is easier to digest than cow milk",
+      "topic": "Goat milk and digestion",
+      "label": "Goat milk and digestion",
+      "category": "health"
+    },
+    {
+      "claim": "Goat milk is safe if you are allergic to cow's milk",
+      "topic": "Goat milk and cow's milk allergy",
+      "label": "Goat milk and milk allergy",
+      "category": "health"
+    },
+    {
+      "claim": "Goat milk is closer to human milk, so it is better for babies",
+      "topic": "Goat milk and infant formula",
+      "label": "Goat milk and babies",
+      "category": "health"
+    },
+    {
+      "claim": "Goat milk has less lactose, so it suits people who are lactose intolerant",
+      "topic": "Goat milk and lactose intolerance",
+      "label": "Goat milk and lactose",
+      "category": "health"
+    },
+    {
+      "claim": "Goat milk helps your body absorb iron and calcium",
+      "topic": "Goat milk and iron absorption",
+      "label": "Goat milk and iron",
+      "category": "health"
+    },
+    {
+      "claim": "Goat milk makes your skin clearer and younger",
+      "topic": "Goat milk and skin",
+      "label": "Goat milk and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Raw goat milk is healthier than pasteurised milk",
+      "topic": "Raw milk and health",
+      "label": "Raw milk and health",
+      "category": "health"
+    },
+    {
+      "claim": "Drinking goat milk helps you live longer",
+      "topic": "Goat milk and longevity",
+      "label": "Goat milk and long life",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Cow's milk allergy",
+      "note": "Goat's milk proteins are close to cow's milk proteins. In a study of 38 children with cow's milk allergy, 24 (63%) tested positive to goat milk. A separate report describes children who reacted to goat and sheep milk although they tolerated cow's milk. If you or your child have a milk allergy, talk to your doctor or allergist before trying it."
+    },
+    {
+      "with": "Babies under one year",
+      "note": "A review of goat milk research says key nutritional deficiencies limit its suitability for infants. If you are feeding a baby, talk to your doctor or health visitor."
+    },
+    {
+      "with": "Pregnancy or a weakened immune system (raw milk)",
+      "note": "A review of dairy outbreaks in Canada and the United States says warnings about unpasteurised milk and its products need to continue, and that pregnant women and people with weakened immunity should be made aware of foods at high risk of Listeria. If this applies to you, talk to your doctor or midwife before drinking raw milk.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether goat milk is easier to digest than cow milk in adults: the review describes differences in curd, fat and protein, but this page found no trial that shows it.",
+    "Whether goat milk is any safer than cow milk for people with milk allergy: it was not in the study of children above (63% of them reacted to it), and the study is small.",
+    "How much goat milk's nutrients differ between breeds, feed and seasons."
+  ],
+  "sources": [
+    {
+      "pmid": "29153153",
+      "doi": "10.3168/jds.2017-13287",
+      "title": "A 100-Year Review: Advances in goat milk research.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "23724227",
+      "doi": "10.5402/2011/391641",
+      "title": "Camel milk is a safer choice than goat milk for feeding children with cow milk allergy.",
+      "year": 2011,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "17002714",
+      "doi": "10.1111/j.1398-9995.2006.01193.x",
+      "title": "Allergy to goat and sheep milk without allergy to cow's milk.",
+      "year": 2006,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "35277846",
+      "doi": "10.17269/s41997-022-00614-y",
+      "title": "Disease outbreaks linked to pasteurized and unpasteurized dairy products in Canada and the United States: a systematic review.",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ]
+}

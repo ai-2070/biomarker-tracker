@@ -661,6 +661,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Blueberries improve your memory",
+      "topic": "Blueberries and memory",
+      "label": "Blueberries and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Blueberries protect your brain from aging",
+      "topic": "Blueberries and cognitive decline",
+      "label": "Blueberries and brain aging",
+      "category": "longevity"
+    },
+    {
+      "claim": "Blueberries lower blood pressure",
+      "topic": "Blueberries and blood pressure",
+      "label": "Blueberries and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Blueberries lower blood sugar",
+      "topic": "Blueberries and blood sugar",
+      "label": "Blueberries and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Blueberries protect your heart",
+      "topic": "Blueberries and heart disease",
+      "label": "Blueberries and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Blueberries improve your eyesight",
+      "topic": "Blueberries and eyesight",
+      "label": "Blueberries and eyesight",
+      "category": "health"
+    },
+    {
+      "claim": "Blueberries are an antioxidant superfood that slows aging",
+      "topic": "Blueberries and antioxidants and aging",
+      "label": "Blueberries and aging",
+      "category": "longevity"
+    },
+    {
+      "claim": "Blueberries help prevent urinary tract infections",
+      "topic": "Blueberries and urinary tract infection",
+      "label": "Blueberries and bladder infections",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

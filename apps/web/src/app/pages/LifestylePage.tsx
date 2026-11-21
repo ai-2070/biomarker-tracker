@@ -192,6 +192,8 @@ export function LifestyleItemPage({ id }: { id: string }) {
             title="Main uses &amp; potential benefits"
             intro="See where this habit may help and who was studied. Open the research details for the full findings and sources."
             findings={l.findings}
+            mapId={`lifestyle-${l.id}`}
+            liveChecks
           />
           <ClaimEvidencePanel id={l.id} name={l.name} claims={l.claims} critical={false} title="Common claims to check" />
           {(l.whoShouldBeCareful.length > 0 || l.cautions.length > 0) && (

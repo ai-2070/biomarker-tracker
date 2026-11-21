@@ -145,6 +145,7 @@ export function NutrientPage({ id }: { id: string }) {
                     title="Main uses & potential benefits"
                     intro="See what this supplement may help with and who was studied. Benefits depend on the use and the people taking it."
                     findings={n.findings}
+                    mapId={n.id}
                   />
                 </>
               )}

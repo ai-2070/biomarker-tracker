@@ -1,0 +1,118 @@
+{
+  "id": "macadamia_nuts",
+  "name": "Macadamia nuts",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Macadamia",
+    "Macadamia nut",
+    "Macadamias",
+    "Macadamia integrifolia",
+    "Queensland nut",
+    "Roasted macadamia nuts",
+    "Salted macadamia nuts",
+    "Macadamia nut oil"
+  ],
+  "summary": "Macadamia nuts are rich, buttery nuts from a tree native to Australia, eaten raw, roasted or salted. This page lists what people say macadamia nuts do; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Macadamia nuts are high in fat, mostly monounsaturated: the main fat is oleic acid, with a lot of palmitoleic acid too. A 2004 study found it in macadamia oil, and also tocopherols, squalene and plant sterols.",
+    "The UK food table (CoFID) has only a salted entry, at 748 kcal, 77.6 g of fat (11.2 g of it saturated), 7.9 g of protein, 4.0 g of sugars, 100 mg of magnesium and 0.28 mg of thiamin per 100 g, with 400 mg of sodium from the salt. It does not measure fibre for this entry, nor tocopherols, squalene or plant sterols."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-891",
+      "label": "salted macadamia nuts (about 30 g)",
+      "grams": 30
+    }
+  ],
+  "processing": [
+    "The table's macadamia entry is salted, so its 400 mg of sodium per 100 g comes from added salt; plain nuts hold less, and this page has no measured figure for them."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Macadamia nuts lower cholesterol",
+      "topic": "Macadamia nuts and cholesterol",
+      "label": "Macadamia and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Macadamia nuts are good for your heart",
+      "topic": "Macadamia nuts and heart health",
+      "label": "Macadamia and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Macadamia nuts help you lose weight on a low-carb diet",
+      "topic": "Macadamia nuts and weight loss",
+      "label": "Macadamia and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Macadamia nuts are too fatty and make you gain weight",
+      "topic": "Macadamia nuts and weight gain",
+      "label": "Macadamia and weight gain",
+      "category": "appearance"
+    },
+    {
+      "claim": "Macadamia nuts lower blood sugar",
+      "topic": "Macadamia nuts and blood sugar",
+      "label": "Macadamia and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Macadamia nuts are good for skin and hair",
+      "topic": "Macadamia nuts and skin",
+      "label": "Macadamia and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Macadamia oil is the healthiest cooking oil",
+      "topic": "Macadamia oil and health",
+      "label": "Macadamia oil and health",
+      "category": "health"
+    },
+    {
+      "claim": "Macadamia nuts are poisonous to dogs and risky for people too",
+      "topic": "Macadamia nuts and allergy",
+      "label": "Macadamia and allergy",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Tree nut allergy",
+      "note": "A 2015 systematic review says tree nuts are among the most common foods causing acute allergic reactions and that nearly all tree nuts have been linked to fatal reactions. If you react to nuts, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating macadamia nuts changes long-term health outcomes: the trials found lower LDL cholesterol compared with an average American diet over five weeks in 25 people with slightly raised cholesterol, which says little about years.",
+    "What the table's salted entry says about plain macadamia nuts: only the salted entry is in the table.",
+    "Whether people in Greece or Rome knew macadamias: they did not, and this page found no older written source that could be opened and read."
+  ],
+  "sources": [
+    {
+      "pmid": "15223592",
+      "doi": "10.1080/09637480410001725175",
+      "title": "Fatty acid profile, tocopherol, squalene and phytosterol content of walnuts, almonds, peanuts, hazelnuts and the macadamia nut.",
+      "year": 2004,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "18356332",
+      "doi": "10.1093/jn/138.4.761",
+      "title": "A macadamia nut-rich diet reduces total and LDL-cholesterol in mildly hypercholesterolemic men and women.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "26233427",
+      "doi": "10.1007/s11882-015-0555-8",
+      "title": "The Prevalence of Tree Nut Allergy: A Systematic Review.",
+      "year": 2015,
+      "studyType": "review"
+    }
+  ]
+}
