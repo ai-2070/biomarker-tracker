@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/favicon.svg" width="64" height="64" alt="Biomarker Tracker logo">
+<img src="apps/web/public/favicon.svg" width="64" height="64" alt="Biomarker Tracker logo">
 
 # Biomarker Tracker
 
@@ -12,7 +12,7 @@ Track your lab results and body measurements for years, see your biological age,
 ![Bun](https://img.shields.io/badge/Bun-runtime-f9f1e1?logo=bun&logoColor=black)
 ![Local-first](https://img.shields.io/badge/data-stays%20on%20your%20computer-0f766e)
 ![No telemetry](https://img.shields.io/badge/telemetry-none-0f766e)
-![Tests](https://img.shields.io/badge/tests-690%2B-0f766e)
+![Tests](https://img.shields.io/badge/tests-2000%2B-0f766e)
 
 <img src="docs/screenshots/dashboard.png" alt="Biomarker Tracker dashboard: biological age 38.3 years against a calendar age of 47.6, one marker to watch, blood pressure, weight, a timeline of blood tests, body measurements and habits with one blood test's details open, and cards for blood tests, body and habits" width="100%">
 
@@ -42,7 +42,7 @@ The review for PDFs and photos includes the sample date, lab name, **Were you fa
 
 <img src="docs/screenshots/marker.png" alt="Ferritin chart from 2022 to 2026 with the reference range shaded, two low results marked, and range, zoom and habit controls" width="100%">
 
-- 42 standard blood markers: full blood count, lipids (including ApoA-I, ApoB, ApoB/ApoA-I ratio, LDL/HDL ratio and non-HDL cholesterol), glucose and HbA1c, liver, kidney, thyroid, iron, vitamin D, B12, folate, CRP and electrolytes. Each has a plain-language explanation, what is known to raise or lower it, and cited sources.
+- 81 blood and urine markers: full blood count with differentials, lipids (including ApoA-I, ApoB, Lp(a), ApoB/ApoA-I ratio, LDL/HDL ratio and non-HDL cholesterol), glucose, HbA1c, insulin and C-peptide, liver, kidney, thyroid, iron, vitamin D, B12, folate, calcium, magnesium, zinc, homocysteine, uric acid, CRP, electrolytes, urine albumin and creatinine, and a **Hormones** group (testosterone, free testosterone, SHBG, estradiol, LH, FSH, prolactin, progesterone, cortisol, DHEA-S, IGF-1, PSA). Where normal depends on sex, age, cycle or treatment, a marker has no universal range and your lab's own range decides the flag. Each has a plain-language explanation, what is known to raise or lower it, and cited sources.
 - **All results** shows the complete blood catalogue by category, even for an empty profile. Unmeasured markers say **No results yet** and open their explanation page. The five extended lipid markers stay visible without readings. The Blood dashboard keeps a compact set of saved readings instead of listing unmeasured markers.
 - **Find a marker:** search by name, abbreviation or lab spelling, and filter by category such as Lipids, Kidney or **Aging (DunedinPACE)**. Combine these with All / Out of range / In range / **No results**; counts reflect the current search and category. Saved readings without a range assessment remain under All, not No results or In range. Clear filters resets the whole view.
 - Charts you can explore: zoom, drag across a period to see its average and change, and overlay the habits you were following at the time.
@@ -51,6 +51,8 @@ The review for PDFs and photos includes the sample date, lab name, **Were you fa
 - **Edit and bulk delete:** choose **Manage results** on Blood tests or Body, or edit directly in a marker's result history. Search by marker, lab or note and filter by date. Every saved-result list shows **10 readings per page**, with Previous/Next controls. Select individual readings or all matching results across every page; deletion requires confirmation and keeps original report files. Selection survives paging, while changing a filter resets it and returns to the first page. Edits preserve result IDs and import sources, and charts and profile folders update with the changes.
 
 The five extended lipid markers work with manual entry, PDF/photo review, charts and doctor reports. ApoA-I and ApoB support g/L, mg/dL and mg/L; non-HDL supports mmol/L and mg/dL. The two ratios are dimensionless and can be read from reports without a printed unit. These entries use your lab's supplied range rather than a universal app threshold. Ratios and non-HDL are recorded as reported, not silently calculated from other results.
+
+**Test summaries:** open **Summary of the latest test** on Blood tests, or **Summary of this test** on the timeline, for one blood test explained in plain words: critical results first, results outside the range by category with what high and low can mean, change since the previous result judged against normal test-to-test variation, results back in range, and things worth knowing (fasting, supplements that skew a lab test, values read from a photo). **Questions for your doctor** are written from your own numbers and can be copied or added to the doctor report. The **A year** tab compares the last 12 months (or a calendar year) with the period before, test to test, and shows a trend only with three or more results over at least a year. It explains; it never diagnoses or says what to take.
 
 <img src="docs/screenshots/blood-tests.png" alt="Blood tests dashboard: biological age, markers in range, markers to watch, a timeline of every blood test, and tiles for each marker" width="100%">
 
@@ -147,29 +149,23 @@ Log supplements, diet changes, medicines and routines, then watch chosen markers
 
 <img src="docs/screenshots/supplement.png" alt="Vitamin D page: what it does, how status is measured, food sources, supplement forms, and findings from trials with evidence grades" width="100%">
 
-Explore whole foods, vitamins, minerals, other supplements and everyday habits. Research entries lead with **main uses and potential benefits**, the people studied and the evidence strength. Normal nutrient roles are kept separate from the effects of taking extra supplements; food findings remain separate from supplement findings.
+The Knowledge pages cover **60 whole foods, 64 supplements** (vitamins, minerals and others such as creatine, omega-3, CoQ10, melatonin and curcumin) and **14 lifestyle topics**. Search finds an entry by any of its names. Foods, supplements and habits are kept apart: a food holds thousands of compounds, and a study of people eating it is a different thing from a study of one nutrient in a pill.
 
-Personal interaction warnings come first, and safety findings stay visible. Mixed findings and outcomes without a clear benefit are grouped separately under **Other uses studied**. Expand **Research details & sources** for the full findings, grade explanations and citations; a link to a finding opens its research section automatically. Research entries for nutrients also include food sources, EFSA reference intakes and upper limits, and interactions.
+Every page has **Common claims to check**: what people say it does, grouped under Health, Longevity and Appearance, from well-supported to myth. A claim says **Not checked yet** until you press **Check evidence** (see below); the app ships no verdicts of its own for these. Personal warnings come first when your medicines or conditions interact with the entry.
 
-**Source previews:** hover a research paper, page source or verified Brain citation—or reach it with the keyboard—to see a Wikipedia-style preview with its title, available authors, year, study type and abstract excerpt. Cards fade and gently scale in over 200 ms, then out over 150 ms, retaining their content through the exit; reduced-motion mode opens and closes instantly. Move into the card to keep reading; **Esc** dismisses it, and **Open source** opens the original in a new tab. Existing citation details work offline. Missing paper details load on demand from Europe PMC using only the public study identifier, never profile or chat data; successful lookups are cached in memory. Unverified Brain citations stay struck through without links or previews.
+- **Supplements** use one guide layout: what it is and where it comes from, potential benefits and common claims, dosage as official bodies describe it (EFSA reference intakes and upper limits, never a personal dose), food sources with amounts computed from the food table, safety and interactions, and research. Twenty of them (vitamins, minerals, creatine, omega-3, CoQ10, psyllium, biotin) also keep their evidence maps. Protocol items link to these guides by name.
+- **Lifestyle** (walking, sauna, red light, sleep, cold water, HIIT, Zone 2 cardio, weight lifting, keto, low-calorie, paleo and vegan diets, UV protection, hyperbaric oxygen): graded findings from studies in people, drawings (bar charts, light spectra, steps and ranges, every number from a cited source), what the studies had people do (described, never advised), who should be careful, what isn't known, and an evidence map for each.
+- **Foods:** twelve have full research pages with graded findings, drawings and evidence maps. The other 48 are **lean pages**, written without a research survey, because findings change over time and there are 40+ of them. Every food has **Then and now**: what ancient writers believed the food did for the body, each belief with where it is written (Hippocrates, Aristotle, Theophrastus, Dioscorides, Galen, Pliny, Celsus, Athenaeus, Plato, Cato, Columella and others, read in open translations). A belief is listed only after the passage was opened or a scholarly paper confirmed it; popular sayings with no source are left out, and a page that finds nothing says so without claiming the food was never used. Then come what's in it (from the UK food table), what changes it, who should be careful, what isn't known, and sources. Each food has a small pen-and-ink drawing. The writer list, and the cultures left out of it, are in `tools/wholefoods/ancientSources.ts`; a test enforces them.
 
-**Basic supplement guides** cover the 15 previously missing supplements in Standard Routine, bringing the library to 35 guides. They explain the ingredient, common uses, forms and cautions, with basic references rather than efficacy verdicts. Except for the astaxanthin pilot below, they are labelled **Benefits not yet reviewed**; common uses are purposes, not proven benefits. Protocol items link to these guides without changing the person's routine.
+Graded findings show the people studied and the strength of the evidence, with a short bottom line first and the full summary, grade reasons and citations behind **Read the full summary**. A "Studies last searched" date says when the search behind them was run. Every citation was checked against Europe PMC, EFSA or the original source. Grades and wording have not yet been reviewed by a clinician, and the pages say so.
 
-Basic guides set `researchStatus: "not-reviewed"` and `commonUses`, and contain no graded findings or linked evidence claims. Their sources can be general publications or HTTPS public guidance in `basicSources` (such as NIH NCCIH safety pages). Empty findings mean the benefit review has not been done, not that studies found no benefit. These guides do not display unreviewed reference values or deficiency sections.
+**Source previews:** hover a research paper, page source or verified Brain citation, or reach it with the keyboard, to see a preview with its title, authors, year, study type and abstract excerpt. **Esc** dismisses it, and **Open source** opens the original in a new tab. Missing paper details load on demand from Europe PMC using only the public study identifier, never profile or chat data. Unverified Brain citations stay struck through without links or previews.
 
-Additional requested topics are listed by name only: 29 supplements, 32 foods and 8 lifestyle topics. These searchable catalogue names have no descriptions, claims, doses or schedules and do not open empty detail pages. Existing guides are not duplicated or replaced.
+**Check evidence** runs your configured Brain model, skills and research sources through the local server (`claimEvidence.check`), sending only the public claim and the name of the food, supplement or habit: never your profile, chat or files. After a live search the model submits its verdict, evidence grade (none when the evidence is insufficient), summary, limits and citations through `submit_claim_assessment`. The submission is validated before saving; chat prose is never parsed as a result, and citations the search didn't return can't be saved. The app stamps the date and the model. Checks are kept in the profile (`claimEvidence`, in folder sync and backups), stay readable without a model, and a failed recheck keeps the earlier result. **Check something else** checks your own public topic. Opening a page never calls a model, and nothing is reassessed on a schedule.
 
-**Astaxanthin pilot:** four sections in order: **What it is**, **Potential benefits & common claims**, **Dosage & safety**, and **Research → Search studies**. Proposed uses and personal evidence checks share one section rather than duplicate lists. Requirement/excess, forms and provenance are folded into Dosage & safety. Safety statements retain their documented basis and never become personalised dosing advice. No Astaxanthin evidence map is generated.
+For saved checks, the page makes a cheap PubMed metadata check at most once a day, without AI, counting candidate reviews and trials indexed after the check. A positive signal offers **Recheck** and never changes a verdict by itself. Developer-only: `bun tools/claims/watch.ts` and `.github/workflows/claim-watch.yml` open a deduplicated issue for new-record signals and a yearly facts-review reminder; they never rewrite claims, grades or evidence maps.
 
-**Grouped statements, not scores:** the combined section groups proposed uses under **Health, Longevity and Appearance**. Rows use neutral topic labels, with the introduction explaining that they are proposed uses, not established benefits. Each statement has its own Check evidence action and saved assessment. Neutral display labels do not change the underlying claim identities, so existing checks remain attached. Numerical potential and confidence scores are removed; background references remain in the nutrient data.
-
-**Evidence confidence comes only from personal checks.** There are no bundled verdicts or confidence grades. Before a check the statement says **Not checked yet**. Validated saved AI assessments supply qualitative grades (very low, low, moderate or high); insufficient evidence stays ungraded, not zero. Checks do not combine into category-wide grades or turn skin/marker results into lifespan evidence. **Check something else** remains available with a public-topic input and a category choice. Custom categories stay local to the profile and are not sent to the model; older uncategorized topics remain under Health. Opening the page never calls a model, and there is no scheduled AI reassessment. Other entries remain unchanged.
-
-**Check evidence** runs the person's configured Brain model, skills and research sources through the local server (`claimEvidence.check`), sending only the public supplement/claim/topic. After live retrieval the model submits its verdict, evidence grade (or no grade when evidence is insufficient), summary, limitations and citations through `submit_claim_assessment`. That structured submission is validated before saving; final chat prose or Markdown is not parsed as JSON. The app stamps the date and serving model; unresolved agent model aliases are labelled as configured. Missing submissions, failed retrieval, invalid fields and unreturned citations cannot become saved grades. Results and custom **Check something else** topics live in the profile's local `claimEvidence` setting, included in folder sync/backups; cached results remain readable without a model, and failed/cancelled rechecks preserve the previous result. Legacy JSON backups keep their existing narrower contract.
- 
-For saved checks, the page makes a cheap PubMed metadata check at most once daily, without AI. It counts candidate review/trial records indexed after the assessment's UTC day; same-day additions, late tags and unmatched terms can be missed. A positive signal offers **Recheck**, never changes a verdict automatically. The developer-only `bun tools/claims/watch.ts` scans the last complete month for Astaxanthin claims and candidate new MeSH outcomes (at least three distinct trial records), with an annual stable-facts review reminder. `.github/workflows/claim-watch.yml` opens a deduplicated issue only for signals/reminders; it never rewrites claims, grades or evidence maps.
-
-Research-only Brain conversations remain separate from personal chat. `POST /api/assistant` with `scope: "research"` accepts only the latest public question, excluding profiles, history, attachments and photos. **Back to my chat** restores the personal conversation, draft and files. Retrieved citations use the existing verifier; agents without research-tool access are marked unverified. Disconnecting cancels model work, and Hermes's stable bridge token cannot be retargeted to an overlapping request.
+Research-only Brain conversations stay separate from personal chat: `POST /api/assistant` with `scope: "research"` accepts only the latest public question, without profiles, history, attachments or photos. **Back to my chat** restores the personal conversation, draft and files.
 
 **Evidence maps** show how the studies behind each finding were found. Every PubMed record is searched instead of picking papers by hand. Written rules choose the reviews and trials, and a model checks each review against the finding's question, with every decision kept and its reason shown. The map also shows how much the reviews share their trials, and which newer studies aren't on the page yet.
 
@@ -189,7 +185,7 @@ You choose the model:
 - **Local models** through Ollama or LM Studio.
 - **Agent programs you've signed into:** Claude Code, Codex, Hermes or OpenClaw. These are labelled "depends on your login", because the app can't check what they keep.
 
-Your name and private notes are never sent. Optional Skills and medical MCP servers (PubMed, ClinicalTrials.gov, openFDA, medical terminologies, food data) add research tools.
+Conversations are kept in your profile, so **New chat** starts a fresh one and earlier ones stay under **Past conversations**. Your name and private notes are never sent. Optional Skills and medical MCP servers (PubMed, ClinicalTrials.gov, openFDA, medical terminologies, food data) add research tools.
 
 ### Works on your phone
 
@@ -203,9 +199,11 @@ Profiles, settings and API keys live in the operating system's local application
 
 The bundled server listens only on `127.0.0.1:4821` and closes with the app. Opening the app again focuses its existing window. If another program occupies that port, startup reports an error. External research links open in your browser.
 
+The app checks this repository's GitHub Releases for an update 30 seconds after start and every 6 hours. It downloads only the public `latest.json`, checks the update's signature against the key built into the app, and installs only after you confirm. Nothing about you is sent. Details are in [docs/desktop.md](docs/desktop.md).
+
 ### Develop and package the desktop app
 
-Install Bun 1.4.4, Rust stable and the [Tauri platform prerequisites](https://v2.tauri.app/start/prerequisites/), then:
+Install Bun 1.4.5, Rust stable and the [Tauri platform prerequisites](https://v2.tauri.app/start/prerequisites/), then:
 
 ```sh
 bun install --frozen-lockfile
@@ -292,9 +290,9 @@ packages/shared        everything the page and the server share:
   src/research         Europe PMC / PubMed / ClinicalTrials clients
   src/ai               citation verifier
   src/api              the page ↔ server API (tRPC router and its types)
-knowledge              biomarkers, evidence claims, nutrients, fitness tests, foods, evidence maps
+knowledge              biomarkers, evidence claims, nutrients, lifestyle topics, whole foods, fitness tests, evidence maps
 skills                 built-in assistant skills
-tools                  developer tools that build the knowledge files (food table, evidence maps)
+tools                  developer tools that build and check the knowledge files (food table, evidence maps, whole-food pages)
 tests                  Vitest suites for every package, with synthetic fixtures (no real patient data)
 ```
 
@@ -306,7 +304,7 @@ The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and desi
 
 - The production build ships a Content Security Policy whose `connect-src` allows only the app itself, Europe PMC and PubMed.
 - The page never calls an AI model. The local server does, only when you ask a question, and only to the provider you set up.
-- Lab reports, photos and device exports are read on your computer. Photos are sent to a model only if you tick "Send the photo itself", and location data is removed first.
+- Lab reports, photos and device exports are read on your computer. Photos and scanned PDFs are sent to the model you chose for Brain, after you confirm, never to on-device text recognition, and location data is removed first. The screen tells you what the model can see.
 - The footer links directly to the research-source toggles in Settings. MCP tools can receive model-selected inputs and contact other services; source descriptions are not an enforced host allowlist. Built-in study search and newer-record checks are separate from these switches.
 
 - [PRIVACY.md](PRIVACY.md) records local versus external data flows, first-run defaults, the personal-data search-query rule, observed synthetic-query hosts, static additional destinations and audit limits.
@@ -317,7 +315,7 @@ The rules every change follows are in [`CLAUDE.md`](CLAUDE.md). Product and desi
 In active development, private for now. Next on the roadmap:
 
 - Automatic sync from phones (an Android companion app reading Health Connect over your local network).
-- Evidence maps for every supplement in the knowledge base.
+- Evidence maps for the remaining supplements, and a second search pass over the foods whose Then and now is thin.
 - A clinician's review of the evidence grades and wording.
 
 ## Disclaimer
@@ -326,4 +324,4 @@ Not medical advice. For information and personal record-keeping, not for diagnos
 
 The main app and the setup/profile-selection screens share the same two-paragraph footer: the information-only and clinician-review notice, followed by the local-profile, research-search and chosen-AI-model privacy explanation.
 
-Settings → About keeps a short medical-advice and clinician-review notice, a privacy cross-reference explaining where to check what leaves the computer, and GitHub links to [DATA-LICENSES.md](DATA-LICENSES.md), [PRIVACY.md](PRIVACY.md) and [MEDICAL-DISCLOSURE.md](MEDICAL-DISCLOSURE.md). Desktop document links are compact and top-aligned; touch targets remain larger. The footer carries the full purpose wording. The [HTML medical disclosure](public/medical-disclosure.html) remains bundled for offline access; keep it aligned with the Markdown wording.
+Settings → About keeps a short medical-advice and clinician-review notice, a privacy cross-reference explaining where to check what leaves the computer, and GitHub links to [DATA-LICENSES.md](DATA-LICENSES.md), [PRIVACY.md](PRIVACY.md) and [MEDICAL-DISCLOSURE.md](MEDICAL-DISCLOSURE.md). Desktop document links are compact and top-aligned; touch targets remain larger. The footer carries the full purpose wording. The [HTML medical disclosure](apps/web/public/medical-disclosure.html) remains bundled for offline access; keep it aligned with the Markdown wording.
