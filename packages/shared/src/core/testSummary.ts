@@ -208,6 +208,10 @@ export function buildTestSummary(input: SummaryInput): TestSummary | undefined {
 const list = (names: readonly string[]) => (names.length <= 1 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`);
 /** "haemoglobin" inside a sentence, but "LDL cholesterol" and "C-reactive protein" keep their capitals. */
 const inSentence = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
+/** "platelets have", "ferritin has": every marker name whose main word ends in "s" is a plural (checked against all marker files). */
+export const isPluralName = (s: string): boolean => /s$/i.test(s.split(/ \(|,/)[0]!.trim());
+const has = (name: string) => (isPluralName(name) ? "have" : "has");
+const was = (name: string) => (isPluralName(name) ? "were" : "was");
 
 function cautionsFor(
   results: readonly SummaryResult[],
@@ -281,11 +285,13 @@ function questionsFor(
     const s = side(r.flag)!;
     const name = inSentence(def.name);
     if (r.streak >= 2) {
-      qs.push(`My ${name} has been ${s} on ${r.streak} tests in a row, since ${fmtDate(r.streakFrom)}. What could explain it, and does it need follow-up?`);
+      qs.push(
+        `My ${name} ${has(name)} been ${s} on ${r.streak} tests in a row, since ${fmtDate(r.streakFrom)}. What could explain it, and does it need follow-up?`,
+      );
     } else {
       const range = rangeText(r.range, def.canonicalUnit);
       qs.push(
-        `My ${name} was ${valueText(r.measurement, def.canonicalUnit)}, ${s === "high" ? "above" : "below"} the range${range ? ` (${range})` : ""}. What could explain it, and should it be re-tested?`,
+        `My ${name} ${was(name)} ${valueText(r.measurement, def.canonicalUnit)}, ${s === "high" ? "above" : "below"} the range${range ? ` (${range})` : ""}. What could explain it, and should it be re-tested?`,
       );
     }
   }

@@ -434,7 +434,7 @@ export function FoodArt({ name, className, large }: { name: string; className?: 
       viewBox="0 0 64 64"
       aria-hidden="true"
       role="presentation"
-      className={`pointer-events-none absolute opacity-80 ${large ? "top-10 right-0 hidden size-28 sm:block" : "top-2 right-2 size-[4.5rem]"} ${className ?? ""}`}
+      className={`pointer-events-none absolute opacity-80 ${large ? "-top-2 right-0 hidden size-28 sm:block" : "top-2 right-2 size-[4.5rem]"} ${className ?? ""}`}
       fill="none"
       stroke={INK}
       strokeWidth="0.85"

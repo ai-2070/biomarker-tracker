@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { NutrientDef } from "@bt/shared/core/nutrients";
-import { buildTestSummary, rangeText, SUMMARY_LIMITS } from "@bt/shared/core/testSummary";
+import { buildTestSummary, isPluralName, rangeText, SUMMARY_LIMITS } from "@bt/shared/core/testSummary";
 import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { loadDefs, measurement } from "../helpers";
@@ -161,5 +161,40 @@ describe("rangeText", () => {
     expect(rangeText({ high: 5 }, "mg/L")).toBe("below 5 mg/L");
     expect(rangeText({ low: 90 }, "ratio")).toBe("above 90");
     expect(rangeText(undefined, "g/L")).toBeUndefined();
+  });
+});
+
+describe("isPluralName", () => {
+  it("reads marker names whose main word ends in s as plural", () => {
+    for (const n of ["platelets", "Lymphocytes (%)", "neutrophils (absolute count)", "triglycerides", "Thyroid peroxidase antibodies"])
+      expect(isPluralName(n)).toBe(true);
+    for (const n of ["ferritin", "Haemoglobin (Hb)", "LDL cholesterol (LDL-C)", "Vitamin D (25-OH)", "Lp(a)"]) expect(isPluralName(n)).toBe(false);
+  });
+
+  it("finds exactly the plural names among the marker files", () => {
+    const plural = [...loadDefs().values()].filter((d) => isPluralName(d.name)).map((d) => d.name);
+    // Each of these is a plural; any new name ending in "s" must be checked by hand and added.
+    expect(plural.sort()).toEqual(
+      [
+        "Basophils (absolute count)",
+        "Basophils (%)",
+        "Daily steps",
+        "Eosinophils (absolute count)",
+        "Eosinophils (%)",
+        "Five chair rises",
+        "Lymphocytes (absolute count)",
+        "Lymphocytes (%)",
+        "Monocytes (absolute count)",
+        "Monocytes (%)",
+        "Neutrophils (absolute count)",
+        "Neutrophils (%)",
+        "Platelets",
+        "Push-ups",
+        "Red blood cells",
+        "Thyroid peroxidase antibodies",
+        "Triglycerides",
+        "White blood cells",
+      ].sort(),
+    );
   });
 });
