@@ -52,9 +52,13 @@ The review for PDFs and photos includes the sample date, lab name, **Were you fa
 
 The five extended lipid markers work with manual entry, PDF/photo review, charts and doctor reports. ApoA-I and ApoB support g/L, mg/dL and mg/L; non-HDL supports mmol/L and mg/dL. The two ratios are dimensionless and can be read from reports without a printed unit. These entries use your lab's supplied range rather than a universal app threshold. Ratios and non-HDL are recorded as reported, not silently calculated from other results.
 
-**Test summaries:** open **Summary of the latest test** on Blood tests, or **Summary of this test** on the timeline, for one blood test explained in plain words: critical results first, results outside the range by category with what high and low can mean, change since the previous result judged against normal test-to-test variation, results back in range, and things worth knowing (fasting, supplements that skew a lab test, values read from a photo). **Questions for your doctor** are written from your own numbers and can be copied or added to the doctor report. The **A year** tab compares the last 12 months (or a calendar year) with the period before, test to test, and shows a trend only with three or more results over at least a year. It explains; it never diagnoses or says what to take.
-
 <img src="docs/screenshots/blood-tests.png" alt="Blood tests dashboard: biological age, markers in range, markers to watch, a timeline of every blood test, and tiles for each marker" width="100%">
+
+### Test and year summaries
+
+<img src="docs/screenshots/test-summary.png" alt="Test summary of the latest blood test: one result outside its range with what a high value can mean, notes worth knowing about fasting and typical ranges, and questions for your doctor" width="100%">
+
+Open **Summary of the latest test** on Blood tests, or **Summary of this test** on the timeline, for one blood test explained in plain words: critical results first, results outside the range by category with what high and low can mean, change since the previous result judged against normal test-to-test variation, results back in range, and things worth knowing (fasting, supplements that skew a lab test, values read from a photo). **Questions for your doctor** are written from your own numbers and can be copied or added to the doctor report. The **A year** tab compares the last 12 months (or a calendar year) with the period before, test to test, and shows a trend only with three or more results over at least a year. It explains; it never diagnoses or says what to take.
 
 ### Biological age, heart age and fitness age
 
@@ -66,6 +70,14 @@ The five extended lipid markers work with manual entry, PDF/photo review, charts
 - **Seven age-related fitness tests** (grip strength, push-ups, chair rises, one-leg stand, walking speed, sitting-rising) placed on published norm tables for your age and sex.
 - The three ages are never averaged into one number, because they estimate different things.
 - Missing your birth month? Enter the month and year and press **Save** directly on the Body or Biological age page. The estimates update together; no day of birth is needed.
+
+**Pace of aging** shows two measures side by side, never averaged. **Your PhenoAge, test to test** is the slope of your PhenoAge over the blood tests of the last three years (at least three tests over a year or more), with a 95 % range; it says slower or faster only when the whole range agrees, and it is labelled as calculated by the app, not DunedinPACE. **DunedinPACE** is a DNA methylation test from a specialised lab: the app records the number your lab reports and never calculates it, and shows your average and the Rejuvenation Olympics leaderboard score (the average of your best 3 tests over 2 years), with a note that the best 3 always sit at or below your average.
+
+<img src="docs/screenshots/pace-of-aging.png" alt="Pace of aging: PhenoAge changing at minus 1.38 years per calendar year with its likely range, and DunedinPACE 0.88 with the average and leaderboard score of the last three tests" width="100%">
+
+**What has moved these clocks in studies** lists the 12 things tested in people against PhenoAge, DunedinPACE and other methylation clocks (calorie restriction, omega-3, multivitamins, exercise, diets, metformin and more), each graded, including the ones where nothing changed. A note says these clocks are stand-ins: nobody has shown that lowering them adds years. Linked food, supplement and lifestyle pages show the same result as an **Aging clocks** note.
+
+**Watch your PhenoAge in Habits:** once you have a complete PhenoAge test, a habit can watch the **PhenoAge gap** (PhenoAge minus calendar age at each test). It is compared like any marker, with the noise taken from your own tests, and the page says lowering the gap hasn't been shown to add years.
 
 **Country population reference (always available):** the Biological age page shows a survival curve, median age reached, average remaining years and the middle-half age range for people alive at your current age. The curve marks **Your age** and has a table view. It uses the country in Settings; if missing, choose it on the page and press **Save**. Your health readings do not change this reference. It assumes the source period's death rates stay constant, not that they predict your future.
 
@@ -84,6 +96,12 @@ Active time is used only after you confirm that the saved minutes are actual mod
 <img src="docs/screenshots/body.png" alt="Body dashboard: weight, waist, waist-to-height ratio, BMI, blood pressure, resting heart rate, heart rate variability, sleep and blood oxygen" width="100%">
 
 Weight, waist, body fat, blood pressure, resting heart rate, heart rate variability (HRV), blood oxygen, sleep, home blood glucose and VO₂max. Import exports from Apple Health, Fitbit, Google Fit, Samsung Health, Garmin, Oura, Whoop, Withings, Polar, Zepp and Huawei Health, or any CSV or JSON file. Files are read on your computer and never uploaded. No made-up "readiness" or "sleep scores": only what was measured.
+
+- **Heart rate variability** has no population range, so the app shows **your usual range**: the spread of your own readings in the 60 days before the last week, with last week's average marked inside, below or above it. It is never a medical flag.
+- **Activity:** daily steps lead with last week's daily average, with no official target. Active minutes (moderate or harder) are checked as a **weekly total** against the WHO's 150 minutes; single days are never flagged.
+- **Sleep** is judged on the week's average against the 7 to 9 hour range, not on single nights. Deep and REM sleep have no range, because wearables misjudge sleep stages.
+- **Waist-to-height:** the Waist page draws your ratio at every measurement on Ashwell's ranges, and shows the years of life lost from Ashwell et al. 2014 copied exactly from the paper, with your row and ratio marked and nothing filled in between.
+- **Resting metabolic rate** (Mifflin–St Jeor) opens a window with the sum worked through with your own numbers, and adds Cunningham's lean-mass equation beside it when you have a body-fat reading. It is an estimate of about ±10 %, never a calorie target.
 
 **Body-fat comparisons:** the Body fat page keeps its existing history chart and adds a separate comparison with your reading marked. The main reference uses sex and age at the reading (20–79 years), with neutral Below reference / Within reference / Above reference / Above reference (upper band) labels. These provisional, BMI-derived values are not minimum and maximum healthy body-fat levels. A position outside them alone does not produce a clinical Low/High/Normal badge, a “To watch” warning or a doctor alert; explicit laboratory ranges and critical limits still apply. Brain and doctor reports receive the same comparison-only distinction. An expandable five-category reference—essential fat, athletes, fitness, average and obesity—is sex-specific but not age-adjusted, and does not assess athletic fitness. Missing details or unsupported ages never produce invented age bands. Weight and BMI do not gain classification bands.
 
@@ -121,13 +139,15 @@ Re-importing device files updates existing readings for the same measurement and
 
 ### A report for your doctor
 
+<img src="docs/screenshots/doctor-report.png" alt="Report preview: Health report for your doctor with the selected period, the app logo and a QR code to the source, a fictional-example notice, and profile information" width="100%">
+
 In **Settings → Your data → Doctor-ready report**, choose the dates and measurements to share, create a preview, then press **Print / save as PDF** and select your browser's **Save as PDF** destination. Only the report is printed, not Settings or the app navigation. It works locally without AI, a server or an external PDF service. You can also ask **Brain** where to export a report for your doctor; it explains these steps rather than claiming to create or send the PDF itself.
 
 The summary shows only the latest result, date, reference range and flag for each selected measurement, separated into **Blood tests** and **Body measurements**. Body measurements use the same groups and order as the Body page, including adjacent systolic and diastolic blood pressure readings. Reading details contain black-and-white charts of **every selected reading within the dates**, including daily device history, without a value-by-value list. Reported limits use arrows rather than exact-value dots; readings are never averaged or removed.
 
 Optional profile information includes the latest recorded weight on or before the report end, with its date and unit, even if weight is not selected for a chart. With profile details included, **BMI and the Mifflin–St Jeor resting metabolic rate estimate appear both in Profile information and under Body measurements → Size and composition**. The top shows the values; Size and composition adds the equation, inputs and limits. They are calculated figures, not additional saved readings; the equation uses age at the weight reading and is not a calorie target. These fields are omitted when profile details are off.
 
-Source and fasting context remain beside each chart. Logged medicines, supplements and habits are optional; grouped protocols retain their recorded item lists. Weekly activity references are not presented as daily ranges. Private profile/result/protocol-item notes are excluded unless selected. Example data stays clearly labelled on every printed page, and changes are not presented as evidence that a habit caused them. The report header includes the app logo, name and an embedded GitHub QR code containing only the public repository URL. This handout is not a backup or a verified laboratory report.
+**Include questions to discuss** adds the questions from the test summary of the latest blood test in the period. Source and fasting context remain beside each chart. Logged medicines, supplements and habits are optional; grouped protocols retain their recorded item lists. Weekly activity references are not presented as daily ranges. Private profile/result/protocol-item notes are excluded unless selected. Example data stays clearly labelled on every printed page, and changes are not presented as evidence that a habit caused them. The report header includes the app logo, name and an embedded GitHub QR code containing only the public repository URL. This handout is not a backup or a verified laboratory report.
 
 ### Habits and self-experiments
 
@@ -140,22 +160,31 @@ Log supplements, diet changes, medicines and routines, then watch chosen markers
 <img src="docs/screenshots/protocol.png" alt="A supplement protocol shown as a daily schedule from morning to bedtime, with warnings about items that interact" width="100%">
 
 - **Protocols:** a supplement stack, diet or routine as a daily schedule, with interaction warnings between items and with your medicines or conditions. Starting one adds one named habit, with all items kept in collapsible details: amounts, timing, days and notes as they were when started. Later protocol edits or deletion don't change that record. Watch markers for the whole routine; a comparison cannot tell which item caused a change. Older runs recorded as separate habits keep their history.
-- **Meals:** build meals from 2,887 foods in the UK CoFID 2021 food table and see what was measured in them, with a note on how much food chemistry those numbers leave out ("nutritional dark matter").
-- **Intake analyzer:** compare a day's meals, foods and supplements with EU (EFSA) reference values. No calorie targets and no weight-loss plans.
+- **Meals:** build meals from 2,887 foods in the UK CoFID 2021 food table and see what was measured in them, with a note on how much food chemistry those numbers leave out ("nutritional dark matter"). **Example meals "for your results"** appear when a marker is out of range in a direction a food study addresses, and are hidden when they clash with your medicines or conditions (spinach with blood thinners, for example).
+- **Whole foods compared:** 30 claims people make about animal and plant foods (the food matrix, absorption, vitamins, safety: fibre, phytate, oxalate, heavy metals, amino acids), each with a verdict, a grade, what the other side says and an evidence map. No diet is recommended.
+- **Intake analyzer:** compare a day's meals, foods and supplements with EU (EFSA) reference values. No calorie targets and no weight-loss plans. **Load a protocol** adds a protocol's meals, foods and supplements in one go (amounts it can't read are listed for you to type in from the label, never guessed), and **Create a protocol from this** turns the list back into one. **What would add the most** names foods and your own meals with the most of the nutrients furthest below the reference, leaving out foods your medicines, conditions or upper limits rule out; supplements are only a link to their page, never an amount.
+- **Start as a habit** and **Add to a protocol** are on every food, supplement, lifestyle and meal page (sleep links to your sleep chart instead), so what you read about can become something you track.
 
 <img src="docs/screenshots/intake.png" alt="Intake analyzer: a day of meals and foods compared with EFSA reference intakes for energy, macronutrients, vitamins and minerals" width="100%">
 
 ### Foods, supplements and lifestyle knowledge
 
-<img src="docs/screenshots/supplement.png" alt="Vitamin D page: what it does, how status is measured, food sources, supplement forms, and findings from trials with evidence grades" width="100%">
+<img src="docs/screenshots/foods.png" alt="Foods list: cards for apple, avocado, bilberry and blackberry, each with a short summary and a pen-and-ink drawing" width="100%">
 
 The Knowledge pages cover **60 whole foods, 64 supplements** (vitamins, minerals and others such as creatine, omega-3, CoQ10, melatonin and curcumin) and **14 lifestyle topics**. Search finds an entry by any of its names. Foods, supplements and habits are kept apart: a food holds thousands of compounds, and a study of people eating it is a different thing from a study of one nutrient in a pill.
 
 Every page has **Common claims to check**: what people say it does, grouped under Health, Longevity and Appearance, from well-supported to myth. A claim says **Not checked yet** until you press **Check evidence** (see below); the app ships no verdicts of its own for these. Personal warnings come first when your medicines or conditions interact with the entry.
 
+<img src="docs/screenshots/supplement.png" alt="Creatine page: Potential benefits and common claims, grouped under Health, each claim not checked yet with a Check evidence button" width="100%">
+
 - **Supplements** use one guide layout: what it is and where it comes from, potential benefits and common claims, dosage as official bodies describe it (EFSA reference intakes and upper limits, never a personal dose), food sources with amounts computed from the food table, safety and interactions, and research. Twenty of them (vitamins, minerals, creatine, omega-3, CoQ10, psyllium, biotin) also keep their evidence maps. Protocol items link to these guides by name.
 - **Lifestyle** (walking, sauna, red light, sleep, cold water, HIIT, Zone 2 cardio, weight lifting, keto, low-calorie, paleo and vegan diets, UV protection, hyperbaric oxygen): graded findings from studies in people, drawings (bar charts, light spectra, steps and ranges, every number from a cited source), what the studies had people do (described, never advised), who should be careful, what isn't known, and an evidence map for each.
+
+  <img src="docs/screenshots/lifestyle.png" alt="Sauna page, In pictures: heart deaths by how often people used a sauna, drawn as ratios with 95 % intervals from two cohort studies" width="100%">
+
 - **Foods:** twelve have full research pages with graded findings, drawings and evidence maps. The other 48 are **lean pages**, written without a research survey, because findings change over time and there are 40+ of them. Every food has **Then and now**: what ancient writers believed the food did for the body, each belief with where it is written (Hippocrates, Aristotle, Theophrastus, Dioscorides, Galen, Pliny, Celsus, Athenaeus, Plato, Cato, Columella and others, read in open translations). A belief is listed only after the passage was opened or a scholarly paper confirmed it; popular sayings with no source are left out, and a page that finds nothing says so without claiming the food was never used. Then come what's in it (from the UK food table), what changes it, who should be careful, what isn't known, and sources. Each food has a small pen-and-ink drawing. The writer list, and the cultures left out of it, are in `tools/wholefoods/ancientSources.ts`; a test enforces them.
+
+  <img src="docs/screenshots/food-then-and-now.png" alt="Figs, Then and now: Diogenes Laertius and Pliny the Elder on athletes who trained on dried figs, each with the translated passage and a scholarly source linked" width="100%">
 
 Graded findings show the people studied and the strength of the evidence, with a short bottom line first and the full summary, grade reasons and citations behind **Read the full summary**. A "Studies last searched" date says when the search behind them was run. Every citation was checked against Europe PMC, EFSA or the original source. Grades and wording have not yet been reviewed by a clinician, and the pages say so.
 
@@ -185,7 +214,13 @@ You choose the model:
 - **Local models** through Ollama or LM Studio.
 - **Agent programs you've signed into:** Claude Code, Codex, Hermes or OpenClaw. These are labelled "depends on your login", because the app can't check what they keep.
 
+Brain opens in a window on every page: press **Space** (when you're not typing), **Ctrl/⌘+K** to toggle it, **Esc** to close. Answers stream in as they are written, with each research tool shown while it runs; Stop ends the run and any program it started. Every paper in a marker's research results has **Summarize with Brain**, which reads that one study's abstract. **Run in eve** (Settings → AI models, an opt-in preview) answers API and local models inside the eve agent runtime, with keys, zero-retention routing and tools still kept on the local server.
+
 Conversations are kept in your profile, so **New chat** starts a fresh one and earlier ones stay under **Past conversations**. Your name and private notes are never sent. Optional Skills and medical MCP servers (PubMed, ClinicalTrials.gov, openFDA, medical terminologies, food data) add research tools.
+
+### Profiles, backups and the example
+
+Each person is a folder on your computer. Switch profiles from the menu at the top of the sidebar, and open, back up, show the folder of, or delete them on the **Profiles** page. A backup is a .zip of the folder; **Load a profile** on the first screen takes a backup or a profile folder (or a folder of several profiles) from another computer, without asking the setup questions again. **Just looking?** opens an example profile with five years of made-up results, habits, protocols and DunedinPACE tests; a banner on every page says the data is fictional. Choose **Light**, **Dark** or **Match my device** in Settings → Appearance.
 
 ### Works on your phone
 

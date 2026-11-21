@@ -12,6 +12,7 @@
 import { phenoAgePace } from "./agePace";
 import { addDays, daysBetween } from "./dates";
 import { personalBand, rcvBand } from "./experiments";
+import { isPluralName } from "./testSummary";
 import { type Flag, flagMeasurement, isOutOfRange, sortByDate } from "./trends";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
 import { formatValue } from "./units";
@@ -121,6 +122,8 @@ function trendOf(ms: readonly Measurement[]): PeriodMarker["trend"] {
 }
 
 const inSentence = (s: string) => (/^[A-Z][a-z]/.test(s) ? s.charAt(0).toLowerCase() + s.slice(1) : s);
+const has = (name: string) => (isPluralName(name) ? "have" : "has");
+const was = (name: string) => (isPluralName(name) ? "were" : "was");
 
 export function buildPeriodSummary(input: {
   measurements: readonly Measurement[];
@@ -215,14 +218,14 @@ function questionsFor(
     const name = inSentence(m.name);
     if (m.outside > 0 && m.outside === m.results.length && m.results.length >= 2) {
       qs.push(
-        `My ${name} was outside its range on ${m.results.length === 2 ? "both" : `all ${m.results.length}`} tests in this period. What could explain it, and does it need follow-up?`,
+        `My ${name} ${was(name)} outside its range on ${m.results.length === 2 ? "both" : `all ${m.results.length}`} tests in this period. What could explain it, and does it need follow-up?`,
       );
     } else if (m.trend && m.trend.verdict !== "unclear") {
-      qs.push(`My ${name} has been ${m.trend.verdict} over ${m.trend.tests} tests since ${fmtDate(m.trend.from)}. Is that worth following up?`);
+      qs.push(`My ${name} ${has(name)} been ${m.trend.verdict} over ${m.trend.tests} tests since ${fmtDate(m.trend.from)}. Is that worth following up?`);
     } else if (isOutOfRange(m.lastFlag)) {
       const unit = defs.get(m.id)!.canonicalUnit;
       qs.push(
-        `My latest ${name} was ${m.last.qualifier ?? ""}${formatValue(m.last.value)}${unit === "ratio" ? "" : ` ${unit}`}, outside its range. Should it be re-tested?`,
+        `My latest ${name} ${was(name)} ${m.last.qualifier ?? ""}${formatValue(m.last.value)}${unit === "ratio" ? "" : ` ${unit}`}, outside its range. Should it be re-tested?`,
       );
     }
   }

@@ -151,15 +151,14 @@ export function WholeFoodPage({ id }: { id: string }) {
 
   return (
     <>
-      <div className="relative">
-        <div className="pointer-events-none absolute inset-x-0 top-0 max-w-3xl">
-          <FoodArt name={f.id} large />
-        </div>
+      <div>
         <a href={href({ name: "wholefoods" })} className="mb-3 inline-flex min-h-11 items-center gap-1 text-ink-2 no-underline hover:text-ink">
           <span aria-hidden="true">←</span> Foods
         </a>
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-          <div className="sm:pr-32">
+          {/* The drawing sits at the end of the title block, so it never covers the buttons beside it. */}
+          <div className="relative min-w-0 grow sm:pr-32">
+            <FoodArt name={f.id} large />
             <p className={eyebrowStyles}>{GROUP_LABEL[f.group]}</p>
             <h1 className="font-serif text-3xl font-normal tracking-tight sm:text-4xl">{f.name}</h1>
             {f.otherNames.length > 0 && <p className="mt-1 max-w-3xl text-ink-2">Also: {f.otherNames.slice(0, 3).join(", ")}</p>}
