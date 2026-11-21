@@ -1,0 +1,234 @@
+{
+  "id": "oregano",
+  "name": "Oregano",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Origanum vulgare",
+    "Dried oregano",
+    "Fresh oregano",
+    "Wild marjoram",
+    "Greek oregano",
+    "Mediterranean oregano",
+    "Oregano leaves",
+    "Oregano oil",
+    "Oregano tea"
+  ],
+  "summary": "Oregano is a leafy Mediterranean herb, used fresh or dried in cooking. This page lists what people say oregano does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Oregano (Origanum vulgare) belongs to the mint family (Lamiaceae). A 2025 review says its essential oil is rich in thymol and carvacrol, which show antioxidant, anti-inflammatory and antimicrobial activity in lab studies.",
+    "A 2018 review of carvacrol covers lab and animal findings on antimicrobial, antioxidant and anticancer activity, and says human trials on carvacrol are still lacking, which blocks any conclusion about clinical benefit.",
+    "The UK food table (CoFID) measures dried, ground oregano at 9 g of protein, 42.5 g of fibre, 1,597 mg of calcium, 1,260 mg of potassium and 36.8 mg of iron per 100 g, and fresh oregano at 8.6 g of fibre, 323 mg of calcium, 7.4 mg of iron and 45 mg of vitamin C. It gives no energy value and does not measure thymol, carvacrol or the other plant compounds. A teaspoon of dried oregano is only about 1 g, so a teaspoon gives about a hundredth of the per-100-g figures."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that marjoram warms the body and evacuates bilious matters.",
+      "note": "The Jones translation says 'marjoram'. Oregano and marjoram are close relatives, so it is not certain which plant the Greek word names.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 54 (the qualities of herbs and vegetables), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the kind of origanum he called 'cunila gallinacea', and the Greeks Heracleotic origanum, beaten up with salt is good for the eyes and a remedy for cough and liver complaints. Taken as a broth with meal, oil and vinegar, he said, it is good for pains in the side and for snake stings.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.62 (cunila gallinacea or origanum), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=62"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny described one origanum, 'onitis', as used with warm water for gnawing pains of the stomach and for indigestion, in white wine for the stings of spiders and scorpions, and with vinegar and oil on wool for sprains and bruises.",
+      "note": "A translator's footnote in this edition notes that the Greek names for the different origanums are confused.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.67 (origanum, onitis or prasion), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=67"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that goat's origanum (tragoriganum) is diuretic and disperses tumours, is very good for sour belching from the stomach and for the chest, and in a drink counters mistletoe poison and snake stings. He added that it is given with honey for cough, and for pleurisy and pneumonia.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.68 (tragoriganum), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=68"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that origanum in general drives off snakes, is diuretic when drunk, is given with figs or hyssop to people with dropsy, is good for itch and leprosy before the bath, and relaxes the bowels. The juice in milk was put in the ears, and he said it cures sore tonsils and uvula and stops nosebleeds.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.69 (Heracleotic origanum), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=69"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that origanum is rubbed on bruises and toothache, that mixed with honey and nitre it whitens the teeth, and that a person who feels lassitude is rubbed well with it, taking care not to touch the abdomen.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.69 (Heracleotic origanum), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=69"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides wrote that Heracleotic origanum is warming, so a decoction drunk with wine helps people bitten by poisonous animals; given with raisin wine it is an antidote to hemlock; licked in with honey it cures coughs; a decoction in a bath is good for chronic itching, psoriasis and jaundice; and the juice of the green herb cures the tonsils, uvula and mouth sores.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 3.32 (Heracleotic origanum), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-878",
+      "label": "1 teaspoon dried, ground oregano (about 1 g)",
+      "grams": 1
+    },
+    {
+      "id": "13-891",
+      "label": "1 tablespoon fresh oregano leaves (about 4 g)",
+      "grams": 4
+    }
+  ],
+  "processing": [
+    "Drying concentrates oregano: the UK food table has 42.5 g of fibre and 36.8 mg of iron per 100 g of dried, ground oregano, against 8.6 g and 7.4 mg in fresh. Portions differ even more: a teaspoon of dried oregano weighs about 1 g."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Oregano oil kills bacteria and viruses",
+      "topic": "Oregano oil and infections",
+      "label": "Oregano oil and infections",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano oil cures colds and flu",
+      "topic": "Oregano oil and colds",
+      "label": "Oregano oil and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano is full of antioxidants",
+      "topic": "Oregano and antioxidants",
+      "label": "Oregano and antioxidants",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano oil clears gut infections and parasites",
+      "topic": "Oregano oil and gut infections",
+      "label": "Oregano oil and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano tea soothes coughs and sore throats",
+      "topic": "Oregano and cough",
+      "label": "Oregano and cough",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano reduces inflammation",
+      "topic": "Oregano and inflammation",
+      "label": "Oregano and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano oil is safe to swallow in large amounts",
+      "topic": "Oregano oil and safety",
+      "label": "Oregano oil safety",
+      "category": "health"
+    },
+    {
+      "claim": "Oregano fights cancer",
+      "topic": "Oregano and cancer",
+      "label": "Oregano and cancer",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Allergy to mint-family herbs, other spices or birch pollen",
+      "note": "A case report describes three systemic allergic reactions to oregano and thyme in one patient, who also tested positive to other plants of the mint family. A 2026 review says oregano holds Bet v 1 allergens and profilins that often lead to cross-allergies with other spices and plants. If you react to herbs or spices, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating oregano as a herb changes health outcomes in people: the reviews here cover mostly lab and animal findings on oregano oil and its compounds.",
+    "How much thymol and carvacrol a given jar of dried oregano holds: it varies by variety, growing place and drying.",
+    "Whether oregano oil capsules do anything food oregano does not: the carvacrol review says human trials are lacking."
+  ],
+  "sources": [
+    {
+      "pmid": "29744941",
+      "doi": "10.1002/ptr.6103",
+      "title": "Carvacrol and human health: A comprehensive review.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40006079",
+      "doi": "10.3390/ph18020267",
+      "title": "Chemical Composition, Biological Activity, and Potential Uses of Oregano (Origanum vulgare L.) and Oregano Essential Oil.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "8630713",
+      "doi": "10.1016/s1081-1206(10)63456-4",
+      "title": "Labiatae allergy: systemic reactions due to ingestion of oregano and thyme.",
+      "year": 1996,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "40341008",
+      "doi": "10.23822/eurannaci.1764-1489.400",
+      "title": "Allergic reactions to spices: a review of sensitivities to pepper, cumin, oregano, anise, mustard and other spices.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

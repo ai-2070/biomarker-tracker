@@ -1,0 +1,185 @@
+{
+  "id": "cucumber",
+  "name": "Cucumber",
+  "group": "vegetables",
+  "otherNames": [
+    "Cucumbers",
+    "English cucumber",
+    "Persian cucumber",
+    "Telegraph cucumber",
+    "Pickled cucumber",
+    "Gherkins",
+    "Cucumber slices",
+    "Cucumber water",
+    "Cucumber juice",
+    "Cucumis sativus"
+  ],
+  "summary": "Cucumber is a mild, watery fruit eaten as a vegetable, raw or pickled. This page lists what people say cucumber does and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw cucumber with its skin at 14 kcal, 1.2 g of sugars, 0.7 g of fibre, 156 mg of potassium, 21 µg of vitamin K1, 14 µg of folate and 2 mg of vitamin C per 100 g. It does not measure the plant compounds in it.",
+    "Cucumbers and other cucurbits make bitter compounds called cucurbitacins. A 2014 study found the genes that make cucurbitacin C in cucumber, and said selection during domestication led to non-bitter cucumbers from bitter ancestors."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that a pinch of cultivated cucumber seed, beaten up with cummin and taken in wine, is very good for a cough. He said doses of the seed in woman's milk are given for phrenitis, an acetabulum of it for dysentery, and that it is used with hydromel for diseases of the liver, taken in sweet wine as a diuretic, and with cummin as an injection for kidney complaints.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.5 (the cultivated cucumber), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=5"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that cucumbers when eaten stay on the stomach until the next day and are very hard to digest, but that in general they are not thought very unwholesome.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 19.23 (cucumbers and pepones), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=19:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted cucumber among the cooling foods, beside endive, lettuce, cooked gourds and vinegar.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.27.1 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cucumber among foods that give bad juice and among acrid foods.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.21.1 (foods of bad juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#21"
+        },
+        {
+          "title": "Celsus, De Medicina 2.22.2 (acrid foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#22"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For ulcers of the kidneys that need cleaning, Celsus gave sixty husked cucumber seeds with pine kernels, aniseed and a little crocus in two draughts of honey wine; for pain alone he gave thirty seeds with pine kernels, almonds and crocus in milk.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.17.1 (diseases of the kidneys), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#17"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-523",
+      "label": "1 serving of cucumber, flesh and skin (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Cucumber hydrates you better than water",
+      "topic": "Cucumber and hydration",
+      "label": "Cucumber and hydration",
+      "category": "health"
+    },
+    {
+      "claim": "Cucumber slices reduce puffy eyes and dark circles",
+      "topic": "Cucumber slices and puffy eyes",
+      "label": "Cucumber and puffy eyes",
+      "category": "appearance"
+    },
+    {
+      "claim": "Cucumber lowers blood pressure",
+      "topic": "Cucumber and blood pressure",
+      "label": "Cucumber and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Cucumber helps you lose weight",
+      "topic": "Cucumber and weight loss",
+      "label": "Cucumber and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Cucumber flushes toxins out of the body",
+      "topic": "Cucumber and detox",
+      "label": "Cucumber and detox",
+      "category": "health"
+    },
+    {
+      "claim": "Cucumber water cures a hangover",
+      "topic": "Cucumber water and hangover",
+      "label": "Cucumber and hangover",
+      "category": "health"
+    },
+    {
+      "claim": "Cucumber is good for your skin",
+      "topic": "Cucumber and skin health",
+      "label": "Cucumber and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Cucumber gives you gas and burping",
+      "topic": "Cucumber and gas",
+      "label": "Cucumber and gas",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating cucumber changes any health outcome: this page does not review the studies, and the sources cited here describe its chemistry, not trials in people.",
+    "How much cucurbitacin an ordinary shop cucumber holds: the food table does not measure it.",
+    "Whether cucumber on the skin or eyes does anything: nothing on this page tests it."
+  ],
+  "sources": [
+    {
+      "pmid": "25430763",
+      "doi": "10.1126/science.1259215",
+      "title": "Plant science. Biosynthesis, regulation, and domestication of bitterness in cucumber.",
+      "year": 2014,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "27892922",
+      "doi": "10.1038/nplants.2016.183",
+      "title": "Convergence and divergence of bitterness biosynthesis and regulation in Cucurbitaceae.",
+      "year": 2016,
+      "studyType": "in vitro"
+    }
+  ]
+}

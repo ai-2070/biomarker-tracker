@@ -671,6 +671,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Ginger relieves nausea",
+      "topic": "Ginger and nausea",
+      "label": "Ginger and nausea",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger eases morning sickness",
+      "topic": "Ginger and nausea in pregnancy",
+      "label": "Ginger and morning sickness",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger reduces muscle pain after exercise",
+      "topic": "Ginger and muscle soreness",
+      "label": "Ginger and muscle pain",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger eases arthritis pain",
+      "topic": "Ginger and osteoarthritis pain",
+      "label": "Ginger and arthritis",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger lowers blood sugar",
+      "topic": "Ginger and blood sugar",
+      "label": "Ginger and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger soothes a cold or sore throat",
+      "topic": "Ginger and common cold",
+      "label": "Ginger and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger helps digestion",
+      "topic": "Ginger and indigestion",
+      "label": "Ginger and digestion",
+      "category": "health"
+    },
+    {
+      "claim": "Ginger helps you lose weight",
+      "topic": "Ginger and weight loss",
+      "label": "Ginger and weight loss",
+      "category": "appearance"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

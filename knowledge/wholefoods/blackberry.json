@@ -1,0 +1,190 @@
+{
+  "id": "blackberry",
+  "name": "Blackberry",
+  "group": "fruit",
+  "otherNames": [
+    "Blackberries",
+    "Bramble fruit",
+    "Brambles",
+    "Bramble berries",
+    "Rubus fruticosus",
+    "Wild blackberry",
+    "Wild blackberries",
+    "Stewed blackberries"
+  ],
+  "summary": "Blackberries are dark, seedy berries that grow wild on brambles and are also farmed. This page lists what people say blackberries do and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw blackberries at 27 kcal, 5.6 g of sugars, 3.4 g of fibre, 154 mg of potassium, 7 mg of vitamin C, 2.37 mg of vitamin E and 34 µg of folate per 100 g. It does not measure the anthocyanins and other plant compounds.",
+    "In a 2026 review of raspberries, blackberries and blueberries, blackberries had the highest total polyphenol content and antioxidant capacity, driven mainly by anthocyanins.",
+    "In a lab model of digestion of whole blackberries, about 43 percent of the phenolics and 69 percent of the carbohydrates were released. Most phenolics stayed in the model's colon stage, where gut bacteria could reach them."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the berries of the bramble, which he called its own 'mulberries', are drying and astringent and are very useful for sore gums, swollen tonsils and the genital organs.",
+      "note": "The translator's footnote says blackberries are still used in the country as an astringent medicine, but that most of the other statements in the chapter are not rational.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 24.73 (the bramble: fifty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=24:chapter=73"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said the berries neutralise the venom of the most deadly serpents, and that the flowers or fruit heal scorpion stings without abscesses.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 24.73 (the bramble: fifty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=24:chapter=73"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said the berries make a mouth medicine better than the one made from the cultivated mulberry, and that with honey they were given for cholera and for wounds from spiders.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 24.73 (the bramble: fifty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=24:chapter=73"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus advised gargling with a decoction of blackberries and lentils when the uvula, the small flap at the back of the throat, is inflamed.",
+      "note": "The section number is inferred from the page's chapter anchors. The English translation says 'blackberries'.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 6.14 (inflammation of the uvula), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/6*.html#14"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed a decoction of blackberries among the gargles that repress swelling, beside lentils, rose leaves, quinces and dates.",
+      "note": "The section number is inferred from the page's chapter anchors. The English translation says 'blackberries'.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.22 (gargles), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#22"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "14-388",
+      "label": "1 handful of raw blackberries (about 100 g)",
+      "grams": 100
+    }
+  ],
+  "processing": [
+    "Sugar matters when they are cooked: the UK food table has 4.4 g of sugars per 100 g in blackberries stewed without sugar, 13.8 g when stewed with sugar, and 5.6 g in raw ones."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Blackberries are full of antioxidants",
+      "topic": "Blackberries and antioxidants",
+      "label": "Blackberries and antioxidants",
+      "category": "health"
+    },
+    {
+      "claim": "Blackberries protect your brain and memory",
+      "topic": "Blackberries and brain health",
+      "label": "Blackberries and brain health",
+      "category": "longevity"
+    },
+    {
+      "claim": "Blackberries lower blood sugar",
+      "topic": "Blackberries and blood sugar",
+      "label": "Blackberries and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Blackberries are good for your gut because of their fibre",
+      "topic": "Blackberries and gut health",
+      "label": "Blackberries and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Blackberries help you lose weight",
+      "topic": "Blackberries and weight loss",
+      "label": "Blackberries and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Blackberries soothe a sore throat and mouth sores",
+      "topic": "Blackberries and sore throat",
+      "label": "Blackberries and sore throat",
+      "category": "health"
+    },
+    {
+      "claim": "Blackberries protect against cancer",
+      "topic": "Blackberries and cancer risk",
+      "label": "Blackberries and cancer risk",
+      "category": "longevity"
+    },
+    {
+      "claim": "Wild blackberries can carry fox tapeworm",
+      "topic": "Wild blackberries and fox tapeworm",
+      "label": "Fox tapeworm on wild berries",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [],
+  "cautions": [
+    "A 2025 study in 12 countries found fox tapeworm (Echinococcus multilocularis) DNA in 5.4 percent of shop-bought strawberries and 7.3 percent of blueberries from seven European countries where it occurs. It did not report blackberries separately, and it noted that food has not been shown to raise infection risk much."
+  ],
+  "unknowns": [
+    "Whether eating blackberries changes health outcomes: the 2026 review pooled berries as a group, and this page does not review trials of blackberries alone.",
+    "How a wild blackberry compares with a farmed one: the table and studies here do not separate them."
+  ],
+  "sources": [
+    {
+      "pmid": "42073244",
+      "doi": "10.3390/foods15081356",
+      "title": "Polyphenol Composition, Antioxidant Properties, and Health Benefits of Moroccan-Cultivated Raspberries, Blackberries, and Blueberries: A Comprehensive Review.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "34509148",
+      "doi": "10.1016/j.foodchem.2021.131001",
+      "title": "In vitro digestion of the whole blackberry fruit: bioaccessibility, bioactive variation of active ingredients and impacts on human gut microbiota.",
+      "year": 2022,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "39787752",
+      "doi": "10.1016/j.ijfoodmicro.2025.111059",
+      "title": "Detection of Echinococcus spp. and other taeniid species in lettuces and berries: Two international multicenter studies from the MEmE project.",
+      "year": 2025,
+      "studyType": "observational"
+    }
+  ]
+}

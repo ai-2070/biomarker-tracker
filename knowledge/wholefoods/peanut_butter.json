@@ -1,0 +1,125 @@
+{
+  "id": "peanut_butter",
+  "name": "Peanut butter",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Peanut spread",
+    "Smooth peanut butter",
+    "Crunchy peanut butter",
+    "Natural peanut butter",
+    "Groundnut butter",
+    "Peanut butter spread",
+    "Powdered peanut butter"
+  ],
+  "summary": "Peanut butter is ground roasted peanuts, sold smooth or crunchy and often with added salt or sugar. This page lists what people say peanut butter does; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures smooth peanut butter at 607 kcal, 22.8 g of protein, 51.8 g of fat (12.8 g of it saturated), 6.7 g of sugars, 6.6 g of fibre, 350 mg of sodium, 180 mg of magnesium, 5.0 mg of vitamin E and 17.4 mg of niacin per 100 g. It does not measure the plant compounds in peanuts.",
+    "Peanuts are legumes, but they have a nut-like oil: a 2004 study of peanuts and tree nuts found a fat profile high in oleic and linoleic acid, plus tocopherols, squalene and plant sterols in the oil."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-892",
+      "label": "1 tablespoon smooth peanut butter (about 16 g)",
+      "grams": 16
+    }
+  ],
+  "processing": [
+    "Raw peanuts and peanut-based products can be contaminated with aflatoxins, poisons made by moulds that grow when peanuts are stored badly; a 2019 review followed their occurrence in raw peanuts and peanut-based products along the supply chain, from farm to table.",
+    "Shop peanut butter can carry added salt: the table's smooth entry has 350 mg of sodium per 100 g, while the same table's plain unsalted peanuts have 2 mg."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Peanut butter is a good source of protein for building muscle",
+      "topic": "Peanut butter and protein",
+      "label": "Peanut butter and protein",
+      "category": "health"
+    },
+    {
+      "claim": "Peanut butter helps you lose weight",
+      "topic": "Peanut butter and weight loss",
+      "label": "Peanut butter and weight",
+      "category": "appearance"
+    },
+    {
+      "claim": "Peanut butter lowers the risk of type 2 diabetes",
+      "topic": "Peanut butter and type 2 diabetes",
+      "label": "Peanut butter and diabetes",
+      "category": "longevity"
+    },
+    {
+      "claim": "Peanut butter is bad for your heart because of its fat",
+      "topic": "Peanut butter and heart disease",
+      "label": "Peanut butter and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Peanut butter raises cholesterol",
+      "topic": "Peanut butter and cholesterol",
+      "label": "Peanut butter and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Giving babies peanut butter early prevents peanut allergy",
+      "topic": "Early peanut introduction and peanut allergy",
+      "label": "Early peanuts and allergy",
+      "category": "health"
+    },
+    {
+      "claim": "Peanut butter contains cancer-causing aflatoxin",
+      "topic": "Peanut butter and aflatoxin",
+      "label": "Peanut butter and aflatoxin",
+      "category": "health"
+    },
+    {
+      "claim": "Natural peanut butter is healthier than regular peanut butter",
+      "topic": "Natural vs regular peanut butter",
+      "label": "Natural vs regular",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Peanut allergy",
+      "note": "The 2015 LEAP trial notes that peanut allergy in Western countries has doubled in the past 10 years and is becoming apparent in Africa and Asia. Peanut butter is a concentrated way to meet peanut protein, so people with a known or suspected peanut allergy can react to it. If you have a peanut allergy, or a baby with severe eczema or egg allergy, talk to your doctor or an allergist before peanut butter."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating peanut butter changes long-term health beyond what cohort studies suggest: in the Nurses’ Health Study, higher peanut butter intake went with lower risk of type 2 diabetes, but such studies cannot show cause.",
+    "How much aflatoxin a given jar holds: it varies with supply chain and storage, and this page has no measured figure for any brand.",
+    "Whether the ancient Greeks or Romans knew peanuts: peanuts come from South America, and this page found no older written source that could be opened and read."
+  ],
+  "sources": [
+    {
+      "pmid": "12444862",
+      "doi": "10.1001/jama.288.20.2554",
+      "title": "Nut and peanut butter consumption and risk of type 2 diabetes in women.",
+      "year": 2002,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "25705822",
+      "doi": "10.1056/nejmoa1414850",
+      "title": "Randomized trial of peanut consumption in infants at risk for peanut allergy.",
+      "year": 2015,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "31824445",
+      "doi": "10.3389/fmicb.2019.02602",
+      "title": "Aspergillus section Flavi and Aflatoxins: Occurrence, Detection, and Identification in Raw Peanuts and Peanut-Based Products Along the Supply Chain.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "15223592",
+      "doi": "10.1080/09637480410001725175",
+      "title": "Fatty acid profile, tocopherol, squalene and phytosterol content of walnuts, almonds, peanuts, hazelnuts and the macadamia nut.",
+      "year": 2004,
+      "studyType": "observational"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "id": "ginseng_tea",
+  "name": "Ginseng tea",
+  "group": "drinks",
+  "otherNames": [
+    "Panax ginseng tea",
+    "Korean ginseng tea",
+    "Korean red ginseng tea",
+    "Red ginseng tea",
+    "White ginseng tea",
+    "Asian ginseng tea",
+    "Ginseng root tea",
+    "Panax ginseng",
+    "Korean ginseng"
+  ],
+  "summary": "Ginseng tea is an infusion of the root of Panax ginseng, drunk as a tonic in Korea and China. This page lists what people say ginseng tea does and what writers in the past believed; each claim can be checked against the research when you choose. Its old records are Chinese, so no Greek or Roman writers appear here.",
+  "inIt": [
+    "Ginseng tea is made from the root of Panax ginseng (Asian or Korean ginseng), a herb used as a tonic and medicine in Korea and China for thousands of years. Red, white and fermented ginseng are different preparations.",
+    "The main active compounds of Panax ginseng are ginsenosides, which a 2018 review says have shown a variety of effects in studies, including antioxidation.",
+    "A 2023 meta-analysis of 19 randomised trials found no significant overall reduction in fatigue with ginseng (standardised difference -0.36, 95% interval -0.82 to 0.11). Ginseng herbal formulas and chronic fatigue improved slightly, and ginseng did not raise side effects. Effect sizes were small.",
+    "A 2002 systematic review found that side effects of ginseng on its own in trials were about as common as with placebo; the commonest were headache, sleep and stomach problems.",
+    "The trials here used root extracts, capsules and herbal formulas, not tea. The UK food table (CoFID) has no ginseng tea."
+  ],
+  "lore": [
+    {
+      "who": "China (early Han 'Shennong' herbal with later additions, as quoted in the Zhenglei bencao, 1108)",
+      "belief": "The entry says ginseng is sweet, slightly cold, slightly warm and without poison. It says ginseng 'supplements the five organs', calms the spirit, steadies the soul, stops palpitations from fright, drives out 'evil qi', brightens the eyes, opens the heart and adds wisdom.",
+      "note": "The page lists ginseng among the 38 herbs of the upper class of the Shennong text. It does not mark which words were added later, so the age of each phrase is not known.",
+      "sources": [
+        {
+          "title": "Zhenglei bencao (Song dynasty materia medica, 1108), Siku quanshu edition, volume 6: entry for ginseng (Renshen) (Chinese Wikisource)",
+          "author": "Tang Shenwei (compiler)",
+          "when": "1108",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%AD%89%E9%A1%9E%E6%9C%AC%E8%8D%89_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B706"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "China (early Han 'Shennong' herbal with later additions, as quoted in the Zhenglei bencao, 1108)",
+      "belief": "The entry says ginseng treats cold in the stomach and bowels, heart pain, fullness in the chest and flanks, vomiting, wasting thirst and sudden vomiting and diarrhoea. It says ginseng regulates the middle of the body, frees the blood vessels, breaks hard accumulations and 'makes a person not forget', and that taken for a long time it lightens the body and prolongs life.",
+      "note": "The page lists ginseng among the 38 herbs of the upper class of the Shennong text. It does not mark which words were added later, so the age of each phrase is not known.",
+      "sources": [
+        {
+          "title": "Zhenglei bencao (Song dynasty materia medica, 1108), Siku quanshu edition, volume 6: entry for ginseng (Renshen) (Chinese Wikisource)",
+          "author": "Tang Shenwei (compiler)",
+          "when": "1108",
+          "kind": "ancient text",
+          "url": "https://zh.wikisource.org/wiki/%E8%AD%89%E9%A1%9E%E6%9C%AC%E8%8D%89_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B706"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [],
+  "processing": [],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Ginseng tea boosts energy and fights fatigue",
+      "topic": "Ginseng and fatigue",
+      "label": "Ginseng and fatigue",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea sharpens memory and focus",
+      "topic": "Ginseng and memory",
+      "label": "Ginseng and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea strengthens the immune system",
+      "topic": "Ginseng and immunity",
+      "label": "Ginseng and immunity",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea lowers blood sugar",
+      "topic": "Ginseng and blood sugar",
+      "label": "Ginseng and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea improves sexual function",
+      "topic": "Ginseng and sexual function",
+      "label": "Ginseng and sexual function",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea helps you live longer",
+      "topic": "Ginseng and longevity",
+      "label": "Ginseng and longevity",
+      "category": "longevity"
+    },
+    {
+      "claim": "Ginseng tea is safe with blood thinners",
+      "topic": "Ginseng and warfarin",
+      "label": "Ginseng and warfarin",
+      "category": "health"
+    },
+    {
+      "claim": "Ginseng tea makes skin look younger",
+      "topic": "Ginseng and skin ageing",
+      "label": "Ginseng and skin ageing",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Warfarin or other blood thinners, or antidepressants such as phenelzine",
+      "note": "A 2002 systematic review reported possible interactions between Panax ginseng and warfarin, phenelzine and alcohol. A 2-week trial in 25 stroke patients found that adding ginseng did not change warfarin's effect on clotting tests, so the evidence conflicts. If you take any of these medicines, talk to your doctor before using ginseng.",
+      "safetyId": "anticoagulant"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether tea made from the root has the same effects as the extracts, capsules and formulas tested in trials.",
+    "How much ginsenoside a cup of ginseng tea holds: it varies by root, age, preparation and brewing.",
+    "Whether ginseng changes health outcomes beyond small effects on fatigue: the 2023 meta-analysis found only small effects."
+  ],
+  "sources": [
+    {
+      "pmid": "36730693",
+      "doi": "10.1089/jicm.2022.0532",
+      "title": "Ginseng and Ginseng Herbal Formulas for Symptomatic Management of Fatigue: A Systematic Review and Meta-Analysis.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "12020172",
+      "doi": "10.2165/00002018-200225050-00003",
+      "title": "Panax ginseng: a systematic review of adverse effects and drug interactions.",
+      "year": 2002,
+      "studyType": "review"
+    },
+    {
+      "pmid": "18637764",
+      "doi": "10.1089/acm.2007.0799",
+      "title": "Interaction between warfarin and Panax ginseng in ischemic stroke patients.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29983607",
+      "doi": "10.1016/j.jgr.2017.10.004",
+      "title": "Pharmacological and medical applications of Panax ginseng and ginsenosides: a review for use in cardiovascular diseases.",
+      "year": 2018,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "royal_jelly",
+  "name": "Royal jelly",
+  "group": "sweets",
+  "otherNames": [
+    "Royal jelly capsules",
+    "Fresh royal jelly",
+    "Freeze-dried royal jelly",
+    "Queen bee jelly",
+    "Bee milk",
+    "Royal jelly extract"
+  ],
+  "summary": "Royal jelly is the milky secretion worker bees feed to queen larvae, sold as a health tonic. This page lists what people say royal jelly does; each claim can be checked against the research when you choose. No ancient health claims about it were found.",
+  "inIt": [
+    "A review of honeybee products says royal jelly holds antimicrobial peptides (jelleins and royalisin), major royal jelly proteins and hydroxy-decenoic acids, notably 10-hydroxy-2-decenoic acid (10-HDA).",
+    "Its make-up varies with the bee and the plants around the hive. The UK food table has no royal jelly entry."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Royal jelly spoils easily in storage and processing: a review names protein denaturation, Maillard reactions, enzyme loss and fat oxidation, and says common quality checks (basic chemistry and 10-HDA) do not capture its freshness."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Royal jelly gives you energy and fights fatigue",
+      "topic": "Royal jelly and fatigue",
+      "label": "Royal jelly and fatigue",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly eases menopause symptoms",
+      "topic": "Royal jelly and menopause",
+      "label": "Royal jelly and menopause",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly boosts immunity",
+      "topic": "Royal jelly and immunity",
+      "label": "Royal jelly and immunity",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly improves fertility",
+      "topic": "Royal jelly and fertility",
+      "label": "Royal jelly and fertility",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly keeps skin young and fights ageing",
+      "topic": "Royal jelly and skin ageing",
+      "label": "Royal jelly and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Royal jelly lowers cholesterol",
+      "topic": "Royal jelly and cholesterol",
+      "label": "Royal jelly and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly improves memory and mood",
+      "topic": "Royal jelly and memory",
+      "label": "Royal jelly and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Royal jelly cures hay fever and asthma",
+      "topic": "Royal jelly and allergy",
+      "label": "Royal jelly and allergy",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Asthma, hay fever or other allergies, and bee venom allergy",
+      "note": "In a report of seven people, royal jelly caused asthma and in some cases anaphylaxis after it was swallowed, and IgE antibodies to royal jelly proteins were found in 52% of 75 people with inhalant or food allergies and in 38% of sera from people allergic to bee venom. If you have asthma or allergies, talk to your doctor before using it."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether royal jelly helps any health problem in people: this page does not review the studies.",
+    "How much 10-HDA or protein a given product holds after storage.",
+    "Ancient writers: no passage naming royal jelly and the body was found in the open translations that were checked; it is not presented here as an ancient remedy."
+  ],
+  "sources": [
+    {
+      "pmid": "28701955",
+      "doi": "10.3389/fphar.2017.00412",
+      "title": "Therapeutic Properties of Bioactive Compounds from Different Honeybee Products.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "41465005",
+      "doi": "10.3390/foods14244300",
+      "title": "Monitoring and Maintaining the Freshness of Royal Jelly: A Review of Analytical Approaches and Preservation Technologies.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "8835130",
+      "doi": "10.1111/j.1365-2222.1996.tb00082.x",
+      "title": "Asthma and anaphylaxis induced by royal jelly.",
+      "year": 1996,
+      "studyType": "observational"
+    }
+  ]
+}

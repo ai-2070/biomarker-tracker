@@ -1,0 +1,208 @@
+{
+  "id": "ceylon_cinnamon",
+  "name": "Ceylon cinnamon",
+  "group": "herbs and spices",
+  "otherNames": [
+    "True cinnamon",
+    "Cinnamomum verum",
+    "Cinnamomum zeylanicum",
+    "Ceylon cinnamon sticks",
+    "Ground Ceylon cinnamon",
+    "Sri Lankan cinnamon",
+    "Cinnamon bark",
+    "Cinnamon quills"
+  ],
+  "summary": "Ceylon cinnamon is the dried inner bark of Cinnamomum verum, sold as rolled sticks or powder. This page lists what people say cinnamon does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Ceylon (true) cinnamon is the inner bark of Cinnamomum verum. Other barks sold simply as 'cinnamon' are cassia species (C. cassia, C. burmannii, C. loureiroi).",
+    "In a US analysis, C. verum bark held only traces of coumarin, while all three cassia barks held substantial amounts. Coumarin was found in every cinnamon, cinnamon-flavoured food and cinnamon supplement bought in shops there, and the samples were probably Indonesian cassia.",
+    "Coumarin can harm the liver. Europe uses a tolerable daily intake of 0.1 mg per kg of body weight per day.",
+    "In a 4-week crossover trial in 11 healthy people, about 6% of cinnamon's oxalate was water soluble (91% in turmeric), and cinnamon did not raise urinary oxalate significantly.",
+    "The UK food table (CoFID) measures ground cinnamon at 53.1 g of fibre, 1,002 mg of calcium, 431 mg of potassium and 8.3 mg of iron per 100 g, but does not say which species it is and gives no energy value. A teaspoon is only about 3 g."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides called all cinnamon warming, diuretic, softening and digestive, and good against the poison of venomous animals and against deadly poisons.",
+      "note": "The ancient writers' 'cinnamon' and 'cassia' are named by their own words and by modern editors' suggestions; it is not certain that their bark was the Sri Lankan species sold today as Ceylon cinnamon.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 1.13 (cinnamon), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides wrote that cinnamon rubbed on with honey takes away freckles and sunburn, that it is good for coughs, mucous discharges, dropsy, kidney diseases and difficult urination, and that it cleans away what darkens the pupils of the eyes.",
+      "note": "The ancient writers' 'cinnamon' and 'cassia' are named by their own words and by modern editors' suggestions; it is not certain that their bark was the Sri Lankan species sold today as Ceylon cinnamon.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 1.13 (cinnamon), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For pains in the bladder, Celsus wrote that draughts made from aromatics such as spikenard, saffron, cinnamon and cassia are suited to them.",
+      "note": "The ancient writers' 'cinnamon' and 'cassia' are named by their own words and by modern editors' suggestions; it is not certain that their bark was the Sri Lankan species sold today as Ceylon cinnamon.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.27.1 (pains of the bladder), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus recorded a pill of cinnamon with nard, frankincense, cassia, myrrh and saffron taken up in honey for pain in the chest.",
+      "note": "The ancient writers' 'cinnamon' and 'cassia' are named by their own words and by modern editors' suggestions; it is not certain that their bark was the Sri Lankan species sold today as Ceylon cinnamon.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.25.8 (pills: for pain in the chest), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#25"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For snake bites, Celsus wrote that costmary, cassia and cinnamon may suitably be taken in draughts.",
+      "note": "The ancient writers' 'cinnamon' and 'cassia' are named by their own words and by modern editors' suggestions; it is not certain that their bark was the Sri Lankan species sold today as Ceylon cinnamon.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.27.7 (bites of snakes), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-874",
+      "label": "1 teaspoon ground cinnamon (about 3 g; the table does not name the species)",
+      "grams": 3
+    }
+  ],
+  "processing": [
+    "Coumarin differs by species, not by form: the US analysis found it in every cinnamon supplement and cinnamon-flavoured food it tested, and judged them probably cassia."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Ceylon cinnamon lowers blood sugar",
+      "topic": "Cinnamon and blood sugar",
+      "label": "Cinnamon and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Cinnamon lowers cholesterol",
+      "topic": "Cinnamon and cholesterol",
+      "label": "Cinnamon and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Ceylon cinnamon is safer than ordinary cinnamon because it has less coumarin",
+      "topic": "Ceylon cinnamon and coumarin",
+      "label": "Ceylon cinnamon and coumarin",
+      "category": "health"
+    },
+    {
+      "claim": "Cinnamon helps you lose weight",
+      "topic": "Cinnamon and weight loss",
+      "label": "Cinnamon and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Cinnamon reduces inflammation",
+      "topic": "Cinnamon and inflammation",
+      "label": "Cinnamon and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Cinnamon helps polycystic ovary syndrome",
+      "topic": "Cinnamon and polycystic ovary syndrome",
+      "label": "Cinnamon and PCOS",
+      "category": "health"
+    },
+    {
+      "claim": "Cinnamon fights bacteria and fungi",
+      "topic": "Cinnamon and infections",
+      "label": "Cinnamon and infections",
+      "category": "health"
+    },
+    {
+      "claim": "Cinnamon improves memory and focus",
+      "topic": "Cinnamon and memory",
+      "label": "Cinnamon and memory",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Liver disease, or a lot of ordinary (cassia) cinnamon",
+      "note": "Cassia cinnamon holds substantial coumarin, which is known to be toxic to the liver, and cinnamon sold only as 'cinnamon' is often cassia. Ceylon cinnamon held only traces. If you have liver problems, talk to your doctor."
+    },
+    {
+      "with": "Breastfeeding",
+      "note": "A drug-and-lactation review says no data exist on the safety of cinnamon in nursing mothers or infants. If you are breastfeeding, talk to your doctor or midwife."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating cinnamon in food changes blood sugar or other health outcomes in people: this page does not review the trials.",
+    "How much coumarin a given jar holds: the label rarely says which species it is.",
+    "Whether Ceylon cinnamon works differently from cassia in the body beyond its coumarin."
+  ],
+  "sources": [
+    {
+      "pmid": "23627682",
+      "doi": "10.1021/jf4005862",
+      "title": "Cassia cinnamon as a source of coumarin in cinnamon-flavored food and food supplements in the United States.",
+      "year": 2013,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "27378929",
+      "doi": "10.3389/fphar.2016.00174",
+      "title": "The Relation between Hepatotoxicity and the Total Coumarin Intake from Traditional Japanese Medicines Containing Cinnamon Bark.",
+      "year": 2016,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "18469248",
+      "doi": "10.1093/ajcn/87.5.1262",
+      "title": "Effect of cinnamon and turmeric on urinary oxalate excretion, plasma lipids, and plasma glucose in healthy subjects.",
+      "year": 2008,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "40986675",
+      "title": "Cinnamon",
+      "year": 2006,
+      "studyType": "review"
+    }
+  ]
+}

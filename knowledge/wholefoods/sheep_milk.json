@@ -1,0 +1,166 @@
+{
+  "id": "sheep_milk",
+  "name": "Sheep milk",
+  "group": "eggs and dairy",
+  "otherNames": [
+    "Sheep's milk",
+    "Sheeps milk",
+    "Ewe's milk",
+    "Ewe milk",
+    "Ewes milk",
+    "Raw sheep milk",
+    "Pasteurised sheep milk",
+    "Sheep milk yoghurt"
+  ],
+  "summary": "Sheep milk is the rich milk of the ewe, drunk fresh or made into yoghurt and cheeses such as feta. This page lists what people say it does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw sheep's milk at 93 kcal, 5.4 g of protein, 5.8 g of fat, 5.1 g of sugars (lactose), 170 mg of calcium, 0.32 mg of riboflavin and 0.6 µg of vitamin B12 per 100 g. Whole pasteurised cow's milk in the same table has 63 kcal, 3.4 g of protein and 3.6 g of fat. The table does not measure the fat droplets or the milk sugars other than lactose.",
+    "A review says sheep milk has high concentrations of proteins, fats, minerals and vitamins compared with the milks of other domestic species, and that its make-up suits products with added probiotics or prebiotics."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that ewes' milk is sweeter and more nutritive than cows' milk but not so well suited to the stomach, because it is more oleaginous (oily) than any other.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said that where the intestines have been rubbed raw by strong purgatives or by dysentery, cows' milk or ewes' milk is the best milk to use.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.33 (fifty-four medicinal uses of milk), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that a barley drink (cyceon) made with milk is nourishing, and that one made with sheep's milk is astringent, while one made with goats' milk is more laxative.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 41 (cyceon), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "12-329",
+      "label": "1 small glass of raw sheep's milk (about 150 ml, 155 g)",
+      "grams": 155
+    }
+  ],
+  "processing": [
+    "The UK food table lists sheep's milk raw only. Raw dairy is a safety question: in a review of dairy outbreaks in Canada and the United States from 2007, 20 outbreaks involved unpasteurised products (449 confirmed cases, 124 hospitalisations, five deaths)."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Sheep milk is richer and creamier than cow or goat milk",
+      "topic": "Sheep milk and goat and cow milk",
+      "label": "Sheep milk compared",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk is easier to digest than cow milk",
+      "topic": "Sheep milk and digestion",
+      "label": "Sheep milk and digestion",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk is safe if you are allergic to cow's milk",
+      "topic": "Sheep milk and cow's milk allergy",
+      "label": "Sheep milk and milk allergy",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk has more protein and calcium than cow milk",
+      "topic": "Sheep milk and calcium",
+      "label": "Sheep milk and calcium",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk is good for your bones",
+      "topic": "Sheep milk and bone health",
+      "label": "Sheep milk and bones",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk yoghurt is better for your gut than other yoghurt",
+      "topic": "Sheep milk yoghurt and gut health",
+      "label": "Sheep yoghurt and gut",
+      "category": "health"
+    },
+    {
+      "claim": "Raw sheep milk is healthier than pasteurised milk",
+      "topic": "Raw milk and health",
+      "label": "Raw milk and health",
+      "category": "health"
+    },
+    {
+      "claim": "Sheep milk helps skin stay young",
+      "topic": "Sheep milk and skin",
+      "label": "Sheep milk and skin",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Milk allergy",
+      "note": "A report describes 28 children who had severe allergic reactions, including anaphylaxis, to goat and sheep milk products although they tolerated cow's milk, and it says that many children allergic to cow's milk also cannot tolerate goat's or sheep's milk. If you or your child have a milk allergy, talk to your doctor or allergist before trying it."
+    },
+    {
+      "with": "Pregnancy or a weakened immune system (raw milk)",
+      "note": "A review of dairy outbreaks in Canada and the United States says pregnant women and people with weakened immunity should be made aware of foods at high risk of Listeria. If this applies to you, talk to your doctor or midwife before drinking raw milk.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether drinking sheep milk changes any health outcome: this page found no human trial of it; the review cited is about its make-up and its use in foods.",
+    "How much sheep milk's make-up varies with breed, feed and season: the table has a single raw entry."
+  ],
+  "sources": [
+    {
+      "pmid": "33371538",
+      "doi": "10.1111/1541-4337.12250",
+      "title": "Sheep Milk: Physicochemical Characteristics and Relevance for Functional Food Development.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17002714",
+      "doi": "10.1111/j.1398-9995.2006.01193.x",
+      "title": "Allergy to goat and sheep milk without allergy to cow's milk.",
+      "year": 2006,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "35277846",
+      "doi": "10.17269/s41997-022-00614-y",
+      "title": "Disease outbreaks linked to pasteurized and unpasteurized dairy products in Canada and the United States: a systematic review.",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ]
+}

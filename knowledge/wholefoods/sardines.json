@@ -1,0 +1,116 @@
+{
+  "id": "sardines",
+  "name": "Sardines",
+  "group": "fish",
+  "otherNames": [
+    "Sardine",
+    "Pilchard",
+    "Sardina pilchardus",
+    "Canned sardines",
+    "Tinned sardines",
+    "Fresh sardines",
+    "Sardines in olive oil",
+    "Sardines in tomato sauce"
+  ],
+  "summary": "Sardines are small oily fish eaten fresh or from a tin, often with their soft bones. This page lists what people say sardines do; each claim can be checked against the research when you choose. No clear ancient health claims about sardines were found.",
+  "inIt": [
+    "The UK food table (CoFID) measures raw sardine flesh at 134 kcal, 6.1 g of fat, 19.8 g of protein, 4 µg of vitamin D, 8.3 µg of vitamin B12 and 1.11 g of EPA and DHA (omega-3 fats) per 100 g. Tinned in brine and drained, with the soft bones, it has 679 mg of calcium per 100 g against 50 mg in the raw flesh. The table does not measure the many other compounds in fish.",
+    "Like other fish, sardines can build up histamine if they spoil: a study of retail sardine and mackerel found histamine-producing bacteria in most sardines tested and histamine in the muscle of fish carrying them."
+  ],
+  "tableFoods": [
+    {
+      "id": "16-424",
+      "label": "1 small tin of sardines in brine, drained (about 90 g)",
+      "grams": 90
+    },
+    {
+      "id": "16-401",
+      "label": "2 raw sardines, flesh only (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "Tinning changes what is eaten: drained tinned sardines have 679 mg of calcium per 100 g in the UK food table because the bones are eaten, against 50 mg in raw flesh, and 368 mg of sodium in brine against 136 mg raw."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Sardines protect your heart",
+      "topic": "Sardines and heart health",
+      "label": "Sardines and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Sardines keep your bones strong",
+      "topic": "Sardines and bone health",
+      "label": "Sardines and bones",
+      "category": "health"
+    },
+    {
+      "claim": "Sardines are good for your brain",
+      "topic": "Sardines and brain health",
+      "label": "Sardines and brain",
+      "category": "health"
+    },
+    {
+      "claim": "Sardines lower cholesterol",
+      "topic": "Sardines and cholesterol",
+      "label": "Sardines and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Sardines calm inflammation",
+      "topic": "Sardines and inflammation",
+      "label": "Sardines and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Eating sardines helps you live longer",
+      "topic": "Sardines and longevity",
+      "label": "Sardines and longevity",
+      "category": "longevity"
+    },
+    {
+      "claim": "Sardines are safe to eat often because small fish have little mercury",
+      "topic": "Sardines and mercury",
+      "label": "Sardines and mercury",
+      "category": "health"
+    },
+    {
+      "claim": "Sardines cure tiredness and anaemia",
+      "topic": "Sardines and anaemia",
+      "label": "Sardines and anaemia",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Fish allergy",
+      "note": "Fish allergy can cause severe reactions, including fatal anaphylaxis, and often lasts into adulthood. A review also lists scombroid poisoning (a reaction to histamine in spoiled fish) among non-allergic reactions to fish. If you react to fish, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating sardines changes health outcomes in people: this page does not review those studies.",
+    "How much histamine or contaminant a given tin or fresh fish holds: it varies with handling and source.",
+    "Ancient writers: Athenaeus and Aristotle discuss fish called sardines by name, but the passages that were read describe names and types, not health uses; nothing about the body was found."
+  ],
+  "sources": [
+    {
+      "pmid": "31009260",
+      "doi": "10.1089/fpd.2018.2616",
+      "title": "Histamine-Producing Bacteria and Histamine Induction in Retail Sardine and Mackerel from Fish Markets in Egypt.",
+      "year": 2019,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "38284339",
+      "doi": "10.2174/0115733963267330230919094037",
+      "title": "Fish Allergy and Related Conditions in Children: A Review.",
+      "year": 2024,
+      "studyType": "review"
+    }
+  ]
+}

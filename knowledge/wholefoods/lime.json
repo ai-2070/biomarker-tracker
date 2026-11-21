@@ -1,0 +1,128 @@
+{
+  "id": "lime",
+  "name": "Lime",
+  "group": "fruit",
+  "otherNames": [
+    "Limes",
+    "Lime juice",
+    "Fresh lime juice",
+    "Key lime",
+    "Persian lime",
+    "Citrus aurantiifolia",
+    "Citrus latifolia",
+    "Lime zest"
+  ],
+  "summary": "Limes are small, sharp green citrus fruit used for their juice and zest in food and drinks. This page lists what people say limes do; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Lime (Citrus aurantiifolia) is used fresh, in food, sweets and drinks, and its oils in cosmetics and medicines, according to a 2021 review. The molecules behind its phototoxic skin reactions belong to the coumarin and furocoumarin families.",
+    "The UK food table (CoFID) measures fresh lime juice at 9 kcal, 1.6 g of sugars, 110 mg of potassium, 9 mg of calcium and 38 mg of vitamin C per 100 g. Lime flesh has 46 mg of vitamin C per 100 g. The table does not measure the coumarins or the other plant compounds.",
+    "Lime and lemon are different fruit, and their juices read alike in the table: 38 mg of vitamin C per 100 g in fresh lime juice, 36 mg in fresh lemon juice."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-279",
+      "label": "Juice of 1 lime (about 30 g)",
+      "grams": 30
+    },
+    {
+      "id": "14-131",
+      "label": "1 lime, flesh only (about 45 g)",
+      "grams": 45
+    }
+  ],
+  "processing": [
+    "Cordial is not juice: the UK food table lists undiluted lime juice cordial at 29.8 g of sugars and no vitamin C per 100 g, against 1.6 g of sugars and 38 mg of vitamin C in fresh lime juice.",
+    "Citrus fruit and juice taken often can wear teeth: a 2014 review names the fruit's acidity, how it is taken and how long teeth are exposed."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Limes prevent scurvy",
+      "topic": "Limes and scurvy",
+      "label": "Limes and scurvy",
+      "category": "health"
+    },
+    {
+      "claim": "Lime juice cures colds",
+      "topic": "Limes, vitamin C and colds",
+      "label": "Limes, vitamin C and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Lime water helps you lose weight",
+      "topic": "Lime water and weight loss",
+      "label": "Lime water and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lime juice helps digestion",
+      "topic": "Lime juice and digestion",
+      "label": "Lime juice and digestion",
+      "category": "health"
+    },
+    {
+      "claim": "Lime juice on your skin in the sun can burn you",
+      "topic": "Lime juice and sun rash",
+      "label": "Lime juice and sun rash",
+      "category": "health"
+    },
+    {
+      "claim": "Limes are good for your skin",
+      "topic": "Limes and skin",
+      "label": "Limes and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lime juice makes raw fish safe to eat",
+      "topic": "Lime juice and raw fish safety",
+      "label": "Lime juice and raw fish",
+      "category": "health"
+    },
+    {
+      "claim": "Lime water cleanses your liver",
+      "topic": "Lime water and liver detox",
+      "label": "Lime water and liver detox",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Lime juice or peel on skin in sunlight",
+      "note": "A 2026 review describes margarita dermatitis: lime juice or peel on the skin followed by sun exposure causes painful redness and blisters, often followed by dark marks that fade. Many people do not link it to the lime. If you get a rash or blisters after handling limes in the sun, talk to your doctor."
+    },
+    {
+      "with": "Contact allergy to citrus",
+      "note": "A 2021 review says the main adverse reactions to lime are allergic or phototoxic contact dermatitis, and that reactions to eating the fruit seem rare, with no known cases in the literature. If you react to limes or citrus oils, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether lime juice does what the popular claims say: this page does not review studies of it.",
+    "Whether lime juice makes raw fish safer: this page does not review studies of it.",
+    "What the ancient writers said about limes: this page has no Then and now entries, because no passage was found and verified."
+  ],
+  "sources": [
+    {
+      "pmid": "34303384",
+      "doi": "10.1186/s12948-021-00152-x",
+      "title": "A spotlight on lime: a review about adverse reactions and clinical manifestations due to Citrus aurantiifolia.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "42889495",
+      "doi": "10.7759/cureus.116249",
+      "title": "Margarita Dermatitis Revisited: A Case Report and Literature Review of Lime-Associated Phytophotodermatitis.",
+      "year": 2026,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24401351",
+      "title": "Clinical observations of dental erosion associated with citrus diet and intake methods.",
+      "year": 2014,
+      "studyType": "review"
+    }
+  ]
+}

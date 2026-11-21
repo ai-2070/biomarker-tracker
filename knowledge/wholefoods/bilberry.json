@@ -1,0 +1,136 @@
+{
+  "id": "bilberry",
+  "name": "Bilberry",
+  "group": "fruit",
+  "otherNames": [
+    "Bilberries",
+    "Vaccinium myrtillus",
+    "Whortleberry",
+    "Whinberry",
+    "Blaeberry",
+    "European bilberry",
+    "Dried bilberries",
+    "Bilberry jam"
+  ],
+  "summary": "Bilberries are small, dark wild berries of northern Europe, related to the blueberry but a different species. This page lists what people say bilberries do; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Bilberry (Vaccinium myrtillus) is not the cultivated blueberry (Vaccinium corymbosum). A study that compared them found cyanidin the main anthocyanin in bilberry and malvidin the main one in blueberry, and the highest total anthocyanins in the skins of blueberries.",
+    "Bilberries hold anthocyanins, the pigments behind their colour, and are used widely in juice and food in northern Europe, according to a 2023 review.",
+    "The UK food table (CoFID) has no entry for bilberries, so this page shows no measured nutrient amounts. Its blueberry entry is a different species and cannot stand in for them.",
+    "Most trials of bilberry used standardised extracts, for example 240 mg a day for 12 weeks, not the whole berries eaten as food."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Extracts are a different thing from the fruit: the eleven trials in a 2025 meta-analysis tested bilberry supplementation, not berries eaten as food, so their results do not carry over to the whole fruit."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Bilberries improve your night vision",
+      "topic": "Bilberry and night vision",
+      "label": "Bilberry and night vision",
+      "category": "health"
+    },
+    {
+      "claim": "Bilberries protect your eyes as you age",
+      "topic": "Bilberry and eye health",
+      "label": "Bilberry and eye health",
+      "category": "longevity"
+    },
+    {
+      "claim": "Bilberries relieve tired eyes from screens",
+      "topic": "Bilberry and eye strain",
+      "label": "Bilberry and eye strain",
+      "category": "health"
+    },
+    {
+      "claim": "Bilberries lower blood sugar",
+      "topic": "Bilberry and blood sugar",
+      "label": "Bilberry and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Bilberries are healthier than blueberries",
+      "topic": "Bilberry versus blueberry",
+      "label": "Bilberry versus blueberry",
+      "category": "health"
+    },
+    {
+      "claim": "Bilberries improve circulation and varicose veins",
+      "topic": "Bilberry and circulation",
+      "label": "Bilberry and circulation",
+      "category": "health"
+    },
+    {
+      "claim": "Bilberries slow down aging",
+      "topic": "Bilberry and aging",
+      "label": "Bilberry and aging",
+      "category": "longevity"
+    },
+    {
+      "claim": "Bog bilberries, a look-alike, are poisonous",
+      "topic": "Bog bilberry toxicity",
+      "label": "Bog bilberry toxicity",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Picking wild berries and not sure which species",
+      "note": "Bilberry (Vaccinium myrtillus) and bog bilberry (Vaccinium uliginosum) are different species. A 2024 review says many European countries hold a strong prejudice against bog bilberries and a few poisonings were reported between 1906 and 1944, but the supposed toxicity remains unproven. If you are unsure which berry you have, or feel unwell after eating wild berries, talk to your doctor."
+    }
+  ],
+  "cautions": [
+    "A 2025 study in 12 countries found fox tapeworm (Echinococcus multilocularis) DNA in 5.4 percent of shop-bought strawberries and 7.3 percent of blueberries from seven European countries where it occurs. It did not report bilberries separately, and it noted that food has not been shown to raise infection risk much."
+  ],
+  "unknowns": [
+    "Whether eating whole bilberries has the effects reported for extracts: the trials mostly used standardised extracts.",
+    "Whether bilberry changes blood sugar or blood fats: a 2025 meta-analysis of eight trials found no clearly significant change in fasting glucose or total cholesterol, and a borderline one for HbA1c (p = 0.06).",
+    "Whether bilberry helps eyes: a 12-week trial in 109 adults found that 240 mg a day of extract relieved a measure of eye-muscle tension after screen work, and the people in it were healthy adults, not patients."
+  ],
+  "sources": [
+    {
+      "pmid": "19702172",
+      "title": "Comparative study of anthocyanin composition, antimicrobial and antioxidant activity in bilberry (Vaccinium myrtillus L.) and blueberry (Vaccinium corymbosum L.) fruits.",
+      "year": 2009,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "37836403",
+      "doi": "10.3390/nu15194119",
+      "title": "Vaccinium uliginosum and Vaccinium myrtillus-Two Species-One Used as a Functional Food.",
+      "year": 2023,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40751398",
+      "doi": "10.1002/ptr.70054",
+      "title": "Investigating the Effects of Vaccinium myrtillus Supplementation on Cardiometabolic Indices: A Systematic Review and Meta-Analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "32106548",
+      "doi": "10.3390/nu12030600",
+      "title": "A 12-Week-Long Intake of Bilberry Extract (Vaccinium myrtillus L.) Improved Objective Findings of Ciliary Muscle Contraction of the Eye: A Randomized, Double-Blind, Placebo-Controlled, Parallel-Group Comparison Trial.",
+      "year": 2020,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "38357417",
+      "doi": "10.3389/ftox.2024.1358840",
+      "title": "Vaccinium uliginosum L. (bog bilberry) and the search for its alleged toxicity: a review.",
+      "year": 2024,
+      "studyType": "review"
+    },
+    {
+      "pmid": "39787752",
+      "doi": "10.1016/j.ijfoodmicro.2025.111059",
+      "title": "Detection of Echinococcus spp. and other taeniid species in lettuces and berries: Two international multicenter studies from the MEmE project.",
+      "year": 2025,
+      "studyType": "observational"
+    }
+  ]
+}

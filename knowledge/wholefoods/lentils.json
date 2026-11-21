@@ -1,0 +1,245 @@
+{
+  "id": "lentils",
+  "name": "Lentils",
+  "group": "legumes",
+  "otherNames": [
+    "Lentil",
+    "Red lentils",
+    "Green lentils",
+    "Brown lentils",
+    "Split red lentils",
+    "Boiled lentils",
+    "Cooked lentils",
+    "Lentil soup",
+    "Lens culinaris"
+  ],
+  "summary": "Lentils are small dried seeds of a pulse crop, boiled for soups and stews. This page lists what people say lentils do and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Lentils hold lectins, phytic acid and oxalate. A 2018 lab study of Canadian pulses found phytic acid of 8.55 to 22.85 mg/g across the pulses and total oxalate in lentils of 168.6 to 289.1 mg/100 g (raw seeds).",
+    "A 2022 review concludes that eating lentils lowers the short-term rise in blood sugar and insulin after a meal compared with starchy control foods, and that about 110 g cooked was the smallest serving that cut the rise by about 20%.",
+    "The UK food table (CoFID) measures green or brown lentils boiled in unsalted water at 92 kcal, 7.8 g of protein, 7.4 g of fibre, 0.2 g of sugars, 202 mg of potassium, 2.11 mg of iron and 152 µg of folate per 100 g (raw, they are 297 kcal, because cooking adds water). It does not measure lectins, phytic acid, oxalate or the plant compounds."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that lentils injure the eyesight and inflate the stomach, but taken with food they bind the bowels if thoroughly boiled in rain-water, and loosen them if lightly boiled.",
+      "note": "Pliny's translator Fée notes that most of the properties Pliny gives lentils are illusory.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.70 (lentils: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=70"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said lentils break purulent ulcers, cleanse and heal ulcerations of the mouth, and, applied topically, calm abscesses, with polenta for suppurations and gout.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.70 (lentils: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=70"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny held that lentils are bad for the lungs, headache, all nervous affections and bile, and that they readily cause restlessness at night.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.70 (lentils: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=70"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny recommended lentils boiled in three waters, parched and pounded fine, for cholera and dysentery, and parboiled lentils bolted through a sieve with a little honey for burns.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 22.70 (lentils: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=22:chapter=70"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus ranked pulses among the strongest foods, meaning the most nourishing, and said bean and lentils are stronger food than peas.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.18.5 (strong and weak foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#18"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed lentil porridge with beet, endive, chicory or plantain, especially toasted first, among the foods that confine the bowels.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.30.1 (foods that bind the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#30"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For long-lasting loose bowels Celsus said lentil porridge boiled with pomegranate rind is among the efficacious astringent foods.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.26.8 (diarrhoea), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#26"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus advised lentil meal with honey on a burn, kept on the wound while the inflammation lasts.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.27.13 (burns), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-661",
+      "label": "A serving of boiled green or brown lentils (about 150 g)",
+      "grams": 150
+    },
+    {
+      "id": "13-658",
+      "label": "A serving of boiled red lentils (about 150 g)",
+      "grams": 150
+    }
+  ],
+  "processing": [
+    "Soaking and cooking cut lectins and oxalate: in the 2018 study of five pulses, soaking lowered total oxalate by 17 to 52% and cooking lowered all the measured antinutrients more, except phytic acid in common beans and soybean. Soaking did not change phytic acid.",
+    "Cooking adds water: boiled green or brown lentils are 92 kcal per 100 g in the UK food table, against 297 kcal for raw ones."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Lentils lower cholesterol",
+      "topic": "Lentils and cholesterol",
+      "label": "Lentils and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Lentils keep blood sugar steady",
+      "topic": "Lentils and blood sugar",
+      "label": "Lentils and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Lentils are a good replacement for meat protein",
+      "topic": "Lentils as a protein source",
+      "label": "Lentils as a protein source",
+      "category": "health"
+    },
+    {
+      "claim": "Lentils lower the risk of heart disease",
+      "topic": "Lentils and heart health",
+      "label": "Lentils and heart health",
+      "category": "health"
+    },
+    {
+      "claim": "Lentils help you lose weight",
+      "topic": "Lentils and weight loss",
+      "label": "Lentils and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Lentils cause gas and bloating",
+      "topic": "Lentils and gas",
+      "label": "Lentils and gas",
+      "category": "health"
+    },
+    {
+      "claim": "Lentils are full of antinutrients that block minerals",
+      "topic": "Lentils and antinutrients",
+      "label": "Lentils and antinutrients",
+      "category": "health"
+    },
+    {
+      "claim": "Eating lentils helps you live longer",
+      "topic": "Lentils and longevity",
+      "label": "Lentils and longevity",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Legume allergy",
+      "note": "A 2021 scoping review says allergies to chickpea, pea, lentil and lupine are frequently implicated in severe allergic reactions. If you have reacted to lentils or other pulses, talk to your doctor or an allergist."
+    },
+    {
+      "with": "Advice to limit oxalate (for example for kidney stones)",
+      "note": "Raw lentils held 168.6 to 289.1 mg/100 g of total oxalate in the 2018 study, and soaking and cooking lowered it. This page does not review kidney stones. If your doctor has told you to limit oxalate, ask how lentils fit."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating lentils changes health outcomes such as heart disease: this page does not review those studies.",
+    "Whether the lectins, phytic acid and oxalate left in cooked lentils matter for health in people who eat them regularly.",
+    "How the blood sugar finding holds for a whole day of eating rather than one meal."
+  ],
+  "sources": [
+    {
+      "pmid": "29580532",
+      "doi": "10.1016/j.foodres.2018.02.056",
+      "title": "Changes in levels of phytic acid, lectins and oxalates during soaking and cooking of Canadian pulses.",
+      "year": 2018,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "35215500",
+      "doi": "10.3390/nu14040849",
+      "title": "A Review of the Relationship between Lentil Serving and Acute Postprandial Blood Glucose Response: Effects of Dietary Fibre, Protein and Carbohydrates.",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33166732",
+      "doi": "10.1016/j.jaip.2020.10.046",
+      "title": "Adult and Pediatric Food Allergy to Chickpea, Pea, Lentil, and Lupine: A Scoping Review.",
+      "year": 2021,
+      "studyType": "review"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "id": "dark_chocolate",
+  "name": "Dark chocolate and cocoa",
+  "group": "sweets",
+  "otherNames": [
+    "Dark chocolate",
+    "Plain chocolate",
+    "Bitter chocolate",
+    "70% dark chocolate",
+    "85% dark chocolate",
+    "Cocoa",
+    "Cocoa powder",
+    "Cocoa solids",
+    "Cacao",
+    "Raw cacao",
+    "Cacao nibs"
+  ],
+  "summary": "Dark chocolate and cocoa come from the seeds of the cacao tree, which grows in the Americas. This page lists what people say they do, and each claim can be checked against the research when you choose; cocoa has no ancient Greek or Roman record, so there is no Then and now section.",
+  "inIt": [
+    "The UK food table (CoFID) measures plain chocolate at 510 kcal, 5 g of protein, 28 g of fat (16.8 g of it saturated), 62.6 g of sugars, 2.3 mg of iron, 89 mg of magnesium and 300 mg of potassium per 100 g; cocoa powder at 312 kcal, 18.5 g of protein, 21.7 g of fat, 1,500 mg of potassium, 520 mg of magnesium and 10.5 mg of iron per 100 g. The table's plain chocolate has no cocoa percentage, and the table does not measure flavanols, theobromine or caffeine.",
+    "Cocoa is a major dietary source of polyphenols, including flavanols, which have been associated with lower blood pressure.",
+    "In a sample of cocoa powder, dark chocolate, milk chocolate and cocoa nibs bought in US shops, cadmium ranged from 0.004 to 3.15 mg/kg and lead from below the detection limit to 0.38 mg/kg; both were correlated with the percentage of cocoa, and cadmium was higher in products from Latin America than from Africa."
+  ],
+  "tableFoods": [
+    {
+      "id": "17-491",
+      "label": "4 squares of plain chocolate (about 25 g)",
+      "grams": 25
+    },
+    {
+      "id": "12-545",
+      "label": "1 heaped teaspoon of cocoa powder (about 5 g)",
+      "grams": 5
+    }
+  ],
+  "processing": [
+    "Form matters in the blood pressure studies: pooling trials of two weeks or more, dark chocolate lowered resting systolic blood pressure by 3.94 mmHg (95% interval 2.18 to 5.71) and cocoa drinks by 1.54 mmHg (interval from 3.08 lower to 0.01 higher), and the effect was greater at 900 mg or more of flavanols a day.",
+    "Darker products can carry more metal: cadmium and lead were correlated with the percentage of cocoa in the products tested, with the pattern varying by product type and where the cocoa came from."
+  ],
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic"
+  ],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Dark chocolate lowers blood pressure",
+      "topic": "Dark chocolate and blood pressure",
+      "label": "Dark chocolate and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Dark chocolate is good for your heart",
+      "topic": "Dark chocolate and heart disease",
+      "label": "Dark chocolate and the heart",
+      "category": "health"
+    },
+    {
+      "claim": "Cocoa makes your brain sharper and protects your memory",
+      "topic": "Cocoa and memory",
+      "label": "Cocoa and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Dark chocolate lifts your mood",
+      "topic": "Dark chocolate and mood",
+      "label": "Dark chocolate and mood",
+      "category": "health"
+    },
+    {
+      "claim": "Chocolate causes acne",
+      "topic": "Chocolate and acne",
+      "label": "Chocolate and acne",
+      "category": "appearance"
+    },
+    {
+      "claim": "Dark chocolate contains worrying amounts of lead and cadmium",
+      "topic": "Dark chocolate and heavy metals",
+      "label": "Dark chocolate and metals",
+      "category": "health"
+    },
+    {
+      "claim": "Chocolate triggers migraines",
+      "topic": "Chocolate and migraine",
+      "label": "Chocolate and migraine",
+      "category": "health"
+    },
+    {
+      "claim": "Cocoa flavanols slow ageing",
+      "topic": "Cocoa and ageing",
+      "label": "Cocoa and ageing",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [],
+  "cautions": [
+    "Cadmium and lead are found in cocoa products from the soil and the environment, and the study of US products found levels that varied widely between brands and origins; the label does not show them."
+  ],
+  "unknowns": [
+    "Whether eating chocolate (rather than cocoa extract) lowers the risk of heart attacks and strokes: in the COSMOS trial of 21,442 older adults, a cocoa extract with 500 mg of flavanols a day gave 410 cardiovascular events against 456 on placebo, a difference that was not statistically significant (hazard ratio 0.90, 95% interval 0.78 to 1.02).",
+    "Whether the lower risk seen in people who eat more chocolate is caused by the chocolate: in a pooled analysis of 14 cohort studies, the highest intake went with a relative risk of 0.90 for heart disease, 0.84 for stroke and 0.82 for diabetes, with little extra benefit beyond about three 30 g servings a week, but studies that only watch people cannot show cause.",
+    "How much flavanol a given bar or powder holds: the food table does not measure it."
+  ],
+  "sources": [
+    {
+      "pmid": "35804776",
+      "doi": "10.3390/foods11131962",
+      "title": "Effect of Cocoa Beverage and Dark Chocolate Consumption on Blood Pressure in Those with Normal and Elevated Blood Pressure: A Systematic Review and Meta-Analysis.",
+      "year": 2022,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28671591",
+      "doi": "10.3390/nu9070688",
+      "title": "Chocolate Consumption and Risk of Coronary Heart Disease, Stroke, and Diabetes: A Meta-Analysis of Prospective Studies.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "35294962",
+      "doi": "10.1093/ajcn/nqac055",
+      "title": "Effect of cocoa flavanol supplementation for the prevention of cardiovascular disease events: the COcoa Supplement and Multivitamin Outcomes Study (COSMOS) randomized clinical trial.",
+      "year": 2022,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "29310543",
+      "doi": "10.1080/19393210.2017.1420700",
+      "title": "Cadmium and lead in cocoa powder and chocolate products in the US Market.",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

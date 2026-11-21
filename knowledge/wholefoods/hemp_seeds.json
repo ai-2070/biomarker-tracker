@@ -1,0 +1,124 @@
+{
+  "id": "hemp_seeds",
+  "name": "Hemp seeds",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Hemp seed",
+    "Hemp hearts",
+    "Hulled hemp seeds",
+    "Shelled hemp seeds",
+    "Hempseed",
+    "Cannabis sativa seed",
+    "Hemp seed oil",
+    "Hemp protein"
+  ],
+  "summary": "Hemp seeds are the edible seeds of the industrial hemp plant, eaten hulled, whole or pressed into oil. This page lists what people say hemp seeds do and one thing an ancient Greek writer reported; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Hemp seeds are the edible fruits of Cannabis sativa. They were first treated as a by-product of the hemp fibre industry and now get interest for their high nutritional value.",
+    "Hemp grown for food and fibre (industrial hemp) is defined in the law of some places as having under 0.3 % or 0.2 % THC, the psychoactive compound; a 2020 review explains the difference between industrial and drug-type hemp.",
+    "Hemp seed oil is rich in polyunsaturated fats and protein, and also holds terpenes and cannabinoids. In 13 commercial hemp seed oils a 2018 study measured cannabinoids including THC and CBD.",
+    "The UK food table (CoFID) has no entry for hemp seeds, so this page gives no per-100 g figures from it."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Hemp seed oil is a different product from the seeds: the 2018 study measured cannabinoids in the oil, and found that the main cannabinoid acid (CBDA) breaks down with light, air and heat, so storage changes the oil."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Hemp seeds are a complete protein",
+      "topic": "Hemp seeds and protein quality",
+      "label": "Hemp and protein quality",
+      "category": "health"
+    },
+    {
+      "claim": "Hemp seeds lower cholesterol",
+      "topic": "Hemp seeds and cholesterol",
+      "label": "Hemp and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Hemp seeds reduce inflammation",
+      "topic": "Hemp seeds and inflammation",
+      "label": "Hemp and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Hemp seeds lower blood pressure",
+      "topic": "Hemp seeds and blood pressure",
+      "label": "Hemp and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Hemp seeds are a great source of omega-3",
+      "topic": "Hemp seeds and omega-3",
+      "label": "Hemp and omega-3",
+      "category": "health"
+    },
+    {
+      "claim": "Hemp seeds make skin and hair healthier",
+      "topic": "Hemp seeds and skin",
+      "label": "Hemp and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Hemp seeds help with menopause and hormone balance",
+      "topic": "Hemp seeds and menopause",
+      "label": "Hemp and menopause",
+      "category": "health"
+    },
+    {
+      "claim": "Eating hemp seeds makes you fail a drug test or get high",
+      "topic": "Hemp seeds and THC",
+      "label": "Hemp seeds and THC",
+      "category": "health"
+    }
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Herodotus on the Scythians, about 430 BC)",
+      "belief": "Herodotus reported that the Scythians threw hemp seed onto red-hot stones inside a closed felt tent and breathed the fumes, and that this vapour bath served them in place of washing, since they never washed their bodies with water.",
+      "note": "This is seed smoke in a steam tent, not eating the seed.",
+      "sources": [
+        {
+          "title": "Herodotus, Histories 4.73-4.75 (the Scythian hemp vapour bath), Godley translation, Loeb Classical Library, 1920 (Perseids)",
+          "author": "Herodotus",
+          "when": "about 430 BC",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0016/tlg001/perseus-eng2/4.73.1-4.75.3"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Drug tests, or products that are not plain seeds",
+      "note": "Hemp seed oil can hold measurable THC: a 2018 study found cannabinoids including THC in commercial hemp seed oils, and the authors stress checking the amount of psychoactive cannabinoid for safety. Whether a given product can affect a drug test depends on the product, so this page cannot say. If this matters for work or sport, talk to your doctor or the testing body."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating hemp seeds changes health outcomes in people: the 2020 review asks for further investigation, and this page does not review the trials.",
+    "How much THC a given hemp seed product holds: it varies by product, and the studies here looked at oils, not at hulled seeds.",
+    "What the ancient writers of Greece and Rome believed about eating hemp seed: this page found only the Scythian steam bath in a text it could open and read."
+  ],
+  "sources": [
+    {
+      "pmid": "32610691",
+      "doi": "10.3390/nu12071935",
+      "title": "The seed of industrial hemp (Cannabis sativa L.): Nutritional Quality and Potential Functionality for Human Health and Nutrition.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "29182999",
+      "doi": "10.1016/j.jpba.2017.11.044",
+      "title": "Analysis of cannabinoids in commercial hemp seed oil and decarboxylation kinetics studies of cannabidiolic acid (CBDA).",
+      "year": 2018,
+      "studyType": "observational"
+    }
+  ]
+}

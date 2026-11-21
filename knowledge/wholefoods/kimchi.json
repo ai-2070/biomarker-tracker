@@ -1,0 +1,125 @@
+{
+  "id": "kimchi",
+  "name": "Kimchi",
+  "group": "vegetables",
+  "otherNames": [
+    "Kimchee",
+    "Napa cabbage kimchi",
+    "Baechu kimchi",
+    "Radish kimchi",
+    "Kkakdugi",
+    "Fermented kimchi",
+    "Korean kimchi"
+  ],
+  "summary": "Kimchi is a Korean dish of vegetables, mostly napa cabbage, salted, spiced and fermented. This page lists what people say kimchi does; each claim can be checked against the research when you choose. It has no record in ancient Greek or Roman writing, so there is no Then and now.",
+  "inIt": [
+    "Kimchi is made by fermenting napa (baechu) cabbage with other vegetables, and lactic acid bacteria are the main microbes in the fermentation, according to a 2016 review.",
+    "Recipes vary a lot, and fermented seafood such as jeotgal and fish sauce are often added, according to a 2019 review of biogenic amines in kimchi.",
+    "A 2025 review of five intervention studies (205 people) and four cohort studies (42,455 people) found small drops in fasting blood glucose, and, after leaving out some studies, in triglycerides and blood pressure. The authors say the studies were few and the findings should be read cautiously.",
+    "The UK food table (CoFID) has no kimchi entry, so there are no table values here. Kimchi's salt, microbes and plant compounds are not tracked in it."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Fermentation makes biogenic amines: a 2019 review found some kimchi products with histamine and tyramine above the recommended limit of 100 mg/kg, and says fermented seafood ingredients may add to it.",
+    "Salt is part of the method: the authors of a Korean case-control study suggested that salt or chemicals that fermentation increases may play a role in the stomach cancer link they found."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Kimchi is a probiotic that improves gut health",
+      "topic": "Kimchi and gut health",
+      "label": "Kimchi and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi lowers blood sugar",
+      "topic": "Kimchi and blood sugar",
+      "label": "Kimchi and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi helps you lose weight",
+      "topic": "Kimchi and weight loss",
+      "label": "Kimchi and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Kimchi lowers blood pressure",
+      "topic": "Kimchi and blood pressure",
+      "label": "Kimchi and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi causes stomach cancer",
+      "topic": "Kimchi and stomach cancer",
+      "label": "Kimchi and stomach cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi boosts your immune system",
+      "topic": "Kimchi and immunity",
+      "label": "Kimchi and immunity",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi is too salty to be healthy",
+      "topic": "Kimchi and salt",
+      "label": "Kimchi and salt",
+      "category": "health"
+    },
+    {
+      "claim": "Kimchi slows ageing",
+      "topic": "Kimchi and ageing",
+      "label": "Kimchi and ageing",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Stomach problems, or a family history of stomach cancer",
+      "note": "A Korean case-control study (421 stomach cancer patients, 632 controls) found that eating kimchi was linked to a higher risk of stomach cancer, and suggested salt or fermentation chemicals as a reason. A study like this cannot show cause. If this concerns you, talk to your doctor."
+    },
+    {
+      "with": "Reactions to fermented foods",
+      "note": "Some kimchi products held histamine and tyramine above 100 mg/kg, a recommended limit. If fermented foods bring on headaches, flushing or other reactions, talk to your doctor."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating kimchi changes health outcomes: the meta-analysis found few studies, and the stomach cancer finding points the other way.",
+    "How much salt, histamine and live bacteria a given kimchi has: it varies by recipe, age and storage.",
+    "Whether the live bacteria in kimchi survive digestion in numbers that matter: this page does not review that."
+  ],
+  "sources": [
+    {
+      "pmid": "27733844",
+      "doi": "10.3389/fmicb.2016.01493",
+      "title": "Kimchi and Other Widely Consumed Traditional Fermented Foods of Korea: A Review.",
+      "year": 2016,
+      "studyType": "review"
+    },
+    {
+      "pmid": "39545368",
+      "doi": "10.1093/nutrit/nuae167",
+      "title": "Effects of Fermented Kimchi Consumption on Anthropometric and Blood Cardiometabolic Indicators: A Systematic Review and Meta-Analysis of Intervention Studies and Prospective Cohort Studies.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "15929164",
+      "doi": "10.3748/wjg.v11.i21.3175",
+      "title": "Kimchi and soybean pastes are risk factors of gastric cancer.",
+      "year": 2005,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "31689884",
+      "doi": "10.3390/foods8110547",
+      "title": "Occurrence and Reduction of Biogenic Amines in Kimchi and Korean Fermented Seafood Products.",
+      "year": 2019,
+      "studyType": "review"
+    }
+  ]
+}

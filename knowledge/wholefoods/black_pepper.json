@@ -1,0 +1,241 @@
+{
+  "id": "black_pepper",
+  "name": "Black pepper",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Peppercorns",
+    "Black peppercorns",
+    "Ground black pepper",
+    "Cracked black pepper",
+    "Piper nigrum",
+    "White pepper",
+    "White peppercorns",
+    "Pepper spice"
+  ],
+  "summary": "Black pepper is the dried, unripe fruit of the pepper vine, ground or cracked to add heat to food. This page lists what people say pepper does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The pungent bite of pepper comes from piperine. A 2019 systematic review gathers the folk uses of Piper nigrum with its lab and animal findings.",
+    "Piperine slows the breakdown of curcumin (the yellow compound in turmeric) in the liver and gut wall. In a 1998 study, 20 mg of piperine given with 2 g of curcumin raised curcumin levels in volunteers' blood by about 2000%; 2 g of curcumin alone gave levels that were undetectable or very low.",
+    "In a crossover trial of 8 healthy volunteers, an extract of 4 g curcuminoids with 24 mg piperine produced no meaningful change in the blood levels of three test medicines (midazolam, flurbiprofen and paracetamol).",
+    "The UK food table (CoFID) measures ground black pepper at 10.4 g of protein, 25.3 g of fibre, 1,329 mg of potassium, 443 mg of calcium and 9.7 mg of iron per 100 g. It gives no energy value and does not measure piperine or the many other plant compounds in pepper. A teaspoon is only about 2 g."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides taught that all pepper is warming, helps urination and digestion, and is 'attracting and dissolving'. Mixed in sauces, he said, it eases pain, is healing and encourages appetite.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 2.189 (pepper), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides wrote that pepper, white pepper especially, cleans away what darkens the pupils of the eyes, that it is good for the periodical chills of fevers whether drunk or rubbed on, and that it helps people bitten by poisonous animals.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 2.189 (pepper), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides wrote that pepper in syrups or liquid medicines helps chest complaints and coughs, that rubbed on with honey it helps tonsillitis, and that drunk with tender laurel leaves it dissolves griping pains.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 2.189 (pepper), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed pepper and salt among the 'heating' foods, together with stewed meat, garlic, onion, dried figs, pickled fish and wine.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.27.1 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus named pepper, both round and long, among the foods that increase the urine, with fennel, thyme, mustard and wormwood.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.31.1 (foods that increase the urine), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#31"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a fever that begins with shivering fits, Celsus wrote that the sick person can eat garlic or drink hot water containing pepper before the fit, to see whether the heat these raise stops the shivering.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 3.12.1 (fevers that begin with shivering), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/3*.html#12"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a swollen, sore throat, Celsus wrote that for a cough it is also fitting to dust the palate with pounded pepper.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.7.3 (the throat (cynanche)), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#7"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For the bite of a venomous animal, when no antidote is at hand, Celsus wrote that a draught of strong wine with pepper, or anything else that stirs up heat, can be sipped so the body's fluid does not coagulate inside, because most poisons cause death by cold.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.27.3 (bites of venomous animals), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-880",
+      "label": "1 teaspoon ground black pepper (about 2 g)",
+      "grams": 2
+    }
+  ],
+  "processing": [
+    "The UK food table lists black and white pepper separately: per 100 g, white pepper has 14.3 mg of iron and 73 mg of potassium, against 9.7 mg of iron and 1,329 mg of potassium in black pepper."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Black pepper makes turmeric work better",
+      "topic": "Black pepper and curcumin absorption",
+      "label": "Pepper and curcumin absorption",
+      "category": "health"
+    },
+    {
+      "claim": "Black pepper burns fat and helps you lose weight",
+      "topic": "Black pepper and weight loss",
+      "label": "Pepper and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Black pepper helps digestion",
+      "topic": "Black pepper and digestion",
+      "label": "Pepper and digestion",
+      "category": "health"
+    },
+    {
+      "claim": "Black pepper is anti-inflammatory",
+      "topic": "Black pepper and inflammation",
+      "label": "Pepper and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Black pepper lowers blood sugar",
+      "topic": "Black pepper and blood sugar",
+      "label": "Pepper and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Black pepper relieves coughs and colds",
+      "topic": "Black pepper and cough",
+      "label": "Pepper and cough",
+      "category": "health"
+    },
+    {
+      "claim": "Black pepper irritates the stomach and causes ulcers",
+      "topic": "Black pepper and stomach irritation",
+      "label": "Pepper and the stomach",
+      "category": "health"
+    },
+    {
+      "claim": "Piperine from black pepper protects the brain and memory",
+      "topic": "Piperine and brain health",
+      "label": "Piperine and the brain",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Spice, pollen or other plant allergies",
+      "note": "A 2026 review lists pepper among the spices that can cause allergic reactions. Its main allergens (PR-10 proteins, profilins and defensins) can cross-react with pollen and other plant allergens. If you react to pepper or other spices, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether the pinch of ground pepper used in cooking raises curcumin levels the way the 20 mg of pure piperine did in the 1998 study: that study did not test food amounts.",
+    "Whether eating pepper changes health outcomes in people: the 2019 review mixes folk use, lab and animal findings, and this page does not weigh them.",
+    "How much piperine a given pepper holds: it varies by origin, grind and age."
+  ],
+  "sources": [
+    {
+      "pmid": "30740986",
+      "doi": "10.1080/10408398.2019.1565489",
+      "title": "A systematic review on black pepper (Piper nigrum L.): from folk uses to pharmacological applications.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "9619120",
+      "doi": "10.1055/s-2006-957450",
+      "title": "Influence of piperine on the pharmacokinetics of curcumin in animals and human volunteers.",
+      "year": 1998,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "22725836",
+      "doi": "10.1111/j.1365-2125.2012.04364.x",
+      "title": "Effect of a herbal extract containing curcumin and piperine on midazolam, flurbiprofen and paracetamol (acetaminophen) pharmacokinetics in healthy volunteers.",
+      "year": 2013,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "40341008",
+      "doi": "10.23822/eurannaci.1764-1489.400",
+      "title": "Allergic reactions to spices: a review of sensitivities to pepper, cumin, oregano, anise, mustard and other spices.",
+      "year": 2026,
+      "studyType": "review"
+    }
+  ]
+}

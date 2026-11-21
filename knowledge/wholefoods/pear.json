@@ -1,0 +1,314 @@
+{
+  "id": "pear",
+  "name": "Pear",
+  "group": "fruit",
+  "otherNames": [
+    "Pears",
+    "European pear",
+    "Common pear",
+    "Pyrus communis",
+    "Conference pear",
+    "Williams pear",
+    "Bartlett pear",
+    "Comice pear",
+    "Nashi pear",
+    "Asian pear",
+    "Dried pears",
+    "Pear juice"
+  ],
+  "summary": "Pears are a juicy, fibre-rich fruit eaten raw, stewed or dried. This page lists what people say pears do and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Pears hold a lot of fibre: insoluble cellulose and hemicellulose, and soluble pectin. The skin is thick and holds much of the pectin.",
+    "Pears hold fructose and a sugar alcohol called sorbitol. A 2021 review says the fructose, fibre and sorbitol together are likely behind their known laxative effect.",
+    "Polyphenols (arbutin, chlorogenic acid, epicatechin, rutin) and triterpenes sit mostly in the peel: in a study of 10 pear varieties the peel held about 6 to 20 times more of them than the flesh.",
+    "The UK food table (CoFID) measures raw pear with its skin at 43 kcal, 10.9 g of sugars, 2.7 g of fibre, 105 mg of potassium and 3 mg of vitamin C per 100 g. It does not measure arbutin, chlorogenic acid or the other plant compounds."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that ripe pears warm and moisten the body and pass easily by stool, while hard pears are binding. Wild winter pears were said to loosen and clear the bowels when ripe and to bind when unripe.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 55 (the qualities of fruits), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (physician Philotimus, quoted by Athenaeus, about 200 AD)",
+      "belief": "Philotimus, a Greek physician, held that apples are not as easy to digest as pears, and that people who eat many apples suffer more from indigestion.",
+      "sources": [
+        {
+          "title": "Athenaeus, Deipnosophistae book 3, chapter 20 (Perseids numbering; the passage on apples quoting Philotimus 'On Food'), Yonge translation, 1854",
+          "author": "Athenaeus (C. D. Yonge, translator)",
+          "when": "about 200 AD",
+          "kind": "ancient text",
+          "url": "https://cts.perseids.org/read/greekLit/tlg0008/tlg001/perseus-eng2/3.20-3.39"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that raw pears are hard to digest, even for people in good health, and that sick people should avoid them as strictly as wine. Boiled pears, those of Crustumium in particular, he called agreeable and wholesome, and pears boiled with honey good for the stomach.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.62 (chapter on pears), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=62"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said pears were used to make softening poultices, and that a decoction of them was used to disperse hardened swellings.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.62 (chapter on pears), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=62"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reported that pears help in poisoning by mushrooms and fungi, because of their heaviness and the neutralizing effect of their juice. He added that the ashes of pear-tree wood work even better against fungus poison.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.62 (chapter on pears), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=62"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that slices of wild pear, dried in the air, stop looseness of the bowels, and that a drink made by boiling the fruit with its leaves does the same.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.62 (chapter on pears), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=62"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed mealy pears (from Crustumeria) and keeping-pears among the orchard fruits best suited to the stomach, along with quinces and pomegranates.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.24.2 (foods best suited to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#24"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted mealy pears among the cooling foods, beside lettuce, cucumber and vinegar.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.27.1 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed unripe pears among the foods that bind the bowels.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.30.3 (foods that bind the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#30"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a long-lasting loose bowel, Celsus described a preserve of pears, apples, quinces and pomegranates boiled down in must. He said a spoonful or two a day controls the bowel gently without harm to the stomach.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.26.5-6 (diarrhoea; medicine made from orchard fruit), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#26"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus advised eating a soft pear once ulcers in the mouth begin to clean, and chewing pears and apples that are not too ripe, holding their juice in the mouth, when the gums have drawn back from the teeth.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 6.10.3 (ulcers of the mouth) and 6.13 (gums and teeth), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/6*.html#10"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus wrote that mushrooms that are not normally eaten lose their harmful quality when boiled in oil, or boiled along with a pear-tree twig.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.27.12 (poisons; fungi), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "14-321",
+      "label": "1 medium pear, flesh and skin (about 170 g)",
+      "grams": 170
+    }
+  ],
+  "processing": [
+    "Most of the polyphenols are in the peel, so a peeled pear holds far less of them than one eaten whole.",
+    "Dried pears are concentrated: the UK food table has 52.4 g of sugars per 100 g, against 10.9 g in a raw pear with its skin.",
+    "Pears differ by variety: the 2021 review says Asian pears carry more phenolics, arbutin and chlorogenic acid than Western pears, so one variety's numbers do not carry over to another."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Pears relieve constipation",
+      "topic": "Pears and constipation",
+      "label": "Pears and constipation",
+      "category": "health"
+    },
+    {
+      "claim": "Pears help you lose weight",
+      "topic": "Pears and weight loss",
+      "label": "Pears and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Pears lower cholesterol and protect your heart",
+      "topic": "Pears and cholesterol",
+      "label": "Pears and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Pears lower blood sugar in people with diabetes",
+      "topic": "Pears and blood sugar",
+      "label": "Pears and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Pears feed healthy gut bacteria",
+      "topic": "Pears and gut bacteria",
+      "label": "Pears and gut bacteria",
+      "category": "health"
+    },
+    {
+      "claim": "Pears soothe a cough and sore throat",
+      "topic": "Pears and cough",
+      "label": "Pears and cough",
+      "category": "health"
+    },
+    {
+      "claim": "Pear juice cures a hangover",
+      "topic": "Pear juice and hangover",
+      "label": "Pear juice and hangover",
+      "category": "health"
+    },
+    {
+      "claim": "Pears are good for your skin",
+      "topic": "Pears and skin health",
+      "label": "Pears and skin",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Fructose or sorbitol intolerance, or irritable bowel syndrome",
+      "note": "Pears have more fructose than glucose and hold sorbitol, and food analysis lists them among fruits with poorly absorbed short-chain sugars (FODMAPs). For people who react to these, such foods can bring on gas, bloating, belly pain or loose stools. If this sounds like you, talk to your doctor or a dietitian."
+    },
+    {
+      "with": "Birch pollen allergy",
+      "note": "In people with birch pollen allergy, pears can set off an allergic reaction. In a small oral challenge trial, 14 of 15 such patients reacted to Conference pears and 12 of 15 to Cepuna pears. If you react to pears, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating ordinary pears changes health outcomes: this page does not review the studies, and the 2021 review mixes lab, animal and human findings.",
+    "How much fibre, sorbitol and polyphenol a given pear has: it varies by variety, ripeness and storage.",
+    "Whether one pear variety is reliably safer than another for people with birch-pollen pear allergy: the trial saw fewer reactions to Cepuna, but the difference was not statistically significant (15 patients)."
+  ],
+  "sources": [
+    {
+      "pmid": "34470625",
+      "doi": "10.1186/s12906-021-03392-1",
+      "title": "A review of pears (Pyrus spp.), ancient functional food for modern times.",
+      "year": 2021,
+      "studyType": "review"
+    },
+    {
+      "pmid": "19123815",
+      "doi": "10.1021/jf802700e",
+      "title": "Measurement of short-chain carbohydrates in common Australian vegetables and fruits by high-performance liquid chromatography (HPLC).",
+      "year": 2009,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "24357350",
+      "doi": "10.1007/s11894-013-0370-0",
+      "title": "Dietary fructose intolerance, fructan intolerance and FODMAPs.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "24444971",
+      "doi": "10.1016/j.foodchem.2013.12.010",
+      "title": "Chemical composition and antioxidant and anti-inflammatory potential of peels and flesh from 10 different pear varieties (Pyrus spp.).",
+      "year": 2014,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "33919631",
+      "doi": "10.3390/nu13041355",
+      "title": "Birch Pollen Related Pear Allergy: A Single-Blind Oral Challenge TRIAL with 2 Pear Cultivars.",
+      "year": 2021,
+      "studyType": "rct"
+    }
+  ]
+}

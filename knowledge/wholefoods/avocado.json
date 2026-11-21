@@ -1,0 +1,146 @@
+{
+  "id": "avocado",
+  "name": "Avocado",
+  "group": "fruit",
+  "otherNames": [
+    "Avocados",
+    "Avocado pear",
+    "Alligator pear",
+    "Persea americana",
+    "Hass avocado",
+    "Fuerte avocado",
+    "Avocado flesh"
+  ],
+  "summary": "Avocados are a creamy, high-fat fruit eaten raw, mashed or sliced. This page lists what people say avocados do; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Avocado is rich in monounsaturated fat, fibre and plant compounds, according to a 2025 review of reviews.",
+    "The UK food table (CoFID) measures the flesh of a Hass avocado at 171 kcal, 17.4 g of fat (4.15 g saturated), 3.1 g of fibre, 583 mg of potassium, 2.19 mg of vitamin E and 31 µg of folate per 100 g. It does not measure carotenoids or most plant compounds.",
+    "In lab digestion tests of Hass avocado, fat-soluble compounds such as carotenoids and tocopherols were released from the fruit, and fatty acids more readily than carotenoids and tocopherols.",
+    "A 2025 evidence map found that avocado trials used 60 to 300 g a day, far more than the 0 to 10 g a day typical in the observational studies."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-386",
+      "label": "Half a Hass avocado, flesh only (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "Ripeness matters in the lab: a study that digested Hass avocado pulp at five ripening stages found that how much of the fat-soluble compounds were released depended on the ripening stage.",
+    "Varieties differ: the UK food table lists 17.4 g of fat per 100 g in Hass flesh and 19.3 g in Fuerte flesh."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Avocados lower cholesterol",
+      "topic": "Avocados and cholesterol",
+      "label": "Avocados and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Avocados are fattening and cause weight gain",
+      "topic": "Avocados and weight gain",
+      "label": "Avocados and weight gain",
+      "category": "appearance"
+    },
+    {
+      "claim": "Avocados melt belly fat",
+      "topic": "Avocados and belly fat",
+      "label": "Avocados and belly fat",
+      "category": "appearance"
+    },
+    {
+      "claim": "Avocados are good for your heart",
+      "topic": "Avocados and heart health",
+      "label": "Avocados and heart health",
+      "category": "health"
+    },
+    {
+      "claim": "Avocado helps your body absorb nutrients from other foods",
+      "topic": "Avocado and nutrient absorption",
+      "label": "Avocado and nutrient absorption",
+      "category": "health"
+    },
+    {
+      "claim": "Avocado is good for your skin and hair",
+      "topic": "Avocado and skin",
+      "label": "Avocado and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Avocado seeds are healthy to eat",
+      "topic": "Avocado seeds",
+      "label": "Avocado seeds",
+      "category": "health"
+    },
+    {
+      "claim": "Avocados keep your memory sharp",
+      "topic": "Avocados and brain health",
+      "label": "Avocados and brain health",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Natural rubber latex allergy",
+      "note": "In a 1999 study, more than half of people with latex allergy were sensitised to avocado, and about 10 to 20 percent reported reactions after eating it. If you have a latex allergy, talk to your doctor or an allergist."
+    },
+    {
+      "with": "Kidney disease",
+      "safetyId": "kidney",
+      "note": "The UK food table lists 583 mg of potassium per 100 g of Hass avocado flesh. A 2018 review says a dietary potassium limit is usually recommended for people with reduced kidney function. If you have kidney disease, talk to your doctor or dietitian."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating avocado changes blood fats: a 2025 meta-analysis of 10 randomised trials found no significant change in triglycerides, total cholesterol or HDL cholesterol, while a 2025 umbrella review of eight reviews reported lower LDL cholesterol in people with abnormal blood fats. The reviews disagree.",
+    "Whether trial results carry over to ordinary eating: trials used 60 to 300 g of avocado a day, and observational studies far less.",
+    "What the seed does: this page does not review avocado seed."
+  ],
+  "sources": [
+    {
+      "pmid": "40876535",
+      "doi": "10.1016/j.clnesp.2025.08.019",
+      "title": "Is avocado beneficial for lipid profiles? An umbrella review of systematic reviews and meta-analyses.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "40612140",
+      "doi": "10.1002/fsn3.70547",
+      "title": "Effects of Avocado Products on Cardiovascular Risk Factors in Adults: A GRADE-Assessed Systematic Review and Meta-Analysis.",
+      "year": 2025,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "39996010",
+      "doi": "10.3389/fnut.2025.1488907",
+      "title": "Exploring avocado consumption and health: a scoping review and evidence map.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "33509510",
+      "doi": "10.1016/j.foodres.2020.109960",
+      "title": "Bioaccessibility of fat-soluble bioactive compounds (FSBC) from avocado fruit as affected by ripening and FSBC composition in the food matrix.",
+      "year": 2021,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "10231327",
+      "doi": "10.1046/j.1365-2222.1999.00502.x",
+      "title": "Class I endochitinase containing a hevein domain is the causative allergen in latex-associated avocado allergy.",
+      "year": 1999,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29495340",
+      "doi": "10.3390/nu10030261",
+      "title": "Dietary Approach to Recurrent or Chronic Hyperkalaemia in Patients with Decreased Kidney Function.",
+      "year": 2018,
+      "studyType": "review"
+    }
+  ]
+}

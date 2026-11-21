@@ -1,5 +1,7 @@
 import { type FindingEffect, type NutrientFinding, sortFindings } from "@bt/shared/core/nutrients";
+import { formatDate } from "../format";
 import { More } from "./disclosure";
+import { useEvidenceMap } from "./EvidenceMap";
 import { GradeBadge, GradeDots, StudyLink } from "./evidence";
 import { anchorId, jump } from "./glance";
 import { Card, cx } from "./ui";
@@ -47,7 +49,24 @@ function FindingOverview({ findings, prefix, caption }: { findings: NutrientFind
 }
 
 /** Benefits first, harms visible, and uncertain uses kept separate from full research detail. */
-export function Findings({ title, intro, findings, prefix }: { title: string; intro: string; findings: NutrientFinding[]; prefix: string }) {
+export function Findings({
+  title,
+  intro,
+  findings,
+  prefix,
+  mapId,
+  liveChecks,
+}: {
+  title: string;
+  intro: string;
+  findings: NutrientFinding[];
+  prefix: string;
+  /** The page's evidence map: its search date says how fresh the findings are. */
+  mapId?: string;
+  /** The page has "Common claims to check", which search the research live. */
+  liveChecks?: boolean;
+}) {
+  const searchedOn = useEvidenceMap(mapId ?? "")?.fetchedAt;
   const sorted = sortFindings(findings);
   const benefits = sorted.filter((f) => f.effect === "helps");
   const harms = sorted.filter((f) => f.effect === "harms");
@@ -59,6 +78,11 @@ export function Findings({ title, intro, findings, prefix }: { title: string; in
       <div>
         <h2 className="font-serif text-2xl font-normal">{title}</h2>
         <p className="mt-1 text-ink-2">{intro}</p>
+        {searchedOn && (
+          <p className="mt-1 text-sm text-ink-2">
+            Studies last searched {formatDate(searchedOn)}. Research keeps changing{liveChecks ? "; the claim checks below search it live" : ""}.
+          </p>
+        )}
       </div>
       {benefits.length > 0 ? (
         <FindingOverview findings={benefits} prefix={prefix} caption="Uses with positive findings" />

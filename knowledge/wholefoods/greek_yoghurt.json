@@ -1,0 +1,145 @@
+{
+  "id": "greek_yoghurt",
+  "name": "Greek yoghurt",
+  "group": "eggs and dairy",
+  "otherNames": [
+    "Greek yogurt",
+    "Strained yoghurt",
+    "Strained yogurt",
+    "Greek-style yoghurt",
+    "Greek-style yogurt",
+    "Thick Greek yoghurt",
+    "Plain Greek yoghurt",
+    "Full-fat Greek yoghurt",
+    "Low-fat Greek yoghurt",
+    "Fat-free Greek yoghurt"
+  ],
+  "summary": "Greek yoghurt is thick, tangy yoghurt that has been strained. This page lists what people say it does and what a writer in ancient Rome believed about soured milk; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures plain Greek-style yoghurt at 133 kcal, 5.7 g of protein, 10.2 g of fat (6.8 g of it saturated), 4.5 g of sugars, 126 mg of calcium and 39 µg of iodine per 100 g, with no fibre. That entry is a full-fat one. The table does not measure the live bacteria or the peptides that fermenting makes.",
+    "Yoghurt's lactose is digested more efficiently than the lactose in other dairy foods, because the bacteria in yoghurt help to digest it. A review of the studies says the bacterial lactase survives the stomach's acid, protected inside the bacterial cells, and is active in the small intestine, enough to prevent symptoms in lactose-intolerant people."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny described oxygala, a soured milk made by adding sour milk to the fresh milk that is to curdle, and said that this preparation is extremely wholesome to the stomach.",
+      "note": "Pliny does not describe straining the curd, so this is not evidence about Greek-style yoghurt itself, only about soured, curdled milk.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.36 (oxygala: one remedy), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=36"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "12-555",
+      "label": "1 small pot of plain Greek-style yoghurt (about 150 g)",
+      "grams": 150
+    }
+  ],
+  "processing": [
+    "Flavour changes the sugar: in the UK food table, plain Greek-style yoghurt has 4.5 g of sugars per 100 g and the fruit version 10.5 g.",
+    "Greek-style is not the same as other plain yoghurt: the table lists plain whole-milk yoghurt at 7.8 g of sugars and 200 mg of calcium per 100 g, against 4.5 g and 126 mg in plain Greek-style, with the same 5.7 g of protein."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Greek yoghurt has far more protein than ordinary yoghurt",
+      "topic": "Greek yoghurt and protein",
+      "label": "Greek yoghurt and protein",
+      "category": "health"
+    },
+    {
+      "claim": "Greek yoghurt helps you lose weight",
+      "topic": "Yoghurt and weight loss",
+      "label": "Yoghurt and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Greek yoghurt is good for your gut",
+      "topic": "Greek yoghurt and gut health",
+      "label": "Greek yoghurt and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Yoghurt is fine if you are lactose intolerant",
+      "topic": "Yoghurt and lactose intolerance",
+      "label": "Yoghurt and lactose",
+      "category": "health"
+    },
+    {
+      "claim": "Eating yoghurt lowers the risk of type 2 diabetes",
+      "topic": "Yoghurt and type 2 diabetes",
+      "label": "Yoghurt and diabetes",
+      "category": "health"
+    },
+    {
+      "claim": "People who eat yoghurt live longer",
+      "topic": "Yoghurt and mortality",
+      "label": "Yoghurt and long life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Full-fat yoghurt is bad for your heart",
+      "topic": "Full-fat yoghurt and heart disease",
+      "label": "Full-fat yoghurt and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Greek yoghurt builds muscle",
+      "topic": "Greek yoghurt and muscle",
+      "label": "Greek yoghurt and muscle",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Cow's milk allergy",
+      "note": "Yoghurt is still made from milk. In a challenge study of 34 children with IgE-mediated cow's milk allergy, 11 of the 31 who had reacted to milk with whole-body symptoms also reacted to yoghurt. If you or your child have a milk allergy, talk to your doctor or allergist before trying it."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether Greek-style yoghurt differs from other yoghurt in any health outcome: no human study of Greek yoghurt on its own was found for this page, and the reviews cited here cover yoghurt in general.",
+    "Whether eating yoghurt itself lowers the risk of death or heart disease: in the pooled cohort studies, high intake went with a lower risk of dying (relative risk 0.93, 95% interval 0.89 to 0.98) and of cardiovascular death (0.89, 0.81 to 0.98), but studies that only watch people cannot show cause.",
+    "Whether yoghurt helps with weight: a review of ten cohort studies found the link to overweight and obesity not fully consistent or always statistically significant."
+  ],
+  "sources": [
+    {
+      "pmid": "24695892",
+      "doi": "10.3945/ajcn.113.073023",
+      "title": "Lactose digestion from yogurt: mechanism and relevance.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36349966",
+      "doi": "10.1017/s1368980022002385",
+      "title": "Yogurt consumption and risk of mortality from all causes, CVD and cancer: a comprehensive systematic review and dose-response meta-analysis of cohort studies.",
+      "year": 2023,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "28096138",
+      "doi": "10.3945/an.115.011536",
+      "title": "Associations between Yogurt Consumption and Weight Gain and Risk of Obesity and Metabolic Syndrome: A Systematic Review.",
+      "year": 2017,
+      "studyType": "review"
+    },
+    {
+      "pmid": "30573322",
+      "doi": "10.1016/j.aller.2018.10.005",
+      "title": "Yogurt is tolerated by the majority of children with IgE-mediated cow's milk allergy.",
+      "year": 2019,
+      "studyType": "observational"
+    }
+  ]
+}

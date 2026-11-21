@@ -661,6 +661,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Eggs raise your cholesterol",
+      "topic": "Eggs and blood cholesterol",
+      "label": "Eggs and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Eating eggs causes heart disease",
+      "topic": "Eggs and heart disease",
+      "label": "Eggs and heart disease",
+      "category": "health"
+    },
+    {
+      "claim": "Eggs are bad for people with diabetes",
+      "topic": "Eggs and type 2 diabetes",
+      "label": "Eggs and diabetes",
+      "category": "health"
+    },
+    {
+      "claim": "Eggs help you lose weight",
+      "topic": "Eggs and weight loss",
+      "label": "Eggs and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Egg yolks protect your eyes",
+      "topic": "Eggs and eye health",
+      "label": "Eggs and your eyes",
+      "category": "health"
+    },
+    {
+      "claim": "Eggs build muscle",
+      "topic": "Eggs and muscle growth",
+      "label": "Eggs and muscle",
+      "category": "health"
+    },
+    {
+      "claim": "Brown eggs are healthier than white eggs",
+      "topic": "Brown eggs compared with white eggs",
+      "label": "Brown versus white eggs",
+      "category": "health"
+    },
+    {
+      "claim": "Raw eggs are healthier than cooked eggs",
+      "topic": "Raw eggs compared with cooked eggs",
+      "label": "Raw versus cooked eggs",
+      "category": "health"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

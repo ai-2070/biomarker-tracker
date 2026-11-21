@@ -1,0 +1,305 @@
+{
+  "id": "garlic",
+  "name": "Garlic",
+  "group": "vegetables",
+  "otherNames": [
+    "Garlic cloves",
+    "Raw garlic",
+    "Cooked garlic",
+    "Crushed garlic",
+    "Garlic bulb",
+    "Black garlic",
+    "Garlic powder",
+    "Allium sativum"
+  ],
+  "summary": "Garlic is a pungent bulb used as a seasoning and a folk remedy for thousands of years. This page lists what people say garlic does and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Garlic is rich in sulfur compounds (alliin, allicin, ajoenes, vinyldithiins) and holds flavonoids such as quercetin, according to a 2020 review.",
+    "Allicin, one of the active compounds, is described as a principle of freshly crushed garlic: it is formed when the clove is crushed.",
+    "The UK food table (CoFID) measures raw garlic at 98 kcal, 7.9 g of protein, 16.3 g of carbohydrate (1.6 g of sugars), 620 mg of potassium and 17 mg of vitamin C per 100 g. It has no fibre value for garlic and does not measure allicin or the other sulfur compounds."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that garlic has very powerful properties and is of great use to people on changes of water or place. Its smell was said to drive away serpents and scorpions, and it was held to cure wounds made by wild beasts, whether eaten, drunk or applied.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said garlic cures dog bites when applied with honey, is drunk for serpent stings, and neutralises the poisons aconite and henbane.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "For coughs and chest troubles Pliny listed garlic boiled in milk or mixed with soft cheese for catarrh, boiled with peas or beans for hoarseness, a gargle of it in vinegar and water for quinsy, and a decoction with grease or milk for cough. Garlic roasted in ashes with honey was said to help people spitting blood or pus.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that pieces of garlic in hollow teeth, or rinsing the mouth with a decoction of it, relieves toothache, and that garlic juice is put into the ears with goose-grease.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said garlic boiled in oxymel (vinegar and honey) drives out tape-worm and other intestinal worms, and that a pottage of it cures tenesmus (straining to pass stool).",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reported that garlic cleans leprosy, lichen and skin eruptions when mixed with wild marjoram or burnt to ashes and rubbed on with oil, and that garlic ashes with honey bring bruised spots back to their proper colour.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny recorded a general belief that garlic in food and drink cures epilepsy, and that a clove in astringent wine with a little silphium drives off quartan fever.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny called garlic a soporific that gives the body a ruddier colour, and an aphrodisiac when beaten up with fresh coriander and drunk in pure wine.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny listed garlic's drawbacks as dim sight and wind, and said that too much of it hurts the stomach and creates thirst.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.23 (garlic: sixty-one remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted garlic among the acrid foods and among the heating foods, beside pepper, salt, onion and strong wine, and among foods that move the bowels.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.22.2 (acrid foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#22"
+        },
+        {
+          "title": "Celsus, De Medicina 2.27.1 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        },
+        {
+          "title": "Celsus, De Medicina 2.29.1 (foods that move the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#29"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For the sting of a scorpion or a spider, Celsus said it is good to put on garlic mixed with rue and pounded up with oil.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.27.6 (poisonous stings), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-244",
+      "label": "1 clove of garlic, raw (about 3 g)",
+      "grams": 3
+    }
+  ],
+  "processing": [
+    "Crushing garlic is what forms allicin, according to the review of its antimicrobial properties.",
+    "Heat reduces the antiplatelet (anti-clumping) activity of garlic in the lab: boiling or oven-heating for 3 minutes or less did not affect it, 6 minutes switched it off in whole cloves but not fully in crushed ones, and microwaving switched it off. This was a test-tube study, not one in people."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Garlic lowers blood pressure",
+      "topic": "Garlic and blood pressure",
+      "label": "Garlic and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic lowers cholesterol",
+      "topic": "Garlic and cholesterol",
+      "label": "Garlic and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic prevents colds and flu",
+      "topic": "Garlic and colds",
+      "label": "Garlic and colds",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic fights cancer",
+      "topic": "Garlic and cancer",
+      "label": "Garlic and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic thins the blood",
+      "topic": "Garlic and blood clotting",
+      "label": "Garlic and blood clotting",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic works like a natural antibiotic",
+      "topic": "Garlic and infections",
+      "label": "Garlic and infections",
+      "category": "health"
+    },
+    {
+      "claim": "Raw garlic is healthier than cooked garlic",
+      "topic": "Raw and cooked garlic",
+      "label": "Raw and cooked garlic",
+      "category": "health"
+    },
+    {
+      "claim": "Garlic is an aphrodisiac",
+      "topic": "Garlic and sex drive",
+      "label": "Garlic and sex drive",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Blood thinners (anticoagulants), bleeding disorders or planned surgery",
+      "safetyId": "anticoagulant",
+      "note": "In a trial in healthy people, aged garlic extract reduced platelet clumping, and a 2000 review found bleeding or bleeding tendencies reported with garlic in three cases, none of them on warfarin; the same review found the evidence for a garlic and warfarin interaction was lacking and the true risk hard to judge. If you use blood thinners or have surgery planned, talk to your doctor about garlic, especially concentrated products."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating ordinary garlic changes health outcomes: this page does not review the studies, and the trial above used an aged garlic extract, which is a different product.",
+    "How much allicin a given garlic dish keeps: it depends on crushing, waiting and cooking.",
+    "Whether the lab findings on platelets matter for people who eat garlic in food."
+  ],
+  "sources": [
+    {
+      "pmid": "32213941",
+      "doi": "10.3390/nu12030872",
+      "title": "Chemical Constituents and Pharmacological Activities of Garlic (Allium sativum L.): A Review.",
+      "year": 2020,
+      "studyType": "review"
+    },
+    {
+      "pmid": "10594976",
+      "doi": "10.1016/s1286-4579(99)80003-3",
+      "title": "Antimicrobial properties of allicin from garlic.",
+      "year": 1999,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17256959",
+      "doi": "10.1021/jf062587s",
+      "title": "Effect of cooking on garlic (Allium sativum L.) antiplatelet activity and thiosulfinates content.",
+      "year": 2007,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "11144706",
+      "doi": "10.1345/aph.10031",
+      "title": "Interactions of warfarin with garlic, ginger, ginkgo, or ginseng: nature of the evidence.",
+      "year": 2000,
+      "studyType": "review"
+    },
+    {
+      "pmid": "11238801",
+      "doi": "10.1093/jn/131.3.980s",
+      "title": "Aged garlic extract, a modulator of cardiovascular risk factors: a dose-finding study on the effects of AGE on platelet functions.",
+      "year": 2001,
+      "studyType": "rct"
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "id": "aged_cheese",
+  "name": "Aged cheese",
+  "group": "eggs and dairy",
+  "otherNames": [
+    "Mature cheese",
+    "Matured cheese",
+    "Hard cheese",
+    "Old cheese",
+    "Cheddar",
+    "Mature Cheddar",
+    "Parmesan",
+    "Parmigiano Reggiano",
+    "Grana Padano",
+    "Gouda",
+    "Aged Gouda",
+    "Gruyère",
+    "Emmental",
+    "Comté",
+    "Pecorino",
+    "Manchego"
+  ],
+  "summary": "Aged cheese is curdled milk left to ripen for months or years, which makes it firm, salty and strong in flavour. This page lists what people say aged cheese does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) measures English Cheddar at 416 kcal, 25.4 g of protein, 34.9 g of fat (21.7 g of it saturated), 739 mg of calcium and 723 mg of sodium per 100 g, with almost no sugars and no fibre. It does not measure the many flavour compounds and microbes that ripening creates.",
+    "Ripening lets bacteria turn protein into amines. In Edam cheese followed over 98 days, the amounts of tyramine, putrescine and cadaverine depended on how the cheese was ripened and stored, and were highest in cheeses kept in a ripening cellar at 10 °C.",
+    "Cheese holds a lot of calcium. In a six-week trial of 49 people, hard cheese gave lower LDL cholesterol than the same amount of fat from butter; the authors suggest the calcium in cheese, which can lead to more fat leaving in the stool, as one possible reason."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that cheese is strong, heating, nourishing and binding: strong because it is nearest to a creature's origin, nourishing because the fleshy part of the milk remains in it, heating because it is fat, and binding because it is curdled with fig juice or rennet.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 51 (cheese), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Homer, Iliad, about 750 BC)",
+      "belief": "In the Iliad, a drink of Pramnian wine with grated goat's cheese and white barley meal is mixed for old Nestor and the wounded healer Machaon. The poem says that once they had drunk it they had sent away parching thirst.",
+      "note": "This is a scene in a poem, not a medical recommendation.",
+      "sources": [
+        {
+          "title": "Homer, Iliad 11.638-643 (the drink made for Nestor and Machaon), A. T. Murray translation",
+          "author": "Homer",
+          "when": "about 750 BC",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0134:book=11:card=624"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that cheese is best for the stomach when it is not salted, that is, when it is new. Old salted cheese, he said, binds the bowels and reduces the flesh, although he thought it more wholesome to the stomach than new salted cheese. He added that salted foods in general reduce the body while fresh food tends to make flesh.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.34 (twelve remedies from cheese), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=34"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny repeated a report that Zoroaster lived thirty years in the wilderness on cheese prepared in a peculiar way, and that he did not feel the advances of old age.",
+      "note": "Pliny presents this as hearsay (\"it is said\").",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 11.97 (various kinds of cheese), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=11:chapter=97"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed soft cheese with wheat, rice, game and raw egg among foods of good juice, and old cheese with salted meat, pickled fish and bitter vegetables among foods of bad juice.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.20 (foods of good juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#20"
+        },
+        {
+          "title": "Celsus, De Medicina 2.21 (foods of bad juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#21"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cheese of all kinds among the foods alien to the stomach, and cheese both new and old among the foods that readily decompose inside the body.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.25 (foods alien to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#25"
+        },
+        {
+          "title": "Celsus, De Medicina 2.28 (foods that decompose inside), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#28"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cheese that has become rather strong in taste with age, and new cheese once it has been cooked in honey or mead, among the foods that bind the bowels.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.30 (foods that bind the bowels), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#30"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "12-346",
+      "label": "1 matchbox-sized piece of English Cheddar (about 30 g)",
+      "grams": 30
+    }
+  ],
+  "processing": [
+    "Ripening and storage change the amines in cheese: in Edam kept for 98 days, cheeses held in a 10 °C ripening cellar had the most tyramine, putrescine and cadaverine, and cheeses moved to 5 °C cold storage earlier had the least."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Aged cheese raises cholesterol and is bad for your heart",
+      "topic": "Cheese and cholesterol",
+      "label": "Cheese and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Eating cheese before bed gives you nightmares",
+      "topic": "Cheese and nightmares",
+      "label": "Cheese and nightmares",
+      "category": "health"
+    },
+    {
+      "claim": "Aged cheese is a good source of calcium for strong bones",
+      "topic": "Cheese and bone health",
+      "label": "Cheese and bone health",
+      "category": "health"
+    },
+    {
+      "claim": "Aged cheese is fine if you are lactose intolerant",
+      "topic": "Aged cheese and lactose intolerance",
+      "label": "Aged cheese and lactose",
+      "category": "health"
+    },
+    {
+      "claim": "Aged cheese triggers migraines",
+      "topic": "Aged cheese and migraine",
+      "label": "Aged cheese and migraine",
+      "category": "health"
+    },
+    {
+      "claim": "People who eat cheese live longer",
+      "topic": "Cheese and mortality",
+      "label": "Cheese and long life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Aged cheese is good for your gut bacteria",
+      "topic": "Aged cheese and gut health",
+      "label": "Aged cheese and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Cheese causes acne and is bad for your skin",
+      "topic": "Cheese and acne",
+      "label": "Cheese and acne",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Medicines called MAOIs (monoamine oxidase inhibitors, an older kind of antidepressant)",
+      "note": "Tyramine, an amine that builds up as cheese ripens, is the reason older MAOI diet rules mention aged cheese: a 1965 report linked tyramine in cheese to hypertensive crises after MAO inhibition, and a 2012 review says a hypertensive crisis can, in rare cases, follow MAOIs taken with tyramine-containing foods. If you take an MAOI, talk to your doctor or pharmacist about aged cheese."
+    },
+    {
+      "with": "Pregnancy or a weakened immune system",
+      "note": "A review of dairy outbreaks in Canada and the United States since 2007 found Listeria behind 10 of the 12 outbreaks linked to pasteurised products, with seven fetal losses, and said pregnant women and people with weakened immunity should be made aware of foods at high risk of Listeria. This page has no source on how risky aged hard cheeses are. If this applies to you, talk to your doctor or midwife about which cheeses suit you.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether the lower heart-disease risk seen with high cheese intake in cohort studies is caused by the cheese or by other things about people who eat it: studies that only watch people cannot tell.",
+    "How much tyramine a particular aged cheese holds: it varies with the type, how long it ripened and how it was stored.",
+    "Whether aged hard cheeses carry less Listeria risk than soft ones: the sources on this page are about dairy products in general."
+  ],
+  "sources": [
+    {
+      "pmid": "27517544",
+      "doi": "10.1007/s00394-016-1292-z",
+      "title": "Cheese consumption and risk of cardiovascular disease: a meta-analysis of prospective studies.",
+      "year": 2017,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "22030228",
+      "doi": "10.3945/ajcn.111.022426",
+      "title": "Cheese intake in large amounts lowers LDL-cholesterol concentrations compared with butter intake of equal fat content.",
+      "year": 2011,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "14275713",
+      "doi": "10.1016/s0140-6736(65)91257-2",
+      "title": "TYRAMINE IN CHEESE RELATED TO HYPERTENSIVE CRISES AFTER MONOAMINE-OXIDASE INHIBITION.",
+      "year": 1965,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "20688229",
+      "doi": "10.1016/j.fm.2010.04.014",
+      "title": "The effect of ripening and storage conditions on the distribution of tyramine, putrescine and cadaverine in Edam-cheese.",
+      "year": 2010,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "22951238",
+      "doi": "10.4088/jcp.11096su1c.03",
+      "title": "Dietary restrictions and drug interactions with monoamine oxidase inhibitors: an update.",
+      "year": 2012,
+      "studyType": "review"
+    },
+    {
+      "pmid": "35277846",
+      "doi": "10.17269/s41997-022-00614-y",
+      "title": "Disease outbreaks linked to pasteurized and unpasteurized dairy products in Canada and the United States: a systematic review.",
+      "year": 2022,
+      "studyType": "review"
+    }
+  ]
+}

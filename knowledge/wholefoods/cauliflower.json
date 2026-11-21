@@ -1,0 +1,153 @@
+{
+  "id": "cauliflower",
+  "name": "Cauliflower",
+  "group": "vegetables",
+  "otherNames": [
+    "Cauliflower florets",
+    "Cauliflower rice",
+    "Purple cauliflower",
+    "Raw cauliflower",
+    "Boiled cauliflower",
+    "Roasted cauliflower",
+    "Brassica oleracea var. botrytis"
+  ],
+  "summary": "Cauliflower is a pale cruciferous vegetable eaten raw, boiled, roasted or grated into rice-like pieces. This page lists what people say cauliflower does and what writers in ancient Rome believed about cabbage sprouts; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Cauliflower is a Brassica vegetable like broccoli and cabbage. A 2018 review says the family holds more than 200 types of glucosinolate, which the enzyme myrosinase breaks into isothiocyanates.",
+    "A 2010 review says Brassica vegetables also hold phenolic compounds, and that processing changes their phenolic content.",
+    "The UK food table (CoFID) measures raw cauliflower at 30 kcal, 2.9 g of sugars, 1.8 g of fibre, 252 mg of potassium, 31 µg of vitamin K1, 55 µg of folate and 56 mg of vitamin C per 100 g. It does not measure glucosinolates or phenolic compounds."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the sprout (cyma) of the cabbage is pleasant to the taste but is not used in medicine, because it is hard to digest and not good for the kidneys.",
+      "note": "The Latin word cyma means the young sprout of a cabbage, and the translators render it 'cabbage-sprout'. Whether Pliny meant what we now call broccoli or cauliflower is uncertain, so this is a belief about cabbage sprouts in general.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.35 (cabbage-sprouts), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=35"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed cabbage, and even more its sprouts, among foods that give bad juice, meaning foods that nourish poorly.",
+      "note": "The Latin word cyma means the young sprout of a cabbage, and the translators render it 'cabbage-sprout'. Whether Pliny meant what we now call broccoli or cauliflower is uncertain, so this is a belief about cabbage sprouts in general.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.21.1 (foods of good and bad juice), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#21"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-512",
+      "label": "1 serving of raw cauliflower (about 80 g)",
+      "grams": 80
+    }
+  ],
+  "processing": [
+    "Boiling cuts some vitamins: the UK food table has 56 mg of vitamin C and 55 µg of folate per 100 g raw, against 30 mg and 48 µg boiled in unsalted water.",
+    "A 2010 review says processing changes the phenolic content of Brassica vegetables."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Cauliflower rice helps with weight loss",
+      "topic": "Cauliflower and weight loss",
+      "label": "Cauliflower and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Cauliflower prevents cancer",
+      "topic": "Cauliflower and cancer risk",
+      "label": "Cauliflower and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower is good for the brain because of its choline",
+      "topic": "Cauliflower and choline",
+      "label": "Cauliflower and the brain",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower reduces inflammation",
+      "topic": "Cauliflower and inflammation",
+      "label": "Cauliflower and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower causes gas and bloating",
+      "topic": "Cauliflower and bloating",
+      "label": "Cauliflower and gas",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower is bad for the thyroid",
+      "topic": "Cauliflower and thyroid function",
+      "label": "Cauliflower and thyroid",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower protects the heart",
+      "topic": "Cauliflower and heart health",
+      "label": "Cauliflower and the heart",
+      "category": "health"
+    },
+    {
+      "claim": "Cauliflower is as nutritious as broccoli",
+      "topic": "Cauliflower versus broccoli nutrition",
+      "label": "Cauliflower versus broccoli",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [],
+  "cautions": [],
+  "unknowns": [
+    "Whether cauliflower holds enough goitrin to matter for the thyroid: a 2016 review lists collards, Brussels sprouts and some Russian kale as high enough, and broccoli and Brassica oleracea kale as minimal, but does not list cauliflower.",
+    "Whether eating cauliflower changes health outcomes: this page does not review the studies, and the reviews cited here cover cruciferous vegetables as a group.",
+    "How much of the plant compounds survive cooking or ricing: the food table does not measure them."
+  ],
+  "sources": [
+    {
+      "pmid": "30445746",
+      "doi": "10.3390/molecules23112983",
+      "title": "Anti-Carcinogenic Glucosinolates in Cruciferous Vegetables and Their Antagonistic Effects on Prevention of Cancers.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "21193847",
+      "doi": "10.3390/molecules16010251",
+      "title": "Phenolic compounds in Brassica vegetables.",
+      "year": 2010,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17317210",
+      "doi": "10.1016/j.phrs.2007.01.009",
+      "title": "Cruciferous vegetables and human cancer risk: epidemiologic evidence and mechanistic basis.",
+      "year": 2007,
+      "studyType": "review"
+    },
+    {
+      "pmid": "26946249",
+      "doi": "10.1093/nutrit/nuv110",
+      "title": "Concentrations of thiocyanate and goitrin in human plasma, their precursor concentrations in brassica vegetables, and associated potential risk for hypothyroidism.",
+      "year": 2016,
+      "studyType": "review"
+    }
+  ]
+}

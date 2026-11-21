@@ -1,0 +1,242 @@
+{
+  "id": "parsley",
+  "name": "Parsley",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Parsley leaves",
+    "Fresh parsley",
+    "Flat-leaf parsley",
+    "Curly parsley",
+    "Italian parsley",
+    "Dried parsley",
+    "Parsley tea",
+    "Petroselinum crispum"
+  ],
+  "summary": "Parsley is a leafy green herb used to season and garnish food. This page lists what people say parsley does and what writers in ancient Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "A 2013 review lists flavonoids (apigenin, apiin), an essential oil rich in myristicin and apiol, and coumarins as parsley's main active compounds.",
+    "Fresh parsley leaves and roots hold furocoumarins, plant compounds that react to light: oxypeucedanin at 70 to 100 ppm wet weight, which the authors say may be partly responsible for contact photodermatitis (a skin reaction to touching the plant and then sun).",
+    "The UK food table (CoFID) measures fresh parsley at 34 kcal, 3.0 g of protein, 760 mg of potassium, 200 mg of calcium, 7.7 mg of iron, 190 mg of vitamin C, 170 µg of folate and 548 µg of vitamin K1 per 100 g. A small handful of about 10 g has about a tenth of that. The table does not measure apiol, myristicin or the flavonoids."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that parsley applied to the eyes with honey, and the eyes fomented with a warm decoction of it, has a marvellous effect on defluxion (watering, inflamed) of the eyes and other parts. Beaten-up leaves were used as a poultice to disperse hard tumours in the breasts.",
+      "note": "Pliny's translator Fée notes that the belief about hard tumours in the breast still exists.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Chrysippus and Dionysius, as reported by Pliny the Elder, about 77 AD)",
+      "belief": "Pliny reported that these writers held parsley to be injurious to the eyesight, that the female plant breeds small worms so that people who eat it become barren, and that children suckled by women who eat parsley are sure to be epileptic. They thought the male plant less harmful.",
+      "note": "Pliny's translator Fée says the male and female distinction cannot be admitted.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said the juice of parsley root in wine allays the pains of lumbago, and injected into the ears it lessens hardness of hearing.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that parsley seed acts as a diuretic, promotes the menstrual discharge and brings away the afterbirth.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said parsley seed in wine, or the root in old wine, breaks stones in the bladder, that parsley applied with egg-white or boiled and drunk is remedial for the kidneys, and that the seed in white wine helps jaundice.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny held that a fomentation of parsley seed restores bruises and livid spots to their natural colour, and that parsley beaten up in cold water cures ulcers of the mouth.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 20.44 (parsley: seventeen remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=20:chapter=44"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed parsley, with rue, dill, basil and mint, among the sweet-smelling garden herbs that increase the urine.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.31.1 (foods that increase the urine), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#31"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-844",
+      "label": "A small handful of fresh parsley (about 10 g)",
+      "grams": 10
+    }
+  ],
+  "processing": [
+    "Drying concentrates parsley: the UK food table has dried parsley at 181 kcal and 41.5 mg of iron per 100 g, against 34 kcal and 7.7 mg in fresh. Vitamin K is not measured for dried parsley."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Parsley is a natural diuretic",
+      "topic": "Parsley and water retention",
+      "label": "Parsley and water retention",
+      "category": "health"
+    },
+    {
+      "claim": "Parsley cleanses the kidneys and prevents kidney stones",
+      "topic": "Parsley and kidney stones",
+      "label": "Parsley and kidney stones",
+      "category": "health"
+    },
+    {
+      "claim": "Parsley lowers blood pressure",
+      "topic": "Parsley and blood pressure",
+      "label": "Parsley and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Parsley lowers blood sugar",
+      "topic": "Parsley and blood sugar",
+      "label": "Parsley and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Parsley tea brings on a late period",
+      "topic": "Parsley and periods",
+      "label": "Parsley and periods",
+      "category": "health"
+    },
+    {
+      "claim": "Eating parsley in pregnancy can cause miscarriage",
+      "topic": "Parsley and pregnancy",
+      "label": "Parsley and pregnancy",
+      "category": "health"
+    },
+    {
+      "claim": "Parsley lightens dark spots on the skin",
+      "topic": "Parsley and skin spots",
+      "label": "Parsley and skin spots",
+      "category": "appearance"
+    },
+    {
+      "claim": "Parsley is a superfood full of vitamins and minerals",
+      "topic": "Parsley vitamins and minerals",
+      "label": "Parsley vitamins and minerals",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Blood thinners such as warfarin",
+      "safetyId": "anticoagulant",
+      "note": "Parsley is rich in vitamin K (548 µg per 100 g in the UK food table), which works against warfarin. In one trial the clotting test (INR) of patients on anticoagulants fell after a vitamin K-enriched diet, and in another study each extra 100 µg a day of dietary vitamin K lowered INR by 0.2; steady intake is the point. A pinch of parsley in a dish is small, but if you use warfarin, talk to your doctor about large amounts, juices and dried parsley."
+    },
+    {
+      "with": "Skin that reacts to sunlight",
+      "note": "Parsley holds furocoumarins, which may cause contact photodermatitis, a rash where skin that touched the plant meets the sun. If skin reacts after handling it, talk to your doctor or pharmacist."
+    }
+  ],
+  "cautions": [
+    "A 2016 computer-model risk assessment (using rat data and read-across from a related compound, safrole) estimated that usual dietary intake of apiol from parsley leaves a wide margin of exposure (140,000 to 385,000) and called it a low priority for risk management. It was not a human study and does not cover concentrated oils or large amounts."
+  ],
+  "unknowns": [
+    "Whether eating parsley changes health outcomes in people: the 2013 review lists lab and animal activities, and this page does not rate them.",
+    "How much of the diuretic, blood pressure or blood sugar findings seen in animals applies to people eating it as a herb.",
+    "Whether parsley in the amounts used in cooking matters at all for health; a pinch is a small part of a diet."
+  ],
+  "sources": [
+    {
+      "pmid": "24660617",
+      "doi": "10.1016/s0254-6272(14)60018-2",
+      "title": "Parsley: a review of ethnopharmacology, phytochemistry and biological activities.",
+      "year": 2013,
+      "studyType": "review"
+    },
+    {
+      "pmid": "17345409",
+      "doi": "10.1055/s-2007-969254",
+      "title": "Oxypeucedanin, a Major Furocoumarin in Parsley, Petroselinum crispum.",
+      "year": 1986,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "15121490",
+      "doi": "10.1016/j.amjmed.2003.12.036",
+      "title": "Role of dietary vitamin K intake in chronic oral anticoagulation: prospective evidence from observational and randomized protocols.",
+      "year": 2004,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "14717783",
+      "doi": "10.1046/j.1365-2141.2003.04787.x",
+      "title": "Dietary vitamin K influences intra-individual variability in anticoagulant response to warfarin.",
+      "year": 2004,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "26826679",
+      "doi": "10.1016/j.fct.2016.01.018",
+      "title": "Mode of action based risk assessment of the botanical food-borne alkenylbenzene apiol from parsley using physiologically based kinetic (PBK) modelling and read-across from safrole.",
+      "year": 2016,
+      "studyType": "in vitro"
+    }
+  ]
+}

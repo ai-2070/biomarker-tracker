@@ -1,0 +1,126 @@
+{
+  "id": "sweet_potatoes",
+  "name": "Sweet potatoes",
+  "group": "vegetables",
+  "otherNames": [
+    "Sweet potato",
+    "Ipomoea batatas",
+    "Orange-fleshed sweet potato",
+    "Purple sweet potato",
+    "Baked sweet potato",
+    "Boiled sweet potato",
+    "Sweet potato fries",
+    "Kumara"
+  ],
+  "summary": "Sweet potatoes are a starchy root vegetable with orange, white or purple flesh. This page lists what people say sweet potatoes do; each claim can be checked against the research when you choose. Sweet potatoes came from the Americas, so ancient Greek and Roman writers did not know them and there is no Then and now.",
+  "inIt": [
+    "Orange-fleshed sweet potatoes are rich in carotenoids, the plant pigments the body can turn into vitamin A, and a 2019 review describes them as used against vitamin A deficiency in parts of Africa. Purple ones hold anthocyanins.",
+    "How it is cooked changes the glycaemic index (how fast a food raises blood sugar): in a test of ten varieties in 10 healthy adults, values ranged from 41 to 93, and boiling gave the lowest (41 to 50).",
+    "The UK food table (CoFID) measures baked sweet potato at 115 kcal, 27.9 g of carbohydrate (14.5 g of sugars), 5.2 g of fibre, 480 mg of potassium, 855 µg of vitamin A (as retinol equivalents) and 23 mg of vitamin C per 100 g. It does not measure anthocyanins or the separate carotenoids."
+  ],
+  "tableFoods": [
+    {
+      "id": "13-672",
+      "label": "1 medium sweet potato, baked (about 130 g)",
+      "grams": 130
+    },
+    {
+      "id": "13-646",
+      "label": "1 medium sweet potato, boiled, flesh only (about 130 g)",
+      "grams": 130
+    }
+  ],
+  "processing": [
+    "Cooking method changes the glycaemic index: boiling gave the lowest values (41 to 50) in the ten-variety test.",
+    "The 2022 review says the effect of cooking on sweet potato's plant compounds needs more study to know how to limit their loss.",
+    "In the UK food table, raw sweet potato holds 5.7 g of sugars per 100 g and baked holds 14.5 g."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Sweet potatoes are healthier than white potatoes",
+      "topic": "Sweet potatoes versus white potatoes",
+      "label": "Sweet versus white potatoes",
+      "category": "health"
+    },
+    {
+      "claim": "Sweet potatoes raise blood sugar less than other potatoes",
+      "topic": "Sweet potatoes and blood sugar",
+      "label": "Sweet potatoes and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Sweet potatoes are good for your eyes",
+      "topic": "Sweet potatoes and eyesight",
+      "label": "Sweet potatoes and eyesight",
+      "category": "health"
+    },
+    {
+      "claim": "Sweet potatoes help you lose weight",
+      "topic": "Sweet potatoes and weight loss",
+      "label": "Sweet potatoes and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Sweet potatoes lower inflammation",
+      "topic": "Sweet potatoes and inflammation",
+      "label": "Sweet potatoes and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Purple sweet potatoes protect against cancer",
+      "topic": "Purple sweet potatoes and cancer",
+      "label": "Purple sweet potatoes, cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Sweet potatoes make your skin glow",
+      "topic": "Sweet potatoes and skin",
+      "label": "Sweet potatoes and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Sweet potatoes are nightshades and cause inflammation",
+      "topic": "Sweet potatoes and nightshades",
+      "label": "Sweet potatoes, nightshades",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Diabetes or watching blood sugar",
+      "note": "The glycaemic index of sweet potato ranged from 41 to 93 in one study depending on variety and cooking, so one sweet potato dish does not predict another. If you manage diabetes, talk to your doctor or dietitian about how it fits your meals."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating sweet potatoes changes health outcomes in people: the reviews describe lab, animal and small human findings, and this page does not rate them.",
+    "How much carotenoid a given sweet potato has: it varies by variety, colour and how it is cooked.",
+    "Whether purple varieties do anything more than orange or white ones in people."
+  ],
+  "sources": [
+    {
+      "pmid": "31289641",
+      "doi": "10.1002/fsn3.1063",
+      "title": "Review on nutritional composition of orange-fleshed sweet potato and its role in management of vitamin A deficiency.",
+      "year": 2019,
+      "studyType": "review"
+    },
+    {
+      "pmid": "36139723",
+      "doi": "10.3390/antiox11091648",
+      "title": "Sweet Potato Is Not Simply an Abundant Food Crop: A Comprehensive Review of Its Phytochemical Constituents, Biological Activities, and the Effects of Processing.",
+      "year": 2022,
+      "studyType": "review"
+    },
+    {
+      "pmid": "22132322",
+      "doi": "10.1155/2011/584832",
+      "title": "Relationship between Processing Method and the Glycemic Indices of Ten Sweet Potato (Ipomoea batatas) Cultivars Commonly Consumed in Jamaica.",
+      "year": 2011,
+      "studyType": "observational"
+    }
+  ]
+}

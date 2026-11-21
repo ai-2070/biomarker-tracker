@@ -12,7 +12,8 @@
     "Concord grape juice",
     "raisins",
     "grape juice",
-    "freeze-dried grape powder"
+    "freeze-dried grape powder",
+    "Green grapes"
   ],
   "summary": "Dark skins hold purple pigments (anthocyanins) and resveratrol that green grapes have little of. People who ate more grapes and raisins got type 2 diabetes less often, but no study has yet shown that dark grapes do more for health than green ones.",
   "inIt": [
@@ -620,6 +621,56 @@
           "n": 1297
         }
       ]
+    }
+  ],
+  "claims": [
+    {
+      "claim": "Grapes protect your heart",
+      "topic": "Grapes and heart disease",
+      "label": "Grapes and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Grapes lower blood pressure",
+      "topic": "Grapes and blood pressure",
+      "label": "Grapes and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Dark grapes are healthier than green grapes",
+      "topic": "Dark grapes compared with green grapes",
+      "label": "Dark versus green grapes",
+      "category": "health"
+    },
+    {
+      "claim": "Grapes lower blood sugar",
+      "topic": "Grapes and blood sugar",
+      "label": "Grapes and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "Grapes slow aging because of resveratrol",
+      "topic": "Grapes and resveratrol and aging",
+      "label": "Grapes and aging",
+      "category": "longevity"
+    },
+    {
+      "claim": "Grapes improve memory",
+      "topic": "Grapes and memory",
+      "label": "Grapes and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Grapes help you lose weight",
+      "topic": "Grapes and weight loss",
+      "label": "Grapes and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Grapes are bad for you because of their sugar",
+      "topic": "Grapes and sugar intake",
+      "label": "Grapes and sugar",
+      "category": "health"
     }
   ],
   "visuals": [

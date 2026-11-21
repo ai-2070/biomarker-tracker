@@ -1,0 +1,191 @@
+{
+  "id": "flaxseed",
+  "name": "Flaxseed",
+  "group": "nuts and seeds",
+  "otherNames": [
+    "Flax seed",
+    "Flax seeds",
+    "Flaxseeds",
+    "Linseed",
+    "Linseeds",
+    "Linum usitatissimum",
+    "Ground flaxseed",
+    "Flaxseed meal",
+    "Golden flaxseed",
+    "Brown flaxseed",
+    "Flaxseed oil",
+    "Linseed oil"
+  ],
+  "summary": "Flaxseed is the seed of the flax plant, eaten whole, ground or pressed into oil. This page lists what people say flaxseed does and what a Roman medical writer believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Flaxseed is one of the richest sources of alpha-linolenic acid (ALA, a plant omega-3 fat) and of lignans, with a good amount of fibre and protein.",
+    "Its main lignan is secoisolariciresinol diglucoside. Flax lignans are called phytoestrogens, plant compounds that resemble the hormone oestrogen in structure.",
+    "The UK food table (CoFID) has no entry for flaxseed or linseed, so this page gives no per-100 g figures from it. Lignans and other plant compounds are not measured in food tables."
+  ],
+  "tableFoods": [],
+  "processing": [
+    "In a 2009 meta-analysis of 28 trials, whole flaxseed and lignan supplements lowered total and LDL cholesterol a little, but flaxseed oil did not. Oil has the omega-3 fat but not the lignans or fibre."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Flaxseed lowers cholesterol",
+      "topic": "Flaxseed and cholesterol",
+      "label": "Flaxseed and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed lowers blood pressure",
+      "topic": "Flaxseed and blood pressure",
+      "label": "Flaxseed and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed relieves constipation",
+      "topic": "Flaxseed and constipation",
+      "label": "Flaxseed and constipation",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed eases hot flashes in menopause",
+      "topic": "Flaxseed and menopause",
+      "label": "Flaxseed and menopause",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed lowers the risk of breast cancer",
+      "topic": "Flaxseed and breast cancer",
+      "label": "Flaxseed and breast cancer",
+      "category": "longevity"
+    },
+    {
+      "claim": "Flaxseed is a good plant source of omega-3 like fish oil",
+      "topic": "Flaxseed and omega-3",
+      "label": "Flaxseed and omega-3",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed has to be ground or the body cannot use it",
+      "topic": "Ground flaxseed vs whole flaxseed",
+      "label": "Ground vs whole flaxseed",
+      "category": "health"
+    },
+    {
+      "claim": "Flaxseed helps blood sugar control",
+      "topic": "Flaxseed and blood sugar",
+      "label": "Flaxseed and blood sugar",
+      "category": "health"
+    }
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus wrote that a throat ulcer which vinegar could not heal could be treated with linseed pounded and mixed with sweet wine.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.9.1 (ulcers of the throat), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#9"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For an enlarged spleen, Celsus described a plaster of linseed and nasturtium seeds with wine and oil added, applied on the outside.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.16.3 (disease of the spleen), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#16"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For long-lasting dysentery, Celsus advised a decoction of linseed injected into the bowel, to ease the pain and soften the ulcers there.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.22.3 (dysentery), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#22"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed linseed among the meals used for hot poultices, and said the power to soften and disperse inflammation belongs especially to plasters of linseed or fenugreek.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.33.5-6 (poultices and plasters), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#33"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted linseed among the substances that most strongly disperse matter collected in the body, and among those that draw out diseased matter.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 5.11.1 and 5.12.1 (dispersing and drawing remedies), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/5*.html#11"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating whole or ground flaxseed changes health outcomes beyond small shifts in blood pressure and cholesterol: this page does not review the trials.",
+    "Whether the plant lignans in flaxseed act like a hormone in the body: the reviews describe them as phytoestrogens, but this page does not settle what that means for any one person.",
+    "How safe large amounts of flaxseed are for people with hormone-related conditions, or who are pregnant: this page found no source to cite, so it says nothing either way. If this applies to you, talk to your doctor."
+  ],
+  "sources": [
+    {
+      "pmid": "21390942",
+      "doi": "10.1080/10408390903537241",
+      "title": "Flaxseed: a potential source of food, feed and fiber.",
+      "year": 2011,
+      "studyType": "review"
+    },
+    {
+      "pmid": "25190822",
+      "doi": "10.1007/s13197-013-1247-9",
+      "title": "Flax and flaxseed oil: an ancient medicine & modern functional food.",
+      "year": 2014,
+      "studyType": "review"
+    },
+    {
+      "pmid": "19515737",
+      "doi": "10.3945/ajcn.2009.27469",
+      "title": "Meta-analysis of the effects of flaxseed interventions on blood lipids.",
+      "year": 2009,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "25740909",
+      "doi": "10.3945/jn.114.205302",
+      "title": "Flaxseed consumption may reduce blood pressure: a systematic review and meta-analysis of controlled trials.",
+      "year": 2015,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

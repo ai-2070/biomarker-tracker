@@ -1,0 +1,194 @@
+{
+  "id": "dealcoholised_wine",
+  "name": "Dealcoholised wine",
+  "group": "drinks",
+  "otherNames": [
+    "Dealcoholized wine",
+    "De-alcoholised wine",
+    "Alcohol-free wine",
+    "Non-alcoholic wine",
+    "Zero alcohol wine",
+    "Alcohol-removed wine",
+    "Dealcoholised red wine",
+    "Dealcoholized red wine",
+    "Dealcoholised white wine",
+    "Alcohol-free red wine"
+  ],
+  "summary": "Dealcoholised wine is wine from which most of the alcohol has been removed after fermenting. This page lists what people say it does; the few old writers included speak about wine itself, which had its alcohol, and each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) has no dealcoholised wine. Its red wine entry (76 kcal and 0.2 g of sugars per 100 g) still holds its alcohol, so it is not a stand-in.",
+    "Red wine's main flavonoids are flavan-3-ols and anthocyanins, plant pigments and tannins that gut bacteria turn into phenolic acids.",
+    "In a study of six men drinking 500 mL of each, red wine gave 68 mg of the red pigment malvidin-3-glucoside and dealcoholised red wine 58 mg; blood levels of it after the two drinks were not significantly different, and about half of those after red grape juice (117 mg)."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Greece (Hippocratic Regimen, about 400 BC)",
+      "belief": "The Hippocratic writer taught that wine is hot and dry and has something purgative in it. Dark, harsh wines are drier, soft dark wines are moister and cause wind, and thin white wines pass more by urine than by stool and, he said, cool and moisten the body but weaken the blood.",
+      "note": "This is about wine as it was drunk then, with its alcohol. It says nothing about wine with the alcohol taken out.",
+      "sources": [
+        {
+          "title": "Hippocrates, Regimen II, chapter 52 (water, wine and vinegar), Jones translation, Loeb Classical Library vol. IV, 1931 (Internet Archive scan)",
+          "author": "Hippocratic Corpus (W. H. S. Jones, translator)",
+          "when": "about 400 BC",
+          "kind": "ancient text",
+          "url": "https://archive.org/stream/hippocrates04hippuoft/hippocrates04hippuoft_djvu.txt"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that wine improves human vigour, blood and complexion, that in moderation it strengthens the sinews, and that it refreshes the stomach, sharpens the appetite, warms the body, acts as a diuretic, invites sleep and arrests vomiting.",
+      "note": "This is about wine as it was drunk then, with its alcohol. It says nothing about wine with the alcohol taken out.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.22 (other wines: sixty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=22"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said that rich, black wines are less beneficial to the stomach but more feeding to the body, while thin-bodied rough wines are less feeding but more wholesome to the stomach and pass faster by urine.",
+      "note": "This is about wine as it was drunk then, with its alcohol. It says nothing about wine with the alcohol taken out.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.22 (other wines: sixty-four remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=22"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that pure, undiluted wine acts as an antidote to hemlock, henbane, opium and the stings of bees, wasps, serpents and scorpions, and that it is good for flatulence, vomiting and dysentery, old white wine being the best.",
+      "note": "This is about wine as it was drunk then, with its alcohol. It says nothing about wine with the alcohol taken out.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 23.23 (sixty-one observations on wine), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=23:chapter=23"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [],
+  "processing": [
+    "Removing the alcohol does not remove the red pigments: dealcoholised red wine gave 58 mg of malvidin-3-glucoside in 500 mL against 68 mg for the wine, and in a trial that compared red wine, dealcoholised red wine and gin, alcohol did not seem to change how gut bacteria made phenolic metabolites from the wine's polyphenols."
+  ],
+  "markers": [
+    "bp_systolic",
+    "bp_diastolic"
+  ],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Dealcoholised wine has the same heart benefits as red wine",
+      "topic": "Dealcoholised wine and heart health",
+      "label": "Alcohol-free wine and heart",
+      "category": "health"
+    },
+    {
+      "claim": "Alcohol-free red wine lowers blood pressure",
+      "topic": "Dealcoholised wine and blood pressure",
+      "label": "Alcohol-free wine and BP",
+      "category": "health"
+    },
+    {
+      "claim": "Non-alcoholic wine contains no alcohol at all",
+      "topic": "Non-alcoholic wine and alcohol content",
+      "label": "Non-alcoholic wine and alcohol",
+      "category": "health"
+    },
+    {
+      "claim": "Alcohol-free wine is safe to drink in pregnancy",
+      "topic": "Non-alcoholic wine and pregnancy",
+      "label": "Alcohol-free wine in pregnancy",
+      "category": "health"
+    },
+    {
+      "claim": "Dealcoholised wine is rich in antioxidants",
+      "topic": "Dealcoholised wine and antioxidants",
+      "label": "Alcohol-free wine antioxidants",
+      "category": "health"
+    },
+    {
+      "claim": "Alcohol-free wine is good for your gut bacteria",
+      "topic": "Dealcoholised wine and gut bacteria",
+      "label": "Alcohol-free wine and the gut",
+      "category": "health"
+    },
+    {
+      "claim": "Dealcoholised wine helps you sleep",
+      "topic": "Dealcoholised wine and sleep",
+      "label": "Alcohol-free wine and sleep",
+      "category": "health"
+    },
+    {
+      "claim": "The resveratrol in red wine slows ageing",
+      "topic": "Red wine and resveratrol and ageing",
+      "label": "Red wine and ageing",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Anyone who must avoid alcohol completely, such as people with liver disease",
+      "note": "A 1999 case report describes a man with end-stage liver disease whose blood alcohol reached 57 mg/dL after drinking \"non-alcoholic\" beer, so a drink sold as non-alcoholic can still carry some ethanol. This page has no measurements of dealcoholised wine. If you must avoid all alcohol, talk to your doctor."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "How much alcohol a given dealcoholised wine still holds: this page found no measurements, and the one report is about beer.",
+    "Whether the lower blood pressure seen with dealcoholised red wine in 67 men at high cardiovascular risk (four weeks, compared with red wine and gin) holds for other people or over longer: in the pooled trials of red wine polyphenols, systolic pressure fell by 2.6 mmHg (95% interval 0.4 to 4.8), with no significant effect on diastolic pressure or on artery widening.",
+    "Whether dealcoholised wine changes the risk of heart attack or stroke: the studies here measure blood pressure, antioxidant enzymes and pigments, not illness."
+  ],
+  "sources": [
+    {
+      "pmid": "22955728",
+      "doi": "10.1161/circresaha.112.275636",
+      "title": "Dealcoholized red wine decreases systolic and diastolic blood pressure and increases plasma nitric oxide: short communication.",
+      "year": 2012,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "11697443",
+      "doi": "10.1007/s003940170011",
+      "title": "Malvidin-3-glucoside bioavailability in humans after ingestion of red wine, dealcoholized red wine and red grape juice.",
+      "year": 2001,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "23578197",
+      "doi": "10.1021/jf400678d",
+      "title": "Comparative study of microbial-derived phenolic metabolites in human feces after intake of gin, red wine, and dealcoholized red wine.",
+      "year": 2013,
+      "studyType": "rct"
+    },
+    {
+      "pmid": "32303823",
+      "doi": "10.1007/s00394-020-02247-8",
+      "title": "Fine wine or sour grapes? A systematic review and meta-analysis of the impact of red wine polyphenols on vascular health.",
+      "year": 2021,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "15335499",
+      "doi": "10.1016/s1353-1131(99)90208-0",
+      "title": "Elevated blood ethanol levels caused by 'non-alcoholic' beer.",
+      "year": 1999,
+      "studyType": "observational"
+    }
+  ]
+}

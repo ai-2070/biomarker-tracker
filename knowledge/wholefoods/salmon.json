@@ -1,0 +1,124 @@
+{
+  "id": "salmon",
+  "name": "Salmon",
+  "group": "fish",
+  "otherNames": [
+    "Atlantic salmon",
+    "Salmo salar",
+    "Wild salmon",
+    "Farmed salmon",
+    "Smoked salmon",
+    "Canned salmon",
+    "Pacific salmon",
+    "Sockeye salmon",
+    "Pink salmon",
+    "Salmon fillet"
+  ],
+  "summary": "Salmon is an oily fish eaten fresh, smoked or tinned. This page lists what people say salmon does; each claim can be checked against the research when you choose. Ancient Greek and Roman writers left no clear health claims about it.",
+  "inIt": [
+    "Salmon is an oily fish: the UK food table (CoFID) measures wild raw salmon at 179 kcal, 10.1 g of fat, 22.1 g of protein, 8.6 µg of vitamin D, 6.5 µg of vitamin B12 and 1.64 g of EPA and DHA (omega-3 fats) per 100 g. Farmed raw salmon has 217 kcal, 15 g of fat and 2.21 g of EPA and DHA. The table does not measure the many other compounds in fish.",
+    "A study of Atlantic salmon found wild fish had more DHA, selenium, zinc and iron and less total fat than farmed fish, but also more dioxins, PCBs and mercury. Farmed fish had a lower omega-3 to omega-6 ratio. All contaminant levels were well below EU maximum levels.",
+    "Salmon from different farms and rivers differs, so one fish's numbers do not carry over to another."
+  ],
+  "tableFoods": [
+    {
+      "id": "16-356",
+      "label": "1 fillet of raw farmed salmon (about 130 g)",
+      "grams": 130
+    },
+    {
+      "id": "16-360",
+      "label": "1 fillet of raw wild salmon (about 130 g)",
+      "grams": 130
+    }
+  ],
+  "processing": [
+    "Smoking and tinning change salt and calcium: the UK food table has 1,184 mg of sodium per 100 g in cold-smoked salmon against 43 mg in raw farmed salmon, and 109 mg of calcium in drained tinned pink salmon (the soft bones are eaten) against 10 mg in raw farmed salmon."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Salmon protects your heart",
+      "topic": "Salmon and heart health",
+      "label": "Salmon and heart health",
+      "category": "health"
+    },
+    {
+      "claim": "Eating salmon lowers triglycerides and blood fats",
+      "topic": "Salmon and triglycerides",
+      "label": "Salmon and triglycerides",
+      "category": "health"
+    },
+    {
+      "claim": "Salmon is good for your brain and memory",
+      "topic": "Salmon and brain health",
+      "label": "Salmon and brain",
+      "category": "health"
+    },
+    {
+      "claim": "Salmon lifts mood and eases depression",
+      "topic": "Salmon and depression",
+      "label": "Salmon and mood",
+      "category": "health"
+    },
+    {
+      "claim": "Salmon calms inflammation and eases joint pain",
+      "topic": "Salmon and inflammation",
+      "label": "Salmon and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Salmon gives you glowing, younger-looking skin",
+      "topic": "Salmon and skin",
+      "label": "Salmon and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Wild salmon is much healthier than farmed salmon",
+      "topic": "Wild versus farmed salmon",
+      "label": "Wild versus farmed salmon",
+      "category": "health"
+    },
+    {
+      "claim": "Farmed salmon is full of toxins and unsafe to eat often",
+      "topic": "Farmed salmon and contaminants",
+      "label": "Farmed salmon toxins",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Fish allergy",
+      "note": "Fish allergy is one of the important childhood food allergies, often lasts into adulthood and can cause severe reactions, including fatal anaphylaxis. If you react to fish, talk to your doctor or an allergist."
+    },
+    {
+      "with": "Raw or lightly cured salmon",
+      "note": "A review of reactions to fish lists anisakiasis (a worm infection) among the problems fish can cause apart from allergy. If you are unsure about eating raw fish, for example in pregnancy or with a weak immune system, talk to your doctor.",
+      "safetyId": "pregnancy"
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether the differences between wild and farmed salmon change health outcomes in people: the study found differences in the fish, not in the eaters.",
+    "How much salmon, if any, changes heart or brain outcomes for a given person: this page does not review those studies.",
+    "Ancient writers: no passage that clearly names salmon and a health use was found in the open translations that were checked."
+  ],
+  "sources": [
+    {
+      "pmid": "28189073",
+      "doi": "10.1016/j.envres.2017.01.026",
+      "title": "Lower levels of Persistent Organic Pollutants, metals and the marine omega 3-fatty acid DHA in farmed compared to wild Atlantic salmon (Salmo salar).",
+      "year": 2017,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "38284339",
+      "doi": "10.2174/0115733963267330230919094037",
+      "title": "Fish Allergy and Related Conditions in Children: A Review.",
+      "year": 2024,
+      "studyType": "review"
+    }
+  ]
+}

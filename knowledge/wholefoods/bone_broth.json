@@ -1,0 +1,169 @@
+{
+  "id": "bone_broth",
+  "name": "Bone broth",
+  "group": "drinks",
+  "otherNames": [
+    "Bone stock",
+    "Beef bone broth",
+    "Chicken bone broth",
+    "Pork bone broth",
+    "Bone broth powder",
+    "Collagen broth",
+    "Homemade bone broth"
+  ],
+  "summary": "Bone broth is a drink made by simmering animal bones, often for many hours. This page lists what people say it does and what a few writers in ancient Rome believed about broth and similar foods; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "The UK food table (CoFID) has no bone broth. Its nearest entry, ready-made chicken stock from a shop, has 12 kcal, 2.3 g of protein, 0.2 g of fat and 225 mg of sodium per 100 g. The table does not measure amino acids such as glycine or the collagen that people hope broth holds.",
+    "A study that measured the amino acids in bone broths found that broth made to a standard recipe held significantly less glycine, proline and hydroxyproline than a 20 g dose of collagen supplement. Broth made by other recipes varied widely, and shop-bought broths held less than home-made ones.",
+    "In a small blinded study of three organic chicken broths, lead was several times higher than in the water they were made with: 7.01 µg/L in chicken-bone broth and 9.5 µg/L in broth from skin and cartilage, against 0.89 µg/L in tap water treated the same way.",
+    "In a lab test, a traditional chicken soup slowed the movement of neutrophils (a type of white blood cell) in a concentration-dependent way; the chicken and each vegetable alone did this too, and shop soups varied greatly. This was soup, not bone broth, and not a test in people."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus counted broth among the \"bland\" foods, with porridge and barley gruel, and named fat and glutinous meat among them, particularly pigs' trotters and titbits, and the heads and feet of kids, calves and lambs.",
+      "note": "Celsus does not mention bones. \"Broth\" here is any meat broth, and the trotters and heads are the nearest foods he names.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.22 (bland foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#22"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed the trotters, chaps and ears of the pig among the foods best suited to the stomach, and broth among the foods alien to the stomach, together with salted, stewed and fatty things.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.24 (foods best suited to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#24"
+        },
+        {
+          "title": "Celsus, De Medicina 2.25 (foods alien to the stomach), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#25"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that marrow, which is common to these animals, is emollient (softening), \"expletive\" (his translators' word), drying and warming. He said the most esteemed is deer's marrow, then calf's, then goat's.",
+      "note": "This is about marrow itself, not about broth made from bones.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 28.39 (marrow), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=28:chapter=39"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [],
+  "processing": [
+    "The recipe changes what ends up in the pot: in the amino acid study, broths made without a standard recipe varied widely, with the highest levels in café-prepared broths, and shop-bought broths made to a standard recipe held less than self-prepared ones.",
+    "What is simmered matters for lead: in the small chicken broth study, broth made from skin and cartilage taken off the bone after the chicken was cooked held 9.5 µg/L, and chicken-bone broth 7.01 µg/L."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Bone broth heals a leaky gut",
+      "topic": "Bone broth and gut health",
+      "label": "Bone broth and gut health",
+      "category": "health"
+    },
+    {
+      "claim": "Bone broth is full of collagen and makes your skin look younger",
+      "topic": "Bone broth and collagen",
+      "label": "Bone broth and collagen",
+      "category": "appearance"
+    },
+    {
+      "claim": "Bone broth helps your joints and eases arthritis",
+      "topic": "Bone broth and joint pain",
+      "label": "Bone broth and joints",
+      "category": "health"
+    },
+    {
+      "claim": "Chicken soup helps you get over a cold",
+      "topic": "Chicken soup and colds",
+      "label": "Chicken soup and colds",
+      "category": "health"
+    },
+    {
+      "claim": "The glycine in bone broth helps you sleep",
+      "topic": "Bone broth and sleep",
+      "label": "Bone broth and sleep",
+      "category": "health"
+    },
+    {
+      "claim": "Bone broth contains dangerous amounts of lead",
+      "topic": "Bone broth and lead",
+      "label": "Bone broth and lead",
+      "category": "health"
+    },
+    {
+      "claim": "Bone broth helps you lose weight",
+      "topic": "Bone broth and weight loss",
+      "label": "Bone broth and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Bone broth slows ageing",
+      "topic": "Bone broth and ageing",
+      "label": "Bone broth and ageing",
+      "category": "longevity"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Anyone who drinks bone broth often",
+      "note": "In a small study, chicken broths held several times more lead than the water they were made with, and the authors suggest that doctors and nutritionists take lead into account when advising bone-broth diets. If you drink a lot of bone broth, talk to your doctor or dietitian."
+    }
+  ],
+  "cautions": [
+    "Ready-made chicken stock in the UK food table holds 225 mg of sodium per 100 g, and stock cubes hold much more (14,560 mg per 100 g for beef cubes, before they are dissolved). Shop-bought broths vary, so the label is the best guide."
+  ],
+  "unknowns": [
+    "Whether drinking bone broth raises the building blocks of collagen in the body: this page found no trial, and the amino acid study found broth held less than a collagen supplement.",
+    "Whether chicken soup eases colds in people: the studies here are lab tests on cells, not trials of people with colds.",
+    "How much lead a typical broth holds: the lead study tested only three organic chicken broths."
+  ],
+  "sources": [
+    {
+      "pmid": "29893587",
+      "doi": "10.1123/ijsnem.2018-0139",
+      "title": "Bone Broth Unlikely to Provide Reliable Concentrations of Collagen Precursors Compared With Supplemental Sources of Collagen Used in Collagen Research.",
+      "year": 2019,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "23375414",
+      "doi": "10.1016/j.mehy.2012.12.026",
+      "title": "The risk of lead contamination in bone broth diets.",
+      "year": 2013,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "11035691",
+      "doi": "10.1378/chest.118.4.1150",
+      "title": "Chicken soup inhibits neutrophil chemotaxis in vitro.",
+      "year": 2000,
+      "studyType": "in vitro"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "id": "pink_salt",
+  "name": "Pink salt",
+  "group": "herbs and spices",
+  "otherNames": [
+    "Himalayan pink salt",
+    "Himalayan salt",
+    "Pink Himalayan salt",
+    "Pink rock salt",
+    "Himalayan rock salt",
+    "Fine pink salt",
+    "Coarse pink salt",
+    "Pink salt crystals"
+  ],
+  "summary": "Pink salt, often sold as Himalayan salt, is a rock salt with a pink tint, used to season food. This page lists what people say pink salt does and what writers in ancient Greece and Rome believed; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "A 2020 study bought 31 pink salts in Australia and measured 25 nutrients and non-nutritive minerals in them and in an iodized white table salt. The amount and range of minerals varied widely between pink salts. Flaked, Himalayan-origin and darker-coloured pink salts generally held more minerals. The study did not say what gives the pink colour.",
+    "The same study found that more than 30 g of pink salt a day (about 6 teaspoons) would be needed to add a meaningful amount of any nutrient, which would give excessive sodium.",
+    "One of the 31 pink salts held lead above Australia's maximum limit (more than 2 mg/kg).",
+    "The UK food table (CoFID) does not list pink salt. Its plain table salt has 39,300 mg of sodium per 100 g, so a teaspoon (about 6 g) holds about 2,360 mg of sodium."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that salt is injurious to the stomach, except that it stimulates the appetite.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 31.45 (the nature of salt), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=31:chapter=45"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that the teeth never become carious or corroded if a person puts a little salt under the tongue every morning, fasting, and leaves it until it melts.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 31.45 (the nature of salt), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=31:chapter=45"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that salt of Cappadocia gives a fine colour to the skin, that salt from Citium is best for effacing wrinkles, and that the lake salts of Tarentum and Phrygia are also good for the eyes.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 31.41 (the properties of salt), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=31:chapter=41"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Greece (Dioscorides, about 60 AD)",
+      "belief": "Dioscorides taught that salts are astringent, cleaning and dissolving. Rubbed on with oil, he said, they remove weariness and the swelling of dropsy; warm salt packs in little bags ease pain; and with honey and vinegar they ease a sore, abscessed throat.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Dioscorides, De Materia Medica 5.126 (salts), Osbaldeston translation, 2000 (Internet Archive scan)",
+          "author": "Dioscorides",
+          "when": "about 60 AD",
+          "kind": "ancient text",
+          "url": "https://archive.org/details/Dioscorides_Materia_Medica"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "Celsus listed salt among the 'heating' foods, together with pepper, stewed meat, garlic, onion, dried figs, pickled fish and wine.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 2.27.1 (heating and cooling foods), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/2*.html#27"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Celsus, about 30 AD)",
+      "belief": "For a swollen throat with hindered breathing, Celsus wrote that moist foments are needed, and that hot moistened salt is the most effective of them.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Celsus, De Medicina 4.7.2 (the throat (cynanche)), Loeb translation (Spencer)",
+          "author": "Celsus",
+          "when": "about 30 AD",
+          "kind": "ancient text",
+          "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Celsus/4*.html#7"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Israel (Book of Ezekiel, about 590 BC)",
+      "belief": "The prophet Ezekiel, describing an abandoned newborn, lists what was not done for her: the cord was not cut, she was not washed in water, she was 'not rubbed with salt' and not swaddled. Rubbing a newborn with salt is named there as part of ordinary newborn care.",
+      "note": "The ancient writers wrote about salt in general, including coloured salts (Pliny names a deep red salt at Memphis and a purple one at Centuripa). None wrote about modern pink salt by that name.",
+      "sources": [
+        {
+          "title": "Book of Ezekiel 16:4, JPS Tanakh (Gender-Sensitive Edition), on Sefaria",
+          "author": "Hebrew Bible",
+          "when": "about 590 BC",
+          "kind": "ancient text",
+          "url": "https://www.sefaria.org/Ezekiel.16.4"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "17-367",
+      "label": "1 teaspoon plain table salt, for comparison (about 6 g; the table has no pink salt)",
+      "grams": 6
+    }
+  ],
+  "processing": [
+    "In the Australian study, pink salt in flake form and darker pink salt generally held more minerals than the other forms and paler salts."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Pink salt is healthier than table salt",
+      "topic": "Pink salt and table salt",
+      "label": "Pink salt vs table salt",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt contains 84 minerals your body needs",
+      "topic": "Himalayan salt and minerals",
+      "label": "Pink salt and minerals",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt lowers blood pressure compared with table salt",
+      "topic": "Himalayan salt and blood pressure",
+      "label": "Pink salt and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt has less sodium than table salt",
+      "topic": "Himalayan salt and sodium",
+      "label": "Pink salt and sodium",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt balances electrolytes and hydrates you",
+      "topic": "Himalayan salt and electrolytes",
+      "label": "Pink salt and electrolytes",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt water on an empty stomach boosts energy and detoxes",
+      "topic": "Himalayan salt water and detox",
+      "label": "Pink salt water and detox",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt improves sleep",
+      "topic": "Himalayan salt and sleep",
+      "label": "Pink salt and sleep",
+      "category": "health"
+    },
+    {
+      "claim": "Pink salt baths relieve sore muscles and clear skin",
+      "topic": "Himalayan salt baths",
+      "label": "Pink salt baths",
+      "category": "appearance"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "High blood pressure, or anyone told to limit sodium",
+      "note": "A Cochrane review of 34 trials found that cutting salt by about 4.4 g a day lowered blood pressure by about 4 mm Hg (top number) and 2 mm Hg (bottom number). The Australian pink salt study says pink salt use should stay within the national guideline of under 5 g of salt a day. If you have been told to limit salt, talk to your doctor."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether pink salt has any health effect different from table salt: the Australian study measured minerals, not health outcomes.",
+    "What gives a given pink salt its colour and mineral content: it varies by source and form.",
+    "Whether the trace minerals and lead found in some pink salts matter at the amounts a person eats: the study did not test that."
+  ],
+  "sources": [
+    {
+      "pmid": "33086585",
+      "doi": "10.3390/foods9101490",
+      "title": "An Analysis of the Mineral Composition of Pink Salt Available in Australia.",
+      "year": 2020,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "23558162",
+      "doi": "10.1136/bmj.f1325",
+      "title": "Effect of longer term modest salt reduction on blood pressure: Cochrane systematic review and meta-analysis of randomised trials.",
+      "year": 2013,
+      "studyType": "meta-analysis"
+    }
+  ]
+}

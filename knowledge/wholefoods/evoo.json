@@ -632,6 +632,56 @@
       ]
     }
   ],
+  "claims": [
+    {
+      "claim": "Extra virgin olive oil protects your heart",
+      "topic": "Extra virgin olive oil and heart disease",
+      "label": "Olive oil and your heart",
+      "category": "health"
+    },
+    {
+      "claim": "Olive oil helps you live longer",
+      "topic": "Olive oil and death from any cause",
+      "label": "Olive oil and a longer life",
+      "category": "longevity"
+    },
+    {
+      "claim": "Olive oil lowers cholesterol",
+      "topic": "Olive oil and cholesterol",
+      "label": "Olive oil and cholesterol",
+      "category": "health"
+    },
+    {
+      "claim": "Olive oil lowers blood pressure",
+      "topic": "Olive oil and blood pressure",
+      "label": "Olive oil and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Olive oil reduces inflammation",
+      "topic": "Olive oil and inflammation",
+      "label": "Olive oil and inflammation",
+      "category": "health"
+    },
+    {
+      "claim": "Olive oil protects your memory",
+      "topic": "Olive oil and dementia",
+      "label": "Olive oil and memory",
+      "category": "health"
+    },
+    {
+      "claim": "Olive oil is good for your skin and hair",
+      "topic": "Olive oil and skin health",
+      "label": "Olive oil and skin",
+      "category": "appearance"
+    },
+    {
+      "claim": "Olive oil helps you lose weight",
+      "topic": "Olive oil and weight loss",
+      "label": "Olive oil and weight loss",
+      "category": "appearance"
+    }
+  ],
   "visuals": [
     {
       "kind": "bars",

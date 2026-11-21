@@ -1,0 +1,143 @@
+{
+  "id": "watermelon",
+  "name": "Watermelon",
+  "group": "fruit",
+  "otherNames": [
+    "Watermelons",
+    "Citrullus lanatus",
+    "Watermelon juice",
+    "Seedless watermelon",
+    "Watermelon rind",
+    "Watermelon flesh"
+  ],
+  "summary": "Watermelon is a large, juicy fruit with sweet red flesh, eaten fresh or as juice. This page lists what people say watermelon does; each claim can be checked against the research when you choose.",
+  "inIt": [
+    "Watermelon holds L-citrulline, an amino acid found in high concentrations in it, which may help the body make more nitric oxide. It also holds polyphenols and lycopene, according to a 2026 meta-analysis.",
+    "The UK food table (CoFID) measures watermelon flesh at 31 kcal, 7.1 g of sugars, 100 mg of potassium, 8 mg of vitamin C and 19 µg of vitamin A (as retinol equivalents) per 100 g. It has no fibre value for it, and it does not measure citrulline or lycopene."
+  ],
+  "tableFoods": [
+    {
+      "id": "14-296",
+      "label": "1 slice of watermelon, flesh only (about 200 g)",
+      "grams": 200
+    }
+  ],
+  "processing": [
+    "The rind is not the flesh: a 2026 lab study separated L-citrulline from watermelon rind juice, so the rind holds some too.",
+    "Weight with or without rind changes the table's numbers: 18 kcal per 100 g weighed whole, against 31 kcal for flesh only."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Watermelon hydrates you better than water",
+      "topic": "Watermelon and hydration",
+      "label": "Watermelon and hydration",
+      "category": "health"
+    },
+    {
+      "claim": "Watermelon lowers blood pressure",
+      "topic": "Watermelon and blood pressure",
+      "label": "Watermelon and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Watermelon works like natural Viagra",
+      "topic": "Watermelon and erectile function",
+      "label": "Watermelon and erectile function",
+      "category": "health"
+    },
+    {
+      "claim": "Watermelon relieves muscle soreness after exercise",
+      "topic": "Watermelon and muscle soreness",
+      "label": "Watermelon and muscle soreness",
+      "category": "health"
+    },
+    {
+      "claim": "Watermelon is too sugary for people with diabetes",
+      "topic": "Watermelon and blood sugar",
+      "label": "Watermelon and blood sugar",
+      "category": "health"
+    },
+    {
+      "claim": "The lycopene in watermelon protects against cancer",
+      "topic": "Watermelon lycopene and cancer",
+      "label": "Watermelon lycopene and cancer",
+      "category": "longevity"
+    },
+    {
+      "claim": "Watermelon helps you lose weight",
+      "topic": "Watermelon and weight loss",
+      "label": "Watermelon and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "A swallowed watermelon seed grows into a plant in your stomach",
+      "topic": "Swallowed watermelon seeds",
+      "label": "Swallowed watermelon seeds",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Kidney disease",
+      "safetyId": "kidney",
+      "note": "A published case report describes high blood potassium in a person with end-stage kidney disease after eating a great deal of watermelon, and a 2018 review says a dietary potassium limit is usually recommended in reduced kidney function. The UK food table lists 100 mg of potassium per 100 g of flesh, so the amount eaten matters. If you have kidney disease, talk to your doctor or dietitian."
+    },
+    {
+      "with": "Watermelon allergy",
+      "note": "Watermelon can cause allergic reactions. A study of 23 allergic patients found three major allergens in it: malate dehydrogenase, triose phosphate isomerase and profilin. If you react to watermelon, talk to your doctor or an allergist."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether the blood pressure results of trials carry over to eating watermelon at ordinary amounts: the 2026 meta-analysis pooled trials of watermelon, its juice and its extract.",
+    "How much citrulline and lycopene a given watermelon holds: the food table does not measure them.",
+    "Which fruit the Roman word 'pepo' meant: the translator of Pliny's Natural History reads it as a pumpkin or gourd, so this page has no Then and now entries for watermelon."
+  ],
+  "sources": [
+    {
+      "pmid": "41156475",
+      "doi": "10.3390/nu17203221",
+      "title": "Watermelon Nutritional Composition with a Focus on L-Citrulline and Its Cardioprotective Health Effects-A Narrative Review.",
+      "year": 2025,
+      "studyType": "review"
+    },
+    {
+      "pmid": "43045014",
+      "doi": "10.1016/j.tjnut.2026.101944",
+      "title": "Watermelon supplementation lowers blood pressure: A systematic review and meta-analysis of randomized controlled trials.",
+      "year": 2026,
+      "studyType": "meta-analysis"
+    },
+    {
+      "pmid": "42104553",
+      "doi": "10.1111/1750-3841.71105",
+      "title": "Nanofiltration for Separation of L-Citrulline From Watermelon Rind Juice.",
+      "year": 2026,
+      "studyType": "in vitro"
+    },
+    {
+      "pmid": "27436619",
+      "doi": "10.1111/nep.12655",
+      "title": "Excessive watermelon consumption causing hyperkalaemia and increased symptom burden of an end stage renal disease patient.",
+      "year": 2016,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "29495340",
+      "doi": "10.3390/nu10030261",
+      "title": "Dietary Approach to Recurrent or Chronic Hyperkalaemia in Patients with Decreased Kidney Function.",
+      "year": 2018,
+      "studyType": "review"
+    },
+    {
+      "pmid": "19295232",
+      "doi": "10.1159/000205574",
+      "title": "Identification of major allergens in watermelon.",
+      "year": 2009,
+      "studyType": "observational"
+    }
+  ]
+}

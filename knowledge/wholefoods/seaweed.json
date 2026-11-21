@@ -1,0 +1,176 @@
+{
+  "id": "seaweed",
+  "name": "Seaweed",
+  "group": "vegetables",
+  "otherNames": [
+    "Edible seaweed",
+    "Sea vegetables",
+    "Nori",
+    "Kombu",
+    "Wakame",
+    "Laver",
+    "Laverbread",
+    "Hijiki",
+    "Kelp",
+    "Irish moss",
+    "Sushi nori"
+  ],
+  "summary": "Seaweed is edible sea algae, eaten dried, fresh or in sushi and soups. This page lists what people say seaweed does and what writers in ancient Rome believed; each claim can be checked against the research when you choose. Its iodine and metals are why it needs care.",
+  "inIt": [
+    "Seaweed can hold a lot of iodine, and the amount varies a great deal by species, with cooking and processing also changing it. A 2011 review estimates that Japanese iodine intake, largely from seaweed, averages 1,000 to 3,000 µg a day.",
+    "Among 224 seaweed products on UK shelves, the median iodine content of those that stated or allowed an estimate was 110 µg per gram; 26 could give more than the European upper intake level of 600 µg a day. Only 10% of products stated their iodine content.",
+    "The UK food table (CoFID) measures dried nori at 136 kcal, 30.7 g of protein, 19.6 mg of iron and 1,470 µg of iodine per 100 g, dried kombu at 440,670 µg of iodine and dried wakame at 16,830 µg. These are dried weights, eaten in small amounts. The table does not measure arsenic, cadmium or other contaminants.",
+    "Edible seaweed can also carry arsenic, cadmium and lead: in 112 seaweed products sold in Spain, total arsenic ranged from 0.031 to 149 mg/kg dry weight, and every sample of hijiki exceeded an inorganic arsenic limit used in some countries."
+  ],
+  "lore": [
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny wrote that sea-weed (phycos) is an excellent remedy for gout when used fresh, applied to the joints, and for all diseases of the joints. He added that Nicander prescribed it in wine as an antidote to serpent venom.",
+      "note": "The translators' heading calls it sea-weed; the Greek name is phycos.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 26.66 (phycos thalassion, or sea-weed), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=26:chapter=66"
+        }
+      ],
+      "modern": "not tested"
+    },
+    {
+      "who": "Ancient Rome (Pliny the Elder, about 77 AD)",
+      "belief": "Pliny said that, according to Nicander, sea-weed is a theriac (an antidote to poisons), and that the best kind grows on the rocks off Crete.",
+      "sources": [
+        {
+          "title": "Pliny the Elder, Natural History 32.22 (sea-weed: two remedies), Bostock and Riley translation, 1855",
+          "author": "Pliny the Elder",
+          "when": "about 77 AD",
+          "kind": "ancient text",
+          "url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0137:book=32:chapter=22"
+        }
+      ],
+      "modern": "not tested"
+    }
+  ],
+  "tableFoods": [
+    {
+      "id": "13-340",
+      "label": "1 sheet of dried nori (about 3 g)",
+      "grams": 3
+    },
+    {
+      "id": "13-341",
+      "label": "A spoonful of dried wakame (about 5 g)",
+      "grams": 5
+    },
+    {
+      "id": "13-339",
+      "label": "A small piece of dried kombu (about 5 g)",
+      "grams": 5
+    }
+  ],
+  "processing": [
+    "Iodine content is affected by cooking and processing, according to the 2011 review.",
+    "Cooking raised the share of inorganic arsenic that can be absorbed in a lab digestion test: to 73% in Porphyra (the nori group) and 88% in hijiki. The authors call this a warning of toxicological risk for hijiki."
+  ],
+  "markers": [],
+  "findings": [],
+  "claims": [
+    {
+      "claim": "Seaweed gives you the iodine for a healthy thyroid",
+      "topic": "Seaweed and thyroid health",
+      "label": "Seaweed and thyroid health",
+      "category": "health"
+    },
+    {
+      "claim": "Seaweed is a good vitamin B12 source for vegans",
+      "topic": "Seaweed and vitamin B12",
+      "label": "Seaweed and vitamin B12",
+      "category": "health"
+    },
+    {
+      "claim": "Seaweed helps you lose weight",
+      "topic": "Seaweed and weight loss",
+      "label": "Seaweed and weight loss",
+      "category": "appearance"
+    },
+    {
+      "claim": "Seaweed detoxes heavy metals from the body",
+      "topic": "Seaweed and detox",
+      "label": "Seaweed and detox",
+      "category": "health"
+    },
+    {
+      "claim": "Seaweed lowers blood pressure",
+      "topic": "Seaweed and blood pressure",
+      "label": "Seaweed and blood pressure",
+      "category": "health"
+    },
+    {
+      "claim": "Seaweed protects against cancer",
+      "topic": "Seaweed and cancer",
+      "label": "Seaweed and cancer",
+      "category": "health"
+    },
+    {
+      "claim": "Seaweed is a superfood behind Japanese longevity",
+      "topic": "Seaweed and longevity",
+      "label": "Seaweed and longevity",
+      "category": "longevity"
+    },
+    {
+      "claim": "Seaweed is safe to eat every day in any amount",
+      "topic": "Seaweed safety and iodine",
+      "label": "Seaweed safety and iodine",
+      "category": "health"
+    }
+  ],
+  "visuals": [],
+  "whoShouldBeCareful": [
+    {
+      "with": "Thyroid conditions, or eating seaweed often",
+      "note": "The UK study names toxicity from high iodine as a risk of some seaweed, and found servings of some products above the 600 µg a day European upper level. These studies did not test people with thyroid disease. If you have a thyroid condition, or eat seaweed most days, talk to your doctor."
+    },
+    {
+      "with": "Eating hijiki or other seaweed often",
+      "note": "In Spanish retail samples, hijiki held inorganic arsenic above limits, and some other seaweeds exceeded cadmium limits. Cooking made more of the inorganic arsenic absorbable in a lab test. If you eat seaweed regularly, talk to your doctor or a dietitian about which kinds."
+    }
+  ],
+  "cautions": [],
+  "unknowns": [
+    "Whether eating seaweed changes health outcomes in people: this page does not review the studies.",
+    "How much iodine or metal a given product holds: it varies by species, origin and processing, and most products do not say.",
+    "Whether the vitamin B12 in seaweed works the same way in the body: this page does not review that."
+  ],
+  "sources": [
+    {
+      "pmid": "28231201",
+      "doi": "10.3390/foods4020240",
+      "title": "Emergence of Seaweed and Seaweed-Containing Foods in the UK: Focus on Labeling, Iodine Content, Toxicity and Nutrition.",
+      "year": 2015,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "21975053",
+      "doi": "10.1186/1756-6614-4-14",
+      "title": "Assessment of Japanese iodine intake based on seaweed consumption in Japan: A literature-based analysis.",
+      "year": 2011,
+      "studyType": "review"
+    },
+    {
+      "pmid": "16901603",
+      "doi": "10.1016/j.fct.2006.06.011",
+      "title": "Total arsenic, inorganic arsenic, lead and cadmium contents in edible seaweed sold in Spain.",
+      "year": 2006,
+      "studyType": "observational"
+    },
+    {
+      "pmid": "13129320",
+      "doi": "10.1021/jf034537i",
+      "title": "Estimation of arsenic bioaccessibility in edible seaweed by an in vitro digestion method.",
+      "year": 2003,
+      "studyType": "in vitro"
+    }
+  ]
+}
