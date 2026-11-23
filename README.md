@@ -7,6 +7,8 @@
 **A private, local-first bloodwork and biomarker tracker.**
 Track your lab results and body measurements for years, see your biological age, understand every marker in plain language, and read what the research says. Your health data stays on your computer.
 
+**[Website](https://biomarkers.ai2070.net)** · **[Try the online demo](https://demo.biomarkers.ai2070.net)** · **[Download](https://github.com/ai-2070/biomarker-tracker/releases/latest)**
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white)
 ![Bun](https://img.shields.io/badge/Bun-runtime-f9f1e1?logo=bun&logoColor=black)
@@ -228,7 +230,7 @@ Each person is a folder on your computer. Switch profiles from the menu at the t
 
 ## Desktop app
 
-Download the installer for your computer from [Releases](https://github.com/ai-2070/biomarker-tracker/releases): Windows `.exe` or `.msi`, macOS `.dmg` (Apple Silicon or Intel), or Linux `.AppImage` / `.deb` (x64). The Tauri v2 app includes its own local server and runtime; Bun and Node are not required for tracking, imports, backups or API-based AI providers. Optional agent programs and MCP servers still need their own installed tools.
+Download the installer for your computer from [Releases](https://github.com/ai-2070/biomarker-tracker/releases) or the [website](https://biomarkers.ai2070.net). To look around first, the [online demo](https://demo.biomarkers.ai2070.net) opens the example profile in your browser, with no install; anything you change stays in that browser. Installers: Windows `.exe` or `.msi`, macOS `.dmg` (Apple Silicon or Intel), or Linux `.AppImage` / `.deb` (x64). The Tauri v2 app includes its own local server and runtime; Bun and Node are not required for tracking, imports, backups or API-based AI providers. Optional agent programs and MCP servers still need their own installed tools.
 
 Profiles, settings and API keys live in the operating system's local application-data folder, under `io.github.ai-2070.biomarker-tracker` (Windows: `%LOCALAPPDATA%`; macOS: `~/Library/Application Support`; Linux: `${XDG_DATA_HOME:-~/.local/share}`). Set `BT_DATA` to choose another folder. The desktop app uses a separate data folder from `bun run start`. Move existing profiles with the app's backup/import controls. Upgrading the app preserves this folder.
 
