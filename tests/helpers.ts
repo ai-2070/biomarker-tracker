@@ -20,6 +20,35 @@ export function def(id: string): BiomarkerDef {
   return d;
 }
 
+/**
+ * A marker with a made-up within-person variation (CVI, %), for testing the published-variation code
+ * path. The real EFLM values aren't in the app until EFLM allows it (docs/eflm-biological-variation.md),
+ * so tests never use or copy them.
+ */
+export function withVariation(d: BiomarkerDef, cvi: number): BiomarkerDef {
+  return {
+    ...d,
+    biologicalVariation: {
+      cvi,
+      ciLow: cvi,
+      ciHigh: cvi,
+      studies: 1,
+      analyte: d.name,
+      matrix: "Test",
+      source: "Test fixture (made-up value)",
+      url: "https://example.org/",
+      retrieved: "2026-01-01",
+    },
+  };
+}
+
+/** All marker definitions, with made-up variation for the markers given (id → CVI %). */
+export function defsWithVariation(cvis: Record<string, number>): Map<string, BiomarkerDef> {
+  const defs = loadDefs();
+  for (const [id, cvi] of Object.entries(cvis)) defs.set(id, withVariation(defs.get(id)!, cvi));
+  return defs;
+}
+
 let counter = 0;
 export function measurement(partial: Partial<Measurement> & Pick<Measurement, "date" | "value">): Measurement {
   counter += 1;

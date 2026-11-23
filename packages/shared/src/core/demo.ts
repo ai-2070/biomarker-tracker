@@ -253,8 +253,8 @@ export function demoProfile(today: string): DemoData {
   add(draws[7]!, "dunedinpace", 0.91, { lab: "Example DNA lab" });
   add(draws[9]!, "dunedinpace", 0.88, { lab: "Example DNA lab" });
 
-  // The diet experiment: start two weeks after test 7. Two lipid tests before and two after, as the
-  // app suggests, so the change can be told apart from normal test-to-test variation.
+  // The diet experiment: start two weeks after test 7. Three lipid tests before and three after, so the
+  // change can be told apart from normal test-to-test variation estimated from the person's own results.
   const expStart = addDays(draws[6]!, 14);
   const lipids = (date: string, ldlValue: number) => {
     add(date, "ldl", ldlValue);
@@ -262,9 +262,11 @@ export function demoProfile(today: string): DemoData {
     add(date, "hdl", wobble(1.56, 0.03, 0.01));
     add(date, "triglycerides", wobble(1.1, 0.06, 0.01));
   };
+  lipids(addDays(expStart, -75), 3.8);
   lipids(addDays(expStart, -45), 3.8);
   lipids(addDays(expStart, 88), 3.2);
   lipids(addDays(expStart, 96), 3.1);
+  lipids(addDays(expStart, 118), 3.2);
 
   // Body: measured at home about once a month for the last two years. Blood pressure and resting
   // heart rate drift down slowly; waist goes from just above to just below the usual limit.

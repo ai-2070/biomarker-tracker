@@ -21,7 +21,7 @@ import {
 } from "@bt/shared/core/trends";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
-import { def, measurement } from "../helpers";
+import { def, measurement, withVariation } from "../helpers";
 
 const m = (biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}) => measurement({ biomarkerId, date, value, ...extra });
 const balance = JSON.parse(readFileSync(new URL("../../knowledge/fitness/one_leg_stand.json", import.meta.url), "utf8")) as FitnessTestDef;
@@ -272,7 +272,7 @@ describe("clinical review: exact experiment outputs and finite pace intervals", 
   });
 
   it("retains exact positive experiment comparisons", () => {
-    const result = analyzeMarker(experiment, def("crp_hs"), [m("crp_hs", "2026-08-20", 2), m("crp_hs", "2026-10-01", 1)]);
+    const result = analyzeMarker(experiment, withVariation(def("crp_hs"), 20), [m("crp_hs", "2026-08-20", 2), m("crp_hs", "2026-10-01", 1)]);
     expect(result.beforeValue).toBe(2);
     expect(result.afterValue).toBe(1);
     expect(result.change).toBe(-0.5);

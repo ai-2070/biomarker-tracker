@@ -3,7 +3,6 @@ import { todayIso } from "@bt/shared/core/dates";
 import {
   analyzeMarker,
   BASELINE_WINDOW_DAYS,
-  DEFAULT_CVA_RATIO,
   type ExperimentPhase,
   experimentPhase,
   type MarkerResult,
@@ -81,7 +80,8 @@ export function MarkerChoice({
             {baseline
               ? `Before: ${showMeasurement(def, baseline, def.canonicalUnit)} ${valueUnit(def, def.canonicalUnit)} on ${formatDate(baseline.date)}`
               : "No recent result. Get tested before you start."}
-            {!def.biologicalVariation && " Normal variation isn't known for this marker, so results can't be judged."}
+            {!def.biologicalVariation &&
+              ` Normal variation is worked out from your own results, so it needs at least ${MIN_PERSONAL} before and ${MIN_PERSONAL} after.`}
           </span>
         )}
       </span>
@@ -153,14 +153,9 @@ export function ExperimentPage({ id }: { id: string }) {
             not happen in someone else.
           </p>
           <p className="text-sm">
-            Normal variation is taken from the EFLM Biological Variation Database (within-person variation, CVI). Labs rarely publish their own measurement
-            error, so it is assumed to be {DEFAULT_CVA_RATIO * 100}% of that, a common quality target. Bands are calculated on a log scale, so rises and falls
-            have different limits.
-          </p>
-          <p className="text-sm">
-            Where no published data exists (body measurements and a few blood ratios), normal variation is estimated from your own results when there are at
-            least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread around their average. With so few results the limits are made wider to
-            stay cautious.
+            Normal variation is estimated from your own results when there are at least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread
+            around their average. With so few results the limits are made wider to stay cautious. Bands are calculated on a log scale, so rises and falls have
+            different limits.
           </p>
           {e.markerIds.includes(PHENOAGE_GAP_ID) && (
             <p className="text-sm">
@@ -214,7 +209,7 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
     fall: "The difference is bigger than normal test-to-test variation, so it's probably a real change.",
     "no-baseline": `There's no result in the ${Math.round(BASELINE_WINDOW_DAYS / 30)} months before ${formatDate(e.start)}. Without a "before", the "after" can't be compared.`,
     waiting: `Add a result from ${formatDate(retestDate(e))} or later.`,
-    "no-variation-data": `There's no published data on this marker's normal variation. With at least ${MIN_PERSONAL} results before and ${MIN_PERSONAL} after, it can be estimated from your own.`,
+    "no-variation-data": `Normal variation for this marker isn't known yet. With at least ${MIN_PERSONAL} results before and ${MIN_PERSONAL} after, it can be estimated from your own.`,
     "below-limit": 'One of the results was reported as "<" or ">" a limit, so the size of the change isn\'t known.',
   };
 

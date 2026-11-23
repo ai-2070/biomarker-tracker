@@ -18,14 +18,14 @@
         },
         {
           "name": "EFLM Biological Variation Database",
-          "location": "biologicalVariation records in 32 biomarker definitions",
+          "location": "Not bundled. The biologicalVariation records were removed from all 61 biomarker definitions on 2026-11-23; see docs/eflm-biological-variation.md",
           "source": "https://biologicalvariation.eu/",
           "licence": "EFLM copyright; all rights reserved",
           "terms": "https://biologicalvariation.eu/",
-          "redistribution": "Restricted: written redistribution permission is not established.",
-          "verifiedOn": "2026-11-02",
-          "checkedOn": "2026-11-02",
-          "notes": "Current terms prohibit distribution/commercial exploitation without express written permission and prohibit storage on another website/electronic retrieval system. Personal noncommercial extracts are not a general app redistribution licence."
+          "redistribution": "Not redistributed: removed until EFLM gives written permission.",
+          "verifiedOn": "2026-11-23",
+          "checkedOn": "2026-11-23",
+          "notes": "EFLM's terms require prior written permission, a written agreement and a fee to put database content into a software application, or to extract or redistribute it systematically. Permission is being asked for; the values return only if it is given. Earlier commits in the repository's history still contain them."
         },
         {
           "name": "EFSA Dietary Reference Values summary (2017)",

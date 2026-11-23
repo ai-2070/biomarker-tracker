@@ -4,9 +4,10 @@ import type { NutrientDef } from "@bt/shared/core/nutrients";
 import { buildTestSummary, isPluralName, rangeText, SUMMARY_LIMITS } from "@bt/shared/core/testSummary";
 import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
-import { loadDefs, measurement } from "../helpers";
+import { defsWithVariation, loadDefs, measurement } from "../helpers";
 
-const defs = loadDefs();
+// Made-up within-person variation (CVI %) for the markers the comparisons use.
+const defs = defsWithVariation({ hemoglobin: 3, creatinine: 5 });
 const nutrient = (id: string) => JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "knowledge", "nutrients", `${id}.json`), "utf8")) as NutrientDef;
 const nutrients = [nutrient("creatine"), nutrient("biotin")];
 const m = (biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}) =>

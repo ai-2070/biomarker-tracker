@@ -12,6 +12,7 @@ import {
 import type { Experiment, Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { BIOMARKER_MAP } from "../../apps/web/src/app/knowledge";
+import { withVariation } from "../helpers";
 
 const d3: ProtocolEntry = { id: "p1", label: "Vitamin D3 1000 IU daily", category: "supplement", start: "2026-01-10" };
 const oats: ProtocolEntry = { id: "p2", label: "Oats every day", category: "diet", start: "2025-06-01", end: "2025-09-01" };
@@ -109,7 +110,9 @@ describe("what changed", () => {
   });
   const watch: Experiment = { id: "e1", change: "Oats", category: "diet", markerIds: ["ldl", "vitamin_d"], start: "2025-06-01", retestAfterDays: 56 };
   it("puts a change beyond normal variation first", () => {
-    const s = summarizeWatch(watch, BIOMARKER_MAP, [m("a", "2025-05-01", 3.8), m("b", "2025-09-01", 2.9)], "2025-10-01");
+    // LDL with a made-up within-person variation of 6 %, so one result on each side can be judged.
+    const defs = new Map(BIOMARKER_MAP).set("ldl", withVariation(BIOMARKER_MAP.get("ldl")!, 6));
+    const s = summarizeWatch(watch, defs, [m("a", "2025-05-01", 3.8), m("b", "2025-09-01", 2.9)], "2025-10-01");
     expect(s.headline?.biomarkerId).toBe("ldl");
     expect(s.headline?.verdict).toBe("fall");
     expect(s.results.find((r) => r.biomarkerId === "vitamin_d")?.verdict).toBe("no-baseline");
