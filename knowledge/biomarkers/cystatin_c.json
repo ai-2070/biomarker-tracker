@@ -50,17 +50,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 3.3,
-    "ciLow": 2.1,
-    "ciHigh": 8.6,
-    "studies": 5,
-    "analyte": "Cystatin C",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "22762315",

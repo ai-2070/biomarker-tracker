@@ -54,17 +54,6 @@
     "commonCauses": []
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 12.4,
-    "ciLow": 9.3,
-    "ciHigh": 16,
-    "studies": 5,
-    "analyte": "Alanine transaminase (ALT)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "27995906",

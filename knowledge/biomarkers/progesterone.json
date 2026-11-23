@@ -51,17 +51,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 18.5,
-    "ciLow": 15.7,
-    "ciHigh": 22.6,
-    "studies": 1,
-    "analyte": "Progesterone",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "26111590",

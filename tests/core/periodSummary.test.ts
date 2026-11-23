@@ -1,9 +1,10 @@
 import { buildPeriodSummary, PERIOD_LIMITS, type Period, periodBounds } from "@bt/shared/core/periodSummary";
 import type { Measurement } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
-import { loadDefs, measurement } from "../helpers";
+import { defsWithVariation, measurement } from "../helpers";
 
-const defs = loadDefs();
+// Made-up within-person variation (CVI %) for the markers the comparisons use.
+const defs = defsWithVariation({ hemoglobin: 3, creatinine: 5 });
 const m = (biomarkerId: string, date: string, value: number, labRange?: { low?: number; high?: number }) =>
   measurement({ biomarkerId, date, value, originalUnit: defs.get(biomarkerId)!.canonicalUnit, source: "pdf", ...(labRange ? { labRange } : {}) });
 const rolling: Period = { kind: "rolling", end: "2026-11-04" };

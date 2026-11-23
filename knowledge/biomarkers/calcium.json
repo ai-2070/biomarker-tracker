@@ -68,17 +68,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 1.8,
-    "ciLow": 1.1,
-    "ciHigh": 2.6,
-    "studies": 17,
-    "analyte": "Calcium (Ca)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "36282253",

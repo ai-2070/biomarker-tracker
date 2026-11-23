@@ -204,6 +204,8 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
+const UNKNOWN_VARIATION = "Normal test-to-test variation for this marker isn't known, so a small change may be noise.";
+
 function changeText(r: SummaryResult): string | undefined {
   switch (r.change) {
     case "new":
@@ -211,11 +213,17 @@ function changeText(r: SummaryResult): string | undefined {
     case "about the same":
       return r.beyondNormalVariation === false ? "About the same as before: the change is within normal test-to-test variation." : "About the same as before.";
     case "closer":
-      return r.beyondNormalVariation ? "Closer to the range than before, by more than normal test-to-test variation." : "Closer to the range than before.";
+      return r.beyondNormalVariation
+        ? "Closer to the range than before, by more than normal test-to-test variation."
+        : r.beyondNormalVariation === undefined
+          ? `Closer to the range than before. ${UNKNOWN_VARIATION}`
+          : "Closer to the range than before.";
     case "further":
       return r.beyondNormalVariation
         ? "Further from the range than before, by more than normal test-to-test variation."
-        : "Further from the range than before.";
+        : r.beyondNormalVariation === undefined
+          ? `Further from the range than before. ${UNKNOWN_VARIATION}`
+          : "Further from the range than before.";
     default:
       return r.previous ? undefined : "The first result for this marker.";
   }

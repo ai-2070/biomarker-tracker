@@ -68,17 +68,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 8.8,
-    "ciLow": 8,
-    "ciHigh": 9.7,
-    "studies": 1,
-    "analyte": "Prostate specific antigen (PSA)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "15163773",

@@ -46,17 +46,6 @@
     "commonCauses": []
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 34.7,
-    "ciLow": 29.4,
-    "ciHigh": 74.4,
-    "studies": 6,
-    "analyte": "C-reactive protein (CRP)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "12551878",

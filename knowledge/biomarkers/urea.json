@@ -53,17 +53,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 12.9,
-    "ciLow": 10.9,
-    "ciHigh": 14.1,
-    "studies": 12,
-    "analyte": "Urea",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "21250147",

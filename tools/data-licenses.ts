@@ -10,7 +10,7 @@ const lines = [
   "",
   "**This is not redistribution clearance or legal advice.** A verified-on date means published terms were checked, not that permission was obtained. Missing, restricted, noncommercial or no-derivatives terms must not be relabelled MIT or treated as cleared. Free access, attribution and public hosting do not establish redistribution or adaptation rights.",
   "",
-  "**Release concerns:** EFLM expressly restricts redistribution without written permission. CSEP/ACE and several clinical/fitness tables have restricted or unverified rights. Current ESC terms call for a formal software-use licence. No such permissions are established by this repository. These records are identified, not silently removed or declared safe.",
+  "**Release concerns:** EFLM expressly restricts redistribution without written permission, so its values were removed on 2026-11-23 until permission is given (docs/eflm-biological-variation.md). CSEP/ACE and several clinical/fitness tables have restricted or unverified rights. Current ESC terms call for a formal software-use licence. No such permissions are established by this repository. These records are identified, not silently removed or declared safe.",
   "",
   "The project declares MIT in package.json for original contributions. Input data, articles, dictionary content, translations and external model/code rights remain separate. Each row identifies a bundled data/model family or a separately accessed upstream source; live services are not claimed to be fully bundled databases.",
   "",

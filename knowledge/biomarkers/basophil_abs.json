@@ -62,17 +62,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 12.6,
-    "ciLow": 11.4,
-    "ciHigh": 32,
-    "studies": 5,
-    "analyte": "Basophils",
-    "matrix": "Whole blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "31841278",

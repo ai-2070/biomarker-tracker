@@ -62,17 +62,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 7.2,
-    "ciLow": 6.6,
-    "ciHigh": 10,
-    "studies": 7,
-    "analyte": "Thrombocytes",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "36126009",

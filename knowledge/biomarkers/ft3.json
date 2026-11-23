@@ -60,17 +60,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 5.1,
-    "ciLow": 4.7,
-    "ciHigh": 7.9,
-    "studies": 4,
-    "analyte": "Triiodothyronine - free (FT3)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "34042535",

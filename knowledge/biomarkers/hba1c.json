@@ -53,17 +53,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 1.2,
-    "ciLow": 0.3,
-    "ciHigh": 7,
-    "studies": 6,
-    "analyte": "Haemoglobin A1c (NGSP)",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "39651986",

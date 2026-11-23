@@ -56,17 +56,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 8.3,
-    "ciLow": 4.3,
-    "ciHigh": 14,
-    "studies": 4,
-    "analyte": "Sex hormone-binding globulin (SHBG)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "40427034",

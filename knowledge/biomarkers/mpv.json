@@ -42,17 +42,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 2.3,
-    "ciLow": 2.2,
-    "ciHigh": 4.3,
-    "studies": 4,
-    "analyte": "Mean platelet volume (MPV)",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "27686008",

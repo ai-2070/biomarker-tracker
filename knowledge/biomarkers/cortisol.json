@@ -62,17 +62,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 16.4,
-    "ciLow": 15.5,
-    "ciHigh": 21.7,
-    "studies": 3,
-    "analyte": "Cortisol",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "26760044",

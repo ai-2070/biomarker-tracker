@@ -56,17 +56,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 11.1,
-    "ciLow": 8.9,
-    "ciHigh": 15.9,
-    "studies": 9,
-    "analyte": "Leukocytes",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "11087187",

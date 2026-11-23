@@ -75,17 +75,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 14.6,
-    "ciLow": 6.3,
-    "ciHigh": 26,
-    "studies": 7,
-    "analyte": "Neutrophils",
-    "matrix": "Whole blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "26554885",

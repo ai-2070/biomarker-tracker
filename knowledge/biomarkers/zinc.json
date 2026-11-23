@@ -57,17 +57,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 8.5,
-    "ciLow": 6.3,
-    "ciHigh": 11,
-    "studies": 6,
-    "analyte": "Zinc",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "26962190",

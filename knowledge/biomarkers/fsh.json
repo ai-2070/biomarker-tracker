@@ -61,17 +61,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 9.5,
-    "ciLow": 8.6,
-    "ciHigh": 17.3,
-    "studies": 3,
-    "analyte": "Follicle stimulating hormone (FSH)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "22344196",

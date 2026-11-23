@@ -51,17 +51,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 45,
-    "ciLow": 39.2,
-    "ciHigh": 58,
-    "studies": 2,
-    "analyte": "Prolactin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "21296991",

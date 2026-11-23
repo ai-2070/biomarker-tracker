@@ -63,7 +63,7 @@ describe("dashboard summary", () => {
   });
 
   it("summarises each blood test and its out-of-range markers", () => {
-    expect(d.draws.length).toBe(13); // ten full tests and three lipid re-tests
+    expect(d.draws.length).toBe(15); // ten full tests and five lipid re-tests
     const lowFerritin = d.draws.find((x) => x.outOfRange.includes("ferritin"));
     expect(lowFerritin).toBeDefined();
     expect(d.lastTest).toBe(d.draws.at(-1)!.date);

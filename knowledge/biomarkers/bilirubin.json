@@ -41,17 +41,6 @@
     "commonCauses": []
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 20.2,
-    "ciLow": 18.6,
-    "ciHigh": 27.2,
-    "studies": 7,
-    "analyte": "Bilirubin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "27995906",

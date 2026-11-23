@@ -49,17 +49,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 4,
-    "ciLow": 3.1,
-    "ciHigh": 5.4,
-    "studies": 9,
-    "analyte": "Potassium",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "27756725",

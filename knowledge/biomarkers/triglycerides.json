@@ -54,17 +54,6 @@
       "evidenceId": "less-alcohol-tg"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 19.8,
-    "ciLow": 17.8,
-    "ciHigh": 24,
-    "studies": 29,
-    "analyte": "Triglycerides",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "31504418",

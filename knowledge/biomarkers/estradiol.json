@@ -65,17 +65,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 15,
-    "ciLow": 15,
-    "ciHigh": 15,
-    "studies": 2,
-    "analyte": "Estradiol",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "23463657",

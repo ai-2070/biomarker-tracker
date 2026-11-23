@@ -16,6 +16,7 @@ import {
 } from "../../apps/server/healthTools";
 import { findMarker } from "../../apps/server/knowledge";
 import { toolStep } from "../../apps/server/steps";
+import { withVariation } from "../helpers";
 import { MockModel } from "./mockModel";
 
 const m = (id: string, biomarkerId: string, date: string, value: number, extra: Partial<Measurement> = {}): Measurement => ({
@@ -101,7 +102,10 @@ describe("health tools", () => {
     const d = markerDetail(snapshot, findMarker("ferritin")!);
     expect(d.results).toHaveLength(2);
     expect(d.trend?.changeSincePrevious).toBe(3);
-    expect(d.normalVariation).toMatchObject({ withinPersonCV: "12.9%" });
+    // No published variation in the app until EFLM allows it (docs/eflm-biological-variation.md).
+    expect(d.normalVariation).toBe("not known for this marker");
+    // With a made-up value the published path still reports it.
+    expect(markerDetail(snapshot, withVariation(findMarker("ferritin")!, 10)).normalVariation).toMatchObject({ withinPersonCV: "10%" });
     expect(d.sources[0]!.id).toMatch(/^PMID:/);
   });
 

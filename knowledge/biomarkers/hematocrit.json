@@ -58,17 +58,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 2.8,
-    "ciLow": 2.2,
-    "ciHigh": 3.1,
-    "studies": 7,
-    "analyte": "Haematocrit (Hct)",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "33285139",

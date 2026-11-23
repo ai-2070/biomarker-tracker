@@ -57,17 +57,6 @@
       "evidenceId": "haem-iron-foods"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 27.6,
-    "ciLow": 19.8,
-    "ciHigh": 30.4,
-    "studies": 4,
-    "analyte": "Iron",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "33285139",

@@ -13,7 +13,7 @@ import {
 } from "@bt/shared/core/experiments";
 import type { Experiment } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
-import { def, measurement } from "../helpers";
+import { def, measurement, withVariation } from "../helpers";
 
 const exp = (extra: Partial<Experiment> = {}): Experiment => ({
   id: "e1",
@@ -84,7 +84,7 @@ describe("before and after windows", () => {
 });
 
 describe("analyzeMarker", () => {
-  const ferritin = def("ferritin"); // CVI 12.9 %
+  const ferritin = withVariation(def("ferritin"), 10); // made-up CVI 10 %
 
   it("needs a baseline", () => {
     expect(analyzeMarker(exp(), ferritin, []).verdict).toBe("no-baseline");

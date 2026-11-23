@@ -60,17 +60,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 13.3,
-    "ciLow": 13.1,
-    "ciHigh": 19.3,
-    "studies": 5,
-    "analyte": "Monocytes",
-    "matrix": "Whole blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "26760415",

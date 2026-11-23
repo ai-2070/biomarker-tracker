@@ -62,17 +62,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 25.4,
-    "ciLow": 21.1,
-    "ciHigh": 37.1,
-    "studies": 4,
-    "analyte": "Insulin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "17272483",

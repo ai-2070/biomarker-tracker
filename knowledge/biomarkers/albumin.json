@@ -43,17 +43,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 2.5,
-    "ciLow": 1.2,
-    "ciHigh": 3,
-    "studies": 14,
-    "analyte": "Albumin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "29676998",

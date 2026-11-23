@@ -52,17 +52,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 6.1,
-    "ciLow": 4.6,
-    "ciHigh": 8.8,
-    "studies": 3,
-    "analyte": "Homocysteine - total (tHcy)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "14709635",

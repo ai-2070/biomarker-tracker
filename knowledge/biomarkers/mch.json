@@ -45,17 +45,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 0.7,
-    "ciLow": 0.3,
-    "ciHigh": 1.6,
-    "studies": 7,
-    "analyte": "Mean corpuscular haemoglobin (MCH)",
-    "matrix": "Whole Blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "25946282",

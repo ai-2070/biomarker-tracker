@@ -71,17 +71,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 7.7,
-    "ciLow": 5.7,
-    "ciHigh": 8.6,
-    "studies": 16,
-    "analyte": "Phosphate",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "16194637",

@@ -52,17 +52,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 4.4,
-    "ciLow": 2.3,
-    "ciHigh": 4.7,
-    "studies": 15,
-    "analyte": "Creatinine",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "38490803",

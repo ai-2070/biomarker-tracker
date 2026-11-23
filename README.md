@@ -151,7 +151,7 @@ Optional profile information includes the latest recorded weight on or before th
 
 ### Habits and self-experiments
 
-Log supplements, diet changes, medicines and routines, then watch chosen markers. "What changed" compares before and after against that marker's normal test-to-test variation, using data from the EFLM Biological Variation Database. That way, a real change can be told apart from noise. Results are framed as what happened in you, never as evidence for others.
+Log supplements, diet changes, medicines and routines, then watch chosen markers. "What changed" compares before and after against that marker's normal test-to-test variation, estimated from your own results (at least 3 before and 3 after). That way, a real change can be told apart from noise. Results are framed as what happened in you, never as evidence for others.
 
 <img src="docs/screenshots/habit-experiment.png" alt="A habit, oats and beans every day for more fibre, with LDL cholesterol falling 18 % and total cholesterol 12 %, both beyond the shaded band of normal test-to-test variation" width="100%">
 

@@ -54,17 +54,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 9.7,
-    "ciLow": 4.3,
-    "ciHigh": 26.7,
-    "studies": 7,
-    "analyte": "Lipoprotein (a)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "36036785",

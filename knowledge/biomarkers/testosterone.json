@@ -79,17 +79,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 14.3,
-    "ciLow": 10.9,
-    "ciHigh": 16.4,
-    "studies": 6,
-    "analyte": "Testosterone",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "29562364",

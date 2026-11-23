@@ -66,17 +66,6 @@
       "evidenceId": "iron-supplements-ferritin"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 12.9,
-    "ciLow": 12.8,
-    "ciHigh": 16.9,
-    "studies": 2,
-    "analyte": "Ferritin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "33285139",

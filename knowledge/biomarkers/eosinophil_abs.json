@@ -65,17 +65,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 15.2,
-    "ciLow": 12.4,
-    "ciHigh": 26.9,
-    "studies": 5,
-    "analyte": "Eosinophils",
-    "matrix": "Whole blood",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-04"
-  },
   "sources": [
     {
       "pmid": "42677931",

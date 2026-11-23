@@ -54,17 +54,6 @@
       "evidenceId": "replace-saturated-fat-ldl"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 7.6,
-    "ciLow": 7,
-    "ciHigh": 8.5,
-    "studies": 14,
-    "analyte": "LDL Cholesterol",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "31504418",

@@ -51,17 +51,6 @@
       "evidenceId": "b12-foods"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 7.2,
-    "ciLow": 5.8,
-    "ciHigh": 8.6,
-    "studies": 4,
-    "analyte": "Cobalamin",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "23301732",

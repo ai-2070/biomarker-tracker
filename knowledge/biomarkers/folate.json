@@ -53,17 +53,6 @@
       "evidenceId": "folate-foods"
     }
   ],
-  "biologicalVariation": {
-    "cvi": 11.2,
-    "ciLow": 10.3,
-    "ciHigh": 13,
-    "studies": 3,
-    "analyte": "Folate",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-10-28"
-  },
   "sources": [
     {
       "pmid": "24942828",

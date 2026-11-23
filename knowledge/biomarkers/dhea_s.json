@@ -64,17 +64,6 @@
     ]
   },
   "affectedBy": [],
-  "biologicalVariation": {
-    "cvi": 20,
-    "ciLow": 17.4,
-    "ciHigh": 23.1,
-    "studies": 1,
-    "analyte": "Dehydroepiandrosterone sulphate (DHEAS)",
-    "matrix": "Serum/plasma",
-    "source": "EFLM Biological Variation Database",
-    "url": "https://biologicalvariation.eu/meta_calculations",
-    "retrieved": "2026-11-20"
-  },
   "sources": [
     {
       "pmid": "18599883",
