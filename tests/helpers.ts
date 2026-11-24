@@ -22,7 +22,7 @@ export function def(id: string): BiomarkerDef {
 
 /**
  * A marker with a made-up within-person variation (CVI, %), for testing the published-variation code
- * path. The real EFLM values aren't in the app until EFLM allows it (docs/eflm-biological-variation.md),
+ * path. EFLM's values aren't in the app (it needs a paid licence, docs/eflm-biological-variation.md),
  * so tests never use or copy them.
  */
 export function withVariation(d: BiomarkerDef, cvi: number): BiomarkerDef {

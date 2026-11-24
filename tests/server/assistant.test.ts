@@ -102,7 +102,7 @@ describe("health tools", () => {
     const d = markerDetail(snapshot, findMarker("ferritin")!);
     expect(d.results).toHaveLength(2);
     expect(d.trend?.changeSincePrevious).toBe(3);
-    // No published variation in the app until EFLM allows it (docs/eflm-biological-variation.md).
+    // No published variation is bundled (docs/eflm-biological-variation.md).
     expect(d.normalVariation).toBe("not known for this marker");
     // With a made-up value the published path still reports it.
     expect(markerDetail(snapshot, withVariation(findMarker("ferritin")!, 10)).normalVariation).toMatchObject({ withinPersonCV: "10%" });

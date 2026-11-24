@@ -1,7 +1,8 @@
-# EFLM biological variation data: what the app used, and how to put it back
+# EFLM biological variation data: what the app used, and why it is gone
 
-**Status (2026-11-23): removed.** The values are not in the app, the installers or the current files. They come back only if
-the European Federation of Clinical Chemistry and Laboratory Medicine (EFLM) gives written permission.
+**Status (2026-11-24): removed for good.** The values are not in the app, the installers, the current files or the
+repository's history. The European Federation of Clinical Chemistry and Laboratory Medicine (EFLM) allows its data in
+third-party software only under a paid licence, which this free app declined.
 
 ## Why it was removed
 
@@ -9,7 +10,16 @@ The [EFLM Biological Variation Database](https://biologicalvariation.eu/) allows
 use with acknowledgement. Putting its content into "another database, software application, digital product or service", or
 extracting or redistributing it systematically, needs prior written permission and a written agreement with EFLM, and is
 subject to a fee. This app did both: it copied values into its marker files and shipped them in a public repository and in
-installers. Being free and open source doesn't change that, so the values were taken out until EFLM decides.
+installers. Being free and open source doesn't change that, so the values were taken out on 2026-11-23 and EFLM was asked.
+
+## EFLM's answer (2026-11-24)
+
+The chair of EFLM's committee for the Biological Variation Database (TC-BVD) replied that its data may not be
+systematically reproduced in, incorporated into or redistributed through third-party applications, software, databases or
+websites. Requests are considered individually; where reuse is allowed, it needs a formal agreement covering scope,
+attribution and keeping the data up to date (EFLM revises its estimates as new studies appear, and copies can go out of
+date), and an annual licence fee of EUR 6,000. The project replied that, as a free non-commercial app, it can't take on
+the fee, that the values stay out, and that it would welcome hearing of any exception for free non-commercial tools.
 
 ## What was used
 
@@ -72,17 +82,23 @@ Variation Database (within-person variation, CVI)", Brain's answers named the so
   person's own variation.
 - `DATA-LICENSES.md`, the README and CLAUDE.md say the values were removed.
 
-**The repository's history still contains the values** (every commit up to `b4d3ee2`). Removing them from history means
-rewriting it and force-pushing, which affects everyone who has cloned it; that hasn't been done.
+**The history was cleaned on 2026-11-24.** Every earlier version of the 61 files was rewritten without the record
+(`git filter-repo`, removing exactly the block the removal commit deleted), and every branch and the `v1.0.0` tag were
+force-pushed. Each branch tip from the removal onwards kept its exact content; older branches lost only those lines. All
+commit IDs changed. The repository had no forks then. GitHub can keep unreferenced old commits for a while; its support
+can purge them. The restore tool that read the values from history was deleted, since nothing is left to restore from.
 
-## Putting it back
+## If this changes
 
-Only after EFLM's written permission, and within whatever it allows (attribution wording, fee, scope):
+Only with a signed agreement with EFLM, and within whatever it allows (attribution wording, fee, scope, how often the
+values must be updated):
 
-1. `bun tools/eflm/restore.ts` puts every record back from `b4d3ee2`, byte for byte, into the files that still exist.
-   Markers added since then have no record; copy theirs from EFLM if the agreement covers it.
-2. Bring back the Habits page's credit paragraph in `ExperimentsPage.tsx` (from `b4d3ee2`), adjusted to EFLM's wording.
-3. Update the EFLM row in `apps/web/src/app/dataLicenses.json` (location, terms, the agreement's date) and run
-   `bun tools/data-licenses.ts`; update the README and CLAUDE.md.
-4. Optionally go back to two LDL tests on each side in the example profile (`packages/shared/src/core/demo.ts`).
-5. `bun run check`, `bun run test`, `bun run build`.
+1. Take the current values from EFLM under that agreement (the old copies are gone and would be out of date anyway) and
+   add `biologicalVariation` to each marker file before `sources`, with the fields above. The code needs no changes.
+2. Add a credit to the Habits page's "How to read this" in `ExperimentsPage.tsx`, in EFLM's wording.
+3. Update the EFLM row in `apps/web/src/app/dataLicenses.json` (location, terms, the agreement's date), run
+   `bun tools/data-licenses.ts`, and update the README and CLAUDE.md.
+4. `bun run check`, `bun run test`, `bun run build`.
+
+Taking a marker's within-person variation from one primary published study, cited like any other source, is a different
+thing from copying EFLM's combined estimates; it hasn't been done, and EFLM's estimates must not be copied that way.
