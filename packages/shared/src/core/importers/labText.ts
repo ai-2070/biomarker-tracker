@@ -392,6 +392,18 @@ export interface ParseOptions {
   monthFirst?: boolean;
 }
 
+/**
+ * Applies the test date the person entered before reading the report. Their date wins; when the report prints a
+ * different one, the note says so, so the review screen asks which is right instead of silently choosing.
+ */
+export function withTestDate(report: ParsedReport, date: string | undefined): ParsedReport {
+  if (!date) return report;
+  const { dateNote: _note, ...rest } = report;
+  if (report.date && report.date !== date)
+    return { ...rest, date, dateNote: `The report shows ${report.date}, but the date you entered (${date}) is used. Check which is right.` };
+  return { ...rest, date };
+}
+
 export function parseLabText(text: string, defs: readonly BiomarkerDef[], options: ParseOptions = {}): ParsedReport {
   const aliases = buildAliases(defs);
   const byId = new Map(defs.map((d) => [d.id, d]));

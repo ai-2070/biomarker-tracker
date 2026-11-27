@@ -1,6 +1,7 @@
 import { Field } from "@base-ui/react/field";
 import { providerInfo, takesPictures } from "@bt/shared/core/aiProviders";
-import { type ParsedReport, parseLabText } from "@bt/shared/core/importers/labText";
+import { todayIso } from "@bt/shared/core/dates";
+import { type ParsedReport, parseLabText, withTestDate } from "@bt/shared/core/importers/labText";
 import { flagMeasurement, isCritical } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
 import { useState } from "react";
@@ -9,7 +10,7 @@ import type { PreparedPhoto } from "../brain/photo";
 import { readWithBrain } from "../brain/store";
 import { CriticalBanner } from "../components/CriticalBanner";
 import { isImage, isPdf, monthFirst, Review } from "../components/LabReview";
-import { Button, Card, FlagBadge, inputStyles, LinkButton, Notice, PageTitle } from "../components/ui";
+import { Button, Card, FlagBadge, inputStyles, LinkButton, labelStyles, Notice, PageTitle } from "../components/ui";
 import { formatDate, showMeasurement } from "../format";
 import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
@@ -45,8 +46,8 @@ export function ImportPage() {
       <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
       {step.name === "pick" && (
         <PickFile
-          onParsed={(fileName, text, file) =>
-            setStep({ name: "review", fileName, ...(file ? { file } : {}), report: parseLabText(text, BLOOD_MARKERS, { monthFirst }) })
+          onParsed={(fileName, text, file, date) =>
+            setStep({ name: "review", fileName, ...(file ? { file } : {}), report: withTestDate(parseLabText(text, BLOOD_MARKERS, { monthFirst }), date) })
           }
         />
       )}
@@ -85,19 +86,23 @@ interface PictureFile {
   pages?: PreparedPhoto[];
 }
 
-function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined) => void }) {
+function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined, date: string | undefined) => void }) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<{ fraction: number; stage: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [picture, setPicture] = useState<PictureFile | null>(null);
   const [toBrain, setToBrain] = useState<string | null>(null);
   const [pasted, setPasted] = useState("");
+  /** When the blood was taken, if the person knows; empty uses the date printed on the report. */
+  const [testDate, setTestDate] = useState("");
+  const today = todayIso();
+  const entered = testDate && testDate <= today ? testDate : undefined;
 
   /** Photos and scanned PDFs go to Brain as pictures, once the person confirms; it reads the results and shows them for checking. */
   async function sendToBrain({ file, pages }: PictureFile) {
     setPicture(null);
     setToBrain(file.name);
-    await readWithBrain(file, pages);
+    await readWithBrain(file, pages, entered);
   }
 
   async function onFile(file: File | undefined) {
@@ -113,7 +118,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
       const { readPdf } = await import("../pdf");
       const pdf = await readPdf(file, (fraction, stage) => setProgress({ fraction, stage }));
       if (pdf.kind === "pages") setPicture({ file, pages: pdf.pages });
-      else onParsed(file.name, pdf.text, file);
+      else onParsed(file.name, pdf.text, file, entered);
     } catch (e) {
       setError(e instanceof Error ? e.message : "This file couldn't be read.");
     } finally {
@@ -134,6 +139,13 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take the photo
           right here.
         </p>
+        <Field.Root className="flex max-w-xs flex-col gap-1.5">
+          <Field.Label className={labelStyles}>Date of the blood test</Field.Label>
+          <Field.Control type="date" value={testDate} max={today} onValueChange={setTestDate} className={inputStyles} />
+          <Field.Description className="text-sm text-ink-2">
+            Leave empty to use the date printed on the report. If none is found, you're asked before anything is saved.
+          </Field.Description>
+        </Field.Root>
         <label className="flex flex-col gap-1.5">
           <span className="sr-only">Lab report PDF or photo</span>
           <input
@@ -188,7 +200,7 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           />
         </Field.Root>
         <div>
-          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted, undefined)}>
+          <Button variant="secondary" disabled={pasted.trim() === ""} onClick={() => onParsed("Pasted text", pasted, undefined, entered)}>
             Read pasted text
           </Button>
         </div>

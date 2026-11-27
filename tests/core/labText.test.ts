@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { candidateUnits, findDate, foldLabName, type ParsedRow, parseLabText, truncatedUnit } from "@bt/shared/core/importers/labText";
+import { candidateUnits, findDate, foldLabName, type ParsedRow, parseLabText, truncatedUnit, withTestDate } from "@bt/shared/core/importers/labText";
 import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { piecesToLines } from "@bt/shared/core/importers/pdfText";
 import { describe, expect, it } from "vitest";
@@ -383,5 +383,28 @@ describe("DunedinPACE from a DNA test report", () => {
     const row = r.rows.find((x) => x.biomarkerId === "dunedinpace")!;
     expect(row).toMatchObject({ value: "0.83", unit: "years/year" });
     expect(row.notes.join(" ")).toMatch(/No unit printed/);
+  });
+});
+
+describe("withTestDate", () => {
+  const rows: ParsedRow[] = [];
+  it("leaves the report alone when no date was entered", () => {
+    const report = { rows, unmatched: [], date: "2025-03-01", dateNote: "Day and month order unclear." };
+    expect(withTestDate(report, undefined)).toBe(report);
+  });
+  it("fills the entered date and drops a note about a missing date", () => {
+    expect(withTestDate({ rows, unmatched: [], dateNote: "No sample date was found." }, "2025-03-04")).toEqual({ rows, unmatched: [], date: "2025-03-04" });
+  });
+  it("uses the entered date but says so when the report prints another", () => {
+    const out = withTestDate({ rows, unmatched: [], date: "2025-03-01" }, "2025-03-04");
+    expect(out.date).toBe("2025-03-04");
+    expect(out.dateNote).toContain("2025-03-01");
+  });
+  it("agrees quietly when both dates match", () => {
+    expect(withTestDate({ rows, unmatched: [], date: "2025-03-04", dateNote: "Day and month order unclear." }, "2025-03-04")).toEqual({
+      rows,
+      unmatched: [],
+      date: "2025-03-04",
+    });
   });
 });

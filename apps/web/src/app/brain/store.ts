@@ -2,7 +2,7 @@ import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { type AssistantProposalContext, type ProposalIntent, proposalIntent, proposalIssue } from "@bt/shared/core/assistantProposal";
 import { todayIso } from "@bt/shared/core/dates";
 import { type HabitProposal, parseHabitProposal } from "@bt/shared/core/habitProposal";
-import { type ParsedReport, parseLabText } from "@bt/shared/core/importers/labText";
+import { type ParsedReport, parseLabText, withTestDate } from "@bt/shared/core/importers/labText";
 import { criticalResults, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
 import { type Meal, validateMeal } from "@bt/shared/core/meals";
 import { measurementsIn } from "@bt/shared/core/measurementCompletion";
@@ -275,12 +275,16 @@ export const removeAttachment = (id: string) => setThread("personal", (s) => ({ 
 /** What the Import page asks when it hands Brain a photo or a scanned report. */
 export const READ_REPORT_QUESTION = "Read the results in this report and show them to me to check.";
 
+/** Test dates the person entered on the Import page before sending a picture; they win over the date Brain reads. */
+const testDates = new WeakMap<File, string>();
+
 /**
  * A photo or scanned PDF from the Import page: opens Brain with it attached and asks Brain to read the results,
  * which come back as a review card. `pages`: a scanned PDF's pages as the Import page already prepared them.
  * Without a ready model the question waits in the question box.
  */
-export async function readWithBrain(file: File, pages?: PreparedPhoto[]): Promise<void> {
+export async function readWithBrain(file: File, pages?: PreparedPhoto[], testDate?: string): Promise<void> {
+  if (testDate) testDates.set(file, testDate);
   changeScope("personal");
   set((s) => ({ open: true, focusTick: s.focusTick + 1 }));
   // A scanned PDF's pages, already drawn by the Import page, are attached as they are rather than drawn again.
@@ -402,7 +406,8 @@ export function resultTurns(steps: readonly Step[], files: File[], today: string
       return [];
     const r = parseResultProposal((st.output as { shownToPerson?: unknown }).shownToPerson, BIOMARKER_MAP, today);
     if (!r.ok) return [];
-    return [{ id: newId(), role: "review", fileName, files, fromPicture: true, report: r.report, state: "open", kind: proposalKind(r.report, BIOMARKER_MAP) }];
+    const report = withTestDate(r.report, files.map((f) => testDates.get(f)).find(Boolean));
+    return [{ id: newId(), role: "review", fileName, files, fromPicture: true, report, state: "open", kind: proposalKind(report, BIOMARKER_MAP) }];
   });
 }
 

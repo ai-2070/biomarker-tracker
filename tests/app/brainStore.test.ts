@@ -701,6 +701,16 @@ describe("results Brain read from photos", () => {
     });
   });
 
+  it("uses the test date entered on the Import page over the date Brain read", async () => {
+    const photo = new File(["photo"], "dated.jpg", { type: "image/jpeg" });
+    await brain.readWithBrain(photo, undefined, "2025-02-03");
+    const [card] = brain.resultTurns([proposal([{ marker: "ferritin", value: "45", unit: "µg/L" }], "2025-02-01")], [photo], "2026-10-30");
+    expect(card).toMatchObject({ role: "review", report: { date: "2025-02-03" } });
+    expect((card as { report: { dateNote?: string } }).report.dateNote).toContain("2025-02-01");
+    const [undated] = brain.resultTurns([proposal([{ marker: "ferritin", value: "45", unit: "µg/L" }])], [photo], "2026-10-30");
+    expect(undated).toMatchObject({ report: { date: "2025-02-03" } });
+  });
+
   it("attaches a scanned PDF's pages the Import page already drew, without reading the PDF again", async () => {
     const pdf = new File(["%PDF"], "scan.pdf", { type: "application/pdf" });
     const pages = [
