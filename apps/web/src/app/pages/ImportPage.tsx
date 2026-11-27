@@ -16,10 +16,12 @@ import { useProfile } from "../hooks";
 import { BIOMARKER_MAP, BLOOD_MARKERS, fullName } from "../knowledge";
 import { uploadFile, useProfiles } from "../profiles";
 import { href } from "../router";
+import { BulkImport } from "./BulkImport";
 
 type Step =
   | { name: "pick" }
   | { name: "review"; fileName: string; file?: File; report: ParsedReport }
+  | { name: "bulk"; files: File[] }
   | { name: "done"; saved: Measurement[]; skipped: number; kept?: string; keepError?: string };
 
 export function ImportPage() {
@@ -43,14 +45,18 @@ export function ImportPage() {
 
   return (
     <>
-      <PageTitle sub="Read results from a lab report PDF or a photo of one. You check every value before anything is saved.">Import a lab report</PageTitle>
+      <PageTitle sub="Read results from lab report PDFs or photos, one or many at once. You check every value before anything is saved.">
+        Import lab reports
+      </PageTitle>
       {step.name === "pick" && (
         <PickFile
           onParsed={(fileName, text, file, date) =>
             setStep({ name: "review", fileName, ...(file ? { file } : {}), report: withTestDate(parseLabText(text, BLOOD_MARKERS, { monthFirst }), date) })
           }
+          onMany={(files) => setStep({ name: "bulk", files })}
         />
       )}
+      {step.name === "bulk" && <BulkImport files={step.files} onCancel={() => setStep({ name: "pick" })} />}
       {step.name === "review" && (
         <Review
           fileName={step.fileName}
@@ -86,7 +92,14 @@ interface PictureFile {
   pages?: PreparedPhoto[];
 }
 
-function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, file: File | undefined, date: string | undefined) => void }) {
+function PickFile({
+  onParsed,
+  onMany,
+}: {
+  onParsed: (fileName: string, text: string, file: File | undefined, date: string | undefined) => void;
+  /** Several files chosen at once: one review per blood test (BulkImport). */
+  onMany: (files: File[]) => void;
+}) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState<{ fraction: number; stage: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -130,10 +143,13 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
   return (
     <div className="flex flex-col gap-5">
       <Card className="flex flex-col gap-3">
-        <h2 className="font-serif text-2xl font-normal">Choose a PDF or a photo</h2>
+        <h2 className="font-serif text-2xl font-normal">Choose PDFs or photos</h2>
         <p className="text-ink-2">
           A PDF with text is read on this device: nothing is uploaded. A photo or a scanned PDF can be sent to Brain, the AI model you chose, which reads the
           results and shows them to you to check. You're asked first. Only the values you confirm are saved.
+        </p>
+        <p className="text-ink-2">
+          Have years of reports? Choose them all at once: each blood test gets its own review, oldest first, and repeats are left out.
         </p>
         <p className="text-sm text-ink-2">
           For photos: lay the page flat, use good light, and take it straight from above with the whole table in the picture. On a phone you can take the photo
@@ -143,17 +159,21 @@ function PickFile({ onParsed }: { onParsed: (fileName: string, text: string, fil
           <Field.Label className={labelStyles}>Date of the blood test</Field.Label>
           <Field.Control type="date" value={testDate} max={today} onValueChange={setTestDate} className={inputStyles} />
           <Field.Description className="text-sm text-ink-2">
-            Leave empty to use the date printed on the report. If none is found, you're asked before anything is saved.
+            Leave empty to use the date printed on the report. If none is found, you're asked before anything is saved. With several files, each report's own
+            date is used.
           </Field.Description>
         </Field.Root>
         <label className="flex flex-col gap-1.5">
-          <span className="sr-only">Lab report PDF or photo</span>
+          <span className="sr-only">Lab report PDFs or photos</span>
           <input
             type="file"
+            multiple
             accept="application/pdf,.pdf,image/*"
             disabled={busy}
             onChange={(e) => {
-              void onFile(e.target.files?.[0]);
+              const chosen = [...(e.target.files ?? [])];
+              if (chosen.length > 1) onMany(chosen);
+              else void onFile(chosen[0]);
               e.target.value = "";
             }}
             className="min-h-11 text-base file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-lg file:border-0 file:bg-accent file:px-4 file:text-base file:font-medium file:text-accent-ink"
