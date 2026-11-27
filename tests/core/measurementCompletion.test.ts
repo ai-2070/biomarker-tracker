@@ -77,4 +77,10 @@ describe("current measurements stated in personal chat", () => {
     ]);
     expect(read(`My ${systolic.name} is 80 mmHg. My ${diastolic.name} is 120 mmHg`)).toEqual([]);
   });
+
+  it("leaves requests to delete or correct a reading to Brain's changes", () => {
+    expect(read("Delete my weight 80 kg from today")).toEqual([]);
+    expect(read("My weight 82 kg today was wrong")).toEqual([]);
+    expect(read("My weight is 80 kg")).toHaveLength(1);
+  });
 });

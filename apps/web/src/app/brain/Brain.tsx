@@ -14,6 +14,7 @@ import { HistoryList } from "./HistoryList";
 import { brainShortcut, INTERACTIVE_SELECTOR } from "./logic";
 import { type BrainSettings, goToSettings, modelLabel, useBrainSettings } from "./menus";
 import { addFiles, backToMyChat, closeBrain, newConversation, openBrain, openChat, send, type Turn, takePending, toggleBrain, useBrain } from "./store";
+import { ChangesTurn } from "./turns/ChangesTurn";
 import { HabitTurn } from "./turns/HabitTurn";
 import { LiveTurn, StepList } from "./turns/LiveTurn";
 import { MealTurn } from "./turns/MealTurn";
@@ -465,6 +466,8 @@ function TurnView({ turn: t, allowed, model }: { turn: Turn; allowed: ReadonlySe
       return <ReviewTurn turn={t} model={model} />;
     case "profile":
       return <ProfileTurn turn={t} />;
+    case "changes":
+      return <ChangesTurn turn={t} />;
     case "habit":
       return <HabitTurn turn={t} />;
     case "protocol":

@@ -18,6 +18,7 @@ const mocks = vi.hoisted(() => ({
   setting: vi.fn<() => Promise<{ key: string; value: unknown } | undefined>>(),
   fillProfile: vi.fn<(...args: unknown[]) => Promise<ProfileFillResult>>(),
   shrinkPhoto: vi.fn<() => Promise<{ mediaType: "image/jpeg"; data: string }>>(),
+  applyChanges: vi.fn<(...args: unknown[]) => Promise<unknown>>(),
 }));
 
 // Exercise the real external store without mounting a UI or loading PDF workers.
@@ -45,6 +46,7 @@ vi.mock("../../apps/web/src/db/db", () => ({
   fillPersonalDetails: mocks.fillProfile,
   LOADED_PROFILE_KEY: "loadedProfile",
 }));
+vi.mock("../../apps/web/src/db/brainChanges", () => ({ applyBrainChanges: mocks.applyChanges }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ EXPIRATION_KEY: "showExpirationDate", MORTALITY_ACTIVITY_KEY: "mortalityActivityIsLeisure" }));
 vi.mock("../../apps/web/src/app/knowledge", () => ({
   BLOOD_MARKERS: [ferritin],
@@ -71,6 +73,12 @@ beforeEach(async () => {
   mocks.setting.mockResolvedValue(undefined);
   mocks.fillProfile.mockResolvedValue({ profile: {}, added: [], rejected: [], measurementsAdded: [], sameProfile: true });
   mocks.shrinkPhoto.mockResolvedValue({ mediaType: "image/jpeg", data: "PRIVATE_PHOTO" });
+  mocks.applyChanges.mockResolvedValue({
+    ok: true,
+    done: ["Deleted Ferritin 45 µg/L (2025-03-12)."],
+    saveOpenCard: false,
+    undo: [{ table: "measurements", key: "m1" }],
+  });
   // Reload deliberately: every test needs fresh private thread/request state.
   brain = await import("../../apps/web/src/app/brain/store");
 });
@@ -786,5 +794,61 @@ describe("conversation history", () => {
     await brain.send("Model");
     await vi.advanceTimersByTimeAsync(700);
     expect(loadChats().filter((c) => c.title.includes("astaxanthin"))).toEqual([]);
+  });
+});
+
+describe("changes Brain makes when asked", () => {
+  const change = (input: object, extra: object = {}) => ({ tool: "change_data", input: JSON.stringify(input), validated: true, success: true, ...extra });
+  const del = { quote: "delete my ferritin", changes: [{ kind: "delete_results", marker: "ferritin", date: "2025-03-12" }] };
+
+  it("applies a confirmed change_data call with the typed question, and shows a receipt with Undo after the answer", async () => {
+    mocks.api.mockResolvedValue({ ...reply("I deleted your ferritin result from 12 March."), steps: [change(del)] });
+    await brain.send("Personal model", "please delete my ferritin from 12 March");
+    expect(mocks.applyChanges).toHaveBeenCalledWith(del, expect.objectContaining({ userText: "please delete my ferritin from 12 March" }));
+    const turns = brain.useBrain().turns;
+    expect(turns.map((t) => t.role)).toEqual(["user", "assistant", "changes"]);
+    expect(turns[2]).toMatchObject({ state: "applied", done: ["Deleted Ferritin 45 µg/L (2025-03-12)."] });
+  });
+
+  it("never applies unconfirmed, failed or research-server lookalike calls", async () => {
+    mocks.api.mockResolvedValue({
+      ...reply(),
+      steps: [change(del, { validated: false }), change(del, { server: "lookalike" }), { ...change(del), tool: "change_data_x" }],
+    });
+    await brain.send("Personal model", "delete my ferritin");
+    expect(mocks.applyChanges).not.toHaveBeenCalled();
+  });
+
+  it("shows why nothing changed when the page refuses", async () => {
+    mocks.applyChanges.mockResolvedValue({ ok: false, error: "No saved result matches Ferritin on 2025-05-01. Nothing was changed." });
+    mocks.api.mockResolvedValue({ ...reply(), steps: [change(del)] });
+    await brain.send("Personal model", "delete my ferritin");
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({ role: "changes", state: "failed", error: expect.stringContaining("Nothing was changed") });
+  });
+
+  it('"save them" saves the open review card, and says so when none is open', async () => {
+    mocks.applyChanges.mockResolvedValue({ ok: true, done: [], saveOpenCard: true, undo: [] });
+    const saveCall = change({ quote: "save them", changes: [{ kind: "save_open_card" }] });
+    mocks.api.mockResolvedValue({ ...reply(), steps: [saveCall] });
+    await brain.send("Personal model", "save them");
+    expect(brain.useBrain().turns.at(-1)).toMatchObject({ role: "changes", state: "failed", error: "There's no open review card to save." });
+
+    await brain.addFiles([new File(["photo"], "report.jpg", { type: "image/jpeg" })]);
+    mocks.api.mockResolvedValueOnce({
+      ...reply("I read one result."),
+      steps: [
+        {
+          tool: "propose_results",
+          input: "{}",
+          validated: true,
+          success: true,
+          output: { shownToPerson: { results: [{ marker: "ferritin", value: "45", unit: "ug/L" }] } },
+        },
+      ],
+    });
+    await brain.send("Personal model", "Read it");
+    await brain.send("Personal model", "save them");
+    const card = brain.useBrain().turns.find((t) => t.role === "review");
+    expect(card).toMatchObject({ state: "open", saveRequest: expect.any(Number) });
   });
 });

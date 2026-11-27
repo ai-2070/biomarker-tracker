@@ -69,6 +69,7 @@ export function ReviewTurn({ turn, model }: { turn: Extract<Turn, { role: "revie
         report={turn.report}
         inChat
         kind={turn.kind ?? "lab"}
+        {...(turn.saveRequest ? { saveRequest: turn.saveRequest } : {})}
         onCancel={() => updateTurn(turn.id, { state: "dismissed" })}
         onSaved={(l, s, d) => void saved(l, s, d)}
       />

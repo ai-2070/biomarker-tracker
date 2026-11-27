@@ -8,6 +8,8 @@ import type { BiomarkerDef, Measurement } from "./types";
 export function measurementsIn(userText: string, today: string, defs: ReadonlyMap<string, BiomarkerDef>): Omit<Measurement, "id">[] {
   const lines: string[] = [];
   for (const statement of measurementStatementsIn(userText)) {
+    // Deleting or correcting a reading is a change Brain makes on request (change_data), not a new reading.
+    if (/\b(?:delete|deleting|remove|removing|erase|wrong|mistake|incorrect|correct|correction|change|edit|fix|undo)\b/i.test(statement)) continue;
     const training = /\b(?:lift|lifting|lifted|deadlift|squat|bench|barbell|dumbbell|carry|carrying)\b/i.test(statement);
     for (const part of statement.split(/,(?!\d)|(?<!\d),|\s+and\s+/i)) {
       let line = part

@@ -212,6 +212,7 @@ describe("protocols", () => {
     };
     expect(out.habits).toEqual([
       {
+        id: routine.id,
         label: routine.label,
         type: routine.category,
         start: routine.start,
@@ -335,6 +336,37 @@ describe("habit suggestions", () => {
     const long = { label: "Walk after dinner", category: "lifestyle", reason: "r".repeat(280) };
     expect(JSON.parse(toolStep("propose_habit", long).input)).toEqual(long);
     expect(toolStep("get_marker", { marker: "x".repeat(300) }).input.length).toBe(200);
+  });
+});
+
+describe("changes Brain makes when asked", () => {
+  const call = (snap: HealthSnapshot, input: unknown, userText?: string) =>
+    healthTools(snap, fetch, userText ? { userText } : {}).change_data!.execute!(input as never, { toolCallId: "t", messages: [] } as never) as Promise<
+      Record<string, unknown>
+    >;
+  const del = { quote: "delete my ferritin from january", changes: [{ kind: "delete_results", marker: "ferritin", date: "2024-01-10" }] };
+
+  it("refuses without the person's typed words, and when the quote isn't theirs", async () => {
+    expect((await call(structuredClone(snapshot), del)).error).toMatch(/typed request/);
+    expect((await call(structuredClone(snapshot), del, "what is ferritin?")).error).toMatch(/own words/);
+  });
+  it("records the person's own medicine next to a critical result, and later tools see the change", async () => {
+    const snap = structuredClone(snapshot);
+    const userText = "delete my ferritin from January and log my metformin 500 mg from today";
+    const r = await call(
+      snap,
+      { ...del, quote: userText, changes: [...del.changes, { kind: "start_habit", label: "Metformin 500 mg", category: "medication" }] },
+      userText,
+    );
+    expect(r.error).toBeUndefined();
+    expect(r.done).toEqual([expect.stringContaining("Deleted Ferritin"), expect.stringContaining('Started the habit "Metformin 500 mg"')]);
+    expect(snap.measurements.some((x) => x.id === "f1")).toBe(false);
+    expect(snap.protocols.at(-1)).toMatchObject({ label: "Metformin 500 mg", category: "medication" });
+  });
+  it("keeps the whole request in the step, so the page can check it again", () => {
+    const step = toolStep("change_data", { ...del, quote: "x".repeat(500) });
+    expect(JSON.parse(step.input).quote).toHaveLength(500);
+    expect(step.validated).toBe(false);
   });
 });
 

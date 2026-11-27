@@ -1,5 +1,6 @@
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { type AssistantProposalContext, type ProposalIntent, proposalIntent, proposalIssue } from "@bt/shared/core/assistantProposal";
+import { parseChangeRequest } from "@bt/shared/core/brainChanges";
 import { todayIso } from "@bt/shared/core/dates";
 import { type HabitProposal, parseHabitProposal } from "@bt/shared/core/habitProposal";
 import { type ParsedReport, parseLabText, withTestDate } from "@bt/shared/core/importers/labText";
@@ -13,6 +14,7 @@ import { safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { flagLatest, groupByBiomarker, isCritical } from "@bt/shared/core/trends";
 import type { BiomarkerDef, Measurement, Profile } from "@bt/shared/core/types";
 import { useSyncExternalStore } from "react";
+import { applyBrainChanges, type UndoEntry } from "../../db/brainChanges";
 import { db, fillPersonalDetails, getProfile, LOADED_PROFILE_KEY } from "../../db/db";
 import { isImage, isPdf, monthFirst } from "../components/LabReview";
 import { EXPIRATION_KEY, MORTALITY_ACTIVITY_KEY } from "../hooks";
@@ -65,6 +67,8 @@ export type Turn =
   | { id: string; role: "stopped" }
   /** Actual persisted additions, never a model's claim that a save happened. */
   | { id: string; role: "profile"; changes: ProfileDetailChange[]; measurements: Measurement[] }
+  /** Changes Brain made because the person asked (change_data), as written to the profile, with Undo. */
+  | { id: string; role: "changes"; done: string[]; undo: UndoEntry[]; state: "applied" | "undone" | "failed"; error?: string; note?: string }
   /** A habit Brain suggested: a card the person edits and confirms (nothing is saved before). */
   | { id: string; role: "habit"; proposal: HabitProposal; state: "open" | "saved" | "dismissed" }
   /** A protocol Brain wrote down from the person's text: a card they check and create. */
@@ -85,6 +89,8 @@ export type Turn =
       kind?: "lab" | "body";
       saved?: Measurement[];
       skipped?: number;
+      /** Bumped when the person tells Brain to save this card ("save them"): the card saves itself, as if Save was pressed. */
+      saveRequest?: number;
       date?: string;
       kept?: string;
       keepError?: string;
@@ -307,6 +313,8 @@ export function addPastedLabText(text: string): boolean {
 }
 export const updateTurn = (id: string, patch: Partial<Extract<Turn, { role: "review" }>>) =>
   setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "review" ? { ...t, ...patch } : t)) }));
+export const updateChanges = (id: string, patch: Partial<Extract<Turn, { role: "changes" }>>) =>
+  setThread("personal", (s) => ({ turns: s.turns.map((t) => (t.id === id && t.role === "changes" ? { ...t, ...patch } : t)) }));
 export const setHabitState = (id: string, state: "saved" | "dismissed") =>
   setThread("personal", (s) => ({
     turns: s.turns.map((t) => (t.id === id && (t.role === "habit" || t.role === "protocol" || t.role === "meal") ? { ...t, state } : t)),
@@ -678,6 +686,34 @@ export async function send(model: string, text?: string): Promise<void> {
         }
       }
     }
+    // Changes the person asked Brain for, checked again here against the data as it is now, all or nothing.
+    const changeTurns: Turn[] = [];
+    let saveOpenCard = false;
+    if (r.ok && snap && question) {
+      for (const step of r.steps) {
+        if (step.server !== undefined || step.tool !== "change_data" || step.validated !== true) continue;
+        let request: ReturnType<typeof parseChangeRequest>;
+        try {
+          request = parseChangeRequest(JSON.parse(step.input));
+        } catch {
+          continue;
+        }
+        if (typeof request === "string") continue;
+        const w = await applyBrainChanges(request, { userText: question, today: questionDate, identity: snap.identity, defs: BIOMARKER_MAP });
+        if (!isCurrent(mine)) return;
+        if (!w.ok && w.otherProfile) return dropLive();
+        if (w.ok && w.saveOpenCard) saveOpenCard = true;
+        if (w.ok && w.done.length === 0) continue;
+        changeTurns.push(
+          w.ok
+            ? { id: newId(), role: "changes", done: w.done, undo: w.undo, state: "applied" }
+            : { id: newId(), role: "changes", done: [], undo: [], state: "failed", error: w.error },
+        );
+      }
+    }
+    const openCard = saveOpenCard ? state.turns.findLast((t) => t.role === "review" && t.state === "open") : undefined;
+    if (saveOpenCard && !openCard)
+      changeTurns.push({ id: newId(), role: "changes", done: [], undo: [], state: "failed", error: "There's no open review card to save." });
     // Results read from pictures go first: a critical one's urgent banner comes before Brain's commentary,
     // and no habit is suggested next to it.
     const results = r.ok && snap && images.length ? resultTurns(r.steps, pictureFiles, questionDate) : [];
@@ -700,6 +736,7 @@ export async function send(model: string, text?: string): Promise<void> {
                 ...(r.note || profileSaveError ? { note: [r.note, profileSaveError].filter(Boolean).join(" ") } : {}),
               },
               ...profileTurns,
+              ...changeTurns,
               ...(snap && !pictureCritical
                 ? habitTurns(r.steps, effectiveMeasurements, questionDate, {
                     requestText: sent,
@@ -710,6 +747,7 @@ export async function send(model: string, text?: string): Promise<void> {
           : [{ id: newId(), role: "error" as const, content: r.error }]),
       ],
     }));
+    if (openCard) updateTurn(openCard.id, { saveRequest: Date.now() });
   } catch (e) {
     if (!isCurrent(mine)) return;
     set((s) => ({

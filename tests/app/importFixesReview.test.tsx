@@ -35,6 +35,8 @@ vi.mock("react", async (original) => ({
   },
   useMemo: (compute: () => unknown) => compute(),
   useId: () => "import-review-test",
+  useRef: (current: unknown) => ({ current }),
+  useEffect: () => {},
 }));
 vi.mock("../../apps/web/src/app/hooks", () => ({ useAllMeasurements: () => state.existing }));
 

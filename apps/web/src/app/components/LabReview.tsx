@@ -6,7 +6,7 @@ import { validateManualEntry } from "@bt/shared/core/importers/manual";
 import { isAlreadySaved } from "@bt/shared/core/trends";
 import type { Measurement } from "@bt/shared/core/types";
 import { listUnits } from "@bt/shared/core/units";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { addMeasurements } from "../../db/db";
 import { useAllMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName } from "../knowledge";
@@ -48,6 +48,7 @@ export function Review({
   onSaved,
   inChat = false,
   kind = "lab",
+  saveRequest,
 }: {
   fileName: string;
   /** Read by Brain from photos or scanned pages, not from a PDF's text. */
@@ -59,6 +60,8 @@ export function Review({
   inChat?: boolean;
   /** "body": values from a health app screenshot (no lab, wording about measurements). */
   kind?: "lab" | "body";
+  /** Changes when the person tells Brain to save this card: it saves as if Save was pressed. */
+  saveRequest?: number;
 }) {
   const existing = useAllMeasurements();
   const today = todayIso();
@@ -85,6 +88,11 @@ export function Review({
 
   const update = (key: string, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch, error: undefined } : r)));
   const included = rows.filter((r) => r.include);
+
+  const saveNow = useRef<() => Promise<void>>(async () => {});
+  useEffect(() => {
+    if (saveRequest) void saveNow.current();
+  }, [saveRequest]);
 
   async function save() {
     const checked = included.map((r) => ({
@@ -134,6 +142,7 @@ export function Review({
       setSaving(false);
     }
   }
+  saveNow.current = save;
 
   if (rows.length === 0) {
     return (
