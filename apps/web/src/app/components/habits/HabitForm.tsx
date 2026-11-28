@@ -3,8 +3,8 @@ import { Field } from "@base-ui/react/field";
 import { BASELINE_WINDOW_DAYS, beforeResults } from "@bt/shared/core/experiments";
 import { chanceNote, defaultRetestDays, suggestMarkers } from "@bt/shared/core/habits";
 import { PHENOAGE_GAP_DEF, PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import type { Weekday } from "@bt/shared/core/plans";
 import { type ProtocolCategory, type ProtocolField, validateProtocol } from "@bt/shared/core/protocols";
-
 import type { Experiment, Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { type FormEvent, type ReactNode, useState } from "react";
 import { createHabit, saveHabit, startPlan } from "../../../db/db";
@@ -14,6 +14,7 @@ import { BIOMARKER_MAP, BIOMARKERS, CATEGORY_ORDER } from "../../knowledge";
 import { MarkerChoice } from "../../pages/ExperimentsPage";
 import { href } from "../../router";
 import { ChoiceGroup } from "../ChoiceGroup";
+import { DaysPicker } from "../PlanWhen";
 import { SegmentTabs } from "../SegmentTabs";
 import { SimpleSelect } from "../UnitSelect";
 import { Button, CheckIcon, errorStyles, helpStyles, inputStyles, labelStyles, Notice } from "../ui";
@@ -153,6 +154,7 @@ export function HabitForm({
   const plan = plans.find((p) => p.id === (planId || plans[0]?.id));
   const [start, setStart] = useState(initial?.start ?? today);
   const [end, setEnd] = useState(initial?.end ?? "");
+  const [schedule, setSchedule] = useState<{ days: Weekday[]; everyOther: boolean }>({ days: initial?.days ?? [], everyOther: initial?.every === 2 });
   const [watching, setWatching] = useState(!!prefillMarker);
   const [markerIds, setMarkerIds] = useState<string[]>(prefillMarker && BIOMARKER_MAP.has(prefillMarker) ? [prefillMarker] : []);
   const [retest, setRetest] = useState("56");
@@ -162,7 +164,7 @@ export function HabitForm({
 
   async function submit(e: FormEvent) {
     e.preventDefault();
-    const r = validateProtocol({ label, category, start, end: planned ? "" : end }, today);
+    const r = validateProtocol({ label, category, start, end: planned ? "" : end, ...(initial?.plan ? {} : schedule) }, today);
     if (!r.ok) return setErrors(r.errors);
     if (!initial && watching && markerIds.length === 0) return setErrors({ markers: "Choose at least one marker, or untick watching." });
     setSaving(true);
@@ -302,6 +304,13 @@ export function HabitForm({
             <Notice>This is only for your own record. Don't start, stop or change a medicine without talking to your doctor.</Notice>
           )}
         </>
+      )}
+
+      {!initial?.plan && (
+        <div className="flex flex-col gap-1">
+          <DaysPicker value={schedule} onChange={setSchedule} />
+          <p className={helpStyles}>Today on the dashboard lists it only on these days, and the calendar counts only them.</p>
+        </div>
       )}
 
       <div className="grid gap-4 sm:grid-cols-2">

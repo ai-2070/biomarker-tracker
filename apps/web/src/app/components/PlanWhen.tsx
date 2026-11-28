@@ -52,8 +52,6 @@ export function whenExtras(item: PlanItem): string | undefined {
 
 export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v: WhenValue) => void }) {
   const foodId = useId();
-  const toggle = (d: Weekday) =>
-    onChange({ ...value, everyOther: false, days: value.days.includes(d) ? value.days.filter((x) => x !== d) : [...value.days, d] });
   return (
     <div className="flex flex-col gap-3">
       <ChoiceGroup<PlanTime>
@@ -77,39 +75,53 @@ export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v
           With a meal
         </label>
       </div>
-      <fieldset className="flex flex-col gap-1.5">
-        <legend className={cx(labelStyles, "mb-1.5")}>Days (none picked: every day)</legend>
-        <div className="flex flex-wrap gap-1.5">
-          <button
-            type="button"
-            aria-pressed={value.everyOther}
-            onClick={() => onChange({ ...value, everyOther: !value.everyOther, days: [] })}
-            className={cx(
-              "min-h-11 rounded-lg border px-3 text-sm transition-colors duration-150",
-              value.everyOther ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
-            )}
-          >
-            Every other day
-          </button>
-          {WEEKDAYS.map((d) => {
-            const on = value.days.includes(d);
-            return (
-              <button
-                key={d}
-                type="button"
-                aria-pressed={on}
-                onClick={() => toggle(d)}
-                className={cx(
-                  "min-h-11 min-w-12 rounded-lg border px-2 text-sm transition-colors duration-150",
-                  on ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
-                )}
-              >
-                {DAY_LETTER[d]}
-              </button>
-            );
-          })}
-        </div>
-      </fieldset>
+      <DaysPicker value={value} onChange={(v) => onChange({ ...value, ...v })} />
     </div>
+  );
+}
+
+/** Every day (nothing picked), every other day, or some days of the week. Shared by protocol items and habits. */
+export function DaysPicker({
+  value,
+  onChange,
+}: {
+  value: { days: Weekday[]; everyOther: boolean };
+  onChange: (v: { days: Weekday[]; everyOther: boolean }) => void;
+}) {
+  const toggle = (d: Weekday) => onChange({ everyOther: false, days: value.days.includes(d) ? value.days.filter((x) => x !== d) : [...value.days, d] });
+  return (
+    <fieldset className="flex flex-col gap-1.5">
+      <legend className={cx(labelStyles, "mb-1.5")}>Days (none picked: every day)</legend>
+      <div className="flex flex-wrap gap-1.5">
+        <button
+          type="button"
+          aria-pressed={value.everyOther}
+          onClick={() => onChange({ everyOther: !value.everyOther, days: [] })}
+          className={cx(
+            "min-h-11 rounded-lg border px-3 text-sm transition-colors duration-150",
+            value.everyOther ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
+          )}
+        >
+          Every other day
+        </button>
+        {WEEKDAYS.map((d) => {
+          const on = value.days.includes(d);
+          return (
+            <button
+              key={d}
+              type="button"
+              aria-pressed={on}
+              onClick={() => toggle(d)}
+              className={cx(
+                "min-h-11 min-w-12 rounded-lg border px-2 text-sm transition-colors duration-150",
+                on ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
+              )}
+            >
+              {DAY_LETTER[d]}
+            </button>
+          );
+        })}
+      </div>
+    </fieldset>
   );
 }

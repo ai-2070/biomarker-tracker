@@ -3,7 +3,7 @@
 // was "missed" on its own, never keeps streaks, and a habit nobody has ticked yet has no adherence at all.
 import { addDays, dayNumber, daysBetween, isIsoDate } from "./dates";
 import { normalizeItem, PLAN_TIMES, type PlanItem, type PlanTime, WEEKDAYS, type Weekday } from "./plans";
-import type { ProtocolEntry } from "./types";
+import type { Experiment, ProtocolEntry } from "./types";
 
 export interface CheckIn {
   /** `${habitId}|${date}`: one row per habit and day. */
@@ -33,9 +33,21 @@ export function activeOn(p: Pick<ProtocolEntry, "start" | "end">, date: string):
  * every-other-day items count from the day the protocol was started.
  */
 export function itemsOn(p: Pick<ProtocolEntry, "plan" | "start">, date: string): PlanItem[] {
-  const day = weekdayOf(date);
-  const sinceStart = daysBetween(p.start, date);
-  return (p.plan?.items ?? []).map(normalizeItem).filter((i) => (i.every === 2 ? sinceStart >= 0 && sinceStart % 2 === 0 : !i.days || i.days.includes(day)));
+  return (p.plan?.items ?? []).map(normalizeItem).filter((i) => onSchedule(i, p.start, date));
+}
+
+/** Whether something on these days (or every other day from `start`) is planned on a date. */
+export function onSchedule(s: { days?: readonly Weekday[]; every?: 2 }, start: string, date: string): boolean {
+  if (s.every === 2) {
+    const since = daysBetween(start, date);
+    return since >= 0 && since % 2 === 0;
+  }
+  return !s.days || s.days.length === 0 || s.days.includes(weekdayOf(date));
+}
+
+/** How many things are planned on a date: the protocol's items, or 1 for a plain habit on its days. */
+function plannedCount(p: Pick<ProtocolEntry, "plan" | "start" | "days" | "every">, date: string): number {
+  return p.plan?.items.length ? itemsOn(p, date).length : onSchedule(p, p.start, date) ? 1 : 0;
 }
 
 export interface DayTask {
@@ -91,7 +103,8 @@ export function dayPlan(protocols: readonly ProtocolEntry[], checkIns: readonly 
           done: isDone(row, i.id),
         });
       }
-    } else tasks.push({ habitId: p.id, habit: p.label, label: p.label, category: p.category, when: "any time", done: isDone(row) });
+    } else if (onSchedule(p, p.start, date))
+      tasks.push({ habitId: p.id, habit: p.label, label: p.label, category: p.category, when: "any time", done: isDone(row) });
   }
   const groups = PLAN_TIMES.map((when) => ({ when, tasks: tasks.filter((t) => t.when === when).map(({ when: _w, ...t }) => t) })).filter(
     (g) => g.tasks.length > 0,
@@ -112,8 +125,8 @@ export function toggled(current: CheckIn | undefined, habitId: string, date: str
 export type DayState = "done" | "part" | "none" | "off";
 
 /** How much of one day's plan was ticked: all, some, none, or nothing was planned ("off"). */
-export function dayState(p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end">, row: CheckIn | undefined, date: string): DayState {
-  if (!activeOn(p, date)) return "off";
+export function dayState(p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end" | "days" | "every">, row: CheckIn | undefined, date: string): DayState {
+  if (!activeOn(p, date) || plannedCount(p, date) === 0) return "off";
   if (!p.plan?.items.length) return isDone(row) ? "done" : "none";
   const planned = itemsOn(p, date);
   if (planned.length === 0) return "off";
@@ -137,7 +150,7 @@ export interface Adherence {
  * and never ticked has no adherence (unknown, not zero). Today counts once anything is ticked today.
  */
 export function adherence(
-  p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end">,
+  p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end" | "days" | "every">,
   checkIns: readonly CheckIn[],
   today: string,
   to?: string,
@@ -156,7 +169,7 @@ export function adherence(
   for (let d = since; d <= last; d = addDays(d, 1)) {
     const row = rows.get(d);
     const items = p.plan?.items.length ? itemsOn(p, d) : undefined;
-    const count = items ? items.length : 1;
+    const count = items ? items.length : plannedCount(p, d);
     if (count === 0 || !activeOn(p, d)) continue;
     const ticked = items ? items.filter((i) => isDone(row, i.id)).length : isDone(row) ? 1 : 0;
     days++;
@@ -169,7 +182,7 @@ export function adherence(
 }
 
 /** The last `n` days, oldest first, for a small week strip. */
-export function recentDays(p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end">, checkIns: readonly CheckIn[], today: string, n = 7) {
+export function recentDays(p: Pick<ProtocolEntry, "id" | "plan" | "start" | "end" | "days" | "every">, checkIns: readonly CheckIn[], today: string, n = 7) {
   const rows = new Map(checkIns.filter((c) => c.habitId === p.id).map((c) => [c.date, c]));
   return Array.from({ length: n }, (_, k) => {
     const date = addDays(today, k - n + 1);
@@ -241,4 +254,22 @@ export function trackedOn<T extends Pick<ProtocolEntry, "id">>(protocols: readon
     const since = first.get(p.id);
     return since !== undefined && since <= date;
   });
+}
+
+/** How often a watched habit was kept to, from its start until it ended (or today). Unknown when never ticked. */
+export function watchAdherence(
+  e: Pick<Experiment, "protocolId" | "end">,
+  protocols: readonly ProtocolEntry[],
+  checkIns: readonly CheckIn[],
+  today: string,
+): Adherence | undefined {
+  const habit = protocols.find((p) => p.id === e.protocolId);
+  return habit ? adherence(habit, checkIns, today, e.end) : undefined;
+}
+
+/** "Kept to it on 41 of 50 days since 3 Nov (86% of planned items)", or why it can't be said. */
+export function keptToSentence(a: Adherence | undefined, date: (iso: string) => string): string {
+  if (!a) return "Not ticked off, so how often it was kept to is unknown.";
+  const items = a.share < 1 && Math.round(a.share * 100) !== Math.round((a.doneDays / a.days) * 100) ? ` (${Math.round(a.share * 100)}% of planned items)` : "";
+  return `Kept to it on ${a.doneDays} of ${a.days} days since ${date(a.since)}${items}.`;
 }

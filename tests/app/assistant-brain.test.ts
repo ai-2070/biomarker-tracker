@@ -23,7 +23,10 @@ vi.mock("../../apps/web/src/app/brain/stream", () => ({
 vi.mock("../../apps/web/src/db/db", () => ({
   db: {
     ...Object.fromEntries(
-      ["measurements", "protocols", "experiments", "plans", "meals", "settings"].map((name) => [name, { toArray: async () => [], get: async () => undefined }]),
+      ["measurements", "protocols", "experiments", "plans", "meals", "checkins", "settings"].map((name) => [
+        name,
+        { toArray: async () => [], get: async () => undefined },
+      ]),
     ),
     transaction: (_mode: string, _tables: unknown[], action: () => Promise<unknown>) => action(),
   },

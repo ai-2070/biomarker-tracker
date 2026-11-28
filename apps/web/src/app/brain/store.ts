@@ -1,7 +1,7 @@
 import { MAX_PHOTOS } from "@bt/shared/core/aiProviders";
 import { type AssistantProposalContext, type ProposalIntent, proposalIntent, proposalIssue } from "@bt/shared/core/assistantProposal";
 import { parseChangeRequest } from "@bt/shared/core/brainChanges";
-import { todayIso } from "@bt/shared/core/dates";
+import { addDays, todayIso } from "@bt/shared/core/dates";
 import { type HabitProposal, parseHabitProposal } from "@bt/shared/core/habitProposal";
 import { type ParsedReport, parseLabText, withTestDate } from "@bt/shared/core/importers/labText";
 import { criticalResults, parseResultProposal, proposalKind } from "@bt/shared/core/importers/resultProposal";
@@ -517,13 +517,14 @@ export async function addFiles(files: File[]): Promise<void> {
 
 /** What the assistant may read: the open profile. Birth month only becomes an age on the local server. */
 async function snapshot() {
-  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-    const [measurements, protocols, experiments, plans, meals, profile, expiration, loaded, activity] = await Promise.all([
+  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.checkins, db.settings], async () => {
+    const [measurements, protocols, experiments, plans, meals, checkins, profile, expiration, loaded, activity] = await Promise.all([
       db.measurements.toArray(),
       db.protocols.toArray(),
       db.experiments.toArray(),
       db.plans.toArray(),
       db.meals.toArray(),
+      db.checkins.toArray(),
       getProfile(),
       db.settings.get(EXPIRATION_KEY),
       db.settings.get(LOADED_PROFILE_KEY),
@@ -537,6 +538,8 @@ async function snapshot() {
       experiments,
       plans,
       meals,
+      // The last year of ticks is enough for how often each habit was kept to.
+      checkins: checkins.filter((c) => c.date >= addDays(todayIso(), -365)),
       profile: assistantProfile(profile),
       name: profile.name,
       identity,

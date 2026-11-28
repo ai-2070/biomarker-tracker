@@ -13,6 +13,7 @@ import {
   planFromFile,
   planFromProposal,
   planToFile,
+  scheduleLabel,
   validatePlan,
 } from "@bt/shared/core/plans";
 import { describe, expect, it } from "vitest";
@@ -157,5 +158,20 @@ describe("protocols", () => {
     expect(itemErrors({ ...old, when: "morning", days: ["someday"] })).toContain("the days of the week are invalid");
     expect(itemErrors({ ...old, when: "morning", withFood: "yes" })).not.toEqual([]);
     expect(itemErrors({ ...old, when: "morning", withFood: true, days: ["sat"] })).toEqual([]);
+  });
+});
+
+describe("every other day", () => {
+  it("is read from Brain's proposal and labelled, never together with weekdays", () => {
+    let n = 0;
+    const r = planFromProposal(
+      { name: "Red light", items: [{ label: "Red light panel", category: "lifestyle", when: "evening", everyOtherDay: true, days: ["mon"] }] },
+      () => `id-${++n}`,
+      "2026-11-28T00:00:00Z",
+    );
+    expect(r.ok && r.plan.items[0]).toMatchObject({ every: 2 });
+    expect(r.ok && r.plan.items[0]!.days).toBeUndefined();
+    expect(scheduleLabel({ every: 2 })).toBe("Every other day");
+    expect(itemErrors({ id: "x", label: "Sauna", category: "lifestyle", when: "evening", every: 3 })).toContain("'every other day' is invalid");
   });
 });

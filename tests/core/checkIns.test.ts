@@ -7,11 +7,13 @@ import {
   dayState,
   firstTicks,
   isCheckIn,
+  keptToSentence,
   monthWeeks,
   planState,
   recentDays,
   toggled,
   trackedOn,
+  watchAdherence,
   weekdayOf,
 } from "@bt/shared/core/checkIns";
 import type { PlanItem } from "@bt/shared/core/plans";
@@ -104,6 +106,23 @@ describe("daily check-ins", () => {
     expect(dayState(light, undefined, "2026-11-25")).toBe("off");
   });
 
+  it("lists a plain habit only on its days and counts only those", () => {
+    const running: ProtocolEntry = { id: "run", label: "Running", category: "lifestyle", start: "2026-11-16", days: ["mon", "wed", "fri"] };
+    // Thu 26th: not planned; Fri 27th: planned.
+    expect(dayPlan([running], [], "2026-11-26").total).toBe(0);
+    expect(dayPlan([running], [], "2026-11-27").total).toBe(1);
+    expect(dayState(running, undefined, "2026-11-26")).toBe("off");
+    // 16th to 26th: Mon 16, Wed 18, Fri 20, Mon 23, Wed 25 planned; two ticked.
+    expect(adherence(running, [row("run", "2026-11-16"), row("run", "2026-11-20")], "2026-11-27")).toEqual({
+      since: "2026-11-16",
+      days: 5,
+      doneDays: 2,
+      share: 2 / 5,
+    });
+    const alternate: ProtocolEntry = { id: "a", label: "Sauna", category: "lifestyle", start: "2026-11-25", every: 2 };
+    expect(["2026-11-25", "2026-11-26", "2026-11-27"].map((d) => dayPlan([alternate], [], d).total)).toEqual([1, 0, 1]);
+  });
+
   it("checks stored rows", () => {
     expect(isCheckIn(row("r", "2026-11-27", ["d3"]))).toBe(true);
     expect(isCheckIn(row("w", "2026-11-27"))).toBe(true);
@@ -144,5 +163,18 @@ describe("the habits calendar", () => {
       "part",
       "none",
     ]);
+  });
+});
+
+describe("how often a watched habit was kept to", () => {
+  it("counts from the start to the end of the watch, and says when it's unknown", () => {
+    const watch = { protocolId: "w", end: "2026-11-22" };
+    const ticks = [row("w", "2026-11-20"), row("w", "2026-11-21"), row("w", "2026-11-25")];
+    const a = watchAdherence(watch, [walking], ticks, "2026-11-27");
+    expect(a).toEqual({ since: "2026-11-20", days: 3, doneDays: 2, share: 2 / 3 });
+    expect(keptToSentence(a, (d) => d)).toBe("Kept to it on 2 of 3 days since 2026-11-20.");
+    expect(keptToSentence(watchAdherence({ protocolId: "w" }, [walking], [], "2026-11-27"), (d) => d)).toMatch(/unknown/);
+    const part = { since: "2026-11-01", days: 10, doneDays: 5, share: 0.8 };
+    expect(keptToSentence(part, (d) => d)).toBe("Kept to it on 5 of 10 days since 2026-11-01 (80% of planned items).");
   });
 });

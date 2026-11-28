@@ -2,6 +2,7 @@
 // stop or delete habits; start, stop or delete protocols; delete meals; set profile fields; save the open card.
 // One pure function checks and applies them, so the server (which tells the model what happened) and the page
 // (which writes them, with Undo) always agree. All or nothing: one bad change and nothing is applied.
+import { activeOn, type CheckIn, checkInId, itemsOn, onSchedule, toggled } from "./checkIns";
 import { isIsoDate } from "./dates";
 import { MAX_WATCHED, markerIdFor } from "./habitProposal";
 import { defaultRetestDays, syncWatch, watchFor } from "./habits";
@@ -9,7 +10,7 @@ import { validateManualEntry } from "./importers/manual";
 import { LIFE_TABLE_COUNTRIES } from "./lifeTable";
 import type { Meal } from "./meals";
 import { isBirthMonth } from "./phenoageDraws";
-import { habitForPlan, type Plan, validatePlan } from "./plans";
+import { habitForPlan, type Plan, scheduleLabel, validatePlan, WEEKDAYS, type Weekday } from "./plans";
 import { PROTOCOL_CATEGORIES, validateProtocol } from "./protocols";
 import type { BiomarkerDef, Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
@@ -20,6 +21,8 @@ export interface BrainData {
   plans: Plan[];
   meals: Meal[];
   profile: Profile;
+  /** What was ticked off each day (Today, the calendar). */
+  checkins?: CheckIn[];
 }
 
 /** Profile fields Brain may set. Never the name or private notes: Brain never sees them. */
@@ -36,9 +39,21 @@ export type BrainChange =
   | { kind: "add_results"; date: string; results: ResultInput[]; fasted?: boolean; lab?: string; note?: string }
   | { kind: "edit_result"; id?: string; marker?: string; date?: string; value?: string; unit?: string; newDate?: string; note?: string }
   | { kind: "delete_results"; ids?: string[]; marker?: string; date?: string }
-  | { kind: "start_habit"; label: string; category: string; start?: string; end?: string; watch?: string[] }
-  | { kind: "edit_habit"; habit: string; label?: string; category?: string; start?: string; end?: string | null }
+  | { kind: "start_habit"; label: string; category: string; start?: string; end?: string; watch?: string[]; days?: string[]; everyOtherDay?: boolean }
+  | {
+      kind: "edit_habit";
+      habit: string;
+      label?: string;
+      category?: string;
+      start?: string;
+      end?: string | null;
+      /** [] = every day again. */
+      days?: string[];
+      everyOtherDay?: boolean;
+    }
   | { kind: "stop_habit"; habit: string; date?: string }
+  /** Ticks (or unticks) a habit, or some of a started protocol's items, for a day: "I took my vitamin D". */
+  | { kind: "tick"; habit: string; items?: string[]; date?: string; untick?: boolean }
   | { kind: "delete_habit"; habit: string }
   | { kind: "start_protocol"; protocol: string; start?: string }
   | { kind: "stop_protocol"; protocol: string; date?: string }
@@ -55,6 +70,7 @@ export const BRAIN_CHANGE_KINDS = [
   "edit_habit",
   "stop_habit",
   "delete_habit",
+  "tick",
   "start_protocol",
   "stop_protocol",
   "delete_protocol",
@@ -100,6 +116,19 @@ export function parseChangeRequest(input: unknown): ChangeRequest | string {
   return { quote, changes };
 }
 
+/** A habit's days from Brain's input: weekday codes, or every other day; an error sentence when they don't fit. */
+function scheduleFrom(days: unknown, everyOther: unknown): { days: Weekday[]; everyOther: boolean } | string {
+  if (days !== undefined && (!Array.isArray(days) || days.some((d) => !(WEEKDAYS as readonly unknown[]).includes(d))))
+    return `Days must be weekday codes: ${WEEKDAYS.join(", ")}.`;
+  if (everyOther === true && Array.isArray(days) && days.length) return "A habit is either every other day or on days of the week, not both.";
+  return { days: (days as Weekday[] | undefined) ?? [], everyOther: everyOther === true };
+}
+
+const scheduleText = (p: Pick<ProtocolEntry, "days" | "every">) => {
+  const s = scheduleLabel(p);
+  return s ? `, ${s.toLowerCase()}` : "";
+};
+
 const valueText = (m: Pick<Measurement, "originalValue" | "originalUnit" | "qualifier">) => `${m.qualifier ?? ""}${m.originalValue} ${m.originalUnit}`.trim();
 
 function pick<T>(items: readonly T[], query: string, id: (t: T) => string, name: (t: T) => string, what: string, describe: (t: T) => string): T | string {
@@ -129,6 +158,7 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
     plans: [...data.plans],
     meals: [...data.meals],
     profile: { ...data.profile },
+    checkins: [...(data.checkins ?? [])],
   };
   const done: string[] = [];
   let saveOpenCard = false;
@@ -270,7 +300,12 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
         break;
       }
       case "start_habit": {
-        const v = validateProtocol({ label: c.label ?? "", category: c.category ?? "", start: c.start ?? today, ...(c.end ? { end: c.end } : {}) }, today);
+        const schedule = scheduleFrom(c.days, c.everyOtherDay);
+        if (typeof schedule === "string") return fail(schedule);
+        const v = validateProtocol(
+          { label: c.label ?? "", category: c.category ?? "", start: c.start ?? today, ...(c.end ? { end: c.end } : {}), ...schedule },
+          today,
+        );
         if (!v.ok) return fail(Object.values(v.errors).join(" "));
         const watch: string[] = [];
         for (const m of c.watch ?? []) {
@@ -283,7 +318,7 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
         d.protocols = [...d.protocols, entry];
         if (watch.length) d.experiments = [...d.experiments, { ...watchFor(entry, watch, defaultRetestDays(watch), today), id: ctx.newId() }];
         done.push(
-          `Started the habit "${entry.label}" (${entry.category}) on ${entry.start}${entry.end ? `, until ${entry.end}` : ""}${watch.length ? `, watching ${watch.map(markerName).join(", ")}` : ""}.`,
+          `Started the habit "${entry.label}" (${entry.category}) on ${entry.start}${scheduleText(entry)}${entry.end ? `, until ${entry.end}` : ""}${watch.length ? `, watching ${watch.map(markerName).join(", ")}` : ""}.`,
         );
         break;
       }
@@ -302,6 +337,7 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
         if (c.kind === "delete_habit") {
           d.protocols = d.protocols.filter((x) => x.id !== h.id);
           d.experiments = d.experiments.filter((e) => e.protocolId !== h.id);
+          d.checkins = (d.checkins ?? []).filter((x) => x.habitId !== h.id);
           syncPlan(h, true);
           done.push(`Deleted the habit "${h.label}". Test results are kept.`);
           break;
@@ -318,8 +354,14 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
           break;
         }
         const end = c.end === null ? undefined : (c.end ?? h.end);
+        // Days change only when asked; a started protocol keeps its items' own days.
+        const schedule =
+          c.days === undefined && c.everyOtherDay === undefined ? { days: h.days ?? [], everyOther: h.every === 2 } : scheduleFrom(c.days, c.everyOtherDay);
+        if (typeof schedule === "string") return fail(schedule);
+        if (h.plan && (c.days !== undefined || c.everyOtherDay !== undefined))
+          return fail(`"${h.label}" is a started protocol: its items have their own days. Change them on the protocol's page.`);
         const v = validateProtocol(
-          { label: c.label ?? h.label, category: c.category ?? h.category, start: c.start ?? h.start, ...(end ? { end } : {}) },
+          { label: c.label ?? h.label, category: c.category ?? h.category, start: c.start ?? h.start, ...(end ? { end } : {}), ...(h.plan ? {} : schedule) },
           today,
         );
         if (!v.ok) return fail(Object.values(v.errors).join(" "));
@@ -377,6 +419,66 @@ export function applyChanges(data: BrainData, request: ChangeRequest, ctx: Chang
           d.plans = d.plans.filter((x) => x.id !== p.id);
           done.push(`Deleted the protocol "${p.name}"${p.active ? `; its habit ended on ${date}` : ""}.`);
         }
+        break;
+      }
+      case "tick": {
+        const bad = dateOk(c.date, "date");
+        if (bad) return fail(bad);
+        const date = c.date ?? today;
+        if (date > today) return fail("Only today or earlier days can be ticked.");
+        const running = d.protocols.filter((p) => activeOn(p, date));
+        const found = pick(
+          running,
+          String(c.habit ?? ""),
+          (x) => x.id,
+          (x) => x.label,
+          `habit running on ${date}`,
+          habitText,
+        );
+        let h: ProtocolEntry;
+        let wanted = c.items;
+        if (typeof found === "string") {
+          // A protocol item named on its own ("my vitamin D"): the one started protocol planning it that day.
+          const q = fold(String(c.habit ?? ""));
+          const owners = q ? running.filter((p) => itemsOn(p, date).some((i) => fold(i.label).includes(q))) : [];
+          if (owners.length !== 1 || wanted?.length) return fail(found);
+          h = owners[0]!;
+          wanted = [String(c.habit)];
+        } else h = found;
+        const planned = itemsOn(h, date);
+        let itemIds: string[] | undefined;
+        if (h.plan?.items.length) {
+          if (planned.length === 0) return fail(`Nothing in "${h.label}" is planned on ${date}.`);
+          if (!wanted?.length) itemIds = planned.map((i) => i.id);
+          else {
+            itemIds = [];
+            for (const name of wanted) {
+              const it = pick(
+                planned,
+                name,
+                (x) => x.id,
+                (x) => x.label,
+                `item of "${h.label}" planned on ${date}`,
+                (x) => `${x.label} (id ${x.id})`,
+              );
+              if (typeof it === "string") return fail(it);
+              if (!itemIds.includes(it.id)) itemIds.push(it.id);
+            }
+          }
+        } else if (!onSchedule(h, h.start, date)) return fail(`"${h.label}" isn't planned on ${date} (${scheduleLabel(h)}).`);
+        const rows = d.checkins ?? [];
+        let row = rows.find((x) => x.id === checkInId(h.id, date));
+        if (itemIds) {
+          for (const id of itemIds) {
+            const has = (row?.items ?? []).includes(id);
+            if (has === !c.untick) continue;
+            row = toggled(row, h.id, date, id);
+          }
+        } else if (!!row === !!c.untick) row = toggled(row, h.id, date);
+        d.checkins = [...rows.filter((x) => x.id !== checkInId(h.id, date)), ...(row ? [row] : [])];
+        const names = itemIds ? planned.filter((i) => itemIds!.includes(i.id)).map((i) => i.label) : [];
+        const what = itemIds ? `${names.join(", ")} (${h.label})` : `"${h.label}"`;
+        done.push(`${c.untick ? "Unticked" : "Ticked"} ${what} for ${date === today ? "today" : date}.`);
         break;
       }
       case "delete_meal": {

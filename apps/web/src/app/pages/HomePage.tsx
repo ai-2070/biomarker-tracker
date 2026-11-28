@@ -8,7 +8,7 @@ import { CriticalBanner } from "../components/CriticalBanner";
 import { BloodPressureFigure, WeightFigure } from "../components/dashboard/body";
 import { BodySummaryList, SummaryValue, summaryRow } from "../components/dashboard/bodySummary";
 import { Sparkline } from "../components/dashboard/Sparkline";
-import { ComingUp, KeptTo, longDate, TodayPlan } from "../components/dashboard/today";
+import { ComingUp, KeptTo, longDate, TodayPlan, TryOneChange } from "../components/dashboard/today";
 import { AskPanel, BioAgeFigure, cardStyles, HabitsPanel, labelStyles, ToWatchFigure } from "../components/dashboard/widgets";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon } from "../components/icons";
@@ -73,6 +73,7 @@ export function HomePage() {
         <aside className="flex min-w-0 flex-col gap-4 empty:hidden">
           <ComingUp experiments={experiments} all={all} today={today} />
           <KeptTo protocols={protocols} checkIns={checkIns} today={today} />
+          <TryOneChange experiments={experiments} today={today} />
           {!hasResults && <AskPanel d={both} />}
         </aside>
       </div>

@@ -1,5 +1,5 @@
 // Shared data types. See CLAUDE.md "Data model".
-import type { Plan } from "./plans";
+import type { Plan, Weekday } from "./plans";
 
 export type Sex = "m" | "f";
 
@@ -206,6 +206,10 @@ export interface ProtocolEntry {
   end?: string;
   /** The protocol as it was when started. Kept even if its source is edited or deleted. */
   plan?: Pick<Plan, "id" | "items">;
+  /** A habit without items done only on these days of the week (missing: every day). */
+  days?: Weekday[];
+  /** A habit without items done every other day, counted from its start (never with `days`). */
+  every?: 2;
 }
 
 export type EvidenceGrade = "high" | "moderate" | "low" | "very low";

@@ -16,6 +16,16 @@ import { describe, expect, it } from "vitest";
 
 const today = "2025-06-01";
 
+describe("a habit's days", () => {
+  it("keeps weekdays in order, every other day on its own, and every day as nothing", () => {
+    const base = { label: "Running", category: "lifestyle", start: "2026-11-01" };
+    expect(validateProtocol({ ...base, days: ["fri", "mon"] }, "2026-11-27")).toMatchObject({ ok: true, entry: { days: ["mon", "fri"] } });
+    expect(validateProtocol({ ...base, everyOther: true, days: ["mon"] }, "2026-11-27")).toMatchObject({ ok: true, entry: { every: 2 } });
+    const all = validateProtocol({ ...base, days: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] }, "2026-11-27");
+    expect(all.ok && [all.entry.days, all.entry.every]).toEqual([undefined, undefined]);
+  });
+});
+
 describe("validateProtocol", () => {
   it("accepts an ongoing entry and trims the label", () => {
     const r = validateProtocol({ label: "  Creatine 5 g  ", category: "supplement", start: "2025-01-01" }, today);

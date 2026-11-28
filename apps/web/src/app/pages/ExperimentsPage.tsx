@@ -1,4 +1,5 @@
 import { Checkbox } from "@base-ui/react/checkbox";
+import { keptToSentence, watchAdherence } from "@bt/shared/core/checkIns";
 import { todayIso } from "@bt/shared/core/dates";
 import {
   analyzeMarker,
@@ -12,13 +13,14 @@ import {
 } from "@bt/shared/core/experiments";
 import { pickedAfterResults } from "@bt/shared/core/habits";
 import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
+import { trialReadiness } from "@bt/shared/core/trial";
 import type { BiomarkerDef, Experiment, Measurement } from "@bt/shared/core/types";
 import { deleteExperiment, endExperiment } from "../../db/db";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { More } from "../components/disclosure";
 import { Button, Card, CheckIcon, cx, LinkButton, Notice } from "../components/ui";
 import { CATEGORY_LABEL, formatChange, formatDate, showMeasurement, showWatchValue, valueUnit } from "../format";
-import { useAllMeasurements, useExperiments, useWatchMeasurements } from "../hooks";
+import { useAllMeasurements, useCheckIns, useExperiments, useProtocols, useWatchMeasurements } from "../hooks";
 import { BIOMARKER_MAP, fullName, nameInSentence, watchDef } from "../knowledge";
 import { href, navigate } from "../router";
 import { NotFound } from "./NotFound";
@@ -130,13 +132,16 @@ export function ExperimentPage({ id }: { id: string }) {
             tested, ideally at the same lab and time of day, and in the same state (for example fasting) as before. Then add the results; they'll appear here.
           </Notice>
         )}
-        {phase === "running" && <Notice title={`Re-test from ${formatDate(due)}`}>Keep the change going until then.</Notice>}
+        {e.start > today && <BeforeTests watch={e} all={all} today={today} />}
+        {phase === "running" && e.start <= today && <Notice title={`Re-test from ${formatDate(due)}`}>Keep the change going until then.</Notice>}
         {pickedAfterResults(e) && (
           <Notice title="Picked after the results were in">
             You chose these markers when the "after" results already existed, so treat this as a hint, not a test. It's easy to pick the markers that happened
             to move. For a fair test, choose markers before you start a change.
           </Notice>
         )}
+
+        <KeptToLine watch={e} today={today} />
 
         {results.map((r) => (
           <ResultCard key={r.biomarkerId} result={r} def={watchDef(r.biomarkerId)!} experiment={e} />
@@ -317,5 +322,37 @@ function NoiseGauge({ change, band }: { change: number; band: { up: number; down
         no change
       </span>
     </div>
+  );
+}
+
+/** How often the watched habit was ticked off: a change can't be judged for a habit that wasn't followed. */
+export function KeptToLine({ watch, today, compact }: { watch: Experiment; today: string; compact?: boolean }) {
+  const protocols = useProtocols();
+  const checkIns = useCheckIns();
+  if (!protocols || !checkIns || !watch.protocolId || watch.start > today) return null;
+  const a = watchAdherence(watch, protocols, checkIns, today);
+  const text = keptToSentence(a, formatDate);
+  if (compact) return <p className="text-sm text-ink-2">{text}</p>;
+  return (
+    <Notice title="How often it was kept to">
+      {text}{" "}
+      {a ? "A result means more when the habit was followed most days." : "Tick it off on the dashboard each day, and the result can say how often you did it."}
+    </Notice>
+  );
+}
+
+/** A planned change: how many "before" results each marker has, and how many the comparison needs, before the start. */
+function BeforeTests({ watch: e, all, today }: { watch: Experiment; all: Measurement[]; today: string }) {
+  const rows = e.markerIds.flatMap((id) => {
+    const def = watchDef(id);
+    return def ? [{ def, r: trialReadiness(def, all, e.start, today) }] : [];
+  });
+  const short = rows.filter((x) => !x.r.ready);
+  return (
+    <Notice tone={short.length ? "warn" : "info"} title={`Starts ${formatDate(e.start)}`}>
+      {short.length === 0
+        ? 'Enough "before" results for every marker. Start the change on the day, and tick it off on the dashboard.'
+        : `Before then, measure ${short.map((x) => `${nameInSentence(x.def)} (${x.r.before} of ${x.r.need} results so far)`).join(", ")}. The comparison needs that many from the 4 months before the start.`}
+    </Notice>
   );
 }

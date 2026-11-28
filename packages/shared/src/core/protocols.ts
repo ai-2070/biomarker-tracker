@@ -1,4 +1,5 @@
 import { dayNumber, isIsoDate } from "./dates";
+import { WEEKDAYS, type Weekday } from "./plans";
 import type { ProtocolEntry, SafetyId } from "./types";
 
 export type ProtocolCategory = ProtocolEntry["category"];
@@ -10,6 +11,10 @@ export interface ProtocolInput {
   start: string;
   /** Empty = still ongoing. */
   end?: string;
+  /** Only on these days of the week (empty or missing: every day). */
+  days?: Weekday[];
+  /** Every other day from the start. */
+  everyOther?: boolean;
 }
 
 export type ProtocolField = keyof ProtocolInput;
@@ -40,6 +45,9 @@ export function validateProtocol(input: ProtocolInput, today: string): ProtocolV
   if (Object.keys(errors).length > 0) return { ok: false, errors };
   const entry: Omit<ProtocolEntry, "id"> = { label, category: input.category as ProtocolCategory, start: input.start };
   if (end) entry.end = end;
+  const days = WEEKDAYS.filter((d) => input.days?.includes(d));
+  if (input.everyOther) entry.every = 2;
+  else if (days.length > 0 && days.length < 7) entry.days = days;
   return { ok: true, entry };
 }
 

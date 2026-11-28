@@ -43,6 +43,10 @@ describe("router", () => {
     expect(parseHash("#/protocols")).toEqual({ name: "plans" });
     expect(parseHash("#/protocols/abc")).toEqual({ name: "plan", id: "abc" });
     expect(href({ name: "plan", id: "abc" })).toBe("#/protocols/abc");
+    expect(parseHash("#/try")).toEqual({ name: "try" });
+    expect(parseHash("#/try?marker=ldl")).toEqual({ name: "try", marker: "ldl" });
+    expect(parseHash("#/try?marker=..%2Fbad")).toEqual({ name: "try" });
+    expect(href({ name: "try", marker: "ldl" })).toBe("#/try?marker=ldl");
   });
   it("opens Meals, a meal and an example meal", () => {
     expect(parseHash("#/meals")).toEqual({ name: "meals" });

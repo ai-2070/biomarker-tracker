@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { addDays, todayIso } from "@bt/shared/core/dates";
 import type { Measurement, ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { ask, dataPack, studyIdsIn } from "../../apps/server/assistant";
@@ -220,6 +221,7 @@ describe("protocols", () => {
         plan: routine.plan,
         comparisonScope: expect.stringMatching(/whole protocol.*cannot be attributed/),
         watches: ["ferritin"],
+        keptTo: "never ticked (unknown, not missed)",
       },
     ]);
     expect(out.safetyNotes[0]).toMatch(/Blood thinner.*Talk to your doctor/);
@@ -284,6 +286,26 @@ describe("protocols", () => {
     expect((r.interactionsBetweenItems as unknown[]).length).toBeGreaterThan(0);
     expect((await run(snapshot, input)).error).toMatch(/critical/);
     expect(JSON.parse(toolStep("propose_protocol", input).input)).toEqual(input);
+  });
+});
+
+describe("ticks in get_log", () => {
+  it("shows how often a running habit was kept to and what's left today", async () => {
+    const today = todayIso();
+    const walk: ProtocolEntry = { id: "w", label: "Walking", category: "lifestyle", start: addDays(today, -10) };
+    const s: HealthSnapshot = {
+      measurements: [],
+      protocols: [walk],
+      experiments: [],
+      profile: {},
+      checkins: [addDays(today, -3), addDays(today, -2)].map((date) => ({ id: `w|${date}`, habitId: "w", date })),
+    };
+    const out = (await healthTools(s).get_log!.execute!({}, { toolCallId: "t", messages: [] } as never)) as {
+      habits: { keptTo: unknown }[];
+      today: { planned: number; ticked: number; notTickedYet: string[] };
+    };
+    expect(out.habits[0]!.keptTo).toMatchObject({ countedSince: addDays(today, -3), daysWithSomethingPlanned: 3, daysFullyTicked: 2 });
+    expect(out.today).toMatchObject({ planned: 1, ticked: 0, notTickedYet: ["Walking (any time)"] });
   });
 });
 

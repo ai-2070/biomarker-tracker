@@ -4,8 +4,8 @@ import { applyChanges, type BrainData, type ChangeRequest } from "@bt/shared/cor
 import type { BiomarkerDef, Profile } from "@bt/shared/core/types";
 import { db, getProfile, LOADED_PROFILE_KEY, newId, type ProfileWriteIdentity, setProfile } from "./db";
 
-type TableName = "measurements" | "protocols" | "experiments" | "plans" | "meals";
-const TABLES: readonly TableName[] = ["measurements", "protocols", "experiments", "plans", "meals"];
+type TableName = "measurements" | "protocols" | "experiments" | "plans" | "meals" | "checkins";
+const TABLES: readonly TableName[] = ["measurements", "protocols", "experiments", "plans", "meals", "checkins"];
 
 /** One changed row: what it was before (none = added) and after (none = deleted). */
 export type UndoEntry = { table: TableName; key: string; before?: unknown; after?: unknown } | { table: "profile"; before: Profile; after: Profile };
@@ -34,14 +34,15 @@ export async function applyBrainChanges(
       plans: await database.plans.toArray(),
       meals: await database.meals.toArray(),
       profile,
+      checkins: await database.checkins.toArray(),
     };
     const r = applyChanges(before, request, { userText: context.userText, today: context.today, defs: context.defs, newId });
     if (!r.ok) return { ok: false, error: r.error };
     const undo: UndoEntry[] = [];
     let order = before.measurements.reduce((max, m) => Math.max(max, m.savedOrder ?? 0), 0);
     for (const table of TABLES) {
-      const old = new Map<string, { id: string }>(before[table].map((row) => [row.id, row]));
-      const next = new Map<string, { id: string }>(r.data[table].map((row) => [row.id, row]));
+      const old = new Map<string, { id: string }>((before[table] ?? []).map((row) => [row.id, row]));
+      const next = new Map<string, { id: string }>((r.data[table] ?? []).map((row) => [row.id, row]));
       for (const [key, row] of next) {
         const was = old.get(key);
         if (was && same(was, row)) continue;

@@ -40,6 +40,7 @@ vi.mock("../../apps/web/src/db/db", () => ({
     experiments: { toArray: mocks.rows },
     plans: { toArray: mocks.rows },
     meals: { toArray: mocks.rows },
+    checkins: { toArray: mocks.rows },
     settings: { get: mocks.setting },
   },
   getProfile: mocks.profile,

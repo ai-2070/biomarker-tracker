@@ -44,6 +44,7 @@ const WholeFoodPage = lazy(() => import("./pages/WholeFoodsPage").then((m) => ({
 const LifestylePage = lazy(() => import("./pages/LifestylePage").then((m) => ({ default: m.LifestylePage })));
 const LifestyleItemPage = lazy(() => import("./pages/LifestylePage").then((m) => ({ default: m.LifestyleItemPage })));
 const NutrientPage = lazy(() => import("./pages/NutrientPage").then((m) => ({ default: m.NutrientPage })));
+const TryChangePage = lazy(() => import("./pages/TryChangePage").then((m) => ({ default: m.TryChangePage })));
 const PlansPage = lazy(() => import("./pages/PlansPage").then((m) => ({ default: m.PlansPage })));
 const PlanPage = lazy(() => import("./pages/PlanPage").then((m) => ({ default: m.PlanPage })));
 const MealsPage = lazy(() => import("./pages/MealsPage").then((m) => ({ default: m.MealsPage })));
@@ -201,6 +202,8 @@ function Page({ route, root, mode }: { route: Route; root?: string; mode: "folde
       return <SupplementsPage kind={route.kind} />;
     case "nutrient":
       return <NutrientPage key={route.id} id={route.id} />;
+    case "try":
+      return <TryChangePage key={route.marker ?? ""} marker={route.marker} />;
     case "plans":
       return <PlansPage />;
     case "plan":

@@ -89,6 +89,13 @@ export function LeversPanel({ def, flag, protocols }: { def: BiomarkerDef; flag:
         </p>
       )}
       <p className="text-sm text-ink-2">A whole food and a supplement of one of its nutrients are graded separately: they don't always have the same effect.</p>
+      <a
+        href={href({ name: "try", marker: def.id })}
+        className="inline-flex min-h-11 items-center gap-1 self-start font-medium text-accent underline-offset-2 hover:underline"
+      >
+        Try one change and see what it does to your {nameInSentence(def)}
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
   );
 }

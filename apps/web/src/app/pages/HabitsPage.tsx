@@ -2,7 +2,7 @@ import { todayIso } from "@bt/shared/core/dates";
 import { type MarkerResult, retestDate } from "@bt/shared/core/experiments";
 import { chanceNote, defaultRetestDays, type Habit, habitsOf, pickedAfterResults, suggestMarkers, summarizeWatch } from "@bt/shared/core/habits";
 import { PHENOAGE_GAP_ID } from "@bt/shared/core/phenoageWatch";
-import type { Plan } from "@bt/shared/core/plans";
+import { type Plan, scheduleLabel } from "@bt/shared/core/plans";
 import { durationDays, type ProtocolCategory, safetyLabels, safetyNotes } from "@bt/shared/core/protocols";
 import { groupByBiomarker } from "@bt/shared/core/trends";
 import type { Experiment, Measurement } from "@bt/shared/core/types";
@@ -16,12 +16,12 @@ import { HabitForm, MarkerPicker, RETEST_OPTIONS } from "../components/habits/Ha
 import { PlusIcon } from "../components/icons";
 import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { Button, Card, cardStyles, cx, errorStyles, eyebrowSmallStyles, eyebrowStyles, PageTitle } from "../components/ui";
+import { Button, Card, cardStyles, cx, errorStyles, eyebrowSmallStyles, eyebrowStyles, LinkButton, PageTitle } from "../components/ui";
 import { CATEGORY_LABEL, formatChange, formatDate, formatDuration, showWatchValue, valueUnit } from "../format";
 import { useAllMeasurements, useCheckIns, useExperiments, usePlans, useProfile, useProtocols, useWatchMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName, WATCH_DEFS, watchDef } from "../knowledge";
 import { href } from "../router";
-import { PhaseBadge } from "./ExperimentsPage";
+import { KeptToLine, PhaseBadge } from "./ExperimentsPage";
 
 /**
  * Habits: supplements, food, medicines and routines with their dates. Any habit can watch markers;
@@ -78,11 +78,14 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
             />
           </Card>
         ) : (
-          <div>
+          <div className="flex flex-wrap gap-2">
             <Button onClick={() => setAdding(true)}>
               <PlusIcon />
               Add a habit
             </Button>
+            <LinkButton variant="secondary" href={href({ name: "try" })}>
+              Try one change
+            </LinkButton>
           </div>
         )}
 
@@ -172,6 +175,7 @@ function HabitCard({
           )}
           <p className="text-sm text-ink-2">
             {h.entry?.plan ? "Protocol" : CATEGORY_LABEL[h.category]} ·{" "}
+            {h.entry && !h.entry.plan && scheduleLabel(h.entry) ? `${scheduleLabel(h.entry)} · ` : ""}
             {planned ? `starts ${formatDate(h.start)}` : h.end ? `${formatDate(h.start)} – ${formatDate(h.end)}` : `since ${formatDate(h.start)}`}
             {!planned && ` · ${formatDuration(days)}`}
           </p>
@@ -265,6 +269,7 @@ function WhatChanged({ watch, all, today, onChange }: { watch: Experiment; all: 
           <ChangeRow key={r.biomarkerId} r={r} />
         ))}
       </ul>
+      <KeptToLine watch={watch} today={today} compact />
       {s.phase === "running" && <p className="text-sm text-ink-2">Re-test from {formatDate(retestDate(watch))}. Keep the habit going until then.</p>}
       {s.phase === "due" && <p className="text-sm text-warn">Time for the "after" test. Add the results and they'll show here.</p>}
       {pickedAfterResults(watch) && <p className="text-sm text-ink-2">Markers picked after the results were in: treat this as a hint, not a test.</p>}

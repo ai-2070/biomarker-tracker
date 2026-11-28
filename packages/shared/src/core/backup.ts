@@ -1,6 +1,6 @@
 import { isIsoDate } from "./dates";
 import { isBirthMonth } from "./phenoageDraws";
-import { validatePlan } from "./plans";
+import { scheduleError, validatePlan } from "./plans";
 import { validSleepSessions } from "./sleepSessions";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
@@ -86,7 +86,8 @@ function isProtocol(v: unknown): v is ProtocolEntry {
     isStr(v.start) &&
     isIsoDate(v.start) &&
     optional(v.end, (e) => isStr(e) && isIsoDate(e)) &&
-    optional(v.plan, isPlanSnapshot)
+    optional(v.plan, isPlanSnapshot) &&
+    scheduleError(v.days, v.every) === undefined
   );
 }
 

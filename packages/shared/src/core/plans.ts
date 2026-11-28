@@ -74,22 +74,23 @@ export function itemErrors(v: unknown): string[] {
   if (!CATEGORIES.includes(v.category as PlanCategory)) errs.push("item type is invalid");
   if (!READ_TIMES.includes(v.when as PlanTime)) errs.push("item time is invalid");
   if (v.withFood !== undefined && typeof v.withFood !== "boolean") errs.push("'with a meal' must be yes or no");
-  if (
-    v.days !== undefined &&
-    !(
-      Array.isArray(v.days) &&
-      v.days.length >= 1 &&
-      v.days.length <= 7 &&
-      new Set(v.days).size === v.days.length &&
-      v.days.every((d) => WEEKDAYS.includes(d as Weekday))
-    )
-  )
-    errs.push("the days of the week are invalid");
-  if (v.every !== undefined && v.every !== 2) errs.push("'every other day' is invalid");
-  if (v.every !== undefined && v.days !== undefined) errs.push("an item is either every other day or on days of the week");
+  const schedule = scheduleError(v.days, v.every);
+  if (schedule) errs.push(schedule);
   if (!optStr(v.note, 300)) errs.push("notes must be under 300 characters");
   if (!optStr(v.mealId, 64)) errs.push("the meal link is damaged");
   return errs;
+}
+
+/** Problems with days of the week / every other day (protocol items and plain habits); undefined when fine. */
+export function scheduleError(days: unknown, every: unknown): string | undefined {
+  if (
+    days !== undefined &&
+    !(Array.isArray(days) && days.length >= 1 && days.length <= 7 && new Set(days).size === days.length && days.every((d) => WEEKDAYS.includes(d as Weekday)))
+  )
+    return "the days of the week are invalid";
+  if (every !== undefined && every !== 2) return "'every other day' is invalid";
+  if (every !== undefined && days !== undefined) return "it's either every other day or on days of the week, not both";
+  return undefined;
 }
 
 /** Problems with a protocol; empty means valid. */
@@ -280,7 +281,7 @@ export function planFromProposal(input: unknown, newId: () => string, now: strin
   if (!Array.isArray(input.items) || input.items.length === 0) return { ok: false, error: "List the items from the person's text." };
   const items = input.items.map((i) => {
     if (!isObj(i)) return i;
-    const { label, amount, category, when, note, withFood, days } = i;
+    const { label, amount, category, when, note, withFood, days, everyOtherDay } = i;
     const item = {
       id: newId(),
       label: typeof label === "string" ? label.trim() : label,
@@ -288,7 +289,7 @@ export function planFromProposal(input: unknown, newId: () => string, now: strin
       category,
       when,
       ...(withFood === true ? { withFood: true } : {}),
-      ...(Array.isArray(days) && days.length ? { days } : {}),
+      ...(everyOtherDay === true ? { every: 2 as const } : Array.isArray(days) && days.length ? { days } : {}),
       ...(typeof note === "string" && note.trim() ? { note: note.trim() } : {}),
     };
     return itemErrors(item).length ? item : normalizeItem(item as PlanItem);

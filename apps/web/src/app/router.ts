@@ -40,6 +40,8 @@ export type Route =
   | { name: "supplements"; kind?: "vitamin" | "mineral" | "supplement" }
   | { name: "nutrient"; id: string }
   | { name: "plans" }
+  /** "Try one change": pick a result, choose a change, plan its before and after tests. */
+  | { name: "try"; marker?: string }
   | { name: "plan"; id: string }
   | { name: "meals"; section?: string }
   | { name: "intake" }
@@ -115,6 +117,10 @@ export function parseHash(hash: string): Route {
     return kind === "vitamin" || kind === "mineral" || kind === "supplement" ? { name: "supplements", kind } : { name: "supplements" };
   }
   if (parts[0] === "supplements" && parts[1] && parts.length === 2) return { name: "nutrient", id: parts[1] };
+  if (parts[0] === "try" && parts.length === 1) {
+    const marker = params.get("marker");
+    return marker && /^[a-z0-9_]{1,40}$/.test(marker) ? { name: "try", marker } : { name: "try" };
+  }
   if (parts[0] === "protocols" && parts.length === 1) return { name: "plans" };
   if (parts[0] === "protocols" && parts[1] && parts.length === 2) return { name: "plan", id: parts[1] };
   if (parts[0] === "intake" && parts.length === 1) return { name: "intake" };
@@ -184,6 +190,8 @@ export function href(route: Route): string {
       return "#/lifestyle";
     case "lifestyle-item":
       return `#/lifestyle/${encodeURIComponent(route.id)}`;
+    case "try":
+      return route.marker ? `#/try?marker=${encodeURIComponent(route.marker)}` : "#/try";
     case "plans":
       return "#/protocols";
     case "plan":

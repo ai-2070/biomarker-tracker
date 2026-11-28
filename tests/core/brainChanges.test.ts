@@ -134,6 +134,56 @@ describe("brain changes: habits and protocols", () => {
     const deleted = run(data(), "delete the vitamin d habit", { kind: "delete_habit", habit: "Vitamin D" });
     expect(deleted.ok && [deleted.data.protocols.length, deleted.data.experiments.length]).toEqual([0, 0]);
   });
+  it("gives a habit its days, keeps them through edits, and changes them only when asked", () => {
+    const r = run(data(), "I run on monday wednesday and friday", {
+      kind: "start_habit",
+      label: "Running",
+      category: "lifestyle",
+      days: ["fri", "mon", "wed"],
+    });
+    expect(r.ok && r.data.protocols.at(-1)).toMatchObject({ label: "Running", days: ["mon", "wed", "fri"] });
+    expect(r.ok && r.done[0]).toContain("mon, wed, fri");
+    const id = r.ok ? r.data.protocols.at(-1)!.id : "";
+    const renamed = r.ok ? run(r.data, "call it jogging", { kind: "edit_habit", habit: id, label: "Jogging" }) : r;
+    expect(renamed.ok && renamed.data.protocols.at(-1)).toMatchObject({ label: "Jogging", days: ["mon", "wed", "fri"] });
+    const other = renamed.ok ? run(renamed.data, "make it every other day", { kind: "edit_habit", habit: id, everyOtherDay: true }) : renamed;
+    expect(other.ok && other.data.protocols.at(-1)).toMatchObject({ every: 2 });
+    expect(other.ok && other.data.protocols.at(-1)!.days).toBeUndefined();
+    const daily = other.ok ? run(other.data, "every day now", { kind: "edit_habit", habit: id, days: [] }) : other;
+    expect(daily.ok && [daily.data.protocols.at(-1)!.days, daily.data.protocols.at(-1)!.every]).toEqual([undefined, undefined]);
+    expect(run(data(), "run on funday", { kind: "start_habit", label: "Run", category: "lifestyle", days: ["fun"] })).toMatchObject({ ok: false });
+    const both = run(data(), "both", { kind: "start_habit", label: "Run", category: "lifestyle", days: ["mon"], everyOtherDay: true });
+    expect(!both.ok && both.error).toContain("not both");
+  });
+  it("ticks a habit, a protocol's items by name, or an item named on its own, and unticks", () => {
+    const base = data();
+    base.protocols.push({
+      id: "h2",
+      label: "Supplements through the day",
+      category: "supplement",
+      start: "2026-11-01",
+      plan: {
+        id: "p2",
+        items: [
+          { id: "d3", label: "Vitamin D3", category: "supplement", when: "morning" },
+          { id: "o3", label: "Omega-3", category: "supplement", when: "midday" },
+        ],
+      },
+    });
+    const plain = run(base, "did my vitamin d3 habit", { kind: "tick", habit: "h1" });
+    expect(plain.ok && plain.data.checkins).toEqual([{ id: `h1|${today}`, habitId: "h1", date: today }]);
+    const item = run(base, "I took my omega-3", { kind: "tick", habit: "omega-3" });
+    expect(item.ok && item.data.checkins).toEqual([{ id: `h2|${today}`, habitId: "h2", date: today, items: ["o3"] }]);
+    expect(item.ok && item.done[0]).toBe("Ticked Omega-3 (Supplements through the day) for today.");
+    const all = run(base, "did all my supplements yesterday", { kind: "tick", habit: "Supplements through the day", date: "2026-11-26" });
+    expect(all.ok && all.data.checkins?.[0]?.items).toEqual(["d3", "o3"]);
+    const undone = item.ok ? run(item.data, "actually I didn't take the omega-3", { kind: "tick", habit: "h2", items: ["omega"], untick: true }) : item;
+    expect(undone.ok && undone.data.checkins).toEqual([]);
+    expect(run(base, "tick tomorrow", { kind: "tick", habit: "h1", date: "2026-11-28" })).toMatchObject({ ok: false });
+    // Deleting a habit removes its ticks.
+    const gone = plain.ok ? run(plain.data, "delete vitamin d3", { kind: "delete_habit", habit: "h1" }) : plain;
+    expect(gone.ok && gone.data.checkins).toEqual([]);
+  });
   it("starts and stops a saved protocol", () => {
     const started = run(data(), "start my morning routine", { kind: "start_protocol", protocol: "morning routine" });
     expect(started.ok).toBe(true);

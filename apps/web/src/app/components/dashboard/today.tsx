@@ -138,6 +138,9 @@ function EmptyDay({ hasHabits }: { hasHabits: boolean }) {
         <a href={href({ name: "habits", add: "" })} className="font-medium text-accent">
           Add a habit
         </a>
+        <a href={href({ name: "try" })} className="font-medium text-accent">
+          Try one change
+        </a>
       </p>
     </div>
   );
@@ -277,6 +280,24 @@ export function KeptTo({ protocols, checkIns, today }: { protocols: ProtocolEntr
           );
         })}
       </ul>
+    </section>
+  );
+}
+
+/** An invitation to "Try one change", shown while no running habit watches a marker. */
+export function TryOneChange({ experiments, today }: { experiments: Experiment[]; today: string }) {
+  if (experiments.some((e) => !e.end || e.end >= today)) return null;
+  return (
+    <section className={cx(cardStyles, "p-5")} aria-labelledby="try-title">
+      <h2 id="try-title" className="font-serif text-xl font-normal">
+        Try one change
+      </h2>
+      <p className="mt-1 text-sm text-ink-2">
+        Pick a result to improve, choose one change from what research says, and see what it did in you, with the before and after tests planned for you.
+      </p>
+      <a href={href({ name: "try" })} className="mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent hover:underline">
+        Start <span aria-hidden="true">→</span>
+      </a>
     </section>
   );
 }

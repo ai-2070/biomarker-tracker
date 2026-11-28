@@ -56,7 +56,12 @@ const BLOOD: NavItem = {
 };
 const AGE: NavItem = { label: "Biological age", to: { name: "phenoage" }, icon: AgeIcon, active: (r) => r.name === "phenoage" };
 const BODY: NavItem = { label: "Body", to: { name: "body" }, icon: BodyIcon, active: (r) => r.name === "body" || r.name === "device-import" || isBodyRoute(r) };
-const HABITS: NavItem = { label: "Habits", to: { name: "habits" }, icon: PillIcon, active: (r) => r.name === "habits" || r.name === "experiment" };
+const HABITS: NavItem = {
+  label: "Habits",
+  to: { name: "habits" },
+  icon: PillIcon,
+  active: (r) => r.name === "habits" || r.name === "experiment" || r.name === "try",
+};
 const PLANS: NavItem = { label: "Protocols", to: { name: "plans" }, icon: ClipboardIcon, active: (r) => r.name === "plans" || r.name === "plan" };
 const INTAKE: NavItem = { label: "Intake analyzer", to: { name: "intake" }, icon: IntakeIcon, active: (r) => r.name === "intake" };
 const MEALS: NavItem = {

@@ -5,6 +5,27 @@ import type { ProtocolEntry } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
 import { measurement } from "../helpers";
 
+describe("habit days in a backup", () => {
+  it("accepts weekdays or every other day, and rejects anything else", () => {
+    const backup = (habit: object) =>
+      parseBackup({
+        app: "biomarker-tracker",
+        version: 2,
+        measurements: [],
+        experiments: [],
+        profile: {},
+        protocols: [{ id: "h", label: "Running", category: "lifestyle", start: "2026-11-01", ...habit }],
+      }).ok;
+    expect([
+      backup({ days: ["mon", "wed"] }),
+      backup({ every: 2 }),
+      backup({ days: ["moon"] }),
+      backup({ every: 3 }),
+      backup({ every: 2, days: ["mon"] }),
+    ]).toEqual([true, true, false, false, false]);
+  });
+});
+
 describe("backup", () => {
   const m = measurement({ date: "2024-03-01", value: 42, labRange: { low: 15 }, qualifier: "<" });
   const backup = createBackup(
