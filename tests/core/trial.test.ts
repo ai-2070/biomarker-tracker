@@ -8,7 +8,9 @@ const at = (biomarkerId: string, date: string, value = 3) => measurement({ bioma
 
 describe("try one change", () => {
   it("needs three before results without published variation, one with it", () => {
-    const ldl = def("ldl");
+    // LDL has a published value in the app; without it, three results are needed on each side.
+    const { biologicalVariation: _bv, ...ldl } = def("ldl");
+    expect(def("ldl").biologicalVariation).toBeDefined();
     const ms = [at("ldl", "2026-09-01"), at("ldl", "2026-10-01"), at("ldl", "2026-01-01"), at("hdl", "2026-11-01")];
     // The January result is older than 120 days: two count.
     expect(trialReadiness(ldl, ms, today, today)).toMatchObject({ before: 2, need: 3, ready: false });

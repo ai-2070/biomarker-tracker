@@ -93,9 +93,13 @@ export function validateBiomarkerDef(v: unknown): string[] {
   if (v.biologicalVariation !== undefined) {
     const bv = v.biologicalVariation;
     if (!isObj(bv) || !isNum(bv.cvi) || bv.cvi <= 0 || bv.cvi > 200) errs.push("biologicalVariation.cvi must be a percentage above 0");
-    else if (!isNum(bv.ciLow) || !isNum(bv.ciHigh) || bv.ciLow > bv.cvi || bv.ciHigh < bv.cvi) errs.push("biologicalVariation CI must contain the CVI");
-    else if (!isNum(bv.studies) || bv.studies < 1 || !isNonEmptyStr(bv.source) || !isNonEmptyStr(bv.url))
-      errs.push("biologicalVariation needs studies, source and url");
+    else if ((bv.ciLow !== undefined || bv.ciHigh !== undefined) && (!isNum(bv.ciLow) || !isNum(bv.ciHigh) || bv.ciLow > bv.cvi || bv.ciHigh < bv.cvi))
+      errs.push("biologicalVariation CI must contain the CVI");
+    else if (!isNum(bv.n) || bv.n < 5 || !isNonEmptyStr(bv.population) || !isNonEmptyStr(bv.where))
+      errs.push("biologicalVariation needs n, population and where in the paper");
+    else if (!isObj(bv.source) || !isNonEmptyStr(bv.source.title) || !(isNonEmptyStr(bv.source.pmid) || isNonEmptyStr(bv.source.doi)))
+      errs.push("biologicalVariation needs its paper (title and PMID or DOI)");
+    else if (bv.includesAnalytical !== undefined && typeof bv.includesAnalytical !== "boolean") errs.push("includesAnalytical must be true or false");
   }
 
   // Evidence and sources

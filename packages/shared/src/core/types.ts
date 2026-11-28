@@ -125,19 +125,26 @@ export interface BiomarkerDef {
   sources: Citation[];
 }
 
+/**
+ * Within-person variation from one original study of healthy adults sampled repeatedly (never a database's or a
+ * meta-analysis's estimate: see docs/eflm-biological-variation.md and docs/biological-variation-candidates.md).
+ */
 export interface BiologicalVariation {
-  /** Within-subject biological variation (CVI), % (median of the meta-analysis). */
+  /** Within-subject variation (CVI), %, as the paper reports it. */
   cvi: number;
-  ciLow: number;
-  ciHigh: number;
-  /** Number of studies in the meta-analysis. */
-  studies: number;
-  /** Analyte name in the source database. */
-  analyte: string;
-  matrix: string;
-  source: string;
-  url: string;
-  retrieved: string;
+  /** Its 95% confidence interval, when the paper gives one. */
+  ciLow?: number;
+  ciHigh?: number;
+  /** People with repeated samples. */
+  n: number;
+  /** Who and how often, in plain words: "US adults 16–69, two samples about 19 days apart". */
+  population: string;
+  /** The value already includes the lab's own imprecision, so none is added on top. */
+  includesAnalytical?: boolean;
+  /** The paper the value was read in. */
+  source: Citation;
+  /** Where in the paper: "Table 1", "abstract". */
+  where: string;
 }
 
 /** A self-experiment: one change, some markers, before vs after. */

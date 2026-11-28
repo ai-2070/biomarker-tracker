@@ -9,7 +9,7 @@ import { applyChanges, BRAIN_PROFILE_FIELDS, parseChangeRequest } from "@bt/shar
 import { activeOn, adherence, type CheckIn, checkInsError, dayPlan, recentDays, watchAdherence } from "@bt/shared/core/checkIns";
 import { todayIso } from "@bt/shared/core/dates";
 import { selectLevers } from "@bt/shared/core/evidence";
-import { analyzeMarker, rcvBand, retestDate } from "@bt/shared/core/experiments";
+import { analyzeMarker, publishedBand, retestDate } from "@bt/shared/core/experiments";
 import { SAFETY_LIMITS, selectFoods } from "@bt/shared/core/foods";
 import { parseHabitProposal } from "@bt/shared/core/habitProposal";
 import { chanceNote, pickedAfterResults } from "@bt/shared/core/habits";
@@ -234,7 +234,7 @@ export function markerDetail(s: HealthSnapshot, def: BiomarkerDef) {
   const ms = sortByDate(s.measurements.filter((m) => m.biomarkerId === def.id));
   const t = computeTrend(ms);
   const bv = def.biologicalVariation;
-  const band = bv ? rcvBand(bv.cvi) : undefined;
+  const band = bv ? publishedBand(bv) : undefined;
   return {
     marker: def.id,
     name: def.name,
@@ -481,7 +481,7 @@ export function experimentResults(s: HealthSnapshot) {
             a.bandFrom === "personal"
               ? "the person's own readings before and after"
               : a.bandFrom === "published"
-                ? "published biological variation (EFLM)"
+                ? `published within-person variation (${def.biologicalVariation?.source.title}, ${def.biologicalVariation?.source.year}: ${def.biologicalVariation?.population}); samples weeks apart, so over months a person can vary more`
                 : null,
         },
       ];

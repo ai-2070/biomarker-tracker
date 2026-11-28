@@ -158,9 +158,10 @@ export function ExperimentPage({ id }: { id: string }) {
             not happen in someone else.
           </p>
           <p className="text-sm">
-            Normal variation is estimated from your own results when there are at least {MIN_PERSONAL} before and {MIN_PERSONAL} after: how much they spread
-            around their average. With so few results the limits are made wider to stay cautious. Bands are calculated on a log scale, so rises and falls have
-            different limits.
+            For some blood markers normal variation comes from a published study of healthy adults sampled a few weeks apart, plus the lab's own imprecision.
+            With at least {MIN_PERSONAL} results before and {MIN_PERSONAL} after it is also estimated from your own results, and the wider of the two is used,
+            because people vary more over months than over weeks. With so few results the limits are made wider to stay cautious. Bands are calculated on a log
+            scale, so rises and falls have different limits.
           </p>
           {e.markerIds.includes(PHENOAGE_GAP_ID) && (
             <p className="text-sm">
@@ -254,8 +255,10 @@ function ResultCard({ result: r, def, experiment: e }: { result: MarkerResult; d
           {def.changeScale === "difference"
             ? ", estimated from how much your own PhenoAge gap changed from one earlier blood test to the next."
             : r.bandFrom === "personal"
-              ? `, estimated from your own ${r.before.length + r.after.length} results.`
-              : "."}
+              ? `, estimated from your own ${r.before.length + r.after.length} results${def.biologicalVariation ? " (wider than the published value, so that's used)" : ""}.`
+              : def.biologicalVariation
+                ? `, from a study of ${def.biologicalVariation.population.split(";")[0]} (${def.biologicalVariation.source.year}). Over months people vary more than over weeks, so treat a change near the edge with caution.`
+                : "."}
         </p>
       )}
       <p className="text-ink-2">{explain[r.verdict]}</p>

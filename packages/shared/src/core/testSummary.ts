@@ -6,7 +6,7 @@
  * the person's own numbers. It never says what the person has, what causes their results or what to take.
  * The model (Brain) gets the same summary, so it explains these facts instead of working them out.
  */
-import { rcvBand } from "./experiments";
+import { publishedBand } from "./experiments";
 import type { NutrientDef } from "./nutrients";
 import { nutrientFor } from "./plans";
 import { isActiveOn } from "./protocols";
@@ -124,7 +124,7 @@ function compare(def: BiomarkerDef, cur: Measurement, prev: Measurement, curFlag
   if (cur.qualifier || prev.qualifier || !(cur.value > 0) || !(prev.value > 0)) return {};
   if (side(prevFlag) !== side(curFlag)) return { change: "new" as const };
   const rel = cur.value / prev.value - 1;
-  const band = def.biologicalVariation ? rcvBand(def.biologicalVariation.cvi) : undefined;
+  const band = def.biologicalVariation ? publishedBand(def.biologicalVariation) : undefined;
   const beyond = band ? rel > band.up || rel < band.down : undefined;
   if (beyond === false || rel === 0) return { change: "about the same" as const, beyondNormalVariation: false };
   const closer = outside(cur.value, range) < outside(prev.value, resolveRange(def, prev) ?? range);

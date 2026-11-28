@@ -55,6 +55,21 @@
     ]
   },
   "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 5.2,
+    "n": 50,
+    "population": "50 adults in the Hispanic Community Health Study/Study of Latinos (US), fasting samples about a month apart; includes the lab's own and sample-handling variation",
+    "includesAnalytical": true,
+    "source": {
+      "pmid": "27756543",
+      "doi": "10.1016/j.cca.2016.10.019",
+      "title": "Analytical and biological variability in biomarker measurement in the Hispanic Community Health Study/Study of Latinos.",
+      "year": 2016,
+      "studyType": "observational",
+      "n": 50
+    },
+    "where": "Table 1 (Glucose, fasting)"
+  },
   "sources": [
     {
       "pmid": "39651986",

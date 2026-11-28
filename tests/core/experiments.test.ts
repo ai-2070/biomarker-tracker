@@ -6,10 +6,12 @@ import {
   geometricMean,
   markersAwaitingRetest,
   personalBand,
+  publishedBand,
   rcvBand,
   retestDate,
   t95,
   validateExperiment,
+  widerBand,
 } from "@bt/shared/core/experiments";
 import type { Experiment } from "@bt/shared/core/types";
 import { describe, expect, it } from "vitest";
@@ -214,5 +216,20 @@ describe("validateExperiment", () => {
   it("rejects unknown markers", () => {
     const r = validateExperiment({ change: "x", category: "diet", markerIds: ["nope"], start: "2024-03-01", retestAfterDays: 28 }, known, "2024-03-01");
     expect(!r.ok && r.errors.markerIds).toBe("Unknown marker.");
+  });
+});
+
+describe("published variation and the person's own", () => {
+  it("adds lab imprecision only when the study's value doesn't include it, and uses the wider band", () => {
+    const clean = publishedBand({ cvi: 10 });
+    const withLab = publishedBand({ cvi: 10, includesAnalytical: true });
+    expect(clean.up).toBeGreaterThan(withLab.up);
+    expect(withLab).toEqual(rcvBand(10, 1, 1, 0));
+    const narrow = { up: 0.1, down: -0.09 };
+    const wide = { up: 0.3, down: -0.23 };
+    expect(widerBand(narrow, wide)).toEqual({ band: wide, from: "personal" });
+    expect(widerBand(wide, narrow)).toEqual({ band: wide, from: "published" });
+    expect(widerBand(narrow, undefined)).toEqual({ band: narrow, from: "published" });
+    expect(widerBand(undefined, undefined)).toBeUndefined();
   });
 });

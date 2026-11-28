@@ -103,8 +103,9 @@ describe("health tools", () => {
     const d = markerDetail(snapshot, findMarker("ferritin")!);
     expect(d.results).toHaveLength(2);
     expect(d.trend?.changeSincePrevious).toBe(3);
-    // No published variation is bundled (docs/eflm-biological-variation.md).
-    expect(d.normalVariation).toBe("not known for this marker");
+    // Ferritin's published variation comes from NHANES 1999–2002 (docs/biological-variation-candidates.md), never EFLM.
+    expect(d.normalVariation).toMatchObject({ withinPersonCV: "21.8%", source: { pmid: "20540274" } });
+    expect(markerDetail(snapshot, findMarker("tsh")!).normalVariation).toBe("not known for this marker");
     // With a made-up value the published path still reports it.
     expect(markerDetail(snapshot, withVariation(findMarker("ferritin")!, 10)).normalVariation).toMatchObject({ withinPersonCV: "10%" });
     expect(d.sources[0]!.id).toMatch(/^PMID:/);

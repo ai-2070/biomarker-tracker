@@ -66,6 +66,19 @@
       "evidenceId": "iron-supplements-ferritin"
     }
   ],
+  "biologicalVariation": {
+    "cvi": 21.8,
+    "n": 796,
+    "population": "US teens and adults aged 16–69 (NHANES 1999–2002), two samples about 19 days apart; the lab's own imprecision removed",
+    "source": {
+      "pmid": "20540274",
+      "title": "Biological variation of laboratory analytes based on the 1999-2002 National Health and Nutrition Examination Survey.",
+      "year": 2010,
+      "studyType": "observational",
+      "n": 796
+    },
+    "where": "Table 1 (within-person CV)"
+  },
   "sources": [
     {
       "pmid": "33285139",

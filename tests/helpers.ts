@@ -30,14 +30,10 @@ export function withVariation(d: BiomarkerDef, cvi: number): BiomarkerDef {
     ...d,
     biologicalVariation: {
       cvi,
-      ciLow: cvi,
-      ciHigh: cvi,
-      studies: 1,
-      analyte: d.name,
-      matrix: "Test",
-      source: "Test fixture (made-up value)",
-      url: "https://example.org/",
-      retrieved: "2026-01-01",
+      n: 10,
+      population: "Test fixture (made-up value)",
+      source: { title: "Test fixture (made-up value)", year: 2026, studyType: "observational", doi: "10.0000/test" },
+      where: "Test",
     },
   };
 }

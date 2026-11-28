@@ -46,6 +46,22 @@
     "commonCauses": []
   },
   "affectedBy": [],
+  "biologicalVariation": {
+    "cvi": 46.2,
+    "ciLow": 42.9,
+    "ciHigh": 49.3,
+    "n": 541,
+    "population": "US teens and adults aged 16–69 (NHANES 2001–02), two samples about 19 days apart",
+    "source": {
+      "pmid": "22945505",
+      "doi": "10.1001/archinternmed.2012.3712",
+      "title": "Within-person variability in high-sensitivity C-reactive protein.",
+      "year": 2012,
+      "studyType": "observational",
+      "n": 541
+    },
+    "where": "Results"
+  },
   "sources": [
     {
       "pmid": "12551878",

@@ -28,6 +28,50 @@
           "notes": "EFLM replied on 2026-11-24 (Chair, EFLM TC-BVD): its data may not be systematically reproduced in, or redistributed through, third-party applications, software, databases or websites; requests are considered individually, and permitted reuse needs a formal agreement (scope, attribution, keeping the data up to date) and an annual licence fee of EUR 6,000. The project declined, as a free non-commercial app. The values are not in the app, the current files or the history."
         },
         {
+          "name": "Lacher et al. (2010), NCHS National Health Statistics Report 21 — NHANES 1999–2002 biological variation",
+          "location": "biologicalVariation in knowledge/biomarkers: total_cholesterol, ferritin, vitamin_d, b12, alt, creatinine, homocysteine",
+          "source": "https://pubmed.ncbi.nlm.nih.gov/20540274/",
+          "licence": "US government work; the report states its material is in the public domain",
+          "terms": "https://pubmed.ncbi.nlm.nih.gov/20540274/",
+          "redistribution": "Public domain; cite the report.",
+          "verifiedOn": "2026-11-28",
+          "checkedOn": "2026-11-28",
+          "notes": "One within-person variation (CVI) number per marker is cited as a fact with its paper in biologicalVariation; no article text or tables are copied. Research notes: docs/biological-variation-candidates.md."
+        },
+        {
+          "name": "Corte & Venta (2020), Ann Transl Med — biological variation in healthy individuals",
+          "location": "biologicalVariation in knowledge/biomarkers: ldl, hdl, triglycerides",
+          "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7186598/",
+          "licence": "CC BY-NC-ND 4.0 (article)",
+          "terms": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+          "redistribution": "The article is not redistributed or adapted; three CVI values are cited with attribution.",
+          "verifiedOn": "2026-11-28",
+          "checkedOn": "2026-11-28",
+          "notes": "One within-person variation (CVI) number per marker is cited as a fact with its paper in biologicalVariation; no article text or tables are copied. Research notes: docs/biological-variation-candidates.md."
+        },
+        {
+          "name": "Thyagarajan et al. (2016), Clin Chim Acta — HCHS/SOL analytical and biological variability",
+          "location": "biologicalVariation in knowledge/biomarkers/glucose.json",
+          "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5136507/",
+          "licence": "Journal copyright; NIH author manuscript in PMC",
+          "terms": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5136507/",
+          "redistribution": "The article is not redistributed; one CVI value is cited with attribution.",
+          "verifiedOn": null,
+          "checkedOn": "2026-11-28",
+          "notes": "One within-person variation (CVI) number per marker is cited as a fact with its paper in biologicalVariation; no article text or tables are copied. Research notes: docs/biological-variation-candidates.md."
+        },
+        {
+          "name": "Bower et al. (2012), Arch Intern Med — within-person variability in hs-CRP (NHANES 2001–02)",
+          "location": "biologicalVariation in knowledge/biomarkers/crp_hs.json",
+          "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3613132/",
+          "licence": "Journal copyright; NIH author manuscript in PMC",
+          "terms": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3613132/",
+          "redistribution": "The article is not redistributed; one CVI value is cited with attribution.",
+          "verifiedOn": null,
+          "checkedOn": "2026-11-28",
+          "notes": "One within-person variation (CVI) number per marker is cited as a fact with its paper in biologicalVariation; no article text or tables are copied. Research notes: docs/biological-variation-candidates.md."
+        },
+        {
           "name": "EFSA Dietary Reference Values summary (2017)",
           "location": "knowledge/nutrients; packages/shared/src/core/intake.ts; meals.ts",
           "source": "https://www.efsa.europa.eu/sites/default/files/2017_09_DRVs_summary_report.pdf",

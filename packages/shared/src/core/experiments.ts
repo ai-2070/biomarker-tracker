@@ -1,6 +1,6 @@
 import { dayNumber, isIsoDate } from "./dates";
 import { sortByDate } from "./trends";
-import type { BiomarkerDef, Experiment, Measurement, ProtocolEntry } from "./types";
+import type { BiologicalVariation, BiomarkerDef, Experiment, Measurement, ProtocolEntry } from "./types";
 
 /**
  * Self-experiments: compare results before and after a change against the
@@ -37,6 +37,27 @@ export function rcvBand(cviPercent: number, nBefore = 1, nAfter = 1, cvaPercent 
   const sigma = Math.sqrt(Math.log(1 + cv * cv));
   const k = z * Math.sqrt(1 / nBefore + 1 / nAfter) * sigma;
   return { up: Math.expm1(k), down: Math.expm1(-k) };
+}
+
+/**
+ * The band from a marker's published within-person variation. Lab imprecision (CVA = 0.5 × CVI) is added unless
+ * the study's value already includes it.
+ */
+export function publishedBand(bv: Pick<BiologicalVariation, "cvi" | "includesAnalytical">, nBefore = 1, nAfter = 1): ChangeBand {
+  return rcvBand(bv.cvi, nBefore, nAfter, bv.includesAnalytical ? 0 : bv.cvi * DEFAULT_CVA_RATIO);
+}
+
+/**
+ * Published values come from samples days or weeks apart; over months, people vary more. So when the person's own
+ * results also give a band (enough on each side), the wider one is used.
+ */
+export function widerBand(
+  published: ChangeBand | undefined,
+  personal: ChangeBand | undefined,
+): { band: ChangeBand; from: "published" | "personal" } | undefined {
+  if (!published) return personal ? { band: personal, from: "personal" } : undefined;
+  if (!personal) return { band: published, from: "published" };
+  return personal.up - personal.down > published.up - published.down ? { band: personal, from: "personal" } : { band: published, from: "published" };
 }
 
 /** Two-sided 95% t values by degrees of freedom; between rows the smaller df is used (wider, so cautious). */
@@ -191,15 +212,16 @@ export function analyzeMarker(e: Experiment, def: BiomarkerDef, ms: readonly Mea
   r.change = r.afterValue / r.beforeValue - 1;
   if (!Number.isFinite(r.change)) return { ...r, change: undefined, verdict: "no-variation-data" };
   const bv = def.biologicalVariation;
-  const band = bv
-    ? rcvBand(bv.cvi, before.length, after.length)
-    : personalBand(
-        before.map((m) => m.value),
-        after.map((m) => m.value),
-      );
-  if (!band) return { ...r, verdict: "no-variation-data" };
-  r.band = band;
-  r.bandFrom = bv ? "published" : "personal";
+  const chosen = widerBand(
+    bv ? publishedBand(bv, before.length, after.length) : undefined,
+    personalBand(
+      before.map((m) => m.value),
+      after.map((m) => m.value),
+    ),
+  );
+  if (!chosen) return { ...r, verdict: "no-variation-data" };
+  r.band = chosen.band;
+  r.bandFrom = chosen.from;
   r.verdict = r.change > r.band.up ? "rise" : r.change < r.band.down ? "fall" : "within-noise";
   return r;
 }

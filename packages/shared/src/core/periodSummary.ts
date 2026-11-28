@@ -11,7 +11,7 @@
  */
 import { phenoAgePace } from "./agePace";
 import { addDays, daysBetween } from "./dates";
-import { personalBand, rcvBand } from "./experiments";
+import { personalBand, publishedBand, widerBand } from "./experiments";
 import { isPluralName } from "./testSummary";
 import { type Flag, flagMeasurement, isOutOfRange, sortByDate } from "./trends";
 import type { BiomarkerDef, Measurement, Profile } from "./types";
@@ -94,7 +94,7 @@ function versusBefore(
   const nowMean = geoMean(a);
   const beforeMean = geoMean(b);
   const rel = nowMean / beforeMean - 1;
-  const band = def.biologicalVariation ? rcvBand(def.biologicalVariation.cvi, b.length, a.length) : personalBand(b, a);
+  const band = widerBand(def.biologicalVariation ? publishedBand(def.biologicalVariation, b.length, a.length) : undefined, personalBand(b, a))?.band;
   return {
     now: nowMean,
     before: beforeMean,

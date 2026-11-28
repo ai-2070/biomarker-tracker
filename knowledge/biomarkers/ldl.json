@@ -54,6 +54,22 @@
       "evidenceId": "replace-saturated-fat-ldl"
     }
   ],
+  "biologicalVariation": {
+    "cvi": 7.3,
+    "ciLow": 5.9,
+    "ciHigh": 8.8,
+    "n": 11,
+    "population": "11 healthy adults aged 21–50 in Spain, fasting samples once a week for 5 weeks; the lab's own imprecision removed",
+    "source": {
+      "pmid": "32355725",
+      "doi": "10.21037/atm.2020.03.26",
+      "title": "Biological variation of metabolic cardiovascular risk factors in haemodialysis patients and healthy individuals.",
+      "year": 2020,
+      "studyType": "observational",
+      "n": 11
+    },
+    "where": "Table 2 (healthy subjects)"
+  },
   "sources": [
     {
       "pmid": "31504418",

@@ -94,3 +94,23 @@ describe("validateBiomarkerDef", () => {
     expect(validateBiomarkerDef("x")).toEqual(["entry is not an object"]);
   });
 });
+
+describe("published within-person variation", () => {
+  const withBv = loadKnowledgeFiles()
+    .map(({ json }) => json as BiomarkerDef)
+    .filter((d) => d.biologicalVariation);
+
+  it("comes only from the reviewed original studies, never EFLM's database or estimates", () => {
+    // The owner's decisions, 2026-11-28 (docs/biological-variation-candidates.md): NHANES 1999–2002 (Lacher 2010),
+    // Corte & Venta 2020, HCHS/SOL (Thyagarajan 2016) for fasting glucose, Bower 2012 for hs-CRP. No EuBIVAS, TSH or HbA1c.
+    const allowed = new Set(["20540274", "32355725", "27756543", "22945505"]);
+    expect(withBv.map((d) => d.id).sort()).toEqual(
+      ["alt", "b12", "creatinine", "crp_hs", "ferritin", "glucose", "hdl", "homocysteine", "ldl", "total_cholesterol", "triglycerides", "vitamin_d"].sort(),
+    );
+    for (const d of withBv) {
+      const bv = d.biologicalVariation!;
+      expect(allowed.has(bv.source.pmid ?? ""), d.id).toBe(true);
+      expect(JSON.stringify(bv), d.id).not.toMatch(/eflm|biologicalvariation\.eu|eubivas/i);
+    }
+  });
+});
