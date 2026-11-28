@@ -1,6 +1,6 @@
 [package]
 name = "biomarker-tracker"
-version = "1.0.0"
+version = "1.1.0"
 description = "A private, local-first bloodwork and biomarker tracker"
 edition = "2021"
 license = "MIT"

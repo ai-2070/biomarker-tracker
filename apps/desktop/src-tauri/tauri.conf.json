@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Biomarker Tracker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "identifier": "io.github.ai-2070.biomarker-tracker",
   "build": {
     "beforeDevCommand": "bun run desktop:prepare",
