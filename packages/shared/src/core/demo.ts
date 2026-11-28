@@ -4,8 +4,10 @@
  * an iron supplement, vitamin D that dips in winter until D3 is started, and LDL that falls during a
  * diet experiment. Same input date, same data (a seeded random generator adds small wobbles).
  */
+import { type CheckIn, checkInId, itemsOn } from "./checkIns";
 import { addDays, isIsoDate } from "./dates";
-import type { Plan } from "./plans";
+import type { Meal } from "./meals";
+import type { Plan, PlanItem } from "./plans";
 import type { Experiment, Measurement, Profile, ProtocolEntry } from "./types";
 
 export interface DemoData {
@@ -14,6 +16,9 @@ export interface DemoData {
   protocols: ProtocolEntry[];
   experiments: Experiment[];
   plans: Plan[];
+  meals: Meal[];
+  /** What the example person ticked off on Today, over the last weeks. */
+  checkins: CheckIn[];
 }
 
 /** Canonical units of the markers used here (a test checks them against the knowledge base). */
@@ -391,8 +396,11 @@ export function demoProfile(today: string): DemoData {
       start: addDays(draws[3]!, 9),
       end: addDays(draws[5]!, 20),
     },
-    { id: "example-log-d3", label: "Vitamin D3 1000 IU daily", category: "supplement", start: d3Start },
-    { id: "example-log-walk", label: "Walking 30 minutes a day", category: "lifestyle", start: walkStart },
+    // Vitamin D3 moved into "Supplements through the day" (below) when that protocol was started.
+    { id: "example-log-d3", label: "Vitamin D3 1000 IU daily", category: "supplement", start: d3Start, end: addDays(today, -36) },
+    // Walking more for years (the steps story); six weeks ago it became a set 30-minute walk, watched for body fat.
+    { id: "example-log-walk", label: "Walking more", category: "lifestyle", start: walkStart, end: addDays(today, -43) },
+    { id: "example-log-walk-30", label: "Walking 30 minutes a day", category: "lifestyle", start: addDays(today, -42) },
     { id: "example-log-fibre", label: "Oats and beans every day (more fibre)", category: "diet", start: expStart, end: addDays(expStart, 100) },
   ];
   const experiments: Experiment[] = [
@@ -405,6 +413,17 @@ export function demoProfile(today: string): DemoData {
       retestAfterDays: 84,
       end: addDays(expStart, 100),
       protocolId: "example-log-fibre",
+    },
+    {
+      // Running: "before" from the monthly body-fat readings, the re-test due in two weeks (Coming up shows it).
+      id: "example-exp-walk-fat",
+      change: "Walking 30 minutes a day",
+      category: "lifestyle",
+      markerIds: ["body_fat"],
+      start: addDays(today, -42),
+      retestAfterDays: 56,
+      protocolId: "example-log-walk-30",
+      chosenOn: addDays(today, -42),
     },
   ];
 
@@ -481,5 +500,90 @@ export function demoProfile(today: string): DemoData {
       createdAt: `${addDays(today, -3)}T08:00:00.000Z`,
     },
   ];
-  return { person, measurements, protocols, experiments, plans };
+
+  // Three protocols the example person runs now, ticked off on Today most days (made up, not a recommendation).
+  const meals: Meal[] = [
+    {
+      id: "example-meal-mackerel",
+      name: "Grilled mackerel with new potatoes and spinach",
+      items: [
+        { foodId: "16-394", grams: 140 },
+        { foodId: "13-495", grams: 175 },
+        { foodId: "13-573", grams: 80 },
+      ],
+      createdAt: `${addDays(today, -22)}T18:00:00.000Z`,
+    },
+  ];
+  const running: { plan: Plan; habit: ProtocolEntry }[] = (
+    [
+      {
+        id: "supplements",
+        name: "Supplements through the day",
+        description: "The supplements I take, at the times I take them. Written down to keep track, not a recommendation.",
+        category: "supplement",
+        start: addDays(today, -35),
+        items: [
+          { id: "example-day-d3", label: "Vitamin D3", category: "supplement", when: "morning", withFood: true },
+          { id: "example-day-collagen", label: "Collagen peptides", category: "supplement", when: "morning", note: "Together with the vitamin C" },
+          { id: "example-day-vit-c", label: "Vitamin C", category: "supplement", when: "morning", note: "Together with the collagen" },
+          { id: "example-day-omega3", label: "Omega-3", category: "supplement", when: "midday", withFood: true },
+        ],
+      },
+      {
+        id: "dinner",
+        name: "Evening meal",
+        description: "Oily fish most evenings instead of takeaway.",
+        category: "diet",
+        start: addDays(today, -21),
+        items: [
+          {
+            id: "example-dinner-mackerel",
+            label: "Grilled mackerel with new potatoes and spinach",
+            category: "diet",
+            when: "evening",
+            mealId: "example-meal-mackerel",
+          },
+        ],
+      },
+      {
+        id: "red-light",
+        name: "Red light therapy",
+        description: "A red light panel at home, every other day.",
+        category: "lifestyle",
+        start: addDays(today, -28),
+        items: [
+          { id: "example-red-light", label: "Red light therapy", amount: "10 min", category: "lifestyle", when: "evening", every: 2, note: "Eyes protected" },
+        ],
+      },
+    ] satisfies { id: string; name: string; description: string; category: ProtocolEntry["category"]; start: string; items: PlanItem[] }[]
+  ).map(({ id, name, description, category, start, items }) => ({
+    plan: {
+      id: `example-plan-${id}`,
+      name,
+      description,
+      items,
+      createdAt: `${addDays(start, -2)}T08:00:00.000Z`,
+      active: { since: start, habitIds: [`example-log-${id}`] },
+    },
+    habit: { id: `example-log-${id}`, label: name, category, start, plan: { id: `example-plan-${id}`, items } },
+  }));
+  protocols.push(...running.map((r) => r.habit));
+  plans.push(...running.map((r) => r.plan));
+
+  // Ticks: most planned items on most days, the walk less often; today only the morning so far.
+  const tick = seeded(20261127);
+  const keep: Record<string, number> = { "example-day-omega3": 0.8, "example-red-light": 0.75, "example-dinner-mackerel": 0.85 };
+  const checkins: CheckIn[] = [];
+  for (const { habit } of running)
+    for (let date = habit.start; date <= today; date = addDays(date, 1)) {
+      const items = itemsOn(habit, date)
+        .filter((i) => (date === today ? i.when === "morning" : tick() < (keep[i.id] ?? 0.9)))
+        .map((i) => i.id)
+        .sort();
+      if (items.length) checkins.push({ id: checkInId(habit.id, date), habitId: habit.id, date, items });
+    }
+  for (let date = addDays(today, -42); date < today; date = addDays(date, 1))
+    if (tick() < 0.7) checkins.push({ id: checkInId("example-log-walk-30", date), habitId: "example-log-walk-30", date });
+
+  return { person, measurements, protocols, experiments, plans, meals, checkins };
 }

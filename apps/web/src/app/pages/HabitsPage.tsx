@@ -11,13 +11,14 @@ import { deleteExperiment, deleteHabit, saveHabit, watchHabit } from "../../db/d
 import { ChoiceGroup } from "../components/ChoiceGroup";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { More } from "../components/disclosure";
+import { HabitCalendar } from "../components/habits/HabitCalendar";
 import { HabitForm, MarkerPicker, RETEST_OPTIONS } from "../components/habits/HabitForm";
 import { PlusIcon } from "../components/icons";
 import { TIME_LABEL, whenExtras, whenOf } from "../components/PlanWhen";
 import { SafetyNotices } from "../components/SafetyNotices";
 import { Button, Card, cardStyles, cx, errorStyles, eyebrowSmallStyles, eyebrowStyles, PageTitle } from "../components/ui";
 import { CATEGORY_LABEL, formatChange, formatDate, formatDuration, showWatchValue, valueUnit } from "../format";
-import { useAllMeasurements, useExperiments, usePlans, useProfile, useProtocols, useWatchMeasurements } from "../hooks";
+import { useAllMeasurements, useCheckIns, useExperiments, usePlans, useProfile, useProtocols, useWatchMeasurements } from "../hooks";
 import { BIOMARKER_MAP, shortName, WATCH_DEFS, watchDef } from "../knowledge";
 import { href } from "../router";
 import { PhaseBadge } from "./ExperimentsPage";
@@ -30,6 +31,7 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
   const protocols = useProtocols();
   const experiments = useExperiments();
   const plans = usePlans();
+  const checkIns = useCheckIns();
   // Results plus the PhenoAge gap at each complete blood test, so the gap can be watched like a marker.
   const all = useWatchMeasurements(useAllMeasurements());
   const profile = useProfile();
@@ -83,6 +85,8 @@ export function HabitsPage({ add, marker, meal, type }: { add?: string; marker?:
             </Button>
           </div>
         )}
+
+        {protocols.length > 0 && checkIns && <HabitCalendar protocols={protocols} checkIns={checkIns} today={today} />}
 
         {habits.length === 0 && !adding && (
           <Card className="flex flex-col gap-3 text-ink-2">

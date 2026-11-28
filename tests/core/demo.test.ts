@@ -1,8 +1,11 @@
 import { parseBackup } from "@bt/shared/core/backup";
+import { adherence, checkInsError, dayPlan } from "@bt/shared/core/checkIns";
 import { addDays } from "@bt/shared/core/dates";
 import { DEMO_BODY_IDS, DEMO_UNITS, demoBodyMeasurements, demoProfile } from "@bt/shared/core/demo";
 import { analyzeMarker } from "@bt/shared/core/experiments";
+import { validateMeal } from "@bt/shared/core/meals";
 import { summarizePhenoAge } from "@bt/shared/core/phenoageDraws";
+import { validatePlan } from "@bt/shared/core/plans";
 import { isActiveOn } from "@bt/shared/core/protocols";
 import { sleepLocalTime, validSleepSessions } from "@bt/shared/core/sleepSessions";
 import { buildSleepTiming, pairSleepCardiac } from "@bt/shared/core/sleepTiming";
@@ -22,6 +25,36 @@ describe("example profile (made-up data)", () => {
     expect(demo.person.name).toMatch(/example/i);
     expect(demoProfile(today)).toEqual(demo);
     expect(new Set(demo.measurements.map((m) => m.id)).size).toBe(demo.measurements.length);
+  });
+
+  it("runs three protocols ticked off on most days, with a saved evening meal", () => {
+    const running = demo.plans.filter((p) => p.active);
+    expect(running.map((p) => p.name)).toEqual(["Supplements through the day", "Evening meal", "Red light therapy"]);
+    for (const p of running) {
+      expect(validatePlan(p)).toEqual([]);
+      const habit = demo.protocols.find((h) => h.id === p.active!.habitIds[0])!;
+      expect(habit.plan?.items).toEqual(p.items);
+      expect(adherence(habit, demo.checkins, today)!.share).toBeGreaterThan(0.6);
+    }
+    expect(running.flatMap((p) => p.items).find((i) => i.label === "Red light therapy")?.every).toBe(2);
+    expect(demo.meals.map((m) => validateMeal(m))).toEqual([[]]);
+    expect(running[1]!.items[0]!.mealId).toBe(demo.meals[0]!.id);
+    expect(checkInsError(demo.checkins)).toBeUndefined();
+    // Today only the morning items are ticked so far.
+    const now = dayPlan(demo.protocols, demo.checkins, today);
+    expect(now.groups.find((g) => g.when === "morning")!.tasks.every((t) => t.done)).toBe(true);
+    expect(now.groups.filter((g) => g.when !== "morning").every((g) => g.tasks.every((t) => !t.done))).toBe(true);
+    // Vitamin D3 moved into the protocol, so the old habit ended the day before it started.
+    expect(demo.protocols.find((p) => p.id === "example-log-d3")!.end! < running[0]!.active!.since).toBe(true);
+  });
+
+  it("watches body fat for the 30-minute walk, with the re-test due in two weeks", () => {
+    const watch = demo.experiments.find((e) => e.id === "example-exp-walk-fat")!;
+    const r = analyzeMarker(watch, def("body_fat"), demo.measurements);
+    expect(r.verdict).toBe("waiting");
+    expect(r.before.length).toBeGreaterThanOrEqual(3);
+    expect(addDays(watch.start, watch.retestAfterDays)).toBe(addDays(today, 14));
+    expect(demo.protocols.find((p) => p.id === watch.protocolId)?.label).toBe("Walking 30 minutes a day");
   });
 
   it("uses each marker's own unit and known markers only", () => {

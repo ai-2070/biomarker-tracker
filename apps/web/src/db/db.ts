@@ -1,4 +1,5 @@
 import { type Backup, createBackup } from "@bt/shared/core/backup";
+import { type CheckIn, toggled } from "@bt/shared/core/checkIns";
 import { todayIso } from "@bt/shared/core/dates";
 import { exampleSleepUpdates } from "@bt/shared/core/demo";
 import { syncWatch, watchFor } from "@bt/shared/core/habits";
@@ -27,6 +28,8 @@ export class TrackerDB extends Dexie {
   plans!: EntityTable<Plan, "id">;
   /** Meals the person built (foods and grams). */
   meals!: EntityTable<Meal, "id">;
+  /** What the person ticked off each day (checkins.json). */
+  checkins!: EntityTable<CheckIn, "id">;
 
   constructor(name = "biomarker-tracker") {
     super(name);
@@ -53,6 +56,8 @@ export class TrackerDB extends Dexie {
         for (const row of rows) if (row.savedOrder === undefined) row.savedOrder = ++order;
         await tx.table<Measurement>("measurements").bulkPut(rows);
       });
+    // v8: daily check-ins (the Today dashboard).
+    this.version(8).stores({ checkins: "id, habitId, date" });
   }
 }
 
@@ -120,6 +125,18 @@ export async function stopPlan(p: Plan, today: string, database = db): Promise<v
     }
     const { active: _a, ...rest } = current;
     await database.plans.put(rest);
+  });
+}
+
+// Daily check-ins
+
+/** Ticks or unticks one task of a day (a protocol item, or a habit without items). */
+export async function toggleCheckIn(habitId: string, date: string, itemId?: string, database = db): Promise<void> {
+  await database.transaction("rw", database.checkins, async () => {
+    const id = `${habitId}|${date}`;
+    const next = toggled(await database.checkins.get(id), habitId, date, itemId);
+    if (next) await database.checkins.put(next);
+    else await database.checkins.delete(id);
   });
 }
 
@@ -382,9 +399,10 @@ export async function saveHabit(p: ProtocolEntry, database = db): Promise<void> 
 
 /** Delete a habit and what it watched. Test results are kept. */
 export async function deleteHabit(h: { entry?: ProtocolEntry; watch?: Experiment }, database = db): Promise<void> {
-  await database.transaction("rw", database.experiments, database.protocols, database.plans, async () => {
+  await database.transaction("rw", [database.experiments, database.protocols, database.plans, database.checkins], async () => {
     if (h.entry) {
       await database.protocols.delete(h.entry.id);
+      await database.checkins.where("habitId").equals(h.entry.id).delete();
       await database.experiments.filter((e) => e.protocolId === h.entry!.id).delete();
       await syncSourcePlanHabit(h.entry, database, true);
     }
@@ -539,8 +557,9 @@ export async function importBackup(backup: Backup, mode: ImportMode, database = 
   backup.measurements.forEach(checkSleepSessions);
   await database.transaction(
     "rw",
-    [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.settings],
+    [database.measurements, database.protocols, database.experiments, database.plans, database.meals, database.checkins, database.settings],
     async () => {
+      await database.checkins.clear();
       if (mode === "replace") {
         await database.measurements.clear();
         await database.protocols.clear();

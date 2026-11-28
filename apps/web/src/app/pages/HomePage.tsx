@@ -8,14 +8,14 @@ import { CriticalBanner } from "../components/CriticalBanner";
 import { BloodPressureFigure, WeightFigure } from "../components/dashboard/body";
 import { BodySummaryList, SummaryValue, summaryRow } from "../components/dashboard/bodySummary";
 import { Sparkline } from "../components/dashboard/Sparkline";
-import { Timeline } from "../components/dashboard/Timeline";
+import { ComingUp, KeptTo, longDate, TodayPlan } from "../components/dashboard/today";
 import { AskPanel, BioAgeFigure, cardStyles, HabitsPanel, labelStyles, ToWatchFigure } from "../components/dashboard/widgets";
 import { ExampleProfileButton } from "../components/ExampleProfileButton";
 import { ArrowRightIcon } from "../components/icons";
 import { SafetyNotices } from "../components/SafetyNotices";
-import { cx } from "../components/ui";
+import { cx, eyebrowStyles } from "../components/ui";
 import { displayUnitFor, formatDate, showMeasurement, valueUnit } from "../format";
-import { useAllMeasurements, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
+import { useAllMeasurements, useCheckIns, useDisplayUnits, useExperiments, useProfile, useProtocols } from "../hooks";
 import { BIOMARKER_MAP, bloodOnly, bodyOnly, shortName } from "../knowledge";
 import { useProfiles } from "../profiles";
 import { href } from "../router";
@@ -28,11 +28,16 @@ function firstName(p: Profile): string | undefined {
   return n || undefined;
 }
 
-/** The main dashboard: blood tests and body together, with habits and Brain. */
+function greeting(hour: number): string {
+  return hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+}
+
+/** The main dashboard: today's plan first (protocols and habits to tick off, what's coming up), then health at a glance. */
 export function HomePage() {
   const all = useAllMeasurements();
   const protocols = useProtocols();
   const experiments = useExperiments();
+  const checkIns = useCheckIns();
   const profile = useProfile();
   const today = todayIso();
   const dashboards = useMemo(() => {
@@ -41,10 +46,11 @@ export function HomePage() {
     return { blood: build(bloodOnly(all)), body: build(bodyOnly(all)), both: build(all) };
   }, [all, protocols, experiments, profile, today]);
 
-  if (!dashboards || !all || !protocols) return <p className="text-ink-2">Loading…</p>;
+  if (!dashboards || !all || !protocols || !experiments || !checkIns) return <p className="text-ink-2">Loading…</p>;
   const { blood, body, both } = dashboards;
   const name = firstName(profile);
-  if (both.markers.length === 0) return <Welcome name={name} />;
+  const hasResults = both.markers.length > 0;
+  if (!hasResults && protocols.length === 0 && experiments.length === 0) return <Welcome name={name} />;
   const bodyMs = bodyOnly(all);
 
   return (
@@ -55,51 +61,81 @@ export function HomePage() {
       </div>
 
       <header>
-        <h1 className="font-serif text-4xl font-normal tracking-tight text-balance sm:text-5xl">{name ? `${name}'s health` : "Your health"}</h1>
-        <p className="mt-1 text-ink-2">
-          {[blood.lastTest && `Latest blood test ${formatDate(blood.lastTest)}`, body.lastTest && `body measured ${formatDate(body.lastTest)}`]
-            .filter(Boolean)
-            .join(" · ")}
-        </p>
+        <p className={eyebrowStyles}>{longDate(today)}</p>
+        <h1 className="mt-1 font-serif text-4xl font-normal tracking-tight text-balance sm:text-5xl">
+          {greeting(new Date().getHours())}
+          {name ? `, ${name}` : ""}
+        </h1>
       </header>
 
-      <section aria-label="Key figures" className="stagger grid grid-cols-2 gap-3 lg:grid-cols-5">
-        <BioAgeFigure d={blood} profile={profile} today={today} />
-        <ToWatchFigure
-          d={both}
-          className="max-lg:col-span-2"
-          to={
-            blood.toWatch.length > 0 || body.toWatch.length === 0
-              ? href({ name: "overview", ...(blood.toWatch.length ? { show: "out" as const } : {}) })
-              : href({ name: "body" })
-          }
-        />
-        <BloodPressureFigure ms={bodyMs} profile={profile} />
-        <WeightFigure ms={bodyMs} />
-      </section>
-
-      {both.draws.length > 0 && (
-        <section className={cardStyles} aria-labelledby="timeline-title">
-          <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-            <h2 id="timeline-title" className="font-serif text-2xl font-normal">
-              Timeline
-            </h2>
-            <p className="text-sm text-ink-2">
-              Blood tests, body measurements and habits. Drag to move through time; point at or tap a blood test to see what was off.
-            </p>
-          </div>
-          <Timeline d={{ ...blood, span: both.span }} protocols={protocols} birthMonth={profile.birthMonth} today={today} body={body.draws} />
-        </section>
-      )}
-
-      <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_20rem]">
-        <BloodSummary d={blood} />
-        <BodySummary d={body} />
-        <aside className="flex flex-col gap-4 lg:col-span-2 lg:grid lg:grid-cols-2 xl:col-span-1 xl:flex">
-          <HabitsPanel protocols={protocols} experiments={experiments ?? []} all={all} today={today} />
-          <AskPanel d={both} />
+      <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_22rem] lg:has-[>aside:empty]:grid-cols-1">
+        <TodayPlan protocols={protocols} checkIns={checkIns} today={today} />
+        <aside className="flex min-w-0 flex-col gap-4 empty:hidden">
+          <ComingUp experiments={experiments} all={all} today={today} />
+          <KeptTo protocols={protocols} checkIns={checkIns} today={today} />
+          {!hasResults && <AskPanel d={both} />}
         </aside>
       </div>
+
+      <section aria-labelledby="health-title" className="flex flex-col gap-4 pt-2">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="health-title" className="font-serif text-3xl font-normal">
+            {name ? `${name}'s health` : "Your health"}
+          </h2>
+          <p className="text-sm text-ink-2">
+            {[blood.lastTest && `Latest blood test ${formatDate(blood.lastTest)}`, body.lastTest && `body measured ${formatDate(body.lastTest)}`]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+        </div>
+        {hasResults ? (
+          <>
+            <section aria-label="Key figures" className="stagger grid grid-cols-2 gap-3 lg:grid-cols-5">
+              <BioAgeFigure d={blood} profile={profile} today={today} />
+              <ToWatchFigure
+                d={both}
+                className="max-lg:col-span-2"
+                to={
+                  blood.toWatch.length > 0 || body.toWatch.length === 0
+                    ? href({ name: "overview", ...(blood.toWatch.length ? { show: "out" as const } : {}) })
+                    : href({ name: "body" })
+                }
+              />
+              <BloodPressureFigure ms={bodyMs} profile={profile} />
+              <WeightFigure ms={bodyMs} />
+            </section>
+            <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_20rem]">
+              <BloodSummary d={blood} />
+              <BodySummary d={body} />
+              <div className="flex flex-col gap-4 lg:col-span-2 lg:grid lg:grid-cols-2 xl:col-span-1 xl:flex">
+                <HabitsPanel protocols={protocols} experiments={experiments} all={all} today={today} />
+                <AskPanel d={both} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <FirstResults />
+        )}
+      </section>
+    </div>
+  );
+}
+
+function FirstResults() {
+  return (
+    <div className="stagger grid gap-3 sm:grid-cols-3">
+      <a href={href({ name: "import" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
+        <span className="font-medium">Import lab reports</span>
+        <span className="text-sm text-ink-2">PDFs or photos, one or many. Every value is checked before saving.</span>
+      </a>
+      <a href={href({ name: "add" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
+        <span className="font-medium">Type in a blood result</span>
+        <span className="text-sm text-ink-2">One value at a time from a paper report.</span>
+      </a>
+      <a href={href({ name: "add", kind: "body" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
+        <span className="font-medium">Add body measurements</span>
+        <span className="text-sm text-ink-2">Weight, waist, blood pressure, resting heart rate.</span>
+      </a>
     </div>
   );
 }
@@ -230,7 +266,8 @@ function Welcome({ name }: { name?: string }) {
       <header>
         <h1 className="font-serif text-4xl font-normal tracking-tight sm:text-5xl">{name ? `${name}'s health` : "Your health"}</h1>
         <p className="mt-1 text-ink-2">
-          Add a blood test or a body measurement and this fills in: biological age, what's in range, blood pressure, and a timeline over the years.
+          Start a routine to tick off each day, or add a blood test or a body measurement, and this fills in: biological age, what's in range, blood pressure,
+          and a timeline over the years.
         </p>
       </header>
       <div className="stagger grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -242,9 +279,9 @@ function Welcome({ name }: { name?: string }) {
           <span className="font-medium">Type in a blood result</span>
           <span className="text-sm text-ink-2">One value at a time from a paper report.</span>
         </a>
-        <a href={href({ name: "add", kind: "body" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
-          <span className="font-medium">Add body measurements</span>
-          <span className="text-sm text-ink-2">Weight, waist, blood pressure, resting heart rate.</span>
+        <a href={href({ name: "plans" })} className={cx(cardStyles, "flex flex-col gap-1 text-ink no-underline hover:border-line-strong")}>
+          <span className="font-medium">Write down your routine</span>
+          <span className="text-sm text-ink-2">Supplements, meals, exercise. Start it, and each day's items show here to tick off.</span>
         </a>
         <div className={cx(cardStyles, "flex flex-col gap-2")}>
           <span className="font-medium">Just looking?</span>

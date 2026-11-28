@@ -121,6 +121,13 @@ describe("profiles: one folder per person", () => {
     expect(() => profiles.saveProfileData(p.id, { person: { name: "Eva" }, meals: [{ ...meal, items: [{ foodId: "11-788", grams: 0 }] }] })).toThrow(
       /meal is damaged/,
     );
+    const ticks = [{ id: "h1|2026-11-27", habitId: "h1", date: "2026-11-27", items: ["a"] }];
+    profiles.saveProfileParts(p.id, { checkins: ticks });
+    expect(JSON.parse(fs.readFileSync(path.join(p.folder, "checkins.json"), "utf8"))).toEqual(ticks);
+    expect(profiles.getProfileData(profiles.restoreZip(profiles.backupZip(p.id).data).id).checkins).toEqual(ticks);
+    expect(() => profiles.saveProfileParts(p.id, { checkins: [{ ...ticks[0], id: "h1|2026-11-26" }] })).toThrow(/check-in is damaged/);
+    fs.unlinkSync(path.join(p.folder, "checkins.json"));
+    expect(profiles.getProfileData(p.id).checkins).toEqual([]);
   });
 
   it("preserves started protocol snapshots through save and zip restore, and rejects corrupted log items", () => {

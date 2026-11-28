@@ -77,7 +77,7 @@ describe("dashboard summary", () => {
   });
 
   it("knows what is being taken today and the time span to draw", () => {
-    expect(d.activeLog.map((p) => p.id).sort()).toEqual(["example-log-d3", "example-log-walk"]);
+    expect(d.activeLog.map((p) => p.id).sort()).toEqual(["example-log-dinner", "example-log-red-light", "example-log-supplements", "example-log-walk-30"]);
     expect(d.span!.from <= d.draws[0]!.date).toBe(true);
     expect(d.span!.to).toBe(today);
   });
@@ -86,7 +86,7 @@ describe("dashboard summary", () => {
     const running = { id: "e1", change: "Kiwis", category: "diet" as const, markerIds: ["ferritin"], start: "2026-10-01", retestAfterDays: 56 };
     const r = buildDashboard({ ...demo, experiments: [running], profile: demo.person, defs, today });
     expect(r.nextRetest).toEqual({ experimentId: "e1", change: "Kiwis", date: "2026-11-26", daysAway: 29 });
-    expect(d.nextRetest).toBeUndefined(); // the example's experiment has ended
+    expect(d.nextRetest).toMatchObject({ experimentId: "example-exp-walk-fat", change: "Walking 30 minutes a day", daysAway: 14 });
   });
 
   it("is empty but valid with no data", () => {

@@ -4,6 +4,7 @@
 
 import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
 import { createBackup, parseBackup } from "@bt/shared/core/backup";
+import { checkInsError } from "@bt/shared/core/checkIns";
 import { todayIso } from "@bt/shared/core/dates";
 import { demoProfile } from "@bt/shared/core/demo";
 import { validateMeal } from "@bt/shared/core/meals";
@@ -40,15 +41,16 @@ export async function loadedProfileId(): Promise<string | null> {
 
 /** Everything in this browser, as saved to a profile folder. */
 export async function browserData(expectedId?: string): Promise<ProfileData> {
-  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
+  return db.transaction("r", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.checkins, db.settings], async () => {
     if (expectedId !== undefined && (await loadedProfileId()) !== expectedId)
       throw new Error("Another profile owns this browser's working copy. Reload before editing.");
-    const [measurements, protocols, experiments, plans, meals, person, settings] = await Promise.all([
+    const [measurements, protocols, experiments, plans, meals, checkins, person, settings] = await Promise.all([
       db.measurements.toArray(),
       db.protocols.toArray(),
       db.experiments.toArray(),
       db.plans.toArray(),
       db.meals.toArray(),
+      db.checkins.toArray(),
       getProfile(),
       db.settings.toArray(),
     ]);
@@ -59,6 +61,7 @@ export async function browserData(expectedId?: string): Promise<ProfileData> {
       experiments,
       plans,
       meals,
+      checkins,
       settings: Object.fromEntries(settings.filter((s) => !BROWSER_KEYS.has(s.key)).map((s) => [s.key, s.value])),
     };
   });
@@ -91,7 +94,7 @@ export function claimWorkingCopy(): Promise<void> {
 export async function hasBrowserData(): Promise<boolean> {
   const d = await browserData();
   return (
-    d.measurements.length + d.protocols.length + d.experiments.length + d.plans.length + d.meals.length > 0 ||
+    d.measurements.length + d.protocols.length + d.experiments.length + d.plans.length + d.meals.length + d.checkins.length > 0 ||
     Object.values(d.person).some((v) => v !== undefined && v !== "") ||
     Object.keys(d.settings).length > 0
   );
@@ -112,12 +115,14 @@ export async function loadIntoBrowser(id: string): Promise<void> {
       throw new Error(`The profile's ${label} list is damaged or contains duplicate IDs.`);
     }
   }
+  const checkinsProblem = checkInsError(d.checkins ?? []);
+  if (checkinsProblem) throw new Error(checkinsProblem);
   await flushSaving();
   const previous = syncing?.id;
   stopSaving();
   try {
-    await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.settings], async () => {
-      await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear()]);
+    await db.transaction("rw", [db.measurements, db.protocols, db.experiments, db.plans, db.meals, db.checkins, db.settings], async () => {
+      await Promise.all([db.measurements.clear(), db.protocols.clear(), db.experiments.clear(), db.plans.clear(), db.meals.clear(), db.checkins.clear()]);
       const keep = (await db.settings.toArray()).filter((s) => s.key === "ai");
       await db.settings.clear();
       await db.measurements.bulkPut(d.measurements);
@@ -125,6 +130,7 @@ export async function loadIntoBrowser(id: string): Promise<void> {
       await db.experiments.bulkPut(d.experiments);
       await db.plans.bulkPut(d.plans ?? []);
       await db.meals.bulkPut(d.meals ?? []);
+      await db.checkins.bulkPut(d.checkins ?? []);
       await db.settings.bulkPut([
         ...keep,
         ...Object.entries(d.settings).map(([key, value]) => ({ key, value })),
@@ -345,8 +351,12 @@ export async function createExampleProfile(mode: "folders" | "browser", to = "#/
     createBackup({ profile: d.person, measurements: d.measurements, protocols: d.protocols, experiments: d.experiments }, new Date()),
     "replace",
   );
-  await db.plans.clear();
-  await db.plans.bulkPut(d.plans);
+  await db.transaction("rw", [db.plans, db.meals, db.checkins], async () => {
+    await Promise.all([db.plans.clear(), db.meals.clear(), db.checkins.clear()]);
+    await db.plans.bulkPut(d.plans);
+    await db.meals.bulkPut(d.meals);
+    await db.checkins.bulkPut(d.checkins);
+  });
   await setOnboarded();
   location.hash = to;
   location.reload();

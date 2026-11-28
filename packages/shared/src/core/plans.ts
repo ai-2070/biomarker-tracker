@@ -40,6 +40,8 @@ export interface PlanItem {
   withFood?: boolean;
   /** Only on these days of the week; missing means every day. */
   days?: Weekday[];
+  /** Every other day, counted from the day the protocol was started (never together with `days`). */
+  every?: 2;
   note?: string;
   /** One of the person's saved meals, when the item is that meal. Local only: dropped when shared. */
   mealId?: string;
@@ -83,6 +85,8 @@ export function itemErrors(v: unknown): string[] {
     )
   )
     errs.push("the days of the week are invalid");
+  if (v.every !== undefined && v.every !== 2) errs.push("'every other day' is invalid");
+  if (v.every !== undefined && v.days !== undefined) errs.push("an item is either every other day or on days of the week");
   if (!optStr(v.note, 300)) errs.push("notes must be under 300 characters");
   if (!optStr(v.mealId, 64)) errs.push("the meal link is damaged");
   return errs;
@@ -176,12 +180,17 @@ export function planFromFile(text: string, newId: () => string, now: string): { 
  */
 export function normalizeItem(i: PlanItem): PlanItem {
   const { days, ...rest } = i;
-  const sorted = days ? WEEKDAYS.filter((d) => days.includes(d)) : undefined;
+  const sorted = days && !i.every ? WEEKDAYS.filter((d) => days.includes(d)) : undefined;
   return {
     ...rest,
     ...(i.when === "with meals" ? { when: "any time" as const, withFood: true } : {}),
     ...(sorted && sorted.length > 0 && sorted.length < 7 ? { days: sorted } : {}),
   };
+}
+
+/** An item's days in words: "Every other day", "Mon, Wed, Fri", "Weekdays"; nothing for every day. */
+export function scheduleLabel(item: Pick<PlanItem, "days" | "every">): string | undefined {
+  return item.every === 2 ? "Every other day" : daysLabel(item.days);
 }
 
 /** Days of the week in words: "Mon, Wed, Fri", "Weekdays", "Weekends"; nothing for every day. */

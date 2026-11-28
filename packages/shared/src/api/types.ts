@@ -2,6 +2,7 @@
 // the page only ever imports types from here, never server code.
 
 import type { Effort, ModelChoice, ProviderConfig, ProviderId, ProviderInfo, Region, UseCheck } from "../core/aiProviders";
+import type { CheckIn } from "../core/checkIns";
 import type { ClaimCheck } from "../core/claimEvidence";
 import type { McpPreset } from "../core/mcpPresets";
 import type { Meal } from "../core/meals";
@@ -128,6 +129,8 @@ export interface ProfileData {
   plans: Plan[];
   /** Meals (meals.json). */
   meals: Meal[];
+  /** Daily check-ins (checkins.json). */
+  checkins: CheckIn[];
   settings: Record<string, unknown>;
 }
 
@@ -142,7 +145,7 @@ export interface ProfileSummary {
   folder: string;
 }
 
-export const PROFILE_PART_NAMES = ["person", "measurements", "protocols", "experiments", "plans", "meals", "settings"] as const;
+export const PROFILE_PART_NAMES = ["person", "measurements", "protocols", "experiments", "plans", "meals", "checkins", "settings"] as const;
 export type ProfilePart = (typeof PROFILE_PART_NAMES)[number];
 
 /** Data sent to create or save a profile; the server validates every part. */

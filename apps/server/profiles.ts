@@ -6,6 +6,8 @@
 //     log.json          supplements, diet changes, medicines, habits
 //     experiments.json  self-experiments
 //     protocols.json    protocols the person follows (Protocols page)
+//     meals.json        meals the person built
+//     checkins.json     what the person ticked off each day (Today)
 //     settings.json     this profile's display settings (e.g. units)
 //     files/            scanned lab reports and other documents
 //     files.json        list of those files
@@ -17,6 +19,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ProfileData, ProfileSummary, StoredFile } from "@bt/shared/api/types";
 import { cleanProfile, isProfile, parseBackup } from "@bt/shared/core/backup";
+import { type CheckIn, checkInsError } from "@bt/shared/core/checkIns";
 import { type Meal, validateMeal } from "@bt/shared/core/meals";
 import { type Plan, validatePlan } from "@bt/shared/core/plans";
 import type { Measurement, Profile } from "@bt/shared/core/types";
@@ -65,6 +68,7 @@ log.json          supplements, diet changes, medicines and habits
 experiments.json  self-experiments
 protocols.json    protocols (sets of supplements, foods, exercise you follow)
 meals.json        meals you built (foods and grams)
+checkins.json     what you ticked off each day (Today)
 settings.json     display settings for this profile
 files/            scanned lab reports and other documents
 files.json        list of those files
@@ -108,7 +112,18 @@ function readMeta(dir: string): ProfileFile {
   return meta;
 }
 
-const SNAPSHOT_FILES = ["results.json", "log.json", "experiments.json", "protocols.json", "meals.json", "settings.json", "profile.json"] as const;
+const SNAPSHOT_FILES = [
+  "results.json",
+  "log.json",
+  "experiments.json",
+  "protocols.json",
+  "meals.json",
+  "checkins.json",
+  "settings.json",
+  "profile.json",
+] as const;
+/** Files added after the first release: a journal written before them doesn't list them. */
+const LATER_FILES: ReadonlySet<string> = new Set(["checkins.json"]);
 const JOURNAL = ".save-journal.json";
 
 /** An interrupted save is rolled back before any reader can see the folder. */
@@ -119,10 +134,13 @@ function recoverSave(dir: string): void {
   const journal = text as { previous?: Record<string, string | null> } | null;
   if (
     !journal?.previous ||
-    SNAPSHOT_FILES.some((name) => !Object.hasOwn(journal.previous!, name) || (journal.previous![name] !== null && typeof journal.previous![name] !== "string"))
+    SNAPSHOT_FILES.some((name) =>
+      Object.hasOwn(journal.previous!, name) ? journal.previous![name] !== null && typeof journal.previous![name] !== "string" : !LATER_FILES.has(name),
+    )
   )
     throw new Error("The profile save journal is damaged.");
   for (const name of SNAPSHOT_FILES) {
+    if (!Object.hasOwn(journal.previous, name)) continue;
     const previous = journal.previous[name];
     if (previous === null) fs.rmSync(path.join(dir, name), { force: true });
     else writeJSON(path.join(dir, name), JSON.parse(previous!));
@@ -131,7 +149,16 @@ function recoverSave(dir: string): void {
   syncDirectory(dir);
 }
 
-type DataInput = { person?: unknown; measurements?: unknown; protocols?: unknown; experiments?: unknown; plans?: unknown; meals?: unknown; settings?: unknown };
+type DataInput = {
+  person?: unknown;
+  measurements?: unknown;
+  protocols?: unknown;
+  experiments?: unknown;
+  plans?: unknown;
+  meals?: unknown;
+  checkins?: unknown;
+  settings?: unknown;
+};
 
 function validMeals(v: unknown): Meal[] {
   if (v === undefined) return [];
@@ -144,6 +171,13 @@ function validMeals(v: unknown): Meal[] {
     ids.add(m.id);
   }
   return v as Meal[];
+}
+
+function validCheckIns(v: unknown): CheckIn[] {
+  if (v === undefined) return [];
+  const problem = checkInsError(v);
+  if (problem) throw new ProfileError(400, problem);
+  return v as CheckIn[];
 }
 
 function validPlans(v: unknown): Plan[] {
@@ -178,6 +212,7 @@ function validateData(input: DataInput): Omit<ProfileData, "settings"> {
     experiments: r.backup.experiments,
     plans: validPlans(input.plans),
     meals: validMeals(input.meals),
+    checkins: validCheckIns(input.checkins),
   };
 }
 
@@ -212,6 +247,7 @@ function writeAll(
     "experiments.json": data.experiments,
     "protocols.json": data.plans,
     "meals.json": data.meals,
+    "checkins.json": data.checkins,
     "settings.json": data.settings ?? {},
     "profile.json": { ...meta, person: data.person, updatedAt: new Date().toISOString() },
   };
@@ -317,6 +353,7 @@ export function getProfileData(id: string): ProfileData {
     experiments,
     plans: readJSON(path.join(dir, "protocols.json"), []),
     meals: readJSON(path.join(dir, "meals.json"), []),
+    checkins: readJSON(path.join(dir, "checkins.json"), []),
   });
   return { ...data, settings: validSettings(readJSON(path.join(dir, "settings.json"), {})) };
 }
@@ -337,6 +374,7 @@ export const PROFILE_PARTS = {
   experiments: "experiments.json",
   plans: "protocols.json",
   meals: "meals.json",
+  checkins: "checkins.json",
   settings: "settings.json",
 } as const;
 export type ProfilePart = keyof typeof PROFILE_PARTS;
@@ -514,6 +552,7 @@ export function restoreZip(zip: Buffer): ProfileSummary {
     experiments: json("experiments.json", []),
     plans: json("protocols.json", []),
     meals: json("meals.json", []),
+    checkins: json("checkins.json", []),
     settings: json("settings.json", {}),
   };
   const index = json("files.json", []);

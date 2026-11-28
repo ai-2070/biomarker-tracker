@@ -1,3 +1,4 @@
+import type { CheckIn } from "@bt/shared/core/checkIns";
 import { type IntakeItem, validateIntakeItems } from "@bt/shared/core/intake";
 import type { Meal } from "@bt/shared/core/meals";
 import { withPhenoAgeGap } from "@bt/shared/core/phenoageWatch";
@@ -58,6 +59,11 @@ export function usePlans(): Plan[] | undefined {
 /** The person's meals, newest first. */
 export function useMeals(): Meal[] | undefined {
   return useLiveQuery(async () => (await db.meals.toArray()).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), []);
+}
+
+/** Everything ticked off on the Today dashboard. */
+export function useCheckIns(): CheckIn[] | undefined {
+  return useLiveQuery(() => db.checkins.toArray(), []);
 }
 
 /** Whether a CSS media query matches, updating when it changes (e.g. the window is resized). */

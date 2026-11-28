@@ -183,7 +183,7 @@ describe("profile persistence review repairs", () => {
     fakeServer(() => ({ ok: true, active: null }));
     stop = startSaving("a");
     await deleteProfileFolder("a");
-    expect(await browserData()).toEqual({ person: {}, measurements: [], protocols: [], experiments: [], plans: [], meals: [], settings: {} });
+    expect(await browserData()).toEqual({ person: {}, measurements: [], protocols: [], experiments: [], plans: [], meals: [], checkins: [], settings: {} });
     expect(await db.settings.toArray()).toEqual([]);
     expect(await hasBrowserData()).toBe(false);
   });

@@ -1,5 +1,5 @@
 import { Checkbox } from "@base-ui/react/checkbox";
-import { daysLabel, normalizeItem, PLAN_TIMES, type PlanItem, type PlanTime, WEEKDAYS, type Weekday } from "@bt/shared/core/plans";
+import { normalizeItem, PLAN_TIMES, type PlanItem, type PlanTime, scheduleLabel, WEEKDAYS, type Weekday } from "@bt/shared/core/plans";
 import { useId } from "react";
 import { ChoiceGroup } from "./ChoiceGroup";
 import { CheckIcon, cx, labelStyles } from "./ui";
@@ -22,30 +22,38 @@ export interface WhenValue {
   withFood: boolean;
   /** Empty means every day. */
   days: Weekday[];
+  /** Every other day, from the day the protocol starts (days are then empty). */
+  everyOther: boolean;
 }
 
 /** An item's when in the form's terms (old "with meals" items become any time, with a meal). */
 export function whenOf(item: PlanItem | undefined, fallback: PlanTime = "morning"): WhenValue {
-  if (!item) return { when: fallback, withFood: false, days: [] };
+  if (!item) return { when: fallback, withFood: false, days: [], everyOther: false };
   const n = normalizeItem(item);
-  return { when: n.when, withFood: !!n.withFood, days: n.days ?? [] };
+  return { when: n.when, withFood: !!n.withFood, days: n.days ?? [], everyOther: n.every === 2 };
 }
 
 /** The fields to save on an item from the form's value. */
-export function whenFields(v: WhenValue): Pick<PlanItem, "when" | "withFood" | "days"> {
-  const days = WEEKDAYS.filter((d) => v.days.includes(d));
-  return { when: v.when, ...(v.withFood ? { withFood: true } : {}), ...(days.length > 0 && days.length < 7 ? { days } : {}) };
+export function whenFields(v: WhenValue): Pick<PlanItem, "when" | "withFood" | "days" | "every"> {
+  const days = v.everyOther ? [] : WEEKDAYS.filter((d) => v.days.includes(d));
+  return {
+    when: v.when,
+    ...(v.withFood ? { withFood: true } : {}),
+    ...(v.everyOther ? { every: 2 as const } : {}),
+    ...(days.length > 0 && days.length < 7 ? { days } : {}),
+  };
 }
 
 /** "With a meal · Mon, Wed, Fri", or nothing when neither applies. */
 export function whenExtras(item: PlanItem): string | undefined {
   const n = normalizeItem(item);
-  return [n.withFood && "With a meal", daysLabel(n.days)].filter(Boolean).join(" · ") || undefined;
+  return [n.withFood && "With a meal", scheduleLabel(n)].filter(Boolean).join(" · ") || undefined;
 }
 
 export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v: WhenValue) => void }) {
   const foodId = useId();
-  const toggle = (d: Weekday) => onChange({ ...value, days: value.days.includes(d) ? value.days.filter((x) => x !== d) : [...value.days, d] });
+  const toggle = (d: Weekday) =>
+    onChange({ ...value, everyOther: false, days: value.days.includes(d) ? value.days.filter((x) => x !== d) : [...value.days, d] });
   return (
     <div className="flex flex-col gap-3">
       <ChoiceGroup<PlanTime>
@@ -72,6 +80,17 @@ export function WhenFields({ value, onChange }: { value: WhenValue; onChange: (v
       <fieldset className="flex flex-col gap-1.5">
         <legend className={cx(labelStyles, "mb-1.5")}>Days (none picked: every day)</legend>
         <div className="flex flex-wrap gap-1.5">
+          <button
+            type="button"
+            aria-pressed={value.everyOther}
+            onClick={() => onChange({ ...value, everyOther: !value.everyOther, days: [] })}
+            className={cx(
+              "min-h-11 rounded-lg border px-3 text-sm transition-colors duration-150",
+              value.everyOther ? "border-accent bg-accent-soft font-medium text-ink" : "border-line text-ink-2 hover:bg-sunken",
+            )}
+          >
+            Every other day
+          </button>
           {WEEKDAYS.map((d) => {
             const on = value.days.includes(d);
             return (
